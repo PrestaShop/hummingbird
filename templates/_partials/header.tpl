@@ -28,7 +28,6 @@
 {block name='header_banner'}
   <div class="header-banner">
     {hook h='displayBanner'}
-    {$template_dir}
   </div>
 {/block}
 

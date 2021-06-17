@@ -1,0 +1,16 @@
+.hidden-on-desktop {
+  @extend .d-none;
+  @extend .d-sm-block;
+  @extend .d-md-none;
+}
+
+.hidden-on-mobile {
+  @extend .d-none;
+  @extend .d-sm-flex;
+  @extend .d-md-flex;
+}
+
+.inline-items {
+  display: flex;
+  flex-wrap: nowrap;
+}

@@ -43,19 +43,24 @@ $componentName: header;
 
   & &-bottom {
     border-bottom: 1px solid $secondary-light;
+    padding: 0;
 
-    &-content {
-      position: relative;
-      display: flex;
-      align-items: center;
+    .navbar-brand {
+      padding: 0;
     }
 
-    &-right {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .nav-link {
+      font-weight: 400;
+    }
 
-      .menu .top-menu {
+    .menu  {
+      width: 100%;
+
+      .dropdown {
+        position: inherit;
+      }
+
+      .top-menu {
         display: flex;
         align-items: center;
         margin-bottom: 0;
@@ -70,7 +75,10 @@ $componentName: header;
             }
           }
 
-          .sub-menu {
+          .dropdown-menu {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
             width: 100vw;
             max-width: 100vw;
             opacity: 0;
@@ -85,10 +93,7 @@ $componentName: header;
           }
 
           &:hover {
-            .sub-menu {
-              display: flex;
-              align-items: center;
-              flex-wrap: wrap;
+            .dropdown-menu {
               opacity: 1;
               pointer-events: all;
             }

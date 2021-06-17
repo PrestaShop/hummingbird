@@ -58,26 +58,22 @@
 {/block}
 
 {block name='header_top'}
-  <div class="{$headerBottomName}">
+  <div class="{$headerBottomName} navbar navbar-expand-lg">
     <div class="container">
-       <div class="{$headerBottomName}-content row">
-        <div class="col-md-2 d-none d-sm-block d-md-block" id="_desktop_logo">
-            {if $page.page_name == 'index'}
-              <h1>
-                <a href="{$urls.pages.index}">
-                  <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name}" loading="lazy" width="100" height="28">
-                </a>
-              </h1>
-            {else}
-                <a href="{$urls.pages.index}">
-                  <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name}" loading="lazy" width="100" height="28">
-                </a>
-            {/if}
-        </div>
-        <div class="{$headerBottomName}-right col-md-10 col-sm-12 position-static">
-          {hook h='displayTop'}
-        </div>
-      </div>
+      {if $page.page_name == 'index'}
+        <a class="navbar-brand" href="{$urls.pages.index}">
+          <h1>
+              <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name}" loading="lazy" width="100" height="28">
+          </h1>
+        </a>
+      {else}
+        <a class="navbar-brand" href="{$urls.pages.index}">
+          <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name}" loading="lazy" width="100" height="28">
+        </a>
+      {/if}
+
+      {hook h='displayTop'}
+
       <div id="mobile_top_menu_wrapper" class="row d-none d-sm-block d-md-none" style="display:none;">
         <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
         <div class="js-top-menu-bottom">

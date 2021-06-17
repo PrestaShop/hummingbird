@@ -1,0 +1,104 @@
+$componentName: ps-imageslider;
+
+.#{$componentName} {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  }
+
+  & &-content {
+    width: 100%;
+
+    h2, h3, p {
+      color: $slider-text-color; 
+    }
+  }
+
+  & &-pagination {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: inline-block;
+    width: auto;
+
+    .swiper-pagination-bullet {
+      background: $white;
+      opacity: 0.6;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: $white;
+      opacity: 1;
+    }
+  }
+
+  & &-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  & &-text {
+    .caption-description{
+      max-width: 20rem;
+
+      h3 {
+        font-size: $slider-subtitle-size;
+        margin: $slider-text-spacing 0;
+      }
+
+      h2 {
+        font-size: $slider-title-size;
+      }
+
+      p {
+        font-size: $slider-description-size;
+      }
+    } 
+  }
+
+  & &-button-prev, & &-button-next {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    color: white;
+    z-index: 1;
+    cursor: pointer;
+    transition: .25s ease-out;
+
+    &:hover {
+      opacity: .6;
+    }
+
+    i {
+      font-size: 3.5rem;
+    }
+  }
+
+  & &-button-prev {
+    left: 3rem;
+  } 
+
+  & &-button-next {
+    right: 3rem;
+  } 
+}

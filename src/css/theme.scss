@@ -7,7 +7,16 @@
 @import "partials/_fonts";
 @import "partials/_commons";
 @import "partials/_helpers";
+@import "~swiper/swiper.min.css";
+@import "~swiper/components/navigation/navigation.min.css";
+@import "~swiper/components/pagination/pagination.min.css";
 
 // Layout
 @import "layout/_header";
+
+// Components
+@import "components/_slider";
+
+// Pages
+@import "pages/_home";
 /* stylelint-enable */

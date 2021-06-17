@@ -25,11 +25,25 @@
 /* eslint-disable */
 import 'expose-loader?Tether!tether';
 import 'bootstrap/dist/js/bootstrap.min';
+import SwiperCore, {Pagination, Navigation} from 'swiper/core';
 
 import EventEmitter from 'events';
 import $ from 'jquery';
 /* eslint-enable */
 
-document.addEventListener("DOMContentLoaded", function() {
+SwiperCore.use([Pagination, Navigation]);
 
+document.addEventListener("DOMContentLoaded", function() {
+  new SwiperCore('.ps-imageslider', {
+    direction: 'horizontal',
+    loop: true,
+    pagination: {
+      el: '.ps-imageslider-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.ps-imageslider-button-next',
+      prevEl: '.ps-imageslider-button-prev',
+    },
+  })
 });

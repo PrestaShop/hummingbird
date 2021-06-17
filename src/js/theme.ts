@@ -22,26 +22,14 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
+/* eslint-disable */
+import 'expose-loader?Tether!tether';
+import 'bootstrap/dist/js/bootstrap.min';
+
+import EventEmitter from 'events';
 import $ from 'jquery';
+/* eslint-enable */
 
-export default class ProductMinitature {
-  init() {
-    $('.js-product-miniature').each((index, element) => {
-      // Limit number of shown colors
-      if ($(element).find('.color').length > 5) {
-        let count = 0;
+document.addEventListener("DOMContentLoaded", function() {
 
-        $(element)
-          .find('.color')
-          .each((colorIndex, colorElement) => {
-            if (colorIndex > 4) {
-              $(colorElement).hide();
-              count += 1;
-            }
-          });
-
-        $(element).find('.js-count').append(`+${count}`);
-      }
-    });
-  }
-}
+});

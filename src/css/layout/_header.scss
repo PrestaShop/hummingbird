@@ -1,6 +1,12 @@
 $componentName: header;
 
 .#{$componentName} {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+
   & &-top {
     a {
       color: $body-color;

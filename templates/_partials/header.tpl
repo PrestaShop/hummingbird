@@ -34,7 +34,7 @@
 {block name='header_nav'}
   <nav class="{$headerTopName}">
     <div class="container">
-      <div class="{$headerTopName}-content row">
+      <div class="{$headerTopName}-content">
         <div class="{$headerTopName}-desktop hidden-on-mobile">
           <div class="{$headerTopName}-left col-md-5 col-xs-12">
             {hook h='displayNav1'}

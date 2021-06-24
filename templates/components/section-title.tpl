@@ -22,14 +22,8 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<section class="featured-products clearfix">
-  {include file="{_PS_PARENT_THEME_URI_}components/section-title.tpl" title={l s="Popular Products" d="Shop.Theme.Catalog"}}
+{$componentName = 'section-title'}
 
-  <div class="container">
-    {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row"}
-  </div>
-
-  <a class="all-product-link float-xs-left float-md-right h4" href="{$allProductsLink}">
-    {l s='All products' d='Shop.Theme.Catalog'}<i class="material-icons">&#xE315;</i>
-  </a>
-</section>
+{block name='section_title'}
+  <h2 class="{$componentName}">{$title}</h2>
+{/block}

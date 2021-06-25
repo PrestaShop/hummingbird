@@ -1,0 +1,44 @@
+$component-name: email-subscription;
+
+.#{$component-name} {
+  background-color: $gray-light;
+  padding: 2.5rem 1rem;
+
+  & &-content {
+    max-width: 50.625rem;
+    margin: auto;
+
+    &-infos {
+      margin-top: .25rem;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    &-inputs {
+      display: flex;
+      align-items: center;
+
+      input[type="email"] {
+        border: 1px solid $email-input-color;
+        color: $email-input-color;
+        padding: 0.5rem 1.25rem;
+        margin-right: 0.5rem;
+        min-width: 20rem;
+        min-height: 2.625rem;
+      }
+
+      .btn-primary {
+        color: $white;
+        text-transform: inherit;
+      }
+    }
+  }
+
+  & &-label {
+    color: $gray-dark;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}

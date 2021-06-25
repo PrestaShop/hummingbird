@@ -1,0 +1,19 @@
+#custom-text {
+  text-align: center;
+  padding: 2.5rem 0;
+  max-width: 58.375rem;
+  width: 100%;
+  margin: auto;
+
+  h2 {
+    font-size: 2.5rem;  
+    color: $gray-dark;
+    font-weight: 600;
+  }
+
+  strong {
+    font-size: 1.25rem;
+    color: $gray-dark;
+    font-weight: 600;
+  }
+}

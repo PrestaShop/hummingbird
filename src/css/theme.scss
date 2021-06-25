@@ -13,6 +13,7 @@
 
 // Layout
 @import "layout/_header";
+@import "layout/_footer";
 
 // Components
 @import "components/_slider";
@@ -22,4 +23,10 @@
 
 // Pages
 @import "pages/_home";
+
+// Modules
+@import "modules/_featuredproducts";
+@import "modules/_banner";
+@import "modules/_customtext";
+@import "modules/_emailsubscriptions";
 /* stylelint-enable */

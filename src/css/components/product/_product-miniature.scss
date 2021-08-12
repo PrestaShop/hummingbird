@@ -97,6 +97,7 @@ $component-name: product-miniature;
     padding: 0.25rem;
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
 
     .product-flag {
       margin: 0.25rem;

@@ -1,0 +1,8 @@
+$component-name: content;
+
+.#{$component-name} {
+  &-columns {
+    display: flex;
+    align-items: flex-start;
+  }
+}

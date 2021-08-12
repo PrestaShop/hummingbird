@@ -1,0 +1,56 @@
+$component-name: content;
+
+.#{$component-name} {
+  padding-top: 3.25rem;
+  background: $gray-dark;
+
+  & &-top {
+    padding-bottom: 2.5rem;
+  }
+
+  h2, h3, .h4, .h3, .copyright {
+    &, a {
+      color: white;
+    }
+  }
+
+  h2, h3, .h3, .h4 {
+    font-size: 1rem;
+
+    &, a {
+      // stylelint-disable-next-line
+      text-transform: inherit!important;
+    }
+  }
+
+  .collapse {
+    @include media-breakpoint-up(md) {
+      display: inherit;
+    }
+  }
+
+  .wrapper {
+    ul {
+      margin-bottom: 0;
+
+      a {
+        display: block;
+        color: $light-gray; 
+        padding: 0.25rem;
+        transition: .25s ease-out;
+        padding-left: 0;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  .block-contact {
+    #contact-infos {
+      color: $light-gray;
+      line-height: 1.85rem;
+    }
+  }
+}

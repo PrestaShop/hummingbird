@@ -48,6 +48,5 @@
         {/if}
       </div>
     {/block}
-
   </div>
 {/block}

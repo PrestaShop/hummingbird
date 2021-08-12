@@ -23,14 +23,16 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
+{$componentName = 'category-tree'}
+
 {function name="categories" nodes=[] depth=0}
   {strip}
     {if $nodes|count}
-      <ul class="category-sub-menu">
+      <ul class="{$componentName}-list">
         {foreach from=$nodes item=node}
-          <li data-depth="{$depth}">
+          <li class="{$componentName}-item" data-depth="{$depth}">
             {if $depth===0}
-              <a href="{$node.link}">{$node.name}</a>
+              <a class="{$componentName}-item-link" href="{$node.link}">{$node.name}</a>
               {if $node.children}
                 <div class="navbar-toggler collapse-icons" data-bs-toggle="collapse" data-target="#exCollapsingNavbar{$node.id}">
                   <i class="material-icons add">&#xE145;</i>
@@ -41,7 +43,7 @@
                 </div>
               {/if}
             {else}
-              <a class="category-sub-link" href="{$node.link}">{$node.name}</a>
+              <a class="{$componentName}-child-link" href="{$node.link}">{$node.name}</a>
               {if $node.children}
                 <span class="arrows" data-bs-toggle="collapse" data-target="#exCollapsingNavbar{$node.id}">
                   <i class="material-icons arrow-right">&#xE315;</i>
@@ -59,9 +61,9 @@
   {/strip}
 {/function}
 
-<div class="block-categories">
-  <ul class="category-top-menu">
-    <li><a class="text-uppercase h6" href="{$categories.link nofilter}">{$categories.name}</a></li>
-    <li>{categories nodes=$categories.children}</li>
+<div class="{$componentName}">
+  <ul class="{$componentName}-list">
+    <li class="{$componentName}-title"><a class="{$componentName}-title-link" href="{$categories.link nofilter}">{$categories.name}</a></li>
+    <li class="{$componentName}-child">{categories nodes=$categories.children}</li>
   </ul>
 </div>

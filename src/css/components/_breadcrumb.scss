@@ -1,0 +1,24 @@
+$componentName: breadcrumb;
+
+.#{$componentName} {
+  padding: 1.75rem 0;
+
+  --bs-breadcrumb-divider: '>';
+
+  & &-list {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  & &-item, & &-link {
+    color: $gray-dark;
+    font-size: 0.75rem;
+  }
+
+  & &-item {
+    list-style-type: none;
+    color: $gray;
+  }
+}

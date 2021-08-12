@@ -1,0 +1,29 @@
+$componentName: search-filters;
+
+.#{$componentName} {
+  & &-title {
+    font-size: var(--category-tree-title-size);
+    color: var(--category-tree-title-color);
+    font-weight: 600;
+  }
+
+  & &-subtitle {
+    font-size: var(--category-tree-subtitle-size);
+    color: var(--category-tree-subtitle-color);
+    font-weight: 600;
+  }
+  
+  & &-link {
+    font-size: var(--category-tree-subtitle-size);
+    color: var(--category-tree-subtitle-color);
+    font-weight: 300;
+  }
+
+  & &-label {
+    margin: .25rem 0;
+  }
+
+  &#search_filters .facet .facet-label .custom-checkbox, &#search_filters .facet .facet-label .custom-radio {
+    top: -3px;
+  }
+}

@@ -29,7 +29,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 let config = {
   entry: {
-    theme: ['./src/js/theme.ts', './src/css/theme.scss'],
+    theme: ['./src/js/theme.js', './src/css/theme.scss'],
     error: ['./src/css/error.scss'],
   },
   output: {
@@ -38,6 +38,16 @@ let config = {
   },
   module: {
     rules: [
+      {
+    test: require.resolve('jquery'),
+    use: [{
+        loader: 'expose-loader',
+        options: 'jQuery'
+    },{
+        loader: 'expose-loader',
+        options: '$'
+    }]
+  },
       {
         test: /\.ts?$/,
         use: 'ts-loader',
@@ -80,6 +90,10 @@ let config = {
   },
   plugins: [
     new MiniCssExtractPlugin({filename: path.join('..', 'css', '[name].css')}),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
   ]
 };
 

@@ -22,26 +22,25 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+{$componentName = 'subcategories'}
+
 {if !empty($subcategories)}
   {if (isset($display_subcategories) && $display_subcategories eq 1) || !isset($display_subcategories) }
-    <div id="subcategories" class="card card-block">
-      <h2 class="subcategory-heading">{l s='Subcategories' d='Shop.Theme.Category'}</h2>
+    <div id="subcategories" class="{$componentName} card card-block">
+      <h2 class="{$componentName}-title">{l s='Subcategories' d='Shop.Theme.Category'}</h2>
 
-      <ul class="subcategories-list">
+      <ul class="{$componentName}-list">
         {foreach from=$subcategories item=subcategory}
-          <li>
-            <div class="subcategory-image">
-              <a href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}" title="{$subcategory.name|escape:'html':'UTF-8'}" class="img">
+          <li class="{$componentName}-item">
+            <div class="{$componentName}-image">
+              <a href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}" title="{$subcategory.name|escape:'html':'UTF-8'}" class="{$componentName}-link img">
                 {if !empty($subcategory.image.large.url)}
-                  <img class="replace-2x" src="{$subcategory.image.large.url}" alt="{$subcategory.name|escape:'html':'UTF-8'}" loading="lazy" width="141" height="180"/>
+                  <img class="{$componentName}-image replace-2x" src="{$subcategory.image.large.url}" alt="{$subcategory.name|escape:'html':'UTF-8'}" loading="lazy" width="141" height="180"/>
                 {/if}
               </a>
             </div>
 
-            <h5><a class="subcategory-name" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}">{$subcategory.name|truncate:25:'...'|escape:'html':'UTF-8'}</a></h5>
-              {if $subcategory.description}
-                <div class="cat_desc">{$subcategory.description|unescape:'html' nofilter}</div>
-              {/if}
+            <h5 class="{$componentName}-name"><a class="{$componentName}-name-link" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}">{$subcategory.name|truncate:25:'...'|escape:'html':'UTF-8'}</a></h5>
           </li>
         {/foreach}
       </ul>

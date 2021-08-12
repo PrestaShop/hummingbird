@@ -1,0 +1,12 @@
+$componentName: block-category;
+
+.#{$componentName} {
+  h1 {
+    font-size: 2rem;
+  }
+
+  #category-description {
+    color: $gray-dark;
+    font-size: 1rem;
+  }
+}

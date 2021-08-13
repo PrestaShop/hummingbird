@@ -74,6 +74,14 @@ label .color,
   color: $gray-darker;
 }
 
+.btn-primary {
+  color: $white;
+
+  &:hover, &:focus {
+    color: $white;
+  }
+}
+
 .btn-primary,
 .btn-secondary {
   padding: 0.5rem 1.25rem;
@@ -142,7 +150,7 @@ small.value {
 .form-control {
   padding: 0.5rem 1rem;
   color: $gray;
-  background: $gray-light;
+  background: $input-background-color;
   border: $input-btn-border-width solid $input-border-color;
 
   &:focus {
@@ -186,36 +194,36 @@ input,
 textarea {
   /* stylelint-disable */
   &::-webkit-input-placeholder {
-    color: $gray;
+    color: $light-gray;
   }
 
   &::-moz-placeholder {
-    color: $gray;
+    color: $light-gray;
   }
 
   &:-ms-input-placeholder {
-    color: $gray;
+    color: $light-gray;
   }
 
   &:-moz-placeholder {
-    color: $gray;
+    color: $light-gray;
   }
 
   &:active {
     &::-webkit-input-placeholder {
-      color: $gray-darker;
+      color: $gray;
     }
 
     &::-moz-placeholder {
-      color: $gray-darker;
+      color: $gray;
     }
 
     &:-ms-input-placeholder {
-      color: $gray-darker;
+      color: $gray;
     }
 
     &:-moz-placeholder {
-      color: $gray-darker;
+      color: $gray;
     }
   }
   /* stylelint-enable */

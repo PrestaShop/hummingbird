@@ -38,15 +38,15 @@
     {if !$notifications || $notifications.nw_error}
       <section class="form-fields">
 
-        <div class="form-group row">
-          <div class="col-md-9 col-md-offset-3">
+        <div class="form-group">
+          <div class="">
             <h3>{l s='Contact us' d='Shop.Theme.Global'}</h3>
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-md-3 form-control-label">{l s='Subject' d='Shop.Forms.Labels'}</label>
-          <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-control-label">{l s='Subject' d='Shop.Forms.Labels'}</label>
+          <div>
             <select name="id_contact" class="form-control form-control-select">
               {foreach from=$contact.contacts item=contact_elt}
                 <option value="{$contact_elt.id_contact}">{$contact_elt.name}</option>
@@ -55,9 +55,9 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-md-3 form-control-label">{l s='Email address' d='Shop.Forms.Labels'}</label>
-          <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-control-label">{l s='Email address' d='Shop.Forms.Labels'}</label>
+          <div>
             <input
               class="form-control"
               name="from"
@@ -69,9 +69,9 @@
         </div>
 
         {if $contact.orders}
-          <div class="form-group row">
-            <label class="col-md-3 form-control-label">{l s='Order reference' d='Shop.Forms.Labels'}</label>
-            <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-control-label">{l s='Order reference' d='Shop.Forms.Labels'}</label>
+            <div>
               <select name="id_order" class="form-control form-control-select">
                 <option value="">{l s='Select reference' d='Shop.Forms.Help'}</option>
                 {foreach from=$contact.orders item=order}
@@ -79,27 +79,27 @@
                 {/foreach}
               </select>
             </div>
-            <span class="col-md-3 form-control-comment">
+            <span class="form-control-comment">
               {l s='optional' d='Shop.Forms.Help'}
             </span>
           </div>
         {/if}
 
         {if $contact.allow_file_upload}
-          <div class="form-group row">
-            <label class="col-md-3 form-control-label">{l s='Attachment' d='Shop.Forms.Labels'}</label>
-            <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-control-label">{l s='Attachment' d='Shop.Forms.Labels'}</label>
+            <div>
               <input type="file" name="fileUpload" class="filestyle" data-buttonText="{l s='Choose file' d='Shop.Theme.Actions'}">
             </div>
-            <span class="col-md-3 form-control-comment">
+            <span class="form-control-comment">
               {l s='optional' d='Shop.Forms.Help'}
             </span>
           </div>
         {/if}
 
-        <div class="form-group row">
-          <label class="col-md-3 form-control-label">{l s='Message' d='Shop.Forms.Labels'}</label>
-          <div class="col-md-9">
+        <div class="form-group">
+          <label class="form-control-label">{l s='Message' d='Shop.Forms.Labels'}</label>
+          <div>
             <textarea
               class="form-control"
               name="message"
@@ -110,8 +110,8 @@
         </div>
 
         {if isset($id_module)}
-          <div class="form-group row">
-            <div class="offset-md-3">
+          <div class="form-group">
+            <div>
               {hook h='displayGDPRConsent' id_module=$id_module}
             </div>
           </div>

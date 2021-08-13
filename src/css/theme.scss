@@ -28,9 +28,13 @@
 @import "components/category/_subcategories";
 @import "components/category/_product-list";
 @import "components/category/_pagination";
+@import "components/_form";
 
 // Pages
+@import "pages/_global";
 @import "pages/_home";
+@import "pages/_login";
+@import "pages/_register";
 
 // Modules
 @import "modules/_featuredproducts";

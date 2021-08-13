@@ -25,26 +25,26 @@
 {extends file=$layout}
 
 {block name='content'}
-
   <section id="main">
-
-    {block name='page_header_container'}
-      {block name='page_title' hide}
-        <header class="page-header">
-          <h1>{$smarty.block.child}</h1>
-        </header>
-      {/block}
-    {/block}
-
-    {block name='page_content_container'}
-      <section id="content" class="page-content">
-        {block name='page_content_top'}{/block}
-
-        {block name='page_content'}
-          <!-- Page content -->
+    <div class="container">
+      {block name='page_header_container'}
+        {block name='page_title' hide}
+          <header class="page-header">
+            <h1>{$smarty.block.child}</h1>
+          </header>
         {/block}
-      </section>
-    {/block}
+      {/block}
+
+      {block name='page_content_container'}
+        <section id="content" class="page-content">
+          {block name='page_content_top'}{/block}
+
+          {block name='page_content'}
+            <!-- Page content -->
+          {/block}
+        </section>
+      {/block}
+    </div>
 
     {block name='page_footer_container'}
       <footer class="page-footer">
@@ -53,7 +53,5 @@
         {/block}
       </footer>
     {/block}
-
   </section>
-
 {/block}

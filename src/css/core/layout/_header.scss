@@ -1,0 +1,24 @@
+$componentName: header;
+
+.#{$componentName} {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+
+  &-top {
+    &-right {
+      @extend .inline-items;
+      justify-content: flex-end; 
+
+      > *:not(:last-child) {
+        margin-right: 1.5rem;
+      }
+    }
+
+    &-desktop {
+      padding: 1rem 0;
+    }
+  }
+}

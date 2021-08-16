@@ -1,12 +1,6 @@
 $componentName: header;
 
 .#{$componentName} {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-
   & &-top {
     a {
       color: $body-color;
@@ -20,7 +14,6 @@ $componentName: header;
 
     &-desktop {
       border-bottom: 1px solid $secondary-light;
-      padding: 1rem 0;
     }
 
     &-right {

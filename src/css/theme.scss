@@ -11,7 +11,11 @@
 @import "~swiper/components/navigation/navigation.min.css";
 @import "~swiper/components/pagination/pagination.min.css";
 
+// Core
+@import "core/layout/_header";
+
 // Layout
+/*
 @import "layout/_header";
 @import "layout/_footer";
 @import "layout/_content";
@@ -41,4 +45,5 @@
 @import "modules/_banner";
 @import "modules/_customtext";
 @import "modules/_emailsubscriptions";
+*/
 /* stylelint-enable */

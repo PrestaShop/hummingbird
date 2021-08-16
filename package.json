@@ -56,7 +56,6 @@
     "webpack-sources": "^0.1.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.9.2",
-    "swiper": "^6.7.0"
+    "@popperjs/core": "^2.9.2"
   }
 }

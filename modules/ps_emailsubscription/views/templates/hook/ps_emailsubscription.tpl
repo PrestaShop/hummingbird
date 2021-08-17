@@ -26,59 +26,61 @@
 {$componentName = 'email-subscription'}
 
 <div class="{$componentName}">
-  <div class="{$componentName}-content row">
-    <div class="{$componentName}-content-left col-md-5">
-      <p class="{$componentName}-label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
-    </div>
+  <div class="container">
+    <div class="{$componentName}-content row">
+      <div class="{$componentName}-content-left col-md-5">
+        <p class="{$componentName}-label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
+      </div>
 
-    <div class="{$componentName}-content-right col-md-7">
-      <form action="{$urls.current_url}#blockEmailSubscription_{$hookName}" method="post">
-        <div class="{$componentName}-content-inputs">
-          <input
-            name="email"
-            type="email"
-            value="{$value}"
-            placeholder="{l s='Your email address' d='Shop.Forms.Labels'}"
-            aria-labelledby="block-newsletter-label"
-            required
-          >
+      <div class="{$componentName}-content-right col-md-7">
+        <form action="{$urls.current_url}#blockEmailSubscription_{$hookName}" method="post">
+          <div class="{$componentName}-content-inputs inline-items">
+            <input
+              name="email"
+              type="email"
+              value="{$value}"
+              placeholder="{l s='Your email address' d='Shop.Forms.Labels'}"
+              aria-labelledby="block-newsletter-label"
+              required
+            >
 
-          <input
-            class="btn btn-primary d-none d-sm-none d-md-block"
-            name="submitNewsletter"
-            type="submit"
-            value="{l s='Subscribe' d='Shop.Theme.Actions'}"
-          >
+            <input
+              class="btn btn-primary d-none d-sm-none d-md-block"
+              name="submitNewsletter"
+              type="submit"
+              value="{l s='Subscribe' d='Shop.Theme.Actions'}"
+            >
 
-          <input
-            class="btn btn-primary d-none d-sm-block d-md-none"
-            name="submitNewsletter"
-            type="submit"
-            value="{l s='OK' d='Shop.Theme.Actions'}"
-          >
-        </div>
+            <input
+              class="btn btn-primary d-none d-sm-block d-md-none"
+              name="submitNewsletter"
+              type="submit"
+              value="{l s='OK' d='Shop.Theme.Actions'}"
+            >
+          </div>
 
-        <div class="{$componentName}-content-infos">
-          {if $conditions}
-            <p>{$conditions}</p>
-          {/if}
+          <div class="{$componentName}-content-infos">
+            {if $conditions}
+              <p>{$conditions}</p>
+            {/if}
 
-          {if $msg}
-            <p class="alert {if $nw_error}alert-danger{else}alert-success{/if}">
-              {$msg}
-            </p>
-          {/if}
+            {if $msg}
+              <p class="alert {if $nw_error}alert-danger{else}alert-success{/if}">
+                {$msg}
+              </p>
+            {/if}
 
-          {hook h='displayNewsletterRegistration'}
+            {hook h='displayNewsletterRegistration'}
 
-          {if isset($id_module)}
-            {hook h='displayGDPRConsent' id_module=$id_module}
-          {/if}
-        </div>
+            {if isset($id_module)}
+              {hook h='displayGDPRConsent' id_module=$id_module}
+            {/if}
+          </div>
 
-        <input type="hidden" name="blockHookName" value="{$hookName}" />
-        <input type="hidden" name="action" value="0">
-      </form>
+          <input type="hidden" name="blockHookName" value="{$hookName}" />
+          <input type="hidden" name="action" value="0">
+        </form>
+      </div>
     </div>
   </div>
 </div>

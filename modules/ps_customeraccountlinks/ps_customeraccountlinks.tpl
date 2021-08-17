@@ -24,12 +24,12 @@
  *}
 
 <div id="block_myaccount_infos" class="col-md-3 links wrapper">
-  <p class="h3 myaccount-title d-none d-sm-block d-md-block">
+  <p class="h3 myaccount-title d-none d-sm-none d-md-block">
     <a class="text-uppercase" href="{$urls.pages.my_account}" rel="nofollow">
       {l s='Your account' d='Shop.Theme.Customeraccount'}
     </a>
   </p>
-  <div class="title clearfix d-none d-sm-block d-md-none" data-target="#footer_account_list" data-bs-toggle="collapse">
+  <div class="title clearfix d-block d-md-none" data-bs-target="#footer_account_list" data-bs-toggle="collapse" aria-expanded="false">
     <span class="h3">{l s='Your account' d='Shop.Theme.Customeraccount'}</span>
     <span class="float-xs-right">
       <span class="navbar-toggler collapse-icons">
@@ -38,7 +38,7 @@
       </span>
     </span>
   </div>
-  <ul class="account-list collapse" id="footer_account_list">
+  <ul class="account-list collapse d-md-block" id="footer_account_list">
     {foreach from=$my_account_urls item=my_account_url}
         <li>
           <a href="{$my_account_url.url}" title="{$my_account_url.title}" rel="nofollow">

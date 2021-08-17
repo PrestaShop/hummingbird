@@ -26,8 +26,8 @@
   <div class="row">
   {foreach $linkBlocks as $linkBlock}
     <div class="col-md-6 wrapper">
-      <p class="h3 d-none d-sm-block d-md-block">{$linkBlock.title}</p>
-      <div class="title clearfix d-none d-sm-block d-md-none" data-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
+      <p class="h3 d-none d-sm-none d-md-block">{$linkBlock.title}</p>
+      <div class="title clearfix d-block d-sm-block d-md-none" aria-expanded="false" data-bs-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
         <span class="h3">{$linkBlock.title}</span>
         <span class="float-xs-right">
           <span class="navbar-toggler collapse-icons">
@@ -36,7 +36,7 @@
           </span>
         </span>
       </div>
-      <ul id="footer_sub_menu_{$linkBlock.id}" class="collapse">
+      <ul id="footer_sub_menu_{$linkBlock.id}" class="collapse d-md-block">
         {foreach $linkBlock.links as $link}
           <li>
             <a

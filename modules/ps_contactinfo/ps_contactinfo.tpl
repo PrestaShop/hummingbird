@@ -24,7 +24,7 @@
  *}
 
 <div class="block-contact col-md-3 links wrapper">
-  <div class="title clearfix d-none d-sm-block d-md-none" data-target="#contact-infos" data-bs-toggle="collapse">
+  <div class="title clearfix d-block d-md-none" data-bs-target="#contact-infos" data-bs-toggle="collapse" aria-expanded="false">
     <span class="h3">{l s='Store information' d='Shop.Theme.Global'}</span>
     <span class="float-xs-right">
       <span class="navbar-toggler collapse-icons">
@@ -34,8 +34,8 @@
     </span>
   </div>
 
-  <p class="h4 text-uppercase block-contact-title d-none d-sm-block d-md-block">{l s='Store information' d='Shop.Theme.Global'}</p>
-  <div id="contact-infos" class="collapse">
+  <p class="h4 text-uppercase block-contact-title d-none d-sm-none d-md-block">{l s='Store information' d='Shop.Theme.Global'}</p>
+  <div id="contact-infos" class="collapse d-md-block">
     {$contact_infos.address.formatted nofilter}
     {if $contact_infos.phone}
       <br>

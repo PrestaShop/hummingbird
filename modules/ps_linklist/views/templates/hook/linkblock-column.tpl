@@ -35,7 +35,7 @@
           </span>
         </span>
       </div>
-      <ul id="footer_sub_menu_{$linkBlock.id}" class="collapse">
+      <ul id="footer_sub_menu_{$linkBlock.id}" class="collapse d-none d-md-block">
         {foreach $linkBlock.links as $link}
           <li>
             <a

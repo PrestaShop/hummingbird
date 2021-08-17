@@ -19,4 +19,8 @@ $component-name: product-miniature;
       padding-top: .5rem;
     }
   }
+
+  & &-image {
+    height: auto; 
+  }
 }

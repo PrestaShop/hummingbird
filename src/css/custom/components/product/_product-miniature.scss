@@ -10,16 +10,11 @@ $component-name: product-miniature;
   }
 
   & &-image-container {
-    height: 19.0625rem; 
     position: relative;
     overflow: hidden;
   }
 
   & &-image {
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
     transition: .25s ease-out;
   }
 

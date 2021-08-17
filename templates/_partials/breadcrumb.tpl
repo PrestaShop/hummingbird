@@ -23,7 +23,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
  {$componentName = 'breadcrumb'}
-<nav data-depth="{$breadcrumb.count}" class="{$componentName} d-none d-sm-block d-md-block">
+
+<nav data-depth="{$breadcrumb.count}" class="{$componentName} d-block d-sm-none d-md-none">
   <div class="container {$componentName}-container">
     <ol class="{$componentName}-list">
       {block name='breadcrumb'}

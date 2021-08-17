@@ -1,4 +1,4 @@
-$componentName: ps-imageslider;
+$componentName: carousel;
 
 .#{$componentName} {
   position: relative;
@@ -7,11 +7,18 @@ $componentName: ps-imageslider;
   overflow: hidden;
   min-height: 30rem;
 
-  .swiper-slide {
-    display: flex;
+  & &-inner {
+    height: 100%;
+  }
+
+  & &-item {
+    height: 100%;
     align-items: center;
     justify-content: center;
 
+    &.active {
+      display: flex;
+    }
     img {
       position: absolute;
       top: 50%;
@@ -36,23 +43,12 @@ $componentName: ps-imageslider;
     }
   }
 
-  & &-pagination {
-    position: absolute;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    display: inline-block;
-    width: auto;
-
-    .swiper-pagination-bullet {
-      background: $white;
-      opacity: 0.6;
-    }
-
-    .swiper-pagination-bullet-active {
-      background: $white;
-      opacity: 1;
+  & &-indicators {
+    button {
+      width: 10px;
+      height: 10px;
+      border-radius: 1000rem;
+      border: 0;
     }
   }
 

@@ -23,9 +23,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <section class="featured-products clearfix">
-  {include file="{_PS_PARENT_THEME_URI_}components/section-title.tpl" title={l s="Popular Products" d="Shop.Theme.Catalog"}}
-
   <div class="container">
+    {include file="components/section-title.tpl" title={l s="Popular Products" d="Shop.Theme.Catalog"}}
     {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row"}
   </div>
 

@@ -1,2 +1,12 @@
 // Layout
 @import './layout/_header';
+
+// Components
+@import './components/_slider';
+@import './components/_breadcrumb';
+@import './components/product/_product-miniature';
+
+// Modules
+@import './modules/_banner';
+@import './modules/_featuredproducts';
+@import './modules/_customtext';

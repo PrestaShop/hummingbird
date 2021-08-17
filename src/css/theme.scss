@@ -12,38 +12,35 @@
 @import "~swiper/components/pagination/pagination.min.css";
 
 // Core
-@import "core/layout/_header";
+@import "core/_core";
 
 // Layout
-/*
-@import "layout/_header";
-@import "layout/_footer";
-@import "layout/_content";
+@import "custom/layout/_header";
+@import "custom/layout/_footer";
+@import "custom/layout/_content";
 
 // Components
-@import "components/_slider";
-@import "components/_currency-selector";
-@import "components/_section-title";
-@import "components/_breadcrumb";
-@import "components/product/_product-miniature";
-@import "components/category-tree/_category-tree";
-@import "components/search-filters/_search-filters";
-@import "components/category/_header";
-@import "components/category/_subcategories";
-@import "components/category/_product-list";
-@import "components/category/_pagination";
-@import "components/_form";
+@import "custom/components/_slider";
+@import "custom/components/_currency-selector";
+@import "custom/components/_section-title";
+@import "custom/components/_breadcrumb";
+@import "custom/components/product/_product-miniature";
+@import "custom/components/category-tree/_category-tree";
+@import "custom/components/search-filters/_search-filters";
+@import "custom/components/category/_header";
+@import "custom/components/category/_subcategories";
+@import "custom/components/category/_product-list";
+@import "custom/components/category/_pagination";
+@import "custom/components/_form";
 
 // Pages
-@import "pages/_global";
-@import "pages/_home";
-@import "pages/_login";
-@import "pages/_register";
+@import "custom/pages/_global";
+@import "custom/pages/_home";
+@import "custom/pages/_login";
+@import "custom/pages/_register";
 
 // Modules
-@import "modules/_featuredproducts";
-@import "modules/_banner";
-@import "modules/_customtext";
-@import "modules/_emailsubscriptions";
-*/
+@import "custom/modules/_featuredproducts";
+@import "custom/modules/_customtext";
+@import "custom/modules/_emailsubscriptions";
 /* stylelint-enable */

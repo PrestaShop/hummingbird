@@ -1,0 +1,13 @@
+$componentName: carousel;
+
+.#{$componentName} {
+  img {
+    width: 100%;
+  }
+
+  .caption-description {
+    p {
+      color: $white;
+    }
+  }
+}

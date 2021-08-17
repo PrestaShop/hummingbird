@@ -23,18 +23,23 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-{$componentName = 'ps-imageslider'}
-
 {if $homeslider.slides}
-  <div class="{$componentName}">
-    <div class="swiper-wrapper">
+  <div id="homeSlider" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      {assign var="count" value=0}
       {foreach from=$homeslider.slides item=slide name='homeslider'}
-        <li class="swiper-slide" role="option" aria-hidden="{if $smarty.foreach.homeslider.first}false{else}true{/if}">
-          <a class="{$componentName}-link" href="{$slide.url}">
-            <figure class="{$componentName}-content container">
+        <button type="button" data-bs-target="#homeSlider" data-bs-slide-to="{$count}" aria-label="{$slide.title}"{if $smarty.foreach.homeslider.first} class="active" aria-current="true"{/if}></button>
+        {$count = $count + 1}
+      {/foreach}
+    </div>
+    <div class="carousel-inner">
+      {foreach from=$homeslider.slides item=slide name='homeslider'}
+        <li class="carousel-item{if $smarty.foreach.homeslider.first} active{/if}" role="option" aria-hidden="{if $smarty.foreach.homeslider.first}false{else}true{/if}">
+          <a class="carousel-link" href="{$slide.url}">
+            <figure class="carousel-content">
               <img src="{$slide.image_url}" alt="{$slide.legend|escape}" loading="lazy" width="1110" height="340">
               {if $slide.title || $slide.description}
-                <figcaption class="{$componentName}-text caption">
+                <figcaption class="carousel-caption caption">
                   <h2 class="display-1 text-uppercase">{$slide.title}</h2>
                   <div class="caption-description">{$slide.description nofilter}</div>
                 </figcaption>
@@ -44,18 +49,14 @@
         </li>
       {/foreach}
     </div>
-    <div class="{$componentName}-pagination"></div>
 
-    <div class="{$componentName}-button-prev">
-      <i class="material-icons">
-        keyboard_arrow_left
-      </i>
-    </div>
-
-    <div class="{$componentName}-button-next">
-      <i class="material-icons">
-        keyboard_arrow_right
-      </i>
-    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#homeSlider" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#homeSlider" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 {/if}

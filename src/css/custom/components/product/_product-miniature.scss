@@ -34,24 +34,6 @@ $component-name: product-miniature;
     }
   }
 
-  & &-infos {
-    position: relative;
-    z-index: 90;
-
-    &-top,
-    &-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: .25rem .5rem;
-      background-color: $white;
-    }
-
-    &-top {
-      padding-top: .5rem;
-    }
-  }
-
   & &-title {
     margin-bottom: 0;
   }

@@ -1,0 +1,7 @@
+$componentName: breadcrumb;
+
+.#{$componentName} {
+  &[data-depth="1"] {
+    display: none;
+  }
+}

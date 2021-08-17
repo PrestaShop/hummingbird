@@ -1,0 +1,22 @@
+$component-name: product-miniature;
+
+.#{$component-name} {
+  & &-infos {
+    position: relative;
+    z-index: 90;
+    padding: 0;
+
+    &-top,
+    &-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .25rem .5rem;
+      background-color: $white;
+    }
+
+    &-top {
+      padding-top: .5rem;
+    }
+  }
+}

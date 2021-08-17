@@ -2,15 +2,12 @@ $componentName: breadcrumb;
 
 .#{$componentName} {
   padding: 1.75rem 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 
   --bs-breadcrumb-divider: '>';
-
-  & &-list {
-    display: flex;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-  }
 
   & &-item, & &-link {
     color: $gray-dark;

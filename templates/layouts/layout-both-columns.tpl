@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <!doctype html>
-<html lang="{$language.iso_code}">
+<html lang="{$language.locale}">
   <head>
     {block name='head'}
       {include file='_partials/head.tpl'}
@@ -31,6 +31,7 @@
   </head>
 
   <body id="{$page.page_name}" class="{$page.body_classes|classnames}">
+{$language|@var_dump}
     {block name='hook_after_body_opening_tag'}
       {hook h='displayAfterBodyOpeningTag'}
     {/block}

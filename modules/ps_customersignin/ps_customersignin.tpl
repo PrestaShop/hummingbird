@@ -23,8 +23,18 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div id="_desktop_user_info">
-  <div class="user-info">
+  <div class="user-info inline-items">
     {if $logged}
+      <a
+        class="account me-2"
+        href="{$urls.pages.my_account}"
+        title="{l s='View my customer account' d='Shop.Theme.Customeraccount'}"
+        rel="nofollow"
+      >
+        <i class="material-icons d-none d-sm-inline d-md-none logged">&#xE7FF;</i>
+        <span class="d-none d-sm-inline d-md-inline">{$customerName}</span>
+      </a>
+
       <a
         class="logout d-none d-sm-block d-md-block"
         href="{$urls.actions.logout}"
@@ -32,15 +42,6 @@
       >
         <i class="material-icons">&#xE7FF;</i>
         {l s='Sign out' d='Shop.Theme.Actions'}
-      </a>
-      <a
-        class="account"
-        href="{$urls.pages.my_account}"
-        title="{l s='View my customer account' d='Shop.Theme.Customeraccount'}"
-        rel="nofollow"
-      >
-        <i class="material-icons d-none d-sm-inline d-md-none logged">&#xE7FF;</i>
-        <span class="d-none d-sm-inline d-md-inline">{$customerName}</span>
       </a>
     {else}
       <a

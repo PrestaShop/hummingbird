@@ -39,9 +39,6 @@
           width="452"
           height="452"
         >
-        <div class="layer d-none d-sm-block d-md-block" data-bs-toggle="modal" data-target="#product-modal">
-          <i class="material-icons zoom-in">search</i>
-        </div>
       {else}
         <img 
           src="{$urls.no_picture_image.bySize.large_default.url}"

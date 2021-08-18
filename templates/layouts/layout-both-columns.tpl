@@ -31,7 +31,6 @@
   </head>
 
   <body id="{$page.page_name}" class="{$page.body_classes|classnames}">
-{$language|@var_dump}
     {block name='hook_after_body_opening_tag'}
       {hook h='displayAfterBodyOpeningTag'}
     {/block}

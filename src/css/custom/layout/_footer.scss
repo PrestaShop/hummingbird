@@ -47,6 +47,10 @@ $component-name: footer;
     }
   }
 
+  #block_myaccount_infos .myaccount-title a {
+    color: $white;
+  }
+
   .block-contact {
     #contact-infos {
       color: $light-gray;

@@ -6,4 +6,27 @@ $component-name: content;
     align-items: flex-start;
     padding: 0 3.75rem;
   }
+
+}
+
+##{$component-name}-wrapper {
+  .page-footer {
+    margin-top: 3rem;
+
+    > .container {
+      > a:last-of-type:not(:first-of-type) {
+        float: right;
+      }
+    }
+
+    a {
+      margin-right: 1rem;
+      color: $btn-tertiary-color;
+      font-size: 0.75rem;
+
+      span {
+        vertical-align: middle;
+      }
+    }
+  }
 }

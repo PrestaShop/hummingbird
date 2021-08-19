@@ -48,9 +48,11 @@
 
     {block name='page_footer_container'}
       <footer class="page-footer">
-        {block name='page_footer'}
-          <!-- Footer content -->
-        {/block}
+        <div class="container">
+          {block name='page_footer'}
+            <!-- Footer content -->
+          {/block}
+        </div>
       </footer>
     {/block}
   </section>

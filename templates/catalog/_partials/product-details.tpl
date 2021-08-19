@@ -5,7 +5,7 @@
 >
   <h5 class="product-infos-title">{l s='Product Details' d='Shop.Theme.Catalog'}</h5>
 
-  <ul class="prodcut-infos-details-list">
+  <ul class="product-infos-details-list">
     {block name='product_reference'}
       {if isset($product_manufacturer->id)}
         <li class="product-infos-details-line">
@@ -21,7 +21,7 @@
               <a href="{$product_brand_url}">{$product_manufacturer->name}</a>
             {/if}
           </div>
-        <li>
+        </li>
 
         {if isset($product.reference_to_display) && $product.reference_to_display neq ''}
           <li class="product-infos-details-line">
@@ -31,7 +31,7 @@
             <div class="product-infos-details-line-right">
               <span>{$product.reference_to_display}</span>
             </div>
-          <li>
+          </li>
         {/if}
       {/if}
     {/block}
@@ -45,7 +45,7 @@
           <div class="product-infos-details-line-right">
             <span data-stock="{$product.quantity}" data-allow-oosp="{$product.allow_oosp}">{$product.quantity} {$product.quantity_label}</span>
           </div>
-        <li>
+        </li>
       {/if}
     {/block}
 
@@ -59,7 +59,7 @@
           <div class="product-infos-details-line-right">
             <span>{$product.availability_date}</span>
           </div>
-        <li>
+        </li>
       {/if}
     {/block}
 
@@ -71,7 +71,7 @@
         <div class="product-infos-details-line-right">
           {hook h='actionProductOutOfStock' product=$product}
         </div>
-      <li>
+      </li>
     {/block}
 
 
@@ -86,7 +86,7 @@
             <link href="{$product.condition.schema_url}"/>
             <span>{$product.condition.label}</span>
           </div>
-        <li>
+        </li>
       {/if}
     {/block}
   </ul>

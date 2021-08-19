@@ -3,5 +3,156 @@
     &-cover {
       margin-right: 1.25rem;
     }
+
+    &-flags {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      padding: 0.25rem;
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    &-prices {
+      align-items: center;
+
+      .product-flag {
+        margin: 0;
+        margin-left: 1rem;
+      }
+    }
+
+    &-price {
+      margin-bottom: 0;
+    }
+
+    &-infos {
+      &-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+      }
+
+      &-details {
+        &-list {
+          background: $gray-light;
+        }
+
+        &-line {
+          display: flex;
+          align-items: center;
+          padding: 0.6rem 1.25rem;
+
+          > div {
+            width: 50%;
+
+            span, p, h5, a {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+
+      .data-sheet {
+        background: $gray-light;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        dt, dd {
+          padding: 0.6rem 1.25rem;
+          width: 50%;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    &-description p {
+      color: $gray-dark;
+      font-size: 1rem;
+    }
+
+    &-quantity {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    &-variants {
+      &-item {
+        margin-bottom: 2rem;
+
+        ul {
+          display: flex;
+          align-items: center;
+
+          li {
+            &:first-of-type {
+              span {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+
+        .input-color {
+          display: none;
+        }
+
+        .color {
+          span {
+            font-size: 0;
+          }
+        }
+      }
+    }
   } 
+
+  .product-flag {
+    margin: 0.25rem;
+    padding: 0.3125rem 0.625rem;
+    background-color: $primary;
+    color: $white;
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    &.discount {
+      background-color: $warning;
+    }
+  }
+
+  .page-content {
+    position: relative;
+  }
+
+  .regular-price, .current-price-value {
+    font-size: 1rem;
+  }
+
+  .regular-price {
+    text-decoration-line: line-through;
+    margin-right: 1rem;
+    line-height: 1.2rem;
+  }
+
+  .tax-shipping-delivery-label {
+    margin-top: 0.75rem;
+    margin-bottom: 2rem;
+    color: $btn-tertiary-color;
+    font-size: 1rem;
+  }
+
+  .images-container {
+    margin-bottom: 1rem;
+  }
+
+  .control-label {
+    color: $gray-dark;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    display: block;
+  }
 }

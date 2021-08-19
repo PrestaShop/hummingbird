@@ -1,0 +1,133 @@
+.social-sharing {
+  display: flex;
+  align-items: center;
+
+  > span {
+    margin-right: .5rem;
+    display: inline-block;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    li {
+      margin-right: .5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-size: contain;
+      background-position: center;
+
+      &::before {
+        height: 100%;
+        width: 100%;
+        background-size: contain;
+        background-position: center;
+      }
+
+      a {
+        font-size: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.facebook {
+  background-image: url("../img/facebook.svg");
+
+  &::before {
+    content: "";
+    background-image: url("../img/facebook-blue.svg");
+  }
+
+  &.icon-gray {
+    background-image: url("../img/facebook-gray.svg");
+
+    &:hover {
+      background-image: url("../img/facebook-blue.svg");
+    }
+  }
+}
+
+.twitter {
+  background-image: url("../img/twitter.svg");
+
+  &::before {
+    content: "";
+    background-image: url("../img/twitter-blue.svg");
+  }
+
+  &.icon-gray {
+    background-image: url("../img/twitter-gray.svg");
+
+    &:hover {
+      background-image: url("../img/twitter-blue.svg");
+    }
+  }
+}
+
+.linkedin {
+  background-image: url("../img/linkedin.svg");
+  background-position: center center;
+}
+
+.rss {
+  background-image: url("../img/rss.svg");
+}
+
+.youtube {
+  background-image: url("../img/youtube.svg");
+}
+
+.googleplus {
+  background-image: url("../img/gplus.svg");
+
+  &::before {
+    content: "";
+    background-image: url("../img/gplus-blue.svg");
+  }
+
+  &.icon-gray {
+    background-image: url("../img/gplus-gray.svg");
+
+    &:hover {
+      background-image: url("../img/gplus-blue.svg");
+    }
+  }
+}
+
+#block_myaccount_infos {
+  .myaccount-title a {
+    color: $gray-darker;
+  }
+}
+
+.pinterest {
+  background-image: url("../img/pinterest.svg");
+
+  &::before {
+    content: "";
+    background-image: url("../img/pinterest-blue.svg");
+  }
+
+  &.icon-gray {
+    background-image: url("../img/pinterest-gray.svg");
+
+    &:hover {
+      background-image: url("../img/pinterest-blue.svg");
+    }
+  }
+}
+
+.vimeo {
+  background-image: url("../img/vimeo.svg");
+}
+
+.instagram {
+  background-image: url("../img/instagram.svg");
+}
+

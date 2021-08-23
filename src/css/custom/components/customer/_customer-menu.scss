@@ -1,11 +1,30 @@
 $componentName: account-menu;
 
 .#{$componentName} {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: 1px solid $secondary-light;
+
   & &-link, > a {
     margin: 0.5rem 0;
+    color: $gray-dark;
+    width: 100%;
 
     i {
       margin-right: 0.75rem;
+    }
+  }
+
+  & &-line {
+    &:hover, &.active {
+      .#{$componentName}-link {
+        font-weight: 600;
+
+        &, i {
+          color: $primary;
+        }
+      }
     }
   }
 }

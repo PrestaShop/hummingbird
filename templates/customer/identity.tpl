@@ -26,12 +26,12 @@
 
 {block name='page_content'}
   <div class="content-columns">
-    <div class="content-columns-left">
+    <div class="content-columns-left col-md-3">
       {include file='components/account-menu.tpl'}
     </div>
 
-    <div class="content-columns-right">
-      <h1>
+    <div class="content-columns-right col-md-9">
+      <h1 class="h2">
         {l s='Your personal information' d='Shop.Theme.Customeraccount'}
       </h1>
       {render file='customer/_partials/customer-form.tpl' ui=$customer_form}

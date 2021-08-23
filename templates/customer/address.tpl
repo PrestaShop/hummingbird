@@ -22,18 +22,25 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file='customer/page.tpl'}
-
-{block name='page_title'}
-  {if $editing}
-    {l s='Update your address' d='Shop.Theme.Customeraccount'}
-  {else}
-    {l s='New address' d='Shop.Theme.Customeraccount'}
-  {/if}
-{/block}
+{extends 'customer/page.tpl'}
 
 {block name='page_content'}
-  <div class="address-form">
-    {render template="customer/_partials/address-form.tpl" ui=$address_form}
+  <div class="content-columns">
+    <div class="content-columns-left col-md-3">
+      {include file='components/account-menu.tpl'}
+    </div>
+
+    <div class="content-columns-right col-md-9">
+      <h1 class="h2">
+        {if $editing}
+          {l s='Update your address' d='Shop.Theme.Customeraccount'}
+        {else}
+          {l s='New address' d='Shop.Theme.Customeraccount'}
+        {/if}
+      </h1>
+      <div class="address-form">
+        {render template="customer/_partials/address-form.tpl" ui=$address_form}
+      </div>
+    </div>
   </div>
 {/block}

@@ -3,10 +3,15 @@ $component-name: content;
 .#{$component-name} {
   &-columns {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     padding: 0 3.75rem;
-  }
 
+    &-right {
+      .h2 {
+        text-transform: inherit;
+      }
+    }
+  }
 }
 
 ##{$component-name}-wrapper {

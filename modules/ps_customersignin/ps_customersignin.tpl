@@ -27,7 +27,7 @@
     {if $logged}
       <a
         class="account me-2"
-        href="{$urls.pages.my_account}"
+        href="{$urls.pages.identity}"
         title="{l s='View my customer account' d='Shop.Theme.Customeraccount'}"
         rel="nofollow"
       >

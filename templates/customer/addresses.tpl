@@ -22,25 +22,33 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file='customer/page.tpl'}
-
-{block name='page_title'}
-  {l s='Your addresses' d='Shop.Theme.Customeraccount'}
-{/block}
+{extends 'customer/page.tpl'}
 
 {block name='page_content'}
-  {foreach $customer.addresses as $address}
-    <div class="col-lg-4 col-md-6 col-sm-6">
-    {block name='customer_address'}
-      {include file='customer/_partials/block-address.tpl' address=$address}
-    {/block}
+  <div class="content-columns">
+    <div class="content-columns-left col-md-3">
+      {include file='components/account-menu.tpl'}
     </div>
-  {/foreach}
-  <div class="clearfix"></div>
-  <div class="addresses-footer">
-    <a href="{$urls.pages.address}" data-link-action="add-address">
-      <i class="material-icons">&#xE145;</i>
-      <span>{l s='Create new address' d='Shop.Theme.Actions'}</span>
-    </a>
+
+    <div class="content-columns-right col-md-9">
+      <h1 class="h2">
+        {l s='Your addresses' d='Shop.Theme.Customeraccount'}
+      </h1>
+
+      {foreach $customer.addresses as $address}
+        <div class="col-lg-4 col-md-6 col-sm-6">
+        {block name='customer_address'}
+          {include file='customer/_partials/block-address.tpl' address=$address}
+        {/block}
+        </div>
+      {/foreach}
+      <div class="clearfix"></div>
+      <div class="addresses-footer">
+        <a href="{$urls.pages.address}" data-link-action="add-address">
+          <i class="material-icons">&#xE145;</i>
+          <span>{l s='Create new address' d='Shop.Theme.Actions'}</span>
+        </a>
+      </div>
+    </div>
   </div>
 {/block}

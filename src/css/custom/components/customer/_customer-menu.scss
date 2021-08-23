@@ -1,0 +1,11 @@
+$componentName: account-menu;
+
+.#{$componentName} {
+  & &-link, > a {
+    margin: 0.5rem 0;
+
+    i {
+      margin-right: 0.75rem;
+    }
+  }
+}

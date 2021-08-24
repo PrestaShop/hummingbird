@@ -24,10 +24,6 @@
  *}
 {extends file=$layout}
 
-{block name='header'}
-  {include file='checkout/_partials/header.tpl'}
-{/block}
-
 {block name='content'}
   <section id="content">
     <div class="container">
@@ -46,8 +42,4 @@
       </div>
     </div>
   </section>
-{/block}
-
-{block name='footer'}
-  {include file='checkout/_partials/footer.tpl'}
 {/block}

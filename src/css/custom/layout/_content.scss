@@ -6,6 +6,10 @@ $component-name: content;
     align-items: stretch;
     padding: 0 3.75rem;
 
+    &-row {
+      width: 100%;
+    }
+
     &-right {
       .h2 {
         text-transform: inherit;

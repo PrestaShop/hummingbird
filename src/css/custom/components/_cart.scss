@@ -1,0 +1,139 @@
+$component-name: cart;
+
+.#{$component-name} {
+  &-container {
+    padding-right: 2rem;
+  }
+
+  &-summary {
+    background-color: $gray-light; 
+    padding: 1rem;
+
+    &-totals {
+      border-top: 1px solid $secondary-light;
+      padding-top: 1rem;
+      margin-top: 0.75rem;
+
+      span {
+        font-weight: bold;
+      } 
+    }
+
+    &-line, &-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+
+      span {
+        font-size: 1rem;
+
+        &.value {
+          font-weight: bold;
+          color: $gray-dark;
+        }
+      }
+    }
+  } 
+
+  &-detailed-actions {
+    margin-top: 1.75rem;
+
+    .btn-primary {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &-grid {
+    .h4 {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  &-item {
+    .product-line {
+      &-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &-content {
+          .current-price {
+            margin: 0.25rem 0;
+          }
+        }
+      } 
+
+      &-grid {
+        padding: 1rem 0;
+        border-bottom: 1px solid $secondary-light;
+
+        &:first-child {
+          border-top: 1px solid $secondary-light;
+        }
+
+        &-right {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+        }
+      }
+
+      &-title {
+        color: $gray-dark;
+        font-weight: 600;
+      }
+
+      &-info {
+        margin: 0.25rem 0;
+
+        .label {
+          font-size: 1rem;
+        }
+      }
+
+      &-bottom, &-price, &-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+
+        .product-discount {
+          display: flex;
+          align-items: center;
+
+          .regular-price {
+            text-decoration-line: line-through;
+            margin-right: 1rem;
+            line-height: 1.2rem;
+          }
+
+          .product-flag {
+            margin: 0.25rem;
+            padding: 0.3125rem 0.625rem;
+            background-color: $primary;
+            color: $white;
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-left: 1rem;
+
+            &.discount {
+              background-color: $warning;
+            }
+          }
+        }
+      }
+
+      &-price {
+        justify-content: flex-end;
+
+        span {
+          font-size: 1rem;
+          font-weight: 500;
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ $component-name: checkout;
         display: inline-flex;
         align-items: center;
         text-transform: inherit;
+        font-weight: 600;
       }
 
       .step-number {
@@ -51,6 +52,10 @@ $component-name: checkout;
 
       .step-title {
         padding: 1.25rem 0;
+
+        &-left {
+          color: $light-gray;
+        }
       }
     }
   }

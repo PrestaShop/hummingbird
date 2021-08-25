@@ -9,6 +9,106 @@ $component-name: cart;
     background-color: $gray-light; 
     padding: 1rem;
 
+    &-products {
+      border-bottom: 1px solid $secondary-light;
+      margin-bottom: 0.75rem;
+
+      > p {
+        margin-bottom: 0;
+        padding: 1rem 0;
+
+        &:first-of-type {
+          padding-top: 0.5rem;
+          border-bottom: 1px solid $secondary-light;
+        }
+      }
+
+      .media {
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+
+        &-price {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .product-flag {
+            padding: 0.3125rem 0.625rem;
+            background-color: $primary;
+            color: $white;
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+
+            &.discount {
+              background-color: $warning;
+            }
+          }
+
+          .product-price {
+            color: $gray-dark;
+            font-weight: 600;
+          }
+        }
+
+        &-left {
+          img {
+            width: 3rem;
+          }
+        }
+
+        &-body {
+          padding: 0 0.75rem;
+          width: 100%;
+
+          &-top {
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+
+          .label, .value {
+            font-size: 1rem;
+            font-weight: 400;
+            color: $gray-dark;
+          }
+
+          .product-line-info {
+            margin: 0.25rem 0;
+          }
+
+          .product-name {
+            a {
+              color: $gray-dark;
+              font-weight: 600;
+
+              &:hover {
+                opacity: 0.6;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &-show {
+      font-weight: 600;
+
+      i {
+        color: $primary;
+      }
+
+      span {
+        vertical-align: middle;
+      }
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+
     &-totals {
       border-top: 1px solid $secondary-light;
       padding-top: 1rem;

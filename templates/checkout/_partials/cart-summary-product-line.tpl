@@ -33,18 +33,33 @@
     </a>
   </div>
   <div class="media-body">
-    <span class="product-name">
-        <a href="{$product.url}" target="_blank" rel="noopener noreferrer nofollow">{$product.name}</a>
-    </span>
-    <span class="product-quantity">x{$product.quantity}</span>
-    <span class="product-price float-xs-right">{$product.price}</span>
-    {hook h='displayProductPriceBlock' product=$product type="unit_price"}
+    <div class="media-body-top">
+      <span class="product-name">
+          <a href="{$product.url}" target="_blank" rel="noopener noreferrer nofollow">{$product.name}</a>
+      </span>
+      <span class="product-quantity">x{$product.quantity}</span>
+    </div>
     {foreach from=$product.attributes key="attribute" item="value"}
-        <div class="product-line-info product-line-info-secondary text-muted">
-            <span class="label">{$attribute}:</span>
-            <span class="value">{$value}</span>
-        </div>
+      <div class="product-line-info product-line-info-secondary text-muted">
+          <span class="label">{$attribute}:</span>
+          <span class="value">{$value}</span>
+      </div>
     {/foreach}
+
+    <div class="media-price">
+      {block name='product_flags'}
+        <ul class="product-flags js-product-flags">
+          {foreach from=$product.flags item=flag}
+            {if $flag.type == 'discount'}
+              <li class="product-flag {$flag.type}">{$flag.label}</li>
+            {/if}
+          {/foreach}
+        </ul>
+      {/block}
+
+      <span class="product-price float-xs-right">{$product.price}</span>
+    </div>
+    {hook h='displayProductPriceBlock' product=$product type="unit_price"}
     <br/>
   </div>
 {/block}

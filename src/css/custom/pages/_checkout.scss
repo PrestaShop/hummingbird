@@ -1,0 +1,57 @@
+$component-name: checkout;
+
+.#{$component-name}-container {
+  padding: 0 6rem;
+
+  .step {
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid $secondary-light;
+
+      &-left {
+        display: inline-flex;
+        align-items: center;
+        text-transform: inherit;
+      }
+
+      .step-number {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        font-size: 1.25rem;
+        margin-right: 1rem;
+        color: $light-gray; 
+        border: 1px solid $light-gray;
+      }
+    }
+  }
+
+  .checkout-step {
+    &.-current, &.-reachable {
+      border-bottom: 1px solid $secondary-light;
+      padding-bottom: 1.25rem;
+
+      .step-number {
+        color: $white;
+        background: $done;
+        border: none;
+      }
+    }
+
+    &.-unreachable {
+      padding: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+
+      .step-title {
+        padding: 1.25rem 0;
+      }
+    }
+  }
+}

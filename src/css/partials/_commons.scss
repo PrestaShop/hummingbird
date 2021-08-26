@@ -504,7 +504,7 @@ form {
 
     dd,
     dt {
-      flex: 0 0 45%;
+      flex: 0 0 50%;
       padding: 0.625rem;
       margin: 0.125rem;
       background: $gray-light;
@@ -524,6 +524,7 @@ form {
 .btn.disabled:hover {
   color: $btn-disabled-color;
   background: $btn-disabled-background;
+  border: 1px solid $btn-disabled-background;
   opacity: 1;
 }
 

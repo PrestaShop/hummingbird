@@ -45,9 +45,17 @@ $component-name: checkout;
       }
     }
 
+    .content {
+      display: none;
+    }
+
     &.-current {
       .step-edit {
         display: none;
+      }
+
+      .content {
+        display: block;
       }
     }
 
@@ -55,12 +63,12 @@ $component-name: checkout;
       padding-bottom: 0;
       border-bottom: 0;
 
-      .content {
-        display: none;
-      }
-
       .step-title {
         margin-bottom: 1.25rem;
+      }
+
+      .step-title-left {
+        color: $done;
       }
     }
 
@@ -68,6 +76,12 @@ $component-name: checkout;
       padding: 0;
       padding-bottom: 0;
       margin-bottom: 0;
+
+      .step-number {
+        color: $light-gray; 
+        border: 1px solid $light-gray;
+        background: none;
+      }
 
       .step-title {
         padding: 1.25rem 0;
@@ -136,6 +150,54 @@ $component-name: checkout;
           justify-content: flex-end;
           align-items: center;
         }
+      }
+    }
+
+    .payment-options {
+      label {
+        font-size: 1rem;
+      }
+
+      .payment-option {
+        margin-bottom: 1rem;
+
+        .custom-radio {
+          margin-top: 0;
+        }
+      }
+
+      dt, dd {
+        margin: 0;
+        padding: 0.666rem 1.25rem;
+      }
+    }
+  
+    #conditions-to-approve {
+      li {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .address-selector {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .address-item {
+      flex: 0 0 49%;
+      background-color: $gray-light;
+      padding: 1rem;
+      margin-right: .4rem;
+
+      .custom-radio {
+        margin-top: 0;
+        margin-bottom: .5rem;
+      }
+      
+      label {
+        text-align: left;
       }
     }
   }

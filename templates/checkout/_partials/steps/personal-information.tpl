@@ -5,32 +5,34 @@
 
   {if $customer.is_logged && !$customer.is_guest}
 
-    <p class="identity">
-      {* [1][/1] is for a HTML tag. *}
-      {l s='Connected as [1]%firstname% %lastname%[/1].'
-        d='Shop.Theme.Customeraccount'
-        sprintf=[
-          '[1]' => "<a href='{$urls.pages.identity}'>",
-          '[/1]' => "</a>",
-          '%firstname%' => $customer.firstname,
-          '%lastname%' => $customer.lastname
-        ]
-      }
-    </p>
-    <p>
-      {* [1][/1] is for a HTML tag. *}
-      {l
-        s='Not you? [1]Log out[/1]'
-        d='Shop.Theme.Customeraccount'
-        sprintf=[
-        '[1]' => "<a href='{$urls.actions.logout}'>",
-        '[/1]' => "</a>"
-        ]
-      }
-    </p>
-    {if !isset($empty_cart_on_logout) || $empty_cart_on_logout}
-      <p><small>{l s='If you sign out now, your cart will be emptied.' d='Shop.Theme.Checkout'}</small></p>
-    {/if}
+    <div class="checkout-step-account">
+      <p class="identity">
+        {* [1][/1] is for a HTML tag. *}
+        {l s='Connected as [1]%firstname% %lastname%[/1].'
+          d='Shop.Theme.Customeraccount'
+          sprintf=[
+            '[1]' => "<a href='{$urls.pages.identity}'>",
+            '[/1]' => "</a>",
+            '%firstname%' => $customer.firstname,
+            '%lastname%' => $customer.lastname
+          ]
+        }
+      </p>
+      <p>
+        {* [1][/1] is for a HTML tag. *}
+        {l
+          s='Not you? [1]Log out[/1]'
+          d='Shop.Theme.Customeraccount'
+          sprintf=[
+          '[1]' => "<a href='{$urls.actions.logout}'>",
+          '[/1]' => "</a>"
+          ]
+        }
+      </p>
+      {if !isset($empty_cart_on_logout) || $empty_cart_on_logout}
+        <p><small>{l s='If you sign out now, your cart will be emptied.' d='Shop.Theme.Checkout'}</small></p>
+      {/if}
+    </div>
 
     <div class="clearfix">
       <form method="GET" action="{$urls.pages.order}">
@@ -47,7 +49,7 @@
     </div>
 
   {else}
-    <ul class="nav nav-inline my-2" role="tablist">
+    <ul class="nav nav-inline" role="tablist">
       <li class="nav-item">
         <a
           class="nav-link {if !$show_login_form}active{/if}"

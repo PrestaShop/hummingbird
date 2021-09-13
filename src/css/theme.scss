@@ -7,9 +7,6 @@
 @import "partials/_fonts";
 @import "partials/_commons";
 @import "partials/_helpers";
-@import "~swiper/swiper.min.css";
-@import "~swiper/components/navigation/navigation.min.css";
-@import "~swiper/components/pagination/pagination.min.css";
 
 // Core
 @import "core/_core";
@@ -35,6 +32,7 @@
 @import "custom/components/_form";
 @import "custom/components/customer/_customer-menu";
 @import "custom/components/_cart";
+@import "custom/components/_order-confirmation";
 
 // Pages
 @import "custom/pages/_global";

@@ -22,22 +22,14 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<div id="order-items" class="col-md-12">
-  <div class="row">
-    {block name='order_items_table_head'}
-      <h3 class="card-title h3 col-md-6 col-12">{l s='Order items' d='Shop.Theme.Checkout'}</h3>
-      <h3 class="card-title h3 col-md-2 text-md-center _desktop-title">{l s='Unit price' d='Shop.Theme.Checkout'}</h3>
-      <h3 class="card-title h3 col-md-2 text-md-center _desktop-title">{l s='Quantity' d='Shop.Theme.Checkout'}</h3>
-      <h3 class="card-title h3 col-md-2 text-md-center _desktop-title">{l s='Total products' d='Shop.Theme.Checkout'}</h3>
-    {/block}
-  </div>
+ {$componentName = 'order-confirmation'}
 
+<div id="order-items" class="{$componentName}-items col-md-12">
   <div class="order-confirmation-table">
-
     {block name='order_confirmation_table'}
       {foreach from=$products item=product}
-        <div class="order-line row">
-          <div class="col-sm-2 col-xs-3">
+        <div class="order-confirmation-item row">
+          <div class="{$componentName}-image col-sm-1 col-xs-2">
             <span class="image">
               {if !empty($product.default_image)}
                 <img src="{$product.default_image.medium.url}" loading="lazy" />
@@ -46,9 +38,9 @@
               {/if}
             </span>
           </div>
-          <div class="col-sm-4 col-xs-9 details">
+          <div class="{$componentName}-item-details col-sm-5 col-xs-10">
             {if $add_product_link}<a href="{$product.url}" target="_blank">{/if}
-              <span>{$product.name}</span>
+              <span class="{$componentName}-item-title">{$product.name}</span>
             {if $add_product_link}</a>{/if}
             {if is_array($product.customizations) && $product.customizations|count}
               {foreach from=$product.customizations item="customization"}
@@ -91,22 +83,20 @@
             {/if}
             {hook h='displayProductPriceBlock' product=$product type="unit_price"}
           </div>
-          <div class="col-sm-6 col-xs-12 qty">
+          <div class="{$componentName}-item-prices col-sm-6 col-xs-12 qty">
             <div class="row">
-              <div class="col-xs-4 text-sm-center text-xs-left">{$product.price}</div>
-              <div class="col-xs-4 text-sm-center">{$product.quantity}</div>
-              <div class="col-xs-4 text-sm-center text-xs-right bold">{$product.total}</div>
+              <div class="col-xs-4 text-end">{$product.price}</div>
+              <div class="col-xs-4 text-end">{$product.quantity}</div>
+              <div class="col-xs-4 text-end">{$product.total}</div>
             </div>
           </div>
         </div>
       {/foreach}
 
-      <hr>
-
-      <table>
+      <table class="{$componentName}-prices">
         {foreach $subtotals as $subtotal}
           {if $subtotal !== null && $subtotal.type !== 'tax' && $subtotal.label !== null}
-            <tr>
+            <tr class="{$componentName}-subtotal">
               <td>{$subtotal.label}</td>
               <td>{if 'discount' == $subtotal.type}-&nbsp;{/if}{$subtotal.value}</td>
             </tr>

@@ -34,7 +34,7 @@
             {if $depth===0}
               <a class="{$componentName}-item-link" href="{$node.link}">{$node.name}</a>
               {if $node.children}
-                <div class="navbar-toggler collapse-icons" data-bs-toggle="collapse" data-target="#exCollapsingNavbar{$node.id}">
+                <div class="navbar-toggler collapse-icons" data-bs-toggle="collapse" data-bs-target="#exCollapsingNavbar{$node.id}">
                   <i class="material-icons add">&#xE145;</i>
                   <i class="material-icons remove">&#xE15B;</i>
                 </div>
@@ -45,7 +45,7 @@
             {else}
               <a class="{$componentName}-child-link" href="{$node.link}">{$node.name}</a>
               {if $node.children}
-                <span class="arrows" data-bs-toggle="collapse" data-target="#exCollapsingNavbar{$node.id}">
+                <span class="arrows" data-bs-toggle="collapse" data-bs-target="#exCollapsingNavbar{$node.id}">
                   <i class="material-icons arrow-right">&#xE315;</i>
                   <i class="material-icons arrow-down">&#xE313;</i>
                 </span>

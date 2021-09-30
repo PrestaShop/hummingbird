@@ -1,4 +1,3 @@
-# PrestaShop Classic Theme
+# PrestaShop 8.0
 
-The Classic Theme is the default Theme for Prestashop 1.7 and onwards.
-It is built upon the Starter Theme which is not maintained anymore.
+This theme is the new theme of PrestaShop

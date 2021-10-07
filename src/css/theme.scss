@@ -11,41 +11,6 @@
 // Core
 @import "core/_core";
 
-// Layout
-@import "custom/layout/_header";
-@import "custom/layout/_footer";
-@import "custom/layout/_content";
-
-// Components
-@import "custom/components/_slider";
-@import "custom/components/_currency-selector";
-@import "custom/components/_section-title";
-@import "custom/components/_breadcrumb";
-@import "custom/components/product/_product-miniature";
-@import "custom/components/product/_product";
-@import "custom/components/product/_product-flags";
-@import "custom/components/category-tree/_category-tree";
-@import "custom/components/search-filters/_search-filters";
-@import "custom/components/category/_header";
-@import "custom/components/category/_subcategories";
-@import "custom/components/category/_product-list";
-@import "custom/components/category/_pagination";
-@import "custom/components/_form";
-@import "custom/components/customer/_customer-menu";
-@import "custom/components/_cart";
-@import "custom/components/_order-confirmation";
-
-// Pages
-@import "custom/pages/_global";
-@import "custom/pages/_login";
-@import "custom/pages/_register";
-@import "custom/pages/_customer";
-@import "custom/pages/_checkout";
-
-// Modules
-@import "custom/modules/_featuredproducts";
-@import "custom/modules/_customtext";
-@import "custom/modules/_emailsubscriptions";
-@import "custom/modules/_blockreassurance";
-@import "custom/modules/_social-sharing";
+// Custom style
+@import "custom/_custom";
 /* stylelint-enable */

@@ -12,6 +12,7 @@ $component-name: product-miniature;
   & &-image-container {
     position: relative;
     overflow: hidden;
+    border-radius: 8px;
   }
 
   & &-image {
@@ -63,31 +64,6 @@ $component-name: product-miniature;
   .variant-links {
     > a:first-child {
       margin-left: 0;
-    }
-  }
-
-  .product-flags {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    padding: 0.25rem;
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-
-    .product-flag {
-      margin: 0.25rem;
-      padding: 0.3125rem 0.625rem;
-      background-color: $primary;
-      color: $white;
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-
-      &.discount {
-        background-color: $warning;
-      }
     }
   }
 }

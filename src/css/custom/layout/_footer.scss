@@ -2,7 +2,7 @@ $component-name: footer;
 
 .#{$component-name} {
   padding-top: 3.25rem;
-  background: $gray-dark;
+  background: $primary-dark;
 
   & &-top {
     padding-bottom: 2.5rem;
@@ -10,12 +10,13 @@ $component-name: footer;
 
   h2, h3, .h4, .h3, .copyright {
     &, a {
-      color: white;
+      color: $white;
     }
   }
 
   h2, h3, .h3, .h4 {
     font-size: 1rem;
+    margin-bottom: 1.5rem;
 
     &, a {
       // stylelint-disable-next-line
@@ -35,15 +36,19 @@ $component-name: footer;
 
       a {
         display: block;
-        color: $light-gray; 
+        color: $primary-color; 
         padding: 0.25rem;
         transition: .25s ease-out;
         padding-left: 0;
 
         &:hover {
-          color: $primary;
+          color: $white;
         }
       }
+    }
+
+    a {
+      color: $primary-color;
     }
   }
 

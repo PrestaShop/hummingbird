@@ -10,17 +10,6 @@
       margin-bottom: .75rem;
     }
 
-    &-flags {
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 1;
-      padding: 0.25rem;
-      display: flex;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
     &-prices {
       align-items: center;
 
@@ -116,17 +105,7 @@
   } 
 
   .product-flag {
-    margin: 0.25rem;
-    padding: 0.3125rem 0.625rem;
-    background-color: $primary;
-    color: $white;
     display: inline-block;
-    font-size: 0.875rem;
-    font-weight: 600;
-
-    &.discount {
-      background-color: $warning;
-    }
   }
 
   .page-content {

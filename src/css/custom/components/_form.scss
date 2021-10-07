@@ -6,4 +6,15 @@ form {
   .form-control-label {
     margin-bottom: .5rem;
   }
+
+  input {
+    &[type="email"],
+    &[type="text"] {
+      border-radius: 4px;
+    }
+  }
+
+  textarea {
+    border-radius: 4px;
+  }
 }

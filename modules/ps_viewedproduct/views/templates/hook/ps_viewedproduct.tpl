@@ -23,6 +23,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <section class="featured-products clearfix mt-3">
-  <h2>{l s='Viewed products' d='Shop.Theme.Catalog'}</h2>
-  {include file="catalog/_partials/productlist.tpl" products=$products}
+  {include file="components/section-title.tpl" title={l s="Viewed products" d="Shop.Theme.Catalog"}}
+  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row"}
 </section>

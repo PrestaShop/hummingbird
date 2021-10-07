@@ -46,6 +46,10 @@ $componentName: carousel;
       height: 10px;
       border-radius: 1000rem;
       border: 0;
+
+      &.active {
+        background-color: $primary;
+      }
     }
   }
 

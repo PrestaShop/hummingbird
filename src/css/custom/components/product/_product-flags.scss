@@ -1,0 +1,27 @@
+.product-flags {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  padding: 0.25rem;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.product-flag {
+  margin: 0.25rem;
+  padding: 0.3125rem 0.625rem;
+  background-color: $primary;
+  color: $white;
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 4px;
+
+  &.discount {
+    background-color: $white;
+    border: 1px solid $primary;
+    color: $primary;
+  }
+}

@@ -1,0 +1,10 @@
+.badge {
+  margin: 0.25rem;
+  background-color: $primary;
+
+  &.discount {
+    background-color: $white;
+    border: 1px solid $primary;
+    color: $primary;
+  }
+}

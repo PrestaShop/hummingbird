@@ -9,6 +9,7 @@ $gray-lighter: #f6f6f6;
 $gray-lighter-second: #f7f7f7;
 $light-gray: #b3c7cd;
 $border-gray: #ddd;
+
 $primary: #5434d0;
 $primary-dark: #011638;
 $primary-color: #dee7ef;
@@ -19,8 +20,10 @@ $done: #70b580;
 $success: #4cbb6c;
 $warning: #ff9a52;
 $danger: #ff4c4c;
+
 $current-step-color: #00c062;
 $label-color: $gray-darker;
+
 $btn-primary-color: $white;
 $btn-primary-bg: $primary;
 $btn-primary-border: transparent;
@@ -30,16 +33,10 @@ $btn-secondary-border: transparent;
 $btn-border-radius: 4px;
 $btn-disabled-background: #f6f6f6;
 $btn-disabled-color: #ddd;
+
 $input-border-color: $light-gray;
 $input-background-color: #fafbfc;
-$headings-font-weight: 700;
-$tooltip-bg: $danger;
 $border-radius: 8px;
-$extra-small-space: 0.3125rem;
-$small-space: 0.625rem;
-$medium-space: 1.25rem;
-$large-space: 1.875rem;
-$extra-large-space: 2.5rem;
 $warning: #ff9a52;
 $warning-second: #f49d6e;
 $warning-hover: #fde7bb;
@@ -51,23 +48,6 @@ $btn-warning-color: $white;
 $btn-tertiary-color: #6c868e;
 $btn-tertiary-hover: #bbcdd2;
 $base-font-size: 1rem;
-$font-size-lg: 0.9375rem;
-$font-size-sm: 0.875rem;
-$font-size-xs: 0.8125rem;
-$font-size-h1: 1.375rem;
-$font-size-h2: 1.3125rem;
-$font-size-h3: 1.125rem;
-$font-size-h4: 1.125rem;
-$font-size-h5: 1rem;
-$font-size-h6: 0.9375rem;
-$display1-size: 3.125rem;
-$display1-weight: 600;
-$display2-size: 2.188rem;
-$display2-weight: 400;
-$display3-size: 1.563rem;
-$display3-weight: 400;
-$display4-size: 1.25rem;
-$display4-weight: 400;
 $text-muted: $gray;
 $radio-border-color: #979797;
 
@@ -84,3 +64,5 @@ $slider-description-size: 1rem;
 
 // Emailsubscriptions
 $email-input-color: $light-gray;
+
+@import "variables/badges";

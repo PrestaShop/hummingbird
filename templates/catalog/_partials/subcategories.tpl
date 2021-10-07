@@ -26,7 +26,7 @@
 
 {if !empty($subcategories)}
   {if (isset($display_subcategories) && $display_subcategories eq 1) || !isset($display_subcategories) }
-    <div id="subcategories" class="{$componentName} card card-block">
+    <div id="subcategories" class="{$componentName}">
       <h2 class="{$componentName}-title">{l s='Subcategories' d='Shop.Theme.Category'}</h2>
 
       <ul class="{$componentName}-list">

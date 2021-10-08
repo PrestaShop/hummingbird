@@ -183,7 +183,13 @@
                     {$filter.label}
                   </p>
 
-                  <div id="slider-range_{$_expand_id}"></div>
+                  <input 
+                    type="range"
+                    class="form-range"
+                    id="slider-range_{$_expand_id}"
+                    min="{$facet.properties.min}"
+                    max="{$facet.properties.max}"
+                  >
                 </li>
               </ul>
             {/foreach}

@@ -1,6 +1,6 @@
 # PrestaShop 8.0
 
-This theme is the new theme of PrestaShop
+This theme is the new theme of PrestaShop. Please, if you work on this theme, use the `develop` branch of PrestaShop, because this theme will be available on 8.0
 
 ## How to build assets
 

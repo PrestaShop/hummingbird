@@ -1,16 +1,17 @@
 $componentName: category-tree;
 
 #left-column {
-  --#{$componentName}-title-color: $gray-dark;
+  --#{$componentName}-title-color: #{$gray-dark};
   --#{$componentName}-title-size: 1.5rem;
   --#{$componentName}-title-spacing: 1rem;
-  --#{$componentName}-subtitle-color: $gray-dark;
+  --#{$componentName}-subtitle-color: #{$gray-dark};
   --#{$componentName}-subtitle-size: 1rem;
   --#{$componentName}-subtitle-spacing: 0.25rem;
+  --#{$componentName}-border-bottom: 1px solid #{$secondary-light};
 }
 
 .#{$componentName} {
-  border-bottom: 1px solid $secondary-light;
+  border-bottom: var(--#{$componentName}-border-bottom);
   margin-bottom: 2rem;
 
   & &-title {

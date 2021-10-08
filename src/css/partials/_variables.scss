@@ -2,7 +2,7 @@ $white: #fff;
 $gray-dark: #363a41;
 $gray-darker: #232323;
 $gray: #7a7a7a;
-$gray-second: #9b9b9b;
+$gray-second: #697180;
 $gray-light: #f6f6f6;
 $gray-light-second: #dbdbdb;
 $gray-lighter: #f6f6f6;
@@ -66,3 +66,7 @@ $slider-description-size: 1rem;
 $email-input-color: $light-gray;
 
 @import "variables/badges";
+@import "variables/card";
+@import "variables/breadcrumb";
+@import "variables/carousel";
+@import "variables/inputs";

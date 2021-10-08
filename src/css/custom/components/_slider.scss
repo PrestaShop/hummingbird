@@ -35,8 +35,16 @@ $componentName: carousel;
   & &-content {
     width: 100%;
 
-    h2, h3, p {
-      color: $slider-text-color; 
+    p {
+      color: var(--slider-text-color);
+    }
+
+    h2 {
+      font-weight: var(--slider-title-weight);
+    }
+
+    h3 {
+      font-weight: var(--slider-subtitle-weight);
     }
   }
 
@@ -46,6 +54,7 @@ $componentName: carousel;
       height: 10px;
       border-radius: 1000rem;
       border: 0;
+      background-color: $white;
 
       &.active {
         background-color: $primary;
@@ -85,29 +94,19 @@ $componentName: carousel;
     }
   }
 
-  & &-button-prev, & &-button-next {
+  & &-control-prev, & &-control-next {
     top: 50%;
     transform: translateY(-50%);
-    position: absolute;
-    color: white;
-    z-index: 1;
-    cursor: pointer;
-    transition: .25s ease-out;
-
-    &:hover {
-      opacity: .6;
-    }
-
-    i {
-      font-size: 3.5rem;
-    }
+    background: var(--slider-control-bg);
+    height: var(--slider-control-height);
+    border-radius: var(--slider-control-radius);
   }
 
-  & &-button-prev {
+  & &-control-prev {
     left: 3rem;
   } 
 
-  & &-button-next {
+  & &-control-next {
     right: 3rem;
   } 
 }

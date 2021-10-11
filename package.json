@@ -4,6 +4,7 @@
   "description": "Tools to help while developing the Classic theme",
   "main": "index.js",
   "scripts": {
+    "build-analyze": "webpack --progress --mode=production --analyze",
     "build": "webpack --progress --mode=production",
     "watch": "npm run dev",
     "dev": "webpack serve --progress --mode=development",

@@ -32,6 +32,7 @@
     "eslint-plugin-import": "^2.20.0",
     "expose-loader": "^3.0.0",
     "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.3.4",
     "hot-accept-webpack-plugin": "^2.0.0-beta.7",
     "mini-css-extract-plugin": "^1.6.2",
     "node-sass": "^6.0.1",

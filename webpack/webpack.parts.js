@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
   allowedHosts: [ serverAddress ],
@@ -76,27 +77,21 @@ exports.extractJs = () => ({
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx|ts|tsx)?$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'esbuild-loader',
           options: {
-            target: 'es2015'
-          }
-        }
-      },
-      {
-        test: /\.ts$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'esbuild-loader',
-          options: {
-            target: 'es2015'
+            loader: 'tsx',
+            target: 'es2015',
           }
         }
       },
     ]
-  }
+  },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin(),
+  ],
 });
 
 exports.extractImages = ({ publicPath }) => ({

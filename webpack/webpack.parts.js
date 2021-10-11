@@ -142,34 +142,10 @@ exports.extractFonts = ({ publicPath }) => ({
   }
 })
 
-exports.extractVendorsChunks = () => ({
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        swiper: {
-          test: /[\\/]node_modules[\\/](swiper|dom7)[\\/]/,
-          name: 'swipervendor',
-          filename: 'js/swipervendor.js',
-          chunks: 'all',
-        }
-      },
-    },
-  },
-})
-
 exports.cleanDistFolders = () => ({
-  plugins: [
-    new CleanWebpackPlugin({
-      dry: false,
-      dangerouslyAllowCleanPatternsOutsideProject: true,
-      cleanOnceBeforeBuildPatterns: [
-        path.join(__dirname, '../../assets/js/**'),
-        path.join(__dirname, '../../assets/css/**'),
-        path.join(__dirname, '../../assets/img-dist/**'),
-        path.join(__dirname, '../../assets/fonts/**')
-      ],
-    }),
-  ]
+  output: {
+    clean: true,
+  },
 })
 
 exports.externals = () => ({

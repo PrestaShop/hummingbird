@@ -34,7 +34,7 @@
     "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}",
     {if $product.ean13}"gtin13": "{$product.ean13}",{else if $product.upc}"gtin13": "{$product.upc}",{/if}
     {if $product_manufacturer->name OR $shop.name}"brand": {
-      "@type": "Thing",
+      "@type": "Brand",
       "name": "{if $product_manufacturer->name}{$product_manufacturer->name|escape:'html':'UTF-8'}{else}{$shop.name}{/if}"
     },{/if}
     {if isset($nbComments) && $nbComments && $ratings.avg}"aggregateRating": {

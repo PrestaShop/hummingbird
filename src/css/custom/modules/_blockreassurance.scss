@@ -1,7 +1,7 @@
 .blockreassurance_product {
   .item-product {
     // stylelint-disable-next-line
-    margin-right: 1.5rem!important;
+    margin-right: 1.5rem !important;
   }
 
   svg {
@@ -10,10 +10,11 @@
     }
   }
 
-  span, p {
-    // stylelint-disable-next-line
-    color: $btn-tertiary-color!important;
-    line-height: 1.5rem;
+  span,
+  p {
     display: block;
+    line-height: 1.5rem;
+    // stylelint-disable-next-line
+    color: $btn-tertiary-color !important;
   }
 }

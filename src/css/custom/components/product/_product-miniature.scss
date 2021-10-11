@@ -16,7 +16,7 @@ $component-name: product-miniature;
   }
 
   & &-image {
-    transition: .25s ease-out;
+    transition: 0.25s ease-out;
   }
 
   & &-link {
@@ -40,24 +40,24 @@ $component-name: product-miniature;
   }
 
   & &-quickview {
-    width: 100%;
-    border: 0;
-    background-color: $white;
     position: absolute;
     top: 0;
     z-index: -1;
-    padding: .5rem;
-    transition: .25s ease-out;
-    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: $white;
+    border: 0;
     border-bottom: 1px solid $secondary-light;
+    transition: 0.25s ease-out;
 
     .material-icons {
-      color: $btn-tertiary-color;
+      margin-right: 0.25rem;
       font-size: 1.25rem;
-      margin-right: .25rem;
+      color: $btn-tertiary-color;
     }
   }
 

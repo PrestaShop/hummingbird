@@ -3,27 +3,28 @@ $componentName: search-filters;
 .#{$componentName} {
   & &-title {
     font-size: var(--category-tree-title-size);
-    color: var(--category-tree-title-color);
     font-weight: 600;
+    color: var(--category-tree-title-color);
   }
 
   & &-subtitle {
     font-size: var(--category-tree-subtitle-size);
-    color: var(--category-tree-subtitle-color);
     font-weight: 600;
+    color: var(--category-tree-subtitle-color);
   }
-  
+
   & &-link {
     font-size: var(--category-tree-subtitle-size);
-    color: var(--category-tree-subtitle-color);
     font-weight: 300;
+    color: var(--category-tree-subtitle-color);
   }
 
   & &-label {
-    margin: .25rem 0;
+    margin: 0.25rem 0;
   }
 
-  &#search_filters .facet .facet-label .custom-checkbox, &#search_filters .facet .facet-label .custom-radio {
+  &#search_filters .facet .facet-label .custom-checkbox,
+  &#search_filters .facet .facet-label .custom-radio {
     top: -3px;
   }
 }

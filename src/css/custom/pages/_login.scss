@@ -1,11 +1,12 @@
 .login {
-  max-width: 27rem;
   width: 100%;
+  max-width: 27rem;
   margin: auto;
 
-  .forgot-password, &-create {
+  .forgot-password,
+  &-create {
     text-align: center;
-  } 
+  }
 
   hr {
     max-width: 25rem;

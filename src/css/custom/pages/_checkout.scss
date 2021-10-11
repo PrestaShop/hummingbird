@@ -6,37 +6,38 @@ $component-name: checkout;
   .step {
     &-title {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding-bottom: 1.25rem;
       border-bottom: 1px solid $secondary-light;
 
       &-left {
         display: inline-flex;
         align-items: center;
-        text-transform: inherit;
         font-weight: 600;
+        text-transform: inherit;
       }
 
       .step-number {
-        width: 2rem;
-        height: 2rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 100%;
-        font-size: 1.25rem;
+        width: 2rem;
+        height: 2rem;
         margin-right: 1rem;
-        color: $light-gray; 
+        font-size: 1.25rem;
+        color: $light-gray;
         border: 1px solid $light-gray;
+        border-radius: 100%;
       }
     }
   }
 
   .checkout-step {
-    &.-current, &.-reachable {
-      border-bottom: 1px solid $secondary-light;
+    &.-current,
+    &.-reachable {
       padding-bottom: 1.25rem;
+      border-bottom: 1px solid $secondary-light;
 
       .step-number {
         color: $white;
@@ -78,9 +79,9 @@ $component-name: checkout;
       margin-bottom: 0;
 
       .step-number {
-        color: $light-gray; 
-        border: 1px solid $light-gray;
+        color: $light-gray;
         background: none;
+        border: 1px solid $light-gray;
       }
 
       .step-title {
@@ -93,9 +94,9 @@ $component-name: checkout;
     }
 
     .nav {
+      align-items: center;
       justify-content: center;
       margin-top: 1.5rem;
-      align-items: center;
     }
 
     .content {
@@ -105,8 +106,8 @@ $component-name: checkout;
     .order-options {
       textarea {
         max-width: 100%;
-        border: 1px solid $light-gray;
         margin-bottom: 1rem;
+        border: 1px solid $light-gray;
       }
 
       label {
@@ -124,12 +125,12 @@ $component-name: checkout;
 
         &-left {
           display: flex;
-          justify-content: left;
           align-items: center;
+          justify-content: left;
 
           .custom-radio {
-            margin-top: 0;
             min-width: 1.125rem;
+            margin-top: 0;
           }
 
           .carrier {
@@ -141,14 +142,14 @@ $component-name: checkout;
 
         &-center {
           display: flex;
-          justify-content: center;
           align-items: center;
+          justify-content: center;
         }
 
         &-right {
           display: flex;
-          justify-content: flex-end;
           align-items: center;
+          justify-content: flex-end;
         }
       }
     }
@@ -166,12 +167,13 @@ $component-name: checkout;
         }
       }
 
-      dt, dd {
-        margin: 0;
+      dt,
+      dd {
         padding: 0.666rem 1.25rem;
+        margin: 0;
       }
     }
-  
+
     #conditions-to-approve {
       li {
         display: flex;
@@ -187,15 +189,15 @@ $component-name: checkout;
 
     .address-item {
       flex: 0 0 49%;
-      background-color: $gray-light;
       padding: 1rem;
-      margin-right: .4rem;
+      margin-right: 0.4rem;
+      background-color: $gray-light;
 
       .custom-radio {
         margin-top: 0;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
       }
-      
+
       label {
         text-align: left;
       }

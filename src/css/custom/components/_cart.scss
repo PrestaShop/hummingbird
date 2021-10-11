@@ -6,16 +6,16 @@ $component-name: cart;
   }
 
   &-summary {
-    background-color: $gray-light; 
     padding: 1rem;
+    background-color: $gray-light;
 
     &-products {
-      border-bottom: 1px solid $secondary-light;
       margin-bottom: 0.75rem;
+      border-bottom: 1px solid $secondary-light;
 
       > p {
-        margin-bottom: 0;
         padding: 1rem 0;
+        margin-bottom: 0;
 
         &:first-of-type {
           padding-top: 0.5rem;
@@ -34,12 +34,12 @@ $component-name: cart;
           justify-content: space-between;
 
           .product-flag {
-            padding: 0.3125rem 0.625rem;
-            background-color: $primary;
-            color: $white;
             display: inline-block;
+            padding: 0.3125rem 0.625rem;
             font-size: 0.875rem;
             font-weight: 600;
+            color: $white;
+            background-color: $primary;
 
             &.discount {
               background-color: $warning;
@@ -47,8 +47,8 @@ $component-name: cart;
           }
 
           .product-price {
-            color: $gray-dark;
             font-weight: 600;
+            color: $gray-dark;
           }
         }
 
@@ -59,17 +59,18 @@ $component-name: cart;
         }
 
         &-body {
-          padding: 0 0.75rem;
           width: 100%;
+          padding: 0 0.75rem;
 
           &-top {
-            margin-bottom: 0.25rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 0.25rem;
           }
 
-          .label, .value {
+          .label,
+          .value {
             font-size: 1rem;
             font-weight: 400;
             color: $gray-dark;
@@ -81,8 +82,8 @@ $component-name: cart;
 
           .product-name {
             a {
-              color: $gray-dark;
               font-weight: 600;
+              color: $gray-dark;
 
               &:hover {
                 opacity: 0.6;
@@ -110,16 +111,17 @@ $component-name: cart;
     }
 
     &-totals {
-      border-top: 1px solid $secondary-light;
       padding-top: 1rem;
       margin-top: 0.75rem;
+      border-top: 1px solid $secondary-light;
 
       span {
         font-weight: bold;
-      } 
+      }
     }
 
-    &-line, &-total {
+    &-line,
+    &-total {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -134,7 +136,7 @@ $component-name: cart;
         }
       }
     }
-  } 
+  }
 
   &-detailed-actions {
     margin-top: 1.75rem;
@@ -163,7 +165,7 @@ $component-name: cart;
             margin: 0.25rem 0;
           }
         }
-      } 
+      }
 
       &-grid {
         padding: 1rem 0;
@@ -175,14 +177,14 @@ $component-name: cart;
 
         &-right {
           display: flex;
-          justify-content: space-between;
           flex-direction: column;
+          justify-content: space-between;
         }
       }
 
       &-title {
-        color: $gray-dark;
         font-weight: 600;
+        color: $gray-dark;
       }
 
       &-info {
@@ -193,7 +195,9 @@ $component-name: cart;
         }
       }
 
-      &-bottom, &-price, &-info {
+      &-bottom,
+      &-price,
+      &-info {
         display: flex;
         align-items: center;
         margin-bottom: 0;
@@ -209,14 +213,14 @@ $component-name: cart;
           }
 
           .product-flag {
-            margin: 0.25rem;
-            padding: 0.3125rem 0.625rem;
-            background-color: $primary;
-            color: $white;
             display: inline-block;
+            padding: 0.3125rem 0.625rem;
+            margin: 0.25rem;
+            margin-left: 1rem;
             font-size: 0.875rem;
             font-weight: 600;
-            margin-left: 1rem;
+            color: $white;
+            background-color: $primary;
 
             &.discount {
               background-color: $warning;
@@ -229,9 +233,9 @@ $component-name: cart;
         justify-content: flex-end;
 
         span {
+          display: block;
           font-size: 1rem;
           font-weight: 500;
-          display: block;
         }
       }
     }

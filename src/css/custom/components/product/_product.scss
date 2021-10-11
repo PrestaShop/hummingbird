@@ -5,9 +5,9 @@
     }
 
     &-actions {
-      border-bottom: 1px solid $secondary-light;
       padding-bottom: 2rem;
-      margin-bottom: .75rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid $secondary-light;
     }
 
     &-prices {
@@ -25,9 +25,9 @@
 
     &-infos {
       &-title {
-        font-size: 1rem;
-        margin-bottom: 1rem;
         margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
       }
 
       &-details {
@@ -43,7 +43,10 @@
           > div {
             width: 50%;
 
-            span, p, h5, a {
+            span,
+            p,
+            h5,
+            a {
               font-size: 1rem;
             }
           }
@@ -51,22 +54,23 @@
       }
 
       .data-sheet {
-        background: $gray-light;
         display: flex;
-        align-items: center;
         flex-wrap: wrap;
+        align-items: center;
+        background: $gray-light;
 
-        dt, dd {
-          padding: 0.6rem 1.25rem;
+        dt,
+        dd {
           width: 50%;
+          padding: 0.6rem 1.25rem;
           font-size: 1rem;
         }
       }
     }
 
     &-description p {
-      color: $gray-dark;
       font-size: 1rem;
+      color: $gray-dark;
     }
 
     &-quantity {
@@ -102,7 +106,7 @@
         }
       }
     }
-  } 
+  }
 
   .product-flag {
     display: inline-block;
@@ -112,7 +116,8 @@
     position: relative;
   }
 
-  .regular-price, .current-price-value {
+  .regular-price,
+  .current-price-value {
     font-size: 1rem;
   }
 
@@ -125,8 +130,8 @@
   .tax-shipping-delivery-label {
     margin-top: 0.75rem;
     margin-bottom: 2rem;
-    color: $btn-tertiary-color;
     font-size: 1rem;
+    color: $btn-tertiary-color;
   }
 
   .images-container {
@@ -134,10 +139,10 @@
   }
 
   .control-label {
-    color: $gray-dark;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
     display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $gray-dark;
   }
 }

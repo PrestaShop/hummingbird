@@ -4,17 +4,17 @@ $componentName: carousel;
   position: relative;
   width: 100%;
   height: 40vh;
-  overflow: hidden;
   min-height: 30rem;
+  overflow: hidden;
 
   & &-inner {
     height: 100%;
   }
 
   & &-item {
-    height: 100%;
     align-items: center;
     justify-content: center;
+    height: 100%;
 
     &.active {
       display: flex;
@@ -24,19 +24,27 @@ $componentName: carousel;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
+      z-index: -1;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
     }
   }
 
   & &-content {
     width: 100%;
 
-    h2, h3, p {
-      color: $slider-text-color; 
+    p {
+      color: var(--slider-text-color);
+    }
+
+    h2 {
+      font-weight: var(--slider-title-weight);
+    }
+
+    h3 {
+      font-weight: var(--slider-subtitle-weight);
     }
   }
 
@@ -44,8 +52,9 @@ $componentName: carousel;
     button {
       width: 10px;
       height: 10px;
-      border-radius: 1000rem;
+      background-color: $white;
       border: 0;
+      border-radius: 1000rem;
 
       &.active {
         background-color: $primary;
@@ -54,60 +63,51 @@ $componentName: carousel;
   }
 
   & &-link {
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
+    width: 100%;
+    height: 100%;
   }
-  
+
   & &-caption {
-    max-width: 1120px; 
-    text-align: left;
     top: 50%;
-    transform: translateY(-50%);
     bottom: inherit;
+    max-width: 1120px;
+    text-align: left;
+    transform: translateY(-50%);
 
     .caption-description {
       max-width: 20rem;
 
       h3 {
-        font-size: $slider-subtitle-size;
         margin: $slider-text-spacing 0;
+        font-size: $slider-subtitle-size;
       }
 
       p {
         font-size: $slider-description-size;
       }
-    } 
+    }
 
     h2 {
       font-size: $slider-title-size;
     }
   }
 
-  & &-button-prev, & &-button-next {
+  & &-control-prev,
+  & &-control-next {
     top: 50%;
+    height: var(--slider-control-height);
+    background: var(--slider-control-bg);
+    border-radius: var(--slider-control-radius);
     transform: translateY(-50%);
-    position: absolute;
-    color: white;
-    z-index: 1;
-    cursor: pointer;
-    transition: .25s ease-out;
-
-    &:hover {
-      opacity: .6;
-    }
-
-    i {
-      font-size: 3.5rem;
-    }
   }
 
-  & &-button-prev {
+  & &-control-prev {
     left: 3rem;
-  } 
+  }
 
-  & &-button-next {
+  & &-control-next {
     right: 3rem;
-  } 
+  }
 }

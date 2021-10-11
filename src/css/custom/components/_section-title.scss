@@ -1,8 +1,8 @@
 $componentName: section-title;
 
 .#{$componentName} {
-  font-weight: 600;
-  font-size: 2rem;
-  color: $gray-dark;
   margin: 2.5rem 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: $gray-dark;
 }

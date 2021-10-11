@@ -1,10 +1,10 @@
 .product-flags {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
   z-index: 1;
-  padding: 0.25rem;
   display: flex;
-  align-items: flex-start;
   flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 0.25rem;
 }

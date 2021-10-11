@@ -1,18 +1,18 @@
 #custom-text {
-  text-align: center;
-  max-width: 58.375rem;
   width: 100%;
+  max-width: 58.375rem;
   margin: auto;
+  text-align: center;
 
   h2 {
-    font-size: 2.5rem;  
-    color: $gray-dark;
+    font-size: 2.5rem;
     font-weight: 600;
+    color: $gray-dark;
   }
 
   strong {
     font-size: 1.25rem;
-    color: $gray-dark;
     font-weight: 600;
+    color: $gray-dark;
   }
 }

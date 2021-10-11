@@ -61,47 +61,60 @@
                 {/if}
 
                 <li>
-                  <label class="{$componentName}-label facet-label{if $filter.active} active {/if}" for="facet_input_{$_expand_id}_{$filter_key}">
+                  <div class="{$componentName}-label facet-label{if $filter.active} active {/if}">
                     {if $facet.multipleSelectionAllowed}
-                      <span class="custom-checkbox">
-                        <input
+                      <div class="form-check">
+                        <input 
+                          class="form-check-input" 
                           id="facet_input_{$_expand_id}_{$filter_key}"
                           data-search-url="{$filter.nextEncodedFacetsURL}"
                           type="checkbox"
                           {if $filter.active }checked{/if}
                         >
-                        {if isset($filter.properties.color)}
-                          <span class="color" style="background-color:{$filter.properties.color}"></span>
-                        {elseif isset($filter.properties.texture)}
-                          <span class="color texture" style="background-image:url({$filter.properties.texture})"></span>
-                        {else}
-                          <span {if !$js_enabled} class="ps-shown-by-js" {/if}><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
-                        {/if}
-                      </span>
+                        <label class="form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
+                          {if isset($filter.properties.color)}
+                            <span class="color" style="background-color:{$filter.properties.color}"></span>
+                          {elseif isset($filter.properties.texture)}
+                            <span class="color texture" style="background-image:url({$filter.properties.texture})"></span>
+                          {else}
+                            <a
+                              href="{$filter.nextEncodedFacetsURL}"
+                              class="{$componentName}-link _gray-darker search-link js-search-link"
+                              rel="nofollow"
+                            >
+                              {$filter.label}
+                              {if $filter.magnitude and $show_quantities}
+                                <span class="magnitude">({$filter.magnitude})</span>
+                              {/if}
+                            </a>
+                          {/if}
+                        </label>
+                      </div>
                     {else}
-                      <span class="custom-radio">
+                      <div class="form-check">
                         <input
+                          class="form-check-input"
                           id="facet_input_{$_expand_id}_{$filter_key}"
                           data-search-url="{$filter.nextEncodedFacetsURL}"
                           type="radio"
                           name="filter {$facet.label}"
                           {if $filter.active }checked{/if}
                         >
-                        <span {if !$js_enabled} class="ps-shown-by-js" {/if}></span>
-                      </span>
+                        <label class="form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
+                          <a
+                            href="{$filter.nextEncodedFacetsURL}"
+                            class="{$componentName}-link _gray-darker search-link js-search-link"
+                            rel="nofollow"
+                          >
+                            {$filter.label}
+                            {if $filter.magnitude and $show_quantities}
+                              <span class="magnitude">({$filter.magnitude})</span>
+                            {/if}
+                          </a>
+                        </label>
+                      </div>
                     {/if}
-
-                    <a
-                      href="{$filter.nextEncodedFacetsURL}"
-                      class="{$componentName}-link _gray-darker search-link js-search-link"
-                      rel="nofollow"
-                    >
-                      {$filter.label}
-                      {if $filter.magnitude and $show_quantities}
-                        <span class="magnitude">({$filter.magnitude})</span>
-                      {/if}
-                    </a>
-                  </label>
+                  </div>
                 </li>
               {/foreach}
             </ul>
@@ -170,7 +183,13 @@
                     {$filter.label}
                   </p>
 
-                  <div id="slider-range_{$_expand_id}"></div>
+                  <input 
+                    type="range"
+                    class="form-range"
+                    id="slider-range_{$_expand_id}"
+                    min="{$facet.properties.min}"
+                    max="{$facet.properties.max}"
+                  >
                 </li>
               </ul>
             {/foreach}

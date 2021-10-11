@@ -2,35 +2,35 @@ $componentName: order-confirmation;
 
 .#{$componentName} {
   &-title {
-    font-weight: 500;
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    font-weight: 500;
 
     i {
-      font-size: 2rem;
-      background-color: $done;
-      color: white;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 100%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
       margin-right: 1rem;
+      font-size: 2rem;
+      color: white;
+      background-color: $done;
+      border-radius: 100%;
     }
   }
 
   &-email {
-    color: $gray-dark;
-    font-size: 1rem;
+    margin-top: 0.25rem;
     margin-bottom: 2rem;
-    margin-top: .25rem;
+    font-size: 1rem;
+    color: $gray-dark;
   }
 
   &-details {
     li {
-      margin-bottom: .25rem;
+      margin-bottom: 0.25rem;
     }
 
     &-list {
@@ -40,14 +40,14 @@ $componentName: order-confirmation;
       }
 
       ul {
-        background: $gray-light;
         margin: 1rem 0;
+        background: $gray-light;
 
         li {
-          padding: .5rem 1rem;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
+          padding: 0.5rem 1rem;
         }
       }
     }
@@ -55,8 +55,8 @@ $componentName: order-confirmation;
 
   &-items {
     padding-bottom: 1rem;
-    background: $gray-light;
     margin-bottom: 2rem;
+    background: $gray-light;
   }
 
   &-item {
@@ -64,8 +64,8 @@ $componentName: order-confirmation;
 
     &-prices {
       div {
-        color: $gray-dark;
         font-weight: 500;
+        color: $gray-dark;
       }
     }
 
@@ -98,8 +98,8 @@ $componentName: order-confirmation;
       padding: 0.5rem 1rem;
 
       &:last-of-type {
-        color: $gray-dark;
         font-weight: 500;
+        color: $gray-dark;
         text-align: right;
       }
     }

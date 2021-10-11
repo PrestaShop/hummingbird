@@ -6,10 +6,6 @@ $component-name: content;
     align-items: stretch;
     padding: 0 3.75rem;
 
-    &-row {
-      width: 100%;
-    }
-
     &-right {
       .h2 {
         text-transform: inherit;
@@ -30,8 +26,8 @@ $component-name: content;
 
     a {
       margin-right: 1rem;
-      color: $btn-tertiary-color;
       font-size: 0.75rem;
+      color: $btn-tertiary-color;
 
       span {
         vertical-align: middle;

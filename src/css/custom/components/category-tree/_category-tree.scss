@@ -1,27 +1,28 @@
 $componentName: category-tree;
 
 #left-column {
-  --#{$componentName}-title-color: $gray-dark;
+  --#{$componentName}-title-color: #{$gray-dark};
   --#{$componentName}-title-size: 1.5rem;
   --#{$componentName}-title-spacing: 1rem;
-  --#{$componentName}-subtitle-color: $gray-dark;
+  --#{$componentName}-subtitle-color: #{$gray-dark};
   --#{$componentName}-subtitle-size: 1rem;
   --#{$componentName}-subtitle-spacing: 0.25rem;
+  --#{$componentName}-border-bottom: 1px solid #{$secondary-light};
 }
 
 .#{$componentName} {
-  border-bottom: 1px solid $secondary-light;
   margin-bottom: 2rem;
+  border-bottom: var(--#{$componentName}-border-bottom);
 
   & &-title {
-    font-size: var(--#{$componentName}-title-size);
     margin-bottom: var(--#{$componentName}-title-spacing);
+    font-size: var(--#{$componentName}-title-size);
 
     &-link {
       display: block;
-      color: var(--#{$componentName}-title-color);
       font-weight: 600;
       line-height: 2rem;
+      color: var(--#{$componentName}-title-color);
     }
   }
 
@@ -29,9 +30,9 @@ $componentName: category-tree;
     &-link {
       display: block;
       padding: var(--#{$componentName}-subtitle-spacing) 0;
-      color: var(--#{$componentName}-subtitle-color);
       font-size: var(--#{$componentName}-subtitle-size);
       font-weight: 600;
+      color: var(--#{$componentName}-subtitle-color);
     }
   }
 }

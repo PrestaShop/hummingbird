@@ -3,8 +3,8 @@
   background-color: $primary;
 
   &.discount {
+    color: $primary;
     background-color: $white;
     border: 1px solid $primary;
-    color: $primary;
   }
 }

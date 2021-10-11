@@ -30,8 +30,8 @@
 
 {else}
 
-  <div class="form-group {if !empty($field.errors)}has-error{/if}">
-    <label class="form-control-label{if $field.required} required{/if}">
+  <div class="mb-3 {if !empty($field.errors)}has-error{/if}">
+    <label class="form-label{if $field.required} required{/if}">
       {if $field.type !== 'checkbox'}
         {$field.label}
       {/if}
@@ -68,32 +68,41 @@
 
         {block name='form_field_item_radio'}
           {foreach from=$field.availableValues item="label" key="value"}
-            <label class="radio-inline">
-              <span class="custom-radio">
-                <input
-                  name="{$field.name}"
-                  type="radio"
-                  value="{$value}"
-                  {if $field.required}required{/if}
-                  {if $value eq $field.value} checked {/if}
-                >
-                <span></span>
-              </span>
-              {$label}
-            </label>
+            <div class="form-check">
+              <input 
+                class="form-check-input"
+                type="radio"
+                name="{$field.name}"
+                id="{$field.name}"
+                value="{$value}"
+                checked
+                {if $field.required}required{/if}
+                {if $value eq $field.value} checked {/if}
+              >
+              <label class="form-check-label" for="{$field.name}">
+                {$label}
+              </label>
+            </div>
           {/foreach}
         {/block}
 
       {elseif $field.type === 'checkbox'}
 
         {block name='form_field_item_checkbox'}
-          <span class="custom-checkbox">
-            <label>
-              <input name="{$field.name}" type="checkbox" value="1" {if $field.value}checked="checked"{/if} {if $field.required}required{/if}>
-              <span><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
+          <div class="form-check">
+            <input 
+              class="form-check-input"
+              name="{$field.name}"
+              type="checkbox"
+              value="1"
+              id="{$field.name}"
+              value="1" {if $field.value}checked="checked"{/if}
+              {if $field.required}required{/if}
+            >
+            <label class="form-check-label" for="{$field.name}">
               {$field.label nofilter}
             </label>
-          </span>
+          </div>
         {/block}
 
       {elseif $field.type === 'date'}
@@ -101,7 +110,7 @@
         {block name='form_field_item_date'}
           <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
           {if isset($field.availableValues.comment)}
-            <span class="form-control-comment">
+            <span class="form-text">
               {$field.availableValues.comment}
             </span>
           {/if}
@@ -132,7 +141,7 @@
       {elseif $field.type === 'password'}
 
         {block name='form_field_item_password'}
-          <div class="input-group js-parent-focus">
+          <div class="password-field js-parent-focus">
             <input
               class="form-control js-child-focus js-visible-password"
               name="{$field.name}"
@@ -143,17 +152,16 @@
               pattern=".{literal}{{/literal}5,{literal}}{/literal}"
               {if $field.required}required{/if}
             >
-            <span class="input-group-btn">
-              <button
-                class="btn"
-                type="button"
-                data-action="show-password"
-                data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
-                data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
-              >
-                {l s='Show' d='Shop.Theme.Actions'}
-              </button>
-            </span>
+
+            <button
+              class="btn"
+              type="button"
+              data-action="show-password"
+              data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
+              data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
+            >
+              <i class="material-icons">visibility</i>
+            </button>
           </div>
         {/block}
 
@@ -172,7 +180,7 @@
             aria-label="{$field.name}"
           >
           {if isset($field.availableValues.comment)}
-            <span class="form-control-comment">
+            <span class="form-text">
               {$field.availableValues.comment}
             </span>
           {/if}
@@ -186,7 +194,7 @@
 
     </div>
 
-    <div class="form-control-comment">
+    <div class="form-text">
       {block name='form_field_comment'}
         {if (!$field.required && !in_array($field.type, ['radio-buttons', 'checkbox']))}
          {l s='Optional' d='Shop.Forms.Labels'}

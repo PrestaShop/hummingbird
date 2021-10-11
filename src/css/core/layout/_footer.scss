@@ -5,21 +5,21 @@ $componentName: footer;
     &[aria-expanded="true"] {
       .material-icons.add {
         display: none;
-      } 
+      }
 
       .material-icons.remove {
         display: inline-block;
-      } 
+      }
     }
 
     &[aria-expanded="false"] {
       .material-icons.add {
         display: inline-block;
-      } 
+      }
 
       .material-icons.remove {
         display: none;
-      } 
+      }
     }
   }
 }

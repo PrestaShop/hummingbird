@@ -25,7 +25,7 @@
 {$componentName = 'product-miniature'}
 
 {block name='product_miniature_item'}
-  <article class="{$componentName} js-{$componentName} col-md-3">
+  <article class="{$componentName} js-{$componentName}{if !empty($productClasses)} {$productClasses}{/if}">
     <div class="card">
       <a href="{$product.url}" class="{$componentName}-link">
         {include file='catalog/_partials/product-flags.tpl'}

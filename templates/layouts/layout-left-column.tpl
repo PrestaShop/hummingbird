@@ -28,7 +28,7 @@
 
 {block name="content_columns"}
   <div class="content-columns container">
-    <div class="content-columns-row row">
+    <div class="row">
       {block name="left_column"}
         <div id="left-column" class="col-xs-12 col-sm-4 col-md-3">
           {if $page.page_name == 'product'}

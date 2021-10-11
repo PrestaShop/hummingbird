@@ -9,18 +9,18 @@ $component-name: product-miniature;
     &-top,
     &-bottom {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: .25rem .5rem;
+      justify-content: space-between;
+      padding: 0.25rem 0.5rem;
       background-color: $white;
     }
 
     &-top {
-      padding-top: .5rem;
+      padding-top: 0.5rem;
     }
   }
 
   & &-image {
-    height: auto; 
+    height: auto;
   }
 }

@@ -38,6 +38,7 @@
             <input
               name="email"
               type="email"
+              class="form-control"
               value="{$value}"
               placeholder="{l s='Your email address' d='Shop.Forms.Labels'}"
               aria-labelledby="block-newsletter-label"

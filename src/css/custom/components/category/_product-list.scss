@@ -3,7 +3,7 @@
   #left-column {
     padding-right: 3rem;
   }
-  
+
   .products {
     .product-miniature {
       width: 33.33%;
@@ -18,13 +18,13 @@
     margin-bottom: 1.25rem;
 
     .select-title {
-      border: 1px solid $light-gray;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      text-align: left;
       width: 100%;
       padding: 0.75rem 1.25rem;
+      text-align: left;
+      border: 1px solid $light-gray;
     }
 
     &s-filters {
@@ -44,12 +44,12 @@
     .dropdown-menu {
       a {
         display: block;
-        color: $gray-dark;
         padding: 0.75rem 1rem;
-        transition: .25s ease-out;
+        color: $gray-dark;
+        transition: 0.25s ease-out;
 
         &:hover {
-          opacity: .6;
+          opacity: 0.6;
         }
       }
     }

@@ -6,10 +6,11 @@ $componentName: account-menu;
   height: 100%;
   border-right: 1px solid $secondary-light;
 
-  & &-link, > a {
+  & &-link,
+  > a {
+    width: 100%;
     margin: 0.5rem 0;
     color: $gray-dark;
-    width: 100%;
 
     i {
       margin-right: 0.75rem;
@@ -17,11 +18,13 @@ $componentName: account-menu;
   }
 
   & &-line {
-    &:hover, &.active {
+    &:hover,
+    &.active {
       .#{$componentName}-link {
         font-weight: 600;
 
-        &, i {
+        &,
+        i {
           color: $primary;
         }
       }

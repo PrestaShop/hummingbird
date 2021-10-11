@@ -8,19 +8,28 @@ $component-name: footer;
     padding-bottom: 2.5rem;
   }
 
-  h2, h3, .h4, .h3, .copyright {
-    &, a {
+  h2,
+  h3,
+  .h4,
+  .h3,
+  .copyright {
+    &,
+    a {
       color: $white;
     }
   }
 
-  h2, h3, .h3, .h4 {
-    font-size: 1rem;
+  h2,
+  h3,
+  .h3,
+  .h4 {
     margin-bottom: 1.5rem;
+    font-size: 1rem;
 
-    &, a {
+    &,
+    a {
       // stylelint-disable-next-line
-      text-transform: inherit!important;
+      text-transform: inherit !important;
     }
   }
 
@@ -36,10 +45,10 @@ $component-name: footer;
 
       a {
         display: block;
-        color: $primary-color; 
         padding: 0.25rem;
-        transition: .25s ease-out;
         padding-left: 0;
+        color: $primary-color;
+        transition: 0.25s ease-out;
 
         &:hover {
           color: $white;
@@ -58,8 +67,8 @@ $component-name: footer;
 
   .block-contact {
     #contact-infos {
-      color: $light-gray;
       line-height: 1.85rem;
+      color: $light-gray;
     }
   }
 }

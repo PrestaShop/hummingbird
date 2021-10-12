@@ -58,7 +58,7 @@
       {block name='product_miniature_bottom'}
         <div class="{$componentName}-infos card-body">
           {block name='quick_view'}
-            <button class="{$componentName}-quickview" data-link-action="quickview">
+            <button class="{$componentName}-quickview btn btn-primary" data-link-action="quickview">
               <i class="material-icons search">remove_red_eye</i> {l s='Quick view' d='Shop.Theme.Actions'}
             </button>
           {/block}
@@ -66,18 +66,6 @@
           <div class="{$componentName}-infos-top">
             {block name='product_name'}
               <a href="{$product.url}"><p class="{$componentName}-title">{$product.name|truncate:30:'...'}</p></a>
-            {/block}
-
-            {block name='product_discount_price'}
-              {if $product.show_price}
-                <div class="{$componentName}-discount-price">
-                  {if $product.has_discount}
-                    {hook h='displayProductPriceBlock' product=$product type="old_price"}
-
-                    <span class="{$componentName}-regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
-                  {/if}
-                </div>
-              {/if}
             {/block}
           </div>
 
@@ -90,24 +78,37 @@
               </div>
             {/block}
 
-            {block name='product_price'}
-              {if $product.show_price}
-                {hook h='displayProductPriceBlock' product=$product type="before_price"}
+            <div class="{$componentName}-prices">
+              {block name='product_discount_price'}
+                {if $product.show_price}
+                  <div class="{$componentName}-discount-price">
+                    {if $product.has_discount}
+                      {hook h='displayProductPriceBlock' product=$product type="old_price"}
 
-                <span class="{$componentName}-price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
-                  {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
-                  {if '' !== $smarty.capture.custom_price}
-                    {$smarty.capture.custom_price nofilter}
-                  {else}
-                    {$product.price}
-                  {/if}
-                </span>
+                      <span class="{$componentName}-regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
+                    {/if}
+                  </div>
+                {/if}
+              {/block}
+              {block name='product_price'}
+                {if $product.show_price}
+                  {hook h='displayProductPriceBlock' product=$product type="before_price"}
 
-                {hook h='displayProductPriceBlock' product=$product type='unit_price'}
+                  <span class="{$componentName}-price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
+                    {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
+                    {if '' !== $smarty.capture.custom_price}
+                      {$smarty.capture.custom_price nofilter}
+                    {else}
+                      {$product.price}
+                    {/if}
+                  </span>
 
-                {hook h='displayProductPriceBlock' product=$product type='weight'}
-              {/if}
-            {/block}
+                  {hook h='displayProductPriceBlock' product=$product type='unit_price'}
+
+                  {hook h='displayProductPriceBlock' product=$product type='weight'}
+                {/if}
+              {/block}
+            </div>
           </div>
         </div>
       {/block}

@@ -1,4 +1,7 @@
-form {
+.btn {
+  i {
+    @extend .me-2;
+  }
 }
 
 .btn-unstyle {
@@ -15,4 +18,3 @@ form {
     }
   }
 }
-

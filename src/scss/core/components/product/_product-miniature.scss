@@ -5,22 +5,34 @@ $component-name: product-miniature;
     position: relative;
     z-index: 90;
     padding: 0;
+    padding-top: 0.5rem;
 
     &-top,
     &-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       padding: 0.25rem 0.5rem;
       background-color: $white;
     }
+  }
 
-    &-top {
-      padding-top: 0.5rem;
-    }
+  & &-title {
+    margin: 0;
   }
 
   & &-image {
     height: auto;
+  }
+
+  & &-quickview {
+    display: flex;
+    margin: auto;
+  }
+
+  & &-regular-price {
+    text-decoration: line-through;
+    @extend .me-2;
+  }
+
+  & &-prices {
+    display: flex;
   }
 }

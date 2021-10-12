@@ -1,3 +1,14 @@
+.product-flags {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 0.25rem;
+}
+
 .badge {
   margin: 0.25rem;
   background-color: $primary;

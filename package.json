@@ -6,7 +6,7 @@
   "scripts": {
     "build-analyze": "webpack --progress --mode=production --analyze",
     "build": "webpack --progress --mode=production",
-    "watch": "npm run dev",
+    "watch": "webpack --progress --watch --mode=development",
     "dev": "webpack serve --progress --mode=development",
     "scss-lint": "stylelint \"**/*.scss\" --formatter verbose",
     "scss-fix": "stylelint \"**/*.scss\" --fix",

@@ -36,7 +36,6 @@ $component-name: product-miniature;
 
   & &-regular-price {
     color: $btn-tertiary-color;
-    text-decoration: line-through;
   }
 
   & &-quickview {
@@ -49,6 +48,7 @@ $component-name: product-miniature;
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
+    color: $gray-dark;
     background-color: $white;
     border: 0;
     border-bottom: 1px solid $secondary-light;

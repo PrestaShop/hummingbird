@@ -23,7 +23,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 /* eslint-disable */
-import 'expose-loader?Tether!tether';
 import 'bootstrap/dist/js/bootstrap.min';
 import prestashop from 'prestashop';
 import EventEmitter from 'events';

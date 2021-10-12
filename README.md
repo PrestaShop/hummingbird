@@ -10,10 +10,7 @@ First you need to install every node module:
 
 `npm i`
 
-then create a webpack/.env by copying webpack/.env-example
-`cp webpack/.env-example webpack/.env`
-
-then configure your local web server in this .env file. Please use a free tcp port
+then create a `.env` file inside the *webpack* folder by copying `webpack/.env-example` and complete it with your environment's informations. Please use a free tcp port.
 
 then build assets:
 

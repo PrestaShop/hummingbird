@@ -13,7 +13,7 @@ exports.commonConfig = ({ mode, port, publicPath, siteURL, getOutput, getEntry, 
     expose(),
     extractScss({ mode }),
     extractJs(),
-    extractImages({ publicPath }),
-    extractFonts({ publicPath }),
+    extractImages(),
+    extractFonts(),
   )
 );

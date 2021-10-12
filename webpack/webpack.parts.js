@@ -94,7 +94,7 @@ exports.extractJs = () => ({
   ],
 });
 
-exports.extractImages = ({ publicPath }) => ({
+exports.extractImages = () => ({
   module: {
     rules: [
       {
@@ -104,7 +104,7 @@ exports.extractImages = ({ publicPath }) => ({
             loader: 'file-loader',
             options: {
               outputPath: 'img-dist/',
-              publicPath: publicPath + '/img-dist/',
+              publicPath: '../img-dist/',
               name: '[contenthash].[ext]',
             },
           },
@@ -115,7 +115,7 @@ exports.extractImages = ({ publicPath }) => ({
   }
 })
 
-exports.extractFonts = ({ publicPath }) => ({
+exports.extractFonts = () => ({
   module: {
     rules: [
       {
@@ -125,7 +125,7 @@ exports.extractFonts = ({ publicPath }) => ({
             loader: 'file-loader',
             options: {
               outputPath: 'fonts/',
-              publicPath: publicPath + '/fonts/',
+              publicPath: '../fonts/',
               name: '[contenthash].[ext]',
             },
           },

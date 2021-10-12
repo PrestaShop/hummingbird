@@ -28,7 +28,7 @@
       <div class="row">
         <div class="col-md-6 d-none d-sm-block d-md-block" id="_desktop_logo">
           <a href="{$urls.pages.index}">
-            <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name} {l s='logo' d='Shop.Theme.Global'}" loading="lazy">
+            <img class="logo img-responsive" src="{$shop.logo.src}" alt="{$shop.name} {l s='logo' d='Shop.Theme.Global'}" loading="lazy">
           </a>
         </div>
         <div class="col-md-6 text-xs-right d-none d-sm-block d-md-block">

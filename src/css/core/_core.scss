@@ -1,7 +1,3 @@
-// Layout
-@import "./layout/_header";
-@import "./layout/_footer";
-
 // Components
 @import "./components/_slider";
 @import "./components/_breadcrumb";
@@ -12,6 +8,10 @@
 @import "./modules/_banner";
 @import "./modules/_featuredproducts";
 @import "./modules/_customtext";
+
+// Layout
+@import "./layout/_header";
+@import "./layout/_footer";
 
 // Pages
 @import "./pages/_home";

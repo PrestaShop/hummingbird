@@ -1,9 +1,4 @@
 /* stylelint-disable */
-// Layout
-@import "layout/_header";
-@import "layout/_footer";
-@import "layout/_content";
-
 // Components
 @import "components/_slider";
 @import "components/_currency-selector";
@@ -23,17 +18,22 @@
 @import "components/_cart";
 @import "components/_order-confirmation";
 
-// Pages
-@import "pages/_global";
-@import "pages/_login";
-@import "pages/_register";
-@import "pages/_customer";
-@import "pages/_checkout";
-
 // Modules
 @import "modules/_featuredproducts";
 @import "modules/_customtext";
 @import "modules/_emailsubscriptions";
 @import "modules/_blockreassurance";
 @import "modules/_social-sharing";
+
+// Layout
+@import "layout/_header";
+@import "layout/_footer";
+@import "layout/_content";
+
+// Pages
+@import "pages/_global";
+@import "pages/_login";
+@import "pages/_register";
+@import "pages/_customer";
+@import "pages/_checkout";
 /* stylelint-enable */

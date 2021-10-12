@@ -10,6 +10,11 @@ First you need to install every node module:
 
 `npm i`
 
+then create a webpack/.env by copying webpack/.env-example
+`cp webpack/.env-example webpack/.env`
+
+then configure your local web server in this .env file
+
 then build assets:
 
 `npm run build`

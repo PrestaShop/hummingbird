@@ -13,7 +13,7 @@ First you need to install every node module:
 then create a webpack/.env by copying webpack/.env-example
 `cp webpack/.env-example webpack/.env`
 
-then configure your local web server in this .env file
+then configure your local web server in this .env file. Please use a free tcp port
 
 then build assets:
 

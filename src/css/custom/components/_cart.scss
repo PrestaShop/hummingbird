@@ -116,7 +116,7 @@ $component-name: cart;
       border-top: 1px solid $secondary-light;
 
       span {
-        font-weight: bold;
+        font-weight: 700;
       }
     }
 
@@ -131,7 +131,7 @@ $component-name: cart;
         font-size: 1rem;
 
         &.value {
-          font-weight: bold;
+          font-weight: 700;
           color: $gray-dark;
         }
       }

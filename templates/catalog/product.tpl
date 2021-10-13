@@ -68,13 +68,19 @@
 
           {block name='product_tabs'}
             <div class="product-infos">
-              <div class="product-infos-content" id="product-infos-content">
-               <div class="product-infos-element product-infos-description" id="description" role="tabpanel">
-                 {block name='product_description'}
-                   <h5 class="product-infos-title">{l s='Description' d='Shop.Theme.Catalog'}</h5>
-                   <div class="product-description">{$product.description nofilter}</div>
-                 {/block}
-               </div>
+              <div class="product-infos-content accordion accordion-flush" id="product-infos-content">
+                <div class="product-infos-element product-infos-description accordion-item" id="description">
+                  {block name='product_description'}
+                    <h5 class="product-infos-title accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#product-description-ctr" aria-expanded="true" aria-controls="product-description-ctr">
+                        {l s='Description' d='Shop.Theme.Catalog'}
+                      </button>
+                    </h5>
+                    <div id="product-description-ctr" class="accordion-collapse collapse show" data-bs-parent="#product-infos-content">
+                      <div class="product-description accordion-body">{$product.description nofilter}</div>
+                    </div>
+                  {/block}
+                </div>
 
                {block name='product_details'}
                  {include file='catalog/_partials/product-details.tpl'}
@@ -82,25 +88,31 @@
 
                {block name='product_attachments'}
                  {if $product.attachments}
-                  <div class="product-infos-element product-infos-attachments" id="attachments" role="tabpanel">
+                  <div class="product-infos-element product-infos-attachments accordion-item" id="attachments">
                      <section class="product-attachments">
-                       <h5 class="product-infos-title">{l s='Download' d='Shop.Theme.Actions'}</p>
-                       {foreach from=$product.attachments item=attachment}
-                         <div class="attachment">
-                           <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4>
-                           <p>{$attachment.description}</p>
-                           <a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
-                             {l s='Download' d='Shop.Theme.Actions'} ({$attachment.file_size_formatted})
-                           </a>
-                         </div>
-                       {/foreach}
+                       <h5 class="product-infos-title accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-attachments-ctr" aria-expanded="true" aria-controls="product-attachments-ctr">
+                          {l s='Download' d='Shop.Theme.Actions'}
+                        </button>
+                       </h5>
+                       <div id="product-attachments-ctr" class="accordion-collapse collapse" data-bs-parent="#product-details">
+                        {foreach from=$product.attachments item=attachment}
+                          <div class="attachment">
+                            <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4>
+                            <p>{$attachment.description}</p>
+                            <a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                              {l s='Download' d='Shop.Theme.Actions'} ({$attachment.file_size_formatted})
+                            </a>
+                          </div>
+                        {/foreach}
+                       </div>
                      </section>
                    </div>
                  {/if}
                {/block}
 
                {foreach from=$product.extraContent item=extra key=extraKey}
-                 <div class="product-infos-element product-infos-extra {$extra.attr.class}" id="extra-{$extraKey}" role="tabpanel" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
+                 <div class="product-infos-element product-infos-extra {$extra.attr.class}" id="extra-{$extraKey}" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
                    <h5 class="product-infos-title">{l s='Extras' d='Shop.Theme.Catalog'}</h5>
                    {$extra.content nofilter}
                  </div>

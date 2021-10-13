@@ -1,6 +1,9 @@
 /* stylelint-disable */
 @import "~bourbon/core/bourbon";
+
+// also remove this if you want a raw bootstrap theme
 @import "partials/_variables";
+
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css";
 @import "partials/_mixins";

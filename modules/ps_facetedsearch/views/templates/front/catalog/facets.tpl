@@ -37,24 +37,17 @@
 
     {foreach from=$displayedFacets item="facet"}
       <section class="facet clearfix">
-        <p class="{$componentName}-subtitle facet-title d-none d-sm-block">{$facet.label}</p>
         {assign var=_expand_id value=10|mt_rand:100000}
         {assign var=_collapse value=true}
         {foreach from=$facet.filters item="filter"}
           {if $filter.active}{assign var=_collapse value=false}{/if}
         {/foreach}
 
-        <div class="title d-block d-sm-none" href="#facet_{$_expand_id}" data-bs-toggle="collapse"{if !$_collapse} aria-expanded="true"{/if}>
-          <p class="{$componentName}-subtitle facet-title">{$facet.label}</p>
-          <span class="navbar-toggler collapse-icons">
-            <i class="material-icons add">&#xE313;</i>
-            <i class="material-icons remove">&#xE316;</i>
-          </span>
-        </div>
+        <p class="{$componentName}-subtitle facet-title" data-bs-target="#facet_{$_expand_id}" data-bs-toggle="collapse"{if !$_collapse} aria-expanded="true"{/if}>{$facet.label}</p>
 
         {if in_array($facet.widgetType, ['radio', 'checkbox'])}
           {block name='facet_item_other'}
-            <ul id="facet_{$_expand_id}" class="collapse d-sm-block{if !$_collapse} in{/if}">
+            <ul id="facet_{$_expand_id}" class="collapse{if !$_collapse} show{/if}">
               {foreach from=$facet.filters key=filter_key item="filter"}
                 {if !$filter.displayed}
                   {continue}
@@ -122,7 +115,7 @@
 
         {elseif $facet.widgetType == 'dropdown'}
           {block name='facet_item_dropdown'}
-            <ul id="facet_{$_expand_id}" class="collapse d-sm-block{if !$_collapse} in{/if}">
+            <ul id="facet_{$_expand_id}" class="collapse{if !$_collapse} in{/if}">
               <li>
                 <div class="col-sm-12 col-xs-12 col-md-12 facet-dropdown dropdown">
                   <a class="select-title" rel="nofollow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -168,7 +161,7 @@
           {block name='facet_item_slider'}
             {foreach from=$facet.filters item="filter"}
               <ul id="facet_{$_expand_id}"
-                class="faceted-slider collapse{if !$_collapse} in{/if}"
+                class="faceted-slider collapse{if !$_collapse} show{/if}"
                 data-slider-min="{$facet.properties.min}"
                 data-slider-max="{$facet.properties.max}"
                 data-slider-id="{$_expand_id}"

@@ -22,34 +22,27 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<div class="footer-before">
-  {block name='hook_footer_before'}
-    {hook h='displayFooterBefore'}
-  {/block}
-</div>
-
-<div class="footer pt-5">
-  <div class="container">
-    <div class="footer-top row">
-      {block name='hook_footer'}
-        {hook h='displayFooter'}
-      {/block}
-    </div>
-    <div class="row">
-      {block name='hook_footer_after'}
-        {hook h='displayFooterAfter'}
-      {/block}
-    </div>
-    <div class="copyright row">
-      <div class="col-md-12">
-        <p class="text-sm-center">
-          {block name='copyright_link'}
-            <a href="https://www.prestashop.com" target="_blank" rel="noopener noreferrer nofollow">
-              {l s='%copyright% %year% - Ecommerce software by %prestashop%' sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
-            </a>
-          {/block}
-        </p>
+<section id="js-active-search-filters">
+  {if $activeFilters|count}
+    <div class="card mb-3">
+      <div class="card-header">
+        {block name='active_filters_title'}
+          <p class="h5 card-title mb-0">{l s='Active filters' d='Shop.Theme.Global'}</p>
+        {/block}
+      </div>
+      <div class="card-body">
+        <ul class="row m-n1">
+          {foreach from=$activeFilters item="filter"}
+            {block name='active_filters_item'}
+              <li class="col flex-grow-0 flex-shrink-0 p-1">
+                <a class="text-nowrap btn btn-outline-secondary btn-sm js-search-link d-flex align-items-center" href="{$filter.nextEncodedFacetsURL}" rel="nofollow">
+                  {l s='%1$s:' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel]} {$filter.label} <i class="material-icons font-reset ml-1 align-middle">&#xE14C;</i>
+                </a>
+              </li>
+            {/block}
+          {/foreach}
+        </ul>
       </div>
     </div>
-  </div>
-</div>
+  {/if}
+</section>

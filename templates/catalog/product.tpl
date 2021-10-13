@@ -91,7 +91,7 @@
                   <div class="product-infos-element product-infos-attachments accordion-item" id="attachments">
                      <section class="product-attachments">
                        <h5 class="product-infos-title accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#product-attachments-ctr" aria-expanded="true" aria-controls="product-attachments-ctr">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-attachments-ctr" aria-expanded="true" aria-controls="product-attachments-ctr">
                           {l s='Download' d='Shop.Theme.Actions'}
                         </button>
                        </h5>

@@ -4,7 +4,7 @@
   data-product="{$product.embedded_attributes|json_encode}"
 >
   <h5 class="product-infos-title accordion-header">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#product-infos-details-ctr" aria-expanded="true" aria-controls="product-infos-details-ctr">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-infos-details-ctr" aria-expanded="true" aria-controls="product-infos-details-ctr">
       {l s='Product Details' d='Shop.Theme.Catalog'}
     </button>
   </h5>

@@ -25,12 +25,12 @@
 {extends 'customer/page.tpl'}
 
 {block name='page_content'}
-  <div class="content-columns">
-    <div class="content-columns-left col-md-3">
+  <div class="row">
+    <div class="col-md-3">
       {include file='components/account-menu.tpl'}
     </div>
 
-    <div class="content-columns-right col-md-9">
+    <div class="col-md-9">
       <h1 class="h2">
         {l s='Your addresses' d='Shop.Theme.Customeraccount'}
       </h1>

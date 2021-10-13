@@ -26,7 +26,7 @@
 
 
 {block name="content_columns"}
-  <div class="content-columns container">
+  <div class="container">
     <div class="row">
       {block name='left_column'}{/block}
 

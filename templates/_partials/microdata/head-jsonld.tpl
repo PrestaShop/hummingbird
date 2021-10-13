@@ -30,7 +30,7 @@
     "url" : "{$urls.pages.index}",
     "logo": {
       "@type": "ImageObject",
-      "url":"{$shop.logo}"
+      "url":"{$shop.logo_details.src}"
     }
   }
 </script>
@@ -57,7 +57,7 @@
       "url" : "{$urls.pages.index}",
       "image": {
         "@type": "ImageObject",
-        "url":"{$shop.logo}"
+        "url":"{$shop.logo_details.src}"
       },
       "potentialAction": {
         "@type": "SearchAction",

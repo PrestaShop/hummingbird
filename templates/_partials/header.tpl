@@ -63,12 +63,12 @@
       {if $page.page_name == 'index'}
         <a class="navbar-brand" href="{$urls.pages.index}">
           <h1>
-              <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name}" loading="lazy" width="100" height="28">
+              <img class="logo img-responsive" src="{$shop.logo_details.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo_details.width}" height="{$shop.logo_details.height}">
           </h1>
         </a>
       {else}
         <a class="navbar-brand" href="{$urls.pages.index}">
-          <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name}" loading="lazy" width="100" height="28">
+          <img class="logo img-responsive" src="{$shop.logo_details.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo_details.width}" height="{$shop.logo_details.height}">
         </a>
       {/if}
 

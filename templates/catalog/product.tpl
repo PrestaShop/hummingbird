@@ -72,7 +72,7 @@
                 <div class="product-infos-element product-infos-description accordion-item" id="description">
                   {block name='product_description'}
                     <h5 class="product-infos-title accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#product-description-ctr" aria-expanded="true" aria-controls="product-description-ctr">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-description-ctr" aria-expanded="true" aria-controls="product-description-ctr">
                         {l s='Description' d='Shop.Theme.Catalog'}
                       </button>
                     </h5>

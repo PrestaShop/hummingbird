@@ -41,6 +41,7 @@
                 <div class="collapse" id="exCollapsingNavbar{$node.id}">
                   {categories nodes=$node.children depth=$depth+1}
                 </div>
+              {else}
               {/if}
             {else}
               <a class="{$componentName}-child-link" href="{$node.link}">{$node.name}</a>

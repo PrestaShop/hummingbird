@@ -12,6 +12,10 @@ $component-name: product-miniature;
       padding: 0.25rem 0.5rem;
       background-color: $white;
     }
+
+    &-bottom {
+      margin-bottom: 1rem;
+    }
   }
 
   & &-title {

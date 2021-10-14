@@ -31,7 +31,7 @@
         {include file='catalog/_partials/product-flags.tpl'}
 
         {block name='product_miniature_image'}
-          <div class="{$componentName}-image-container">
+          <div class="{$componentName}-image-container thumbnail-container">
             {if $product.cover}
               <img
                 src="{$product.cover.bySize.home_default.url}"

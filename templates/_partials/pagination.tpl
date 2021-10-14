@@ -24,7 +24,7 @@
  *}
 {$componentName = 'pagination'}
 
-<nav class="{$componentName}-container">
+<nav class="{$componentName}-container row">
   <div class="{$componentName}-number col-md-4">
     {block name='pagination_summary'}
       {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=['%from%' => $pagination.items_shown_from ,'%to%' => $pagination.items_shown_to, '%total%' => $pagination.total_items]}

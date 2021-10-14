@@ -1,7 +1,6 @@
 /* stylelint-disable */
 @import "~bourbon/core/bourbon";
 
-// also remove this if you want a raw bootstrap theme
 @import "partials/_variables";
 
 @import "~bootstrap/scss/bootstrap";
@@ -15,6 +14,6 @@
 @import "core/_core";
 
 // Custom
-//@import "custom/_custom";
+@import "custom/_custom";
 
 /* stylelint-enable */

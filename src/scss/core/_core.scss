@@ -4,11 +4,13 @@
 @import "./components/_breadcrumb";
 @import "./components/product/_product-miniature";
 @import "./components/product/_product-flags";
+@import "./components/_pagination";
 
 // Modules
 @import "./modules/_banner";
 @import "./modules/_featuredproducts";
 @import "./modules/_customtext";
+@import "./modules/_facetedsearch";
 
 // Layout
 @import "./layout/_header";
@@ -16,3 +18,4 @@
 
 // Pages
 @import "./pages/_home";
+@import "./pages/_product";

@@ -41,6 +41,7 @@
                 <div class="collapse" id="exCollapsingNavbar{$node.id}">
                   {categories nodes=$node.children depth=$depth+1}
                 </div>
+              {else}
               {/if}
             {else}
               <a class="{$componentName}-child-link" href="{$node.link}">{$node.name}</a>
@@ -62,8 +63,8 @@
 {/function}
 
 <div class="{$componentName}">
-  <ul class="{$componentName}-list">
-    <li class="{$componentName}-title"><a class="{$componentName}-title-link" href="{$categories.link nofilter}">{$categories.name}</a></li>
-    <li class="{$componentName}-child">{categories nodes=$categories.children}</li>
+  <ul class="{$componentName}-list list-group">
+    <li class="{$componentName}-title list-group-item"><a class="{$componentName}-title-link" href="{$categories.link nofilter}">{$categories.name}</a></li>
+    <li class="{$componentName}-child list-group-item">{categories nodes=$categories.children}</li>
   </ul>
 </div>

@@ -25,7 +25,7 @@
 
 {$componentName = 'email-subscription'}
 
-<div class="{$componentName}">
+<div class="{$componentName} py-4">
   <div class="container">
     <div class="{$componentName}-content row">
       <div class="{$componentName}-content-left col-md-5">

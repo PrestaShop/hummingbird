@@ -1,0 +1,8 @@
+$componentName: search-filters;
+
+.#{$componentName} {
+  & &-subtitle {
+    // stylelint-disable-next-line
+    width: auto !important;
+  }
+}

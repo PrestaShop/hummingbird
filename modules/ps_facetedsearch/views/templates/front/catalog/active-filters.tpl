@@ -22,33 +22,27 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file='layouts/layout-both-columns.tpl'}
-
-
-{block name="content_columns"}
-  <div class="container">
-    <div class="row">
-      {block name='left_column'}{/block}
-
-      {block name="content_wrapper"}
-        <div id="content-wrapper" class="js-content-wrapper left-column col-xs-12 col-sm-8 col-md-9">
-          {hook h="displayContentWrapperTop"}
-          {block name="content"}
-            <p>Hello world! This is HTML5 Boilerplate.</p>
-          {/block}
-          {hook h="displayContentWrapperBottom"}
-        </div>
-      {/block}
-
-      {block name="right_column"}
-        <div id="right-column" class="col-xs-12 col-sm-4 col-md-3">
-          {if $page.page_name == 'product'}
-            {hook h='displayRightColumnProduct'}
-          {else}
-            {hook h="displayRightColumn"}
-          {/if}
-        </div>
-      {/block}
+<section id="js-active-search-filters">
+  {if $activeFilters|count}
+    <div class="card mb-3">
+      <div class="card-header">
+        {block name='active_filters_title'}
+          <p class="h5 card-title mb-0">{l s='Active filters' d='Shop.Theme.Global'}</p>
+        {/block}
+      </div>
+      <div class="card-body">
+        <ul class="row m-n1">
+          {foreach from=$activeFilters item="filter"}
+            {block name='active_filters_item'}
+              <li class="col flex-grow-0 flex-shrink-0 p-1">
+                <a class="text-nowrap btn btn-outline-secondary btn-sm js-search-link d-flex align-items-center" href="{$filter.nextEncodedFacetsURL}" rel="nofollow">
+                  {l s='%1$s:' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel]} {$filter.label} <i class="material-icons font-reset ml-1 align-middle">&#xE14C;</i>
+                </a>
+              </li>
+            {/block}
+          {/foreach}
+        </ul>
+      </div>
     </div>
-  </div>
-{/block}
+  {/if}
+</section>

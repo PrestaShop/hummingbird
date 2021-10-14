@@ -22,6 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+
 {if isset($listing.rendered_facets)}
   <div id="search_filters_wrapper" class="d-none d-sm-block d-md-block">
     <div id="search_filter_controls" class="d-none d-sm-block d-md-none">

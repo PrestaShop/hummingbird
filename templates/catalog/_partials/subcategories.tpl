@@ -29,9 +29,9 @@
     <div id="subcategories" class="{$componentName}">
       <h2 class="{$componentName}-title">{l s='Subcategories' d='Shop.Theme.Category'}</h2>
 
-      <ul class="{$componentName}-list">
+      <ul class="{$componentName}-list row">
         {foreach from=$subcategories item=subcategory}
-          <li class="{$componentName}-item">
+          <li class="{$componentName}-item col-6 col-md-3">
             <div class="{$componentName}-image">
               <a href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}" title="{$subcategory.name|escape:'html':'UTF-8'}" class="{$componentName}-link img">
                 {if !empty($subcategory.image.large.url)}

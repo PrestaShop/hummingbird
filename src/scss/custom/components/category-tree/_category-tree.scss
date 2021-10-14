@@ -11,10 +11,18 @@ $componentName: category-tree;
 }
 
 .#{$componentName} {
+  padding-bottom: 1rem;
   margin-bottom: 2rem;
   border-bottom: var(--#{$componentName}-border-bottom);
 
+  &-child {
+    padding: 0;
+    border: none;
+  }
+
   & &-title {
+    padding: 0;
+    border: none;
     margin-bottom: var(--#{$componentName}-title-spacing);
     font-size: var(--#{$componentName}-title-size);
 

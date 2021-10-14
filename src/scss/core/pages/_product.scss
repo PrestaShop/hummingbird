@@ -1,0 +1,19 @@
+.page-product {
+  .product-images-right {
+    position: relative;
+  }
+
+  #product-images {
+    .carousel-inner {
+      @extend .col-md-9;
+    }
+  }
+
+  .product-thumbnails-container {
+    margin-right: 2rem;
+
+    img {
+      width: auto;
+    }
+  }
+}

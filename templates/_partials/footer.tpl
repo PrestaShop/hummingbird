@@ -28,7 +28,7 @@
   {/block}
 </div>
 
-<div class="footer">
+<div class="footer pt-5">
   <div class="container">
     <div class="footer-top row">
       {block name='hook_footer'}

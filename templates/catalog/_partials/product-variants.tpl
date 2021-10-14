@@ -25,7 +25,7 @@
 <div class="product-variants js-product-variants">
   {foreach from=$groups key=id_attribute_group item=group}
     {if !empty($group.attributes)}
-    <div class="clearfix product-variants-item">
+    <div class="product-variants-item">
       <span class="control-label">{$group.name}{l s=': ' d='Shop.Theme.Catalog'}
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
             {if $group_attribute.selected}{$group_attribute.name}{/if}
@@ -54,7 +54,7 @@
                   {elseif $group_attribute.html_color_code}
                     class="color" style="background-color: {$group_attribute.html_color_code}"
                   {/if}
-                ><span class="attribute-name sr-only">{$group_attribute.name}</span></span>
+               ><span class="attribute-name sr-only">{$group_attribute.name}</span></span>
               </label>
             </li>
           {/foreach}

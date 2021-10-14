@@ -43,21 +43,21 @@
               placeholder="{l s='Your email address' d='Shop.Forms.Labels'}"
               aria-labelledby="block-newsletter-label"
               required
-            >
+           >
 
             <input
               class="btn btn-primary d-none d-sm-none d-md-block"
               name="submitNewsletter"
               type="submit"
               value="{l s='Subscribe' d='Shop.Theme.Actions'}"
-            >
+           >
 
             <input
               class="btn btn-primary d-none d-sm-block d-md-none"
               name="submitNewsletter"
               type="submit"
               value="{l s='OK' d='Shop.Theme.Actions'}"
-            >
+           >
           </div>
 
           <div class="{$componentName}-content-infos">

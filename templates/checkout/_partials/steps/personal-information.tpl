@@ -34,14 +34,14 @@
       {/if}
     </div>
 
-    <div class="clearfix">
+    <div>
       <form method="GET" action="{$urls.pages.order}">
         <button
           class="continue btn btn-primary float-xs-right"
           name="controller"
           type="submit"
           value="order"
-        >
+       >
           {l s='Continue' d='Shop.Theme.Actions'}
         </button>
       </form>
@@ -58,7 +58,7 @@
           role="tab"
           aria-controls="checkout-guest-form"
           {if !$show_login_form} aria-selected="true"{/if}
-          >
+         >
           {if $guest_allowed}
             {l s='Order as a guest' d='Shop.Theme.Checkout'}
           {else}
@@ -80,7 +80,7 @@
           role="tab"
           aria-controls="checkout-login-form"
           {if $show_login_form} aria-selected="true"{/if}
-        >
+       >
           {l s='Sign in' d='Shop.Theme.Actions'}
         </a>
       </li>

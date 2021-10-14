@@ -90,7 +90,7 @@
         {hook h="displayWrapperBottom"}
       </section>
 
-      <footer id="footer" class="js-footer">
+      <footer id="footer" class="footer">
         {block name="footer"}
           {include file="_partials/footer.tpl"}
         {/block}

@@ -39,7 +39,7 @@
         rel="nofollow"
         href="{$brand['link']}"
         class="select-list js-search-link"
-      >
+     >
         {$brand['name']}
       </a>
     {/foreach}

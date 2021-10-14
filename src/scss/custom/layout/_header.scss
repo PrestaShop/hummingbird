@@ -21,7 +21,7 @@ $componentName: header;
       @extend .inline-items;
       justify-content: flex-end;
 
-      > *:not(:last-child) {
+     > *:not(:last-child) {
         margin-right: 1.5rem;
       }
 
@@ -74,8 +74,8 @@ $componentName: header;
         align-items: center;
         margin-bottom: 0;
 
-        > li {
-          > a {
+       > li {
+         > a {
             padding: 1.5rem 1rem;
             transition: 0.25s ease-out;
           }

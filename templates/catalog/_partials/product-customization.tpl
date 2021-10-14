@@ -30,7 +30,7 @@
 
       {block name='product_customization_form'}
         <form method="post" action="{$product.url}" enctype="multipart/form-data">
-          <ul class="clearfix">
+          <ul>
             {foreach from=$customizations.fields item="field"}
               <li class="product-customization-item">
                 <label> {$field.label}</label>
@@ -58,7 +58,7 @@
               </li>
             {/foreach}
           </ul>
-          <div class="clearfix">
+          <div>
             <button class="btn btn-primary float-xs-right" type="submit" name="submitCustomizedData">{l s='Save Customization' d='Shop.Theme.Actions'}</button>
           </div>
         </form>

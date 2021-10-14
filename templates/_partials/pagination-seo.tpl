@@ -35,10 +35,10 @@
     {$next = false}
     {if ($page_nb - 1) == 1}
         {$prev = $page.canonical}
-    {elseif $page_nb > 2}
+    {elseif $page_nb> 2}
         {$prev = ($page['canonical']|cat:'?page='|cat:($page_nb - 1))}
     {/if}
-    {if $listing.pagination.total_items > $listing.pagination.items_shown_to}
+    {if $listing.pagination.total_items> $listing.pagination.items_shown_to}
         {$next = ($page['canonical']|cat:'?page='|cat:($page_nb + 1))}
     {/if}
 

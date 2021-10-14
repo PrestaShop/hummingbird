@@ -32,11 +32,11 @@
   <div class="delivery-options-list">
     {if $delivery_options|count}
       <form
-        class="clearfix"
+        
         id="js-delivery"
         data-url-update="{url entity='order' params=['ajax' => 1, 'action' => 'selectDeliveryOption']}"
         method="post"
-      >
+     >
         <div class="form-fields">
           {block name='delivery_options'}
             <div class="delivery-options">
@@ -72,7 +72,7 @@
                   <div class="carrier-extra-content js-carrier-extra-content"{if $delivery_option != $carrier_id} style="display:none;"{/if}>
                     {$carrier.extraContent nofilter}
                   </div>
-                  <div class="clearfix"></div>
+                  <div></div>
               {/foreach}
             </div>
           {/block}
@@ -94,7 +94,7 @@
               <span class="custom-checkbox">
                 <input class="js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1" {if $gift.isGift}checked="checked"{/if}>
                 <span><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
-                <label for="input_gift">{$gift.label}</label >
+                <label for="input_gift">{$gift.label}</label>
               </span>
 
               <div id="gift" class="collapse{if $gift.isGift} in{/if}">

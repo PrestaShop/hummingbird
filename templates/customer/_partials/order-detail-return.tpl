@@ -104,7 +104,7 @@
                 <div class="current">
                   {$product.quantity}
                 </div>
-                {if $product.quantity > $product.qty_returned}
+                {if $product.quantity> $product.qty_returned}
                   <div class="select" id="_desktop_return_qty_{$product.id_order_detail}">
                     <select name="order_qte_input[{$product.id_order_detail}]" class="form-control form-control-select">
                       {section name=quantity start=1 loop=$product.quantity+1-$product.qty_returned}
@@ -122,14 +122,14 @@
                     <select
                       name="customization_qty_input[{$customization.id_customization}]"
                       class="form-control form-control-select"
-                    >
+                   >
                       {section name=quantity start=1 loop=$customization.quantity+1}
                         <option value="{$smarty.section.quantity.index}">{$smarty.section.quantity.index}</option>
                       {/section}
                     </select>
                   </div>
                 {/foreach}
-                <div class="clearfix"></div>
+                <div></div>
               {/if}
             </td>
             <td class="text-xs-right">{$product.qty_returned}</td>
@@ -197,11 +197,11 @@
                         {/foreach}
                       {else}
                         <div class="q">{l s='Quantity' d='Shop.Theme.Catalog'}: {$product.quantity}</div>
-                        {if $product.quantity > $product.qty_returned}
+                        {if $product.quantity> $product.qty_returned}
                           <div class="s" id="_mobile_return_qty_{$product.id_order_detail}"></div>
                         {/if}
                       {/if}
-                      {if $product.qty_returned > 0}
+                      {if $product.qty_returned> 0}
                         <div>{l s='Returned' d='Shop.Theme.Customeraccount'}: {$product.qty_returned}</div>
                       {/if}
                     </div>

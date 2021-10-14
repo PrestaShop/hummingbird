@@ -39,7 +39,7 @@
       <section class="form-fields">
 
         <div class="form-group">
-          <div class="">
+          <div>
             <h3>{l s='Contact us' d='Shop.Theme.Global'}</h3>
           </div>
         </div>
@@ -64,7 +64,7 @@
               type="email"
               value="{$contact.email}"
               placeholder="{l s='your@email.com' d='Shop.Forms.Help'}"
-            >
+           >
           </div>
         </div>
 
@@ -105,7 +105,7 @@
               name="message"
               placeholder="{l s='How can we help?' d='Shop.Forms.Help'}"
               rows="3"
-            >{if $contact.message}{$contact.message}{/if}</textarea>
+           >{if $contact.message}{$contact.message}{/if}</textarea>
           </div>
         </div>
 

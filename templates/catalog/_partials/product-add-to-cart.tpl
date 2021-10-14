@@ -27,7 +27,7 @@
     <span class="control-label">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
 
     {block name='product_quantity'}
-      <div class="product-quantity clearfix">
+      <div class="product-quantity ">
         <div class="qty">
           <input
             type="number"
@@ -44,7 +44,7 @@
             {/if}
             class="input-group"
             aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
-          >
+         >
         </div>
 
         <div class="add">
@@ -55,7 +55,7 @@
             {if !$product.add_to_cart_url}
               disabled
             {/if}
-          >
+         >
             <i class="material-icons shopping-cart">&#xE547;</i>
             {l s='Add to cart' d='Shop.Theme.Actions'}
           </button>
@@ -82,7 +82,7 @@
 
     {block name='product_minimal_quantity'}
       <p class="product-minimal-quantity js-product-minimal-quantity">
-        {if $product.minimal_quantity > 1}
+        {if $product.minimal_quantity> 1}
           {l
           s='The minimum purchase order quantity for the product is %quantity%.'
           d='Shop.Theme.Checkout'

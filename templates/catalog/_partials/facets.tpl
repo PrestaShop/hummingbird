@@ -44,7 +44,7 @@
         {continue}
       {/if}
 
-      <section class="facet clearfix">
+      <section class="facet ">
         <p class="h6 facet-title d-none d-sm-block d-md-block">{$facet.label}</p>
         {assign var=_expand_id value=10|mt_rand:100000}
         {assign var=_collapse value=true}
@@ -79,7 +79,7 @@
                           data-search-url="{$filter.nextEncodedFacetsURL}"
                           type="checkbox"
                           {if $filter.active }checked{/if}
-                        >
+                       >
                         {if isset($filter.properties.texture)}
                           <span class="color texture" style="background-image:url({$filter.properties.texture})"></span>
                         {elseif isset($filter.properties.color)}
@@ -96,7 +96,7 @@
                           type="radio"
                           name="filter {$facet.label}"
                           {if $filter.active }checked{/if}
-                        >
+                       >
                         <span {if !$js_enabled} class="ps-shown-by-js" {/if}></span>
                       </span>
                     {/if}
@@ -105,7 +105,7 @@
                       href="{$filter.nextEncodedFacetsURL}"
                       class="_gray-darker search-link js-search-link"
                       rel="nofollow"
-                    >
+                   >
                       {$filter.label}
                       {if $filter.magnitude}
                         <span class="magnitude">({$filter.magnitude})</span>
@@ -148,7 +148,7 @@
                           rel="nofollow"
                           href="{$filter.nextEncodedFacetsURL}"
                           class="select-list"
-                        >
+                       >
                           {$filter.label}
                           {if $filter.magnitude}
                             ({$filter.magnitude})

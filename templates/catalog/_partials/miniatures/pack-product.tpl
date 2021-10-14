@@ -40,7 +40,7 @@
                         {/if}
                         loading="lazy"
                         data-full-size-image-url="{$product.default_image.large.url}"
-                >
+               >
               {else}
                 <img src="{$urls.no_picture_image.bySize.medium_default.url}" loading="lazy" />
               {/if}

@@ -42,7 +42,7 @@
         {/block}
         </div>
       {/foreach}
-      <div class="clearfix"></div>
+      <div></div>
       <div class="addresses-footer">
         <a href="{$urls.pages.address}" data-link-action="add-address">
           <i class="material-icons">&#xE145;</i>

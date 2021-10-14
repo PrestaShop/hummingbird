@@ -33,7 +33,7 @@
           name="submitNewsletter"
           type="submit"
           value="{l s='OK' d='Shop.Theme.Actions'}"
-        >
+       >
         <div class="input-wrapper">
           <input
             name="email"
@@ -41,11 +41,11 @@
             value="{$value}"
             placeholder="{l s='Your email address' d='Shop.Forms.Labels'}"
             aria-labelledby="block-newsletter-label"
-          >
+         >
         </div>
         <input type="hidden" name="blockHookName" value="{$hookName}" />
         <input type="hidden" name="action" value="0">
-        <div class="clearfix"></div>
+        <div></div>
       </div>
       <div class="col-xs-12">
         {if !empty($conditions)}

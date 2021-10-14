@@ -23,18 +23,15 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<div class="col-md-2 links wrapper">
-  <h3 class="d-none d-sm-block d-md-block">{l s='Information' d='Modules.Legalcompliance.Shop'}</h3>
-  <div class="title clearfix d-none d-sm-block d-md-none" data-target="#footer_eu_about_us_list" data-bs-toggle="collapse">
-    <span class="h3">{l s='Information' d='Modules.Legalcompliance.Shop'}</span>
-    <span class="float-xs-right">
-      <span class="navbar-toggler collapse-icons">
-        <i class="material-icons add">&#xE313;</i>
-        <i class="material-icons remove">&#xE316;</i>
-      </span>
-    </span>
+<div class="footer__block col-md-6 col-lg-3">
+
+  <h3 class="footer__block__title hidden-on-mobile">{l s='Information' d='Modules.Legalcompliance.Shop'}</h3>
+
+  <div class="footer__block__toggle hidden-on-desktop collapsed" data-target="#footer_eu_about_us_list" data-bs-toggle="collapse">
+    <span class="footer__block__title">{l s='Information' d='Modules.Legalcompliance.Shop'}</span>
+    <i class="material-icons">arrow_drop_down</i>
   </div>
-  <ul class="collapse" id="footer_eu_about_us_list">
+  <ul class="footer__block__content footer__block__content-list collapse" id="footer_eu_about_us_list">
     {foreach from=$cms_links item=cms_link}
       <li>
         <a href="{$cms_link.link}" class="cms-page-link" title="{$cms_link.description|default:''}" id="{$cms_link.id}"> {$cms_link.title} </a>

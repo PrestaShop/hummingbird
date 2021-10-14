@@ -40,7 +40,7 @@
                 alt="{$product.name}"
               {/if}
               height="{$product.default_image.bySize.large_default.height}"
-            >
+           >
           {else}
             <img src="{$urls.no_picture_image.bySize.large_default.url}" loading="lazy" width="{$urls.no_picture_image.bySize.large_default.width}" height="{$urls.no_picture_image.bySize.large_default.height}" />
           {/if}
@@ -68,13 +68,13 @@
                       {/if}
                       width="{$image.medium.width}"
                       height="148"
-                    >
+                   >
                   </li>
                 {/foreach}
               </ul>
             </div>
           {/block}
-          {if $imagesCount > 5}
+          {if $imagesCount> 5}
             <div class="arrows js-modal-arrows">
               <i class="material-icons arrow-up js-modal-arrow-up">&#xE5C7;</i>
               <i class="material-icons arrow-down js-modal-arrow-down">&#xE5C5;</i>

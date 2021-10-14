@@ -14,7 +14,7 @@
       action="{url entity='order' params=['id_address' => $id_address]}"
       data-id-address="{$id_address}"
       data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm']}"
-    >
+   >
 {/block}
 
 {block name='form_fields' append}
@@ -38,7 +38,7 @@
       <button type="submit" class="continue btn btn-primary float-xs-right" name="confirm-addresses" value="1">
           {l s='Continue' d='Shop.Theme.Actions'}
       </button>
-      {if $customer.addresses|count > 0}
+      {if $customer.addresses|count> 0}
         <a class="js-cancel-address cancel-address float-xs-right" href="{url entity='order' params=['cancelAddress' => {$type}]}">{l s='Cancel' d='Shop.Theme.Actions'}</a>
       {/if}
     </form>

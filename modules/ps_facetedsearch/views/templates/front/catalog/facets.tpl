@@ -68,7 +68,7 @@
                               data-search-url="{$filter.nextEncodedFacetsURL}"
                               type="checkbox"
                               {if $filter.active }checked{/if}
-                            >
+                           >
                             <label class="form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
                               {if isset($filter.properties.color)}
                                 <span class="color" style="background-color:{$filter.properties.color}"></span>
@@ -79,7 +79,7 @@
                                   href="{$filter.nextEncodedFacetsURL}"
                                   class="{$componentName}-link _gray-darker search-link js-search-link"
                                   rel="nofollow"
-                                >
+                               >
                                   {$filter.label}
                                   {if $filter.magnitude and $show_quantities}
                                     <span class="magnitude">({$filter.magnitude})</span>
@@ -97,13 +97,13 @@
                               type="radio"
                               name="filter {$facet.label}"
                               {if $filter.active }checked{/if}
-                            >
+                           >
                             <label class="form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
                               <a
                                 href="{$filter.nextEncodedFacetsURL}"
                                 class="{$componentName}-link _gray-darker search-link js-search-link"
                                 rel="nofollow"
-                              >
+                             >
                                 {$filter.label}
                                 {if $filter.magnitude and $show_quantities}
                                   <span class="magnitude">({$filter.magnitude})</span>
@@ -148,7 +148,7 @@
                               rel="nofollow"
                               href="{$filter.nextEncodedFacetsURL}"
                               class="select-list js-search-link"
-                            >
+                           >
                               {$filter.label}
                               {if $filter.magnitude and $show_quantities}
                                 ({$filter.magnitude})
@@ -175,7 +175,7 @@
                     data-slider-label="{$facet.label}"
                     data-slider-specifications="{$facet.properties.specifications|@json_encode}"
                     data-slider-encoded-url="{$filter.nextEncodedFacetsURL}"
-                  >
+                 >
                     <li>
                       <p id="facet_label_{$_expand_id}">
                         {$filter.label}
@@ -187,7 +187,7 @@
                         id="slider-range_{$_expand_id}"
                         min="{$facet.properties.min}"
                         max="{$facet.properties.max}"
-                      >
+                     >
                     </li>
                   </ul>
                 {/foreach}

@@ -23,49 +23,41 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<div class="block-contact col-md-3 links wrapper">
-  <div class="title clearfix d-block d-md-none" data-bs-target="#contact-infos" data-bs-toggle="collapse" aria-expanded="false">
-    <span class="h3">{l s='Store information' d='Shop.Theme.Global'}</span>
-    <span class="float-xs-right">
-      <span class="navbar-toggler collapse-icons">
-        <i class="material-icons add">keyboard_arrow_down</i>
-        <i class="material-icons remove">keyboard_arrow_up</i>
-      </span>
-    </span>
+<div class="footer__block block-contact col-md-6 col-lg-3">
+
+  <p class="footer__block__title hidden-on-mobile">{l s='Store information' d='Shop.Theme.Global'}</p>
+
+  <div class="footer__block__toggle hidden-on-desktop collapsed" data-bs-target="#contact-infos" data-bs-toggle="collapse" aria-expanded="false">
+    <span class="footer__block__title">{l s='Store information' d='Shop.Theme.Global'}</span>
+    <i class="material-icons">arrow_drop_down</i>
   </div>
 
-  <p class="h4 text-uppercase block-contact-title d-none d-sm-none d-md-block">{l s='Store information' d='Shop.Theme.Global'}</p>
-  <div id="contact-infos" class="collapse d-md-block">
-    {$contact_infos.address.formatted nofilter}
+  <div id="contact-infos" class="footer__block__content footer__block__content-contact collapse">
+
+    <div class="contact__infos">
+      {$contact_infos.address.formatted nofilter}
+    </div>
+
     {if $contact_infos.phone}
-      <br>
-      {* [1][/1] is for a HTML tag. *}
-      {l s='Call us: [1]%phone%[/1]'
-        sprintf=[
-        '[1]' => '<span>',
-        '[/1]' => '</span>',
-        '%phone%' => $contact_infos.phone
-        ]
-        d='Shop.Theme.Global'
-      }
+      <div class="contact__phone">
+        <i class="material-icons">phone</i>
+        <a href="tel:{$contact_infos.phone}">{$contact_infos.phone}</a>
+      </div>
     {/if}
+
     {if $contact_infos.fax}
-      <br>
-      {* [1][/1] is for a HTML tag. *}
-      {l
-        s='Fax: [1]%fax%[/1]'
-        sprintf=[
-          '[1]' => '<span>',
-          '[/1]' => '</span>',
-          '%fax%' => $contact_infos.fax
-        ]
-        d='Shop.Theme.Global'
-      }
+      <div class="contact__fax">
+        <i class="material-icons">fax</i>
+        <a href="fax:{$contact_infos.fax}">{$contact_infos.fax}</a>
+      </div>
     {/if}
+
     {if $contact_infos.email && $display_email}
-      <br>
-        {l s='Email us:' d='Shop.Theme.Global'}
+      <div class="contact__email">
+        <i class="material-icons">mail</i>
         {mailto address=$contact_infos.email encode="javascript"}
+      </div>
     {/if}
+
   </div>
 </div>

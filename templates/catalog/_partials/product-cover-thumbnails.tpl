@@ -40,7 +40,7 @@
               aria-current="true"
             {/if}
             aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
-          >
+         >
             <img
               class="thumb js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
               data-image-medium-src="{$image.bySize.medium_default.url}"
@@ -55,7 +55,7 @@
               loading="lazy"
               width="94"
               height="94"
-            >
+           >
           </li>
         {/foreach}
       </ul>
@@ -78,7 +78,7 @@
         {foreach from=$product.images item=image key=key}
           <li 
             class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}" 
-          >
+         >
             <img
               class="js-qv-product-cover"
               src="{$image.bySize.large_default.url}"
@@ -91,7 +91,7 @@
               loading="lazy"
               width="452"
               height="452"
-            >
+           >
           </li>
         {/foreach}
       {else}
@@ -101,7 +101,7 @@
             loading="lazy"
             width="452"
             height="452"
-          >
+         >
         </li>
       {/if}
     {/block}

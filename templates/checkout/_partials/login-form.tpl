@@ -31,7 +31,7 @@
     data-link-action="sign-in"
     type="submit"
     value="1"
-  >
+ >
     {l s='Continue' d='Shop.Theme.Actions'}
   </button>
 {/block}

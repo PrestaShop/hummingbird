@@ -31,7 +31,7 @@
         loading="lazy"
         width="250"
         height="250"
-      >
+     >
     </a>
 
     <h1 class="h2">

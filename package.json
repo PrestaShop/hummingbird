@@ -51,12 +51,12 @@
     "webpack-sources": "^0.1.0"
   },
   "dependencies": {
+    "@fontsource/inter": "^4.5.0",
     "@popperjs/core": "^2.9.2",
     "@types/jquery": "^3.5.6",
     "jquery": "^3.5.1",
     "jquery-touchswipe": "^1.6",
     "jquery.browser": "^0.1.0",
-    "manrope": "^2.0.0",
     "material-design-icons-iconfont": "^5.0.1"
   }
 }

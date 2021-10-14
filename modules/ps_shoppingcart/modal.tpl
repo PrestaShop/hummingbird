@@ -44,7 +44,7 @@
                     alt="{$product.default_image.legend}"
                     loading="lazy"
                     class="product-image"
-                  >
+                 >
                 {else}
                   <img
                     src="{$urls.no_picture_image.bySize.medium_default.url}"
@@ -66,7 +66,7 @@
           </div>
           <div class="col-md-7">
             <div class="cart-content">
-              {if $cart.products_count > 1}
+              {if $cart.products_count> 1}
                 <p class="cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Checkout'}</p>
               {else}
                 <p class="cart-products-count">{l s='There is %products_count% item in your cart.' sprintf=['%products_count%' =>$cart.products_count] d='Shop.Theme.Checkout'}</p>

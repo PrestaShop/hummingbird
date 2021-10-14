@@ -61,7 +61,7 @@
                   <span
                     class="label label-pill {$order.history.current.contrast}"
                     style="background-color:{$order.history.current.color}"
-                  >
+                 >
                     {$order.history.current.ostate_name}
                   </span>
                 </td>
@@ -97,7 +97,7 @@
                     <span
                       class="label label-pill {$order.history.current.contrast}"
                       style="background-color:{$order.history.current.color}"
-                    >
+                   >
                       {$order.history.current.ostate_name}
                     </span>
                   </div>

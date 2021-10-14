@@ -22,4 +22,48 @@ $componentName: footer;
       }
     }
   }
+
+  .collapse {
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+  }
+
+  .copyright {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    & &__block {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    & &__block {
+      margin-bottom: 1rem;
+    }
+  }
+
+  & &__block {
+    &__toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      i {
+        color: $white;
+        transition: transform 0.25s ease-in-out;
+      }
+
+      &:not(.collapsed) {
+        i {
+          transform: rotate(180deg);
+        }
+      }
+
+    }
+  }
+
 }

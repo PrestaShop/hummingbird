@@ -56,7 +56,7 @@
           class="form-control form-control-select js-country"
           name="{$field.name}"
           {if $field.required}required{/if}
-          >
+         >
             <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
             {foreach from=$field.availableValues item="label" key="value"}
               <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
@@ -78,7 +78,7 @@
                 checked
                 {if $field.required}required{/if}
                 {if $value eq $field.value} checked {/if}
-              >
+             >
               <label class="form-check-label" for="{$field.name}">
                 {$label}
               </label>
@@ -98,7 +98,7 @@
               id="{$field.name}"
               value="1" {if $field.value}checked="checked"{/if}
               {if $field.required}required{/if}
-            >
+           >
             <label class="form-check-label" for="{$field.name}">
               {$field.label nofilter}
             </label>
@@ -151,7 +151,7 @@
               value=""
               pattern=".{literal}{{/literal}5,{literal}}{/literal}"
               {if $field.required}required{/if}
-            >
+           >
 
             <button
               class="btn"
@@ -159,7 +159,7 @@
               data-action="show-password"
               data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
               data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
-            >
+           >
               <i class="material-icons">visibility</i>
             </button>
           </div>
@@ -178,7 +178,7 @@
             {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
             {if $field.required}required{/if}
             aria-label="{$field.name}"
-          >
+         >
           {if isset($field.availableValues.comment)}
             <span class="form-text">
               {$field.availableValues.comment}

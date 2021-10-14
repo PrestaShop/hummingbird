@@ -31,7 +31,7 @@
                         '-complete'       => $step_is_complete,
                         'js-current-step' => $step_is_current
                     ]|classnames}"
-  >
+ >
     <div class="step-title js-step-title">
       <h1 class="step-title-left h3">
         <span class="step-number">{$position}</span>

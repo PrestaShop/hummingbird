@@ -23,18 +23,16 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {foreach $linkBlocks as $linkBlock}
-  <div class="col-md-3 wrapper">
-    <p class="h3 d-none d-sm-none d-md-block">{$linkBlock.title}</p>
-    <div class="title clearfix d-block d-sm-block d-md-none" aria-expanded="false" data-bs-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
-      <span class="h3">{$linkBlock.title}</span>
-      <span class="float-xs-right">
-        <span class="navbar-toggler collapse-icons">
-          <i class="material-icons add">&#xE313;</i>
-          <i class="material-icons remove">&#xE316;</i>
-        </span>
-      </span>
+  <div class="footer__block col-md-6 col-lg-3">
+
+    <p class="footer__block__title hidden-on-mobile">{$linkBlock.title}</p>
+
+    <div class="footer__block__toggle hidden-on-desktop collapsed" aria-expanded="false" data-bs-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
+      <span class="footer__block__title">{$linkBlock.title}</span>
+      <i class="material-icons">arrow_drop_down</i>
     </div>
-    <ul id="footer_sub_menu_{$linkBlock.id}" class="collapse d-md-block">
+
+    <ul id="footer_sub_menu_{$linkBlock.id}" class="footer__block__content footer__block__content-list collapse">
       {foreach $linkBlock.links as $link}
         <li>
           <a
@@ -43,7 +41,7 @@
               href="{$link.url}"
               title="{$link.description}"
               {if !empty($link.target)} target="{$link.target}" {/if}
-          >
+         >
             {$link.title}
           </a>
         </li>

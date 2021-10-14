@@ -30,7 +30,7 @@
         href="{$urls.pages.identity}"
         title="{l s='View my customer account' d='Shop.Theme.Customeraccount'}"
         rel="nofollow"
-      >
+     >
         <i class="material-icons d-none d-sm-inline d-md-none logged">&#xE7FF;</i>
         <span class="d-none d-sm-inline d-md-inline">{$customerName}</span>
       </a>
@@ -39,7 +39,7 @@
         class="logout d-none d-sm-block d-md-block"
         href="{$urls.actions.logout}"
         rel="nofollow"
-      >
+     >
         <i class="material-icons">&#xE7FF;</i>
         {l s='Sign out' d='Shop.Theme.Actions'}
       </a>
@@ -48,7 +48,7 @@
         href="{$urls.pages.my_account}"
         title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
         rel="nofollow"
-      >
+     >
         <i class="material-icons">&#xE7FF;</i>
         <span class="d-none d-sm-inline d-md-inline">{l s='Sign in' d='Shop.Theme.Actions'}</span>
       </a>

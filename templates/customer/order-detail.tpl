@@ -47,7 +47,7 @@
                 <a href="{$order.details.reorder_url}" class="button-primary">{l s='Reorder' d='Shop.Theme.Actions'}</a>
               </div>
             {/if}
-            <div class="clearfix"></div>
+            <div></div>
           </div>
       </div>
 
@@ -141,7 +141,7 @@
           <address>{$order.addresses.invoice.formatted nofilter}</address>
         </article>
       </div>
-      <div class="clearfix"></div>
+      <div></div>
     </div>
   {/block}
 

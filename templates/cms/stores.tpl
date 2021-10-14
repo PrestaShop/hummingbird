@@ -33,7 +33,7 @@
 
     {foreach $stores as $store}
       <article id="store-{$store.id}" class="store-item card">
-        <div class="store-item-container ">
+        <div class="store-item-container">
           <div class="col-md-3 store-picture d-none d-sm-block d-md-block">
             <img
               src="{$store.image.bySize.stores_default.url}"

@@ -44,7 +44,7 @@
         {continue}
       {/if}
 
-      <section class="facet ">
+      <section class="facet">
         <p class="h6 facet-title d-none d-sm-block d-md-block">{$facet.label}</p>
         {assign var=_expand_id value=10|mt_rand:100000}
         {assign var=_collapse value=true}

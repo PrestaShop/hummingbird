@@ -40,7 +40,7 @@
   </section>
 
   {block name='customer_form_footer'}
-    <footer class="form-footer ">
+    <footer class="form-footer">
       <input type="hidden" name="submitCreate" value="1">
       {block "form_buttons"}
         <button class="btn btn-primary form-control-submit float-xs-right" data-link-action="save-customer" type="submit">

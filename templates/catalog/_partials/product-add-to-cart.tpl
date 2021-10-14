@@ -27,7 +27,7 @@
     <span class="control-label">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
 
     {block name='product_quantity'}
-      <div class="product-quantity ">
+      <div class="product-quantity">
         <div class="qty">
           <input
             type="number"

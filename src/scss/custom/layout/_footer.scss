@@ -42,6 +42,12 @@ $component-name: footer;
     }
   }
 
+  @include media-breakpoint-down(md) {
+    .copyright {
+      font-size: 0.875rem;
+    }
+  }
+
   & &__block {
 
     &__content {

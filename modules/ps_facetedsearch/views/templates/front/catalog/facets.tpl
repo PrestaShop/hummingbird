@@ -120,7 +120,7 @@
 
             {elseif $facet.widgetType == 'dropdown'}
               {block name='facet_item_dropdown'}
-                <ul id="facet_{$_expand_id}">
+                <ul class="accordion-body">
                   <li>
                     <div class="col-sm-12 col-xs-12 col-md-12 facet-dropdown dropdown">
                       <a class="select-title" rel="nofollow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -165,8 +165,8 @@
             {elseif $facet.widgetType == 'slider'}
               {block name='facet_item_slider'}
                 {foreach from=$facet.filters item="filter"}
-                  <ul id="facet_{$_expand_id}"
-                    class="faceted-slider collapse{if !$_collapse} show{/if}"
+                  <ul
+                    class="accordion-body faceted-slider"
                     data-slider-min="{$facet.properties.min}"
                     data-slider-max="{$facet.properties.max}"
                     data-slider-id="{$_expand_id}"

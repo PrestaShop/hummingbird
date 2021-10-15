@@ -3,6 +3,7 @@ $componentName: breadcrumb;
 .#{$componentName} {
 
   font-size: 0.875rem;
+  padding: 1rem 0;
 
   a {
     color: $gray-dark;

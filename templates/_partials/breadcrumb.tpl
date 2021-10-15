@@ -24,8 +24,8 @@
  *}
  {$componentName = 'breadcrumb'}
 
-<nav data-depth="{$breadcrumb.count}" class="d-none d-md-block" aria-label="{$componentName}">
-  <div class="container {$componentName}-container">
+<nav data-depth="{$breadcrumb.count}" class="{$componentName}__wrapper" aria-label="{$componentName}">
+  <div class="container">
     <ol class="{$componentName}">
       {block name='breadcrumb'}
         {foreach from=$breadcrumb.links item=path name=breadcrumb}

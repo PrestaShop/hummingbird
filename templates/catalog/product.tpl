@@ -52,7 +52,7 @@
     <div class="container">
       <div class="row product-container js-product-container">
 
-        <div class="col-md-6">
+        <div class="col-lg-6 col-xl-7">
           {block name='page_content_container'}
             <section class="page-content" id="content">
               {block name='page_content'}
@@ -64,7 +64,7 @@
           {/block}
         </div>{* /col-md-6 *}
         
-        <div class="col-md-6">
+        <div class="col-lg-6 col-xl-5">
           {block name='page_header_container'}
             {block name='page_header'}
               <h1 class="h4">{block name='page_title'}{$product.name}{/block}</h1>
@@ -131,7 +131,7 @@
       
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6 col-xl-7">
           {block name='product_tabs'}
             <div class="product-infos">
               <div class="product-infos-content accordion accordion-flush" id="product-infos-content">
@@ -188,7 +188,7 @@
           {/block}
         </div>{* /col-md-6 *}
 
-        <div class="col-md-6">
+        <div class="col-lg-6 col-xl-5">
           {block name='hook_display_reassurance'}
             {hook h='displayReassurance'}
           {/block}

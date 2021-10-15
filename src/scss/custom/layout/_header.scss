@@ -1,7 +1,10 @@
 $componentName: header;
 
 .#{$componentName} {
-  & &-top {
+  & &__top {
+
+    border-bottom: 1px solid $secondary-light;
+
     a {
       color: $body-color;
 
@@ -13,11 +16,7 @@ $componentName: header;
       }
     }
 
-    &-desktop {
-      border-bottom: 1px solid $secondary-light;
-    }
-
-    &-right {
+    &__right {
       @extend .inline-items;
       justify-content: flex-end;
 
@@ -43,7 +42,7 @@ $componentName: header;
     }
   }
 
-  & &-bottom {
+  & &__bottom {
     padding: 0;
     border-bottom: 1px solid $secondary-light;
 

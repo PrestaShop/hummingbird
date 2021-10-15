@@ -22,11 +22,11 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{$headerTopName = 'header-top'}
-{$headerBottomName = 'header-bottom'}
+{$headerTopName = 'header__top'}
+{$headerBottomName = 'header__bottom'}
 
 {block name='header_banner'}
-  <div class="header-banner">
+  <div class="header__banner">
     {hook h='displayBanner'}
   </div>
 {/block}
@@ -34,25 +34,25 @@
 {block name='header_nav'}
   <nav class="{$headerTopName}">
     <div class="container">
-      <div class="{$headerTopName}-content">
-        <div class="{$headerTopName}-desktop hidden-on-mobile">
-          <div class="{$headerTopName}-left col-md-5 col-xs-12">
-            {hook h='displayNav1'}
-          </div>
-          <div class="{$headerTopName}-right col-md-7">
-              {hook h='displayNav2'}
-          </div>
+
+      <div class="{$headerTopName}-desktop hidden-on-mobile row">
+        <div class="{$headerTopName}__left col-md-5">
+          {hook h='displayNav1'}
         </div>
-        <div class="hidden-on-desktop text-sm-center mobile">
-          <div class="float-xs-left" id="menu-icon">
-            <i class="material-icons d-inline">&#xE5D2;</i>
-          </div>
-          <div class="float-xs-right" id="_mobile_cart"></div>
-          <div class="float-xs-right" id="_mobile_user_info"></div>
-          <div class="top-logo" id="_mobile_logo"></div>
-          <div></div>
+        <div class="{$headerTopName}__right col-md-7">
+            {hook h='displayNav2'}
         </div>
       </div>
+
+      <div class="{$headerTopName}-mobile hidden-on-desktop row">
+        <div id="menu-icon">
+          <i class="material-icons d-inline">&#xE5D2;</i>
+        </div>
+        <div id="_mobile_cart"></div>
+        <div id="_mobile_user_info"></div>
+        <div id="_mobile_logo"></div>
+      </div>
+    
     </div>
   </nav>
 {/block}

@@ -29,7 +29,7 @@
 
             <div class="block-category-inner">
                 {if $category.description}
-                    <div id="category-description" class="text-muted">{$category.description nofilter}</div>
+                    <div id="category-description" class="rich-text">{$category.description nofilter}</div>
                 {/if}
                 {if !empty($category.image.large.url)}
                     <div class="category-cover">

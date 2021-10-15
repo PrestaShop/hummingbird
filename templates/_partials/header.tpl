@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <div class="{$headerTopName}-mobile hidden-on-desktop row">
+      <div class="{$headerTopName}-mobile hidden-on-desktop">
         <div id="menu-icon">
           <i class="material-icons d-inline">&#xE5D2;</i>
         </div>

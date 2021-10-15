@@ -62,7 +62,7 @@
               {/block}
             </section>
           {/block}
-        </div>{* /col-md-6 *}
+        </div>{* /col *}
         
         <div class="col-lg-6 col-xl-5">
           {block name='page_header_container'}
@@ -126,11 +126,18 @@
                 </form>
               {/block}
             </div>{* /product-actions *}
-        </div>{* /col-md-6 *}
+        </div>{* /col *}
       </div>{* /row *}
       
 
       <div class="row">
+
+      <div class="col-lg-6 col-xl-5 order-lg-1">
+        {block name='hook_display_reassurance'}
+          {hook h='displayReassurance'}
+        {/block}
+      </div>{* /col *}
+
         <div class="col-lg-6 col-xl-7">
           {block name='product_tabs'}
             <div class="product-infos">
@@ -186,13 +193,7 @@
               </div>
             </div>
           {/block}
-        </div>{* /col-md-6 *}
-
-        <div class="col-lg-6 col-xl-5">
-          {block name='hook_display_reassurance'}
-            {hook h='displayReassurance'}
-          {/block}
-        </div>{* /col-md-6 *}
+        </div>{* /col *}
         
       </div>{* /row *} 
 

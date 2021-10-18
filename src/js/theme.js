@@ -28,3 +28,57 @@ import prestashop from 'prestashop';
 import EventEmitter from 'events';
 import $ from 'jquery';
 /* eslint-enable */
+
+prestashop.responsive = prestashop.responsive || {};
+
+prestashop.responsive.current_width = window.innerWidth;
+prestashop.responsive.min_width = 768;
+prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
+
+function swapChildren(obj1, obj2) {
+  const temp = obj1.innerHTML;
+  obj1.innerHTML = '';
+  obj2.innerHTML = temp;
+}
+
+function toggleMobileStyles() {
+  if (prestashop.responsive.mobile) {    
+    Array.prototype.forEach.call(document.querySelectorAll("*[id^='_desktop_']"), function(el, idx, array){
+      const source = document.querySelector('#' + el.id);
+      const target = document.querySelector('#' + el.id.replace('_desktop_', '_mobile_'));
+      if (target && source) {
+        swapChildren(source, target);
+      }
+    });
+  } else {
+    Array.prototype.forEach.call(document.querySelectorAll("*[id^='_mobile_']"), function(el, idx, array){
+      const source = document.querySelector('#' + el.id);
+      const target = document.querySelector('#' + el.id.replace('_mobile_', '_desktop_'));
+      if (target && source) {
+        swapChildren(source, target);
+      }
+    });
+  }
+  prestashop.emit('responsive update', {
+    mobile: prestashop.responsive.mobile,
+  });
+}
+
+window.addEventListener('resize', function(event) {
+  const cw = prestashop.responsive.current_width;
+  const mw = prestashop.responsive.min_width;
+  const w = window.innerWidth;
+  const toggle = (cw >= mw && w < mw) || (cw < mw && w >= mw);
+
+  prestashop.responsive.current_width = w;
+  prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
+  if (toggle) {
+    toggleMobileStyles();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  if (prestashop.responsive.mobile) {
+    toggleMobileStyles();
+  }
+});

@@ -60,11 +60,13 @@
 {block name='header_top'}
   <div class="{$headerBottomName} navbar navbar-expand-lg">
     <div class="container">
-      {if $page.page_name == 'index'}<h1>{/if}
-      <a class="navbar-brand" href="{$urls.pages.index}">
-        <img class="logo img-responsive" src="{$shop.logo.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo.width}" height="{$shop.logo.height}">
-      </a>
-      {if $page.page_name == 'index'}</h1>{/if}
+      <div id="_desktop_logo">
+        {if $page.page_name == 'index'}<h1>{/if}
+        <a class="navbar-brand" href="{$urls.pages.index}">
+          <img class="logo img-responsive" src="{$shop.logo.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo.width}" height="{$shop.logo.height}">
+        </a>
+        {if $page.page_name == 'index'}</h1>{/if}
+      </div>
 
       {hook h='displayTop'}
 

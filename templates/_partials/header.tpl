@@ -63,7 +63,7 @@
       <div id="_desktop_logo">
         {if $page.page_name == 'index'}<h1>{/if}
         <a class="navbar-brand" href="{$urls.pages.index}">
-          <img class="logo img-responsive" src="{$shop.logo.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo.width}" height="{$shop.logo.height}">
+          <img class="logo img-responsive" src="{$shop.logo_details.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo_details.width}" height="{$shop.logo_details.height}">
         </a>
         {if $page.page_name == 'index'}</h1>{/if}
       </div>

@@ -1,24 +1,25 @@
-const fs = require("fs");
+const fs = require('fs');
 const path = require('path');
+
 const themeDev = path.resolve(__dirname, '../src');
 const envFilePath = './webpack/.env';
 
 if (fs.existsSync(envFilePath)) {
-  require('dotenv').config({ path: envFilePath });
+  require('dotenv').config({path: envFilePath});
 } else {
   console.error('\x1b[41m\x1b[37m%s\x1b[0m', 'Your .env file not exits. Read getting started section in documentation for more information https://devdocs.prestashop.com/8/themes/getting-started/.');
-  process.exit()
+  process.exit();
 }
 
 const {
   PORT: port,
   PUBLIC_PATH: publicPath,
   SERVER_ADDRESS: serverAddress,
-  SITE_URL: siteURL
+  SITE_URL: siteURL,
 } = process.env;
 
 const entriesArray = {
-  theme: ['js', 'scss'],
+  theme: ['scss', 'ts'],
   error: ['scss'],
 };
 
@@ -42,7 +43,7 @@ exports.webpackVars = {
       for (const ext in entries[entry]) {
         const extension = entries[entry][ext];
 
-        files.push(path.resolve(themeDev, `./${extension}/${entry}.${extension}`))
+        files.push(path.resolve(themeDev, `./${extension === 'ts' ? 'js' : extension}/${entry}.${extension}`));
       }
 
       resultEntries[entry] = files;
@@ -50,11 +51,13 @@ exports.webpackVars = {
 
     return resultEntries;
   },
-  getOutput: ({ mode, publicPath, siteURL, port }) => ({
+  getOutput: ({
+    mode, publicPath, siteURL, port,
+  }) => ({
     filename: 'js/[name].js',
     chunkFilename: mode === 'production' ? 'js/[chunkhash].js' : 'js/[id].js',
     path: path.resolve(themeDev, '../assets'),
-    publicPath: mode === 'production' ? '../' : siteURL + ':' + port + publicPath,
+    publicPath: mode === 'production' ? '../' : `${siteURL}:${port}${publicPath}`,
     pathinfo: false,
   }),
-}
+};

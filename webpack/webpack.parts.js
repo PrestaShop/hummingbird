@@ -4,7 +4,7 @@ const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
-  allowedHosts: [ serverAddress ],
+  allowedHosts: [serverAddress],
   host: serverAddress,
   client: {
     logging: 'error',
@@ -15,10 +15,8 @@ exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
     },
   },
   devMiddleware: {
-    publicPath: publicPath,
-    writeToDisk: (filePath) => {
-      return !(/hot-update/.test(filePath));
-    },
+    publicPath,
+    writeToDisk: (filePath) => !(/hot-update/.test(filePath)),
   },
   headers: {
     'Access-Control-Allow-Origin': '*',
@@ -39,10 +37,10 @@ exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
       target: siteURL,
       secure: false,
       changeOrigin: true,
-    }
+    },
   },
   static: {
-    publicPath: publicPath,
+    publicPath,
   },
 });
 
@@ -59,11 +57,11 @@ exports.extractScss = ({mode = 'production'}) => ({
             postcssOptions: {
               config: path.resolve(__dirname, '../postcss.config.js'),
             },
-          }
+          },
         },
-        'sass-loader'
-      ]
-    }]
+        'sass-loader',
+      ],
+    }],
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -79,15 +77,19 @@ exports.extractJs = () => ({
       {
         test: /\.(js|jsx|ts|tsx)?$/,
         exclude: /(node_modules)/,
+        resolve: {
+          fullySpecified: false,
+          extensions: ['.js', '.ts'],
+        },
         use: {
           loader: 'esbuild-loader',
           options: {
-            loader: 'tsx',
+            loader: 'ts',
             target: 'es2015',
-          }
-        }
+          },
+        },
       },
-    ]
+    ],
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
@@ -111,9 +113,9 @@ exports.extractImages = () => ({
         ],
         type: 'javascript/auto',
       },
-    ]
-  }
-})
+    ],
+  },
+});
 
 exports.extractFonts = () => ({
   module: {
@@ -131,22 +133,22 @@ exports.extractFonts = () => ({
           },
         ],
         type: 'javascript/auto',
-      }
-    ]
-  }
-})
+      },
+    ],
+  },
+});
 
 exports.cleanDistFolders = () => ({
   output: {
     clean: true,
   },
-})
+});
 
 exports.externals = () => ({
   externals: {
     prestashop: 'prestashop',
-  }
-})
+  },
+});
 
 exports.expose = () => ({
   module: {
@@ -166,4 +168,4 @@ exports.expose = () => ({
       },
     ],
   },
-})
+});

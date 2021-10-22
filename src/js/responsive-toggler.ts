@@ -22,12 +22,8 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-import 'bootstrap/dist/js/bootstrap.min';
-import prestashop from 'prestashop';
-import EventEmitter from 'events';
-import $ from 'jquery';
-/* eslint-enable */
+
+const {prestashop} = window;
 
 prestashop.responsive = prestashop.responsive || {};
 
@@ -35,25 +31,27 @@ prestashop.responsive.current_width = window.innerWidth;
 prestashop.responsive.min_width = 768;
 prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
 
-function swapChildren(obj1, obj2) {
+function swapChildren(obj1: Element, obj2: Element): void {
   const temp = obj1.innerHTML;
   obj1.innerHTML = '';
   obj2.innerHTML = temp;
 }
 
 function toggleMobileStyles() {
-  if (prestashop.responsive.mobile) {    
-    Array.prototype.forEach.call(document.querySelectorAll("*[id^='_desktop_']"), function(el, idx, array){
-      const source = document.querySelector('#' + el.id);
-      const target = document.querySelector('#' + el.id.replace('_desktop_', '_mobile_'));
+  if (prestashop.responsive.mobile) {
+    Array.prototype.forEach.call(document.querySelectorAll("*[id^='_desktop_']"), (el: HTMLElement): void => {
+      const source = document.querySelector(`#${el.id}`);
+      const target = document.querySelector(`#${el.id.replace('_desktop_', '_mobile_')}`);
+
       if (target && source) {
         swapChildren(source, target);
       }
     });
   } else {
-    Array.prototype.forEach.call(document.querySelectorAll("*[id^='_mobile_']"), function(el, idx, array){
-      const source = document.querySelector('#' + el.id);
-      const target = document.querySelector('#' + el.id.replace('_mobile_', '_desktop_'));
+    Array.prototype.forEach.call(document.querySelectorAll("*[id^='_mobile_']"), (el) => {
+      const source = document.querySelector(`#${el.id}`);
+      const target = document.querySelector(`#${el.id.replace('_mobile_', '_desktop')}`);
+
       if (target && source) {
         swapChildren(source, target);
       }
@@ -64,7 +62,7 @@ function toggleMobileStyles() {
   });
 }
 
-window.addEventListener('resize', function(event) {
+window.addEventListener('resize', () => {
   const cw = prestashop.responsive.current_width;
   const mw = prestashop.responsive.min_width;
   const w = window.innerWidth;
@@ -77,7 +75,7 @@ window.addEventListener('resize', function(event) {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', () => {
   if (prestashop.responsive.mobile) {
     toggleMobileStyles();
   }

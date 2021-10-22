@@ -24,7 +24,7 @@
  */
 /* eslint-disable */
 import 'bootstrap/dist/js/bootstrap.min';
-import prestashop from 'prestashop';
 import EventEmitter from 'events';
 import $ from 'jquery';
+import './responsive-toggler';
 /* eslint-enable */

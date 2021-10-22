@@ -18,8 +18,8 @@ $component-name: content;
   .page-footer {
     margin-top: 3rem;
 
-   > .container {
-     > a:last-of-type:not(:first-of-type) {
+    > .container {
+      > a:last-of-type:not(:first-of-type) {
         float: right;
       }
     }

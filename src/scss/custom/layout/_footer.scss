@@ -1,16 +1,15 @@
 $component-name: footer;
 
 .#{$component-name} {
-
   --footer-background-color: #{$footer-background-color};
   --footer-text-color: #{$footer-text-color};
   --footer-hover-color: #{$white};
   --footer-heading-color: #{$footer-heading-color};
 
   & &__main {
-    background: var(--footer-background-color);
     padding-top: 2.5rem;
     padding-bottom: 1.25rem;
+    background: var(--footer-background-color);
   }
 
   & &-top {
@@ -42,6 +41,12 @@ $component-name: footer;
     }
   }
 
+  @include media-breakpoint-down(md) {
+    .copyright {
+      font-size: 0.875rem;
+    }
+  }
+
   & &__block {
 
     &__content {
@@ -56,7 +61,7 @@ $component-name: footer;
     }
 
     &__content-list {
-  
+
       margin-bottom: 0;
 
       a {
@@ -71,9 +76,9 @@ $component-name: footer;
         }
 
         &.logout {
-          color: #D5343C;
+          color: #d5343c;
         }
-        
+
       }
 
       @include media-breakpoint-down(md) {
@@ -93,6 +98,7 @@ $component-name: footer;
           color: var(--footer-hover-color);
         }
       }
+
       .contact__infos {
         margin-bottom: 1rem;
       }
@@ -123,7 +129,8 @@ $component-name: footer;
       font-size: 1rem;
       font-weight: 600;
 
-      &, a {
+      &,
+      a {
         color: var(--footer-heading-color);
       }
     }

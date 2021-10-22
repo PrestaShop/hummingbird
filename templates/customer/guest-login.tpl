@@ -72,7 +72,7 @@
 
     </section>
 
-    <footer class="form-footer text-sm-center ">
+    <footer class="form-footer text-sm-center">
       <button class="btn btn-primary" type="submit">
         {l s='Send' d='Shop.Theme.Actions'}
       </button>

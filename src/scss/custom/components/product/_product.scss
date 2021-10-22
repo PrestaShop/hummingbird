@@ -36,7 +36,7 @@
           align-items: center;
           padding: 0.6rem 1.25rem;
 
-         > div {
+          > div {
             width: 50%;
 
             span,
@@ -62,11 +62,6 @@
           font-size: 1rem;
         }
       }
-    }
-
-    &-description p {
-      font-size: 1rem;
-      color: $gray-dark;
     }
 
     &-quantity {

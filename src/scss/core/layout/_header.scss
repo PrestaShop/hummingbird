@@ -1,18 +1,17 @@
 $componentName: header;
 
 .#{$componentName} {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
   z-index: 100;
   width: 100%;
 
-  &-top {
-    &-right {
+  &__top {
+    &__right {
       @extend .inline-items;
       justify-content: flex-end;
 
-     > *:not(:last-child) {
+      > *:not(:last-child) {
         margin-right: 1.5rem;
       }
     }

@@ -1,4 +1,5 @@
-{**
+<?php
+/**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -21,25 +22,13 @@
  * @author    PrestaShop SA and Contributors <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
-{extends file='page.tpl'}
+ */
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 
-{block name='page_title'}
-  {$cms.meta_title}
-{/block}
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
 
-{block name='page_content_container'}
-  <section id="content" class="page-content page-cms page-cms-{$cms.id} rich-text">
-    {block name='cms_content'}
-      {$cms.content nofilter}
-    {/block}
-
-    {block name='hook_cms_dispute_information'}
-      {hook h='displayCMSDisputeInformation'}
-    {/block}
-
-    {block name='hook_cms_print_button'}
-      {hook h='displayCMSPrintButton'}
-    {/block}
-  </section>
-{/block}
+header('Location: ../../');
+exit;

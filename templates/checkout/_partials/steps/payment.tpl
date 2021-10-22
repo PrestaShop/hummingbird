@@ -20,7 +20,7 @@
     {foreach from=$payment_options item="module_options"}
       {foreach from=$module_options item="option"}
         <div>
-          <div id="{$option.id}-container" class="payment-option ">
+          <div id="{$option.id}-container" class="payment-option">
             {* This is the way an option should be selected when Javascript is enabled *}
             <span class="custom-radio float-xs-left">
               <input

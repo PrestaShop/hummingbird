@@ -1,7 +1,20 @@
-$componentName: breadcrumb;
+$component-name: breadcrumb;
 
-.#{$componentName} {
+.#{$component-name} {
+  padding: 1rem 0;
+  font-size: 0.875rem;
+
+  a {
+    color: $gray-dark;
+  }
+
   &[data-depth="1"] {
     display: none;
+  }
+
+  @include media-breakpoint-down(md) {
+    &-item:last-child {
+      display: none;
+    }
   }
 }

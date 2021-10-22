@@ -22,9 +22,9 @@ $componentName: category-tree;
 
   & &-title {
     padding: 0;
-    border: none;
     margin-bottom: var(--#{$componentName}-title-spacing);
     font-size: var(--#{$componentName}-title-size);
+    border: none;
 
     &-link {
       display: block;

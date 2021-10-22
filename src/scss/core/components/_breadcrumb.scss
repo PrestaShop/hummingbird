@@ -1,9 +1,8 @@
-$componentName: breadcrumb;
+$component-name: breadcrumb;
 
-.#{$componentName} {
-
-  font-size: 0.875rem;
+.#{$component-name} {
   padding: 1rem 0;
+  font-size: 0.875rem;
 
   a {
     color: $gray-dark;

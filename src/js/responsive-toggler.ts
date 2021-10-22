@@ -63,12 +63,13 @@ function toggleMobileStyles() {
 }
 
 window.addEventListener('resize', () => {
-  const cw = prestashop.responsive.current_width;
-  const mw = prestashop.responsive.min_width;
-  const w = window.innerWidth;
-  const toggle = (cw >= mw && w < mw) || (cw < mw && w >= mw);
+  const currentWidth = prestashop.responsive.current_width;
+  const minWidth = prestashop.responsive.min_width;
+  const screenWidth = window.innerWidth;
+  // eslint-disable-next-line
+  const toggle = (currentWidth >= minWidth && screenWidth < minWidth) || (currentWidth < minWidth && screenWidth >= minWidth);
 
-  prestashop.responsive.current_width = w;
+  prestashop.responsive.current_width = screenWidth;
   prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
   if (toggle) {
     toggleMobileStyles();

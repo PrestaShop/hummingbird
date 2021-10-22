@@ -51,7 +51,6 @@
     <meta content="{$product.url}">
     <div class="container">
       <div class="row product-container js-product-container">
-
         <div class="col-lg-6 col-xl-7">
           {block name='page_content_container'}
             <section class="page-content" id="content">
@@ -70,6 +69,7 @@
               <h1 class="h4">{block name='page_title'}{$product.name}{/block}</h1>
             {/block}
           {/block}
+
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}
           {/block}
@@ -104,7 +104,7 @@
                           {include file='catalog/_partials/miniatures/pack-product.tpl' product=$product_pack showPackProductsPrice=$product.show_price}
                         {/block}
                       {/foreach}
-                  </section>
+                    </section>
                   {/if}
                 {/block}
 
@@ -130,14 +130,12 @@
 
       <div class="row">
         <div class="col-lg-6 col-xl-5 order-lg-1">
-
           {block name='hook_display_reassurance'}
             {hook h='displayReassurance'}
           {/block}
-
         </div>
-        <div class="col-lg-6 col-xl-7">
 
+        <div class="col-lg-6 col-xl-7">
           {block name='product_tabs'}
             <div class="product-infos">
               <div class="product-infos-content accordion accordion-flush" id="product-infos-content">
@@ -192,7 +190,6 @@
               </div>
             </div>
           {/block}
-
         </div>{* /col *}
       </div>{* /row *} 
 

@@ -34,7 +34,6 @@
 {block name='header_nav'}
   <nav class="{$headerTopName}">
     <div class="container">
-
       <div class="{$headerTopName}-desktop hidden-on-mobile row">
         <div class="{$headerTopName}__left col-md-5">
           {hook h='displayNav1'}
@@ -52,7 +51,6 @@
         <div id="_mobile_user_info"></div>
         <div id="_mobile_logo"></div>
       </div>
-    
     </div>
   </nav>
 {/block}

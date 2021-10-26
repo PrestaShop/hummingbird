@@ -65,6 +65,8 @@
 <div class="{$componentName}">
   <ul class="{$componentName}-list list-group">
     <li class="{$componentName}-title list-group-item"><a class="{$componentName}-title-link" href="{$categories.link nofilter}">{$categories.name}</a></li>
-    <li class="{$componentName}-child list-group-item">{categories nodes=$categories.children}</li>
+    {if !empty($categories.children)}
+      <li class="{$componentName}-child list-group-item">{categories nodes=$categories.children}</li>
+    {/if}
   </ul>
 </div>

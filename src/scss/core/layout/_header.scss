@@ -19,5 +19,25 @@ $componentName: header;
     &-desktop {
       padding: 1rem 0;
     }
+
+    &-mobile {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+
+      .logo-mobile {
+        margin-right: auto;
+      }
+    }
+  }
+
+  &__bottom {
+    &__container {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 }

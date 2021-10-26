@@ -39,26 +39,26 @@
           {hook h='displayNav1'}
         </div>
         <div class="{$headerTopName}__right col-md-7">
-            {hook h='displayNav2'}
+          {hook h='displayNav2'}
         </div>
       </div>
 
       <div class="{$headerTopName}-mobile hidden-on-desktop">
-        <div id="menu-icon">
-          <i class="material-icons d-inline">&#xE5D2;</i>
-        </div>
+        <div id="_mobile_menu"></div>
+        <div id="_mobile_logo" class="logo logo-mobile"></div>
+        <div id="_mobile_search"></div>
         <div id="_mobile_cart"></div>
         <div id="_mobile_user_info"></div>
-        <div id="_mobile_logo"></div>
       </div>
     </div>
   </nav>
 {/block}
 
 {block name='header_top'}
-  <div class="{$headerBottomName} navbar navbar-expand-lg">
-    <div class="container">
-      <div id="_desktop_logo">
+  <div class="{$headerBottomName}">
+    <div class="container {$headerBottomName}__container">
+
+      <div id="_desktop_logo" class="logo logo-desktop">
         {if $page.page_name == 'index'}<h1>{/if}
         <a class="navbar-brand" href="{$urls.pages.index}">
           <img class="logo img-responsive" src="{$shop.logo_details.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo_details.width}" height="{$shop.logo_details.height}">
@@ -68,14 +68,6 @@
 
       {hook h='displayTop'}
 
-      <div id="mobile_top_menu_wrapper" class="row d-none d-sm-block d-md-none" style="display:none;">
-        <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
-        <div class="js-top-menu-bottom">
-          <div id="_mobile_currency_selector"></div>
-          <div id="_mobile_language_selector"></div>
-          <div id="_mobile_contact_link"></div>
-        </div>
-      </div>
     </div>
   </div>
   {hook h='displayNavFullWidth'}

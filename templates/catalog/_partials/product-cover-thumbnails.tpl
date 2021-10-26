@@ -24,7 +24,7 @@
  *}
 <div 
   id="product-images" 
-  class="carousel carousel-dark slide row" 
+  class="carousel carousel-dark slide js-product-carousel row" 
   data-bs-ride="carousel"
   data-bs-interval="false"
 >
@@ -64,14 +64,16 @@
   <div class="carousel-inner p-0">
     {include file='catalog/_partials/product-flags.tpl'}
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#product-images" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#product-images" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    {if $product.images|@count > 1}
+      <button class="carousel-control-prev" type="button" data-bs-target="#product-images" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#product-images" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    {/if}
 
     {block name='product_cover'}
       {if $product.default_image}

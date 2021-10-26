@@ -3,3 +3,7 @@ interface Window {
   $: JQueryStatic;
   jQuery: JQueryStatic;
 }
+
+interface JQuery {
+  inputSpinner: any;
+}

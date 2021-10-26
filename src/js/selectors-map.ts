@@ -22,15 +22,11 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-import 'bootstrap/dist/js/bootstrap.min';
-import EventEmitter from 'events';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import './responsive-toggler';
-import './qty-input';
-import initProductBehavior from './product';
-/* eslint-enable */
-
-$(document).ready(() => {
-  initProductBehavior();
-});
+export default {
+  qtyInput: '.qty input',
+  product: {
+    carousel: '.js-product-carousel',
+    thumbnail: '.js-thumb-container',
+    activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
+  },
+};

@@ -15,6 +15,21 @@
     img {
       width: auto;
     }
+
+    .thumb-container {
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 5.75rem;
+      max-height: 5.75rem;
+
+      &:not(:last-child) {
+        margin-bottom: 1.5rem; 
+      }
+
+      &.active {
+        border: 2px solid $primary;
+      }
+    }
   }
 
   .qty {

@@ -22,15 +22,27 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-import 'bootstrap/dist/js/bootstrap.min';
-import EventEmitter from 'events';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import './responsive-toggler';
-import './qty-input';
-import initProductBehavior from './product';
-/* eslint-enable */
 
-$(document).ready(() => {
-  initProductBehavior();
-});
+import SelectorsMap from './selectors-map';
+
+export default () => {
+  const imagesCarousel = document.querySelector(SelectorsMap.product.carousel);
+
+  function onProductSlide(event: Event & {to: number}): void {
+    const thumbnails = document.querySelectorAll(SelectorsMap.product.thumbnail);
+
+    thumbnails.forEach((e: Element) => {
+      e.classList.remove('active');
+    })
+
+    const activeThumbnail = document.querySelector(SelectorsMap.product.activeThumbail(event.to))
+
+    if (activeThumbnail) {
+      activeThumbnail.classList.add('active');
+    }
+  }
+
+  if (imagesCarousel) {
+    imagesCarousel.addEventListener('slide.bs.carousel', onProductSlide);
+  }
+};

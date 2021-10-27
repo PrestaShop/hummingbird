@@ -1,37 +1,60 @@
-.mobile-menu {
-  position: relative;
-  height: 80%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  clip-path: inset(0 0 0 0);
+.main-menu {
+  &__mobile {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    clip-path: inset(0 0 0 0);
 
-  .menu {
-    &, ul {
-      position: fixed;
-      transition: 0.25s ease-out;
-      top: 4rem;
-      left: calc(100% + 1rem);
-      padding-right: 100%;
-      padding: 1rem;
-      max-width: 25rem;
-    }
+    .menu {
+      width: 100%;
 
-    .menu--current, &.menu--current {
-      left: 0;
-    }
+      &, ul {
+        position: fixed;
+        transition: 0.25s ease-out;
+        top: 4rem;
+        left: calc(100% + 1rem);
+        padding-right: 100%;
+        padding: 1rem;
+        max-width: 25rem;
+      }
 
-    .menu--parent, &.menu--parent {
-      left: calc(-100% - 1rem);
-    }
+      .menu--current, &.menu--current {
+        left: 0;
+      }
 
-    &--childrens {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      .menu--parent, &.menu--parent {
+        left: calc(-100% - 1rem);
+      }
+
+      &--childrens {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
   }
-}
+  
+  &__offcanvas {
+    overflow: hidden;
+  }
 
-.menu__canvas {
-  overflow: hidden;
+  &__additionnals {
+    flex-shrink: 0;
+  }
+
+  &__tree {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  &__toggler {
+    display: flex;
+    padding: 1rem;
+
+    @include media-breakpoint-down(md) {
+      padding: 0.75rem;
+    }
+  }
 }

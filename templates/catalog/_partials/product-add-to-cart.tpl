@@ -49,7 +49,7 @@
 
         <div class="add">
           <button
-            class="btn btn-primary add-to-cart"
+            class="btn btn-primary btn-with-icon add-to-cart"
             data-button-action="add-to-cart"
             type="submit"
             {if !$product.add_to_cart_url}

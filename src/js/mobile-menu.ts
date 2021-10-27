@@ -78,6 +78,10 @@ const initMobileMenu = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
+
+  prestashop.on('responsive update', () => {
+    initMobileMenu();
+  });
 });
 
 export default initMobileMenu;

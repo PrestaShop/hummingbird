@@ -16,8 +16,24 @@ $componentName: header;
       }
     }
 
+    &__right, &__left {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .form-select {
+      border: none;
+      padding-right: 1.5rem;
+      background-position: right 0 center;
+
+      option {
+        text-align: right;
+      }
+    }
+
     &-desktop {
-      padding: 1rem 0;
+      padding: 0.25rem 0;
     }
 
     &-mobile {
@@ -28,6 +44,13 @@ $componentName: header;
 
       .logo-mobile {
         margin-right: auto;
+        flex-shrink: 1;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .container {
+        padding: 0;
       }
     }
   }
@@ -38,6 +61,20 @@ $componentName: header;
       flex-wrap: nowrap;
       align-items: center;
       justify-content: space-between;
+
+      @include media-breakpoint-up(md) {
+        min-height: 4rem;
+      }
+
+      .logo {
+        h1 {
+          margin-bottom: 0;
+        }
+
+        a {
+          display: block;
+        }
+      }
     }
   }
 }

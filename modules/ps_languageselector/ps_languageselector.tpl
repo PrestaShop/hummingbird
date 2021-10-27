@@ -23,27 +23,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div id="_desktop_language_selector">
-  <div class="language-selector-wrapper">
-    <span id="language-selector-label" class="d-none d-sm-block d-md-none">{l s='Language:' d='Shop.Theme.Global'}</span>
-    <div class="language-selector dropdown js-dropdown">
-      <button data-bs-toggle="dropdown" class="d-none d-md-block btn-unstyle" aria-haspopup="true" aria-expanded="false" aria-label="{l s='Language dropdown' d='Shop.Theme.Global'}">
-        <span class="expand-more">{$current_language.name_simple}</span>
-        <i class="material-icons expand-more">&#xE5C5;</i>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="language-selector-label">
-        {foreach from=$languages item=language}
-          <li {if $language.id_lang == $current_language.id_lang} class="current" {/if}>
-            <a href="{url entity='language' id=$language.id_lang}" class="dropdown-item" data-iso-code="{$language.iso_code}">{$language.name_simple}</a>
-          </li>
-        {/foreach}
-      </ul>
-      <select class="link d-block d-md-none" aria-labelledby="language-selector-label">
-        {foreach from=$languages item=language}
-          <option value="{url entity='language' id=$language.id_lang}"{if $language.id_lang == $current_language.id_lang} selected="selected"{/if} data-iso-code="{$language.iso_code}">
-            {$language.name_simple}
-          </option>
-        {/foreach}
-      </select>
-    </div>
+  <div class="language-selector__wrapper">
+    <select id="language-selector" aria-label="{l s='Language' d='Shop.Theme.Global'}" class="form-select js-language-selector">
+      {foreach from=$languages item=language}
+        <option value="{url entity='language' id=$language.id_lang}"{if $language.id_lang == $current_language.id_lang} selected="selected"{/if} data-iso-code="{$language.iso_code}">{$language.name_simple}</option>
+      {/foreach}
+    </select>
   </div>
 </div>

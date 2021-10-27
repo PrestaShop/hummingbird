@@ -39,6 +39,40 @@
     {/if}
 {/function}
 
+{function name="mobileMenu" nodes=[] depth=0 parent=null}
+    {if $nodes|count}
+      <ul class="menu menu--mobile{if $depth == 0} menu--current
+      js-menu-current{else} menu--child js-menu-child{/if}" {if $depth == 0}id="menu-mobile"{/if} data-depth="{$depth}">
+        {foreach from=$nodes item=node}
+            <li class="{$node.type}{if $node.current} current {/if}{if
+            $node.children|count} menu--childrens{/if}" id="{$node.page_identifier}">
+            {assign var=_counter value=$_counter+1}
+              <a
+                class="{if $depth>= 0}menu__link{/if}"
+                href="{$node.url}" data-depth="{$depth}"
+                {if $node.open_in_new_window} target="_blank" {/if}
+             >
+                {$node.label}
+              </a>
+
+              {if $node.children|count}
+                {* Cannot use page identifier as we can have the same page several times *}
+                {assign var=_expand_id value=10|mt_rand:100000}
+                <span class="js-menu-open-child">
+                  <span data-target="#top_sub_menu_{$_expand_id}" class="navbar-toggler collapse-icons">
+                    <i class="material-icons">chevron_right</i>
+                  </span>
+                </span>
+              {/if}
+              {if $node.children|count}
+                {mobileMenu nodes=$node.children depth=$node.depth parent=$node}
+              {/if}
+            </li>
+        {/foreach}
+      </ul>
+    {/if}
+{/function}
+
 <div id="_desktop_menu">
   <div class="menu js-top-menu position-static navbar navbar-expand-lg">
     <div class="collapse navbar-collapse" id="header-navbar">
@@ -50,24 +84,17 @@
   </button>
 </div>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+<div class="menu__canvas offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
+    <button class="btn btn-unstyle d-none js-back-button" type="button">
+      <span class="material-icons">chevron_left</span>  
+    </button>
+    <h5 class="offcanvas-title js-menu-title" id="mobileMenuLabel">Menu</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <div>
-      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-    </div>
-    <div class="dropdown mt-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
+    <div class="mobile-menu">
+      {mobileMenu nodes=$menu.children}
     </div>
     <div id="_mobile_currency_selector"></div>
     <div id="_mobile_language_selector"></div>

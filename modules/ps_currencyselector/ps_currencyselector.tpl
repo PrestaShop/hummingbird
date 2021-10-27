@@ -26,7 +26,7 @@
 <div id="_desktop_currency_selector">
   <div class="currency-selector dropdown js-dropdown">
     <span id="currency-selector-label">{l s='Currency:' d='Shop.Theme.Global'}</span>
-    <button data-bs-toggle="dropdown" class="d-none d-sm-block d-md-block btn-unstyle" aria-haspopup="true" aria-expanded="false" aria-label="{l s='Currency dropdown' d='Shop.Theme.Global'}">
+    <button data-bs-toggle="dropdown" class="btn-unstyle" aria-haspopup="true" aria-expanded="false" aria-label="{l s='Currency dropdown' d='Shop.Theme.Global'}">
       <span class="expand-more _gray-darker">{$current_currency.iso_code}{if $current_currency.iso_code !== $current_currency.sign} {$current_currency.sign}{/if}</span>
       <i class="material-icons expand-more">&#xE5C5;</i>
     </button>
@@ -37,7 +37,7 @@
         </li>
       {/foreach}
     </ul>
-    <select class="link d-none d-sm-block d-md-none" aria-labelledby="currency-selector-label">
+    <select class="link" aria-labelledby="currency-selector-label">
       {foreach from=$currencies item=currency}
         <option value="{$currency.url}"{if $currency.current} selected="selected"{/if}>{$currency.iso_code}{if $currency.sign !== $currency.iso_code} {$currency.sign}{/if}</option>
       {/foreach}

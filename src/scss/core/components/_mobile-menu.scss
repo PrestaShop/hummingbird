@@ -1,0 +1,37 @@
+.mobile-menu {
+  position: relative;
+  height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  clip-path: inset(0 0 0 0);
+
+  .menu {
+    &, ul {
+      position: fixed;
+      transition: 0.25s ease-out;
+      top: 4rem;
+      left: calc(100% + 1rem);
+      padding-right: 100%;
+      padding: 1rem;
+      max-width: 25rem;
+    }
+
+    .menu--current, &.menu--current {
+      left: 0;
+    }
+
+    .menu--parent, &.menu--parent {
+      left: calc(-100% - 1rem);
+    }
+
+    &--childrens {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.menu__canvas {
+  overflow: hidden;
+}

@@ -34,6 +34,7 @@ import './qty-input';
 import initQuickview from './quickview';
 import './modules/blockcart';
 import initProductBehavior from './product';
+import './mobile-menu';
 /* eslint-enable */
 
 $(document).ready(() => {

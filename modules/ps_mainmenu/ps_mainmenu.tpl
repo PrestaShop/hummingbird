@@ -93,7 +93,7 @@
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
-  <h5 class="main-menu__title js-menu-title js-hidden" id="mobileMenuLabel"></h5>
+  <p class="main-menu__title h5 js-menu-title js-hidden" id="mobileMenuLabel"></p>
 
   <div class="main-menu__mobile">
     {mobileMenu nodes=$menu.children}

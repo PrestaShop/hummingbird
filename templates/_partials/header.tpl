@@ -46,7 +46,20 @@
       <div class="{$headerTopName}-mobile hidden-on-desktop">
         <div id="_mobile_menu"></div>
         <div id="_mobile_logo" class="logo logo-mobile"></div>
-        <div id="_mobile_search"></div>
+
+        <div class="search__mobile hide-on-desktop">
+          <button class="search__mobile__toggler btn btn-unstyle d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
+            <span class="material-icons">search</span>  
+          </button>
+
+          <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top" data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
+            <div class="offcanvas-header">
+              <div id="_mobile_search" class="search__container"></div>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">{l s='Cancel' d='Shop.Theme.Global'}</button>
+            </div>
+          </div>
+        </div>
+
         <div id="_mobile_user_info"></div>
         <div id="_mobile_cart"></div>
       </div>

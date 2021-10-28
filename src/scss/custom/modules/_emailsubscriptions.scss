@@ -21,8 +21,6 @@ $component-name: email-subscription;
       align-items: center;
 
       input[type="email"] {
-        min-width: 20rem;
-        min-height: 2.625rem;
         padding: 0.5rem 1.25rem;
         margin-right: 0.5rem;
         color: $email-input-color;

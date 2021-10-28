@@ -25,13 +25,55 @@
 
 const initMobileMenu = () => {
   const openChildsButtons = document.querySelectorAll('.js-menu-open-child');
+  const backTitle = <Element>document.querySelector('.js-menu-back-title');
   const menuTitle = <Element>document.querySelector('.js-menu-title');
   const backButton = <Element>document.querySelector('.js-back-button');
+  const menuCanvas = <Element>document.querySelector('.js-menu-canvas');
+  const defaultBackTitle = backTitle.innerHTML;
   const defaultTitle = menuTitle.innerHTML;
+
+  const backToParent = () => {
+    const currentMenu = <HTMLElement>document.querySelector('.menu--current');
+    const currentDepth = Number(currentMenu.dataset.depth);
+    const currentParent = document.querySelector(`.menu--parent[data-depth="${currentDepth - 1}"]`)
+
+    if (currentDepth === 1) {
+      backTitle.innerHTML = defaultBackTitle;
+      menuTitle.innerHTML = defaultTitle;
+      menuTitle.classList.toggle('js-hidden');
+      backButton.classList.add('d-none');
+    }
+
+    if (currentMenu) {
+      currentMenu.classList.remove('js-menu-current');
+      currentMenu.classList.remove('menu--current');
+    }
+
+    if (currentParent) {
+      currentParent.classList.add('js-menu-current');
+      currentParent.classList.add('menu--current');
+      currentParent.classList.remove('menu--parent');
+    }
+  }
+
+  menuCanvas.addEventListener('hidden.bs.offcanvas', function () {
+    const currentMenu = <HTMLElement>document.querySelector('.menu--current');
+    let currentDepth = Number(currentMenu.dataset.depth);
+
+    if(currentDepth !== 0) {
+      while(currentDepth > 0) {
+        backToParent();
+
+        currentDepth = currentDepth - 1;
+      }
+    }
+  })
 
   openChildsButtons.forEach((button: Element): void => {
     button.addEventListener('click', () => {
       const currentMenu = document.querySelector('.js-menu-current');
+
+      menuTitle.classList.remove('js-hidden');
 
       if (currentMenu) {
         currentMenu.classList.remove('js-menu-current');
@@ -54,34 +96,12 @@ const initMobileMenu = () => {
   });
 
   backButton.addEventListener('click', () => {
-    const currentMenu = <HTMLElement>document.querySelector('.menu--current');
-    const currentDepth = Number(currentMenu.dataset.depth);
-    const currentParent = document.querySelector(`.menu--parent[data-depth="${currentDepth - 1}"]`)
-
-    if (currentDepth === 1) {
-      menuTitle.innerHTML = defaultTitle;
-      backButton.classList.add('d-none');
-    }
-
-    if (currentMenu) {
-      currentMenu.classList.remove('js-menu-current');
-      currentMenu.classList.remove('menu--current');
-    }
-
-    if (currentParent) {
-      currentParent.classList.add('js-menu-current');
-      currentParent.classList.add('menu--current');
-      currentParent.classList.remove('menu--parent');
-    }
+    backToParent();
   })
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
-
-  prestashop.on('responsive update', () => {
-    initMobileMenu();
-  });
 });
 
 export default initMobileMenu;

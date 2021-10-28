@@ -41,10 +41,9 @@
 
 {function name="mobileMenu" nodes=[] depth=0 parent=null}
     {if $nodes|count}
-      <ul class="menu menu--mobile{if $depth == 0} menu--current js-menu-current{else} menu--child js-menu-child{/if}" {if $depth == 0}id="menu-mobile"{/if} data-depth="{$depth}">
+      <ul class="menu menu--mobile{if $depth == 0} menu--current js-menu-current{else} menu--child js-menu-child{/if}"{if $depth == 0} id="menu-mobile"{/if} data-depth="{$depth}">
         {foreach from=$nodes item=node}
-            <li class="{$node.type}{if $node.current} current {/if}{if
-            $node.children|count} menu--childrens{/if}" id="{$node.page_identifier}">
+            <li class="{$node.type}{if $node.current} current {/if}{if $node.children|count} menu--childrens{/if}" id="{$node.page_identifier}">
             {assign var=_counter value=$_counter+1}
               <a
                 class="{if $depth>= 0}menu__link{/if}"
@@ -57,8 +56,8 @@
               {if $node.children|count}
                 {* Cannot use page identifier as we can have the same page several times *}
                 {assign var=_expand_id value=10|mt_rand:100000}
-                <span class="js-menu-open-child">
-                  <span data-target="#top_sub_menu_{$_expand_id}" class="navbar-toggler collapse-icons">
+                <span class="main-menu__toggle-child js-menu-open-child">
+                  <span data-target="#top_sub_menu_{$_expand_id}">
                     <i class="material-icons">chevron_right</i>
                   </span>
                 </span>
@@ -82,24 +81,29 @@
   </button>
 </div>
 
-<div class="main-menu__offcanvas offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+<div class="main-menu__offcanvas offcanvas offcanvas-start js-menu-canvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header">
-    <button class="btn btn-unstyle d-none js-back-button" type="button">
-      <span class="material-icons">chevron_left</span>  
-    </button>
-
-    <h5 class="offcanvas-title js-menu-title" id="mobileMenuLabel">Menu</h5>
+    <div class="main-menu__back-button">
+      <button class="btn btn-unstyle d-none js-back-button" type="button">
+        <span class="material-icons">chevron_left</span>  
+        <span class="js-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
+      </button>
+    </div>
 
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
+
+  <h5 class="main-menu__title js-menu-title js-hidden" id="mobileMenuLabel"></h5>
 
   <div class="main-menu__mobile">
     {mobileMenu nodes=$menu.children}
   </div>
 
   <div class="main-menu__additionnals offcanvas-body">
-    <div id="_mobile_currency_selector"></div>
-    <div id="_mobile_language_selector"></div>
+    <div class="main-menu__selects row">
+      <div id="_mobile_currency_selector" class="col-6"></div>
+      <div id="_mobile_language_selector" class="col-6"></div>
+    </div>
     <div id="_mobile_contact_link"></div>
   </div>
 </div>

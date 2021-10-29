@@ -8,7 +8,6 @@ $component-name: search;
 
     #search_widget {
       margin-bottom: 0;
-      overflow: visible;
     }
 
     .offcanvas-header {
@@ -48,12 +47,13 @@ $component-name: search;
       padding-right: 1.5rem;
       width: 100vw;
       max-width: 20rem;
-      left: 0;
+      right: 0;
 
       @include media-breakpoint-down(md) {
         max-width: inherit;
         top: 100%;
         left: -1rem;
+        right: inherit;
       }
 
       li {
@@ -75,6 +75,8 @@ $component-name: search;
 
 .header__bottom, .#{$component-name}__offcanvas {
   #search_widget {
+    overflow: visible;
+
     input {
       border-radius: 100rem;
       background: $gray-light;

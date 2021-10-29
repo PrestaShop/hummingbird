@@ -66,6 +66,10 @@ const initSearchbar = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   initSearchbar();
+
+  prestashop.on('responsive update', () => {
+    initSearchbar();
+  });
 });
 
 export default initSearchbar;

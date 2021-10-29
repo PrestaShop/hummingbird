@@ -31,6 +31,9 @@
       <input class="js-search-input" type="text" name="s" value="{$search_string}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
       <i class="material-icons clear" aria-hidden="true">clear</i>
     </form>
+
+    <ul class="search-widgets__dropdown js-search-dropdown d-none">
+    </ul>
   </div>
 </div>
 

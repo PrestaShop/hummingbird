@@ -27,14 +27,39 @@ import search from '@services/search';
 import debounce from '@helpers/debounce';
 
 const initSearchbar = () => {
+  const searchCanvas = <HTMLElement>document.querySelector('.js-search-offcanvas');
   const searchWidget = <HTMLElement>document.querySelector('.js-search-widget');
+  const searchDropdown = <HTMLElement>document.querySelector('.js-search-dropdown');
+  const searchTemplate = <HTMLTemplateElement>document.querySelector('.js-search-template');
   const searchInput: HTMLInputElement | null = document.querySelector('.js-search-input');
   const searchUrl = <string>searchWidget.dataset.searchControllerUrl;
+
+  searchCanvas.addEventListener('hidden.bs.offcanvas', function () {
+    searchDropdown.innerHTML = '';
+    searchDropdown.classList.add('d-none')
+  })
 
   if(searchInput) {
     searchInput.addEventListener('keydown', debounce(async () => {
       const products = await search(searchUrl, searchInput.value, 10);
-      console.log(products);
+      if(products.length > 0) {
+        products.forEach((e: Record<string, any>) => {
+          const product = <HTMLElement>searchTemplate.content.cloneNode(true);
+          const productLink = <HTMLAnchorElement>product.querySelector('a');
+          const productTitle = <HTMLElement>product.querySelector('p');
+          const productImage = <HTMLImageElement>product.querySelector('img');
+          productLink.href = e.canonical_url;
+          productTitle.innerHTML = e.name;
+          productImage.src = e.cover.small.url;
+
+          searchDropdown.append(product);
+        })
+
+        searchDropdown.classList.remove('d-none')
+      }else {
+        searchDropdown.innerHTML = '';
+        searchDropdown.classList.add('d-none')
+      }
     }, 250))
   }
 };

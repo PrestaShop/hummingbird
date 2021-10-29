@@ -22,23 +22,15 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-// @ts-ignore
-import $ from "expose-loader?exposes=$,jQuery!jquery";
 
-import './prestashop';
-import 'bootstrap/dist/js/bootstrap.min';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import './responsive-toggler';
-import './qty-input';
-import initQuickview from './quickview';
-import './modules/blockcart';
-import initProductBehavior from './product';
-import './mobile-menu';
-import './modules/ps_searchbar';
-/* eslint-enable */
+const debounce = (callback: (...args: any[]) => any, wait: number): (...args: any[]) => void => {
+  let timeoutId: number | null = null;
+  return (...args) => {
+    window.clearTimeout(<number>timeoutId);
+    timeoutId = window.setTimeout(() => {
+      callback.apply(null, args);
+    }, wait);
+  };
+}
 
-$(document).ready(() => {
-  initProductBehavior();
-  initQuickview();
-});
+export default debounce;

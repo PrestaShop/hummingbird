@@ -22,23 +22,25 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-// @ts-ignore
-import $ from "expose-loader?exposes=$,jQuery!jquery";
 
-import './prestashop';
-import 'bootstrap/dist/js/bootstrap.min';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import './responsive-toggler';
-import './qty-input';
-import initQuickview from './quickview';
-import './modules/blockcart';
-import initProductBehavior from './product';
-import './mobile-menu';
-import './modules/ps_searchbar';
-/* eslint-enable */
+import search from '@services/search';
+import debounce from '@helpers/debounce';
 
-$(document).ready(() => {
-  initProductBehavior();
-  initQuickview();
+const initSearchbar = () => {
+  const searchWidget = <HTMLElement>document.querySelector('.js-search-widget');
+  const searchInput: HTMLInputElement | null = document.querySelector('.js-search-input');
+  const searchUrl = <string>searchWidget.dataset.searchControllerUrl;
+
+  if(searchInput) {
+    searchInput.addEventListener('keydown', debounce(async () => {
+      const products = await search(searchUrl, searchInput.value, 10);
+      console.log(products);
+    }, 250))
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  initSearchbar();
 });
+
+export default initSearchbar;

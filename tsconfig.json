@@ -9,6 +9,10 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@services/*": ["src/js/services/*"],
+      "@helpers/*": ["src/js/helpers/*"],
+    }
   }
 }

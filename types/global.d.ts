@@ -6,4 +6,5 @@ interface Window {
 
 interface JQuery {
   inputSpinner: any;
+  modal: any;
 }

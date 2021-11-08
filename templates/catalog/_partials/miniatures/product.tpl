@@ -25,7 +25,7 @@
 {$componentName = 'product-miniature'}
 
 {block name='product_miniature_item'}
-  <article class="{$componentName} js-{$componentName}{if !empty($productClasses)} {$productClasses}{/if}">
+  <article class="{$componentName} js-{$componentName}{if !empty($productClasses)} {$productClasses}{/if}" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
     <div class="card">
       <a href="{$product.url}" class="{$componentName}-link">
         {include file='catalog/_partials/product-flags.tpl'}
@@ -58,7 +58,7 @@
       {block name='product_miniature_bottom'}
         <div class="{$componentName}-infos card-body">
           {block name='quick_view'}
-            <button class="{$componentName}-quickview btn btn-primary" data-link-action="quickview">
+            <button class="{$componentName}-quickview btn btn-primary js-quickview" data-link-action="quickview">
               <i class="material-icons search">remove_red_eye</i> {l s='Quick view' d='Shop.Theme.Actions'}
             </button>
           {/block}

@@ -22,18 +22,43 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-import 'bootstrap/dist/js/bootstrap.min';
-import EventEmitter from 'events';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import './responsive-toggler';
-import './qty-input';
-import initQuickview from './quickview';
-import './modules/blockcart';
-import initProductBehavior from './product';
-/* eslint-enable */
+import { Modal } from 'bootstrap';
 
-$(document).ready(() => {
-  initProductBehavior();
-  initQuickview();
-});
+prestashop.blockcart = prestashop.blockcart || {};
+
+prestashop.blockcart.showModal = (html: string) => {
+  function getBlockCartModal() {
+    const blockCartModal = <HTMLElement>document.querySelector('#blockcart-modal');
+
+    return blockCartModal;
+  }
+
+  let blockCartModal = getBlockCartModal();
+
+  if (blockCartModal) {
+    blockCartModal.remove();
+  }
+
+  let mainElement = document.createElement('div');
+  mainElement.innerHTML = html;
+
+  document.querySelector('body')?.append(<HTMLElement>mainElement.querySelector('#blockcart-modal'));
+
+  blockCartModal = getBlockCartModal();
+  console.log(blockCartModal, Modal)
+
+  const modal = new Modal(blockCartModal);
+
+  modal.show();
+
+  blockCartModal.addEventListener('hidden.bs.modal', (event: Event) => {
+    const target = <HTMLElement>event.currentTarget;
+
+    if (target) {
+      prestashop.emit('updateProduct', {
+        reason: target.dataset,
+        event,
+      });
+    }
+  });
+};

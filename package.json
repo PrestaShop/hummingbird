@@ -16,6 +16,7 @@
   "author": "PrestaShop",
   "license": "AFL-3.0",
   "devDependencies": {
+    "@types/bootstrap": "^5.1.6",
     "autoprefixer": "^6.7.7",
     "bootstrap": "5.1.3",
     "bootstrap-touchspin": "^4.3.0",

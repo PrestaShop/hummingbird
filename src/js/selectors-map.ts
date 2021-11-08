@@ -26,7 +26,9 @@ export default {
   qtyInput: '.qty input',
   product: {
     carousel: '.js-product-carousel',
+    miniature: '.js-product-miniature',
     thumbnail: '.js-thumb-container',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
   },
+  quickview: '.js-quickview',
 };

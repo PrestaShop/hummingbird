@@ -157,7 +157,6 @@ exports.expose = () => ({
         loader: 'expose-loader',
         options: {
           exposes: {
-            override: true,
             globalName: [
               '$',
               'jQuery',

@@ -6,7 +6,7 @@ $componentName: account-menu;
   height: 100%;
   border-right: 1px solid $secondary-light;
 
-  & &-link,
+  & &__link,
   > a {
     width: 100%;
     margin: 0.5rem 0;
@@ -17,15 +17,26 @@ $componentName: account-menu;
     }
   }
 
-  & &-line {
+  & &__line, a {
     &:hover,
     &.active {
-      .#{$componentName}-link {
+      .#{$componentName}__link, & {
         font-weight: 600;
 
         &,
         i {
           color: $primary;
+        }
+      }
+    }
+
+    &.#{$componentName}--signout {
+      .#{$componentName}__link {
+        color: $danger;
+
+        &,
+        i {
+          color: $danger;
         }
       }
     }

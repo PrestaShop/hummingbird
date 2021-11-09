@@ -1,0 +1,57 @@
+$component-name: customer-link;
+
+.#{$component-name} {
+  &__link, a {
+    display: block;
+
+    span {
+      background: $gray-lighter-second;
+      padding: 1.25rem 1rem;
+      border-radius: $border-radius;
+      display: flex;
+      flex-direction: column;
+      color: $gray-dark;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: 0.25s ease-out;
+
+      &:hover {
+        background: $primary;
+        color: $white;
+
+        i {
+          color: $white;
+        }
+      }
+
+      @include media-breakpoint-down(md) {
+        flex-direction: row;
+        align-items: center;
+        padding: 0.5rem;
+      }
+
+      i {
+        font-size: 2rem;
+        color: $gray-second;
+        margin-bottom: 0.75rem;
+        transition: 0.25s ease-out;
+
+        @include media-breakpoint-down(md) {
+          margin-bottom: 0;
+          margin-right: 0.75rem;
+        }
+      }
+    }
+  }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+
+    i, & {
+      color: $danger;
+    }
+  }
+}

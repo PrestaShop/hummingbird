@@ -26,24 +26,24 @@
 
 {block name='account-menu'}
   <div class="{$componentName}">
-    <h2 class="{$componentName}-title">{l s='My Account' d='Shop.Theme.Customeraccount'}</h2>
-    <a class="{$componentName}-line{if $urls.current_url === $urls.pages.identity} active{/if}" id="identity-link" href="{$urls.pages.identity}">
-      <span class="{$componentName}-link">
+    <h2 class="{$componentName}__title">{l s='My Account' d='Shop.Theme.Customeraccount'}</h2>
+    <a class="{$componentName}__line{if $urls.current_url === $urls.pages.identity} active{/if}" id="identity__link" href="{$urls.pages.identity}">
+      <span class="{$componentName}__link">
         <i class="material-icons">&#xE853;</i>
         {l s='Information' d='Shop.Theme.Customeraccount'}
       </span>
     </a>
 
     {if $customer.addresses|count}
-      <a class="{$componentName}-line{if $urls.current_url === $urls.pages.addresses} active{/if}" id="addresses-link" href="{$urls.pages.addresses}">
-        <span class="{$componentName}-link">
+      <a class="{$componentName}__line{if $urls.current_url === $urls.pages.addresses} active{/if}" id="addresses__link" href="{$urls.pages.addresses}">
+        <span class="{$componentName}__link">
           <i class="material-icons">&#xE56A;</i>
           {l s='Addresses' d='Shop.Theme.Customeraccount'}
         </span>
       </a>
     {else}
-      <a class="{$componentName}-line{if $urls.current_url === $urls.pages.address} active{/if}" id="address-link" href="{$urls.pages.address}">
-        <span class="{$componentName}-link">
+      <a class="{$componentName}__line{if $urls.current_url === $urls.pages.address} active{/if}" id="address__link" href="{$urls.pages.address}">
+        <span class="{$componentName}__link">
           <i class="material-icons">&#xE567;</i>
           {l s='Add first address' d='Shop.Theme.Customeraccount'}
         </span>
@@ -51,8 +51,8 @@
     {/if}
 
     {if !$configuration.is_catalog}
-      <a class="{$componentName}-line{if $urls.current_url === $urls.pages.history} active{/if}" id="history-link" href="{$urls.pages.history}">
-        <span class="{$componentName}-link">
+      <a class="{$componentName}__line{if $urls.current_url === $urls.pages.history} active{/if}" id="history__link" href="{$urls.pages.history}">
+        <span class="{$componentName}__link">
           <i class="material-icons">&#xE916;</i>
           {l s='Order history and details' d='Shop.Theme.Customeraccount'}
         </span>
@@ -60,8 +60,8 @@
     {/if}
 
     {if !$configuration.is_catalog}
-      <a class="{$componentName}-line{if $urls.current_url === $urls.pages.order_slip} active{/if}" id="order-slips-link" href="{$urls.pages.order_slip}">
-        <span class="{$componentName}-link">
+      <a class="{$componentName}__line{if $urls.current_url === $urls.pages.order_slip} active{/if}" id="order-slips__link" href="{$urls.pages.order_slip}">
+        <span class="{$componentName}__link">
           <i class="material-icons">&#xE8B0;</i>
           {l s='Credit slips' d='Shop.Theme.Customeraccount'}
         </span>
@@ -69,8 +69,8 @@
     {/if}
 
     {if $configuration.voucher_enabled && !$configuration.is_catalog}
-      <a class="{$componentName}-line{if $urls.current_url === $urls.pages.discount} active{/if}" id="discounts-link" href="{$urls.pages.discount}">
-        <span class="{$componentName}-link">
+      <a class="{$componentName}__line{if $urls.current_url === $urls.pages.discount} active{/if}" id="discounts__link" href="{$urls.pages.discount}">
+        <span class="{$componentName}__link">
           <i class="material-icons">&#xE54E;</i>
           {l s='Vouchers' d='Shop.Theme.Customeraccount'}
         </span>
@@ -78,8 +78,8 @@
     {/if}
 
     {if $configuration.return_enabled && !$configuration.is_catalog}
-      <a class="{$componentName}-line{if $urls.current_url === $urls.pages.order_follow} active{/if}" id="returns-link" href="{$urls.pages.order_follow}">
-        <span class="{$componentName}-link">
+      <a class="{$componentName}__line{if $urls.current_url === $urls.pages.order_follow} active{/if}" id="returns__link" href="{$urls.pages.order_follow}">
+        <span class="{$componentName}__link">
           <i class="material-icons">&#xE860;</i>
           {l s='Merchandise returns' d='Shop.Theme.Customeraccount'}
         </span>
@@ -89,5 +89,12 @@
     {block name='display_customer_account'}
       {hook h='displayCustomerAccount'}
     {/block}
+
+    <a class="{$componentName}__line{if $urls.current_url === $urls.pages.order_follow} active{/if} {$componentName}--signout" id="returns__link" href="{$urls.actions.logout}">
+      <span class="{$componentName}__link">
+        <i class="material-icons">exit_to_app</i>
+        {l s='Sign out' d='Shop.Theme.Actions'}
+      </span>
+    </a>
   </div>
 {/block}

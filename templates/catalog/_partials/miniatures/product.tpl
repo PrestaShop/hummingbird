@@ -27,11 +27,11 @@
 {block name='product_miniature_item'}
   <article class="{$componentName} js-{$componentName}{if !empty($productClasses)} {$productClasses}{/if}" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
     <div class="card">
-      <a href="{$product.url}" class="{$componentName}-link">
+      <a href="{$product.url}" class="{$componentName}__link">
         {include file='catalog/_partials/product-flags.tpl'}
 
         {block name='product_miniature_image'}
-          <div class="{$componentName}-image-container thumbnail-container">
+          <div class="{$componentName}__image-container thumbnail-container">
             {if $product.cover}
               <img
                 src="{$product.cover.bySize.home_default.url}"
@@ -40,7 +40,7 @@
                 data-full-size-image-url="{$product.cover.large.url}"
                 width="250"
                 height="250"
-                class="{$componentName}-image card-img-top"
+                class="{$componentName}__image card-img-top"
               />
             {else}
               <img
@@ -48,7 +48,7 @@
                 loading="lazy"
                 width="250"
                 height="250"
-                class="{$componentName}-image card-img-top"
+                class="{$componentName}__image card-img-top"
               />
             {/if}
           </div>
@@ -56,20 +56,22 @@
       </a>
 
       {block name='product_miniature_bottom'}
-        <div class="{$componentName}-infos card-body">
+        <div class="{$componentName}__infos card-body">
           {block name='quick_view'}
-            <button class="{$componentName}-quickview btn btn-primary js-quickview" data-link-action="quickview">
-              <i class="material-icons search">remove_red_eye</i> {l s='Quick view' d='Shop.Theme.Actions'}
-            </button>
+            <div class="{$componentName}__quickview">
+              <button class="{$componentName}__quickview_button btn btn-link js-quickview" data-link-action="quickview">
+                <i class="material-icons search">remove_red_eye</i> {l s='Quick view' d='Shop.Theme.Actions'}
+              </button>
+            </div>
           {/block}
 
-          <div class="{$componentName}-infos-top">
+          <div class="{$componentName}__infos__top">
             {block name='product_name'}
-              <a href="{$product.url}"><p class="{$componentName}-title">{$product.name|truncate:30:'...'}</p></a>
+              <a href="{$product.url}"><p class="{$componentName}__title">{$product.name|truncate:30:'...'}</p></a>
             {/block}
           </div>
 
-          <div class="{$componentName}-infos-bottom">
+          <div class="{$componentName}__infos__bottom">
             {block name='product_variants'}
               <div class="{$componentName}-variants">
                 {if $product.main_variants}
@@ -78,23 +80,12 @@
               </div>
             {/block}
 
-            <div class="{$componentName}-prices">
-              {block name='product_discount_price'}
-                {if $product.show_price}
-                  <div class="{$componentName}-discount-price">
-                    {if $product.has_discount}
-                      {hook h='displayProductPriceBlock' product=$product type="old_price"}
-
-                      <span class="{$componentName}-regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
-                    {/if}
-                  </div>
-                {/if}
-              {/block}
+            <div class="{$componentName}__prices">
               {block name='product_price'}
                 {if $product.show_price}
                   {hook h='displayProductPriceBlock' product=$product type="before_price"}
 
-                  <span class="{$componentName}-price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
+                  <span class="{$componentName}__price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
                     {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
                     {if '' !== $smarty.capture.custom_price}
                       {$smarty.capture.custom_price nofilter}
@@ -106,6 +97,18 @@
                   {hook h='displayProductPriceBlock' product=$product type='unit_price'}
 
                   {hook h='displayProductPriceBlock' product=$product type='weight'}
+                {/if}
+              {/block}
+
+              {block name='product_discount_price'}
+                {if $product.show_price}
+                  <div class="{$componentName}__discount-price">
+                    {if $product.has_discount}
+                      {hook h='displayProductPriceBlock' product=$product type="old_price"}
+
+                      <span class="{$componentName}__regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
+                    {/if}
+                  </div>
                 {/if}
               {/block}
             </div>

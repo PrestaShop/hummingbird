@@ -38,16 +38,19 @@ label .color,
 .variant-links .color,
 .custom-checkbox input[type="checkbox"] + span.color {
   display: inline-block;
-  width: 1.125rem;
-  height: 1.125rem;
+  width: 1.5rem;
+  height: 1.5rem;
   margin: 0.3125rem;
   margin-right: 0.5rem;
+  margin-left: 0;
   cursor: pointer;
   background-size: contain;
   border: 1px solid $radio-border-color;
+  border-radius: 4px;
+  transition: 0.25s ease-out;
 
   &.active,
   &:hover {
-    border: 2px solid $gray-darker;
+    border: 2px solid $primary;
   }
 }

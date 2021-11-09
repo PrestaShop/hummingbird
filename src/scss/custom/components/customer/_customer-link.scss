@@ -43,4 +43,15 @@ $component-name: customer-link;
       }
     }
   }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+
+    i, & {
+      color: $danger;
+    }
+  }
 }

@@ -28,7 +28,7 @@
 
 {block name='page_content'}
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 hidden-on-mobile">
       {include file='components/account-menu.tpl'}
     </div>
 
@@ -38,14 +38,12 @@
       </h1>
 
       <div class="{$componentName} row g-3">
-        <div class="col-12 col-md-4">
-        <a class="{$componentName}__link" id="identity-link" href="{$urls.pages.identity}">
+        <a class="{$componentName}__link col-12 col-md-4" id="identity-link" href="{$urls.pages.identity}">
           <span class="link-item">
             <i class="material-icons">&#xE853;</i>
             {l s='Information' d='Shop.Theme.Customeraccount'}
           </span>
         </a>
-        </div>
 
         {if $customer.addresses|count}
           <a class="{$componentName}__link col-12 col-md-4" id="addresses-link" href="{$urls.pages.addresses}">
@@ -103,6 +101,11 @@
           {hook h='displayCustomerAccount'}
         {/block}
       </div>
+
+      <a class="{$componentName}__logout hidden-on-desktop" href="{$urls.actions.logout}">
+        <i class="material-icons">exit_to_app</i>
+        {l s='Sign out' d='Shop.Theme.Actions'}
+      </a>
     </div>
   </div>
 {/block}

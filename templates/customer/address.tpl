@@ -26,7 +26,7 @@
 
 {block name='page_content'}
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 hidden-on-mobile">
       {include file='components/account-menu.tpl'}
     </div>
 

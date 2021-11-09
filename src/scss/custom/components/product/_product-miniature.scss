@@ -2,62 +2,84 @@ $component-name: product-miniature;
 
 .#{$component-name} {
   margin-bottom: 1.25rem;
+  
+  .card {
+    transition: 0.25s ease-out;
+
+    &:hover {
+      filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.1));
+    }
+  } 
 
   &:hover {
-    .#{$component-name}-quickview {
+    .#{$component-name}__quickview {
       transform: translateY(-100%);
     }
   }
 
-  & &-image-container {
+  & &__image-container {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-  }
-
-  & &-image {
     transition: 0.25s ease-out;
   }
 
-  & &-link {
+  & &__image {
+    transition: 0.25s ease-out;
+  }
+
+  & &__link {
     position: relative;
     display: block;
 
     &:hover {
-      .#{$component-name}-image {
+      .#{$component-name}__image {
         transform: scale(1.1);
+      }
+
+      .#{$component-name}__image-container {
+        border-radius-bottom-left: 0;
+        border-radius-bottom-right: 0;
       }
     }
   }
 
-  & &-title {
+  & &__title {
+    font-size: 1rem;
     margin-bottom: 0;
   }
 
-  & &-regular-price {
-    color: $btn-tertiary-color;
+  & &__regular-price {
+    color: $gray-second;
   }
 
-  & &-quickview {
+  & &__price {
+    font-weight: 600;
+  }
+
+  & &__quickview {
     position: absolute;
     top: 0;
     z-index: -1;
+    transition: 0.25s ease-out;
+    background-color: $white;
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  & &__quickview_button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
-    color: $gray-dark;
-    background-color: $white;
     border: 0;
-    border-bottom: 1px solid $secondary-light;
-    transition: 0.25s ease-out;
+    text-decoration: none;
 
     .material-icons {
       margin-right: 0.25rem;
       font-size: 1.25rem;
-      color: $btn-tertiary-color;
     }
   }
 

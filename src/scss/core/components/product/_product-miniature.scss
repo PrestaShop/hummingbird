@@ -1,42 +1,48 @@
 $component-name: product-miniature;
 
 .#{$component-name} {
-  & &-infos {
+  & &__infos {
     position: relative;
     z-index: 90;
     padding: 0;
-    padding-top: 0.5rem;
 
-    &-top,
-    &-bottom {
+    &__top,
+    &__bottom {
       padding: 0.25rem 0.5rem;
       background-color: $white;
     }
 
-    &-bottom {
+    &__top {
+      padding-top: 0.5rem;
+    }
+
+    &__bottom {
       margin-bottom: 1rem;
     }
   }
 
-  & &-title {
+  & &__title {
     margin: 0;
   }
 
-  & &-image {
+  & &__image {
     height: auto;
   }
 
-  & &-quickview {
+  & &__quickview {
     display: flex;
     margin: auto;
   }
 
-  & &-regular-price {
+  & &__regular-price {
     text-decoration: line-through;
-    @extend .me-2;
   }
 
-  & &-prices {
+  & &__prices {
     display: flex;
+  }
+
+  & &__price {
+    @extend .me-2;
   }
 }

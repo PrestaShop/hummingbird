@@ -29,9 +29,9 @@
     <div class="container">
       {block name='page_header_container'}
         {block name='page_title' hide}
-          <header class="page-header">
-            <h1>{$smarty.block.child}</h1>
-          </header>
+          <div class="page-header">
+            <h1 class="h2">{$smarty.block.child}</h1>
+          </div>
         {/block}
       {/block}
 

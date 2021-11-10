@@ -26,24 +26,19 @@
 
 {if !empty($subcategories)}
   {if (isset($display_subcategories) && $display_subcategories eq 1) || !isset($display_subcategories) }
-    <div id="subcategories" class="{$componentName}">
-      <h2 class="{$componentName}-title">{l s='Subcategories' d='Shop.Theme.Category'}</h2>
-
-      <ul class="{$componentName}-list row">
-        {foreach from=$subcategories item=subcategory}
-          <li class="{$componentName}-item col-6 col-md-3">
-            <div class="{$componentName}-image">
-              <a href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}" title="{$subcategory.name|escape:'html':'UTF-8'}" class="{$componentName}-link img">
-                {if !empty($subcategory.image.large.url)}
-                  <img class="{$componentName}-image replace-2x" src="{$subcategory.image.large.url}" alt="{$subcategory.name|escape:'html':'UTF-8'}" loading="lazy" width="141" height="180"/>
-                {/if}
-              </a>
+    <div id="subcategories" class="{$componentName} row gx-3">
+      {foreach from=$subcategories item=subcategory}
+        <div class="subcategory__wrapper col-6 col-lg-4 col-xl-3"> 
+          <a class="subcategory" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}" title="{$subcategory.name|escape:'html':'UTF-8'}">
+            <div class="subcategory__image">
+              {if !empty($subcategory.image.large.url)}
+                <img class="img-fluid" src="{$subcategory.image.large.url}" alt="{$subcategory.name|escape:'html':'UTF-8'}" loading="lazy" width="{$subcategory.image.large.width}" height="{$subcategory.image.large.height}" />
+              {/if}
             </div>
-
-            <h5 class="{$componentName}-name"><a class="{$componentName}-name-link" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}">{$subcategory.name|truncate:25:'...'|escape:'html':'UTF-8'}</a></h5>
-          </li>
-        {/foreach}
-      </ul>
+            <p class="subcategory__name">{$subcategory.name|truncate:25:'...'|escape:'html':'UTF-8'}</p>
+          </a>
+        </div>
+      {/foreach}
     </div>
   {/if}
 {/if}

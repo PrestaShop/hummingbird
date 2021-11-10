@@ -52,6 +52,7 @@ const initMobileMenu = () => {
       }
 
       currentParent.classList.add('js-menu-current');
+      currentParent.classList.add('menu--fromLeft');
       currentParent.classList.add('menu--current');
       currentParent.classList.remove('menu--parent');
     }
@@ -79,6 +80,8 @@ const initMobileMenu = () => {
       if (currentMenu) {
         currentMenu.classList.remove('js-menu-current');
         currentMenu.classList.remove('menu--current');
+        currentMenu.classList.remove('menu--fromLeft');
+        currentMenu.classList.remove('menu--fromRight');
         currentMenu.classList.add('menu--parent');
       }
 
@@ -91,6 +94,7 @@ const initMobileMenu = () => {
 
       if (child) {
         child.classList.add('js-menu-current');
+        child.classList.add('menu--fromRight');
         child.classList.add('menu--current');
         child.classList.remove('menu--child');
         child.classList.remove('js-menu-child');

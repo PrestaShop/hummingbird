@@ -1,5 +1,15 @@
 $component-name: main-menu;
 
+@keyframes fromLeft {
+    from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+}
+
+@keyframes fromRight {
+    from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+}
+
 .#{$component-name} {
   &__mobile {
     position: relative;
@@ -14,6 +24,8 @@ $component-name: main-menu;
       transition: 0.25s ease-out;
       padding: 0.5rem;
       max-width: 25rem;
+      position: relative;
+      left: 100%;
 
       li:not(.h5), a {
         color: $gray-second;
@@ -26,10 +38,21 @@ $component-name: main-menu;
 
       .menu--current, &.menu--current {
         display: block;
+        left: 0;
+      }
+
+      .menu--fromLeft, &.menu--fromLeft {
+        animation: fromLeft 0.25s;
+      }
+
+      .menu--fromRight, &.menu--fromRight {
+        animation: fromRight 0.25s;
       }
 
       .menu--parent, &.menu--parent {
         display: none;
+        left: -100%;
+        opacity: 0;
       }
 
       &--childrens {

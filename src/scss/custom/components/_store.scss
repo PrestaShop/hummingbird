@@ -1,0 +1,29 @@
+$component-name: store;
+
+.#{$component-name} {
+  margin-bottom: 1.5rem;
+
+  .card {
+    border: 1px solid $primary-color;
+    padding: 1.5rem;
+  }
+
+  img {
+    border-radius: $border-radius;
+    margin-bottom: 1.5rem;
+  }
+
+  address {
+    line-height: 2rem;
+  }
+
+  table {
+    ul {
+      margin: 0;
+    }
+
+    th, td {
+      line-height: 1.75rem;
+    }
+  }
+}

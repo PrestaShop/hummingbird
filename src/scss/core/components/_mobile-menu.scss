@@ -1,0 +1,118 @@
+$component-name: main-menu;
+
+.#{$component-name} {
+  &__mobile {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    clip-path: inset(0 0 0 0);
+
+    .menu {
+      width: 100%;
+
+      &, ul {
+        position: fixed;
+        transition: 0.25s ease-out;
+        top: 5rem;
+        left: calc(100% + 1rem);
+        padding-right: 100%;
+        padding: 1rem 0.5rem;
+        max-width: 25rem;
+      }
+
+      li, a {
+        color: $gray-second;
+      }
+
+      a {
+        display: block;
+        padding: 0.5rem;
+      }
+
+      .menu--current, &.menu--current {
+        left: 0;
+      }
+
+      .menu--parent, &.menu--parent {
+        left: calc(-100% - 1rem);
+      }
+
+      &--childrens {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
+  
+  &__offcanvas {
+    overflow: hidden;
+
+    h5 {
+      font-size: 1.25rem;
+      padding: 0 1rem;
+      color: $gray-dark;
+    }
+
+    .offcanvas-header {
+      min-height: 3.5625rem;
+    }
+
+    .js-hidden + .#{$component-name}__mobile .menu {
+      top: 3rem; 
+    }
+
+    #contact-link {
+      a {
+        display: block;
+        padding: 1rem 0;
+      }
+    }
+  }
+
+  &__additionnals {
+    flex-shrink: 0;
+    padding-bottom: 0;
+  }
+
+  &__title {
+    position: relative;
+    left: 0;
+    opacity: 1;
+    transition: left 0.25s ease-out;
+
+    &.js-hidden {
+      opacity: 0;
+      left: 100%;
+    }
+  }
+
+  &__tree {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  &__toggler {
+    display: flex;
+    padding: 1rem;
+
+    @include media-breakpoint-down(md) {
+      padding: 0.75rem;
+    }
+  }
+
+  &__back-button .btn {
+    display: flex;
+    align-items: center;
+
+    .material-icons {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__toggle-child {
+    padding: 0.5rem;
+  }
+}

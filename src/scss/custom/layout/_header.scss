@@ -16,9 +16,6 @@ $component-name: header;
     }
 
     &__right {
-      @extend .inline-items;
-      justify-content: flex-end;
-
       > *:not(:last-child) {
         margin-right: 1.5rem;
       }
@@ -43,7 +40,10 @@ $component-name: header;
 
   & &__bottom {
     padding: 0;
-    border-bottom: 1px solid $secondary-light;
+
+    @include media-breakpoint-up(md) {
+      border-bottom: 1px solid $secondary-light;
+    }
 
     .navbar-brand {
       padding: 0;
@@ -60,18 +60,12 @@ $component-name: header;
       }
     }
 
-    .menu  {
-      width: 100%;
-
+    .main-menu--desktop  {
       .dropdown {
         position: inherit;
       }
 
-      .top-menu {
-        display: flex;
-        align-items: center;
-        margin-bottom: 0;
-
+      .main-menu__tree {
         > li {
           > a {
             padding: 1.5rem 1rem;

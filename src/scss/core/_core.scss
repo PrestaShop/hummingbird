@@ -7,12 +7,16 @@
 @import "./components/_pagination";
 @import "./components/_rich-text";
 @import "./components/_qty-input";
+@import "./components/_mobile-menu";
+@import "./components/_search";
 
 // Modules
 @import "./modules/_banner";
 @import "./modules/_featuredproducts";
 @import "./modules/_customtext";
 @import "./modules/_facetedsearch";
+@import "./modules/_shoppingcart";
+@import "./modules/_customersignin";
 
 // Layout
 @import "./layout/_header";

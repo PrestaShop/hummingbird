@@ -1,0 +1,23 @@
+.blockcart {
+  &, a {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    i {
+      margin-right: 0.25rem;
+    }
+  }
+
+  &.inactive {
+    color: $gray-dark;
+
+    i {
+      color: $gray-second;
+    }
+  }
+
+  .cart-products-count {
+    margin-left: 0.25rem;
+  }
+}

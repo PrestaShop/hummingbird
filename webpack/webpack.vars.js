@@ -52,12 +52,12 @@ exports.webpackVars = {
     return resultEntries;
   },
   getOutput: ({
-    mode, publicPath, siteURL, port , serverAddress
+    mode, publicPath, siteURL, port, serverAddress,
   }) => ({
     filename: 'js/[name].js',
     chunkFilename: mode === 'production' ? 'js/[chunkhash].js' : 'js/[id].js',
     path: path.resolve(themeDev, '../assets'),
-    publicPath: mode === 'production' ? '../' : `${serverAddress === 'localhost' ? siteURL : siteURL + ':' + port}${publicPath}`,
+    publicPath: mode === 'production' ? '../' : `${serverAddress === 'localhost' ? siteURL : `${siteURL}:${port}`}${publicPath}`,
     pathinfo: false,
   }),
 };

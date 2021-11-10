@@ -1,4 +1,4 @@
-{**
+/**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -21,13 +21,24 @@
  * @author    PrestaShop SA and Contributors <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
-<div id="_desktop_language_selector">
-  <div class="language-selector__wrapper">
-    <select id="language-selector" aria-label="{l s='Language' d='Shop.Theme.Global'}" class="form-select js-language-selector">
-      {foreach from=$languages item=language}
-        <option value="{url entity='language' id=$language.id_lang}"{if $language.id_lang == $current_language.id_lang} selected="selected"{/if} data-iso-code="{$language.iso_code}">{$language.name_simple}</option>
-      {/foreach}
-    </select>
-  </div>
-</div>
+ */
+
+const searchProduct = async (url: string, value: string, resultsPerPage: number = 10): Promise<Record<string, any>> => {
+  const formData = new FormData();
+  formData.append('s', value);
+  formData.append('resultsPerPage', <string><unknown>resultsPerPage);
+
+  const datas = await fetch(url, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json, text/javascript, */*; q=0.01'
+    },
+  })
+
+  const jsonDatas = await datas.json();
+
+  return jsonDatas.products;
+};
+
+export default searchProduct;

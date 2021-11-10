@@ -50,7 +50,7 @@ function toggleMobileStyles() {
   } else {
     Array.prototype.forEach.call(document.querySelectorAll("*[id^='_mobile_']"), (el) => {
       const source = document.querySelector(`#${el.id}`);
-      const target = document.querySelector(`#${el.id.replace('_mobile_', '_desktop')}`);
+      const target = document.querySelector(`#${el.id.replace('_mobile_', '_desktop_')}`);
 
       if (target && source) {
         swapChildren(source, target);

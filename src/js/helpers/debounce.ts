@@ -1,4 +1,4 @@
-{**
+/**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -21,13 +21,16 @@
  * @author    PrestaShop SA and Contributors <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
-<div id="_desktop_language_selector">
-  <div class="language-selector__wrapper">
-    <select id="language-selector" aria-label="{l s='Language' d='Shop.Theme.Global'}" class="form-select js-language-selector">
-      {foreach from=$languages item=language}
-        <option value="{url entity='language' id=$language.id_lang}"{if $language.id_lang == $current_language.id_lang} selected="selected"{/if} data-iso-code="{$language.iso_code}">{$language.name_simple}</option>
-      {/foreach}
-    </select>
-  </div>
-</div>
+ */
+
+const debounce = (callback: (...args: any[]) => any, wait: number): (...args: any[]) => void => {
+  let timeoutId: number | null = null;
+  return (...args) => {
+    window.clearTimeout(<number>timeoutId);
+    timeoutId = window.setTimeout(() => {
+      callback.apply(null, args);
+    }, wait);
+  };
+}
+
+export default debounce;

@@ -52,15 +52,15 @@
         </div>
 
         <div class="container-fluid">
-          <div class="row form-group">
-            <label class="form-control-label col-md-3 offset-md-2">{l s='New password' d='Shop.Forms.Labels'}</label>
+          <div class="row mb-3">
+            <label class="form-label col-md-3 offset-md-2">{l s='New password' d='Shop.Forms.Labels'}</label>
             <div class="col-md-4">
               <input class="form-control" type="password" data-validate="isPasswd" name="passwd" value="">
             </div>
           </div>
 
-          <div class="row form-group">
-            <label class="form-control-label col-md-3 offset-md-2">{l s='Confirmation' d='Shop.Forms.Labels'}</label>
+          <div class="row mb-3">
+            <label class="form-label col-md-3 offset-md-2">{l s='Confirmation' d='Shop.Forms.Labels'}</label>
             <div class="col-md-4">
               <input class="form-control" type="password" data-validate="isPasswd" name="confirmation" value="">
             </div>
@@ -70,7 +70,7 @@
           <input type="hidden" name="id_customer" id="id_customer" value="{$id_customer}">
           <input type="hidden" name="reset_token" id="reset_token" value="{$reset_token}">
 
-          <div class="row form-group">
+          <div class="row mb-3">
             <div class="offset-md-5">
               <button class="btn btn-primary" type="submit" name="submit">
                 {l s='Change Password' d='Shop.Theme.Actions'}

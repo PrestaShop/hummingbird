@@ -27,7 +27,6 @@
 import $ from "expose-loader?exposes=$,jQuery!jquery";
 
 import './prestashop';
-import 'bootstrap/dist/js/bootstrap.min';
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import './responsive-toggler';
 import './qty-input';

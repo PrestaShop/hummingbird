@@ -17,23 +17,7 @@ $component-name: header;
 
     &__right {
       > *:not(:last-child) {
-        margin-right: 1.5rem;
-      }
-
-      .language-selector {
-        i.expand-more {
-          color: $default-icon-color;
-        }
-      }
-
-      .blockcart {
-        &.active {
-          &,
-          i,
-          a {
-            color: $primary;
-          }
-        }
+        margin-right: 0.25rem;
       }
     }
   }

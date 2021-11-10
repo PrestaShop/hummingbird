@@ -26,6 +26,10 @@
     color: $gray-dark;
     text-decoration: none;
 
+    @include media-breakpoint-down(md) {
+      padding: 0.5rem 0.3rem;
+    }
+
     i {
       color: $gray-second;
     }

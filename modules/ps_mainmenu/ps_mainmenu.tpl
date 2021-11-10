@@ -77,7 +77,7 @@
   </div>
 
   <button class="main-menu__toggler btn btn-unstyle d-xl-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
-    <span class="material-icons">menu</span>  
+    <i class="material-icons">menu</i>  
   </button>
 </div>
 
@@ -101,8 +101,8 @@
 
   <div class="main-menu__additionnals offcanvas-body">
     <div class="main-menu__selects row">
-      <div id="_mobile_currency_selector" class="col-6"></div>
-      <div id="_mobile_language_selector" class="col-6"></div>
+      <div id="_mobile_currency_selector" class="col-auto"></div>
+      <div id="_mobile_language_selector" class="col-auto"></div>
     </div>
     <div id="_mobile_contact_link"></div>
   </div>

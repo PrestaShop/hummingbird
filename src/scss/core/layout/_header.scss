@@ -11,10 +11,6 @@ $componentName: header;
     &__right {
       @extend .inline-items;
       justify-content: flex-end;
-
-      > *:not(:last-child) {
-        margin-right: 1.5rem;
-      }
     }
 
     &__right, &__left {

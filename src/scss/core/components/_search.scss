@@ -1,5 +1,31 @@
 $component-name: search;
 
+.search-result {
+  margin: 0.5rem 0;
+
+  &__product {
+    margin: 0.5rem 0;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+  }
+
+  &__name {
+    color: $gray-dark;
+    margin-bottom: 0;
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+
+  &__image {
+    max-width: 4rem;
+    height: auto;
+    border-radius: 8px;
+  }
+} 
+
 .#{$component-name} {
   &__offcanvas {
     height: auto;
@@ -23,6 +49,14 @@ $component-name: search;
     }
   }
 
+  &__mobile__toggler {
+    color: $gray-second;
+    
+    @include media-breakpoint-down(md) {
+      padding: 0.5rem 0.3rem;
+    }
+  }
+
   &__container {
     width: calc(100% - 0.5rem);
   }
@@ -40,35 +74,28 @@ $component-name: search;
       top: calc(100% + 1rem);
       background: $white;
       border-radius: $border-radius;
-      max-height: 20rem;
-      overflow-y: auto;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 0.5rem 1rem;
-      padding-right: 1.5rem;
       width: 100vw;
-      max-width: 20rem;
+      max-width: 30rem;
+      overflow: hidden;
       right: 0;
+      border: 1px solid $primary-color;
 
       @include media-breakpoint-down(md) {
         max-width: inherit;
-        top: 100%;
+        top: calc(100% + 0.25rem);
         left: -1rem;
         right: inherit;
+        border-radius: 0px 0px 8px 8px;
       }
+    }
 
-      li {
-        margin: 0.5rem 0;
-
-        a {
-          display: flex;
-          align-items: center;
-        }
-
-        p {
-          color: $gray-dark;
-          margin-left: 1rem;
-        }
-      }
+    &__results {
+      max-height: 20rem;
+      overflow-y: scroll;
+      padding: 0.5rem 1rem;
+      padding-right: 1.5rem;
+      margin: 0;
     }
   }
 }

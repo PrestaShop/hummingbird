@@ -26,38 +26,35 @@
   {if !$configuration.is_catalog}
     <div class="card card-block">
       <p class="h4 card-title">{l s='Product customization' d='Shop.Theme.Catalog'}</p>
-      {l s='Don\'t forget to save your customization to be able to add to cart' d='Shop.Forms.Help'}
+      <p>{l s='Don\'t forget to save your customization to be able to add to cart' d='Shop.Forms.Help'}</p>
 
       {block name='product_customization_form'}
         <form method="post" action="{$product.url}" enctype="multipart/form-data">
-          <ul>
-            {foreach from=$customizations.fields item="field"}
-              <li class="product-customization-item">
-                <label> {$field.label}</label>
-                {if $field.type == 'text'}
-                  <textarea placeholder="{l s='Your message here' d='Shop.Forms.Help'}" class="product-message" maxlength="250" {if $field.required} required {/if} name="{$field.input_name}"></textarea>
-                  <small class="float-xs-right">{l s='250 char. max' d='Shop.Forms.Help'}</small>
-                  {if $field.text !== ''}
-                      <h6 class="customization-message">{l s='Your customization:' d='Shop.Theme.Catalog'}
-                          <label>{$field.text}</label>
-                      </h6>
-                  {/if}
-                {elseif $field.type == 'image'}
-                  {if $field.is_customized}
-                    <br>
-                    <img src="{$field.image.small.url}" loading="lazy">
-                    <a class="remove-image" href="{$field.remove_image_url}" rel="nofollow">{l s='Remove Image' d='Shop.Theme.Actions'}</a>
-                  {/if}
-                  <span class="custom-file">
-                    <span class="js-file-name">{l s='No selected file' d='Shop.Forms.Help'}</span>
-                    <input class="file-input js-file-input" {if $field.required} required {/if} type="file" name="{$field.input_name}">
-                    <button class="btn btn-primary">{l s='Choose file' d='Shop.Theme.Actions'}</button>
-                  </span>
-                  <small class="float-xs-right">{l s='.png .jpg .gif' d='Shop.Forms.Help'}</small>
+          {foreach from=$customizations.fields item="field"}
+            <div class="product-customization-item mb-3">
+              <label  class="form-label">{$field.label}</label>
+
+              {if $field.type == 'text'}
+                <textarea placeholder="{l s='Your message here' d='Shop.Forms.Help'}" class="form-control product-message" maxlength="250" {if $field.required} required {/if} name="{$field.input_name}"></textarea>
+                <div class="form-text">{l s='250 char. max' d='Shop.Forms.Help'}</div>
+                {if $field.text !== ''}
+                  <div class="card card-body mt-2 bg-light">
+                    <h6 class="customization-message">{l s='Your customization:' d='Shop.Theme.Catalog'}</h6>
+                    <p>{$field.text}</p>
+                  </div>
                 {/if}
-              </li>
-            {/foreach}
-          </ul>
+              {elseif $field.type == 'image'}
+                {if $field.is_customized}
+                  <br>
+                  <img src="{$field.image.small.url}" loading="lazy">
+                  <a class="remove-image" href="{$field.remove_image_url}" rel="nofollow">{l s='Remove Image' d='Shop.Theme.Actions'}</a>
+                {/if}
+                <input class="form-control file-input js-file-input" {if $field.required} required {/if} type="file" name="{$field.input_name}">
+                <div class="form-text">{l s='.png .jpg .gif' d='Shop.Forms.Help'}</div>
+              {/if}
+
+            </div>
+          {/foreach}
           <div>
             <button class="btn btn-primary float-xs-right" type="submit" name="submitCustomizedData">{l s='Save Customization' d='Shop.Theme.Actions'}</button>
           </div>

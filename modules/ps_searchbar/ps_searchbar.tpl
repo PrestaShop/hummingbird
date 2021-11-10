@@ -32,16 +32,18 @@
       <i class="material-icons clear" aria-hidden="true">clear</i>
     </form>
 
-    <ul class="search-widgets__dropdown js-search-dropdown d-none">
-    </ul>
+    <div class="search-widgets__dropdown js-search-dropdown d-none">
+      <ul class="search-widgets__results js-search-results">
+      </ul>
+    </div>
   </div>
 </div>
 
 <template id="search-products" class="js-search-template">
-  <li class="search-template__product">
-    <a class="search-template__link" href="">
-      <img src="" alt="" class="search-template__image">
-      <p class="search-template__name"></p>
+  <li class="search-result">
+    <a class="search-result__link" href="">
+      <img src="" alt="" class="search-result__image">
+      <p class="search-result__name"></p>
     </a>
   </li>
 </template>

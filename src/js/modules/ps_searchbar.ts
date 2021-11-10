@@ -30,6 +30,7 @@ const initSearchbar = () => {
   const searchCanvas = <HTMLElement>document.querySelector('.js-search-offcanvas');
   const searchWidget = <HTMLElement>document.querySelector('.js-search-widget');
   const searchDropdown = <HTMLElement>document.querySelector('.js-search-dropdown');
+  const searchResults = <HTMLElement>document.querySelector('.js-search-results');
   const searchTemplate = <HTMLTemplateElement>document.querySelector('.js-search-template');
   const searchInput: HTMLInputElement | null = document.querySelector('.js-search-input');
   const searchUrl = <string>searchWidget.dataset.searchControllerUrl;
@@ -52,12 +53,12 @@ const initSearchbar = () => {
           productTitle.innerHTML = e.name;
           productImage.src = e.cover.small.url;
 
-          searchDropdown.append(product);
+          searchResults.append(product);
         })
 
         searchDropdown.classList.remove('d-none')
       }else {
-        searchDropdown.innerHTML = '';
+        searchResults.innerHTML = '';
         searchDropdown.classList.add('d-none')
       }
     }, 250))

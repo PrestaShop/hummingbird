@@ -40,34 +40,46 @@
 {/function}
 
 {function name="mobileMenu" nodes=[] depth=0 parent=null}
+    {$children = []}
     {if $nodes|count}
-      <ul class="menu menu--mobile{if $depth == 0} menu--current js-menu-current{else} menu--child js-menu-child{/if}"{if $depth == 0} id="menu-mobile"{/if} data-depth="{$depth}">
-        {foreach from=$nodes item=node}
-            <li class="{$node.type}{if $node.current} current {/if}{if $node.children|count} menu--childrens{/if}" id="{$node.page_identifier}">
-            {assign var=_counter value=$_counter+1}
-              <a
-                class="{if $depth>= 0}menu__link{/if}"
-                href="{$node.url}" data-depth="{$depth}"
-                {if $node.open_in_new_window} target="_blank" {/if}
-             >
-                {$node.label}
-              </a>
+      <nav class="menu menu--mobile{if $depth == 0} menu--current js-menu-current{else} menu--child js-menu-child{/if}"{if $depth == 0} id="menu-mobile"{else} data-parent-title="{$parent.label}"{/if}{if $depth > 1} data-back-title="{$backTitle}" data-id="{$expandId}"{/if} data-depth="{$depth}">
+        <ul class="menu__list">
+          {if $depth >= 1} 
+            <li class="main-menu__title h5">{$parent.label}</li>
+          {/if}
+          {foreach from=$nodes item=node}
+              <li class="{$node.type}{if $node.current} current {/if}{if $node.children|count} menu--childrens{/if}" id="{$node.page_identifier}">
+              {assign var=_counter value=$_counter+1}
+                <a
+                  class="{if $depth>= 0}menu__link{/if}"
+                  href="{$node.url}" data-depth="{$depth}"
+                  {if $node.open_in_new_window} target="_blank" {/if}
+               >
+                  {$node.label}
+                </a>
 
-              {if $node.children|count}
-                {* Cannot use page identifier as we can have the same page several times *}
-                {assign var=_expand_id value=10|mt_rand:100000}
-                <span class="main-menu__toggle-child js-menu-open-child">
-                  <span data-target="#top_sub_menu_{$_expand_id}">
-                    <i class="material-icons">chevron_right</i>
+                {if $node.children|count}
+                  {* Cannot use page identifier as we can have the same page several times *}
+                  {assign var=_expand_id value=10|mt_rand:100000}
+                  <span class="main-menu__toggle-child js-menu-open-child" data-target="{$_expand_id}">
+                    <span data-target="#top_sub_menu_{$_expand_id}">
+                      <i class="material-icons">chevron_right</i>
+                    </span>
                   </span>
-                </span>
-              {/if}
+                {/if}
+              </li>
               {if $node.children|count}
-                {mobileMenu nodes=$node.children depth=$node.depth parent=$node}
+                {$node.parent = $parent}
+                {$node.expandId = $_expand_id}
+                {$children[] = $node}
               {/if}
-            </li>
-        {/foreach}
-      </ul>
+          {/foreach}
+        </ul>
+      </nav>
+
+      {foreach from=$children item=child}
+        {mobileMenu nodes=$child.children depth=$child.children[0].depth parent=$child backTitle=$child.parent.label expandId=$child.expandId}
+      {/foreach}
     {/if}
 {/function}
 
@@ -93,7 +105,6 @@
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
-  <p class="main-menu__title h5 js-menu-title js-hidden" id="mobileMenuLabel"></p>
 
   <div class="main-menu__mobile">
     {mobileMenu nodes=$menu.children}

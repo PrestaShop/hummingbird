@@ -26,25 +26,18 @@
 const initMobileMenu = () => {
   const openChildsButtons = document.querySelectorAll('.js-menu-open-child');
   const backTitle = <Element>document.querySelector('.js-menu-back-title');
-  const menuTitle = <Element>document.querySelector('.js-menu-title');
   const backButton = <Element>document.querySelector('.js-back-button');
   const menuCanvas = <Element>document.querySelector('.js-menu-canvas');
   const defaultBackTitle = backTitle.innerHTML;
-  let defaultTitle = menuTitle.innerHTML;
 
   const backToParent = () => {
     const currentMenu = <HTMLElement>document.querySelector('.menu--current');
     const currentDepth = Number(currentMenu.dataset.depth);
-    const currentParent = document.querySelector(`.menu--parent[data-depth="${currentDepth - 1}"]`)
+    const currentParent = <HTMLElement>document.querySelector(`.menu--parent[data-depth="${currentDepth === 2 ? 0 : currentDepth - 1}"]`)
 
-    if (currentDepth === 1) {
-      backTitle.innerHTML = defaultBackTitle;
-      menuTitle.innerHTML = defaultTitle;
-      menuTitle.classList.toggle('js-hidden');
+    if (currentDepth === 2) {
       backButton.classList.add('d-none');
-    } else {
-      menuTitle.innerHTML = defaultTitle;
-    }
+    } 
 
     if (currentMenu) {
       currentMenu.classList.remove('js-menu-current');
@@ -52,6 +45,12 @@ const initMobileMenu = () => {
     }
 
     if (currentParent) {
+      if(currentDepth > 3) {
+        backTitle.innerHTML = <string>currentParent.dataset.backTitle;
+      }else {
+        backTitle.innerHTML = defaultBackTitle
+      }
+
       currentParent.classList.add('js-menu-current');
       currentParent.classList.add('menu--current');
       currentParent.classList.remove('menu--parent');
@@ -73,9 +72,9 @@ const initMobileMenu = () => {
 
   openChildsButtons.forEach((button: Element): void => {
     button.addEventListener('click', () => {
-      const currentMenu = document.querySelector('.js-menu-current');
-
-      menuTitle.classList.remove('js-hidden');
+      const currentMenu = <HTMLElement>document.querySelector('.js-menu-current');
+      let currentDepth = Number(currentMenu.dataset.depth);
+      const currentButton = <HTMLElement>button;
 
       if (currentMenu) {
         currentMenu.classList.remove('js-menu-current');
@@ -83,10 +82,12 @@ const initMobileMenu = () => {
         currentMenu.classList.add('menu--parent');
       }
 
-      const child = button.nextElementSibling;
-      defaultTitle = menuTitle.innerHTML;
-      menuTitle.innerHTML = <string>button.previousElementSibling?.innerHTML;
+      const child = <HTMLElement>document.querySelector(`.menu[data-id="${currentButton.dataset.target}"]`);
       backButton.classList.remove('d-none');
+
+      if(currentDepth >= 1) {
+        backTitle.innerHTML = <string>child.dataset.backTitle;
+      }
 
       if (child) {
         child.classList.add('js-menu-current');

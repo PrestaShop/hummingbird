@@ -63,7 +63,7 @@ const initMobileMenu = () => {
     let currentDepth = Number(currentMenu.dataset.depth);
 
     if(currentDepth !== 0) {
-      while(currentDepth > 0) {
+      while(currentDepth >= 2) {
         backToParent();
 
         currentDepth = currentDepth - 1;

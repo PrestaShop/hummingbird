@@ -72,10 +72,6 @@ $component-name: main-menu;
   &__offcanvas {
     overflow: hidden;
 
-    .offcanvas-header {
-      min-height: 3.5625rem;
-    }
-
     .contact-link {
       display: block;
       margin-bottom: 1rem;

@@ -52,10 +52,10 @@
 
       <section class="form-fields">
 
-        <div class="form-group row">
-          <label class="col-md-3 form-control-label">{l s='Product' d='Shop.Forms.Labels'}</label>
+        <div class="mb-3 row">
+          <label class="col-md-3 form-label">{l s='Product' d='Shop.Forms.Labels'}</label>
           <div class="col-md-5">
-            <select name="id_product" class="form-control form-control-select">
+            <select name="id_product" class="form-select">
               <option value="0">{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
               {foreach from=$order.products item=product}
                 <option value="{$product.id_product}">{$product.name}</option>
@@ -64,8 +64,8 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-md-3 form-control-label"></label>
+        <div class="mb-3 row">
+          <label class="col-md-3 form-label"></label>
           <div class="col-md-9">
             <textarea rows="3" name="msgText" class="form-control"></textarea>
           </div>

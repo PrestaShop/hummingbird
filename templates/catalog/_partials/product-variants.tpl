@@ -33,7 +33,7 @@
       </span>
       {if $group.group_type == 'select'}
         <select
-          class="form-control form-control-select"
+          class="form-select"
           id="group_{$id_attribute_group}"
           aria-label="{$group.name}"
           data-product-attribute="{$id_attribute_group}"

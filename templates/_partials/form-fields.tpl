@@ -41,7 +41,7 @@
       {if $field.type === 'select'}
 
         {block name='form_field_item_select'}
-          <select class="form-control form-control-select" name="{$field.name}" {if $field.required}required{/if}>
+          <select class="form-select" name="{$field.name}" {if $field.required}required{/if}>
             <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
             {foreach from=$field.availableValues item="label" key="value"}
               <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
@@ -53,7 +53,7 @@
 
         {block name='form_field_item_country'}
           <select
-          class="form-control form-control-select js-country"
+          class="form-select js-country"
           name="{$field.name}"
           {if $field.required}required{/if}
          >
@@ -127,9 +127,9 @@
             prefix=false
             reverse_years=true
             field_separator='<br>'
-            day_extra='class="form-control form-control-select"'
-            month_extra='class="form-control form-control-select"'
-            year_extra='class="form-control form-control-select"'
+            day_extra='class="form-select"'
+            month_extra='class="form-select"'
+            year_extra='class="form-select"'
             day_empty={l s='-- day --' d='Shop.Forms.Labels'}
             month_empty={l s='-- month --' d='Shop.Forms.Labels'}
             year_empty={l s='-- year --' d='Shop.Forms.Labels'}

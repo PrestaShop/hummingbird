@@ -49,8 +49,8 @@
     </header>
 
     <section class="form-fields">
-      <div class="form-group center-email-fields">
-        <label class="col-md-3 form-control-label required">{l s='Email address' d='Shop.Forms.Labels'}</label>
+      <div class="mb-3 center-email-fields">
+        <label class="col-md-3 form-label required">{l s='Email address' d='Shop.Forms.Labels'}</label>
         <div class="col-md-5 email">
           <input type="email" name="email" id="email" value="{if isset($smarty.post.email)}{$smarty.post.email|stripslashes}{/if}" class="form-control" required>
         </div>

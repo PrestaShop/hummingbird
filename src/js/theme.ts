@@ -24,7 +24,7 @@
  */
 /* eslint-disable */
 // @ts-ignore
-import $ from "expose-loader?exposes=$,jQuery!jquery";
+//import $ from "expose-loader?exposes=$,jQuery!jquery";
 
 import './prestashop';
 import 'bootstrap/dist/js/bootstrap.min';

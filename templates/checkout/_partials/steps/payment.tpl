@@ -95,29 +95,22 @@
     </p>
 
     <form id="conditions-to-approve" class="js-conditions-to-approve" method="GET">
-      <ul>
+
         {foreach from=$conditions_to_approve item="condition" key="condition_name"}
-          <li>
-            <div class="float-xs-left">
-              <span class="custom-checkbox">
-                <input  id    = "conditions_to_approve[{$condition_name}]"
-                        name  = "conditions_to_approve[{$condition_name}]"
-                        required
-                        type  = "checkbox"
-                        value = "1"
-                        class = "ps-shown-by-js"
-               >
-                <span><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
-              </span>
-            </div>
-            <div class="condition-label">
-              <label class="js-terms" for="conditions_to_approve[{$condition_name}]">
-                {$condition nofilter}
-              </label>
-            </div>
-          </li>
+          <div class="mb-3 form-check">
+            <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
+              {$condition nofilter}
+            </label>
+            <input  id    = "conditions_to_approve[{$condition_name}]"
+                    name  = "conditions_to_approve[{$condition_name}]"
+                    required
+                    type  = "checkbox"
+                    value = "1"
+                    class = "ps-shown-by-js form-check-input"
+            >
+          </div>
         {/foreach}
-      </ul>
+
     </form>
   {/if}
 
@@ -127,7 +120,7 @@
 
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
-      <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
+      <button type="submit" class="btn btn-success center-block{if !$selected_payment_option} disabled{/if}">
         {l s='Place order' d='Shop.Theme.Checkout'}
       </button>
       {if $show_final_summary}

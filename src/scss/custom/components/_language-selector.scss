@@ -1,4 +1,4 @@
-$componentName: currency-selector;
+$componentName: language-selector;
 
 .#{$componentName} {
   display: flex;
@@ -6,6 +6,10 @@ $componentName: currency-selector;
 
   > span {
     margin-right: 0.5rem;
+  }
+
+  i.expand-more {
+    color: $default-icon-color;
   }
 
   @include media-breakpoint-down(md) {

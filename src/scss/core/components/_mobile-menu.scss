@@ -63,11 +63,9 @@ $component-name: main-menu;
       top: 3rem; 
     }
 
-    #contact-link {
-      a {
-        display: block;
-        padding: 1rem 0;
-      }
+    .contact-link {
+      display: block;
+      margin-bottom: 1rem;
     }
   }
 
@@ -100,6 +98,10 @@ $component-name: main-menu;
 
     @include media-breakpoint-down(md) {
       padding: 0.75rem;
+    }
+
+    i {
+      color: $gray-second;
     }
   }
 

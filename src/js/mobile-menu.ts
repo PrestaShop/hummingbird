@@ -30,7 +30,7 @@ const initMobileMenu = () => {
   const backButton = <Element>document.querySelector('.js-back-button');
   const menuCanvas = <Element>document.querySelector('.js-menu-canvas');
   const defaultBackTitle = backTitle.innerHTML;
-  const defaultTitle = menuTitle.innerHTML;
+  let defaultTitle = menuTitle.innerHTML;
 
   const backToParent = () => {
     const currentMenu = <HTMLElement>document.querySelector('.menu--current');
@@ -42,6 +42,8 @@ const initMobileMenu = () => {
       menuTitle.innerHTML = defaultTitle;
       menuTitle.classList.toggle('js-hidden');
       backButton.classList.add('d-none');
+    } else {
+      menuTitle.innerHTML = defaultTitle;
     }
 
     if (currentMenu) {
@@ -82,7 +84,7 @@ const initMobileMenu = () => {
       }
 
       const child = button.nextElementSibling;
-
+      defaultTitle = menuTitle.innerHTML;
       menuTitle.innerHTML = <string>button.previousElementSibling?.innerHTML;
       backButton.classList.remove('d-none');
 

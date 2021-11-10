@@ -10,11 +10,11 @@ $component-name: breadcrumb;
 
   &[data-depth="1"] {
     display: none;
-  }
+  }    
+}
 
-  @include media-breakpoint-down(md) {
-    &-item:last-child {
-      display: none;
-    }
+@include media-breakpoint-down(md) {
+  .page-product .breadcrumb-item:last-child {
+    display: none;
   }
 }

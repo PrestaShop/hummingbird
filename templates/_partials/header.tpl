@@ -48,7 +48,7 @@
         <div id="_mobile_logo" class="logo logo-mobile"></div>
 
         <div class="search__mobile hide-on-desktop">
-          <button class="search__mobile__toggler btn btn-unstyle d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
+          <button class="search__mobile__toggler btn d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
             <span class="material-icons">search</span>  
           </button>
 

@@ -11,3 +11,27 @@
   display: flex;
   flex-wrap: nowrap;
 }
+
+@media screen and (min-width: 576px) {
+  .container--limited-sm {
+    max-width: 540px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container--limited-md {
+    max-width: 720px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container--limited-lg {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container--limited-xl {
+    max-width: 1140px;
+  }
+}

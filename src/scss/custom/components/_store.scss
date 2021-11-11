@@ -5,7 +5,23 @@ $component-name: store;
 
   .card {
     border: 1px solid $primary-color;
+    height: 100%;
+  }
+
+  .card-body, .card-footer {
     padding: 1.5rem;
+  }
+
+  .store__contacts {
+    margin-bottom: 0;
+
+    li:not(:last-child) {
+      margin-bottom: 0.3rem;
+    }
+
+    i {
+      margin-right: 0.4rem;
+    }
   }
 
   img {
@@ -24,6 +40,10 @@ $component-name: store;
 
     th, td {
       line-height: 1.75rem;
+    }
+
+    th {
+      padding-right: 1.6rem;
     }
   }
 }

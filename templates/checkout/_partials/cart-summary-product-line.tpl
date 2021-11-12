@@ -57,7 +57,7 @@
         </ul>
       {/block}
 
-      <span class="product-price float-xs-right">{$product.price}</span>
+      <span class="product-price float-end">{$product.price}</span>
     </div>
     {hook h='displayProductPriceBlock' product=$product type="unit_price"}
     <br/>

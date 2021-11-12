@@ -50,7 +50,7 @@
               data-id-customization   	  = "{$product.id_customization|escape:'javascript'}"
          >
             {if empty($product.is_gift)}
-              <i class="material-icons float-xs-left">delete</i>
+              <i class="material-icons float-start">delete</i>
             {/if}
           </a>
 

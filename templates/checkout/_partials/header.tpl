@@ -36,11 +36,11 @@
         </div>
         <div class="d-none d-sm-block d-md-none text-sm-center mobile">
           {hook h='displayNav2'}
-          <div class="float-xs-left" id="menu-icon">
+          <div class="float-start" id="menu-icon">
             <i class="material-icons">&#xE5D2;</i>
           </div>
-          <div class="float-xs-right" id="_mobile_cart"></div>
-          <div class="float-xs-right" id="_mobile_user_info"></div>
+          <div class="float-end" id="_mobile_cart"></div>
+          <div class="float-end" id="_mobile_user_info"></div>
           <div class="top-logo" id="_mobile_logo"></div>
           <div></div>
         </div>

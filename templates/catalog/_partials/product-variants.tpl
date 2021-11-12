@@ -54,7 +54,7 @@
                   {elseif $group_attribute.html_color_code}
                     class="color" style="background-color: {$group_attribute.html_color_code}"
                   {/if}
-               ><span class="attribute-name sr-only">{$group_attribute.name}</span></span>
+               ><span class="attribute-name visually-hidden">{$group_attribute.name}</span></span>
               </label>
             </li>
           {/foreach}

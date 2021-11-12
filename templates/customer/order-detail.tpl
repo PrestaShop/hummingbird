@@ -82,7 +82,7 @@
   {block name='order_history'}
     <section id="order-history" class="box">
       <h3>{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h3>
-      <table class="table table-striped table-bordered table-labeled hidden-xs-down">
+      <table class="table table-striped table-bordered table-labeled d-none d-sm-block">
         <thead class="thead-default">
           <tr>
             <th>{l s='Date' d='Shop.Theme.Global'}</th>
@@ -102,7 +102,7 @@
           {/foreach}
         </tbody>
       </table>
-      <div class="hidden-sm-up history-lines">
+      <div class="d-block d-md-none history-lines">
         {foreach from=$order.history item=state}
           <div class="history-line">
             <div class="date">{$state.history_date}</div>

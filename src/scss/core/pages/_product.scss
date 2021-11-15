@@ -5,12 +5,21 @@
 
   #product-images {
     .carousel-inner {
-      @extend .col-md-9;
+     // @extend .col-md-9;
     }
   }
 
   .product-thumbnails-container {
-    margin-right: 2rem;
+    //margin-right: 2rem;
+    @include media-breakpoint-down(lg) {
+      order: 1;
+      .product-thumbnails{
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
 
     img {
       width: auto;

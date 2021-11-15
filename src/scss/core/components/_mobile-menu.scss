@@ -1,33 +1,36 @@
 $component-name: main-menu;
 
 @keyframes fromLeft {
-    from { transform: translateX(-100%); }
-      to { transform: translateX(0); }
+  from { transform: translateX(-100%); }
+
+  to { transform: translateX(0); }
 }
 
 @keyframes fromRight {
-    from { transform: translateX(100%); }
-      to { transform: translateX(0); }
+  from { transform: translateX(100%); }
+
+  to { transform: translateX(0); }
 }
 
 .#{$component-name} {
   &__mobile {
     position: relative;
     height: 100%;
-    overflow-y: auto;
     overflow-x: hidden;
+    overflow-y: auto;
     clip-path: inset(0 0 0 0);
 
     .menu {
-      width: 100%;
-      display: none;
-      transition: 0.25s ease-out;
-      padding: 0.5rem;
-      max-width: 25rem;
       position: relative;
       left: 100%;
+      display: none;
+      width: 100%;
+      max-width: 25rem;
+      padding: 0.5rem;
+      transition: 0.25s ease-out;
 
-      li:not(.h5), a {
+      li:not(.h5),
+      a {
         color: $gray-second;
       }
 
@@ -36,22 +39,26 @@ $component-name: main-menu;
         padding: 0.5rem;
       }
 
-      .menu--current, &.menu--current {
-        display: block;
+      .menu--current,
+      &.menu--current {
         left: 0;
+        display: block;
       }
 
-      .menu--fromLeft, &.menu--fromLeft {
+      .menu--fromLeft,
+      &.menu--fromLeft {
         animation: fromLeft 0.25s;
       }
 
-      .menu--fromRight, &.menu--fromRight {
+      .menu--fromRight,
+      &.menu--fromRight {
         animation: fromRight 0.25s;
       }
 
-      .menu--parent, &.menu--parent {
-        display: none;
+      .menu--parent,
+      &.menu--parent {
         left: -100%;
+        display: none;
         opacity: 0;
       }
 
@@ -62,13 +69,13 @@ $component-name: main-menu;
       }
     }
   }
-  
+
   &__title {
-    font-size: 1.25rem;
     padding: 0 0.5rem;
+    font-size: 1.25rem;
     color: $gray-dark;
   }
-  
+
   &__offcanvas {
     overflow: hidden;
 

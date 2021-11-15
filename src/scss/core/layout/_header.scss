@@ -13,16 +13,17 @@ $componentName: header;
       justify-content: flex-end;
     }
 
-    &__right, &__left {
+    &__right,
+    &__left {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .form-select {
-      border: none;
       padding-right: 1.5rem;
       background-position: right 0 center;
+      border: none;
 
       option {
         text-align: right;
@@ -40,8 +41,8 @@ $componentName: header;
       justify-content: space-between;
 
       .logo-mobile {
-        margin-right: auto;
         flex-shrink: 1;
+        margin-right: auto;
       }
     }
 

@@ -10,7 +10,7 @@ $component-name: breadcrumb;
 
   &[data-depth="1"] {
     display: none;
-  }    
+  }
 }
 
 @include media-breakpoint-down(md) {

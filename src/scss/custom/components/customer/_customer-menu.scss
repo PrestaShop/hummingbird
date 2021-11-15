@@ -17,10 +17,12 @@ $componentName: account-menu;
     }
   }
 
-  & &__line, a {
+  & &__line,
+  a {
     &:hover,
     &.active {
-      .#{$componentName}__link, & {
+      .#{$componentName}__link,
+      & {
         font-weight: 600;
 
         &,

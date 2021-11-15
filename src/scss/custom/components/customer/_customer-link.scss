@@ -1,23 +1,24 @@
 $component-name: customer-link;
 
 .#{$component-name} {
-  &__link, a {
+  &__link,
+  a {
     display: block;
 
     span {
-      background: $gray-lighter-second;
-      padding: 1.25rem 1rem;
-      border-radius: $border-radius;
       display: flex;
       flex-direction: column;
-      color: $gray-dark;
+      padding: 1.25rem 1rem;
       font-size: 1rem;
       font-weight: 600;
+      color: $gray-dark;
+      background: $gray-lighter-second;
+      border-radius: $border-radius;
       transition: 0.25s ease-out;
 
       &:hover {
-        background: $primary;
         color: $white;
+        background: $primary;
 
         i {
           color: $white;
@@ -31,14 +32,14 @@ $component-name: customer-link;
       }
 
       i {
+        margin-bottom: 0.75rem;
         font-size: 2rem;
         color: $gray-second;
-        margin-bottom: 0.75rem;
         transition: 0.25s ease-out;
 
         @include media-breakpoint-down(md) {
-          margin-bottom: 0;
           margin-right: 0.75rem;
+          margin-bottom: 0;
         }
       }
     }
@@ -50,7 +51,8 @@ $component-name: customer-link;
     justify-content: center;
     margin-top: 1rem;
 
-    i, & {
+    i,
+    & {
       color: $danger;
     }
   }

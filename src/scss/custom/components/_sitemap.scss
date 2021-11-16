@@ -1,0 +1,21 @@
+$component-name: sitemap;
+
+.#{$component-name} {
+  ul a {
+    padding: 0.2rem 0;
+    display: block;
+    color: $gray-dark;
+  }
+  
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  li > ul {
+    margin-left: 1rem;
+
+    a {
+      color: $gray-second;
+    }
+  }
+}

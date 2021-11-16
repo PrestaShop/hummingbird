@@ -31,52 +31,54 @@
 {block name='page_content_container'}
   <section id="content" class="page-content page-stores row">
     {foreach $stores as $store}
-      <article id="store-{$store.id}" class="store col col-md-6">
+      <article id="store-{$store.id}" class="store col-md-6 col-lg-4 col-xl-6">
         <div class="card">
-          <div class="store-item-container row">
-            <div class="col col-md-6 store__picture">
-              <img
-                src="{$store.image.bySize.stores_default.url}"
-                {if !empty($store.image.legend)}
-                  alt="{$store.image.legend}"
-                  title="{$store.image.legend}"
-                {else}
-                  alt="{$store.name}"
-                {/if}
-             >
-            </div>
-            <div class="col col-md-6">
-              <div class="store__description">
-                <p class="h6 card-title">{$store.name}</p>
-                <address>{$store.address.formatted nofilter}</address>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-xl-6 store__picture">
+                <img
+                  src="{$store.image.bySize.stores_default.url}"
+                  width="{$store.image.bySize.stores_default.width}"
+                  height="{$store.image.bySize.stores_default.height}"
+                  class="img-fluid"
+                  {if !empty($store.image.legend)}
+                    alt="{$store.image.legend}"
+                    title="{$store.image.legend}"
+                  {else}
+                    alt="{$store.name}"
+                  {/if}
+              >
+              </div>
+              <div class="col-xl-6 store__description">
+                <h2 class="h6 store__name">{$store.name}</h2>
+                <address class="store__address">{$store.address.formatted nofilter}</address>
                 {if $store.note || $store.phone || $store.fax || $store.email}
                   <a data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}"><strong>{l s='About and Contact' d='Shop.Theme.Global'}</strong><i class="material-icons">&#xE409;</i></a>
                 {/if}
+                <hr>
+                <table class="store__opening-times">
+                  {foreach $store.business_hours as $day}
+                  <tr>
+                    <th>{$day.day|truncate:4:'.'}</th>
+                    <td>
+                      <ul>
+                      {foreach $day.hours as $h}
+                        <li>{$h}</li>
+                      {/foreach}
+                      </ul>
+                    </td>
+                  </tr>
+                  {/foreach}
+                </table>
               </div>
-              <table>
-                {foreach $store.business_hours as $day}
-                <tr>
-                  <th>{$day.day|truncate:4:'.'}</th>
-                  <td>
-                    <ul>
-                    {foreach $day.hours as $h}
-                      <li>{$h}</li>
-                    {/foreach}
-                    </ul>
-                  </td>
-                </tr>
-                {/foreach}
-              </table>
             </div>
           </div>
-          <footer id="about-{$store.id}" class="collapse">
-            <div class="store__item-footer">
+          {if $store.note || $store.phone || $store.fax || $store.email}
+            <div class="card-footer store__footer collapse" id="about-{$store.id}">
               {if $store.note}
-                <div class="card-block">
-                  <p class="text-justify">{$store.note}</p>
-                </div>
+                  <p class="store__note text-justify">{$store.note}</p>
               {/if}
-              <ul class="card-block">
+              <ul class="store__contacts">
                 {if $store.phone}
                   <li><i class="material-icons">&#xE0B0;</i>{$store.phone}</li>
                 {/if}
@@ -88,7 +90,7 @@
                 {/if}
               </ul>
             </div>
-          </footer>
+          {/if}
         </div>
       </article>
     {/foreach}

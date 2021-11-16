@@ -1,33 +1,43 @@
 $componentName: subcategories;
 
-.#{$componentName} {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+.subcategory {
 
-  & &-title {
-    font-size: 1.5rem;
+  display: flex;
+  border: 1px  solid $primary-color;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+  height: 100%;
+
+  &__wrapper {
+    margin-bottom: 1rem;
   }
 
-  & &-list {
-    display: flex;
-    align-items: flex-start;
-    padding: 0;
-    margin: 0;
-    margin: -0.25rem;
+  &__image {
+    width: 4rem;
+    flex-shrink: 0;
   }
 
-  & &-item {
-    margin: 0.25rem;
+  &__name {
+    margin-bottom: 0;
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: $gray-dark;
+  }
+
+  @include media-breakpoint-down(md) {
+
+    flex-direction: column;
     text-align: center;
 
-    li {
-      max-width: 10rem;
+    &__name {
+      margin-bottom: 0;
+      margin-left: 0;
     }
-  }
 
-  & &-name {
-    &-link {
-      font-size: 1rem;
+    &__image {
+      margin-bottom: 1rem;
     }
+
   }
 }

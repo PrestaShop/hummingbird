@@ -23,11 +23,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div id="blockcart-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
         <h4 class="modal-title h6 text-sm-center" id="myModalLabel"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Product successfully added to your shopping cart' d='Shop.Theme.Checkout'}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -41,7 +41,7 @@
                     title="{$product.default_image.legend}"
                     alt="{$product.default_image.legend}"
                     loading="lazy"
-                    class="product-image"
+                    class="img-fluid product-image"
                  >
                 {else}
                   <img
@@ -86,7 +86,7 @@
               {/if}
               {hook h='displayCartModalContent' product=$product}
               <div class="cart-content-btn">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Actions'}</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Actions'}</button>
                 <a href="{$cart_url}" class="btn btn-primary"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
               </div>
             </div>

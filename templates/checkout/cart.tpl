@@ -31,7 +31,7 @@
       <div class="cart-grid row">
 
         <!-- Left Block: cart product informations & shpping -->
-        <div class="cart-grid-body col-xs-12 col-lg-8">
+        <div class="cart-grid-body col-lg-8">
 
           <!-- cart products detailed -->
           <div class="card cart-container">
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Right Block: cart subtotal & cart total -->
-        <div class="cart-grid-right col-xs-12 col-lg-4">
+        <div class="cart-grid-right col-lg-4">
           <h2 class="h4">{l s='Order summary' d='Shop.Theme.Checkout'}</h2>
 
           {block name='cart_summary'}
@@ -84,7 +84,10 @@
         </div>
 
       </div>
-  
+ 
     </div>
+
+    {hook h='displayCrossSellingShoppingCart'}
+
   </section>
 {/block}

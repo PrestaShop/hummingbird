@@ -48,6 +48,7 @@ $component-name: checkout;
 
     .content {
       display: none;
+      padding-top: 2rem;
     }
 
     &.-current {
@@ -97,10 +98,6 @@ $component-name: checkout;
       align-items: center;
       justify-content: center;
       margin-top: 1.5rem;
-    }
-
-    .content {
-      padding-top: 2rem;
     }
 
     .order-options {

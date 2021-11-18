@@ -1,6 +1,6 @@
-$componentName: order-confirmation;
+$component-name: order-confirmation;
 
-.#{$componentName} {
+.#{$component-name} {
   &-title {
     display: flex;
     align-items: center;
@@ -15,7 +15,7 @@ $componentName: order-confirmation;
       height: 2.5rem;
       margin-right: 1rem;
       font-size: 2rem;
-      color: white;
+      color: $white;
       background-color: $done;
       border-radius: 100%;
     }

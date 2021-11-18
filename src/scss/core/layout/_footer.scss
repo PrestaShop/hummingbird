@@ -1,8 +1,8 @@
-$componentName: footer;
+$component-name: footer;
 
-.#{$componentName} {
+.#{$component-name} {
   .title {
-    &[aria-expanded="true"] {
+    &[aria-expanded='true'] {
       .material-icons.add {
         display: none;
       }
@@ -12,7 +12,7 @@ $componentName: footer;
       }
     }
 
-    &[aria-expanded="false"] {
+    &[aria-expanded='false'] {
       .material-icons.add {
         display: inline-block;
       }

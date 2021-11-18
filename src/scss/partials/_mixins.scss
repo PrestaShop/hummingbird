@@ -2,7 +2,7 @@
   form {
     position: relative;
 
-    input[type="text"] {
+    input[type='text'] {
       min-width: 255px;
       padding: 10px;
       color: $gray;
@@ -20,7 +20,7 @@
       }
     }
 
-    button[type="submit"] {
+    button[type='submit'] {
       position: absolute;
       right: 0.125rem;
       bottom: 0.3125rem;

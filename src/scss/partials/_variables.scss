@@ -4,11 +4,9 @@ $gray-darker: #232323;
 $gray: #7a7a7a;
 $gray-second: #697180;
 $gray-light: #f6f6f6;
-$gray-light-second: #dbdbdb;
 $gray-lighter: #f6f6f6;
 $gray-lighter-second: #f7f7f7;
 $light-gray: #b3c7cd;
-$border-gray: #ddd;
 
 $primary: #5434d0;
 $primary-dark: #011638;
@@ -21,32 +19,11 @@ $success: #4cbb6c;
 $warning: #ff9a52;
 $danger: #ff4c4c;
 
-$current-step-color: #00c062;
-$label-color: $gray-darker;
-
-$btn-primary-color: $white;
-$btn-primary-bg: $primary;
-$btn-primary-border: transparent;
-$btn-secondary-color: $gray-darker;
-$btn-secondary-bg: $gray-lighter;
-$btn-secondary-border: transparent;
 $btn-border-radius: 4px;
-$btn-disabled-background: #f6f6f6;
-$btn-disabled-color: #ddd;
 
 $input-border-color: $light-gray;
-$input-background-color: #fafbfc;
 $border-radius: 8px;
-$warning: #ff9a52;
-$warning-second: #f49d6e;
-$warning-hover: #fde7bb;
-$alert-warning-bg: rgba(255, 154, 82, 0.3);
-$alert-warning-border: $warning;
-$alert-warning-text: $gray-darker;
-$btn-warning-bg: $warning;
-$btn-warning-color: $white;
 $btn-tertiary-color: #6c868e;
-$btn-tertiary-hover: #bbcdd2;
 $base-font-size: 1rem;
 $text-muted: $gray;
 $radio-border-color: #979797;
@@ -70,12 +47,12 @@ $slider-description-size: 1rem;
 // Emailsubscriptions
 $email-input-color: $light-gray;
 
-@import "variables/badges";
-@import "variables/card";
-@import "variables/breadcrumb";
-@import "variables/carousel";
-@import "variables/inputs";
-@import "variables/nav";
-@import "variables/forms";
-@import "variables/accordion";
-@import "variables/headings";
+@import 'variables/badges';
+@import 'variables/card';
+@import 'variables/breadcrumb';
+@import 'variables/carousel';
+@import 'variables/inputs';
+@import 'variables/nav';
+@import 'variables/forms';
+@import 'variables/accordion';
+@import 'variables/headings';

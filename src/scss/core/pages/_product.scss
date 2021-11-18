@@ -14,7 +14,7 @@
     @include media-breakpoint-down(lg) {
       order: 1;
 
-      .product-thumbnails{
+      .product-thumbnails {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;

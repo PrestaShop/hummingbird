@@ -1,27 +1,27 @@
 // Components
-@import "./components/_buttons";
-@import "./components/_slider";
-@import "./components/_breadcrumb";
-@import "./components/product/_product-miniature";
-@import "./components/product/_product-flags";
-@import "./components/_pagination";
-@import "./components/_rich-text";
-@import "./components/_qty-input";
-@import "./components/_mobile-menu";
-@import "./components/_search";
+@import './components/buttons';
+@import './components/slider';
+@import './components/breadcrumb';
+@import './components/product/product-miniature';
+@import './components/product/product-flags';
+@import './components/pagination';
+@import './components/rich-text';
+@import './components/qty-input';
+@import './components/mobile-menu';
+@import './components/search';
 
 // Modules
-@import "./modules/_banner";
-@import "./modules/_featuredproducts";
-@import "./modules/_customtext";
-@import "./modules/_facetedsearch";
-@import "./modules/_shoppingcart";
-@import "./modules/_customersignin";
+@import './modules/banner';
+@import './modules/featuredproducts';
+@import './modules/customtext';
+@import './modules/facetedsearch';
+@import './modules/shoppingcart';
+@import './modules/customersignin';
 
 // Layout
-@import "./layout/_header";
-@import "./layout/_footer";
+@import './layout/header';
+@import './layout/footer';
 
 // Pages
-@import "./pages/_home";
-@import "./pages/_product";
+@import './pages/home';
+@import './pages/product';

@@ -1,9 +1,9 @@
-$componentName: account-menu;
+$component-name: account-menu;
 
-.#{$componentName} {
+.#{$component-name} {
   display: flex;
-  flex-direction: column;
   height: 100%;
+  flex-direction: column;
   border-right: 1px solid $secondary-light;
 
   & &__link,
@@ -21,7 +21,7 @@ $componentName: account-menu;
   a {
     &:hover,
     &.active {
-      .#{$componentName}__link,
+      .#{$component-name}__link,
       & {
         font-weight: 600;
 
@@ -32,8 +32,8 @@ $componentName: account-menu;
       }
     }
 
-    &.#{$componentName}--signout {
-      .#{$componentName}__link {
+    &.#{$component-name}--signout {
+      .#{$component-name}__link {
         color: $danger;
 
         &,

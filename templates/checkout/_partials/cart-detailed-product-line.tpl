@@ -50,7 +50,7 @@
               data-id-customization   	  = "{$product.id_customization|escape:'javascript'}"
          >
             {if empty($product.is_gift)}
-              <i class="material-icons float-xs-left">delete</i>
+              <i class="material-icons float-start">delete</i>
             {/if}
           </a>
 
@@ -86,9 +86,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
                     <h4 class="modal-title">{l s='Product customization' d='Shop.Theme.Catalog'}</h4>
                   </div>
                   <div class="modal-body">

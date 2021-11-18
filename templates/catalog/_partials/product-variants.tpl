@@ -26,11 +26,11 @@
   {foreach from=$groups key=id_attribute_group item=group}
     {if !empty($group.attributes)}
     <div class="product-variants-item">
-      <span class="control-label">{$group.name}{l s=': ' d='Shop.Theme.Catalog'}
+      <label for="group_{$id_attribute_group}" class="form-label">{$group.name}{l s=': ' d='Shop.Theme.Catalog'}
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
             {if $group_attribute.selected}{$group_attribute.name}{/if}
           {/foreach}
-      </span>
+      </label>
       {if $group.group_type == 'select'}
         <select
           class="form-select"
@@ -43,9 +43,9 @@
           {/foreach}
         </select>
       {elseif $group.group_type == 'color'}
-        <ul id="group_{$id_attribute_group}">
+        <ul id="group_{$id_attribute_group}" class="d-flex">
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
-            <li class="float-xs-left input-container">
+            <li>
               <label aria-label="{$group_attribute.name}">
                 <input class="input-color" type="radio" data-product-attribute="{$id_attribute_group}" name="group[{$id_attribute_group}]" value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} checked="checked"{/if}>
                 <span
@@ -54,7 +54,7 @@
                   {elseif $group_attribute.html_color_code}
                     class="color" style="background-color: {$group_attribute.html_color_code}"
                   {/if}
-               ><span class="attribute-name sr-only">{$group_attribute.name}</span></span>
+               ><span class="attribute-name visually-hidden">{$group_attribute.name}</span></span>
               </label>
             </li>
           {/foreach}
@@ -62,7 +62,7 @@
       {elseif $group.group_type == 'radio'}
         <ul id="group_{$id_attribute_group}">
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
-            <li class="input-container float-xs-left">
+            <li class="input-container float-start">
               <label>
                 <input class="input-radio" type="radio" data-product-attribute="{$id_attribute_group}" name="group[{$id_attribute_group}]" value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} checked="checked"{/if}>
                 <span class="radio-label">{$group_attribute.name}</span>

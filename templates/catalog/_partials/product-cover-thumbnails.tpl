@@ -29,20 +29,20 @@
   data-bs-interval="false"
 >
   {block name='product_images'}
-    <div class="product-thumbnails-container js-qv-mask col-md-2">
+    <div class="product-thumbnails-container js-qv-mask col-12 col-lg-2">
       <ul class="product-thumbnails js-qv-product-images">
         {foreach from=$product.images item=image key=key}
           <li 
             class="thumb-container js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}" 
             data-bs-target="#product-images"
-            data-bs-slide-to="#{$image.id_image}"
+            data-bs-slide-to="{$key}"
             {if $image.id_image == $product.default_image.id_image} 
               aria-current="true"
             {/if}
             aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
          >
             <img
-              class="thumb js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
+              class="img-fluid thumb js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
               data-image-medium-src="{$image.bySize.medium_default.url}"
               data-image-large-src="{$image.bySize.large_default.url}"
               src="{$image.bySize.home_default.url}"
@@ -53,15 +53,14 @@
                 alt="{$product.name}"
               {/if}
               loading="lazy"
-              width="94"
-              height="94"
            >
           </li>
         {/foreach}
       </ul>
     </div>
   {/block}
-  <div class="carousel-inner p-0">
+  <div class="col-12 col-lg-9 offset-lg-1 p-0 h-100">
+  <div class="carousel-inner">
     {include file='catalog/_partials/product-flags.tpl'}
 
     {if $product.images|@count > 1}
@@ -82,7 +81,7 @@
             class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}" 
          >
             <img
-              class="js-qv-product-cover"
+              class="img-fluid"
               src="{$image.bySize.large_default.url}"
               {if !empty($image.legend)}
                 alt="{$image.legend}"
@@ -91,8 +90,6 @@
                 alt="{$product.name}"
               {/if}
               loading="lazy"
-              width="452"
-              height="452"
            >
           </li>
         {/foreach}
@@ -101,13 +98,12 @@
           <img 
             src="{$urls.no_picture_image.bySize.large_default.url}"
             loading="lazy"
-            width="452"
-            height="452"
          >
         </li>
       {/if}
     {/block}
   </div>
+</div>
 </div>
 
 {hook h='displayAfterProductThumbs' product=$product}

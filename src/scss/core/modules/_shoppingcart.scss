@@ -2,10 +2,11 @@
   position: relative;
   color: $gray-dark;
 
-  &, a {
+  &,
+  a {
     display: flex;
-    align-items: center;
     flex-wrap: nowrap;
+    align-items: center;
 
     @include media-breakpoint-up(md) {
       i {
@@ -20,6 +21,7 @@
   }
 
   /* When active, on desktom everything is primary */
+
   /* On mobile, the icon stays the same */
   @include media-breakpoint-up(md) {
     &.active {
@@ -36,28 +38,28 @@
       padding: 0.5rem 0.3rem;
     }
   }
-  
+
   .cart-products-count {
+    display: flex;
+    align-items: center;
     padding: 0.3rem 0.6rem;
-    border-radius: 50rem;
-    background: $gray-lighter;
     margin-left: 0.4rem;
     font-weight: 600;
     line-height: 1;
-    display: flex;
-    align-items: center;
+    background: $gray-lighter;
+    border-radius: 50rem;
   }
-  
+
   @include media-breakpoint-down(md) {
     .cart-products-count {
-        background: $primary;
-        color: $white;
-        font-size: 0.6rem;
-        padding: 0.3rem 0.4rem;
-        border-radius: 50rem;
-        position: absolute;
-        top: 0;
-        right: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0.3rem 0.4rem;
+      font-size: 0.6rem;
+      color: $white;
+      background: $primary;
+      border-radius: 50rem;
     }
   }
 
@@ -65,11 +67,11 @@
     @include media-breakpoint-down(md) {
       padding: 0.5rem 0.3rem;
     }
-    
+
     @include media-breakpoint-down(md) {
       .cart-products-count {
-        background: $gray-lighter;
         color: $gray-dark;
+        background: $gray-lighter;
       }
     }
   }

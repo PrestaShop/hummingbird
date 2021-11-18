@@ -37,7 +37,7 @@
     <div>
       <form method="GET" action="{$urls.pages.order}">
         <button
-          class="continue btn btn-primary float-xs-right"
+          class="continue btn btn-primary float-end"
           name="controller"
           type="submit"
           value="order"

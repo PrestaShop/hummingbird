@@ -24,7 +24,7 @@
  *}
 <div class="product-add-to-cart js-product-add-to-cart">
   {if !$configuration.is_catalog}
-    <span class="control-label">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
+    <label for="quantity_wanted" class="form-label">{l s='Quantity' d='Shop.Theme.Catalog'}</label>
 
     {block name='product_quantity'}
       <div class="product-quantity">
@@ -42,7 +42,7 @@
               value="1"
               min="1"
             {/if}
-            class="input-group"
+            class="form-control"
             aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
          >
         </div>

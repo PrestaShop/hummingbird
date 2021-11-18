@@ -13,7 +13,7 @@
                 {if $node.children|count}
                   {* Cannot use page identifier as we can have the same page several times *}
                   {assign var=_expand_id value=10|mt_rand:100000}
-                  <span class="float-xs-right d-none d-sm-block d-md-none">
+                  <span class="float-end d-none d-sm-block d-md-none">
                     <span data-target="#top_sub_menu_{$_expand_id}" data-bs-toggle="collapse" class="navbar-toggler collapse-icons">
                       <i class="material-icons add">&#xE313;</i>
                       <i class="material-icons remove">&#xE316;</i>

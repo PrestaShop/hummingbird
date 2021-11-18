@@ -5,25 +5,35 @@
 
   #product-images {
     .carousel-inner {
-      @extend .col-md-9;
+      // @extend .col-md-9;
     }
   }
 
   .product-thumbnails-container {
-    margin-right: 2rem;
+    //margin-right: 2rem;
+    @include media-breakpoint-down(lg) {
+      order: 1;
+
+      .product-thumbnails{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+    }
 
     img {
       width: auto;
     }
 
     .thumb-container {
-      border-radius: 8px;
-      overflow: hidden;
       max-width: 5.75rem;
       max-height: 5.75rem;
+      overflow: hidden;
+      border-radius: 8px;
 
       &:not(:last-child) {
-        margin-bottom: 1.5rem; 
+        margin-bottom: 1.5rem;
       }
 
       &.active {

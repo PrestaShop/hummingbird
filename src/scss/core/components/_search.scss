@@ -13,10 +13,10 @@ $component-name: search;
   }
 
   &__name {
-    color: $gray-dark;
     margin-bottom: 0;
     margin-left: 1rem;
     font-size: 1rem;
+    color: $gray-dark;
   }
 
   &__image {
@@ -24,12 +24,12 @@ $component-name: search;
     height: auto;
     border-radius: 8px;
   }
-} 
+}
 
 .#{$component-name} {
   &__offcanvas {
-    height: auto;
     bottom: inherit;
+    height: auto;
     border-bottom: 0;
 
     #search_widget {
@@ -37,21 +37,21 @@ $component-name: search;
     }
 
     .offcanvas-header {
-      padding: 0.25rem 1rem; 
+      padding: 0.25rem 1rem;
 
       .btn-close {
-        height: auto;
         width: auto;
-        background: none;
-        color: $gray-second;
+        height: auto;
         margin: 0;
+        color: $gray-second;
+        background: none;
       }
     }
   }
 
   &__mobile__toggler {
     color: $gray-second;
-    
+
     @include media-breakpoint-down(md) {
       padding: 0.5rem 0.3rem;
     }
@@ -72,47 +72,48 @@ $component-name: search;
     &__dropdown {
       position: absolute;
       top: calc(100% + 1rem);
-      background: $white;
-      border-radius: $border-radius;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      right: 0;
       width: 100vw;
       max-width: 30rem;
       overflow: hidden;
-      right: 0;
+      background: $white;
       border: 1px solid $primary-color;
+      border-radius: $border-radius;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
       @include media-breakpoint-down(md) {
-        max-width: inherit;
         top: calc(100% + 0.25rem);
-        left: -1rem;
         right: inherit;
-        border-radius: 0px 0px 8px 8px;
+        left: -1rem;
+        max-width: inherit;
+        border-radius: 0 0 8px 8px;
       }
     }
 
     &__results {
       max-height: 20rem;
-      overflow-y: scroll;
       padding: 0.5rem 1rem;
       padding-right: 1.5rem;
       margin: 0;
+      overflow-y: scroll;
     }
   }
 }
 
-.header__bottom, .#{$component-name}__offcanvas {
+.header__bottom,
+.#{$component-name}__offcanvas {
   #search_widget {
     overflow: visible;
 
     input {
-      border-radius: 100rem;
-      background: $gray-light;
       padding-right: 2.5rem;
       padding-left: 1.5rem;
+      background: $gray-light;
+      border-radius: 100rem;
 
       @include media-breakpoint-down(md) {
-        font-size: 0.9rem;
         padding-right: 4.5rem;
+        font-size: 0.9rem;
       }
     }
 

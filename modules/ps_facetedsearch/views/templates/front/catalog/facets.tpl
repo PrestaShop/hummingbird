@@ -139,7 +139,7 @@
                             {l s='(no filter)' d='Shop.Theme.Global'}
                           {/if}
                         </span>
-                        <i class="material-icons float-xs-right">&#xE5C5;</i>
+                        <i class="material-icons float-end">&#xE5C5;</i>
                       </a>
                       <div class="dropdown-menu">
                         {foreach from=$facet.filters item="filter"}

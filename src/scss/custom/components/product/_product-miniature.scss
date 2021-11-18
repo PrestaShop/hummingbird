@@ -2,14 +2,14 @@ $component-name: product-miniature;
 
 .#{$component-name} {
   margin-bottom: 1.25rem;
-  
+
   .card {
     transition: 0.25s ease-out;
 
     &:hover {
-      filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.1));
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     }
-  } 
+  }
 
   &:hover {
     .#{$component-name}__quickview {
@@ -45,8 +45,8 @@ $component-name: product-miniature;
   }
 
   & &__title {
-    font-size: 1rem;
     margin-bottom: 0;
+    font-size: 1rem;
   }
 
   & &__regular-price {
@@ -61,10 +61,10 @@ $component-name: product-miniature;
     position: absolute;
     top: 0;
     z-index: -1;
-    transition: 0.25s ease-out;
-    background-color: $white;
     width: 100%;
     padding: 0.5rem;
+    background-color: $white;
+    transition: 0.25s ease-out;
   }
 
   & &__quickview_button {
@@ -74,8 +74,8 @@ $component-name: product-miniature;
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
-    border: 0;
     text-decoration: none;
+    border: 0;
 
     .material-icons {
       margin-right: 0.25rem;

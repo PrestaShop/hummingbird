@@ -4,12 +4,14 @@ $component-name: store;
   margin-bottom: 1.5rem;
 
   .card {
-    border: 1px solid $primary-color;
     height: 100%;
+    border: 1px solid $primary-color;
   }
 
-  .card-body, .card-footer {
+  .card-body,
+  .card-footer {
     padding: 1.5rem;
+    border: 1px solid $primary-color;
   }
 
   .store__contacts {
@@ -25,8 +27,8 @@ $component-name: store;
   }
 
   img {
-    border-radius: $border-radius;
     margin-bottom: 1.5rem;
+    border-radius: $border-radius;
   }
 
   address {
@@ -38,7 +40,8 @@ $component-name: store;
       margin: 0;
     }
 
-    th, td {
+    th,
+    td {
       line-height: 1.75rem;
     }
 

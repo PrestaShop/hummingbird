@@ -1,13 +1,13 @@
 $component-name: category-tree;
 
 #left-column {
-  --#{$component-name}-title-color: #{$gray-dark};
+  --#{$component-name}-title-color: #{$gray-800};
   --#{$component-name}-title-size: 1.5rem;
   --#{$component-name}-title-spacing: 1rem;
-  --#{$component-name}-subtitle-color: #{$gray-dark};
+  --#{$component-name}-subtitle-color: #{$gray-800};
   --#{$component-name}-subtitle-size: 1rem;
   --#{$component-name}-subtitle-spacing: 0.25rem;
-  --#{$component-name}-border-bottom: 1px solid #{$secondary-light};
+  --#{$component-name}-border-bottom: 1px solid #{$gray-200};
 }
 
 .#{$component-name} {

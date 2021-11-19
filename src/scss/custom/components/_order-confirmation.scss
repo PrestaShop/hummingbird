@@ -25,7 +25,7 @@ $component-name: order-confirmation;
     margin-top: 0.25rem;
     margin-bottom: 2rem;
     font-size: 1rem;
-    color: $gray-dark;
+    color: $gray-800;
   }
 
   &-details {
@@ -36,12 +36,12 @@ $component-name: order-confirmation;
     &-list {
       p {
         font-size: 1rem;
-        color: $gray-dark;
+        color: $gray-800;
       }
 
       ul {
         margin: 1rem 0;
-        background: $gray-light;
+        background: $gray-300;
 
         li {
           display: flex;
@@ -56,7 +56,7 @@ $component-name: order-confirmation;
   &-items {
     padding-bottom: 1rem;
     margin-bottom: 2rem;
-    background: $gray-light;
+    background: $gray-300;
   }
 
   &-item {
@@ -65,13 +65,13 @@ $component-name: order-confirmation;
     &-prices {
       div {
         font-weight: 500;
-        color: $gray-dark;
+        color: $gray-800;
       }
     }
 
     &-title {
       font-weight: 600;
-      color: $gray-dark;
+      color: $gray-800;
     }
   }
 
@@ -79,7 +79,7 @@ $component-name: order-confirmation;
     width: 100%;
 
     .total-value {
-      border-top: 1px solid $secondary-light;
+      border-top: 1px solid $gray-200;
 
       td {
         padding-top: 1.5rem;
@@ -87,7 +87,7 @@ $component-name: order-confirmation;
     }
 
     tr:first-of-type {
-      border-top: 1px solid $secondary-light;
+      border-top: 1px solid $gray-200;
 
       td {
         padding-top: 1.5rem;
@@ -99,7 +99,7 @@ $component-name: order-confirmation;
 
       &:last-of-type {
         font-weight: 500;
-        color: $gray-dark;
+        color: $gray-800;
         text-align: right;
       }
     }

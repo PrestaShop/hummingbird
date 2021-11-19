@@ -4,8 +4,7 @@ html {
 }
 
 body {
-  font-family: Inter, sans-serif;
-  font-size: $base-font-size;
+  font-family: $font-family-base;
   line-height: 1.25em;
   color: $body-color;
   direction: ltr;
@@ -21,7 +20,7 @@ ul {
 p {
   font-size: 0.9375rem;
   font-weight: 400;
-  color: $gray-dark;
+  color: $gray-800;
 }
 
 a {

@@ -1,58 +1,16 @@
-$white: #fff;
-$gray-dark: #363a41;
-$gray-darker: #232323;
-$gray: #7a7a7a;
-$gray-second: #697180;
-$gray-light: #f6f6f6;
-$gray-lighter: #f6f6f6;
-$gray-lighter-second: #f7f7f7;
-$light-gray: #b3c7cd;
+@import "variables/bootstrap/colors";
+@import "variables/bootstrap/fonts";
+@import "variables/prestashop/colors";
+@import "variables/bootstrap/buttons";
+@import "variables/bootstrap/border-radius";
+@import "variables/bootstrap/badges";
+@import "variables/bootstrap/card";
+@import "variables/bootstrap/breadcrumb";
+@import "variables/bootstrap/carousel";
+@import "variables/bootstrap/inputs";
+@import "variables/bootstrap/nav";
+@import "variables/bootstrap/forms";
+@import "variables/bootstrap/accordion";
+@import "variables/bootstrap/headings";
 
-$primary: #5434d0;
-$primary-dark: #011638;
-$primary-color: #dee7ef;
-$secondary: #f39d72;
-$secondary-light: #eaebec;
-$info: #f39d72;
-$done: #70b580;
-$success: #4cbb6c;
-$warning: #ff9a52;
-$danger: #ff4c4c;
-
-$btn-border-radius: 4px;
-
-$input-border-color: $light-gray;
-$border-radius: 8px;
-$btn-tertiary-color: #6c868e;
-$base-font-size: 1rem;
-$text-muted: $gray;
-$radio-border-color: #979797;
-
-// General colors
-$body-color: $gray-dark;
-$default-icon-color: $btn-tertiary-color;
-
-// Footer
-$footer-background-color: $primary-dark;
-$footer-heading-color: $white;
-$footer-text-color: $primary-color;
-
-// Slider
-$slider-text-color: $white;
-$slider-text-spacing: 1rem;
-$slider-title-size: 3rem;
-$slider-subtitle-size: 1.25rem;
-$slider-description-size: 1rem;
-
-// Emailsubscriptions
-$email-input-color: $light-gray;
-
-@import "variables/badges";
-@import "variables/card";
-@import "variables/breadcrumb";
-@import "variables/carousel";
-@import "variables/inputs";
-@import "variables/nav";
-@import "variables/forms";
-@import "variables/accordion";
-@import "variables/headings";
+@import "variables/prestashop/carousel";

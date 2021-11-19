@@ -7,11 +7,11 @@ $component-name: cart;
 
   &-summary {
     padding: 1rem;
-    background-color: $gray-light;
+    background-color: $gray-300;
 
     &-products {
       margin-bottom: 0.75rem;
-      border-bottom: 1px solid $secondary-light;
+      border-bottom: 1px solid $gray-200;
 
       > p {
         padding: 1rem 0;
@@ -19,7 +19,7 @@ $component-name: cart;
 
         &:first-of-type {
           padding-top: 0.5rem;
-          border-bottom: 1px solid $secondary-light;
+          border-bottom: 1px solid $gray-200;
         }
       }
 
@@ -48,7 +48,7 @@ $component-name: cart;
 
           .product-price {
             font-weight: 600;
-            color: $gray-dark;
+            color: $gray-800;
           }
         }
 
@@ -73,7 +73,7 @@ $component-name: cart;
           .value {
             font-size: 1rem;
             font-weight: 400;
-            color: $gray-dark;
+            color: $gray-800;
           }
 
           .product-line-info {
@@ -83,7 +83,7 @@ $component-name: cart;
           .product-name {
             a {
               font-weight: 600;
-              color: $gray-dark;
+              color: $gray-800;
 
               &:hover {
                 opacity: 0.6;
@@ -113,7 +113,7 @@ $component-name: cart;
     &-totals {
       padding-top: 1rem;
       margin-top: 0.75rem;
-      border-top: 1px solid $secondary-light;
+      border-top: 1px solid $gray-200;
 
       span {
         font-weight: 700;
@@ -132,7 +132,7 @@ $component-name: cart;
 
         &.value {
           font-weight: 700;
-          color: $gray-dark;
+          color: $gray-800;
         }
       }
     }
@@ -169,10 +169,10 @@ $component-name: cart;
 
       &-grid {
         padding: 1rem 0;
-        border-bottom: 1px solid $secondary-light;
+        border-bottom: 1px solid $gray-200;
 
         &:first-child {
-          border-top: 1px solid $secondary-light;
+          border-top: 1px solid $gray-200;
         }
 
         &-right {
@@ -184,7 +184,7 @@ $component-name: cart;
 
       &-title {
         font-weight: 600;
-        color: $gray-dark;
+        color: $gray-800;
       }
 
       &-info {

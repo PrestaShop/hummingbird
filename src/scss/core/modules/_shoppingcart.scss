@@ -1,6 +1,6 @@
 .blockcart {
   position: relative;
-  color: $gray-dark;
+  color: $gray-800;
 
   &,
   a {
@@ -17,7 +17,7 @@
   }
 
   i {
-    color: $gray-second;
+    color: $gray-700;
   }
 
   /* When active, on desktom everything is primary */
@@ -46,7 +46,7 @@
     margin-left: 0.4rem;
     font-weight: 600;
     line-height: 1;
-    background: $gray-lighter;
+    background: $gray-100;
     border-radius: 50rem;
   }
 
@@ -70,8 +70,8 @@
 
     @include media-breakpoint-down(md) {
       .cart-products-count {
-        color: $gray-dark;
-        background: $gray-lighter;
+        color: $gray-800;
+        background: $gray-100;
       }
     }
   }

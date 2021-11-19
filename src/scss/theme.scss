@@ -1,9 +1,16 @@
 /* stylelint-disable */
 @import "~bourbon/core/bourbon";
 
-@import "partials/_variables";
+/*
+We need this redundant import on bootstrap to allow customize some at first undeclares vars
+Whitout the first bs import if someone wants to change footer-bg to gray-500 it will throw an error because we dont change the default color
 
+But if we firts BS5 vars first, all vars already exist, then we change some color or whatever and the add again the BS5 to make the changes
+*/
 @import "~bootstrap/scss/bootstrap";
+@import "partials/_variables";
+@import "~bootstrap/scss/bootstrap";
+
 @import "~bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css";
 @import "partials/_mixins";
 @import "partials/_fonts";

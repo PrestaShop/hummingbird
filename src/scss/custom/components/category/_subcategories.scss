@@ -26,9 +26,9 @@ $component-name: subcategories;
   }
 
   @include media-breakpoint-down(md) {
-    text-align: center;
 
     flex-direction: column;
+    text-align: center;
 
     &__name {
       margin-bottom: 0;

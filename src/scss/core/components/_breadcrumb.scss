@@ -8,7 +8,7 @@ $component-name: breadcrumb;
     color: $gray-dark;
   }
 
-  &[data-depth='1'] {
+  &[data-depth="1"] {
     display: none;
   }
 }

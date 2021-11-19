@@ -7,11 +7,11 @@ $component-name: customer-link;
 
     span {
       display: flex;
+      flex-direction: column;
       padding: 1.25rem 1rem;
       font-size: 1rem;
       font-weight: 600;
       color: $gray-dark;
-      flex-direction: column;
       background: $gray-lighter-second;
       border-radius: $border-radius;
       transition: 0.25s ease-out;
@@ -26,9 +26,9 @@ $component-name: customer-link;
       }
 
       @include media-breakpoint-down(md) {
-        padding: 0.5rem;
         flex-direction: row;
         align-items: center;
+        padding: 0.5rem;
       }
 
       i {

@@ -2,8 +2,8 @@ $component-name: account-menu;
 
 .#{$component-name} {
   display: flex;
-  height: 100%;
   flex-direction: column;
+  height: 100%;
   border-right: 1px solid $secondary-light;
 
   & &__link,

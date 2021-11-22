@@ -1,4 +1,8 @@
-@import "variables/bootstrap/colors";
+@import "variables/bootstrap/variableOverrides";
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 @import "variables/bootstrap/fonts";
 @import "variables/prestashop/colors";
 @import "variables/bootstrap/buttons";
@@ -14,3 +18,5 @@
 @import "variables/bootstrap/headings";
 
 @import "variables/prestashop/carousel";
+
+@import "~bootstrap/scss/bootstrap";

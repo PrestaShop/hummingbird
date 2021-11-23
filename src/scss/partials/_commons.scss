@@ -1,3 +1,6 @@
+$default-icon-color: $primary !default;
+
+
 body,
 html {
   min-height: 100%;
@@ -44,7 +47,7 @@ label .color,
   margin-left: 0;
   cursor: pointer;
   background-size: contain;
-  border: 1px solid $radio-border-color;
+  border: 1px solid $input-border-color;
   border-radius: 4px;
   transition: 0.25s ease-out;
 

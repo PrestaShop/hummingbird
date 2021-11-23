@@ -41,7 +41,7 @@ $component-name: checkout;
 
       .step-number {
         color: $white;
-        background: $done;
+        background: $success;
         border: none;
       }
     }
@@ -70,7 +70,7 @@ $component-name: checkout;
       }
 
       .step-title-left {
-        color: $done;
+        color: $success;
       }
     }
 

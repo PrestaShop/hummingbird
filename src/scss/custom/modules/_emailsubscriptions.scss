@@ -1,4 +1,6 @@
 $component-name: email-subscription;
+$email-input-color: $input-color !default;
+$email-input-border-color: $input-border-color !default;
 
 .#{$component-name} {
   padding: 2.5rem 1rem;

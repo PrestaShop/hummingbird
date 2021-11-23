@@ -23,12 +23,14 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<section class="featured-products mt-3">
-  <h2 class="h2 products-section-title text-uppercase">
-    {l s='On sale' d='Shop.Theme.Catalog'}
-  </h2>
-  {include file="catalog/_partials/productlist.tpl" products=$products}
-  <a class="all-product-link float-start float-md-end h4" href="{$allSpecialProductsLink}">
-    {l s='All sale products' d='Shop.Theme.Catalog'}<i class="material-icons">&#xE315;</i>
-  </a>
+<section class="sale-products mt-3">
+    <div class="container">
+        {include file="components/section-title.tpl" title={l s="On sale" d="Shop.Theme.Catalog"}}
+        {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-6 col-lg-4 col-xl-3"}
+        <div class="sale-products-footer text-center">
+            <a class="all-product-link btn btn-outline-primary" href="{$allSpecialProductsLink}">
+                {l s='All sale products' d='Shop.Theme.Catalog'}<i class="material-icons">&#xE315;</i>
+            </a>
+        </div>
+    </div>
 </section>

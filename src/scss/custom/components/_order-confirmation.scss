@@ -41,7 +41,7 @@ $component-name: order-confirmation;
 
       ul {
         margin: 1rem 0;
-        background: $gray-300;
+        background: $gray-100;
 
         li {
           display: flex;
@@ -56,7 +56,7 @@ $component-name: order-confirmation;
   &-items {
     padding-bottom: 1rem;
     margin-bottom: 2rem;
-    background: $gray-300;
+    background: $gray-100;
   }
 
   &-item {

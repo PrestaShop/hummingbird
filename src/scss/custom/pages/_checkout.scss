@@ -118,7 +118,7 @@ $component-name: checkout;
 
       .delivery-option {
         padding: 1rem;
-        background-color: $gray-300;
+        background-color: $gray-100;
 
         &-left {
           display: flex;
@@ -188,7 +188,7 @@ $component-name: checkout;
       flex: 0 0 49%;
       padding: 1rem;
       margin-right: 0.4rem;
-      background-color: $gray-300;
+      background-color: $gray-100;
 
       .custom-radio {
         margin-top: 0;

@@ -37,7 +37,7 @@
         <li class="carousel-item{if $smarty.foreach.homeslider.first} active{/if}" role="option" aria-hidden="{if $smarty.foreach.homeslider.first}false{else}true{/if}">
           <a class="carousel-link" href="{$slide.url}">
             <figure class="carousel-content">
-              <img src="{$slide.image_url}" alt="{$slide.legend|escape}" loading="lazy" height="340" style="width:100%; object-fit:cover;">
+              <img src="{$slide.image_url}" alt="{$slide.legend|escape}" loading="lazy">
               {if $slide.title || $slide.description}
                 <figcaption class="carousel-caption caption">
                   <h2 class="display-1 text-uppercase">{$slide.title}</h2>

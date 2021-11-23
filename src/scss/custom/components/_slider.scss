@@ -15,7 +15,9 @@ $component-name: carousel;
     }
 
     img {
-      object-fit: contain;
+      width: 100%;
+      object-fit: cover;
+      height: var(--slider-img-height);
     }
   }
 

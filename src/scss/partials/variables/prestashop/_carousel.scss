@@ -11,7 +11,10 @@ $slider-text-spacing: 1rem;
 
 $slider-description-size: 1rem;
 
+$slider-img-height: 340px;
+
 .carousel {
+  --slider-img-height: #{$slider-img-height};
   --slider-title-weight: #{$slider-title-weight};
   --slider-subtitle-weight: #{$slider-subtitle-weight};
   --slider-text-color: #{$slider-text-color};

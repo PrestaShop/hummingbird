@@ -25,7 +25,7 @@
 {$componentName = 'account-menu'}
 
 {block name='account-menu'}
-  <div class="{$componentName}">
+  <div class="{$componentName} hidden-on-mobile">
     <h2 class="{$componentName}__title">{l s='My Account' d='Shop.Theme.Customeraccount'}</h2>
     <a class="{$componentName}__line{if $urls.current_url === $urls.pages.identity} active{/if}" id="identity__link" href="{$urls.pages.identity}">
       <span class="{$componentName}__link">
@@ -97,4 +97,8 @@
       </span>
     </a>
   </div>
+
+  <a class="btn btn-outline-primary hidden-on-desktop" href="{$urls.pages.my_account}">
+    <i class="material-icons">&#xE5CB;</i> {l s='Back to your account' d='Shop.Theme.Customeraccount'}
+  </a>
 {/block}

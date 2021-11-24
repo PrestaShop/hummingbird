@@ -25,15 +25,12 @@
 {extends file=$layout}
 
 {block name='content'}
-  <section id="content">
-    <div class="container checkout-container">
       <div class="row">
         <div class="cart-grid-body col-xs-12 col-lg-7">
           {block name='checkout_process'}
             {render file='checkout/checkout-process.tpl' ui=$checkout_process}
           {/block}
         </div>
-
         <div class="cart-grid-right col-xs-12 col-lg-5">
           {block name='cart_summary'}
             {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
@@ -41,6 +38,4 @@
           {hook h='displayReassurance'}
         </div>
       </div>
-    </div>
-  </section>
 {/block}

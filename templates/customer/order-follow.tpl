@@ -29,9 +29,7 @@
 {/block}
 
 {block name='page_content'}
-
   {if $ordersReturn && count($ordersReturn)}
-
     <h6>{l s='Here is a list of pending merchandise returns' d='Shop.Theme.Customeraccount'}</h6>
 
     <table class="table table-striped table-bordered d-none d-sm-block d-md-block">
@@ -92,7 +90,5 @@
         </div>
       {/foreach}
     </div>
-
   {/if}
-
 {/block}

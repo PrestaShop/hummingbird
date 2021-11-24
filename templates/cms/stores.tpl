@@ -28,8 +28,8 @@
   {l s='Our stores' d='Shop.Theme.Global'}
 {/block}
 
-{block name='page_content_container'}
-  <section id="content" class="page-content page-stores row">
+{block name='page_content'}
+  <div class="row">
     {foreach $stores as $store}
       <article id="store-{$store.id}" class="store col-md-6 col-lg-4 col-xl-6">
         <div class="card">
@@ -94,5 +94,5 @@
         </div>
       </article>
     {/foreach}
-  </section>
+  </div>
 {/block}

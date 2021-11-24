@@ -28,7 +28,7 @@
   {l s='Sitemap' d='Shop.Theme.Global'}
 {/block}
 
-{block name='page_content_container'}
+{block name='page_content'}
   <div class="row sitemap">
       <div class="col-md-6 col-lg-3">
         <h2 class="h3">{$our_offers}</h2>

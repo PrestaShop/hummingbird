@@ -24,6 +24,8 @@
  *}
 {extends file='page.tpl'}
 
+{block name="container_class"}container container--limited-md{/block}
+
 {block name='page_title'}
   {l s='Create an account' d='Shop.Theme.Customeraccount'}
 {/block}

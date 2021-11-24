@@ -102,4 +102,4 @@
   </a>
 {/block}
 
-{block name='my_account_links'}{/block}
+{block name='account_link'}{/block}

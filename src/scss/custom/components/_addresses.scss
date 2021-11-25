@@ -1,0 +1,80 @@
+$component-name: addresses;
+
+.#{$component-name} {
+
+  .address {
+    background: #F8F8F8;
+    border-radius: 8px;
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .address__alias {
+      font-weight: 600;
+      color: $gray-dark;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .address__content {
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    .address__actions {
+      margin-top: auto;
+
+      a {
+        border-bottom: 1px solid;
+        text-transform: lowercase;
+        transition: 0.25s ease-out;
+  
+        &:hover {
+          border-bottom: none;
+        }
+      }
+    }
+
+    .address__edit {
+      margin-right: 1rem;
+      color: $gray-dark;
+    }
+
+    .address__delete {
+      color:#D5343C;
+    }
+  }
+
+  &__new-address {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border: 1px solid $primary-color;
+    border-radius: 8px;
+    text-align: center;
+    padding: 3rem 1rem;
+
+    .new-address__text {
+      margin-bottom: 0.5rem;
+    }
+
+    .new-address__icon {
+      background: #F5F9FF;
+      border-radius: 50rem;
+      display: flex;
+      padding: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    i {
+      font-size: 2rem;
+      color: $primary;
+    }
+  }
+
+}

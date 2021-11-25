@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $default-icon-color: $primary !default;
 
 
@@ -59,4 +61,11 @@ label .color,
 
 .input-color {
   display: none;
+}
+
+.bright {
+  color: $gray-100;
+}
+.dark {
+  color: $gray-800;
 }

@@ -15,7 +15,7 @@ $component-name: account-menu;
     &.active {
       background: #f5f9ff;
 
-      .#{$componentName}__link {
+      .link-item {
         &,
         i {
           color: $primary;
@@ -23,8 +23,8 @@ $component-name: account-menu;
       }
     }
 
-    &.#{$component-name}--signout {
-      .#{$component-name}__link {
+    &.#{$componentName}--signout {
+      .link-item {
         color: $danger;
 
         &,
@@ -35,8 +35,6 @@ $component-name: account-menu;
     }
   }
 
-  /* .link-item selector to properly override hooked modules*/
-  & &__link, 
   .link-item {
     transition: all .25s ease-out;
     color: $gray-dark;

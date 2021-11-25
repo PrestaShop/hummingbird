@@ -3,32 +3,19 @@ $component-name: account-menu;
 .#{$component-name} {
   display: flex;
   flex-direction: column;
-  height: 100%;
 
-  & &__link,
-  > a {
-    width: 100%;
-    margin: 0.5rem 0;
-    color: $gray-800;
-
-    i {
-      margin-right: 0.75rem;
-    }
-  }
-
-  &__back {
+  & > a {
     display: block;
-    margin-bottom: 1.2rem;
-  }
+    /* Width to properly override hooked modules*/
+    width: 100%;
+    border-radius: 4px;
+    padding: 0.4rem 0.5rem;
 
-  & &__line,
-  a {
     &:hover,
     &.active {
-      .#{$component-name}__link,
-      & {
-        font-weight: 600;
+      background: #f5f9ff;
 
+      .#{$componentName}__link {
         &,
         i {
           color: $primary;
@@ -46,5 +33,24 @@ $component-name: account-menu;
         }
       }
     }
+  }
+
+  /* .link-item selector to properly override hooked modules*/
+  & &__link, 
+  .link-item {
+    transition: all .25s ease-out;
+    color: $gray-dark;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    i {
+      margin-right: 0.75rem;
+    }
+  }
+
+  &__back {
+    display: block;
+    margin-bottom: 1.2rem;
   }
 }

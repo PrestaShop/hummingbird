@@ -16,6 +16,11 @@ $component-name: account-menu;
     }
   }
 
+  &__back {
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+
   & &__line,
   a {
     &:hover,

@@ -53,7 +53,7 @@
             <td class="d-none d-lg-block">{$order.details.payment}</td>
             <td>
               <span
-                class="label label-pill {$order.history.current.contrast}"
+                class="badge rounded-pill {$order.history.current.contrast}"
                 style="background-color:{$order.history.current.color}"
               >
                 {$order.history.current.ostate_name}
@@ -89,7 +89,7 @@
               <div class="total">{$order.totals.total.value}</div>
               <div class="status">
                 <span
-                  class="label label-pill {$order.history.current.contrast}"
+                  class="badge rounded-pill {$order.history.current.contrast}"
                   style="background-color:{$order.history.current.color}"
                 >
                   {$order.history.current.ostate_name}

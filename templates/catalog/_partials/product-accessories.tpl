@@ -22,20 +22,13 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file=$layout}
-
-{block name='content'}
-      <div class="row">
-        <div class="cart-grid-body col-lg-7">
-          {block name='checkout_process'}
-            {render file='checkout/checkout-process.tpl' ui=$checkout_process}
-          {/block}
-        </div>
-        <div class="cart-grid-right col-lg-5">
-          {block name='cart_summary'}
-            {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
-          {/block}
-          {hook h='displayReassurance'}
-        </div>
-      </div>
-{/block}
+ <section class="product-accessories">
+  <p class="h5 text-uppercase">{l s='You might also like' d='Shop.Theme.Catalog'}</p>
+  <div class="products">
+    {foreach from=$accessories item="product_accessory" key="position"}
+      {block name='product_miniature'}
+        {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position}
+      {/block}
+    {/foreach}
+  </div>
+</section>

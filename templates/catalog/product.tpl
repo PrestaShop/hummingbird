@@ -48,6 +48,8 @@
 {/block}
 
 {block name='content'}
+
+  {* FIRST PART - PHOTO, NAME, PRICES, ADD TO CART*}
   <div class="row product-container js-product-container">
     <div class="col-lg-6 col-xl-7">
       {block name='product_cover_thumbnails'}
@@ -68,11 +70,11 @@
         <div class="product-description-short rich-text">{$product.description_short nofilter}</div>
       {/block}
 
-      {if $product.is_customizable && count($product.customizations.fields)}
-        {block name='product_customization'}
-          {include file="catalog/_partials/product-customization.tpl" customizations=$product.customizations}
-        {/block}
-      {/if}
+      {block name='product_customization'}
+        {if $product.is_customizable && count($product.customizations.fields)}
+            {include file="catalog/_partials/product-customization.tpl" customizations=$product.customizations}
+        {/if}
+      {/block}
 
       <div class="product-actions js-product-actions">
         {block name='product_buy'}
@@ -87,14 +89,7 @@
 
             {block name='product_pack'}
               {if $packItems}
-                <section class="product-pack">
-                  <p class="h4">{l s='This pack contains' d='Shop.Theme.Catalog'}</p>
-                  {foreach from=$packItems item="product_pack"}
-                    {block name='product_miniature'}
-                      {include file='catalog/_partials/miniatures/pack-product.tpl' product=$product_pack showPackProductsPrice=$product.show_price}
-                    {/block}
-                  {/foreach}
-                </section>
+                {include file='catalog/_partials/product-pack.tpl'}
               {/if}
             {/block}
 
@@ -117,7 +112,9 @@
       </div>{* /product-actions *}
     </div>{* /col *}
   </div>{* /row *}
+  {* END OF FIRST PART *}
 
+  {* SECOND PART - REASSURANCE, TABS *}
   <div class="row">
     <div class="col-lg-6 col-xl-5 order-lg-1">
       {block name='hook_display_reassurance'}
@@ -129,6 +126,7 @@
       {block name='product_tabs'}
         <div class="product-infos">
           <div class="product-infos-content accordion accordion-flush" id="product-infos-content">
+
             <div class="product-infos-element product-infos-description accordion-item" id="description">
               {block name='product_description'}
                 <h5 class="product-infos-title accordion-header">
@@ -142,59 +140,52 @@
               {/block}
             </div>
 
-          {block name='product_details'}
-            {include file='catalog/_partials/product-details.tpl'}
-          {/block}
+            {block name='product_details'}
+              {include file='catalog/_partials/product-details.tpl'}
+            {/block}
 
-          {block name='product_attachments'}
-            {if $product.attachments}
-              <div class="product-infos-element product-infos-attachments accordion-item" id="attachments">
-                <section class="product-attachments">
-                  <h5 class="product-infos-title accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-attachments-ctr" aria-expanded="true" aria-controls="product-attachments-ctr">
-                      {l s='Download' d='Shop.Theme.Actions'}
-                    </button>
-                  </h5>
-                  <div id="product-attachments-ctr" class="accordion-collapse collapse" data-bs-parent="#product-details">
-                    {foreach from=$product.attachments item=attachment}
-                      <div class="attachment">
-                        <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4>
-                        <p>{$attachment.description}</p>
-                        <a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
-                          {l s='Download' d='Shop.Theme.Actions'} ({$attachment.file_size_formatted})
-                        </a>
-                      </div>
-                    {/foreach}
-                  </div>
-                </section>
+            {block name='product_attachments'}
+              {if $product.attachments}
+                <div class="product-infos-element product-infos-attachments accordion-item" id="attachments">
+                  <section class="product-attachments">
+                    <h5 class="product-infos-title accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-attachments-ctr" aria-expanded="true" aria-controls="product-attachments-ctr">
+                        {l s='Download' d='Shop.Theme.Actions'}
+                      </button>
+                    </h5>
+                    <div id="product-attachments-ctr" class="accordion-collapse collapse" data-bs-parent="#product-details">
+                      {foreach from=$product.attachments item=attachment}
+                        <div class="attachment">
+                          <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4>
+                          <p>{$attachment.description}</p>
+                          <a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                            {l s='Download' d='Shop.Theme.Actions'} ({$attachment.file_size_formatted})
+                          </a>
+                        </div>
+                      {/foreach}
+                    </div>
+                  </section>
+                </div>
+              {/if}
+            {/block}
+
+            {foreach from=$product.extraContent item=extra key=extraKey}
+              <div class="product-infos-element product-infos-extra {$extra.attr.class}" id="extra-{$extraKey}" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
+                <h5 class="product-infos-title">{l s='Extras' d='Shop.Theme.Catalog'}</h5>
+                {$extra.content nofilter}
               </div>
-            {/if}
-          {/block}
+            {/foreach}
 
-          {foreach from=$product.extraContent item=extra key=extraKey}
-            <div class="product-infos-element product-infos-extra {$extra.attr.class}" id="extra-{$extraKey}" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
-              <h5 class="product-infos-title">{l s='Extras' d='Shop.Theme.Catalog'}</h5>
-              {$extra.content nofilter}
-            </div>
-          {/foreach}
           </div>
         </div>
       {/block}
     </div>{* /col *}
   </div>{* /row *} 
+  {* END OF SECOND PART *}
 
   {block name='product_accessories'}
     {if $accessories}
-      <section class="product-accessories">
-        <p class="h5 text-uppercase">{l s='You might also like' d='Shop.Theme.Catalog'}</p>
-        <div class="products">
-          {foreach from=$accessories item="product_accessory" key="position"}
-            {block name='product_miniature'}
-              {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position}
-            {/block}
-          {/foreach}
-        </div>
-      </section>
+      {include file='catalog/_partials/product-accessories.tpl'}
     {/if}
   {/block}
 

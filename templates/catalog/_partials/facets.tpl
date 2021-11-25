@@ -122,7 +122,7 @@
           {block name='facet_item_dropdown'}
             <ul id="facet_{$_expand_id}" class="collapse{if !$_collapse} in{/if}">
               <li>
-                <div class="col-sm-12 col-xs-12 col-md-12 facet-dropdown dropdown">
+                <div class="facet-dropdown dropdown">
                   <a class="select-title" rel="nofollow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {$active_found = false}
                     <span>

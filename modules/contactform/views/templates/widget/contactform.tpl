@@ -103,7 +103,7 @@
 
       </section>
 
-      <footer class="form-footer text-sm-right">
+      <footer class="form-footer">
         <style>
           input[name=url] {
             display: none !important;

@@ -22,7 +22,6 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
 <div class="contact-rich">
   <h4>{l s='Store information' d='Shop.Theme.Global'}</h4>
   <div class="block">
@@ -57,6 +56,16 @@
         {l s='Email us:' d='Shop.Theme.Global'}<br/>
       </div>
       {mailto address=$contact_infos.email encode="javascript"}
+    </div>
+  {/if}
+  {if $contact_infos.details}
+    <hr/>
+    <div class="block">
+      <div class="icon"><i class="material-icons">&#xE88E;</i></div>
+      <div class="data">
+        {l s='Details:' d='Shop.Theme.Global'}<br/>
+        {$contact_infos.details}
+      </div>
     </div>
   {/if}
 </div>

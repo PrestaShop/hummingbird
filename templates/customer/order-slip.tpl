@@ -30,6 +30,7 @@
 
 {block name='page_content'}
   <h6>{l s='Credit slips you have received after canceled orders.' d='Shop.Theme.Customeraccount'}</h6>
+
   {if $credit_slips}
     <table class="table table-striped table-bordered d-none d-sm-block d-md-block">
       <thead class="thead-default">

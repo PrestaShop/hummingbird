@@ -11,8 +11,8 @@ $component-name: customer-link;
       padding: 1.25rem 1rem;
       font-size: 1rem;
       font-weight: 600;
-      color: $gray-dark;
-      background: $gray-lighter-second;
+      color: $gray-800;
+      background: $gray-100;
       border-radius: $border-radius;
       transition: 0.25s ease-out;
 
@@ -34,7 +34,7 @@ $component-name: customer-link;
       i {
         margin-bottom: 0.75rem;
         font-size: 2rem;
-        color: $gray-second;
+        color: $gray-700;
         transition: 0.25s ease-out;
 
         @include media-breakpoint-down(md) {

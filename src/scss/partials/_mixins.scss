@@ -5,12 +5,12 @@
     input[type="text"] {
       min-width: 255px;
       padding: 10px;
-      color: $gray;
+      color: $gray-600;
       border: none;
       border: $input-btn-border-width solid $input-border-color;
 
       &:focus {
-        color: $gray-darker;
+        color: $gray-900;
         background: $white;
         outline: 3px $primary solid;
 
@@ -24,7 +24,7 @@
       position: absolute;
       right: 0.125rem;
       bottom: 0.3125rem;
-      color: $gray;
+      color: $gray-600;
       background: none;
       border: none;
 

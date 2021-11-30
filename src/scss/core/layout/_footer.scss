@@ -1,6 +1,6 @@
-$componentName: footer;
+$component-name: footer;
 
-.#{$componentName} {
+.#{$component-name} {
   .title {
     &[aria-expanded="true"] {
       .material-icons.add {

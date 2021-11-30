@@ -1,11 +1,15 @@
+@use 'sass:color';
+
+$default-icon-color: $primary !default;
+
+
 body,
 html {
   min-height: 100%;
 }
 
 body {
-  font-family: Inter, sans-serif;
-  font-size: $base-font-size;
+  font-family: $font-family-base;
   line-height: 1.25em;
   color: $body-color;
   direction: ltr;
@@ -21,7 +25,7 @@ ul {
 p {
   font-size: 0.9375rem;
   font-weight: 400;
-  color: $gray-dark;
+  color: $gray-800;
 }
 
 a {
@@ -45,7 +49,7 @@ label .color,
   margin-left: 0;
   cursor: pointer;
   background-size: contain;
-  border: 1px solid $radio-border-color;
+  border: 1px solid $input-border-color;
   border-radius: 4px;
   transition: 0.25s ease-out;
 
@@ -57,4 +61,11 @@ label .color,
 
 .input-color {
   display: none;
+}
+
+.bright {
+  color: $gray-100;
+}
+.dark {
+  color: $gray-800;
 }

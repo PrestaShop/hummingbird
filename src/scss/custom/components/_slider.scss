@@ -1,7 +1,6 @@
-$componentName: carousel;
+$component-name: carousel;
 
-.#{$componentName} {
-
+.#{$component-name} {
   & &-inner {
     height: 100%;
   }
@@ -16,7 +15,9 @@ $componentName: carousel;
     }
 
     img {
-      object-fit: contain;
+      width: 100%;
+      object-fit: cover;
+      height: var(--slider-img-height);
     }
   }
 

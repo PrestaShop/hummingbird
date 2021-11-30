@@ -6,7 +6,7 @@
 
   svg {
     path {
-      fill: $btn-tertiary-color;
+      fill: $gray-600;
     }
   }
 
@@ -15,6 +15,6 @@
     display: block;
     line-height: 1.5rem;
     // stylelint-disable-next-line
-    color: $btn-tertiary-color !important;
+    color: $gray-600 !important;
   }
 }

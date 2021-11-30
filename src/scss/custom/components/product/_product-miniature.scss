@@ -38,8 +38,8 @@ $component-name: product-miniature;
       }
 
       .#{$component-name}__image-container {
-        border-radius-bottom-left: 0;
-        border-radius-bottom-right: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
       }
     }
   }
@@ -50,7 +50,7 @@ $component-name: product-miniature;
   }
 
   & &__regular-price {
-    color: $gray-second;
+    color: $gray-700;
   }
 
   & &__price {

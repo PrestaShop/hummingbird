@@ -1,4 +1,7 @@
 $component-name: footer;
+$footer-background-color: #011638 !default;
+$footer-heading-color: $white !default;
+$footer-text-color: $body-color !default;
 
 .#{$component-name} {
   --footer-background-color: #{$footer-background-color};

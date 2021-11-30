@@ -1,11 +1,10 @@
-$componentName: pagination;
+$component-name: pagination;
 
-.#{$componentName} {
+.#{$component-name} {
   margin: 3rem 0;
 
   &-number {
     font-size: 1rem;
-    color: $btn-tertiary-color;
+    color: $gray-600;
   }
 }
-

@@ -1,5 +1,4 @@
 .layout-left-column {
-
   #left-column {
     padding-right: 3rem;
   }
@@ -14,7 +13,7 @@
       width: 100%;
       padding: 0.75rem 1.25rem;
       text-align: left;
-      border: 1px solid $light-gray;
+      border: 1px solid $gray-300;
     }
 
     &s-filters {
@@ -35,7 +34,7 @@
       a {
         display: block;
         padding: 0.75rem 1rem;
-        color: $gray-dark;
+        color: $gray-800;
         transition: 0.25s ease-out;
 
         &:hover {

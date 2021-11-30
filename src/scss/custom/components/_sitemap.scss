@@ -2,11 +2,11 @@ $component-name: sitemap;
 
 .#{$component-name} {
   ul a {
-    padding: 0.2rem 0;
     display: block;
-    color: $gray-dark;
+    padding: 0.2rem 0;
+    color: $gray-800;
   }
-  
+
   h2 {
     margin-bottom: 1rem;
   }
@@ -15,7 +15,7 @@ $component-name: sitemap;
     margin-left: 1rem;
 
     a {
-      color: $gray-second;
+      color: $gray-700;
     }
   }
 }

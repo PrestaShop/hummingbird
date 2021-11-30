@@ -1,19 +1,19 @@
-$componentName: category-tree;
+$component-name: category-tree;
 
 #left-column {
-  --#{$componentName}-title-color: #{$gray-dark};
-  --#{$componentName}-title-size: 1.5rem;
-  --#{$componentName}-title-spacing: 1rem;
-  --#{$componentName}-subtitle-color: #{$gray-dark};
-  --#{$componentName}-subtitle-size: 1rem;
-  --#{$componentName}-subtitle-spacing: 0.25rem;
-  --#{$componentName}-border-bottom: 1px solid #{$secondary-light};
+  --#{$component-name}-title-color: #{$gray-800};
+  --#{$component-name}-title-size: 1.5rem;
+  --#{$component-name}-title-spacing: 1rem;
+  --#{$component-name}-subtitle-color: #{$gray-800};
+  --#{$component-name}-subtitle-size: 1rem;
+  --#{$component-name}-subtitle-spacing: 0.25rem;
+  --#{$component-name}-border-bottom: 1px solid #{$gray-200};
 }
 
-.#{$componentName} {
+.#{$component-name} {
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: var(--#{$componentName}-border-bottom);
+  border-bottom: var(--#{$component-name}-border-bottom);
 
   &-child {
     padding: 0;
@@ -22,25 +22,25 @@ $componentName: category-tree;
 
   & &-title {
     padding: 0;
-    margin-bottom: var(--#{$componentName}-title-spacing);
-    font-size: var(--#{$componentName}-title-size);
+    margin-bottom: var(--#{$component-name}-title-spacing);
+    font-size: var(--#{$component-name}-title-size);
     border: none;
 
     &-link {
       display: block;
       font-weight: 600;
       line-height: 2rem;
-      color: var(--#{$componentName}-title-color);
+      color: var(--#{$component-name}-title-color);
     }
   }
 
   & &-item {
     &-link {
       display: block;
-      padding: var(--#{$componentName}-subtitle-spacing) 0;
-      font-size: var(--#{$componentName}-subtitle-size);
+      padding: var(--#{$component-name}-subtitle-spacing) 0;
+      font-size: var(--#{$component-name}-subtitle-size);
       font-weight: 600;
-      color: var(--#{$componentName}-subtitle-color);
+      color: var(--#{$component-name}-subtitle-color);
     }
   }
 }

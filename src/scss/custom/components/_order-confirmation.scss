@@ -1,6 +1,6 @@
-$componentName: order-confirmation;
+$component-name: order-confirmation;
 
-.#{$componentName} {
+.#{$component-name} {
   &-title {
     display: flex;
     align-items: center;
@@ -15,8 +15,8 @@ $componentName: order-confirmation;
       height: 2.5rem;
       margin-right: 1rem;
       font-size: 2rem;
-      color: white;
-      background-color: $done;
+      color: $white;
+      background-color: $success;
       border-radius: 100%;
     }
   }
@@ -25,7 +25,7 @@ $componentName: order-confirmation;
     margin-top: 0.25rem;
     margin-bottom: 2rem;
     font-size: 1rem;
-    color: $gray-dark;
+    color: $gray-800;
   }
 
   &-details {
@@ -36,12 +36,12 @@ $componentName: order-confirmation;
     &-list {
       p {
         font-size: 1rem;
-        color: $gray-dark;
+        color: $gray-800;
       }
 
       ul {
         margin: 1rem 0;
-        background: $gray-light;
+        background: $gray-100;
 
         li {
           display: flex;
@@ -56,7 +56,7 @@ $componentName: order-confirmation;
   &-items {
     padding-bottom: 1rem;
     margin-bottom: 2rem;
-    background: $gray-light;
+    background: $gray-100;
   }
 
   &-item {
@@ -65,13 +65,13 @@ $componentName: order-confirmation;
     &-prices {
       div {
         font-weight: 500;
-        color: $gray-dark;
+        color: $gray-800;
       }
     }
 
     &-title {
       font-weight: 600;
-      color: $gray-dark;
+      color: $gray-800;
     }
   }
 
@@ -79,7 +79,7 @@ $componentName: order-confirmation;
     width: 100%;
 
     .total-value {
-      border-top: 1px solid $secondary-light;
+      border-top: 1px solid $gray-200;
 
       td {
         padding-top: 1.5rem;
@@ -87,7 +87,7 @@ $componentName: order-confirmation;
     }
 
     tr:first-of-type {
-      border-top: 1px solid $secondary-light;
+      border-top: 1px solid $gray-200;
 
       td {
         padding-top: 1.5rem;
@@ -99,7 +99,7 @@ $componentName: order-confirmation;
 
       &:last-of-type {
         font-weight: 500;
-        color: $gray-dark;
+        color: $gray-800;
         text-align: right;
       }
     }

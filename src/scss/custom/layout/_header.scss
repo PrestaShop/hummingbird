@@ -2,7 +2,7 @@ $component-name: header;
 
 .#{$component-name} {
   & &__top {
-    border-bottom: 1px solid $secondary-light;
+    border-bottom: 1px solid $gray-200;
 
     a {
       color: $body-color;
@@ -26,7 +26,7 @@ $component-name: header;
     padding: 0;
 
     @include media-breakpoint-up(md) {
-      border-bottom: 1px solid $secondary-light;
+      border-bottom: 1px solid $gray-200;
     }
 
     .navbar-brand {
@@ -44,7 +44,7 @@ $component-name: header;
       }
     }
 
-    .main-menu--desktop  {
+    .main-menu--desktop {
       .dropdown {
         position: inherit;
       }

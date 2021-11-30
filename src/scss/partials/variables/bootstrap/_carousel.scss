@@ -1,0 +1,14 @@
+$carousel-control-color:             $gray-700;
+$carousel-control-width:             4rem;
+$carousel-control-icon-width:        1.5rem;
+$carousel-control-prev-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>");
+$carousel-control-next-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
+
+
+$carousel-indicator-width:           0.5rem;
+$carousel-indicator-height:          0.5rem;
+$carousel-indicator-spacer:          0.25rem;
+$carousel-indicator-active-bg:       $primary;
+
+$carousel-caption-color:             $gray-800;
+

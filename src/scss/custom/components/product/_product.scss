@@ -3,7 +3,7 @@
     &-actions {
       padding-bottom: 2rem;
       margin-bottom: 0.75rem;
-      border-bottom: 1px solid $secondary-light;
+      border-bottom: 1px solid $gray-200;
     }
 
     &-prices {
@@ -28,7 +28,7 @@
 
       &-details {
         &-list {
-          background: $gray-light;
+          background: $gray-100;
         }
 
         &-line {
@@ -53,7 +53,7 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        background: $gray-light;
+        background: $gray-100;
 
         dt,
         dd {
@@ -122,7 +122,7 @@
     margin-top: 0.75rem;
     margin-bottom: 2rem;
     font-size: 1rem;
-    color: $btn-tertiary-color;
+    color: $gray-600;
   }
 
   .images-container {
@@ -134,6 +134,6 @@
     margin-bottom: 0.5rem;
     font-size: 1rem;
     font-weight: 600;
-    color: $gray-dark;
+    color: $gray-800;
   }
 }

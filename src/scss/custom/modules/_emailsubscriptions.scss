@@ -1,8 +1,10 @@
 $component-name: email-subscription;
+$email-input-color: $input-color !default;
+$email-input-border-color: $input-border-color !default;
 
 .#{$component-name} {
   padding: 2.5rem 1rem;
-  background-color: $gray-light;
+  background-color: $gray-100;
 
   & &-content {
     max-width: 50.625rem;
@@ -37,6 +39,6 @@ $component-name: email-subscription;
   & &-label {
     font-size: 1.25rem;
     line-height: 1.75rem;
-    color: $gray-dark;
+    color: $gray-800;
   }
 }

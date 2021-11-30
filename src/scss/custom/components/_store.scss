@@ -5,13 +5,13 @@ $component-name: store;
 
   .card {
     height: 100%;
-    border: 1px solid $primary-color;
+    border: 1px solid $input-border-color;
   }
 
   .card-body,
   .card-footer {
     padding: 1.5rem;
-    border: 1px solid $primary-color;
+    border: 1px solid $input-border-color;
   }
 
   .store__contacts {

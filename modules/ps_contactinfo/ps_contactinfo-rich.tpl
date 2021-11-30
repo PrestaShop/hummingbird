@@ -23,49 +23,37 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div class="contact-rich">
-  <h4>{l s='Store information' d='Shop.Theme.Global'}</h4>
+  <h2 class="h4">{l s='Store information' d='Shop.Theme.Global'}</h4>
   <div class="block">
-    <div class="icon"><i class="material-icons">&#xE55F;</i></div>
+    <i class="material-icons">&#xE55F;</i>
     <div class="data">{$contact_infos.address.formatted nofilter}</div>
   </div>
   {if $contact_infos.phone}
     <hr/>
     <div class="block">
-      <div class="icon"><i class="material-icons">&#xE0CD;</i></div>
-      <div class="data">
-        {l s='Call us:' d='Shop.Theme.Global'}<br/>
-        <a href="tel:{$contact_infos.phone}">{$contact_infos.phone}</a>
-       </div>
+      <i class="material-icons">&#xE0CD;</i>
+      <div class="data"><a href="tel:{$contact_infos.phone}">{$contact_infos.phone}</a></div>
     </div>
   {/if}
   {if $contact_infos.fax}
     <hr/>
     <div class="block">
-      <div class="icon"><i class="material-icons">&#xE0DF;</i></div>
-      <div class="data">
-        {l s='Fax:' d='Shop.Theme.Global'}<br/>
-        {$contact_infos.fax}
-      </div>
+      <i class="material-icons">&#xE0DF;</i>
+      <div class="data">{$contact_infos.fax}</div>
     </div>
   {/if}
   {if $contact_infos.email && $display_email}
     <hr/>
     <div class="block">
-      <div class="icon"><i class="material-icons">&#xE158;</i></div>
-      <div class="data email">
-        {l s='Email us:' d='Shop.Theme.Global'}<br/>
-      </div>
-      {mailto address=$contact_infos.email encode="javascript"}
+      <i class="material-icons">&#xE158;</i>
+      <div class="data email">{mailto address=$contact_infos.email encode="javascript"}</div>
     </div>
   {/if}
   {if $contact_infos.details}
     <hr/>
     <div class="block">
-      <div class="icon"><i class="material-icons">&#xE88E;</i></div>
-      <div class="data">
-        {l s='Details:' d='Shop.Theme.Global'}<br/>
-        {$contact_infos.details}
-      </div>
+      <i class="material-icons">&#xE88E;</i>
+      <div class="data">{$contact_infos.details}</div>
     </div>
   {/if}
 </div>

@@ -76,7 +76,7 @@
           {if $store.note || $store.phone || $store.fax || $store.email}
             <div class="card-footer store__footer collapse" id="about-{$store.id}">
               {if $store.note}
-                  <p class="store__note text-justify">{$store.note}</p>
+                  <p class="store__note">{$store.note}</p>
               {/if}
               <ul class="store__contacts">
                 {if $store.phone}

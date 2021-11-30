@@ -106,12 +106,12 @@
             <td><span class="text-uppercase">{$totals.total.label}&nbsp;{$labels.tax_short}</span></td>
             <td>{$totals.total.value}</td>
           </tr>
-          <tr class="total-value font-weight-bold">
+          <tr class="total-value fw-bold">
             <td><span class="text-uppercase">{$totals.total_including_tax.label}</span></td>
             <td>{$totals.total_including_tax.value}</td>
           </tr>
         {else}
-          <tr class="total-value font-weight-bold">
+          <tr class="total-value fw-bold">
             <td><span class="text-uppercase">{$totals.total.label}&nbsp;{if $configuration.taxes_enabled}{$labels.tax_short}{/if}</span></td>
             <td>{$totals.total.value}</td>
           </tr>

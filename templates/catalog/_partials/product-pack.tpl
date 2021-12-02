@@ -22,18 +22,11 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<div class="modal fade js-checkout-modal" id="modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
-      <div class="js-modal-content"></div>
-    </div>
-  </div>
-</div>
-
-<div class="text-sm-center">
-  {if $tos_cms != false}
-    <span class="d-block js-terms">{$tos_cms nofilter}</span>
-  {/if}
-  {l s='%copyright% %year% - Ecommerce software by %prestashop%' sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
-</div>
+ <section class="product-pack">
+  <p class="h4">{l s='This pack contains' d='Shop.Theme.Catalog'}</p>
+  {foreach from=$packItems item="product_pack"}
+    {block name='product_miniature'}
+      {include file='catalog/_partials/miniatures/pack-product.tpl' product=$product_pack showPackProductsPrice=$product.show_price}
+    {/block}
+  {/foreach}
+</section>

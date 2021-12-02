@@ -45,20 +45,22 @@
       {/block}
     </header>
 
-    <main>
-      <section id="wrapper">
-        {block name='notifications'}
-          {include file='_partials/notifications.tpl'}
-        {/block}
+    <main id="wrapper" class="wrapper">
+      {hook h="displayWrapperTop"}
+      
+      {block name='breadcrumb'}
+        {include file='_partials/breadcrumb.tpl'}
+      {/block}
 
-        {hook h="displayWrapperTop"}
-          {block name='breadcrumb'}
-            {include file='_partials/breadcrumb.tpl'}
-          {/block}
+      {block name='notifications'}
+        {include file='_partials/notifications.tpl'}
+      {/block}
 
-          {block name="content_columns"}
+      {block name="content_columns"}
+        <div class="{block name="container_class"}container{/block}">
+          <div class="row">
             {block name="left_column"}
-              <div id="left-column" class="col-md-4 col-lg-3">
+              <div id="left-column" class="wrapper__left-column col-md-4 col-lg-3">
                 {if $page.page_name == 'product'}
                   {hook h='displayLeftColumnProduct'}
                 {else}
@@ -68,17 +70,17 @@
             {/block}
 
             {block name="content_wrapper"}
-              <div id="content-wrapper" class="js-content-wrapper col-md-4 col-lg-6">
+              <section id="content-wrapper" class="wrapper__content col-md-4 col-lg-6">
                 {hook h="displayContentWrapperTop"}
                 {block name="content"}
                   <p>Hello world! This is HTML5 Boilerplate.</p>
                 {/block}
                 {hook h="displayContentWrapperBottom"}
-              </div>
+              </section>
             {/block}
 
             {block name="right_column"}
-              <div id="right-column" class="col-md-4 col-lg-3">
+              <div id="right-column" class="wrapper__right-column col-md-4 col-lg-3">
                 {if $page.page_name == 'product'}
                   {hook h='displayRightColumnProduct'}
                 {else}
@@ -86,9 +88,11 @@
                 {/if}
               </div>
             {/block}
-          {/block}
-        {hook h="displayWrapperBottom"}
-      </section>
+          </div>
+        </div>
+      {/block}
+
+      {hook h="displayWrapperBottom"}
     </main>
 
     <footer id="footer" class="footer">

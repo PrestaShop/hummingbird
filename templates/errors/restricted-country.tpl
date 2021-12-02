@@ -26,8 +26,6 @@
 
 {block name='content'}
 
-  <section id="main">
-
     {block name='page_header_container'}
       <header class="page-header">
         <div class="logo"><img src="{$shop.logo.src}" alt="logo" loading="lazy"></div>
@@ -49,7 +47,5 @@
     {block name='page_footer_container'}
 
     {/block}
-
-  </section>
 
 {/block}

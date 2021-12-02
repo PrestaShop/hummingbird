@@ -35,7 +35,7 @@
 
   a {
     @include media-breakpoint-down(md) {
-      padding: 0.5rem 0.3rem;
+      padding: 0.5rem 0.4rem;
     }
   }
 
@@ -65,7 +65,7 @@
 
   &:not(.active) {
     @include media-breakpoint-down(md) {
-      padding: 0.5rem 0.3rem;
+      padding: 0.5rem 0.4rem;
     }
 
     @include media-breakpoint-down(md) {

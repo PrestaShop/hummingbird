@@ -22,29 +22,13 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends "customer/_partials/customer-form.tpl"}
-
-{block "form_field"}
-  {if $field.name === 'password' and $guest_allowed}
-      <p class="form-informations">
-        <span class="fw-bold form-informations-title">{l s='Create an account' d='Shop.Theme.Checkout'}</span> <span class="font-italic form-informations-option">{l s='(optional)' d='Shop.Theme.Checkout'}</span>
-        <br>
-        <span class="text-muted form-informations-subtitle">{l s='And save time on your next order!' d='Shop.Theme.Checkout'}</span>
-      </p>
-      {$smarty.block.parent}
-  {else}
-    {$smarty.block.parent}
-  {/if}
-{/block}
-
-{block "form_buttons"}
-    <button
-      class="continue btn btn-primary float-end"
-      name="continue"
-      data-link-action="register-new-customer"
-      type="submit"
-      value="1"
-   >
-        {l s='Continue' d='Shop.Theme.Actions'}
-    </button>
-{/block}
+ <section class="product-accessories">
+  <p class="h5 text-uppercase">{l s='You might also like' d='Shop.Theme.Catalog'}</p>
+  <div class="products">
+    {foreach from=$accessories item="product_accessory" key="position"}
+      {block name='product_miniature'}
+        {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position}
+      {/block}
+    {/foreach}
+  </div>
+</section>

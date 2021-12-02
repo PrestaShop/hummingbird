@@ -1,0 +1,23 @@
+.contact-rich {
+
+  .block {
+    display: flex;
+
+    &.email {
+      word-break: break-all;
+    }
+  }
+
+  hr {
+    color: #e2eaf1;
+  }
+
+  i {
+    margin-right: 1rem;
+    color: $gray-600;
+  }
+
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+}

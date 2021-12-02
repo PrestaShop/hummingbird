@@ -29,7 +29,7 @@
   data-bs-interval="false"
 >
   {block name='product_images'}
-    <div class="product-thumbnails-container js-qv-mask col-12 col-lg-2">
+    <div class="product-thumbnails-container js-qv-mask col-lg-2">
       <ul class="product-thumbnails js-qv-product-images">
         {foreach from=$product.images item=image key=key}
           <li 
@@ -59,7 +59,7 @@
       </ul>
     </div>
   {/block}
-  <div class="col-12 col-lg-9 offset-lg-1 p-0 h-100">
+  <div class="col-lg-9 offset-lg-1 p-0 h-100">
   <div class="carousel-inner">
     {include file='catalog/_partials/product-flags.tpl'}
 

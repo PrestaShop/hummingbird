@@ -3,12 +3,12 @@
   id="product-details"
   data-product="{$product.embedded_attributes|json_encode}"
 >
-  <h5 class="product-infos-title accordion-header">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-infos-details-ctr" aria-expanded="true" aria-controls="product-infos-details-ctr">
+  <h5 class="product-infos-title accordion-header" id="product-infos-details-heading">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-infos-details-ctr" aria-expanded="false" aria-controls="product-infos-details-ctr">
       {l s='Product Details' d='Shop.Theme.Catalog'}
     </button>
   </h5>
-  <div id="product-infos-details-ctr" class="accordion-collapse collapse" data-bs-parent="#product-details">
+  <div id="product-infos-details-ctr" class="accordion-collapse collapse" data-bs-parent="#product-infos-accordion" aria-labelledby="product-infos-details-heading">
     <ul class="product-infos-details-list">
       {block name='product_reference'}
         {if isset($product_manufacturer->id)}

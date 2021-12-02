@@ -34,9 +34,7 @@
 
         <div class="dropdown-menu" aria-labelledby="userMenuButton">
           <a class="dropdown-item" href="{$urls.pages.my_account}">{l s='Your account' d='Shop.Theme.Customeraccount'}</a>
-
           <div class="dropdown-divider"></div>
-
           <a href="{$urls.pages.identity}" title="{l s='Information' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Information' d='Shop.Theme.Customeraccount'}</a>
           {if $customer.addresses|count}
             <a href="{$urls.pages.addresses}" title="{l s='Addresses' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Addresses' d='Shop.Theme.Customeraccount'}</a>
@@ -55,14 +53,12 @@
           {if $configuration.return_enabled && !$configuration.is_catalog}
             <a href="{$urls.pages.order_follow}" title="{l s='Merchandise returns' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Merchandise returns' d='Shop.Theme.Customeraccount'}</a>
           {/if}
-	
           <div class="dropdown-divider"></div>
-
-            <a class="dropdown-item" href="{$logout_url}">{l s='Sign out' d='Shop.Theme.Actions'}</a>
+          <a class="dropdown-item" href="{$logout_url}">{l s='Sign out' d='Shop.Theme.Actions'}</a>
         </div>
       </div>
     {else}
-      <a href="{$urls.pages.my_account}" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">
+      <a href="{$urls.pages.my_account}" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}" class="btn" rel="nofollow" role="button">
         <i class="material-icons">person</i><span class="d-none d-md-inline">{l s='Sign in' d='Shop.Theme.Actions'}</span>
       </a>
     {/if}

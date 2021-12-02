@@ -24,23 +24,16 @@
  *}
 {extends 'customer/page.tpl'}
 
-{block name='page_content'}
-  <div class="row">
-    <div class="col-md-3 hidden-on-mobile">
-      {include file='components/account-menu.tpl'}
-    </div>
+{block name='page_title'}
+  {if $editing}
+    {l s='Update your address' d='Shop.Theme.Customeraccount'}
+  {else}
+    {l s='New address' d='Shop.Theme.Customeraccount'}
+  {/if}
+{/block}
 
-    <div class="col-md-9">
-      <h1 class="h2">
-        {if $editing}
-          {l s='Update your address' d='Shop.Theme.Customeraccount'}
-        {else}
-          {l s='New address' d='Shop.Theme.Customeraccount'}
-        {/if}
-      </h1>
-      <div class="address-form">
-        {render template="customer/_partials/address-form.tpl" ui=$address_form}
-      </div>
-    </div>
+{block name='page_content'}
+  <div class="address-form">
+    {render template="customer/_partials/address-form.tpl" ui=$address_form}
   </div>
 {/block}

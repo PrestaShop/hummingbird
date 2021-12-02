@@ -24,6 +24,8 @@
  *}
 {extends file='page.tpl'}
 
+{block name="container_class"}container container--limited-md{/block}
+
 {block name='page_title'}
   {l s='Reset your password' d='Shop.Theme.Customeraccount'}
 {/block}
@@ -51,31 +53,29 @@
             sprintf=['%email%' => $customer_email|stripslashes]}
         </div>
 
-        <div class="container-fluid">
-          <div class="row mb-3">
-            <label class="form-label col-md-3 offset-md-2">{l s='New password' d='Shop.Forms.Labels'}</label>
-            <div class="col-md-4">
-              <input class="form-control" type="password" data-validate="isPasswd" name="passwd" value="">
-            </div>
+        <div class="row mb-3">
+          <label class="form-label col-md-3 offset-md-2">{l s='New password' d='Shop.Forms.Labels'}</label>
+          <div class="col-md-4">
+            <input class="form-control" type="password" data-validate="isPasswd" name="passwd" value="">
           </div>
+        </div>
 
-          <div class="row mb-3">
-            <label class="form-label col-md-3 offset-md-2">{l s='Confirmation' d='Shop.Forms.Labels'}</label>
-            <div class="col-md-4">
-              <input class="form-control" type="password" data-validate="isPasswd" name="confirmation" value="">
-            </div>
+        <div class="row mb-3">
+          <label class="form-label col-md-3 offset-md-2">{l s='Confirmation' d='Shop.Forms.Labels'}</label>
+          <div class="col-md-4">
+            <input class="form-control" type="password" data-validate="isPasswd" name="confirmation" value="">
           </div>
+        </div>
 
-          <input type="hidden" name="token" id="token" value="{$customer_token}">
-          <input type="hidden" name="id_customer" id="id_customer" value="{$id_customer}">
-          <input type="hidden" name="reset_token" id="reset_token" value="{$reset_token}">
+        <input type="hidden" name="token" id="token" value="{$customer_token}">
+        <input type="hidden" name="id_customer" id="id_customer" value="{$id_customer}">
+        <input type="hidden" name="reset_token" id="reset_token" value="{$reset_token}">
 
-          <div class="row mb-3">
-            <div class="offset-md-5">
-              <button class="btn btn-primary" type="submit" name="submit">
-                {l s='Change Password' d='Shop.Theme.Actions'}
-              </button>
-            </div>
+        <div class="row mb-3">
+          <div class="offset-md-5">
+            <button class="btn btn-primary" type="submit" name="submit">
+              {l s='Change Password' d='Shop.Theme.Actions'}
+            </button>
           </div>
         </div>
 

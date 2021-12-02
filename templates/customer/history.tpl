@@ -50,7 +50,7 @@
             <th scope="row">{$order.details.reference}</th>
             <td>{$order.details.order_date}</td>
             <td class="text-xs-end">{$order.totals.total.value}</td>
-            <td class="d-none d-lg-block">{$order.details.payment}</td>
+            <td class="d-none d-lg-table-cell">{$order.details.payment}</td>
             <td>
               <span
                 class="badge rounded-pill {$order.history.current.contrast}"
@@ -59,7 +59,7 @@
                 {$order.history.current.ostate_name}
               </span>
             </td>
-            <td class="text-sm-center d-none d-lg-block">
+            <td class="text-sm-center d-none d-lg-table-cell">
               {if $order.details.invoice_url}
                 <a href="{$order.details.invoice_url}"><i class="material-icons">&#xE415;</i></a>
               {else}

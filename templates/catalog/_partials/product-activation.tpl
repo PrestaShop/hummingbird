@@ -23,16 +23,14 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {if $page.admin_notifications}
-  <div class="alert alert-warning row" role="alert">
+  <div class="alert alert-warning" role="alert">
     <div class="container">
-      <div class="row">
-        {foreach $page.admin_notifications as $notif}
-          <div class="col-sm-12">
-            <i class="material-icons float-start">&#xE001;</i>
-            <p class="alert-text">{$notif.message}</p>
-          </div>
-        {/foreach}
-      </div>
+      {foreach $page.admin_notifications as $notif}
+        <div>
+          <i class="material-icons float-start">&#xE001;</i>
+          <p class="alert-text">{$notif.message}</p>
+        </div>
+      {/foreach}
     </div>
   </div>
 {/if}

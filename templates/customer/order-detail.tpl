@@ -43,7 +43,7 @@
               </strong>
             </div>
             {if $order.details.reorder_url}
-              <div class="col-xs-3 text-xs-right">
+              <div class="col-xs-3 text-xs-end">
                 <a href="{$order.details.reorder_url}" class="button-primary">{l s='Reorder' d='Shop.Theme.Actions'}</a>
               </div>
             {/if}
@@ -94,7 +94,7 @@
             <tr>
               <td>{$state.history_date}</td>
               <td>
-                <span class="label label-pill {$state.contrast}" style="background-color:{$state.color}">
+                <span class="badge rounded-pill {$state.contrast}" style="background-color:{$state.color}">
                   {$state.ostate_name}
                 </span>
               </td>
@@ -107,7 +107,7 @@
           <div class="history-line">
             <div class="date">{$state.history_date}</div>
             <div class="state">
-              <span class="label label-pill {$state.contrast}" style="background-color:{$state.color}">
+              <span class="badge rounded-pill {$state.contrast}" style="background-color:{$state.color}">
                 {$state.ostate_name}
               </span>
             </div>

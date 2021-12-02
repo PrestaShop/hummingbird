@@ -24,7 +24,7 @@
  *}
  {$componentName = 'order-confirmation'}
 
-<div id="order-items" class="{$componentName}-items col-md-12">
+<div id="order-items" class="{$componentName}-items">
   <div class="order-confirmation-table">
     {block name='order_confirmation_table'}
       {foreach from=$products item=product}
@@ -81,7 +81,7 @@
             {/if}
             {hook h='displayProductPriceBlock' product=$product type="unit_price"}
           </div>
-          <div class="{$componentName}-item-prices col-sm-6 col-xs-12 qty">
+          <div class="{$componentName}-item-prices col-sm-6 qty">
             <div class="row">
               <div class="col-xs-4 text-end">{$product.price}</div>
               <div class="col-xs-4 text-end">{$product.quantity}</div>
@@ -106,12 +106,12 @@
             <td><span class="text-uppercase">{$totals.total.label}&nbsp;{$labels.tax_short}</span></td>
             <td>{$totals.total.value}</td>
           </tr>
-          <tr class="total-value font-weight-bold">
+          <tr class="total-value fw-bold">
             <td><span class="text-uppercase">{$totals.total_including_tax.label}</span></td>
             <td>{$totals.total_including_tax.value}</td>
           </tr>
         {else}
-          <tr class="total-value font-weight-bold">
+          <tr class="total-value fw-bold">
             <td><span class="text-uppercase">{$totals.total.label}&nbsp;{if $configuration.taxes_enabled}{$labels.tax_short}{/if}</span></td>
             <td>{$totals.total.value}</td>
           </tr>

@@ -25,19 +25,15 @@
 {extends file=$layout}
 
 {block name='content'}
-  <section id="main">
-    <div class="container">
-      {block name='brand_header'}
-        <h1>{l s='Brands' d='Shop.Theme.Catalog'}</h1>
-      {/block}
+  {block name='brand_header'}
+    <h1>{l s='Brands' d='Shop.Theme.Catalog'}</h1>
+  {/block}
 
-      {block name='brand_miniature'}
-        <ul class="row">
-          {foreach from=$brands item=brand}
-            {include file='catalog/_partials/miniatures/brand.tpl' brand=$brand}
-          {/foreach}
-        </ul>
-      {/block}
-    </div>
-  </section>
+  {block name='brand_miniature'}
+    <ul class="row">
+      {foreach from=$brands item=brand}
+        {include file='catalog/_partials/miniatures/brand.tpl' brand=$brand}
+      {/foreach}
+    </ul>
+  {/block}
 {/block}

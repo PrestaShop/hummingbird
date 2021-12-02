@@ -60,11 +60,9 @@
   </section>
 
   {block name='hook_payment_return'}
-    {if ! empty($HOOK_PAYMENT_RETURN)}
+    {if !empty($HOOK_PAYMENT_RETURN)}
     <section id="content-hook_payment_return" class="{$componentName}-details-list">
-      <div class="col-md-12">
-        {$HOOK_PAYMENT_RETURN nofilter}
-      </div>
+      {$HOOK_PAYMENT_RETURN nofilter}
     </section>
     {/if}
   {/block}

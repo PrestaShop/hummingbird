@@ -20,6 +20,7 @@
 @import "components/_brand";
 @import "components/_store";
 @import "components/_sitemap";
+@import "components/_addresses";
 
 // Modules
 @import "modules/_featuredproducts";
@@ -27,6 +28,9 @@
 @import "modules/_emailsubscriptions";
 @import "modules/_blockreassurance";
 @import "modules/_social-sharing";
+@import "modules/_contactinfo";
+@import "modules/_contactform";
+
 
 // Layout
 @import "layout/_header";

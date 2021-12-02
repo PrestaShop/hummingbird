@@ -11,7 +11,7 @@ $slider-text-spacing: 1rem;
 
 $slider-description-size: 1rem;
 
-$slider-img-height: 340px;
+$slider-img-height: 100%;
 
 .carousel {
   --slider-img-height: #{$slider-img-height};

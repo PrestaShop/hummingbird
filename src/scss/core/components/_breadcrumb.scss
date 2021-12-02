@@ -13,8 +13,8 @@ $component-name: breadcrumb;
   }
 
   &__wrapper {
-    background: #f6f6f6;
     margin-bottom: 2rem;
+    background: #f6f6f6;
 
     @include media-breakpoint-down(md) {
       margin-bottom: 1rem;

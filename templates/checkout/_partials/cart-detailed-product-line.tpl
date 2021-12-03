@@ -125,9 +125,13 @@
         {foreach from=$product.customizations item="customization"}
           <a href="#" data-bs-toggle="modal"
               data-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
-          <div class="modal fade customization-modal"
-              id="product-customizations-modal-{$customization.id_customization}" tabindex="-1" role="dialog"
-              aria-hidden="true">
+          <div 
+            class="modal fade customization-modal"
+            id="product-customizations-modal-{$customization.id_customization}"
+            tabindex="-1" 
+            role="dialog"
+            aria-hidden="true"
+          >
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -166,10 +170,14 @@
 
   <div class="product-line-bottom mt-3">
     <div class="cart-line-actions">
-      <a class="remove-from-cart" rel="nofollow" href="{$product.remove_from_cart_url}"
+      <a 
+        class="remove-from-cart" 
+        rel="nofollow" 
+        href="{$product.remove_from_cart_url}"
         data-link-action="delete-from-cart" data-id-product="{$product.id_product|escape:'javascript'}"
         data-id-product-attribute="{$product.id_product_attribute|escape:'javascript'}"
-        data-id-customization="{$product.id_customization|escape:'javascript'}">
+        data-id-customization="{$product.id_customization|escape:'javascript'}"
+      >
         {if empty($product.is_gift)}
           <i class="material-icons float-start">delete</i>
         {/if}

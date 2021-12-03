@@ -53,30 +53,31 @@
     </div>
 
 
-      <!-- Right Block: cart subtotal & cart total -->
+    <!-- Right Block: cart subtotal & cart total -->
     <div class="cart-grid-right col-lg-4">
       <h2 class="h4">{l s='Order summary' d='Shop.Theme.Checkout'}</h2>
 
       {block name='cart_summary'}
         <div class="card cart-summary">
           {block name='hook_shopping_cart'}
-              {hook h='displayShoppingCart'}
+            {hook h='displayShoppingCart'}
           {/block}
 
           {block name='cart_totals'}
-              {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
+            {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
           {/block}
 
           {block name='cart_actions'}
-              {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
+            {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
           {/block}
         </div>
       {/block}
 
       {block name='hook_reassurance'}
-          {hook h='displayReassurance'}
+        {hook h='displayReassurance'}
       {/block}
     </div>
   </div>
+
   {hook h='displayCrossSellingShoppingCart'}
 {/block}

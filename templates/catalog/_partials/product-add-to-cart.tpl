@@ -22,13 +22,13 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<div class="product-add-to-cart js-product-add-to-cart">
+<div class="product__add-to-cart js-product-add-to-cart">
   {if !$configuration.is_catalog}
     <label for="quantity_wanted" class="form-label">{l s='Quantity' d='Shop.Theme.Catalog'}</label>
 
     {block name='product_quantity'}
-      <div class="product-quantity">
-        <div class="qty">
+      <div class="product-actions__inputs row m-0">
+        <div class="product-actions__quantity quantity-button js-quantity-button col-2 p-0 me-2">
           <input
             type="number"
             name="qty"
@@ -47,7 +47,7 @@
          >
         </div>
 
-        <div class="add">
+        <div class="product-actions__button col p-0">
           <button
             class="btn btn-primary btn-with-icon add-to-cart"
             data-button-action="add-to-cart"
@@ -66,7 +66,7 @@
     {/block}
 
     {block name='product_availability'}
-      <span id="product-availability" class="js-product-availability">
+      <span id="product__availability" class="product__availability js-product-availability">
         {if $product.show_availability && $product.availability_message}
           {if $product.availability == 'available'}
             <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i>
@@ -81,7 +81,7 @@
     {/block}
 
     {block name='product_minimal_quantity'}
-      <p class="product-minimal-quantity js-product-minimal-quantity">
+      <p class="product__minimal-quantity js-product-minimal-quantity">
         {if $product.minimal_quantity> 1}
           {l
           s='The minimum purchase order quantity for the product is %quantity%.'

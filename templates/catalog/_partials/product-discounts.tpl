@@ -22,11 +22,11 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<section class="product-discounts js-product-discounts">
+<section class="product__discounts js-product-discounts">
   {if $product.quantity_discounts}
-    <p class="h6 product-discounts-title">{l s='Volume discounts' d='Shop.Theme.Catalog'}</p>
+    <p class="h6 product__discounts__title">{l s='Volume discounts' d='Shop.Theme.Catalog'}</p>
     {block name='product_discount_table'}
-      <table class="table-product-discounts">
+      <table class="product__discounts__table">
         <thead>
         <tr>
           <th>{l s='Quantity' d='Shop.Theme.Catalog'}</th>

@@ -58,19 +58,17 @@ $component-name: header;
 
           .dropdown-menu {
             top: calc(100% + 1px);
-            left: 50%;
+            right: 0;
+            left: 0;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            width: 100vw;
-            max-width: 100vw;
             pointer-events: none;
             border: none;
             border-radius: 0;
             box-shadow: 0.25rem 0.75rem 1rem -1rem rgba($black, 0.3);
             opacity: 0;
             transition: 0.25s ease-out;
-            transform: translateX(-50%);
           }
 
           &:hover {

@@ -4,6 +4,12 @@
       padding-bottom: 2rem;
       margin-bottom: 0.75rem;
       border-bottom: 1px solid $gray-200;
+
+      &__button {
+        .btn {
+          width: 100%;
+        }
+      }
     }
 
     &-prices {

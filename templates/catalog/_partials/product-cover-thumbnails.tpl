@@ -59,51 +59,51 @@
       </ul>
     </div>
   {/block}
-  <div class="col-lg-9 offset-lg-1 p-0 h-100">
-  <div class="carousel-inner">
-    {include file='catalog/_partials/product-flags.tpl'}
+  <div class="col-lg-9 p-0 h-100">
+    <div class="carousel-inner">
+      {include file='catalog/_partials/product-flags.tpl'}
 
-    {if $product.images|@count > 1}
-      <button class="carousel-control-prev" type="button" data-bs-target="#product-images" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#product-images" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    {/if}
+      {if $product.images|@count > 1}
+        <button class="carousel-control-prev" type="button" data-bs-target="#product-images" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#product-images" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      {/if}
 
-    {block name='product_cover'}
-      {if $product.default_image}
-        {foreach from=$product.images item=image key=key}
-          <li 
-            class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}" 
-         >
-            <img
-              class="img-fluid"
-              src="{$image.bySize.large_default.url}"
-              {if !empty($image.legend)}
-                alt="{$image.legend}"
-                title="{$image.legend}"
-              {else}
-                alt="{$product.name}"
-              {/if}
+      {block name='product_cover'}
+        {if $product.default_image}
+          {foreach from=$product.images item=image key=key}
+            <li 
+              class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}" 
+           >
+              <img
+                class="img-fluid"
+                src="{$image.bySize.large_default.url}"
+                {if !empty($image.legend)}
+                  alt="{$image.legend}"
+                  title="{$image.legend}"
+                {else}
+                  alt="{$product.name}"
+                {/if}
+                loading="lazy"
+             >
+            </li>
+          {/foreach}
+        {else}
+          <li class="carousel-item">
+            <img 
+              src="{$urls.no_picture_image.bySize.large_default.url}"
               loading="lazy"
            >
           </li>
-        {/foreach}
-      {else}
-        <li class="carousel-item">
-          <img 
-            src="{$urls.no_picture_image.bySize.large_default.url}"
-            loading="lazy"
-         >
-        </li>
-      {/if}
-    {/block}
+        {/if}
+      {/block}
+    </div>
   </div>
-</div>
 </div>
 
 {hook h='displayAfterProductThumbs' product=$product}

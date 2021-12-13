@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 export default {
-  qtyInput: '.qty input',
+  qtyInput: '.js-quantity-button input',
   product: {
     carousel: '.js-product-carousel',
     miniature: '.js-product-miniature',

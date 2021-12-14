@@ -54,7 +54,7 @@
 
         <div class="title d-none d-sm-block d-md-none" data-target="#facet_{$_expand_id}" data-bs-toggle="collapse"{if !$_collapse} aria-expanded="true"{/if}>
           <p class="h6 facet-title">{$facet.label}</p>
-          <span class="float-end">
+          <span>
             <span class="navbar-toggler collapse-icons">
               <i class="material-icons add">&#xE313;</i>
               <i class="material-icons remove">&#xE316;</i>
@@ -139,7 +139,7 @@
                         {l s='(no filter)' d='Shop.Theme.Global'}
                       {/if}
                     </span>
-                    <i class="material-icons float-end">&#xE5C5;</i>
+                    <i class="material-icons">&#xE5C5;</i>
                   </a>
                   <div class="dropdown-menu">
                     {foreach from=$facet.filters item="filter"}

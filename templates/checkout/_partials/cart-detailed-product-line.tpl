@@ -179,7 +179,7 @@
         data-id-customization="{$product.id_customization|escape:'javascript'}"
       >
         {if empty($product.is_gift)}
-          <i class="material-icons float-start">delete</i>
+          <i class="material-icons">delete</i>
         {/if}
       </a>
 

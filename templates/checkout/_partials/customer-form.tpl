@@ -39,7 +39,7 @@
 
 {block "form_buttons"}
     <button
-      class="continue btn btn-primary float-end"
+      class="continue btn btn-primary"
       name="continue"
       data-link-action="register-new-customer"
       type="submit"

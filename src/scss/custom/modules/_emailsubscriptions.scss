@@ -6,11 +6,11 @@ $email-input-border-color: $input-border-color !default;
   padding: 2.5rem 1rem;
   background-color: $gray-100;
 
-  & &-content {
-    max-width: 50.625rem;
+  & &__content {
+    max-width: 56.625rem;
     margin: auto;
 
-    &-infos {
+    &__infos {
       margin-top: 0.25rem;
 
       p {
@@ -18,7 +18,7 @@ $email-input-border-color: $input-border-color !default;
       }
     }
 
-    &-inputs {
+    &__inputs {
       display: flex;
       align-items: center;
 
@@ -36,7 +36,7 @@ $email-input-border-color: $input-border-color !default;
     }
   }
 
-  & &-label {
+  & &__label {
     font-size: 1.25rem;
     line-height: 1.75rem;
     color: $gray-800;

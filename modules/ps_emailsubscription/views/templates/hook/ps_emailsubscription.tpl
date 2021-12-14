@@ -27,14 +27,14 @@
 
 <div class="{$componentName} py-4">
   <div class="container">
-    <div class="{$componentName}-content row">
-      <div class="{$componentName}-content-left col-md-5">
-        <p class="{$componentName}-label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
+    <div class="{$componentName}__content row">
+      <div class="{$componentName}__content__left col-md-5">
+        <p class="{$componentName}__label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
       </div>
 
-      <div class="{$componentName}-content-right col-md-7">
+      <div class="{$componentName}__content__right col-md-7">
         <form action="{$urls.current_url}#blockEmailSubscription_{$hookName}" method="post">
-          <div class="{$componentName}-content-inputs inline-items">
+          <div class="{$componentName}__content__inputs inline-items">
             <input
               name="email"
               type="email"
@@ -46,21 +46,14 @@
            >
 
             <input
-              class="btn btn-primary d-none d-sm-none d-md-block"
+              class="btn btn-primary"
               name="submitNewsletter"
               type="submit"
               value="{l s='Subscribe' d='Shop.Theme.Actions'}"
            >
-
-            <input
-              class="btn btn-primary d-none d-sm-block d-md-none"
-              name="submitNewsletter"
-              type="submit"
-              value="{l s='OK' d='Shop.Theme.Actions'}"
-           >
           </div>
 
-          <div class="{$componentName}-content-infos">
+          <div class="{$componentName}__content__infos">
             {if $conditions}
               <p>{$conditions}</p>
             {/if}

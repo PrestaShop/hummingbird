@@ -27,7 +27,7 @@
     <div class="container">
       {foreach $page.admin_notifications as $notif}
         <div>
-          <i class="material-icons float-start">&#xE001;</i>
+          <i class="material-icons">&#xE001;</i>
           <p class="alert-text">{$notif.message}</p>
         </div>
       {/foreach}

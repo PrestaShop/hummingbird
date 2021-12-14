@@ -24,7 +24,6 @@
  *}
 <section class="contact-form">
   <form action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if}>
-
     {if $notifications}
       <div class="alert {if $notifications.nw_error}alert-danger{else}alert-success{/if}">
         <ul>
@@ -38,7 +37,7 @@
     {if !$notifications || $notifications.nw_error}
       <section class="form-fields">
 
-        <h1 class="mb-4">{l s='Contact us' d='Shop.Theme.Global'}</h1>
+        <h1 class="h2 mb-4">{l s='Contact us' d='Shop.Theme.Global'}</h1>
 
         <div class="mb-3">
           <label class="form-label">{l s='Subject' d='Shop.Forms.Labels'}</label>

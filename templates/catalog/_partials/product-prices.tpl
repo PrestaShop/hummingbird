@@ -35,7 +35,7 @@
 
     {block name='product_price'}
       <div
-        class="product-price h5 {if $product.has_discount}has-discount{/if}">
+        class="product__price h5 {if $product.has_discount}product__price--discount{/if}">
 
         <div class="product__current-price">
           <span class="product_current-price__value" content="{$product.rounded_display_price}">

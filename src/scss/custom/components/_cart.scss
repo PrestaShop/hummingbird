@@ -2,7 +2,8 @@ $component-name: cart;
 
 .#{$component-name} {
   &-container {
-    .card-header, .card-footer {
+    .card-header,
+    .card-footer {
       background-color: $white;
 
       i {

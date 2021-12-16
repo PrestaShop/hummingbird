@@ -34,7 +34,7 @@
      >
     </a>
 
-    <h1 class="h2">
+    <h1 class="h4">
       <a href="{$category.url}">{$category.name}</a>
     </h1>
 

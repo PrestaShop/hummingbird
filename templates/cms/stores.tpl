@@ -79,7 +79,7 @@
                     <a data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}"><strong>{l s='About and Contact' d='Shop.Theme.Global'}</strong><i class="material-icons">&#xE409;</i></a>
                   {/if}
                   <hr>
-                  <button class="store__toggle accordion-button collapsed pb-2 px-0" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}">{l s='See schedules' d='Shop.Theme.Global'}</button>
+                  <button class="store__toggle accordion-button collapsed pb-2 px-0" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}">{l s='View schedules' d='Shop.Theme.Global'}</button>
                   <table id="table-{$store.id}" class="store__opening-times accordion-collapse collapse">
                     {foreach $store.business_hours as $day}
                     <tr>

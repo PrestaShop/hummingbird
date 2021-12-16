@@ -26,7 +26,7 @@
 
 {block name='account_menu'}
   <div class="{$componentName} hidden-on-mobile">
-    <p class="{$componentName}__title mb-4 h3">{l s='My Account' d='Shop.Theme.Customeraccount'}</p>
+    <p class="{$componentName}__title mb-4 h4">{l s='My Account' d='Shop.Theme.Customeraccount'}</p>
     <a class="{$componentName}__line{if $urls.current_url === $urls.pages.identity} active{/if}" id="identity__link" href="{$urls.pages.identity}">
       <span class="link-item">
       <i class="material-icons">&#xE853;</i>

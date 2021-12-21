@@ -53,7 +53,7 @@
     <hr/>
     <div class="contact__item">
       <i class="material-icons">&#xE88E;</i>
-      <div class="contact__info">{$contact_infos.details}</div>
+      <div class="contact__info">{$contact_infos.details|nl2br nofilter}</div>
     </div>
   {/if} *}
 </div>

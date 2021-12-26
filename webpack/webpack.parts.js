@@ -64,7 +64,7 @@ exports.extractScss = ({mode = 'production'}) => ({
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
+      filename: ({ chunk: {name} }) => name === 'rtl' ? 'css/theme.rtlfix' : 'css/[name].css',
       chunkFilename: mode === 'production' ? 'css/[chunkhash].css' : 'css/[id].css',
     }),
   ],

@@ -21,6 +21,7 @@ const {
 const entriesArray = {
   theme: ['scss', 'ts'],
   error: ['scss'],
+  rtl: ['scss'],
 };
 
 exports.webpackVars = {

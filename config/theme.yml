@@ -129,6 +129,7 @@ global_settings:
       scope: [stores]
 
 theme_settings:
+  rtl_generation: false
   default_layout: layout-full-width
   layouts:
     category: layout-left-column

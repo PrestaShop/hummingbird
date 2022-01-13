@@ -47,9 +47,29 @@ exports.extractScss = ({mode = 'production'}) => ({
   module: {
     rules: [{
       test: /\.scss$/,
+      exclude: /_rtl\.scss$/,
       use: [
         MiniCssExtractPlugin.loader,
         'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            postcssOptions: {
+              config: path.resolve(__dirname, '../postcss.config.js'),
+            },
+          },
+        },
+        'sass-loader',
+      ],
+    },
+    {
+      test: /_rtl\.scss$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        {
+          loader: path.resolve('./webpack/webpack.rtl.js'),
+        },
         {
           loader: 'postcss-loader',
           options: {

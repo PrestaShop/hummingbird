@@ -1,6 +1,7 @@
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
@@ -83,6 +84,7 @@ exports.extractScss = ({mode = 'production'}) => ({
     }],
   },
   plugins: [
+    new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
       chunkFilename: mode === 'production' ? 'css/[chunkhash].css' : 'css/[id].css',

@@ -18,6 +18,7 @@ exports.commonConfig = ({
       target: 'web',
       resolve: {
         alias: {
+          '@js': path.resolve(__dirname, '../src/js'),
           '@services': path.resolve(__dirname, '../src/js/services'),
           '@helpers': path.resolve(__dirname, '../src/js/helpers'),
         },

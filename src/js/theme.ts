@@ -35,6 +35,7 @@ import './modules/blockcart';
 import initProductBehavior from './product';
 import './mobile-menu';
 import './modules/ps_searchbar';
+import './modules/facetedsearch';
 /* eslint-enable */
 
 $(document).ready(() => {

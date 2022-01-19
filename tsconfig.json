@@ -7,12 +7,14 @@
     "strict": true,
     "strictFunctionTypes": false,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
       "@services/*": ["src/js/services/*"],
       "@helpers/*": ["src/js/helpers/*"],
+      "@js/*": ["src/js/*"],
     }
   }
 }

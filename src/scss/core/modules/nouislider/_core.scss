@@ -1,0 +1,156 @@
+.noUi-target,
+.noUi-target * {
+  box-sizing: border-box;
+  /* stylelint-disable */
+  touch-action: none;
+  /* stylelint-enable */
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: none;
+}
+
+.noUi-base,
+.noUi-connects {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Wrapper for all connect elements.
+  */
+.noUi-connects {
+  z-index: 0;
+  overflow: hidden;
+  border-radius: $nouislider-connects-border-radius;
+}
+
+.noUi-connect,
+.noUi-origin {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transform-origin: 0 0;
+  will-change: transform;
+  transform-style: preserve-3d;
+  transform-style: flat;
+  width: 100%;
+  height: 100%;
+}
+
+.noUi-connect {
+  width: 100%;
+  height: 100%;
+  background: $nouislider-connects-background-color;
+}
+
+/* Offset direction
+  */
+.noUi-txt-dir-rtl.noUi-horizontal .noUi-origin {
+  right: auto;
+  left: 0;
+}
+
+/* Give origins 0 height/width so they don't interfere with clicking the
+  * connect elements.
+  */
+.noUi-vertical .noUi-origin {
+  width: 0;
+}
+
+.noUi-horizontal .noUi-origin {
+  height: 0;
+}
+
+.noUi-touch-area {
+  width: 100%;
+  height: 100%;
+}
+
+.noUi-state-tap .noUi-connect,
+.noUi-state-tap .noUi-origin {
+  transition: transform 0.3s;
+}
+
+.noUi-state-drag * {
+  /* stylelint-disable */
+  cursor: inherit !important;
+  /* stylelint-enable */
+}
+
+/* Slider size and handle placement;
+  */
+.noUi-horizontal {
+  height: $nouislider-horizontal-height;
+  margin: 0 #{$nouislider-horizontal-handler-width / 2};
+}
+
+.noUi-horizontal .noUi-handle {
+  top: -#{(($nouislider-horizontal-handler-height - $nouislider-horizontal-height) / 2) + $nouislider-target-border-width};
+  right: -#{$nouislider-horizontal-handler-width / 2};
+  width: $nouislider-horizontal-handler-width;
+  height: $nouislider-horizontal-handler-height;
+}
+
+.noUi-vertical {
+  width: $nouislider-vertical-width;
+  margin: #{$nouislider-vertical-handler-height / 2} 0;
+}
+
+.noUi-vertical .noUi-handle {
+  top: -#{$nouislider-vertical-handler-height / 2};
+  right: -#{(($nouislider-horizontal-handler-width - $nouislider-vertical-width) / 2) + $nouislider-target-border-width};
+  width: $nouislider-vertical-handler-width;
+  height: $nouislider-vertical-handler-height;
+}
+
+/* Styling;
+  * Giving the connect element a border radius causes issues with using transform: scale
+  */
+.noUi-target {
+  position: relative;
+  background: $nouislider-target-background-color;
+  border: $nouislider-target-border-width solid $nouislider-target-border-color;
+  border-radius: $nouislider-target-border-radius;
+  box-shadow: $nouislider-target-shadow;
+}
+
+/* Handles and cursors;
+  */
+.noUi-draggable {
+  cursor: ew-resize;
+}
+
+.noUi-vertical .noUi-draggable {
+  cursor: ns-resize;
+}
+
+.noUi-handle {
+  position: absolute;
+  cursor: default;
+  background: $nouislider-handle-background-color;
+  border: $nouislider-handle-border-width solid $nouislider-handle-border-color;
+  border-radius: $nouislider-handle-border-radius;
+  outline: none;
+  box-shadow: $nouislider-handle-shadow;
+  backface-visibility: hidden;
+}
+
+.noUi-active {
+  background: $nouislider-handle-active-background-color;
+  box-shadow: $nouislider-handle-active-shadow;
+}
+
+/* Disabled state;
+  */
+
+[disabled] .noUi-connect {
+  background: $nouislider-connects-disabled-background-color;
+}
+
+[disabled].noUi-target,
+[disabled].noUi-handle,
+[disabled] .noUi-handle {
+  cursor: not-allowed;
+}

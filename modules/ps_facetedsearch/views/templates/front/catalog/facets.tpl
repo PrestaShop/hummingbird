@@ -165,31 +165,34 @@
             {elseif $facet.widgetType == 'slider'}
               {block name='facet_item_slider'}
                 {foreach from=$facet.filters item="filter"}
-                  <ul
-                    class="accordion-body faceted-slider"
-                    data-slider-min="{$facet.properties.min}"
-                    data-slider-max="{$facet.properties.max}"
-                    data-slider-id="{$_expand_id}"
-                    data-slider-values="{$filter.value|@json_encode}"
-                    data-slider-unit="{$facet.properties.unit}"
-                    data-slider-label="{$facet.label}"
-                    data-slider-specifications="{$facet.properties.specifications|@json_encode}"
-                    data-slider-encoded-url="{$filter.nextEncodedFacetsURL}"
-                 >
-                    <li>
-                      <p id="facet_label_{$_expand_id}">
-                        {$filter.label}
-                      </p>
+                  <div class="accordion-body faceted-filter js-faceted-filter-slider">
+                    <div
+                      class="faceted-slider js-faceted-slider-container"
+                      data-slider-min="{$facet.properties.min}"
+                      data-slider-max="{$facet.properties.max}"
+                      data-slider-id="{$_expand_id}"
+                      data-slider-values="{$filter.value|@json_encode}"
+                      data-slider-unit="{$facet.properties.unit}"
+                      data-slider-label="{$facet.label}"
+                      data-slider-specifications="{$facet.properties.specifications|@json_encode}"
+                      data-slider-encoded-url="{$filter.nextEncodedFacetsURL}"
+                   >
+                    </div>
+                    <p id="facet_label_{$_expand_id}">
+                      {$filter.label}
+                    </p>
 
-                      <input 
-                        type="range"
-                        class="form-range"
-                        id="slider-range_{$_expand_id}"
-                        min="{$facet.properties.min}"
-                        max="{$facet.properties.max}"
-                     >
-                    </li>
-                  </ul>
+                  <input 
+                    type="hidden"
+                    class="form-range-start js-faceted-slider js-faceted-slider-start"
+                    id="slider-range_{$_expand_id}-start"
+                   >
+                  <input 
+                    type="hidden"
+                    class="form-range-start js-faceted-slider js-faceted-slider-end"
+                    id="slider-range_{$_expand_id}-end"
+                   >
+                 </div>
                 {/foreach}
               {/block}
             {/if}

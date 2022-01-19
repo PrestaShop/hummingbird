@@ -32,3 +32,9 @@ export default {
   },
   quickview: '.js-quickview',
 };
+
+export const facetedsearch = {
+  range: '.js-faceted-slider',
+  rangeContainer: '.js-faceted-slider-container',
+  filterSlider: '.js-faceted-filter-slider',
+};

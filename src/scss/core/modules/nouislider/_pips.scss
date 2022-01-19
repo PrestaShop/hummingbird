@@ -1,0 +1,108 @@
+/* Base;
+ *
+ */
+.noUi-pips,
+.noUi-pips * {
+  box-sizing: border-box;
+}
+
+.noUi-pips {
+  position: absolute;
+  color: $nouislider-pips-color;
+}
+
+/* Values;
+  *
+  */
+.noUi-value {
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.noUi-value-sub {
+  font-size: $nouislider-pips-value-font-size;
+  color: $nouislider-pips-value-color;
+}
+
+/* Markings;
+  *
+  */
+.noUi-marker {
+  position: absolute;
+  background: $nouislider-marker-background-color;
+}
+
+.noUi-marker-sub {
+  background: $nouislider-marker-sub-background-color;
+}
+
+.noUi-marker-large {
+  background: $nouislider-marker-large-background-color;
+}
+
+/* Horizontal layout;
+  *
+  */
+.noUi-pips-horizontal {
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: $nouislider-pips-horizontal-height;
+  padding: $nouislider-pips-horizontal-spacing;
+}
+
+.noUi-value-horizontal {
+  transform: translate(-50%, 50%);
+
+  .noUi-rtl & {
+    transform: translate(50%, 50%);
+  }
+}
+
+.noUi-marker-horizontal.noUi-marker {
+  width: $nouislider-marker-horizontal-width;
+  height: $nouislider-marker-horizontal-height;
+  margin-left: -#{$nouislider-marker-horizontal-width / 2};
+}
+
+.noUi-marker-horizontal.noUi-marker-sub {
+  height: $nouislider-marker-sub-horizontal-height;
+}
+
+.noUi-marker-horizontal.noUi-marker-large {
+  height: $nouislider-marker-large-horizontal-height;
+}
+
+/* Vertical layout;
+  *
+  */
+.noUi-pips-vertical {
+  top: 0;
+  left: 100%;
+  height: 100%;
+  padding: $nouislider-pips-vertical-spacing;
+}
+
+.noUi-value-vertical {
+  padding-left: 25px;
+  transform: translate(0, -50%);
+
+  .noUi-rtl & {
+    transform: translate(0, 50%);
+  }
+}
+
+.noUi-marker-vertical.noUi-marker {
+  width: $nouislider-marker-vertical-width;
+  height: $nouislider-marker-vertical-height;
+  margin-top: -#{$nouislider-marker-vertical-height / 2};
+}
+
+.noUi-marker-vertical.noUi-marker-sub {
+  width: $nouislider-marker-sub-vertical-width;
+}
+
+.noUi-marker-vertical.noUi-marker-large {
+  width: $nouislider-marker-large-vertical-width;
+}

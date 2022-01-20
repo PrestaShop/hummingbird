@@ -178,10 +178,6 @@
                       data-slider-encoded-url="{$filter.nextEncodedFacetsURL}"
                    >
                     </div>
-                    <p id="facet_label_{$_expand_id}">
-                      {$filter.label}
-                    </p>
-
                   <input 
                     type="hidden"
                     class="form-range-start js-faceted-slider js-faceted-slider-start"

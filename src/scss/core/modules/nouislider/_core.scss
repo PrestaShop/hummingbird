@@ -85,7 +85,7 @@ $component-name: noUi;
     */
   &-horizontal {
     height: $nouislider-horizontal-height;
-    margin: 0 #{$nouislider-horizontal-handler-width / 2};
+    margin: #{$nouislider-horizontal-handler-height / 2} #{$nouislider-horizontal-handler-width / 2};
   }
 
   &-horizontal .#{$component-name}-handle {

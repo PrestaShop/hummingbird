@@ -52,12 +52,17 @@ const initSliders = () => {
         mark: ',',
         thousand: ' ',
         decimals: 0,
-        ['suffix']: 'suffix',
       });
     }
+    const tooltipsFormat = wNumb({
+      decimals: 0,
+      [signPosition]:
+        signPosition === 'prefix' ?  options.currencySymbol : ` ${options.currencySymbol}`,
+    })
 
     noUiSlider.create(container, {
       start: [0, 100],
+      tooltips: [tooltipsFormat, tooltipsFormat],
       connect: [false, true, false],
       range: {
         min,

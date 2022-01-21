@@ -47,7 +47,10 @@ export const listing = {
 };
 
 const selectorsMap = {
-  qtyInput: '.js-quantity-button input',
+  qtyInput: {
+    default: '.js-quantity-button input',
+    modal: '.modal-dialog .js-quantity-button input',
+  },
   product: {
     carousel: '.js-product-carousel',
     miniature: '.js-product-miniature',

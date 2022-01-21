@@ -22,26 +22,6 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-// @ts-ignore
-//import $ from "expose-loader?exposes=$,jQuery!jquery";
 
-import './prestashop';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import './responsive-toggler';
-import './qty-input';
-import initQuickview from './quickview';
-import './modules/blockcart';
-import initProductBehavior from './product';
-import './mobile-menu';
-import './modules/ps_searchbar';
-import './modules/facetedsearch';
-import SelectorsMap from './selectors-map';
-/* eslint-enable */
-
-prestashop.themeSelectors = SelectorsMap;
-
-$(document).ready(() => {
-  initProductBehavior();
-  initQuickview();
-});
+export default function (values: Array<number>) {
+};

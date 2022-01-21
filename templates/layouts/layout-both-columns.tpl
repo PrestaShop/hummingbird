@@ -105,6 +105,10 @@
       {include file="_partials/javascript.tpl" javascript=$javascript.bottom}
     {/block}
 
+    {block name='bottom_elements'}
+      {include file="components/page-loader.tpl"}
+    {/block}
+
     {block name='hook_before_body_closing_tag'}
       {hook h='displayBeforeBodyClosingTag'}
     {/block}

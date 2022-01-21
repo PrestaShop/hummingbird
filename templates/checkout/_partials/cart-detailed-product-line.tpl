@@ -40,8 +40,8 @@
     <div class="product-line-top">
       <a class="product-line-title" href="{$product.url}"
           data-id_customization="{$product.id_customization|intval}">{$product.name}</a>
-      <div class="quantity-price d-flex flex-wrap my-2 my-md-0">
-        <div class="qty me-3">
+      <div class="quantity-price d-flex flex-wrap my-2">
+        <div class="quantity-button js-quantity-button me-3">
           {if !empty($product.is_gift)}
             <span class="gift-quantity">{$product.quantity}</span>
           {else}

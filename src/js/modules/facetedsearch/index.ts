@@ -26,7 +26,7 @@
 import noUiSlider, {target, API} from 'nouislider';
 import wNumb from 'wnumb';
 import initFacets from './update';
-import filterHandler, {getCurrentParam} from './filter-handler';
+import filterHandler from './filter-handler';
 
 const initSliders = () => {
   document.querySelectorAll(prestashop.themeSelectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
@@ -62,9 +62,11 @@ const initSliders = () => {
         signPosition === 'prefix' ?  options.currencySymbol : ` ${options.currencySymbol}`,
     })
 
+    const sliderValues = JSON.parse(<string>container.dataset.sliderValues);
+
     if(!container.noUiSlider) {
       initiatedSlider = noUiSlider.create(container, {
-        start: JSON.parse(<string>container.dataset.sliderValues),
+        start: sliderValues ?? [min, max],
         tooltips: [tooltipsFormat, tooltipsFormat],
         connect: [false, true, false],
         range: {
@@ -78,7 +80,7 @@ const initSliders = () => {
       })
     }else {
       container.noUiSlider.updateOptions({
-        start: JSON.parse(<string>container.dataset.sliderValues),
+        start: sliderValues ?? [min, max],
         tooltips: [tooltipsFormat, tooltipsFormat],
         range: {
           min,

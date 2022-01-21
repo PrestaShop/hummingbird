@@ -45,9 +45,12 @@ prestashop.blockcart.showModal = (html: string) => {
   document.querySelector('body')?.append(<HTMLElement>mainElement.querySelector('#blockcart-modal'));
 
   blockCartModal = getBlockCartModal();
-  console.log(blockCartModal, Modal)
 
   const modal = new Modal(blockCartModal);
+
+  if ($addToCartButton !== undefined) {
+    toggleSpinner();
+  }
 
   modal.show();
 
@@ -62,3 +65,18 @@ prestashop.blockcart.showModal = (html: string) => {
     }
   });
 };
+
+const $body = $('body');
+let $addToCartButton : any;
+
+$body.on('click', '[data-button-action="add-to-cart"]', (event) => {
+  event.preventDefault();
+
+  $addToCartButton = $(event.currentTarget);
+  toggleSpinner();
+});
+
+function toggleSpinner() {
+  $addToCartButton.find('.spinner-border').toggleClass('visually-hidden');
+  $addToCartButton.find('.material-icons').toggleClass('visually-hidden');
+}

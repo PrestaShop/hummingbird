@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $component-name: noUi;
 
 .#{$component-name} {
@@ -66,7 +68,7 @@ $component-name: noUi;
   &-marker-horizontal.#{$component-name}-marker {
     width: $nouislider-marker-horizontal-width;
     height: $nouislider-marker-horizontal-height;
-    margin-left: -#{$nouislider-marker-horizontal-width / 2};
+    margin-left: -#{math.div($nouislider-marker-horizontal-width, 2)};
   }
 
   &-marker-horizontal.#{$component-name}-marker-sub {
@@ -99,7 +101,7 @@ $component-name: noUi;
   &-marker-vertical.#{$component-name}-marker {
     width: $nouislider-marker-vertical-width;
     height: $nouislider-marker-vertical-height;
-    margin-top: -#{$nouislider-marker-vertical-height / 2};
+    margin-top: -#{math.div($nouislider-marker-vertical-height, 2)};
   }
 
   &-marker-vertical.#{$component-name}-marker-sub {

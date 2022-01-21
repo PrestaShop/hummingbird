@@ -23,20 +23,22 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import noUiSlider, {target} from 'nouislider';
-import {facetedsearch as SelectorsMap} from '@js/selectors-map';
+import noUiSlider, {target, API} from 'nouislider';
 import wNumb from 'wnumb';
+import initFacets from './update';
+import filterHandler, {getCurrentParam} from './filter-handler';
 
 const initSliders = () => {
-  document.querySelectorAll(SelectorsMap.filterSlider).forEach((filter: HTMLElement) => {
-    const container = <HTMLElement>filter.querySelector(SelectorsMap.rangeContainer);
-    const slider = <target>filter.querySelector(SelectorsMap.range);
+  document.querySelectorAll(prestashop.themeSelectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
+    const container = <target>filter.querySelector(prestashop.themeSelectors.facetedsearch.rangeContainer);
+    const slider = <target>filter.querySelector(prestashop.themeSelectors.facetedsearch.range);
     const options = JSON.parse(<string>container.dataset.sliderSpecifications);
     const signPosition = options.positivePattern.indexOf('¤') === 0 ? 'prefix' : 'suffix';
     const sliderType = container.dataset.sliderSpecifications ? 'price' : 'weight';
     const min = parseInt(<string>container.dataset.sliderMin);
     const max = parseInt(<string>container.dataset.sliderMax);
     let format;
+    let initiatedSlider: API;
     const values = !Array.isArray(container.dataset.sliderValues) ? [min, max] : container.dataset.sliderValues;
     
     if (sliderType === 'price') {
@@ -55,33 +57,61 @@ const initSliders = () => {
       });
     }
     const tooltipsFormat = wNumb({
-      decimals: 0,
+      decimals: 2,
       [signPosition]:
         signPosition === 'prefix' ?  options.currencySymbol : ` ${options.currencySymbol}`,
     })
 
-    noUiSlider.create(container, {
-      start: [0, 100],
-      tooltips: [tooltipsFormat, tooltipsFormat],
-      connect: [false, true, false],
-      range: {
-        min,
-        max,
-      },
-    });
+    if(!container.noUiSlider) {
+      initiatedSlider = noUiSlider.create(container, {
+        start: JSON.parse(<string>container.dataset.sliderValues),
+        tooltips: [tooltipsFormat, tooltipsFormat],
+        connect: [false, true, false],
+        range: {
+          min,
+          max,
+        },
+      });
+
+      initiatedSlider.on('set', (values, handle, unencoded, tap, positions, instance) => {
+        filterHandler(values, instance);
+      })
+    }else {
+      container.noUiSlider.updateOptions({
+        start: JSON.parse(<string>container.dataset.sliderValues),
+        tooltips: [tooltipsFormat, tooltipsFormat],
+        range: {
+          min,
+          max,
+        },
+      }, true);
+
+      container.noUiSlider.on('set', (values, handle, unencoded, tap, positions, instance) => {
+        filterHandler(values, instance);
+      })
+    }
   }) 
 }
 
+const toggleLoader = (toggle: boolean) => {
+  const loader = document.querySelector(prestashop.themeSelectors.pageLoader);
+
+  if (loader) {
+    loader.classList.toggle('d-none', toggle);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initFacets();
   prestashop.on('updateProductList', () => {
-    // hideLoading();
+    toggleLoader(true);
     initSliders();
   })
 
   initSliders();
 
   prestashop.on('updateFacets', () => {
-    // showLoading();
+    toggleLoader(false);
   })
 });
 

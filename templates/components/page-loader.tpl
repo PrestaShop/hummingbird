@@ -1,4 +1,4 @@
-/**
+{**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -21,27 +21,13 @@
  * @author    PrestaShop SA and Contributors <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- */
-/* eslint-disable */
-// @ts-ignore
-//import $ from "expose-loader?exposes=$,jQuery!jquery";
+ *}
+{$componentName = 'page-loader'}
 
-import './prestashop';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import './responsive-toggler';
-import './qty-input';
-import initQuickview from './quickview';
-import './modules/blockcart';
-import initProductBehavior from './product';
-import './mobile-menu';
-import './modules/ps_searchbar';
-import './modules/facetedsearch';
-import SelectorsMap from './selectors-map';
-/* eslint-enable */
-
-prestashop.themeSelectors = SelectorsMap;
-
-$(document).ready(() => {
-  initProductBehavior();
-  initQuickview();
-});
+{block name='page_loader'}
+  <div class="page-loader js-page-loader d-none">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">{l s='Loading...' d='Shop.Theme.Global'}</span>
+    </div>
+  </div>
+{/block}

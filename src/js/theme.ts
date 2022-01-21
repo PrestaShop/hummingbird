@@ -29,7 +29,7 @@
 import './prestashop';
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import './responsive-toggler';
-import './qty-input';
+import initQuantityInput from './qty-input';
 import initQuickview from './quickview';
 import './modules/blockcart';
 import initProductBehavior from './product';
@@ -43,5 +43,6 @@ prestashop.themeSelectors = SelectorsMap;
 
 $(document).ready(() => {
   initProductBehavior();
+  initQuantityInput(SelectorsMap.qtyInput.default);
   initQuickview();
 });

@@ -45,24 +45,3 @@ export default function (values: Array<any>, slider: API) {
 
   prestashop.emit('updateFacets', newUrl);
 };
-
-export const getCurrentParam =  (slider: HTMLElement, min: number, max: number) => {
-  const label = <string>slider.dataset.sliderLabel;
-  const unit = slider.dataset.sliderUnit;
-  const encodedUrl = window.location.href;
-  const splittedUrl = encodedUrl.split('?');
-  let newUrl: string;
-
-  const searchParams = new URLSearchParams(splittedUrl[1]);
-  const params = searchParams.get('q');
-
-  if(params) {
-    let groups = params.split('/');
-    groups = groups.filter(e => e.replace(label, '') !== e);
-    const groupValues = groups[0].split('-');
-
-    return [parseFloat(groupValues[2]), parseFloat(groupValues[3])];
-  }
-
-  return [min, max];
-};

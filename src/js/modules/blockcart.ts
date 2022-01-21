@@ -48,10 +48,6 @@ prestashop.blockcart.showModal = (html: string) => {
 
   const modal = new Modal(blockCartModal);
 
-  if ($addToCartButton !== undefined) {
-    toggleSpinner();
-  }
-
   modal.show();
 
   blockCartModal.addEventListener('hidden.bs.modal', (event: Event) => {
@@ -73,6 +69,14 @@ $body.on('click', '[data-button-action="add-to-cart"]', (event) => {
   event.preventDefault();
 
   $addToCartButton = $(event.currentTarget);
+  toggleSpinner();
+});
+
+prestashop.on('updateCart', () => {
+  toggleSpinner();
+});
+
+prestashop.on('handleError', () => {
   toggleSpinner();
 });
 

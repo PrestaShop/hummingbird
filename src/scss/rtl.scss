@@ -1,5 +1,11 @@
 // Custom CSS rules for RTL should be included here.
 // This file will be used automatically if shop language is RTL.
+@import "~vazir-font/dist/font-face.css";
+
+body {
+  font-family: Vazir,sans-serif;
+}
+
 .material-icons {
   &.rtl-flip {
     transform: scaleX(-1);

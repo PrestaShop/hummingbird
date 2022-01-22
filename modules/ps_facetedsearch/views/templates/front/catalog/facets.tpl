@@ -58,12 +58,12 @@
                       {continue}
                     {/if}
 
-                    <li>
+                    <li {if isset($filter.properties.color) || isset($filter.properties.texture)}class="d-inline-block"{/if}>
                       <div class="{$componentName}-label facet-label{if $filter.active} active {/if}">
                         {if $facet.multipleSelectionAllowed}
-                          <div class="form-check">
+                          <div class="form-check{if isset($filter.properties.color) || isset($filter.properties.texture)} px-0{/if}">
                             <input 
-                              class="form-check-input" 
+                              class="form-check-input{if isset($filter.properties.color) || isset($filter.properties.texture)} visually-hidden{/if}" 
                               id="facet_input_{$_expand_id}_{$filter_key}"
                               data-search-url="{$filter.nextEncodedFacetsURL}"
                               type="checkbox"

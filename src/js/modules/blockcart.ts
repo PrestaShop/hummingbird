@@ -62,25 +62,34 @@ prestashop.blockcart.showModal = (html: string) => {
   });
 };
 
-const $body = $('body');
-let $addToCartButton : any;
+let $addToCartButton: JQuery;
 
-$body.on('click', '[data-button-action="add-to-cart"]', (event) => {
+$('body').on('click', '[data-button-action="add-to-cart"]', (event) => {
   event.preventDefault();
 
   $addToCartButton = $(event.currentTarget);
-  toggleSpinner();
+  showSpinner();
 });
 
 prestashop.on('updateCart', () => {
-  toggleSpinner();
+  hideSpinner();
 });
 
 prestashop.on('handleError', () => {
-  toggleSpinner();
+  hideSpinner();
 });
 
-function toggleSpinner() {
-  $addToCartButton.find('.spinner-border').toggleClass('visually-hidden');
-  $addToCartButton.find('.material-icons').toggleClass('visually-hidden');
+function showSpinner() {
+  if ($addToCartButton) {
+    $addToCartButton.find('.material-icons').addClass('visually-hidden');
+    $addToCartButton.find('.spinner-border').removeClass('visually-hidden');
+  }
 }
+
+function hideSpinner() {
+  if ($addToCartButton) {
+    $addToCartButton.find('.spinner-border').addClass('visually-hidden');
+    $addToCartButton.find('.material-icons').removeClass('visually-hidden');
+  }
+}
+

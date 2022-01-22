@@ -65,10 +65,14 @@ const initSliders = () => {
     const sliderValues = JSON.parse(<string>container.dataset.sliderValues);
 
     if(!container.noUiSlider) {
+      const searchFilters = <HTMLElement>document.querySelector('.search-filters');
+      const sliderDirection = <string>searchFilters.dataset.sliderDirection;
+
       initiatedSlider = noUiSlider.create(container, {
         start: sliderValues ?? [min, max],
         tooltips: [tooltipsFormat, tooltipsFormat],
         connect: [false, true, false],
+        direction: sliderDirection ? 'rtl' : 'ltr',
         range: {
           min,
           max,
@@ -116,4 +120,3 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleLoader(false);
   })
 });
-

@@ -1,5 +1,5 @@
 const cssjanus = require('cssjanus');
 
 module.exports = function (source) {
-	return cssjanus.transform(source);
+	return cssjanus.transform(source).replace('/*!/* @noflip */', '');
 }

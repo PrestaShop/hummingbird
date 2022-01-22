@@ -1,0 +1,1 @@
+/* ps_searchbar.js */

@@ -19,7 +19,7 @@
 {$componentName = 'search-filters'}
  
 {if $displayedFacets|count}
-  <div id="search_filters" class="{$componentName}">
+  <div id="search_filters" class="{$componentName}" {if $language.is_rtl}data-slider-direction="rtl"{/if}>
     {block name='facets_title'}
       <p class="{$componentName}-title d-none d-sm-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
     {/block}

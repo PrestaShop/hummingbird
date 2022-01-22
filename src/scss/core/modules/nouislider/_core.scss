@@ -1,5 +1,3 @@
-@use "sass:math";
-
 $component-name: noUi;
 
 .#{$component-name} {
@@ -87,25 +85,25 @@ $component-name: noUi;
     */
   &-horizontal {
     height: $nouislider-horizontal-height;
-    margin: #{math.div($nouislider-horizontal-handler-height, 2)} #{math.div($nouislider-horizontal-handler-width, 2)};
+    margin: #{$nouislider-horizontal-handler-height / 2} #{$nouislider-horizontal-handler-width / 2};
   }
 
   &-horizontal .#{$component-name}-handle {
-    top: -#{math.div(($nouislider-horizontal-handler-height - $nouislider-horizontal-height), 2) + $nouislider-target-border-width};
+    top: -#{(($nouislider-horizontal-handler-height - $nouislider-horizontal-height) / 2) + $nouislider-target-border-width};
     /*!/* @noflip */
-    right: -#{math.div($nouislider-horizontal-handler-width, 2)};
+    right: -#{$nouislider-horizontal-handler-width / 2};
     width: $nouislider-horizontal-handler-width;
     height: $nouislider-horizontal-handler-height;
   }
 
   &-vertical {
     width: $nouislider-vertical-width;
-    margin: #{math.div($nouislider-vertical-handler-height, 2)} 0;
+    margin: #{$nouislider-vertical-handler-height / 2} 0;
   }
 
   &-vertical .#{$component-name}-handle {
-    top: -#{math.div($nouislider-vertical-handler-height, 2)};
-    right: -#{math.div(($nouislider-horizontal-handler-width - $nouislider-vertical-width), 2) + $nouislider-target-border-width};
+    top: -#{$nouislider-vertical-handler-height / 2};
+    right: -#{(($nouislider-horizontal-handler-width - $nouislider-vertical-width) / 2) + $nouislider-target-border-width};
     width: $nouislider-vertical-handler-width;
     height: $nouislider-vertical-handler-height;
   }

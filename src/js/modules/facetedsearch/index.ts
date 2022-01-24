@@ -35,6 +35,7 @@ const initSliders = () => {
     const options = JSON.parse(<string>container.dataset.sliderSpecifications);
     const signPosition = options.positivePattern.indexOf('¤') === 0 ? 'prefix' : 'suffix';
     const sliderType = container.dataset.sliderSpecifications ? 'price' : 'weight';
+    const sliderDirection = container.dataset.sliderDirection === "1" ? 'rtl' : 'ltr';
     const min = parseInt(<string>container.dataset.sliderMin);
     const max = parseInt(<string>container.dataset.sliderMax);
     let format;
@@ -68,6 +69,7 @@ const initSliders = () => {
       initiatedSlider = noUiSlider.create(container, {
         start: sliderValues ?? [min, max],
         tooltips: [tooltipsFormat, tooltipsFormat],
+        direction: sliderDirection,
         connect: [false, true, false],
         range: {
           min,
@@ -116,4 +118,3 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleLoader(false);
   })
 });
-

@@ -188,12 +188,19 @@ $component-name: cart;
           flex-direction: column;
           justify-content: space-between;
         }
+
+        &-image {
+          img {
+            max-width: 100%;
+          }
+        }
       }
 
       &-title {
         align-self: start;
         font-weight: 600;
         color: $gray-800;
+        width: 100%;
       }
 
       &-info {

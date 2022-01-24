@@ -23,6 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 import SelectorsMap from './selectors-map';
+import initQuantityInput from './qty-input';
 
 export default function initQuickviews() {
   prestashop.on('clickQuickView', (elm: HTMLElement) => {
@@ -38,6 +39,7 @@ export default function initQuickviews() {
           `#quickview-modal-${resp.product.id}-${resp.product.id_product_attribute}`,
         );
         productModal.modal('show');
+        initQuantityInput(SelectorsMap.qtyInput.modal);
         productModal.on('hidden.bs.modal', () => {
           productModal.remove();
         });

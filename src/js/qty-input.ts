@@ -23,23 +23,23 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import SelectorsMap from './selectors-map';
-
-$(document).ready(() => {
-  $(SelectorsMap.qtyInput).inputSpinner({
-    decrementButton: '<i class="material-icons">expand_more</i>',
-    incrementButton: '<i class="material-icons">expand_less</i>',
-    buttonsClass: '',
-    buttonsWidth: '1.25rem',
-    /* eslint-disable */
-    template: 
-        '<div class="input-group ${groupClass}">' +
-          '<input type="text" inputmode="decimal" style="text-align: ${textAlign}" class="form-control form-control-text-input"/>' +
-          '<div class="qty-right">' +
-            '<button style="min-width: ${buttonsWidth}" class="btn btn-increment ${buttonsClass} btn-plus" type="button">${incrementButton}</button>' +
-            '<button style="min-width: ${buttonsWidth}" class="btn btn-decrement ${buttonsClass} btn-minus" type="button">${decrementButton}</button>' +
-          '</div>' +
-        '</div>'
-    /* eslint-enable */
+export default function initQuantityInput(selector: String) {
+  $(document).ready(() => {
+    $(selector).inputSpinner({
+      decrementButton: '<i class="material-icons">expand_more</i>',
+      incrementButton: '<i class="material-icons">expand_less</i>',
+      buttonsClass: '',
+      buttonsWidth: '1.25rem',
+      /* eslint-disable */
+      template: 
+          '<div class="input-group ${groupClass}">' +
+            '<input type="text" inputmode="decimal" style="text-align: ${textAlign}" class="form-control form-control-text-input"/>' +
+            '<div class="qty-right">' +
+              '<button style="min-width: ${buttonsWidth}" class="btn btn-increment ${buttonsClass} btn-plus" type="button">${incrementButton}</button>' +
+              '<button style="min-width: ${buttonsWidth}" class="btn btn-decrement ${buttonsClass} btn-minus" type="button">${decrementButton}</button>' +
+            '</div>' +
+          '</div>'
+      /* eslint-enable */
+    });
   });
-});
+}

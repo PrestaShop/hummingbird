@@ -176,6 +176,7 @@
                       data-slider-label="{$facet.label}"
                       data-slider-specifications="{$facet.properties.specifications|@json_encode}"
                       data-slider-encoded-url="{$filter.nextEncodedFacetsURL}"
+                      data-slider-direction="{$language.is_rtl}"
                    >
                     </div>
                   <input 

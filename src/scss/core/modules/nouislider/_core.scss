@@ -92,6 +92,7 @@ $component-name: noUi;
 
   &-horizontal .#{$component-name}-handle {
     top: -#{math.div(($nouislider-horizontal-handler-height - $nouislider-horizontal-height), 2) + $nouislider-target-border-width};
+    /*!/* @noflip */
     right: -#{math.div($nouislider-horizontal-handler-width, 2)};
     width: $nouislider-horizontal-handler-width;
     height: $nouislider-horizontal-handler-height;

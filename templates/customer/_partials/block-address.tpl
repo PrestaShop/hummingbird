@@ -23,14 +23,16 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='address_block_item'}
-  <article id="address-{$address.id}" class="address" data-id-address="{$address.id}">
-    <h2 class="address__alias">{$address.alias}</h4>
-    <address class="address__content">{$address.formatted nofilter}</address>
-    {* Display the extra field values added in an address from using hook 'additionalCustomerAddressFields' *}
-    {hook h='displayAdditionalCustomerAddressFields' address=$address}
+  <article id="address-{$address.id}" class="address card" data-id-address="{$address.id}">
+    <div class="card-body">
+      <h4 class="address__alias card-title">{$address.alias}</h4>
+      <address class="address__content">{$address.formatted nofilter}</address>
+      {* Display the extra field values added in an address from using hook 'additionalCustomerAddressFields' *}
+      {hook h='displayAdditionalCustomerAddressFields' address=$address}
+    </div> 
 
     {block name='address_block_item_actions'}
-      <div class="address__actions">
+      <div class="address__actions card-footer">
         <a href="{url entity=address id=$address.id}" data-link-action="edit-address" 
         class="address__edit">{l s='Edit' d='Shop.Theme.Actions'}</a>
         <a href="{url entity=address id=$address.id params=['delete' => 1, 'token' => $token]}" data-link-action="delete-address" 

@@ -1,0 +1,80 @@
+$component-name: address;
+
+.#{$component-name} {
+  background: lighten($gray-100, 2%);
+
+  &__content {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: $gray-800;
+    margin: 0;
+  }
+
+  &__alias {
+    font-weight: 600;
+    line-height: 1.5rem;
+    color: $gray-800;
+    margin-bottom: 1rem;
+  }
+
+  .card-footer {
+    background: none;
+    padding: 0 0.5rem;
+  }
+
+  &__edit, &__delete {
+    display: inline-block;
+    text-decoration: underline;
+    color: $gray-800;
+    padding: 1rem 0.5rem;
+  }
+
+  &__delete {
+    color: $danger;
+  }
+}
+
+.addresses {
+  &__new-address {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid $gray-200;
+    border-radius: 0.5rem;
+    padding: 1rem;
+
+    &:hover {
+      i {
+        transform: scale(1.2);
+      }
+    }
+
+    i {
+      width: 4rem;
+      height: 4rem;
+      background: lighten($primary, 47%); 
+      color: $primary;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: .25s ease-out;
+
+      @include media-breakpoint-down(sm) {
+        height: 3rem;
+        width: 3rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    span {
+      margin-bottom: 1rem;
+    }
+  }
+}

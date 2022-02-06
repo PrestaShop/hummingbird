@@ -1,9 +1,27 @@
 // Custom CSS rules for RTL should be included here.
 // This file will be used automatically if shop language is RTL.
-@import "~vazir-font/dist/font-face.css";
+@font-face {
+  font-family: Vazir;
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("~vazir-font/dist/Vazir-Regular.woff2") format("woff2"), url("~vazir-font/dist/Vazir-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: Vazir;
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("~vazir-font/dist/Vazir-Bold.woff2") format("woff2"), url("~vazir-font/dist/Vazir-Bold.woff") format("woff");
+}
 
 body {
-  font-family: Vazir,sans-serif;
+  &.lang-rtl {
+    &.lang-fa, &.lang-ar {
+      font-family: Vazir, sans-serif;
+    }
+  }
 }
 
 .material-icons {

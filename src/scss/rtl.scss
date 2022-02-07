@@ -17,10 +17,8 @@
 }
 
 body {
-  &.lang-rtl {
-    &.lang-fa, &.lang-ar {
-      font-family: Vazir, sans-serif;
-    }
+  &.lang-fa, &.lang-ar {
+    font-family: Vazir, sans-serif;
   }
 }
 

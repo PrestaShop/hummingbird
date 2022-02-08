@@ -26,13 +26,13 @@
 const searchProduct = async (url: string, value: string, resultsPerPage: number = 10): Promise<Record<string, any>> => {
   const formData = new FormData();
   formData.append('s', value);
-  formData.append('resultsPerPage', <string><unknown>resultsPerPage);
+  formData.append('resultsPerPage', resultsPerPage.toString());
 
   const datas = await fetch(url, {
     method: 'POST',
     body: formData,
     headers: {
-      'Accept': 'application/json, text/javascript, */*; q=0.01'
+      Accept: 'application/json, text/javascript, */*; q=0.01'
     },
   })
 

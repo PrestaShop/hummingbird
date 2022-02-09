@@ -1,121 +1,76 @@
 $component-name: order-confirmation;
 
 .#{$component-name} {
-  &-title {
+  &__title {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
-    font-weight: 500;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
 
     i {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2rem;
+      height: 2rem;
       margin-right: 1rem;
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: $white;
-      background-color: $success;
+      background-color: #21834D;
       border-radius: 100%;
     }
   }
 
-  &-email {
-    margin-top: 0.25rem;
+  &__subtext {
     margin-bottom: 2rem;
     font-size: 1rem;
     color: $gray-800;
   }
 
-  &-details {
-    li {
-      margin-bottom: 0.25rem;
-    }
+  &__details {
+    .order-details {
+      margin-bottom: 0;
 
-    &-list {
-      p {
-        font-size: 1rem;
-        color: $gray-800;
-      }
-
-      ul {
-        margin: 1rem 0;
-        background: $gray-100;
-
-        li {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          padding: 0.5rem 1rem;
-        }
+      li {
+        margin-bottom: 0.25rem;
       }
     }
   }
 
-  &-items {
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-    background: $gray-100;
+  &__totals > .row:not(:last-child),
+  &__subtotals > .row:not(:last-child) {
+    margin-bottom: 1rem;
   }
 
-  &-item {
-    padding: 1rem;
+  &__items > .row:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 
-    &-prices {
+  &__items .item {
+    .item__prices {
       div {
         font-weight: 500;
         color: $gray-800;
       }
     }
 
-    &-title {
+    .item__reference {
+      margin-bottom: 0;
+    }
+
+    .item__title {
       font-weight: 600;
       color: $gray-800;
+      margin-bottom: 0;
     }
-  }
 
-  &-prices {
-    width: 100%;
-
-    .total-value {
-      border-top: 1px solid $gray-200;
-
-      td {
-        padding-top: 1.5rem;
+    .item__image {
+      text-align: center;
+  
+      img {
+        border-radius: 8px;
       }
-    }
-
-    tr:first-of-type {
-      border-top: 1px solid $gray-200;
-
-      td {
-        padding-top: 1.5rem;
-      }
-    }
-
-    td {
-      padding: 0.5rem 1rem;
-
-      &:last-of-type {
-        font-weight: 500;
-        color: $gray-800;
-        text-align: right;
-      }
-    }
-  }
-
-  &-subtotal {
-    td {
-      padding-bottom: 1rem;
-    }
-  }
-
-  &-image {
-    text-align: center;
-
-    img {
-      max-width: 5.5rem;
     }
   }
 }

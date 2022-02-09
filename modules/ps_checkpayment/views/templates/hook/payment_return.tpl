@@ -32,7 +32,7 @@
 		</p>
 
     <div class="row mt-2">
-      <div class="col-md-6 fw-bold">
+      <div class="col-md-6 fw-bold mb-2 mb-md-0">
 				{l s='Payment amount.' d='Modules.Checkpayment.Shop'}
       </div>
       <div class="col-md-6">
@@ -41,7 +41,7 @@
     </div>
     <hr/>
     <div class="row">
-      <div class="col-md-6 fw-bold">
+      <div class="col-md-6 fw-bold mb-2 mb-md-0">
 				{l s='Payable to the order of' d='Modules.Checkpayment.Shop'}
       </div>
       <div class="col-md-6">
@@ -50,7 +50,7 @@
     </div>
     <hr/>
     <div class="row mb-4">
-      <div class="col-md-6 fw-bold">
+      <div class="col-md-6 fw-bold mb-2 mb-md-0">
 				{l s='Mail to' d='Modules.Checkpayment.Shop'}
       </div>
       <div class="col-md-6">

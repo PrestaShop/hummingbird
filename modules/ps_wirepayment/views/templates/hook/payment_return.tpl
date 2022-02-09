@@ -25,17 +25,42 @@
       {l s='Please send us a bank transfer with following details:' d='Modules.Wirepayment.Shop'}
     </p>
 
-    <dl>
-      <dt>{l s='Amount' d='Modules.Wirepayment.Shop'}</dt>
-      <dd>{$total}</dd>
-      <dt>{l s='Name of account owner' d='Modules.Wirepayment.Shop'}</dt>
-      <dd>{$bankwireOwner}</dd>
-      <dt>{l s='Please include these details' d='Modules.Wirepayment.Shop'}</dt>
-      <dd>{$bankwireDetails nofilter}</dd>
-      <dt>{l s='Bank name' d='Modules.Wirepayment.Shop'}</dt>
-      <dd>{$bankwireAddress nofilter}</dd>
-    </dl>
-    
+    <div class="row mt-2">
+      <div class="col-md-6 fw-bold">
+        {l s='Amount' d='Modules.Wirepayment.Shop'}
+      </div>
+      <div class="col-md-6">
+        {$total}
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6 fw-bold">
+        {l s='Name of account owner' d='Modules.Wirepayment.Shop'}
+      </div>
+      <div class="col-md-6">
+        {$bankwireOwner}
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6 fw-bold">
+        {l s='Please include these details' d='Modules.Wirepayment.Shop'}
+      </div>
+      <div class="col-md-6">
+        {$bankwireDetails nofilter}
+      </div>
+    </div>
+    <hr/>
+    <div class="row mb-4">
+      <div class="col-md-6 fw-bold">
+        {l s='Bank name' d='Modules.Wirepayment.Shop'}
+      </div>
+      <div class="col-md-6">
+      {$bankwireAddress nofilter}
+      </div>
+    </div>
+
     <p>
       {l s='Please specify your order reference %s in the bankwire description.' sprintf=[$reference] d='Modules.Wirepayment.Shop'}<br/>
       {l s='We\'ve also sent you this information by e-mail.' d='Modules.Wirepayment.Shop'}<br/>

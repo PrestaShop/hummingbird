@@ -31,14 +31,33 @@
 			{l s='Your check must include following details:' d='Modules.Checkpayment.Shop'}
 		</p>
 
-		<dl>
-			<dt>{l s='Payment amount.' d='Modules.Checkpayment.Shop'}</dt>
-			<dd>{$total_to_pay}</dd>
-			<dt>{l s='Payable to the order of' d='Modules.Checkpayment.Shop'}</dt>
-			<dd>{if $checkName}{$checkName}{else}___________{/if}</dd>
-			<dt>{l s='Mail to' d='Modules.Checkpayment.Shop'}</dt>
-			<dd>{if $checkAddress}{$checkAddress nofilter}{else}___________{/if}</dd>
-		</dl>
+    <div class="row mt-2">
+      <div class="col-md-6 fw-bold">
+				{l s='Payment amount.' d='Modules.Checkpayment.Shop'}
+      </div>
+      <div class="col-md-6">
+				{$total_to_pay}
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6 fw-bold">
+				{l s='Payable to the order of' d='Modules.Checkpayment.Shop'}
+      </div>
+      <div class="col-md-6">
+				{if $checkName}{$checkName}{else}___________{/if}
+      </div>
+    </div>
+    <hr/>
+    <div class="row mb-4">
+      <div class="col-md-6 fw-bold">
+				{l s='Mail to' d='Modules.Checkpayment.Shop'}
+      </div>
+      <div class="col-md-6">
+				{if $checkAddress}{$checkAddress nofilter}{else}___________{/if}
+      </div>
+    </div>
+
 
 		<p>
 			{if !isset($reference)}

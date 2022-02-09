@@ -1,4 +1,5 @@
 .page-history,
+.page-order-slip,
 .page-order-detail {
   .table-wrapper {
     padding: 0 1rem;
@@ -48,6 +49,14 @@
           }
         }
       }
+    }
+  }
+
+  .credit-slip {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $gray-200;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
     }
   }
 

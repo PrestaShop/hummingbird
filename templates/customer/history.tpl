@@ -32,7 +32,7 @@
   <p>{l s='Here are the orders you\'ve placed since your account was created.' d='Shop.Theme.Customeraccount'}</p>
 
   {if $orders}
-    <div class="order-history-table">
+    <div class="table-wrapper">
       <table class="table table-striped d-none d-xl-table">
         <thead class="thead-default">
           <tr>
@@ -67,7 +67,7 @@
                   -
                 {/if}
               </td>
-              <td class="text-sm-center order-actions">
+              <td class="order__actions text-sm-center">
                 <a href="{$order.details.details_url}" data-link-action="view-order-details">{l s='Details' d='Shop.Theme.Customeraccount'}</a>
                 {if $order.details.reorder_url}
                   <a href="{$order.details.reorder_url}">{l s='Reorder' d='Shop.Theme.Actions'}</a>
@@ -82,33 +82,33 @@
     <div class="orders row d-block d-xl-none">
       {foreach from=$orders item=order}
         <div class="order col col-lg-6">
-          <div class="order-reference">
-            <p class="order-label">{l s='Order reference' d='Shop.Theme.Checkout'}</p> 
-            <p class="order-value">
+          <div class="order__reference">
+            <p class="order__label">{l s='Order reference' d='Shop.Theme.Checkout'}</p> 
+            <p class="order__value">
               <a href="{$order.details.details_url}">
                 {$order.details.reference}
               </a>
             </p>
           </div>
 
-          <div class="order-date">
-            <p class="order-label">{l s='Date' d='Shop.Theme.Checkout'}</p> 
-            <p class="order-value">{$order.details.order_date}</p>
+          <div class="order__date">
+            <p class="order__label">{l s='Date' d='Shop.Theme.Checkout'}</p> 
+            <p class="order__value">{$order.details.order_date}</p>
           </div>
 
-          <div class="order-total">
-            <p class="order-label">{l s='Total price' d='Shop.Theme.Checkout'}</p> 
-            <p class="order-value">{$order.totals.total.value}</p>
+          <div class="order__total">
+            <p class="order__label">{l s='Total price' d='Shop.Theme.Checkout'}</p> 
+            <p class="order__value">{$order.totals.total.value}</p>
           </div>
 
-          <div class="order-payment">
-            <p class="order-label">{l s='Payment' d='Shop.Theme.Checkout'}</p> 
-            <p class="order-value">{$order.details.payment}</p>
+          <div class="order__payment">
+            <p class="order__label">{l s='Payment' d='Shop.Theme.Checkout'}</p> 
+            <p class="order__value">{$order.details.payment}</p>
           </div>
 
-          <div class="order-status">
-            <p class="order-label">{l s='Status' d='Shop.Theme.Checkout'}</p> 
-            <p class="order-value">
+          <div class="order__status">
+            <p class="order__label">{l s='Status' d='Shop.Theme.Checkout'}</p> 
+            <p class="order__value">
               <span
                 class="badge {$order.history.current.contrast}"
                 style="background-color:{$order.history.current.color}"
@@ -118,9 +118,9 @@
             </p>
           </div>
 
-          <div class="order-invoice">
-            <p class="order-label">{l s='Invoice' d='Shop.Theme.Checkout'}</p> 
-            <p class="order-value">
+          <div class="order__invoice">
+            <p class="order__label">{l s='Invoice' d='Shop.Theme.Checkout'}</p> 
+            <p class="order__value">
               {if $order.details.invoice_url}
                 <a href="{$order.details.invoice_url}"><i class="material-icons">&#xE415;</i></a>
               {else}
@@ -129,7 +129,7 @@
             </p>
           </div>
 
-          <div class="order-actions">
+          <div class="order__actions">
             <a href="{$order.details.details_url}" data-link-action="view-order-details">{l s='Details' d='Shop.Theme.Customeraccount'}</a>
             {if $order.details.reorder_url}
               <a href="{$order.details.reorder_url}">{l s='Reorder' d='Shop.Theme.Actions'}</a>

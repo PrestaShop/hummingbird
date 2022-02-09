@@ -1,0 +1,37 @@
+$component-name: address;
+
+.#{$component-name} {
+  background: lighten($gray-100, 2%);
+
+  &__content {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: $gray-800;
+    margin: 0;
+  }
+
+  &__alias {
+    font-weight: 600;
+    line-height: 1.5rem;
+    color: $gray-800;
+    margin-bottom: 1rem;
+  }
+
+  .card-footer {
+    background: none;
+    padding: 0 0.5rem;
+  }
+
+  &__edit, &__delete {
+    display: inline-block;
+    text-decoration: underline;
+    color: $gray-800;
+    padding: 1rem 0.5rem;
+  }
+
+  &__delete {
+    color: $danger;
+  }
+}

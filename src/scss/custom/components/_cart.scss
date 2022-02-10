@@ -40,19 +40,6 @@ $component-name: cart;
           align-items: center;
           justify-content: space-between;
 
-          .product-flag {
-            display: inline-block;
-            padding: 0.3125rem 0.625rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: $white;
-            background-color: $primary;
-
-            &.discount {
-              background-color: $warning;
-            }
-          }
-
           .product-price {
             font-weight: 600;
             color: $gray-800;
@@ -162,93 +149,66 @@ $component-name: cart;
 
   &-item {
     .product-line {
-      &-top {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-
-        &-content {
-          .current-price {
-            margin: 0.25rem 0;
-          }
-        }
-      }
-
-      &-grid {
-        padding: 1rem 0;
-        border-bottom: 1px solid $gray-200;
-
-        &:first-child {
-          border-top: 1px solid $gray-200;
-        }
-
-        &-right {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        &-image {
-          img {
-            max-width: 100%;
-          }
-        }
-      }
-
-      &-title {
+      &__title {
         align-self: start;
         font-weight: 600;
         color: $gray-800;
         width: 100%;
       }
 
-      &-info {
-        .label {
-          font-size: 1rem;
+      &__image {
+        img {
+          @include border-radius();
         }
       }
 
-      &-bottom,
-      &-price,
-      &-info {
-        display: flex;
-        align-items: center;
-        margin-bottom: 0;
+      &__item {
+        margin-bottom: 0.5rem;
+        display: block;
+      }
 
-        .product-discount {
-          display: flex;
-          align-items: center;
+      &__current {
+        span {
+          font-weight: bold;
+        }
+      }
 
-          .regular-price {
-            text-decoration-line: line-through;
-            line-height: 1.2rem;
+      &__regular {
+        text-decoration: line-through;
+        color: $gray-600;
+      }
+
+      &__basic {
+        .badge {
+          padding: 0.25rem;
+        }
+      }
+
+      &__actions {
+        a {
+          display: inline-block;
+          padding: 0.5rem;
+          margin-left: -0.5rem;
+
+          &::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 100%;
+            background: $primary;
+            transition: 0.25s ease-out;
           }
 
-          .product-flag {
-            display: inline-block;
-            padding: 0.3125rem 0.625rem;
-            margin: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: $white;
-            background-color: $primary;
-
-            &.discount {
-              background-color: $warning;
+          &:hover {
+            &::after {
+              opacity: 0;
             }
           }
         }
       }
 
-      &-price {
-        justify-content: flex-end;
-
-        span {
-          display: block;
-          font-size: 1rem;
-          font-weight: 500;
-        }
+      hr {
+        margin-top: 0.75rem;
       }
     }
   }

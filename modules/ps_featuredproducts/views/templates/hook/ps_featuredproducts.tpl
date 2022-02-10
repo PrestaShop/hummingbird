@@ -23,10 +23,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <section class="featured-products">
-  <div class="container">
-    {include file="components/section-title.tpl" title={l s="Popular Products" d="Shop.Theme.Catalog"}}
-    {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-6 col-lg-4 col-xl-3"}
-  </div>
+  {include file="components/section-title.tpl" title={l s="Popular Products" d="Shop.Theme.Catalog"}}
+  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-6 col-lg-4 col-xl-3"}
 
   <div class="featured-products-footer text-center">
     <a class="all-product-link btn btn-outline-primary" href="{$allProductsLink}">

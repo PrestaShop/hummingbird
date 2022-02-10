@@ -18,7 +18,7 @@
  *}
 
 <div class="card card-body bg-light mb-3 order-confirmation__payment">
-<h2 class="h4">{l s='Payment information' d='Shop.Theme.Checkout'}</h2>
+  <h2 class="h4">{l s='Payment information' d='Shop.Theme.Checkout'}</h2>
   {if $status == 'ok'}
     <p>
       {l s='You have chosen payment by bank transfer.' d='Modules.Cashondelivery.Shop'}<br/>

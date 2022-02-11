@@ -22,24 +22,45 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
+import SelectorsMap from './selectors-map';
 
-export default function initQuantityInput(selector: String) {
-  $(document).ready(() => {
-    $(selector).inputSpinner({
-      decrementButton: '<i class="material-icons">expand_more</i>',
-      incrementButton: '<i class="material-icons">expand_less</i>',
-      buttonsClass: '',
-      buttonsWidth: '1.25rem',
-      /* eslint-disable */
-      template: 
-          '<div class="input-group ${groupClass}">' +
-            '<input type="text" inputmode="decimal" style="text-align: ${textAlign}" class="form-control form-control-text-input"/>' +
-            '<div class="qty-right">' +
-              '<button style="min-width: ${buttonsWidth}" class="btn btn-increment ${buttonsClass} btn-plus" type="button">${incrementButton}</button>' +
-              '<button style="min-width: ${buttonsWidth}" class="btn btn-decrement ${buttonsClass} btn-minus" type="button">${decrementButton}</button>' +
-            '</div>' +
-          '</div>'
-      /* eslint-enable */
+export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
+  const qtyInputList = document.querySelectorAll(selector);
+
+  if (qtyInputList) {
+    qtyInputList.forEach(function(qtyInput) {
+      const qtyInputWrapper = qtyInput.parentNode;
+
+      let subtractButton = createSpinButton('remove');
+      subtractButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));
+  
+      let addButton = createSpinButton('add');
+      addButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
+  
+      qtyInputWrapper?.insertBefore(subtractButton, qtyInput);
+      qtyInputWrapper?.appendChild(addButton);
     });
-  });
+  }
+}
+
+function createSpinButton(text: string) {
+  let spinButton = document.createElement('button');
+  spinButton.type = 'button';
+  spinButton.classList.add('btn');
+  spinButton.innerHTML = '<i class="material-icons">' + text + '</i>';
+
+  return spinButton;
+}
+
+function changeQuantity(input: HTMLInputElement, change: number) {
+  const quantity = Number(input.value);
+
+  if (isNaN(quantity))
+    return;
+
+  const value = String(quantity + change);
+  const pattern = input.getAttribute('pattern') ?? '[0-9]*';
+  const matched = value.match(new RegExp(pattern));
+  if (matched && matched[0] !== '')
+    input.value = value;
 }

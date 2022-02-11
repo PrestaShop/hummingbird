@@ -32,10 +32,10 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
       const qtyInputWrapper = qtyInput.parentNode;
 
       let subtractButton = createSpinButton('remove');
-      subtractButton.addEventListener('click', (event: Event) => changeQuantity(<HTMLInputElement>qtyInput, -1, event));
+      subtractButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));
   
       let addButton = createSpinButton('add');
-      addButton.addEventListener('click', (event: Event) => changeQuantity(<HTMLInputElement>qtyInput, 1, event));
+      addButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
   
       qtyInputWrapper?.insertBefore(subtractButton, qtyInput);
       qtyInputWrapper?.appendChild(addButton);
@@ -52,7 +52,7 @@ function createSpinButton(text: string) {
   return spinButton;
 }
 
-function changeQuantity(input: HTMLInputElement, change: number, event: Event) {
+function changeQuantity(input: HTMLInputElement, change: number) {
   const quantity = Number(input.value);
   
   if (isNaN(quantity))

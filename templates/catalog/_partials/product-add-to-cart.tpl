@@ -34,7 +34,7 @@
             name="qty"
             id="quantity_wanted"
             inputmode="numeric"
-            pattern="[1-9]*"
+            pattern="[1-9]\d*"
             {if $product.quantity_wanted}
               value="{$product.quantity_wanted}"
               min="{$product.minimal_quantity}"

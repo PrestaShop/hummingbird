@@ -83,7 +83,7 @@
           <input class="js-cart-line-product-quantity form-control" data-down-url="{$product.down_quantity_url}"
             data-up-url="{$product.up_quantity_url}" data-update-url="{$product.update_quantity_url}"
             data-product-id="{$product.id_product}" type="number" inputmode="numeric" pattern="[0-9]*"
-            value="{$product.quantity}" name="product-quantity-spin" />
+            value="{$product.quantity}" name="product-quantity-spin"/>
         {/if}
       </div>
 

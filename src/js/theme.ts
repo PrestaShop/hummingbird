@@ -43,6 +43,6 @@ prestashop.themeSelectors = SelectorsMap;
 
 $(document).ready(() => {
   initProductBehavior();
-  initQuantityInput(SelectorsMap.qtyInput.default);
+  initQuantityInput();
   initQuickview();
 });

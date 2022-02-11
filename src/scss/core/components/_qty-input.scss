@@ -1,33 +1,61 @@
 .quantity-button {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  min-width: 6rem;
+
   input {
-    max-width: 5rem;
+    z-index: 2;
+    min-width: 2rem;
+    max-width: 4rem;
+    height: 2.5rem;
+    padding: 0.375rem 0.75rem;
+    text-align: center;
+    border: 1px solid $input-border-color;
+    @include border-radius(0);
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+
+    &[type="number"] {
+      appearance: textfield;
+    }
   }
 
   button {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50%;
+    min-width: 2rem;
     padding: 0;
     border: 1px solid $input-border-color;
+    @include border-radius(0);
 
     &:hover {
       opacity: 0.6;
     }
 
+    &:focus {
+      box-shadow: none;
+    }
+
     i {
-      margin-right: 0 !important;
+      margin-right: 0;
       font-size: 1rem;
     }
 
     &:first-of-type {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
+      border-right: none;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
     }
 
     &:last-of-type {
-      border-top: none;
+      border-left: none;
+      border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
     }
   }

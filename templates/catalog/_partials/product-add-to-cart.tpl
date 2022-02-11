@@ -28,13 +28,13 @@
 
     {block name='product_quantity'}
       <div class="product-actions__inputs row m-0">
-        <div class="product-actions__quantity quantity-button js-quantity-button col-2 p-0 me-2">
+        <div class="product-actions__quantity quantity-button js-quantity-button col-lg-auto p-0 mb-2 me-2">
           <input
             type="number"
             name="qty"
             id="quantity_wanted"
             inputmode="numeric"
-            pattern="[0-9]*"
+            pattern="[1-9]*"
             {if $product.quantity_wanted}
               value="{$product.quantity_wanted}"
               min="{$product.minimal_quantity}"

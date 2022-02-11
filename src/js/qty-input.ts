@@ -54,13 +54,10 @@ function createSpinButton(text: string) {
 
 function changeQuantity(input: HTMLInputElement, change: number) {
   const quantity = Number(input.value);
-
+  
   if (isNaN(quantity))
     return;
 
-  const value = String(quantity + change);
-  const pattern = input.getAttribute('pattern') ?? '[0-9]*';
-  const matched = value.match(new RegExp(pattern));
-  if (matched && matched[0] !== '')
-    input.value = value;
+  const min = Number(input.getAttribute('min')) ?? 0;
+  input.value = String(Math.max(quantity + change, min));
 }

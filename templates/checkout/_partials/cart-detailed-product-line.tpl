@@ -75,12 +75,12 @@
   <div class="col-4 d-block d-sm-none"></div>
 
   <div class="product-line__informations col-8 col-sm-6 col-md-4">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="quantity-button js-quantity-button col-6">
         {if !empty($product.is_gift)}
           <span class="gift-quantity">{$product.quantity}</span>
         {else}
-          <input class="js-cart-line-product-quantity" data-down-url="{$product.down_quantity_url}"
+          <input class="js-cart-line-product-quantity form-control" data-down-url="{$product.down_quantity_url}"
             data-up-url="{$product.up_quantity_url}" data-update-url="{$product.update_quantity_url}"
             data-product-id="{$product.id_product}" type="number" inputmode="numeric" pattern="[0-9]*"
             value="{$product.quantity}" name="product-quantity-spin" />

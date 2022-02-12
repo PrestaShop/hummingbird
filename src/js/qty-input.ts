@@ -26,19 +26,17 @@ import SelectorsMap from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
   const qtyInputList = document.querySelectorAll(selector);
-
   if (qtyInputList) {
     qtyInputList.forEach(function(qtyInput) {
       const qtyInputWrapper = qtyInput.parentNode;
-
-      let subtractButton = createSpinButton('remove');
-      subtractButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));
-  
-      let addButton = createSpinButton('add');
-      addButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
-  
-      qtyInputWrapper?.insertBefore(subtractButton, qtyInput);
-      qtyInputWrapper?.appendChild(addButton);
+      if (qtyInputWrapper && qtyInputWrapper.childElementCount === 1) {
+        let decrementButton = createSpinButton('remove');
+        decrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));
+        let incrementButton = createSpinButton('add');
+        incrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
+        qtyInputWrapper.insertBefore(decrementButton, qtyInput);
+        qtyInputWrapper.appendChild(incrementButton);
+      }
     });
   }
 }
@@ -48,17 +46,45 @@ function createSpinButton(text: string) {
   spinButton.type = 'button';
   spinButton.classList.add('btn');
   spinButton.innerHTML = '<i class="material-icons">' + text + '</i>';
-
   return spinButton;
 }
 
-function changeQuantity(input: HTMLInputElement, change: number) {
-  const quantity = Number(input.value);
-  
-  if (isNaN(quantity))
-    return;
-
-  const min = Number(input.getAttribute('min')) ?? 0;
+function changeQuantity(qtyInput: HTMLInputElement, change: number) {
+  const quantity = Number(qtyInput.value);
+  const min = Number(qtyInput.getAttribute('min')) ?? 1;
   const newValue = Math.max(quantity + change, min);
-  input.value = String(newValue);
+  qtyInput.value = String(newValue);
+  const requestUrl = (change > 0) ? qtyInput.dataset.upUrl : qtyInput.dataset.downUrl;
+  if (requestUrl !== undefined) {
+    sendUpdateQuantityInCartRequest(qtyInput, requestUrl);
+  }
 }
+
+function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string) {
+  const xhttp = new XMLHttpRequest();
+  const requestData = 'ajax=1&action=update';
+  xhttp.open("POST", requestUrl, true);
+  xhttp.setRequestHeader("Accept", "application/json");
+  xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhttp.onload = function () {
+    const resp = JSON.parse(xhttp.responseText);
+    prestashop.emit('updateCart', {
+      reason: qtyInput.dataset,
+      resp,
+    });
+  }
+  xhttp.onerror = function () {
+    const resp = JSON.parse(xhttp.responseText);
+    prestashop.emit('handleError', {
+      eventType: 'updateProductQuantityInCart',
+      resp,
+    });
+  }
+  xhttp.send(requestData);
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  prestashop.on('updatedCart', (event: Event) => {
+    initQuantityInput();
+  });
+});

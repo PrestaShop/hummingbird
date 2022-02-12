@@ -30,7 +30,7 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
   const incrementIcon = '&#xE145;';
   if (qtyInputList) {
     qtyInputList.forEach(function(qtyInput) {
-      const qtyInputWrapper = qtyInput.parentNode;
+      const qtyInputWrapper = qtyInput.parentElement;
       if (qtyInputWrapper && qtyInputWrapper.childElementCount === 1) {
         let decrementButton = createSpinButton(decrementIcon);
         decrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));

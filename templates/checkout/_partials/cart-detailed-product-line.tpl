@@ -80,10 +80,18 @@
         {if !empty($product.is_gift)}
           <span class="gift-quantity">{$product.quantity}</span>
         {else}
-          <input class="js-cart-line-product-quantity form-control" data-down-url="{$product.down_quantity_url}"
-            data-up-url="{$product.up_quantity_url}" data-update-url="{$product.update_quantity_url}"
-            data-product-id="{$product.id_product}" type="number" inputmode="numeric" pattern="[0-9]*"
-            value="{$product.quantity}" name="product-quantity-spin"/>
+          <input 
+            class="js-cart-line-product-quantity form-control" 
+            data-down-url="{$product.down_quantity_url}"
+            data-up-url="{$product.up_quantity_url}" 
+            data-update-url="{$product.update_quantity_url}"
+            data-product-id="{$product.id_product}" 
+            type="number" 
+            inputmode="numeric" 
+            pattern="[0-9]*"
+            value="{$product.quantity}" 
+            min="{$product.minimal_quantity}"
+            name="product-quantity-spin"/>
         {/if}
       </div>
 
@@ -112,6 +120,17 @@
 
         {hook h='displayProductPriceBlock' product=$product type="unit_price"}
       </div>
+    </div>
+    <div class="row">
+      <p class="product__minimal-quantity js-product-minimal-quantity text-muted mt-2">
+        {if $product.minimal_quantity > 1}
+          {l
+          s='The minimum purchase order quantity for the product is %quantity%.'
+          d='Shop.Theme.Checkout'
+          sprintf=['%quantity%' => $product.minimal_quantity]
+          }
+        {/if}
+      </p>
     </div>
   </div>
 

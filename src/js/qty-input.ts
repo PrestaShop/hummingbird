@@ -26,13 +26,15 @@ import SelectorsMap from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
   const qtyInputList = document.querySelectorAll(selector);
+  const decrementIcon = '&#xE15B;';
+  const incrementIcon = '&#xE145;';
   if (qtyInputList) {
     qtyInputList.forEach(function(qtyInput) {
       const qtyInputWrapper = qtyInput.parentNode;
       if (qtyInputWrapper && qtyInputWrapper.childElementCount === 1) {
-        let decrementButton = createSpinButton('remove');
+        let decrementButton = createSpinButton(decrementIcon);
         decrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));
-        let incrementButton = createSpinButton('add');
+        let incrementButton = createSpinButton(incrementIcon);
         incrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
         qtyInputWrapper.insertBefore(decrementButton, qtyInput);
         qtyInputWrapper.appendChild(incrementButton);
@@ -47,7 +49,7 @@ function createSpinButton(iconText: string) {
   spinButton.classList.add('btn');
   let spinIcon = document.createElement('i');
   spinIcon.classList.add('material-icons');
-  spinIcon.innerText = iconText;
+  spinIcon.innerHTML = iconText;
   spinButton.appendChild(spinIcon);
   return spinButton;
 }

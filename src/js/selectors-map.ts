@@ -61,6 +61,7 @@ const selectorsMap = {
   facetedsearch,
   pageLoader,
   listing,
+  notifications: '#notifications .container',
 };
 
 export default selectorsMap;

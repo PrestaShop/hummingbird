@@ -41,11 +41,14 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
   }
 }
 
-function createSpinButton(text: string) {
+function createSpinButton(iconText: string) {
   let spinButton = document.createElement('button');
   spinButton.type = 'button';
   spinButton.classList.add('btn');
-  spinButton.innerHTML = '<i class="material-icons">' + text + '</i>';
+  let spinIcon = document.createElement('i');
+  spinIcon.classList.add('material-icons');
+  spinIcon.innerText = iconText;
+  spinButton.appendChild(spinIcon);
   return spinButton;
 }
 

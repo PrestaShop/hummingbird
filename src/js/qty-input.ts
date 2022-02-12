@@ -26,31 +26,44 @@ import SelectorsMap from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
   const qtyInputList = document.querySelectorAll(selector);
+  const languageIsRTL = document.querySelector('body')?.classList.contains('lang-rtl');
   const decrementIcon = 'E15B';
   const incrementIcon = 'E145';
+
   if (qtyInputList) {
     qtyInputList.forEach(function(qtyInput) {
       const qtyInputWrapper = qtyInput.parentElement;
+
       if (qtyInputWrapper && qtyInputWrapper.childElementCount === 1) {
         let decrementButton = createSpinButton(decrementIcon);
         decrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));
+
         let incrementButton = createSpinButton(incrementIcon);
         incrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
-        qtyInputWrapper.insertBefore(decrementButton, qtyInput);
-        qtyInputWrapper.appendChild(incrementButton);
+
+        if (!languageIsRTL) {
+          qtyInputWrapper.insertBefore(decrementButton, qtyInput);
+          qtyInputWrapper.appendChild(incrementButton);
+        } else {
+          qtyInputWrapper.insertBefore(incrementButton, qtyInput);
+          qtyInputWrapper.appendChild(decrementButton);
+        }
       }
     });
   }
 }
 
-function createSpinButton(iconCodePoint: string) {
+function createSpinButton(codePoint: string) {
   let spinButton = document.createElement('button');
   spinButton.type = 'button';
   spinButton.classList.add('btn');
+
   let spinIcon = document.createElement('i');
   spinIcon.classList.add('material-icons');
-  spinIcon.innerHTML = '&#x' + iconCodePoint + ';';
+  spinIcon.innerHTML = '&#x' + codePoint + ';';
+
   spinButton.appendChild(spinIcon);
+
   return spinButton;
 }
 
@@ -59,6 +72,7 @@ function changeQuantity(qtyInput: HTMLInputElement, change: number) {
   const min = Number(qtyInput.getAttribute('min')) ?? 1;
   const newValue = Math.max(quantity + change, min);
   qtyInput.value = String(newValue);
+
   const requestUrl = (change > 0) ? qtyInput.dataset.upUrl : qtyInput.dataset.downUrl;
   if (requestUrl !== undefined) {
     sendUpdateQuantityInCartRequest(qtyInput, requestUrl);
@@ -68,9 +82,11 @@ function changeQuantity(qtyInput: HTMLInputElement, change: number) {
 function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string) {
   const xhttp = new XMLHttpRequest();
   const requestData = 'ajax=1&action=update';
+
   xhttp.open('POST', requestUrl);
   xhttp.setRequestHeader('Accept', 'application/json');
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
   xhttp.onload = function () {
     const resp = JSON.parse(xhttp.responseText);
     prestashop.emit('updateCart', {
@@ -78,6 +94,7 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
       resp,
     });
   }
+
   xhttp.onerror = function () {
     const resp = JSON.parse(xhttp.responseText);
     prestashop.emit('handleError', {
@@ -85,6 +102,7 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
       resp,
     });
   }
+
   xhttp.send(requestData);
 }
 

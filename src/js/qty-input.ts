@@ -63,9 +63,9 @@ function changeQuantity(qtyInput: HTMLInputElement, change: number) {
 function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string) {
   const xhttp = new XMLHttpRequest();
   const requestData = 'ajax=1&action=update';
-  xhttp.open("POST", requestUrl, true);
-  xhttp.setRequestHeader("Accept", "application/json");
-  xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhttp.open('POST', requestUrl);
+  xhttp.setRequestHeader('Accept', 'application/json');
+  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhttp.onload = function () {
     const resp = JSON.parse(xhttp.responseText);
     prestashop.emit('updateCart', {
@@ -83,8 +83,8 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
   xhttp.send(requestData);
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  prestashop.on('updatedCart', (event: Event) => {
+document.addEventListener('DOMContentLoaded', function(event) {
+  prestashop.on('updatedCart', () => {
     initQuantityInput();
   });
 });

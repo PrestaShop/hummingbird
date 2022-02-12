@@ -26,8 +26,8 @@ import SelectorsMap from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
   const qtyInputList = document.querySelectorAll(selector);
-  const decrementIcon = '&#xE15B;';
-  const incrementIcon = '&#xE145;';
+  const decrementIcon = 'E15B';
+  const incrementIcon = 'E145';
   if (qtyInputList) {
     qtyInputList.forEach(function(qtyInput) {
       const qtyInputWrapper = qtyInput.parentElement;
@@ -43,13 +43,13 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
   }
 }
 
-function createSpinButton(iconText: string) {
+function createSpinButton(iconCodePoint: string) {
   let spinButton = document.createElement('button');
   spinButton.type = 'button';
   spinButton.classList.add('btn');
   let spinIcon = document.createElement('i');
   spinIcon.classList.add('material-icons');
-  spinIcon.innerHTML = iconText;
+  spinIcon.innerHTML = '&#x' + iconCodePoint + ';';
   spinButton.appendChild(spinIcon);
   return spinButton;
 }

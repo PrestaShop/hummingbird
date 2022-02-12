@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-import SelectorsMap from './selectors-map';
+import SelectorsMap, { listing } from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
   const qtyInputList = document.querySelectorAll(selector);
@@ -89,6 +89,9 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
 
   xhttp.onload = function () {
     const resp = JSON.parse(xhttp.responseText);
+
+    checkUpdateOpertation(resp);
+
     prestashop.emit('updateCart', {
       reason: qtyInput.dataset,
       resp,
@@ -104,6 +107,32 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
   }
 
   xhttp.send(requestData);
+}
+
+function checkUpdateOpertation(response: any) {
+  const notifications = document.querySelector(SelectorsMap.notifications);
+  
+  if (notifications) {
+    notifications.innerHTML = '';
+
+    if (response['hasError']) {
+      const errors = response['errors'];
+
+      let errorArticle = document.createElement('article');
+      errorArticle.classList.add('alert', 'alert-danger');
+
+      let errorList = document.createElement('ul');
+
+      errors.forEach((error: string) => {
+        let errorItem = document.createElement('li');
+        errorItem.innerText = error;
+        errorList.appendChild(errorItem);
+      });
+
+      errorArticle.appendChild(errorList);
+      notifications.appendChild(errorArticle);
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function(event) {

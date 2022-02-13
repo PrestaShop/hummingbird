@@ -22,11 +22,11 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
+import { Toast } from 'bootstrap';
 import SelectorsMap, { listing } from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
   const qtyInputList = document.querySelectorAll(selector);
-  const languageIsRTL = document.querySelector('body')?.classList.contains('lang-rtl');
   const decrementIcon = 'E15B';
   const incrementIcon = 'E145';
 
@@ -41,7 +41,7 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
         let incrementButton = createSpinButton(incrementIcon);
         incrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
 
-        if (!languageIsRTL) {
+        if (!languageIsRTL()) {
           qtyInputWrapper.insertBefore(decrementButton, qtyInput);
           qtyInputWrapper.appendChild(incrementButton);
         } else {
@@ -51,6 +51,10 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
       }
     });
   }
+}
+
+function languageIsRTL() {
+  return document.querySelector('body')?.classList.contains('lang-rtl');
 }
 
 function createSpinButton(codePoint: string) {
@@ -69,28 +73,55 @@ function createSpinButton(codePoint: string) {
 
 function changeQuantity(qtyInput: HTMLInputElement, change: number) {
   const quantity = Number(qtyInput.value);
-  const min = Number(qtyInput.getAttribute('min')) ?? 1;
+  const min = Number(qtyInput.getAttribute('min')) ?? 0;
   const newValue = Math.max(quantity + change, min);
   qtyInput.value = String(newValue);
 
   const requestUrl = (change > 0) ? qtyInput.dataset.upUrl : qtyInput.dataset.downUrl;
+  
   if (requestUrl !== undefined) {
-    sendUpdateQuantityInCartRequest(qtyInput, requestUrl);
+    sendUpdateQuantityInCartRequest(qtyInput, requestUrl, change);
   }
 }
 
-function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string) {
+function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string, change: number) {
   const xhttp = new XMLHttpRequest();
-  const requestData = 'ajax=1&action=update';
+  const requestData = {
+    ajax: '1',
+    action: 'update',
+  };
+
+  let targetButton: any;
+
+  if (!languageIsRTL()) {
+    targetButton = (change > 0) ? qtyInput.nextElementSibling : qtyInput.previousElementSibling;
+  } else {
+    targetButton = (change > 0) ? qtyInput.previousElementSibling : qtyInput.nextElementSibling;
+  }
 
   xhttp.open('POST', requestUrl);
   xhttp.setRequestHeader('Accept', 'application/json');
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
+  xhttp.onloadstart = function () {
+    if (targetButton) {
+      targetButton.setAttribute('disabled', 'disabled')
+      let targetIcon = targetButton.firstElementChild;
+
+      if (targetIcon) {
+        targetIcon.classList.add('d-none');
+
+        let spinner = document.createElement('i');
+        spinner.classList.add('spinner-border', 'spinner-border-sm');
+
+        targetButton.appendChild(spinner);
+      }
+    }
+  }
+
   xhttp.onload = function () {
     const resp = JSON.parse(xhttp.responseText);
-
-    checkUpdateOpertation(resp);
+    checkUpdateOpertationErrors(resp);
 
     prestashop.emit('updateCart', {
       reason: qtyInput.dataset,
@@ -100,38 +131,64 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
 
   xhttp.onerror = function () {
     const resp = JSON.parse(xhttp.responseText);
+
     prestashop.emit('handleError', {
       eventType: 'updateProductQuantityInCart',
       resp,
     });
   }
 
-  xhttp.send(requestData);
+  xhttp.send(createRequestParameters(requestData));
 }
 
-function checkUpdateOpertation(response: any) {
-  const notifications = document.querySelector(SelectorsMap.notifications);
-  
-  if (notifications) {
-    notifications.innerHTML = '';
 
-    if (response['hasError']) {
-      const errors = response['errors'];
+function createRequestParameters(data: any) {
+    let parameters = [];
 
-      let errorArticle = document.createElement('article');
-      errorArticle.classList.add('alert', 'alert-danger');
-
-      let errorList = document.createElement('ul');
-
-      errors.forEach((error: string) => {
-        let errorItem = document.createElement('li');
-        errorItem.innerText = error;
-        errorList.appendChild(errorItem);
-      });
-
-      errorArticle.appendChild(errorList);
-      notifications.appendChild(errorArticle);
+    for (const property in data) {
+        if (data.hasOwnProperty(property)) {
+            parameters.push(encodeURI(property + '=' + data[property]));
+        }
     }
+
+    return parameters.join('&');
+}
+
+function checkUpdateOpertationErrors(resp: any) {
+  if (resp['hasError']) {
+    let notifyStack = document.querySelector('#cart-notify-stack');
+
+    if (notifyStack) {
+      notifyStack.innerHTML = '';
+    } else {
+      notifyStack = document.createElement('div');
+      notifyStack.setAttribute('id', 'cart-notify-stack');
+      notifyStack.setAttribute('style', 'z-index: 100');
+      notifyStack.classList.add('toast-container', 'position-fixed', 'top-0', 'start-0', 'p-3');
+      
+      document.querySelector('body')?.appendChild(notifyStack);
+    }
+
+    const errors = resp['errors'];
+    errors.forEach((error: string) => {
+      let toast = document.createElement('div');
+      toast.classList.add('toast', 'fade', 'text-white', 'bg-danger', 'border-0');
+    
+      let toastBody = document.createElement('div');
+      toastBody.classList.add('toast-body');
+      toastBody.innerText = error;
+      
+      toast.appendChild(toastBody);
+      notifyStack?.appendChild(toast);
+    });
+
+    let toastElements = [].slice.call(notifyStack?.querySelectorAll('.toast'))
+    let toastList = toastElements.map(function (toastElement) {
+      return new Toast(toastElement, { delay: 3000 })
+    });
+    toastList.forEach((toast: any) => {
+      toast.show();
+    });
   }
 }
 

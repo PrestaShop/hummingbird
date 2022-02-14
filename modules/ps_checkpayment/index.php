@@ -1,4 +1,5 @@
-{**
+<?php
+/**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -21,24 +22,13 @@
  * @author    PrestaShop SA and Contributors <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
-{extends file='customer/order-detail.tpl'}
+ */
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 
-{block name='page_title'}
-  {l s='Guest Tracking' d='Shop.Theme.Customeraccount'}
-{/block}
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
 
-{block name='order_detail'}
-  {include file='customer/_partials/order-detail-no-return.tpl'}
-{/block}
-
-{block name='order_messages'}
-{/block}
-
-{if !$registered_customer_exists}
-  {block name='page_content' append}
-    {block name='account_transformation_form'}
-      {include file='customer/_partials/account-transformation-form.tpl'}
-    {/block}
-  {/block}
-{/if}
+header('Location: ../');
+exit;

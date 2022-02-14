@@ -83,11 +83,11 @@ function sendUpdateQuantityInCartRequest(qtyInput: any, requestUrl: string, chan
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
   xhttp.onloadstart = function () {
-    const decrementButton = qtyInput.nextElementSibling;
-    const incrementButton = qtyInput.previousElementSibling;
+    const decrementButton = qtyInput.previousElementSibling;
+    const incrementButton = qtyInput.nextElementSibling;
 
     if (decrementButton && incrementButton) {
-      const targetButton = (change > 0) ? decrementButton : incrementButton;
+      const targetButton = (change > 0) ? incrementButton : decrementButton;
       targetButton.setAttribute('disabled', 'disabled')
       const targetIcon = targetButton.firstElementChild;
 

@@ -26,15 +26,15 @@ import { Toast } from 'bootstrap';
 import SelectorsMap, { listing } from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
-  const qtyInputNodeList = document.querySelectorAll(selector);
+  const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<Element>;
   const decrementIcon: string = 'E15B';
   const incrementIcon: string = 'E145';
 
-  if (qtyInputNodeList) {
+  if (qtyInputNodeList.length > 0) {
     qtyInputNodeList.forEach(function(qtyInput: HTMLInputElement) {
-      const qtyInputWrapper = qtyInput.parentElement;
+      const qtyInputWrapper = <HTMLElement>qtyInput.parentElement;
 
-      if (qtyInputWrapper && qtyInputWrapper.childElementCount === 1) {
+      if (qtyInputWrapper.childElementCount === 1) {
         const decrementButton = createSpinButton(decrementIcon);
         decrementButton.addEventListener('click', () => changeQuantity(qtyInput, -1));
 
@@ -49,7 +49,7 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
   }
 }
 
-function createSpinButton(codePoint: string) {
+function createSpinButton(codePoint: string): HTMLButtonElement {
   const spinButton = document.createElement('button');
   spinButton.type = 'button';
   spinButton.classList.add('btn');
@@ -63,7 +63,7 @@ function createSpinButton(codePoint: string) {
   return spinButton;
 }
 
-function changeQuantity(qtyInput: HTMLInputElement, change: number) {
+function changeQuantity(qtyInput: HTMLInputElement, change: number): void {
   const quantity = Number(qtyInput.value);
   const min = Number(qtyInput.getAttribute('min')) ?? 0;
   const newValue = Math.max(quantity + change, min);
@@ -76,32 +76,30 @@ function changeQuantity(qtyInput: HTMLInputElement, change: number) {
   }
 }
 
-function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string, change: number) {
+function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string, change: number): void {
   const xhttp = new XMLHttpRequest();
   xhttp.open('POST', requestUrl);
   xhttp.setRequestHeader('Accept', 'application/json');
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-  xhttp.onloadstart = function () {
-    const decrementButton = qtyInput.previousElementSibling;
-    const incrementButton = qtyInput.nextElementSibling;
+  xhttp.onloadstart = () => {
+    const decrementButton = <HTMLButtonElement>qtyInput.previousElementSibling;
+    const incrementButton = <HTMLButtonElement>qtyInput.nextElementSibling;
 
-    if (decrementButton && incrementButton) {
-      const targetButton = (change > 0) ? incrementButton : decrementButton;
-      targetButton.setAttribute('disabled', 'disabled')
-      const targetIcon = targetButton.firstElementChild;
+    const targetButton = (change > 0) ? incrementButton : decrementButton;
+    targetButton.setAttribute('disabled', 'disabled');
 
-      if (targetIcon) {
-        const spinner = document.createElement('i');
-        spinner.classList.add('spinner-border', 'spinner-border-sm', 'text-info');
-        targetIcon.classList.add('d-none');
-        targetButton.appendChild(spinner);
-      }
-    }
+    const spinner = document.createElement('i');
+    spinner.classList.add('spinner-border', 'spinner-border-sm', 'text-info');
+
+    const targetIcon = <HTMLElement>targetButton.firstElementChild;
+    targetIcon.classList.add('d-none');
+
+    targetButton.appendChild(spinner);
   }
 
-  xhttp.onload = function () {
-    const resp: {[key: string]: unknown} = JSON.parse(xhttp.responseText);
+  xhttp.onload = () => {
+    const resp: { [key: string]: unknown } = JSON.parse(xhttp.responseText);
 
     if (resp['hasError']) {
       showUpdateOperationErrors(resp);
@@ -113,8 +111,8 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
     });
   }
 
-  xhttp.onerror = function () {
-    const resp: {[key: string]: unknown} = JSON.parse(xhttp.responseText);
+  xhttp.onerror = () => {
+    const resp: { [key: string]: unknown } = JSON.parse(xhttp.responseText);
 
     prestashop.emit('handleError', {
       eventType: 'updateProductQuantityInCart',
@@ -125,8 +123,8 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
   xhttp.send(getRequestParameters());
 }
 
-function getRequestParameters() {
-  const requestData: {[key: string]: string} = {
+function getRequestParameters(): string {
+  const requestData: { [key: string]: string } = {
     ajax: '1',
     action: 'update',
   };
@@ -141,8 +139,8 @@ function getRequestParameters() {
   return parameters.join('&');
 }
 
-function showUpdateOperationErrors(resp: {[key: string]: unknown}) {
-    const bsClassList: {[key: string]: string} = {
+function showUpdateOperationErrors(resp: { [key: string]: unknown }): void {
+    const bsClassList: { [key: string]: string } = {
       id: 'cart-error-stack',
       parent: 'body',
       container: 'toast-container',
@@ -160,7 +158,7 @@ function showUpdateOperationErrors(resp: {[key: string]: unknown}) {
       effect: 'fade',
       delay: '3000',
     };
-    let errorStack = document.querySelector('#' + bsClassList['id']);
+    let errorStack = <HTMLElement>document.querySelector('#' + bsClassList['id']);
 
     if (errorStack) {
       errorStack.innerHTML = '';
@@ -176,7 +174,8 @@ function showUpdateOperationErrors(resp: {[key: string]: unknown}) {
         bsClassList['edge_padding']
       );
       
-      document.querySelector(bsClassList['parent'])?.appendChild(errorStack);
+      const parent = <HTMLElement>document.querySelector(bsClassList['parent']);
+      parent.appendChild(errorStack);
     }
 
     const errors = resp['errors'] as Array<string>;
@@ -205,7 +204,7 @@ function showUpdateOperationErrors(resp: {[key: string]: unknown}) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   prestashop.on('updatedCart', () => {
     initQuantityInput();
   });

@@ -26,45 +26,37 @@ import { Toast } from 'bootstrap';
 import SelectorsMap, { listing } from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
-  const qtyInputList = document.querySelectorAll(selector);
+  const qtyInputNodeList = document.querySelectorAll(selector);
   const decrementIcon = 'E15B';
   const incrementIcon = 'E145';
 
-  if (qtyInputList) {
-    qtyInputList.forEach(function(qtyInput) {
+  if (qtyInputNodeList) {
+    qtyInputNodeList.forEach(function(qtyInput) {
       const qtyInputWrapper = qtyInput.parentElement;
 
       if (qtyInputWrapper && qtyInputWrapper.childElementCount === 1) {
-        let decrementButton = createSpinButton(decrementIcon);
+        const decrementButton = createSpinButton(decrementIcon);
         decrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));
 
-        let incrementButton = createSpinButton(incrementIcon);
+        const incrementButton = createSpinButton(incrementIcon);
         incrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
 
-        if (!languageIsRTL()) {
-          qtyInputWrapper.insertBefore(decrementButton, qtyInput);
-          qtyInputWrapper.appendChild(incrementButton);
-        } else {
-          qtyInputWrapper.insertBefore(incrementButton, qtyInput);
-          qtyInputWrapper.appendChild(decrementButton);
-        }
+        qtyInput.classList.add('ready');
+        qtyInputWrapper.insertBefore(decrementButton, qtyInput);
+        qtyInputWrapper.appendChild(incrementButton);
       }
     });
   }
 }
 
-function languageIsRTL() {
-  return document.querySelector('body')?.classList.contains('lang-rtl');
-}
-
 function createSpinButton(codePoint: string) {
-  let spinButton = document.createElement('button');
+  const spinButton = document.createElement('button');
   spinButton.type = 'button';
   spinButton.classList.add('btn');
 
-  let spinIcon = document.createElement('i');
-  spinIcon.classList.add('material-icons');
+  const spinIcon = document.createElement('i');
   spinIcon.innerHTML = '&#x' + codePoint + ';';
+  spinIcon.classList.add('material-icons');
 
   spinButton.appendChild(spinIcon);
 
@@ -86,34 +78,23 @@ function changeQuantity(qtyInput: HTMLInputElement, change: number) {
 
 function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string, change: number) {
   const xhttp = new XMLHttpRequest();
-  const requestData = {
-    ajax: '1',
-    action: 'update',
-  };
-
-  let targetButton: any;
-
-  if (!languageIsRTL()) {
-    targetButton = (change > 0) ? qtyInput.nextElementSibling : qtyInput.previousElementSibling;
-  } else {
-    targetButton = (change > 0) ? qtyInput.previousElementSibling : qtyInput.nextElementSibling;
-  }
-
   xhttp.open('POST', requestUrl);
   xhttp.setRequestHeader('Accept', 'application/json');
   xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
   xhttp.onloadstart = function () {
-    if (targetButton) {
+    const decrementButton = qtyInput.nextElementSibling;
+    const incrementButton = qtyInput.previousElementSibling;
+
+    if (decrementButton && incrementButton) {
+      const targetButton = (change > 0) ? decrementButton : incrementButton;
       targetButton.setAttribute('disabled', 'disabled')
-      let targetIcon = targetButton.firstElementChild;
+      const targetIcon = targetButton.firstElementChild;
 
       if (targetIcon) {
+        const spinner = document.createElement('i');
+        spinner.classList.add('spinner-border', 'spinner-border-sm', 'text-info');
         targetIcon.classList.add('d-none');
-
-        let spinner = document.createElement('i');
-        spinner.classList.add('spinner-border', 'spinner-border-sm');
-
         targetButton.appendChild(spinner);
       }
     }
@@ -121,7 +102,10 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
 
   xhttp.onload = function () {
     const resp = JSON.parse(xhttp.responseText);
-    checkUpdateOpertationErrors(resp);
+
+    if (resp['hasError']) {
+      showUpdateOpertationErrors(resp);
+    }
 
     prestashop.emit('updateCart', {
       reason: qtyInput.dataset,
@@ -138,58 +122,87 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
     });
   }
 
-  xhttp.send(createRequestParameters(requestData));
+  xhttp.send(getRequestParameters());
 }
 
+function getRequestParameters() {
+  const requestData: any = {
+    ajax: '1',
+    action: 'update',
+  };
+  const parameters = [];
 
-function createRequestParameters(data: any) {
-    let parameters = [];
+  for (const property in requestData) {
+      if (requestData.hasOwnProperty(property)) {
+          parameters.push(encodeURI(property + '=' + requestData[property]));
+      }
+  }
 
-    for (const property in data) {
-        if (data.hasOwnProperty(property)) {
-            parameters.push(encodeURI(property + '=' + data[property]));
-        }
-    }
-
-    return parameters.join('&');
+  return parameters.join('&');
 }
 
-function checkUpdateOpertationErrors(resp: any) {
-  if (resp['hasError']) {
-    let notifyStack = document.querySelector('#cart-notify-stack');
+function showUpdateOpertationErrors(resp: any) {
+    const bsClassList = {
+      id: 'cart-error-stack',
+      parent: 'body',
+      container: 'toast-container',
+      class: 'toast',
+      content: 'toast-body',
+      stack_order: 'z-index:100',
+      position: 'position-fixed',
+      horizontal: 'start-0',
+      vertical: 'top-0',
+      edge_padding: 'p-3',
+      alert: 'bg-danger',
+      color: 'text-white',
+      shadow: 'shadow',
+      border: 'border-0',
+      effect: 'fade',
+      delay: 3000,
+    };
+    let errorStack = document.querySelector('#' + bsClassList['id']);
 
-    if (notifyStack) {
-      notifyStack.innerHTML = '';
+    if (errorStack) {
+      errorStack.innerHTML = '';
     } else {
-      notifyStack = document.createElement('div');
-      notifyStack.setAttribute('id', 'cart-notify-stack');
-      notifyStack.setAttribute('style', 'z-index: 100');
-      notifyStack.classList.add('toast-container', 'position-fixed', 'top-0', 'start-0', 'p-3');
+      errorStack = document.createElement('div');
+      errorStack.setAttribute('id', bsClassList['id']);
+      errorStack.setAttribute('style', bsClassList['stack_order']);
+      errorStack.classList.add(
+        bsClassList['container'],
+        bsClassList['position'],
+        bsClassList['horizontal'],
+        bsClassList['vertical'],
+        bsClassList['edge_padding']
+      );
       
-      document.querySelector('body')?.appendChild(notifyStack);
+      document.querySelector(bsClassList['parent'])?.appendChild(errorStack);
     }
 
     const errors = resp['errors'];
     errors.forEach((error: string) => {
-      let toast = document.createElement('div');
-      toast.classList.add('toast', 'fade', 'text-white', 'bg-danger', 'border-0');
+      const toast = document.createElement('div');
+      toast.classList.add(
+        bsClassList['class'],
+        bsClassList['effect'],
+        bsClassList['alert'],
+        bsClassList['color'],
+        bsClassList['shadow'],
+        bsClassList['border']
+      );
     
-      let toastBody = document.createElement('div');
-      toastBody.classList.add('toast-body');
+      const toastBody = document.createElement('div');
+      toastBody.classList.add(bsClassList['content']);
       toastBody.innerText = error;
       
       toast.appendChild(toastBody);
-      notifyStack?.appendChild(toast);
+      errorStack?.appendChild(toast);
     });
 
-    let toastElements = [].slice.call(notifyStack?.querySelectorAll('.toast'))
-    let toastList = toastElements.map(function (toastElement) {
-      return new Toast(toastElement, { delay: 3000 })
+    const toastElements = [].slice.call(errorStack.querySelectorAll('.' + bsClassList['class']))
+    toastElements.map(function (toastElement) {
+      new Toast(toastElement, { delay: bsClassList['delay'] }).show();
     });
-    toastList.forEach((toast: any) => {
-      toast.show();
-    });
-  }
 }
 
 document.addEventListener('DOMContentLoaded', function(event) {

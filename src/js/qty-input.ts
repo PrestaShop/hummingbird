@@ -104,7 +104,7 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
     const resp = JSON.parse(xhttp.responseText);
 
     if (resp['hasError']) {
-      showUpdateOpertationErrors(resp);
+      showUpdateOperationErrors(resp);
     }
 
     prestashop.emit('updateCart', {

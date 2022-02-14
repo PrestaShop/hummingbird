@@ -101,7 +101,7 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
   }
 
   xhttp.onload = function () {
-    const resp = JSON.parse(xhttp.responseText);
+    const resp: {[key: string]: unknown} = JSON.parse(xhttp.responseText);
 
     if (resp['hasError']) {
       showUpdateOperationErrors(resp);
@@ -114,7 +114,7 @@ function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl:
   }
 
   xhttp.onerror = function () {
-    const resp = JSON.parse(xhttp.responseText);
+    const resp: {[key: string]: unknown} = JSON.parse(xhttp.responseText);
 
     prestashop.emit('handleError', {
       eventType: 'updateProductQuantityInCart',
@@ -141,7 +141,7 @@ function getRequestParameters() {
   return parameters.join('&');
 }
 
-function showUpdateOperationErrors(resp: any) {
+function showUpdateOperationErrors(resp: {[key: string]: unknown}) {
     const bsClassList: {[key: string]: string} = {
       id: 'cart-error-stack',
       parent: 'body',
@@ -179,7 +179,7 @@ function showUpdateOperationErrors(resp: any) {
       document.querySelector(bsClassList['parent'])?.appendChild(errorStack);
     }
 
-    const errors = resp['errors'];
+    const errors = resp['errors'] as Array<string>;
     errors.forEach((error: string) => {
       const toast = document.createElement('div');
       toast.classList.add(
@@ -199,13 +199,13 @@ function showUpdateOperationErrors(resp: any) {
       errorStack?.appendChild(toast);
     });
 
-    const toastElements = [].slice.call(errorStack.querySelectorAll('.' + bsClassList['class']))
-    toastElements.map(function (toastElement) {
+    const toastElements: Array<never> = [].slice.call(errorStack.querySelectorAll('.' + bsClassList['class']));
+    toastElements.map(function (toastElement: Element) {
       new Toast(toastElement, { delay: Number(bsClassList['delay']) }).show();
     });
 }
 
-document.addEventListener('DOMContentLoaded', function(event) {
+document.addEventListener('DOMContentLoaded', function() {
   prestashop.on('updatedCart', () => {
     initQuantityInput();
   });

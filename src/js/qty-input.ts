@@ -36,10 +36,10 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
 
       if (qtyInputWrapper && qtyInputWrapper.childElementCount === 1) {
         const decrementButton = createSpinButton(decrementIcon);
-        decrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, -1));
+        decrementButton.addEventListener('click', () => changeQuantity(qtyInput, -1));
 
         const incrementButton = createSpinButton(incrementIcon);
-        incrementButton.addEventListener('click', () => changeQuantity(<HTMLInputElement>qtyInput, 1));
+        incrementButton.addEventListener('click', () => changeQuantity(qtyInput, 1));
 
         qtyInput.classList.add('ready');
         qtyInputWrapper.insertBefore(decrementButton, qtyInput);
@@ -63,7 +63,7 @@ function createSpinButton(codePoint: string) {
   return spinButton;
 }
 
-function changeQuantity(qtyInput: HTMLInputElement, change: number) {
+function changeQuantity(qtyInput: any, change: number) {
   const quantity = Number(qtyInput.value);
   const min = Number(qtyInput.getAttribute('min')) ?? 0;
   const newValue = Math.max(quantity + change, min);
@@ -76,7 +76,7 @@ function changeQuantity(qtyInput: HTMLInputElement, change: number) {
   }
 }
 
-function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string, change: number) {
+function sendUpdateQuantityInCartRequest(qtyInput: any, requestUrl: string, change: number) {
   const xhttp = new XMLHttpRequest();
   xhttp.open('POST', requestUrl);
   xhttp.setRequestHeader('Accept', 'application/json');
@@ -141,7 +141,7 @@ function getRequestParameters() {
   return parameters.join('&');
 }
 
-function showUpdateOpertationErrors(resp: any) {
+function showUpdateOperationErrors(resp: any) {
     const bsClassList = {
       id: 'cart-error-stack',
       parent: 'body',

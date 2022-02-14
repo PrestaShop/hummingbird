@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 import { Toast } from 'bootstrap';
-import SelectorsMap, { listing } from './selectors-map';
+import SelectorsMap from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
   const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<Element>;
@@ -156,7 +156,6 @@ function showUpdateOperationErrors(resp: { [key: string]: unknown }): void {
       shadow: 'shadow',
       border: 'border-0',
       effect: 'fade',
-      delay: '3000',
     };
     let errorStack = <HTMLElement>document.querySelector('#' + bsClassList['id']);
 
@@ -198,9 +197,14 @@ function showUpdateOperationErrors(resp: { [key: string]: unknown }): void {
       errorStack?.appendChild(toast);
     });
 
-    const toastElements: Array<never> = [].slice.call(errorStack.querySelectorAll('.' + bsClassList['class']));
-    toastElements.map(function (toastElement: Element) {
-      new Toast(toastElement, { delay: Number(bsClassList['delay']) }).show();
+    const toastOptions: { [key: string]: boolean | number } = {
+      animation: true,
+      autohide: true,
+      delay: 3000,
+    };
+    const toastElements = [].slice.call(errorStack.querySelectorAll('.' + bsClassList['class']));
+    toastElements.map((toastElement: Element) => {
+      new Toast(toastElement, toastOptions).show();
     });
 }
 

@@ -27,11 +27,11 @@ import SelectorsMap, { listing } from './selectors-map';
 
 export default function initQuantityInput(selector = SelectorsMap.qtyInput.default) {
   const qtyInputNodeList = document.querySelectorAll(selector);
-  const decrementIcon = 'E15B';
-  const incrementIcon = 'E145';
+  const decrementIcon: string = 'E15B';
+  const incrementIcon: string = 'E145';
 
   if (qtyInputNodeList) {
-    qtyInputNodeList.forEach(function(qtyInput) {
+    qtyInputNodeList.forEach(function(qtyInput: HTMLInputElement) {
       const qtyInputWrapper = qtyInput.parentElement;
 
       if (qtyInputWrapper && qtyInputWrapper.childElementCount === 1) {
@@ -63,7 +63,7 @@ function createSpinButton(codePoint: string) {
   return spinButton;
 }
 
-function changeQuantity(qtyInput: any, change: number) {
+function changeQuantity(qtyInput: HTMLInputElement, change: number) {
   const quantity = Number(qtyInput.value);
   const min = Number(qtyInput.getAttribute('min')) ?? 0;
   const newValue = Math.max(quantity + change, min);
@@ -76,7 +76,7 @@ function changeQuantity(qtyInput: any, change: number) {
   }
 }
 
-function sendUpdateQuantityInCartRequest(qtyInput: any, requestUrl: string, change: number) {
+function sendUpdateQuantityInCartRequest(qtyInput: HTMLInputElement, requestUrl: string, change: number) {
   const xhttp = new XMLHttpRequest();
   xhttp.open('POST', requestUrl);
   xhttp.setRequestHeader('Accept', 'application/json');
@@ -126,7 +126,7 @@ function sendUpdateQuantityInCartRequest(qtyInput: any, requestUrl: string, chan
 }
 
 function getRequestParameters() {
-  const requestData: any = {
+  const requestData: {[key: string]: string} = {
     ajax: '1',
     action: 'update',
   };
@@ -142,7 +142,7 @@ function getRequestParameters() {
 }
 
 function showUpdateOperationErrors(resp: any) {
-    const bsClassList = {
+    const bsClassList: {[key: string]: string} = {
       id: 'cart-error-stack',
       parent: 'body',
       container: 'toast-container',
@@ -158,7 +158,7 @@ function showUpdateOperationErrors(resp: any) {
       shadow: 'shadow',
       border: 'border-0',
       effect: 'fade',
-      delay: 3000,
+      delay: '3000',
     };
     let errorStack = document.querySelector('#' + bsClassList['id']);
 
@@ -201,7 +201,7 @@ function showUpdateOperationErrors(resp: any) {
 
     const toastElements = [].slice.call(errorStack.querySelectorAll('.' + bsClassList['class']))
     toastElements.map(function (toastElement) {
-      new Toast(toastElement, { delay: bsClassList['delay'] }).show();
+      new Toast(toastElement, { delay: Number(bsClassList['delay']) }).show();
     });
 }
 

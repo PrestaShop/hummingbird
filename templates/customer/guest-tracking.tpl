@@ -38,6 +38,7 @@
 {if !$registered_customer_exists}
   {block name='page_content' append}
     {block name='account_transformation_form'}
-    {include file='customer/_partials/account-transformation-form.tpl'}
+      {include file='customer/_partials/account-transformation-form.tpl'}
+    {/block}
   {/block}
 {/if}

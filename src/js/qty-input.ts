@@ -31,7 +31,7 @@ export default function initQuantityInput(selector = SelectorsMap.qtyInput.defau
   const incrementIcon: string = 'E145';
 
   if (qtyInputNodeList.length > 0) {
-    qtyInputNodeList.forEach(function(qtyInput: HTMLInputElement) {
+    qtyInputNodeList.forEach((qtyInput: HTMLInputElement) => {
       const qtyInputWrapper = <HTMLElement>qtyInput.parentElement;
 
       if (qtyInputWrapper.childElementCount === 1) {

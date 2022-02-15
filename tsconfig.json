@@ -12,19 +12,10 @@
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
-      "@services/*": [
-        "src/js/services/*"
-      ],
-      "@helpers/*": [
-        "src/js/helpers/*"
-      ],
-      "@constants/*": [
-        "src/js/constants/*"
-      ],
-      "@js/*": [
-        "src/js/*"
-      ],
+      "@services/*": ["src/js/services/*"],
+      "@helpers/*": ["src/js/helpers/*"],
+      "@constants/*": ["src/js/constants/*"],
+      "@js/*": ["src/js/*"]
     }
-  },
-  "exclude": ["**/*.test.ts"],
+  }
 }

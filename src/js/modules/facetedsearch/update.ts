@@ -38,7 +38,6 @@ export const parseSearchUrl = function (event: {target: HTMLElement}) {
 };
 
 export function updateProductListDOM(data: Record<string, any>) {
-  console.log(data);
   $(prestashop.themeSelectors.listing.searchFilters).replaceWith(
     data.rendered_facets,
   );

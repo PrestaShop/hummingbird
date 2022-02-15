@@ -47,7 +47,6 @@ prestashop.blockcart.showModal = (html: string) => {
   document.querySelector('body')?.append(<HTMLElement>mainElement.querySelector('#blockcart-modal'));
 
   blockCartModal = getBlockCartModal();
-  console.log(blockCartModal, Modal);
 
   const modal = new Modal(blockCartModal);
 

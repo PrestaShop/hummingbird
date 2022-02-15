@@ -22,32 +22,17 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-import {API} from 'nouislider';
 
-const {prestashop} = window;
+const contentValue = 'content';
+const desktopElementId = '_desktop_element';
+const mobileElementId = '_mobile_element';
+const desktopElement = `<div id="${desktopElementId}">${contentValue}</div>`;
+const mobileElement = `<div id="${mobileElementId}"></div>`;
 
-export default function (values: Array<string | number>, slider: API) {
-  const label = slider.target.dataset.sliderLabel;
-  const unit = slider.target.dataset.sliderUnit;
-  const encodedUrl = window.location.href;
-  const splittedUrl = encodedUrl.split('?');
-  let newUrl: string;
-
-  const searchParams = new URLSearchParams(splittedUrl[1]);
-  const params = searchParams.get('q');
-
-  if (params) {
-    let groups = params.split('/');
-
-    if (label) {
-      groups = groups.filter((e) => e.replace(label, '') === e);
-      groups.push(`${label}-${unit}-${values[0]}-${values[1]}`);
-    }
-
-    newUrl = `${splittedUrl[0]}?q=${groups.join('/')}`;
-  } else {
-    newUrl = `${splittedUrl[0]}?q=${label}-${unit}-${values[0]}-${values[1]}`;
-  }
-
-  prestashop.emit('updateFacets', newUrl);
-}
+export {
+  contentValue,
+  desktopElement,
+  mobileElement,
+  desktopElementId,
+  mobileElementId,
+};

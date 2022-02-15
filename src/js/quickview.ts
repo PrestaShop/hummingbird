@@ -22,8 +22,10 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-import SelectorsMap from './selectors-map';
+import SelectorsMap from './constants/selectors-map';
 import initQuantityInput from './qty-input';
+
+const {prestashop} = window;
 
 export default function initQuickviews() {
   prestashop.on('clickQuickView', (elm: HTMLElement) => {

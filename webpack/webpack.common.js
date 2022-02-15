@@ -1,4 +1,4 @@
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const {
   extractScss, extractJs, extractImages, extractFonts, externals, expose,
@@ -20,13 +20,14 @@ exports.commonConfig = ({
         alias: {
           '@js': path.resolve(__dirname, '../src/js'),
           '@services': path.resolve(__dirname, '../src/js/services'),
+          '@constants': path.resolve(__dirname, '../src/js/constants'),
           '@helpers': path.resolve(__dirname, '../src/js/helpers'),
         },
       },
     },
     externals(),
     expose(),
-    extractScss({mode}),
+    extractScss({ mode }),
     extractJs(),
     extractImages(),
     extractFonts(),

@@ -26,42 +26,55 @@
 import search from '@services/search';
 import debounce from '@helpers/debounce';
 
+const {prestashop} = window;
+
 const initSearchbar = () => {
-  const searchCanvas = <HTMLElement>document.querySelector('.js-search-offcanvas');
-  const searchWidget = <HTMLElement>document.querySelector('.js-search-widget');
-  const searchDropdown = <HTMLElement>document.querySelector('.js-search-dropdown');
-  const searchResults = <HTMLElement>document.querySelector('.js-search-results');
-  const searchTemplate = <HTMLTemplateElement>document.querySelector('.js-search-template');
-  const searchInput: HTMLInputElement | null = document.querySelector('.js-search-input');
-  const searchUrl = <string>searchWidget.dataset.searchControllerUrl;
+  const searchCanvas = document.querySelector<HTMLElement>('.js-search-offcanvas');
+  const searchWidget = document.querySelector<HTMLElement>('.js-search-widget');
+  const searchDropdown = document.querySelector<HTMLElement>('.js-search-dropdown');
+  const searchResults = document.querySelector<HTMLElement>('.js-search-results');
+  const searchTemplate = document.querySelector<HTMLTemplateElement>('.js-search-template');
+  const searchInput = document.querySelector<HTMLInputElement>('.js-search-input');
+  const searchUrl = searchWidget?.dataset.searchControllerUrl;
 
-  searchCanvas.addEventListener('hidden.bs.offcanvas', function () {
-    searchDropdown.innerHTML = '';
-    searchDropdown.classList.add('d-none')
-  })
+  searchCanvas?.addEventListener('hidden.bs.offcanvas', () => {
+    if (searchDropdown) {
+      searchDropdown.innerHTML = '';
+      searchDropdown.classList.add('d-none');
+    }
+  });
 
-  if(searchInput) {
+  if (searchInput && searchResults && searchDropdown) {
     searchInput.addEventListener('keydown', debounce(async () => {
-      const products = await search(searchUrl, searchInput.value, 10);
-      if(products.length > 0) {
-        products.forEach((e: Record<string, any>) => {
-          const product = <HTMLElement>searchTemplate.content.cloneNode(true);
-          const productLink = <HTMLAnchorElement>product.querySelector('a');
-          const productTitle = <HTMLElement>product.querySelector('p');
-          const productImage = <HTMLImageElement>product.querySelector('img');
-          productLink.href = e.canonical_url;
-          productTitle.innerHTML = e.name;
-          productImage.src = e.cover.small.url;
+      if (searchUrl) {
+        const products = await search(searchUrl, searchInput.value, 10);
 
-          searchResults.append(product);
-        })
+        if (products.length > 0) {
+          products.forEach((e: Record<string, any>) => {
+            const product = <HTMLElement>searchTemplate?.content.cloneNode(true);
 
-        searchDropdown.classList.remove('d-none')
-      }else {
-        searchResults.innerHTML = '';
-        searchDropdown.classList.add('d-none')
+            if (product) {
+              const productLink = product.querySelector<HTMLAnchorElement>('a');
+              const productTitle = product.querySelector<HTMLElement>('p');
+              const productImage = product.querySelector<HTMLImageElement>('img');
+
+              if (productLink && productTitle && productImage) {
+                productLink.href = e.canonical_url;
+                productTitle.innerHTML = e.name;
+                productImage.src = e.cover.small.url;
+
+                searchResults.append(product);
+              }
+            }
+          });
+
+          searchDropdown.classList.remove('d-none');
+        } else {
+          searchResults.innerHTML = '';
+          searchDropdown.classList.add('d-none');
+        }
       }
-    }, 250))
+    }, 250));
   }
 };
 

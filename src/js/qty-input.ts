@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-export default function initQuantityInput(selector: String) {
+export default function initQuantityInput(selector: string) {
   $(document).ready(() => {
     $(selector).inputSpinner({
       decrementButton: '<i class="material-icons">expand_more</i>',

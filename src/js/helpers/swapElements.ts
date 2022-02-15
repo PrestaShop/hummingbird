@@ -23,5 +23,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-export default function (values: Array<number>) {
-};
+export default function swapElements(obj1: Element, obj2: Element): void {
+  const temp = obj1.innerHTML;
+  obj1.innerHTML = '';
+  obj2.innerHTML = temp;
+}

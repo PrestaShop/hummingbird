@@ -23,11 +23,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
- <div class="cart-summary-products js-cart-summary-products">
+ <div class="cart-summary__products js-cart-summary-products">
   <p>{$cart.summary_string}</p>
 
   <p>
-    <a href="#cart-summary-product-list" data-bs-toggle="collapse" class="cart-summary-show js-show-details">
+    <a href="#cart-summary-product-list" data-bs-toggle="collapse" class="cart-summary__show js-show-details">
       <span>
         {l s='Show details' d='Shop.Theme.Actions'}
       </span>
@@ -35,11 +35,11 @@
     </a>
   </p>
 
-  {block name='cart_summary_product_list'}
+  {block name='cart_summary__list'}
     <div class="collapse" id="cart-summary-product-list">
-      <ul class="media-list">
+      <ul class="cart-summary__product__list">
         {foreach from=$cart.products item=product}
-          <li class="media">{include file='checkout/_partials/cart-summary-product-line.tpl' product=$product}</li>
+          <li class="cart-summary__product row my-2">{include file='checkout/_partials/cart-summary-product-line.tpl' product=$product}</li>
         {/foreach}
       </ul>
     </div>

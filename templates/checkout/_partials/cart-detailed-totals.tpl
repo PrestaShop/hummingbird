@@ -23,20 +23,20 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='cart_detailed_totals'}
-  <div class="cart-detailed-totals js-cart-detailed-totals">
-    <div class="card-block cart-detailed-subtotals js-cart-detailed-subtotals">
+  <div class="cart-detailed__totals card-block js-cart-detailed-totals">
+    <div class="cart-detailed__subtotals js-cart-detailed-subtotals">
       {foreach from=$cart.subtotals item="subtotal"}
         {if $subtotal && $subtotal.value|count_characters> 0 && $subtotal.type !== 'tax'}
-          <div class="cart-summary-line" id="cart-subtotal-{$subtotal.type}">
-            <span class="label{if 'products' === $subtotal.type} js-subtotal{/if}">
+          <div class="cart-summary__line" id="cart-subtotal-{$subtotal.type}">
+            <span class="cart-summary__label{if 'products' === $subtotal.type} js-subtotal{/if}">
               {if 'products' == $subtotal.type}
                 {$cart.summary_string}
               {else}
                 {$subtotal.label}
               {/if}
             </span>
-            <div class="cart-summary-line-value">
-              <span class="value">
+            <div class="cart-summary__line__value">
+              <span class="cart-summary__value">
                 {if 'discount' == $subtotal.type}-&nbsp;{/if}{$subtotal.value}
               </span>
               {if $subtotal.type === 'shipping'}

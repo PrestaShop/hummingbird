@@ -1,22 +1,30 @@
 $component-name: cart;
 
 .#{$component-name} {
-  &-container {
-    .card-header,
-    .card-footer {
-      background-color: $white;
-
-      i {
-        color: inherit;
-      }
-    }
-  }
-
   &-summary {
     padding: 1rem;
-    background-color: $gray-100;
+    
+    .card-footer {
+      padding: 0;
+      padding-top: 1rem;
+    }
 
-    &-products {
+    &, .card-footer {
+      background-color: lighten($gray-100, 2%);
+    }
+
+    &__container {
+      .card-header,
+      .card-footer {
+        background-color: $white;
+
+        i {
+          color: inherit;
+        }
+      }
+    }
+
+    &__products {
       margin-bottom: 0.75rem;
       border-bottom: 1px solid $gray-200;
 
@@ -30,39 +38,12 @@ $component-name: cart;
         }
       }
 
-      .media {
-        display: flex;
-        align-items: flex-start;
-        width: 100%;
-
-        &-price {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-
-          .product-price {
-            font-weight: 600;
-            color: $gray-800;
-          }
+      .cart-summary__product {
+        &__current {
+          margin-bottom: 0.5rem;
         }
 
-        &-left {
-          img {
-            width: 3rem;
-          }
-        }
-
-        &-body {
-          width: 100%;
-          padding: 0 0.75rem;
-
-          &-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.25rem;
-          }
-
+        &__body {
           .label,
           .value {
             font-size: 1rem;
@@ -71,7 +52,7 @@ $component-name: cart;
           }
 
           .product-line-info {
-            margin: 0.25rem 0;
+            margin: 0.5rem 0;
           }
 
           .product-name {
@@ -88,8 +69,8 @@ $component-name: cart;
       }
     }
 
-    &-show {
-      font-weight: 600;
+    &__show {
+      font-weight: 500;
 
       i {
         color: $primary;
@@ -104,7 +85,7 @@ $component-name: cart;
       }
     }
 
-    &-totals {
+    &__totals {
       padding-top: 1rem;
       margin-top: 0.75rem;
       border-top: 1px solid $gray-200;
@@ -114,8 +95,8 @@ $component-name: cart;
       }
     }
 
-    &-line,
-    &-total {
+    &__line,
+    &__total {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -125,23 +106,24 @@ $component-name: cart;
         font-size: 1rem;
 
         &.value {
-          font-weight: 700;
           color: $gray-800;
         }
       }
     }
   }
 
-  &-detailed-actions {
-    margin-top: 1.75rem;
+  &-detailed {
+    &__actions {
+      padding-top: 0;
 
-    .btn-primary {
-      display: flex;
-      justify-content: center;
+      .btn-primary {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 
-  &-item {
+  &__item {
     .product-line {
       &__title {
         align-self: start;

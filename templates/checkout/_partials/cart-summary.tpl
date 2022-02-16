@@ -44,5 +44,4 @@
   {block name='cart_summary_voucher'}
     {include file='checkout/_partials/cart-voucher.tpl'}
   {/block}
-
 </section>

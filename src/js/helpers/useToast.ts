@@ -37,34 +37,50 @@ const useToast = (message: string, options?: Toaster.Options): Toast => {
       throw new DOMException('The object cannot be found here: <body>');
     }
 
-    const fallbackContainer = document.createElement('div');
-    fallbackContainer.innerHTML = Toaster.Templates.container;
-    const className = selectorsMap.toast.wrapper.substring(1);
-    addClassListToElement(fallbackContainer, className.concat(' ', className, '--fallback'));
-    body.appendChild(fallbackContainer);
-    toastContainer = fallbackContainer.querySelector<HTMLElement>(selectorsMap.toast.container);
+    const fallback = document.createElement('div');
+    fallback.innerHTML = Toaster.Templates.container;
+    toastContainer = fallback.querySelector<HTMLElement>(selectorsMap.toast.container);
+
+    if (toastContainer) {
+      const className = selectorsMap.toast.container.substring(1);
+      addClassListToElement(toastContainer, className.concat(' ', className, '--fallback'));
+      body.appendChild<HTMLElement>(toastContainer);
+    }
   }
 
   if (toastContainer) {
     let toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
 
     if (!toastTemplate) {
-      const fallbackTemplate = document.createElement('template');
-      fallbackTemplate.innerHTML = Toaster.Templates.toast;
+      const fallback = document.createElement('template');
+      fallback.innerHTML = Toaster.Templates.toast;
       const className = selectorsMap.toast.template.substring(1);
-      addClassListToElement(fallbackTemplate, className.concat(' ', className, '--fallback'));
-      toastContainer.appendChild(fallbackTemplate);
+      addClassListToElement(fallback, className.concat(' ', className, '--fallback'));
+      toastContainer.appendChild(fallback);
       toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
     }
 
     if (toastTemplate) {
-      const toastClone = toastTemplate.content.cloneNode(true) as DocumentFragment;
+      let toastElement = null;
 
-      if (!toastClone) {
-        throw new DOMException('The object can not be cloned: .js-toast-template');
+      if ('content' in document.createElement('template')) {
+        const toastClone = toastTemplate.content.cloneNode(true) as DocumentFragment;
+
+        if (!toastClone) {
+          throw new DOMException('The object can not be cloned: .js-toast-template');
+        }
+
+        toastElement = toastClone.querySelector<HTMLElement>(selectorsMap.toast.toast);
+      } else {
+        const fallback = document.createElement('div');
+        fallback.innerHTML = Toaster.Templates.toast;
+        toastElement = fallback.querySelector<HTMLElement>(selectorsMap.toast.toast);
+
+        if (toastElement) {
+          const className = selectorsMap.toast.toast.substring(1);
+          addClassListToElement(toastElement, className.concat(' ', className, '--fallback'));
+        }
       }
-
-      const toastElement = toastClone.querySelector<HTMLElement>(selectorsMap.toast.toast);
 
       if (!toastElement) {
         throw new DOMException('The object cannot be found here: .toast');

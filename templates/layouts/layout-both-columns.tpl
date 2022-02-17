@@ -107,12 +107,11 @@
 
     {block name='bottom_elements'}
       {include file="components/page-loader.tpl"}
+      {include file='components/toast-container.tpl'}
     {/block}
 
     {block name='hook_before_body_closing_tag'}
       {hook h='displayBeforeBodyClosingTag'}
     {/block}
-    
-    {include file='components/toast-container.tpl'}
   </body>
 </html>

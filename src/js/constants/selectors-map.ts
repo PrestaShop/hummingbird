@@ -52,7 +52,6 @@ const selectorsMap = {
     modal: '.modal-dialog .js-quantity-button input',
   },
   toast: {
-    wrapper: '.js-toast-wrapper',
     container: '#js-toast-container',
     template: '.js-toast-template',
     toast: '.toast',

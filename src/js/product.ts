@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import SelectorsMap from './selectors-map';
+import SelectorsMap from './constants/selectors-map';
 
 export default () => {
   const imagesCarousel = document.querySelector(SelectorsMap.product.carousel);
@@ -33,9 +33,9 @@ export default () => {
 
     thumbnails.forEach((e: Element) => {
       e.classList.remove('active');
-    })
+    });
 
-    const activeThumbnail = document.querySelector(SelectorsMap.product.activeThumbail(event.to))
+    const activeThumbnail = document.querySelector(SelectorsMap.product.activeThumbail(event.to));
 
     if (activeThumbnail) {
       activeThumbnail.classList.add('active');

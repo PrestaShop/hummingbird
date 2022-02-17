@@ -41,6 +41,6 @@ const getConfig = ({mode, ...vars}) => {
 };
 
 module.exports = (env, options) => getConfig({
-  mode: options.mode,
+  mode: options.mode ?? 'production',
   ...webpackVars
 });

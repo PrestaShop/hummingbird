@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-const searchProduct = async (url: string, value: string, resultsPerPage: number = 10): Promise<Record<string, any>> => {
+const searchProduct = async (url: string, value: string, resultsPerPage = 10): Promise<Record<string, any>> => {
   const formData = new FormData();
   formData.append('s', value);
   formData.append('resultsPerPage', resultsPerPage.toString());
@@ -32,9 +32,9 @@ const searchProduct = async (url: string, value: string, resultsPerPage: number 
     method: 'POST',
     body: formData,
     headers: {
-      Accept: 'application/json, text/javascript, */*; q=0.01'
+      Accept: 'application/json, text/javascript, */*; q=0.01',
     },
-  })
+  });
 
   const jsonDatas = await datas.json();
 

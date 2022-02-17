@@ -22,29 +22,18 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
+import swapElements from '@helpers/swapElements';
 
-const {prestashop} = window;
+export function toggleMobileStyles() {
+  const {prestashop} = window;
 
-prestashop.responsive = prestashop.responsive || {};
-
-prestashop.responsive.current_width = window.innerWidth;
-prestashop.responsive.min_width = 768;
-prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
-
-function swapChildren(obj1: Element, obj2: Element): void {
-  const temp = obj1.innerHTML;
-  obj1.innerHTML = '';
-  obj2.innerHTML = temp;
-}
-
-function toggleMobileStyles() {
   if (prestashop.responsive.mobile) {
     Array.prototype.forEach.call(document.querySelectorAll("*[id^='_desktop_']"), (el: HTMLElement): void => {
       const source = document.querySelector(`#${el.id}`);
       const target = document.querySelector(`#${el.id.replace('_desktop_', '_mobile_')}`);
 
       if (target && source) {
-        swapChildren(source, target);
+        swapElements(source, target);
       }
     });
   } else {
@@ -53,7 +42,7 @@ function toggleMobileStyles() {
       const target = document.querySelector(`#${el.id.replace('_mobile_', '_desktop_')}`);
 
       if (target && source) {
-        swapChildren(source, target);
+        swapElements(source, target);
       }
     });
   }
@@ -62,22 +51,32 @@ function toggleMobileStyles() {
   });
 }
 
-window.addEventListener('resize', () => {
-  const currentWidth = prestashop.responsive.current_width;
-  const minWidth = prestashop.responsive.min_width;
-  const screenWidth = window.innerWidth;
-  // eslint-disable-next-line
-  const toggle = (currentWidth >= minWidth && screenWidth < minWidth) || (currentWidth < minWidth && screenWidth >= minWidth);
+export default function initResponsiveToggler() {
+  const {prestashop} = window;
 
-  prestashop.responsive.current_width = screenWidth;
+  prestashop.responsive = prestashop.responsive || {};
+
+  prestashop.responsive.current_width = window.innerWidth;
+  prestashop.responsive.min_width = 768;
   prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
-  if (toggle) {
-    toggleMobileStyles();
-  }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (prestashop.responsive.mobile) {
-    toggleMobileStyles();
-  }
-});
+  window.addEventListener('resize', () => {
+    const currentWidth = prestashop.responsive.current_width;
+    const minWidth = prestashop.responsive.min_width;
+    const screenWidth = window.innerWidth;
+    // eslint-disable-next-line
+    const toggle = (currentWidth >= minWidth && screenWidth < minWidth) || (currentWidth < minWidth && screenWidth >= minWidth);
+
+    prestashop.responsive.current_width = screenWidth;
+    prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
+    if (toggle) {
+      toggleMobileStyles();
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (prestashop.responsive.mobile) {
+      toggleMobileStyles();
+    }
+  });
+}

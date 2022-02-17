@@ -26,9 +26,9 @@
 // @ts-ignore
 //import $ from "expose-loader?exposes=$,jQuery!jquery";
 
-import './prestashop';
+import initEmitter from './prestashop';
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import './responsive-toggler';
+import initResponsiveToggler from './responsive-toggler';
 import initQuantityInput from './qty-input';
 import initQuickview from './quickview';
 import './modules/blockcart';
@@ -36,13 +36,15 @@ import initProductBehavior from './product';
 import './mobile-menu';
 import './modules/ps_searchbar';
 import './modules/facetedsearch';
-import SelectorsMap from './selectors-map';
+import SelectorsMap from './constants/selectors-map';
 /* eslint-enable */
 
-prestashop.themeSelectors = SelectorsMap;
+window.prestashop.themeSelectors = SelectorsMap;
 
 $(document).ready(() => {
+  initEmitter();
   initProductBehavior();
   initQuantityInput(SelectorsMap.qtyInput.default);
   initQuickview();
+  initResponsiveToggler();
 });

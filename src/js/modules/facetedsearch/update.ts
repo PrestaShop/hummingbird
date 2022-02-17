@@ -23,7 +23,9 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-export const parseSearchUrl = function (event: Record<string, any>) {
+const {prestashop} = window;
+
+export const parseSearchUrl = function (event: {target: HTMLElement}) {
   if (event.target.dataset.searchUrl !== undefined) {
     return event.target.dataset.searchUrl;
   }
@@ -48,9 +50,10 @@ export function updateProductListDOM(data: Record<string, any>) {
 
   const renderedProducts = $(data.rendered_products);
   const productSelectors = $(prestashop.themeSelectors.listing.product, renderedProducts);
+  const firstProductClasses = $(prestashop.themeSelectors.listing.product).first().attr('class');
 
-  if (productSelectors.length > 0) {
-    productSelectors.removeClass().addClass(<string>$(prestashop.themeSelectors.listing.product).first().attr('class'));
+  if (productSelectors.length > 0 && firstProductClasses) {
+    productSelectors.removeClass().addClass(firstProductClasses);
   }
 
   $(prestashop.themeSelectors.listing.list).replaceWith(renderedProducts);
@@ -113,4 +116,3 @@ export default () => {
     window.scrollTo(0, 0);
   });
 };
-

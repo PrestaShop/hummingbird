@@ -22,7 +22,9 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-import { Modal } from 'bootstrap';
+import {Modal} from 'bootstrap';
+
+const {prestashop} = window;
 
 prestashop.blockcart = prestashop.blockcart || {};
 
@@ -39,13 +41,12 @@ prestashop.blockcart.showModal = (html: string) => {
     blockCartModal.remove();
   }
 
-  let mainElement = document.createElement('div');
+  const mainElement = document.createElement('div');
   mainElement.innerHTML = html;
 
   document.querySelector('body')?.append(<HTMLElement>mainElement.querySelector('#blockcart-modal'));
 
   blockCartModal = getBlockCartModal();
-  console.log(blockCartModal, Modal)
 
   const modal = new Modal(blockCartModal);
 

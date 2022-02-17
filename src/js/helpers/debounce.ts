@@ -23,14 +23,18 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-const debounce = (callback: (...args: any[]) => any, wait: number): (...args: any[]) => void => {
-  let timeoutId: number | null = null;
+const debounce = (callback: <T>(...args: T[]) => Promise<T | void>, wait: number): <T>(...args: T[]) => void => {
+  let timeoutId: number | undefined;
+
   return (...args) => {
-    window.clearTimeout(<number>timeoutId);
+    if (typeof timeoutId !== 'undefined') {
+      window.clearTimeout(timeoutId);
+    }
+
     timeoutId = window.setTimeout(() => {
-      callback.apply(null, args);
+      callback(...args);
     }, wait);
   };
-}
+};
 
 export default debounce;

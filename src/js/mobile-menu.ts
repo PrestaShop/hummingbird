@@ -25,56 +25,63 @@
 
 const initMobileMenu = () => {
   const openChildsButtons = document.querySelectorAll('.js-menu-open-child');
-  const backTitle = <Element>document.querySelector('.js-menu-back-title');
-  const backButton = <Element>document.querySelector('.js-back-button');
-  const menuCanvas = <Element>document.querySelector('.js-menu-canvas');
-  const defaultBackTitle = backTitle.innerHTML;
+  const backTitle = document.querySelector('.js-menu-back-title');
+  const backButton = document.querySelector('.js-back-button');
+  const menuCanvas = document.querySelector('.js-menu-canvas');
+  const defaultBackTitle = backTitle?.innerHTML;
 
   const backToParent = () => {
-    const currentMenu = <HTMLElement>document.querySelector('.menu--current');
-    const currentDepth = Number(currentMenu.dataset.depth);
-    const currentParent = <HTMLElement>document.querySelector(`.menu--parent[data-depth="${currentDepth === 2 ? 0 : currentDepth - 1}"]`)
+    if (
+      backTitle
+      && backButton
+      && defaultBackTitle
+    ) {
+      const currentMenu = document.querySelector<HTMLElement>('.menu--current');
+      const currentDepth = Number(currentMenu?.dataset.depth);
+      // eslint-ignore-next-line
+      const currentParent = document.querySelector<HTMLElement>(`.menu--parent[data-depth="${currentDepth === 2 ? 0 : currentDepth - 1}"]`);
 
-    if (currentDepth === 2) {
-      backButton.classList.add('d-none');
-    } 
-
-    if (currentMenu) {
-      currentMenu.classList.remove('js-menu-current');
-      currentMenu.classList.remove('menu--current');
-    }
-
-    if (currentParent) {
-      if(currentDepth > 3) {
-        backTitle.innerHTML = <string>currentParent.dataset.backTitle;
-      }else {
-        backTitle.innerHTML = defaultBackTitle
+      if (currentDepth === 2) {
+        backButton.classList.add('d-none');
       }
 
-      currentParent.classList.add('js-menu-current');
-      currentParent.classList.add('menu--fromLeft');
-      currentParent.classList.add('menu--current');
-      currentParent.classList.remove('menu--parent');
-    }
-  }
+      if (currentMenu) {
+        currentMenu.classList.remove('js-menu-current');
+        currentMenu.classList.remove('menu--current');
+      }
 
-  menuCanvas.addEventListener('hidden.bs.offcanvas', function () {
+      if (currentParent) {
+        if (currentDepth > 3) {
+          backTitle.innerHTML = <string>currentParent.dataset.backTitle;
+        } else {
+          backTitle.innerHTML = defaultBackTitle;
+        }
+
+        currentParent.classList.add('js-menu-current');
+        currentParent.classList.add('menu--fromLeft');
+        currentParent.classList.add('menu--current');
+        currentParent.classList.remove('menu--parent');
+      }
+    }
+  };
+
+  menuCanvas?.addEventListener('hidden.bs.offcanvas', () => {
     const currentMenu = <HTMLElement>document.querySelector('.menu--current');
     let currentDepth = Number(currentMenu.dataset.depth);
 
-    if(currentDepth !== 0) {
-      while(currentDepth >= 2) {
+    if (currentDepth !== 0) {
+      while (currentDepth >= 2) {
         backToParent();
 
-        currentDepth = currentDepth - 1;
+        currentDepth -= 1;
       }
     }
-  })
+  });
 
   openChildsButtons.forEach((button: Element): void => {
     button.addEventListener('click', () => {
       const currentMenu = <HTMLElement>document.querySelector('.js-menu-current');
-      let currentDepth = Number(currentMenu.dataset.depth);
+      const currentDepth = Number(currentMenu.dataset.depth);
       const currentButton = <HTMLElement>button;
 
       if (currentMenu) {
@@ -86,10 +93,11 @@ const initMobileMenu = () => {
       }
 
       const child = <HTMLElement>document.querySelector(`.menu[data-id="${currentButton.dataset.target}"]`);
-      backButton.classList.remove('d-none');
 
-      if(currentDepth >= 1) {
-        backTitle.innerHTML = <string>child.dataset.backTitle;
+      backButton?.classList.remove('d-none');
+
+      if (currentDepth >= 1 && backTitle && child.dataset.backTitle) {
+        backTitle.innerHTML = child.dataset.backTitle;
       }
 
       if (child) {
@@ -102,9 +110,9 @@ const initMobileMenu = () => {
     });
   });
 
-  backButton.addEventListener('click', () => {
+  backButton?.addEventListener('click', () => {
     backToParent();
-  })
+  });
 };
 
 document.addEventListener('DOMContentLoaded', () => {

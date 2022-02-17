@@ -28,7 +28,7 @@ exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
   liveReload: true,
   watchFiles: [
     '../../**/*.tpl',
-    '../../modules/**/*.js',
+    '../../modules/**/*.ts',
     '../../modules/**/*.css',
   ],
   port,

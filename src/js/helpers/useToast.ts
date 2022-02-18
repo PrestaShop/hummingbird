@@ -50,9 +50,10 @@ const useToast = (message: string, options?: Toaster.Option): Toast => {
 }
 
 function getToastElement() {
-  let toastContainer = getToastContainer();
+  const toastContainer = getToastContainer();
+  const toastElement = cloneToastElement(toastContainer);
 
-  return cloneToastElement(toastContainer);
+  return toastElement;
 }
 
 function getToastContainer() {
@@ -62,10 +63,10 @@ function getToastContainer() {
     return toastContainer;
   }
 
-  const body = document.querySelector('body');
-  const fallback = document.createElement('div');
-  fallback.innerHTML = Toaster.Fallback;
-  toastContainer = fallback.querySelector<HTMLElement>(selectorsMap.toast.container);
+  const body = document.querySelector<HTMLBodyElement>('body');
+  const dummyElement = document.createElement('div');
+  dummyElement.innerHTML = Toaster.Fallback;
+  toastContainer = dummyElement.querySelector<HTMLElement>(selectorsMap.toast.container);
 
   if (body && toastContainer) {
     body.appendChild(toastContainer);
@@ -107,16 +108,20 @@ function setToastClassList(toastElement: HTMLElement, classList: string) {
 }
 
 function setToastBtnClose(toastElement: HTMLElement) {
-  const closeBtn = toastElement.querySelector(selectorsMap.toast.close);
-  if (closeBtn) {
-    let btnColor = 'btn-close-white';
+  const btnClose = toastElement.querySelector<HTMLElement>(selectorsMap.toast.close);
+
+  if (btnClose) {
     let toastColor = toastElement.classList.toString().match(/text-\w+/)?.toString();
+    
     if (toastColor) {
       toastColor = toastColor.substring(toastColor.indexOf('-') + 1);
-      btnColor = 'btn-close-' + toastColor;
+
+      if (toastColor === 'white' || toastColor === 'light') {
+        btnClose.classList.add('btn-close-white');
+      }
     }
-    closeBtn.classList.add(btnColor);
-    closeBtn.classList.remove('d-none');
+
+    btnClose.classList.remove('d-none');
   }
 }
 

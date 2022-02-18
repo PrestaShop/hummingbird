@@ -49,11 +49,11 @@
       <div class="contact__info contact__info--email">{mailto address=$contact_infos.email encode="javascript"}</div>
     </div>
   {/if}
-  {* details is undefined atm {if $contact_infos.details}
+  {if !empty($contact_infos.details)}
     <hr/>
     <div class="contact__item">
       <i class="material-icons">&#xE88E;</i>
       <div class="contact__info">{$contact_infos.details|nl2br nofilter}</div>
     </div>
-  {/if} *}
+  {/if}
 </div>

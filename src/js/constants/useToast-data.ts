@@ -24,12 +24,7 @@
  */
 
 namespace Toaster {
-  export enum Templates {
-    container = '<div class="toast-container position-fixed top-0 end-0 p-3" id="js-toast-container"></div>',
-    toast     = '<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-body"></div></div>',
-  }
-
-  export enum Themes {
+  export enum Theme {
     light     = 'bg-light text-dark border-1',
     dark      = 'bg-dark text-light',
     primary   = 'bg-primary text-white',
@@ -40,17 +35,30 @@ namespace Toaster {
     danger    = 'bg-danger text-white',
   }
 
-  export interface Options {
-    type: keyof typeof Themes;
-    autohide?: boolean;
-    delay?: number;
-    classlist?: string;
-  }
-
-  export const defaults: Options = {
+  export const Fallback = `
+    <div class="toast-container toast-container--fallback position-fixed top-0 end-0 p-3" id="js-toast-container">
+      <template class="js-toast-template">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
+          </div>
+        </div>
+      </template>
+    </div>
+  `;
+  
+  export const Default: Option = {
     type: 'info',
     autohide: true,
     delay: 3000,
+  }
+
+  export interface Option {
+    type: keyof typeof Theme;
+    autohide?: boolean;
+    delay?: number;
+    classlist?: string;
   }
 }
 

@@ -30,9 +30,72 @@ import selectorsMap from '@constants/selectors-map';
 const useToast = (message: string, options?: Toaster.Option): Toast => {
   const toastElement = getToastElement();
 
-  setToastMessage(toastElement, message);
+  addToastMessage(toastElement, message);
 
   options = {...Toaster.Default, ...options};
+
+  addToastClassList(toastElement, options);
+
+  if (options.autohide === false) {
+    showToastBtnClose(toastElement);
+  }
+ 
+  return new Toast(toastElement, { autohide: options.autohide, delay: options.delay });
+}
+
+const getToastElement = (): HTMLElement => {
+  const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
+
+  if (toastContainer) {
+    const toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+    const toastClone = toastTemplate?.content.cloneNode(true) as DocumentFragment;
+    const toastElement = toastClone?.querySelector<HTMLElement>(selectorsMap.toast.toast);
+    const toastBody = toastElement?.querySelector<HTMLElement>(selectorsMap.toast.body);
+
+    if (toastElement && toastBody) {
+      toastContainer.appendChild(toastElement);
+  
+      return toastElement;
+    } else {
+      toastContainer.remove();
+    }
+  }
+
+  return getFallbackToastElement();
+}
+
+const getFallbackToastElement = (): HTMLElement => {
+  const body = document.querySelector<HTMLBodyElement>('body');
+  const dummyElement = document.createElement('div');
+  dummyElement.innerHTML = Toaster.Fallback;
+  const toastContainer = dummyElement.querySelector<HTMLElement>(selectorsMap.toast.container);
+  const toastTemplate = toastContainer?.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+
+  if (body && toastContainer && toastTemplate) {
+    const toastClone = toastTemplate.content.cloneNode(true) as DocumentFragment;
+    const toastElement = toastClone.querySelector<HTMLElement>(selectorsMap.toast.toast);
+
+    if (toastElement) {
+      toastContainer.appendChild(toastElement);
+      body.appendChild(toastContainer);
+  
+      return toastElement;
+    }
+  }
+
+  throw new DOMException('The object can not be cloned.');
+}
+
+
+const addToastMessage = (toastElement: HTMLElement, message: string) => {
+  const toastBody = toastElement.querySelector<HTMLElement>(selectorsMap.toast.body);
+
+  if (toastBody) {
+    toastBody.innerHTML = message;
+  }
+}
+
+const addToastClassList = (toastElement: HTMLElement, options: Toaster.Option) => {
   let bsClassList: string = Toaster.Theme[options.type];
   const customClassList = options.classlist;
   
@@ -40,79 +103,17 @@ const useToast = (message: string, options?: Toaster.Option): Toast => {
     bsClassList = bsClassList.concat(' ', customClassList.trim());
   }
 
-  setToastClassList(toastElement, bsClassList);
-
-  if (options.autohide === false) {
-    setToastBtnClose(toastElement);
-  }
- 
-  return new Toast(toastElement, { autohide: options.autohide, delay: options.delay });
-}
-
-function getToastElement() {
-  const toastContainer = getToastContainer();
-  const toastElement = cloneToastElement(toastContainer);
-
-  return toastElement;
-}
-
-function getToastContainer() {
-  let toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
-
-  if (toastContainer) {
-    return toastContainer;
-  }
-
-  const body = document.querySelector<HTMLBodyElement>('body');
-  const dummyElement = document.createElement('div');
-  dummyElement.innerHTML = Toaster.Fallback;
-  toastContainer = dummyElement.querySelector<HTMLElement>(selectorsMap.toast.container);
-
-  if (body && toastContainer) {
-    body.appendChild(toastContainer);
-
-    return toastContainer;
-  }
-
-  throw new DOMException('The object cannot be found here.');
-}
-
-function cloneToastElement(toastContainer: HTMLElement) {
-  const toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
-  const toastClone = toastTemplate?.content.cloneNode(true) as DocumentFragment;
-  const toastElement = toastClone.querySelector<HTMLElement>(selectorsMap.toast.toast);
-
-  if (toastElement) {
-    toastContainer.appendChild(toastElement);
-
-    return toastElement;
-  }
-
-  throw new DOMException('The object cannot be found here.');
-}
-
-function setToastMessage(toastElement: HTMLElement, message: string) {
-  const toastBody = toastElement.querySelector<HTMLElement>(selectorsMap.toast.body);
-
-  if (toastBody === null) {
-    throw new DOMException('The object cannot be found here.');
-  }
-
-  toastBody.innerHTML = message;
-}
-
-function setToastClassList(toastElement: HTMLElement, classList: string) {
-  classList.trim().split(' ').forEach((value) => {
+  bsClassList.trim().split(' ').forEach((value) => {
     toastElement.classList.add(value);
   });
 }
 
-function setToastBtnClose(toastElement: HTMLElement) {
+const showToastBtnClose = (toastElement: HTMLElement) => {
   const btnClose = toastElement.querySelector<HTMLElement>(selectorsMap.toast.close);
 
   if (btnClose) {
     let toastColor = toastElement.classList.toString().match(/text-\w+/)?.toString();
-    
+
     if (toastColor) {
       toastColor = toastColor.substring(toastColor.indexOf('-') + 1);
 

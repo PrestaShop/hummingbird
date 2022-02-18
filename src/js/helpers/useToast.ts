@@ -103,8 +103,10 @@ const addToastClassList = (toastElement: HTMLElement, options: Toaster.Option) =
     bsClassList = bsClassList.concat(' ', customClassList.trim());
   }
 
-  bsClassList.trim().split(' ').forEach((value) => {
-    toastElement.classList.add(value);
+  bsClassList.split(' ').forEach((value) => {
+    if (value) {
+      toastElement.classList.add(value);
+    }
   });
 }
 

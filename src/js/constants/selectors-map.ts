@@ -56,6 +56,7 @@ const selectorsMap = {
     template: '.js-toast-template',
     toast: '.toast',
     body: '.toast-body',
+    close: '.btn-close',
   },
   product: {
     carousel: '.js-product-carousel',

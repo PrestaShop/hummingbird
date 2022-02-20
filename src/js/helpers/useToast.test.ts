@@ -33,7 +33,26 @@ describe('useToast', () => {
     }
   }
 
-  describe('with valid template', () => {
+  const getToastElement = (hasType = false) => {
+    const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
+    const toastElement = toastContainer?.querySelector<HTMLElement>(`${selectorsMap.toast.toast}${expectedOptions.getType(hasType)}`);
+
+    return toastElement ?? null;
+  }
+
+  const getToastMessage = (toastElement: HTMLElement | null) => {
+    const toastBody = toastElement?.querySelector<HTMLElement>(`${selectorsMap.toast.toast}-body`);
+    
+    return toastBody?.innerHTML ?? '';
+  }
+
+  const isFallbackConnected = (document: Document) => {
+    const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
+
+    return toastContainer?.classList.contains(`${containerComponent}--fallback`);
+  }  
+
+  describe('with container and toast template existing in the DOM', () => {
     beforeEach(() => {
       const body = document.querySelector<HTMLBodyElement>('body');
       
@@ -44,14 +63,14 @@ describe('useToast', () => {
 
     it('should display the message', () => {
       useToast(testMessage).show();
-      const toastElement = getToastElement(document);
+      const toastElement = getToastElement();
 
       expect(getToastMessage(toastElement) === testMessage).toBe(true);
     });
 
     it('should add custom class list to the element if exists', () => {
       useToast(testMessage, testOptions).show();
-      const toastElement = getToastElement(document, true);
+      const toastElement = getToastElement(true);
       const expectedClassList = expectedOptions.getClassList();
 
       if (expectedClassList) {
@@ -63,7 +82,7 @@ describe('useToast', () => {
 
     it('should display the close button if autohide is false', () => {
       useToast(testMessage, testOptions).show();
-      const toastElement = getToastElement(document, true);
+      const toastElement = getToastElement(true);
       const expectedBtnClose = expectedOptions.getBtnClose();
 
       if (expectedBtnClose) {
@@ -74,7 +93,7 @@ describe('useToast', () => {
     });
   });
 
-  describe('with invalid template', () => {
+  describe('without container and toast template existing in the DOM', () => {
     beforeEach(() => {      
       const body = document.querySelector<HTMLBodyElement>('body');
 
@@ -100,23 +119,4 @@ describe('useToast', () => {
       expect(isFallbackConnected(document)).toBe(true);
     });
   });
-
-  const getToastElement = (document: Document, hasType = false) => {
-    const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
-    const toastElement = toastContainer?.querySelector<HTMLElement>(`${selectorsMap.toast.toast}${expectedOptions.getType(hasType)}`);
-
-    return toastElement ?? null;
-  }
-
-  const getToastMessage = (toastElement: HTMLElement | null) => {
-    const toastBody = toastElement?.querySelector<HTMLElement>(`${selectorsMap.toast.toast}-body`);
-    
-    return toastBody?.innerHTML ?? '';
-  }
-
-  const isFallbackConnected = (document: Document) => {
-    const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
-
-    return toastContainer?.classList.contains(`${containerComponent}--fallback`);
-  }  
 });

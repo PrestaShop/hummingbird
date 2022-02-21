@@ -23,6 +23,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
+import { Toast } from "bootstrap";
+
 namespace Toaster {
   export enum Theme {
     light     = 'bg-light text-dark border-1',
@@ -47,7 +49,7 @@ namespace Toaster {
       </template>
     </div>
   `;
-  
+
   export const Default: Option = {
     type: 'info',
     autohide: true,
@@ -59,6 +61,12 @@ namespace Toaster {
     autohide?: boolean;
     delay?: number;
     classlist?: string;
+  }
+
+  export interface Result {
+    instance: Toast;
+    element: HTMLElement;
+    content: HTMLElement;
   }
 }
 

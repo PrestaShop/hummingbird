@@ -1,122 +1,113 @@
+/**
+ * Copyright since 2007 PrestaShop SA and Contributors
+ * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/AFL-3.0
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+ * versions in the future. If you wish to customize PrestaShop for your
+ * needs please refer to https://devdocs.prestashop.com/ for more information.
+ *
+ * @author    PrestaShop SA and Contributors <contact@prestashop.com>
+ * @copyright Since 2007 PrestaShop SA and Contributors
+ * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ */
+
 import selectorsMap from '@constants/selectors-map';
 import useToast from '@helpers/useToast';
-import { 
-  containerComponent, btnCloseComponent, testMessage, testOptions, defaultType, validTemplate, invalidTemplate 
-} from '@constants/mocks/useToast-data';
+import Toastify from '@constants/mocks/useToast-data';
 
 describe('useToast', () => {
-  const expectedOptions = {
-    getType(hasType: boolean) {
-
-      return hasType ? `.bg-${testOptions.type}` : `.bg-${defaultType}`;
-    },
-    getClassList() {
-      const customClassList = testOptions.classlist;
-      let expectedClassList = '';
-
-      if (customClassList) {
-        customClassList.trim().split(' ').forEach((value) => {
-          
-          if (value) {
-            expectedClassList = expectedClassList.concat(' ', value);
-          }
-        });
-
-        return expectedClassList.trim();
-      }
-    },
-    getBtnClose() {
-      if (testOptions.autohide !== undefined && testOptions.autohide === false) {
-
-        return `.${btnCloseComponent}`;
-      }
-    }
-  }
-
-  const getToastElement = (hasType = false) => {
-    const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
-    const toastElement = toastContainer?.querySelector<HTMLElement>(`${selectorsMap.toast.toast}${expectedOptions.getType(hasType)}`);
-
-    return toastElement ?? null;
-  }
-
-  const getToastMessage = (toastElement: HTMLElement | null) => {
-    const toastBody = toastElement?.querySelector<HTMLElement>(`${selectorsMap.toast.toast}-body`);
-    
-    return toastBody?.innerHTML ?? '';
-  }
-
-  const isFallbackConnected = (document: Document) => {
-    const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
-
-    return toastContainer?.classList.contains(`${containerComponent}--fallback`);
-  }  
-
-  describe('with container and toast template existing in the DOM', () => {
-    beforeEach(() => {
-      const body = document.querySelector<HTMLBodyElement>('body');
-      
-      if (body) {
-        body.innerHTML = validTemplate;
-      }
+  describe('with container and template existing in the DOM', () => {
+    beforeAll(() => {
+      resetHTMLBodyContent(Toastify.WithContainerWithTemplate);
     });
 
-    it('should display the message', () => {
-      useToast(testMessage).show();
-      const toastElement = getToastElement();
+    it('should display the HTML markup message when used', () => {
+      const toast = useToast(Toastify.TestMarkupMessage);
+      toast.instance.show()
 
-      expect(getToastMessage(toastElement) === testMessage).toBe(true);
+      const toastMessage = toast.content.innerHTML;
+      const expectedToastMessage = Toastify.TestMarkupMessage;
+      toast.element.remove();
+
+      expect(toastMessage === expectedToastMessage).toBeTruthy();
     });
 
-    it('should add custom class list to the element if exists', () => {
-      useToast(testMessage, testOptions).show();
-      const toastElement = getToastElement(true);
-      const expectedClassList = expectedOptions.getClassList();
+    it('should style the toast as same as the type when is set', () => {
+      const toast = useToast('', Toastify.TestTypeOption);
+      toast.instance.show();
 
-      if (expectedClassList) {
-        const pattern = new RegExp(expectedClassList);
+      const toastClassList = toast.element.classList.toString();
+      const expectedTypeClassList = Toastify.ExpectedTypeClassList;
+      toast.element.remove();
 
-        expect(toastElement?.classList.toString().match(pattern)?.length).toBe(1);
-      }   
+      expect(toastClassList.match(new RegExp(expectedTypeClassList))?.length).toBeDefined();
     });
 
-    it('should display the close button if autohide is false', () => {
-      useToast(testMessage, testOptions).show();
-      const toastElement = getToastElement(true);
-      const expectedBtnClose = expectedOptions.getBtnClose();
+    it('should add the custom class list to the toast when is set', () => {
+      const toast = useToast('', Toastify.TestClassListOption);
+      toast.instance.show()
 
-      if (expectedBtnClose) {
-        const btnCloseElement = toastElement?.querySelector<HTMLButtonElement>(expectedBtnClose);
+      const toastClassList = toast.element.classList.toString();
+      const customClassList = Toastify.TestClassListOption.classlist?.toString() ?? '';
+      toast.element.remove();
 
-        expect(btnCloseElement?.classList.contains('d-none')).toBe(false);
-      }
+      expect(toastClassList.match(new RegExp(customClassList))?.length).toBeDefined();
+    });
+
+    it('should display the close button when autohide is false', () => {
+      const toast = useToast('', Toastify.TestAutoHideOption);
+      toast.instance.show();
+
+      const closeButtonElement = toast.element.querySelector<HTMLButtonElement>(selectorsMap.toast.close);
+      const closeBtnClassList = closeButtonElement?.classList.toString();
+      toast.element.remove();
+
+      expect(closeBtnClassList?.match('d-none')?.length).toBeUndefined();
     });
   });
 
-  describe('without container and toast template existing in the DOM', () => {
-    beforeEach(() => {      
-      const body = document.querySelector<HTMLBodyElement>('body');
+  describe('without container or existing empty container in the DOM', () => {
+    it('should append fallback container if container is not exists in the DOM', () => {
+      resetHTMLBodyContent(Toastify.WithoutContainer);
 
-      if (body) {
-        body.innerHTML = '';
-      }
+      const toast = useToast('');
+      toast.instance.show();
+      const toastContainer = toast.element.parentElement;
+
+      expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeTruthy();
     });
 
-    it('should add fallback container if template is invalid', () => {
-      const body = document.querySelector<HTMLBodyElement>('body');
+    it('should insert fallback template in existing empty container in the DOM', () => {
+      resetHTMLBodyContent(Toastify.WithContainerWithoutTemplate);
 
-      if (body) {
-        body.innerHTML = invalidTemplate;
-        useToast('').show();
-        
-        expect(isFallbackConnected(document)).toBe(true);
-      }
-    });
+      const toast = useToast('');
+      toast.instance.show();
+      const toastContainer = toast.element.parentElement;
 
-    it('should add fallback container if template is not exists', () => {
-      useToast('').show();
-
-      expect(isFallbackConnected(document)).toBe(true);
+      expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeFalsy();
     });
   });
 });
+
+const resetHTMLBodyContent = (bodyContent: string) => {
+  const body = document.querySelector<HTMLBodyElement>('body');
+
+  if (body) {
+    body.innerHTML = bodyContent;
+  } else {
+
+    throw new DOMException('The object can not be found here.');
+  }
+}

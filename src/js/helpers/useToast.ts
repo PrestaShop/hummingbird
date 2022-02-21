@@ -24,60 +24,94 @@
  */
 
 import { Toast } from 'bootstrap';
-import Toaster from '@constants/useToast-data';
 import selectorsMap from '@constants/selectors-map';
+import Toaster from '@constants/useToast-data';
 
-const useToast = (message: string, options?: Toaster.Option): Toast => {
+const useToast = (message: string, options?: Toaster.Option): Toaster.Result => {
   const toastElement = getToastElement();
 
-  addToastMessage(toastElement, message);
+  insertToastMessage(toastElement, message);
 
   options = {...Toaster.Default, ...options};
 
   addToastClassList(toastElement, options);
 
   if (options.autohide === false) {
-    showToastBtnClose(toastElement);
+    setCloseButtonVisible(toastElement);
   }
  
-  return new Toast(toastElement, { autohide: options.autohide, delay: options.delay });
+  const toastElementBody = toastElement.querySelector<HTMLElement>(selectorsMap.toast.body);
+
+  if (toastElementBody) {
+    const toastObject: Toaster.Result = {
+      instance: new Toast(toastElement, { autohide: options.autohide, delay: options.delay }),
+      element: toastElement,
+      content: toastElementBody,
+    }
+
+    return toastObject;
+  }
+
+  throw new DOMException('The object can not be found here.');
 }
 
 const getToastElement = (): HTMLElement => {
   const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
 
   if (toastContainer) {
-    const toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
-    const toastClone = toastTemplate?.content.cloneNode(true) as DocumentFragment;
-    const toastElement = toastClone?.querySelector<HTMLElement>(selectorsMap.toast.toast);
-    const toastBody = toastElement?.querySelector<HTMLElement>(selectorsMap.toast.body);
-
-    if (toastElement && toastBody) {
-      toastContainer.appendChild(toastElement);
-  
-      return toastElement;
-    } else {
-      toastContainer.remove();
-    }
-  }
-
-  return getFallbackToastElement();
-}
-
-const getFallbackToastElement = (): HTMLElement => {
-  const body = document.querySelector<HTMLBodyElement>('body');
-  const dummyElement = document.createElement('div');
-  dummyElement.innerHTML = Toaster.Fallback;
-  const toastContainer = dummyElement.querySelector<HTMLElement>(selectorsMap.toast.container);
-  const toastTemplate = toastContainer?.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
-
-  if (body && toastContainer && toastTemplate) {
-    const toastClone = toastTemplate.content.cloneNode(true) as DocumentFragment;
-    const toastElement = toastClone.querySelector<HTMLElement>(selectorsMap.toast.toast);
+    const toastElement = cloneToastTemplate(toastContainer);
 
     if (toastElement) {
-      toastContainer.appendChild(toastElement);
-      body.appendChild(toastContainer);
+
+      return toastElement;
+    } else {
+      return useFallbackToastTemplate(toastContainer);
+    }
+  } else {
+    return useFallbackToastContainer();
+  }
+}
+
+const cloneToastTemplate = (toastContainer: HTMLElement): HTMLElement | undefined => {
+  const toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+  const toastClone = toastTemplate?.content.cloneNode(true) as DocumentFragment;
+  const toastElement = toastClone?.querySelector<HTMLElement>(selectorsMap.toast.toast);
+  const toastBody = toastElement?.querySelector<HTMLElement>(selectorsMap.toast.body);
+
+  if (toastElement && toastBody) {
+    toastContainer.appendChild(toastElement);
+
+    return toastElement;
+  }
+}
+
+const useFallbackToastTemplate = (toastContainer: HTMLElement): HTMLElement => {
+  toastContainer.innerHTML = '';
+  const fallbackContainer = getFallbackContainer();
+
+  if (fallbackContainer) {
+    toastContainer.innerHTML = fallbackContainer.innerHTML;
+    const toastElement = cloneToastTemplate(toastContainer);
+
+    if (toastElement) {
+
+      return toastElement;
+    } 
+  }
+
+  throw new DOMException('The object can not be cloned.');
+}
+
+const useFallbackToastContainer = (): HTMLElement => {
+  const body = document.querySelector<HTMLBodyElement>('body');
+  const fallbackContainer = getFallbackContainer();
+
+  if (body && fallbackContainer) {
+    const toastElement = cloneToastTemplate(fallbackContainer);
+
+    if (toastElement) {
+      fallbackContainer.appendChild(toastElement);
+      body.appendChild(fallbackContainer);
   
       return toastElement;
     }
@@ -86,8 +120,15 @@ const getFallbackToastElement = (): HTMLElement => {
   throw new DOMException('The object can not be cloned.');
 }
 
+const getFallbackContainer = () => {
+  const dummyElement = document.createElement('div');
+  dummyElement.innerHTML = Toaster.Fallback;
+  const fallbackContainer =  dummyElement.querySelector<HTMLElement>(selectorsMap.toast.container);
 
-const addToastMessage = (toastElement: HTMLElement, message: string) => {
+  return fallbackContainer;
+}
+
+const insertToastMessage = (toastElement: HTMLElement, message: string) => {
   const toastBody = toastElement.querySelector<HTMLElement>(selectorsMap.toast.body);
 
   if (toastBody) {
@@ -110,21 +151,21 @@ const addToastClassList = (toastElement: HTMLElement, options: Toaster.Option) =
   });
 }
 
-const showToastBtnClose = (toastElement: HTMLElement) => {
-  const btnClose = toastElement.querySelector<HTMLElement>(selectorsMap.toast.close);
+const setCloseButtonVisible = (toastElement: HTMLElement) => {
+  const closeButton = toastElement.querySelector<HTMLElement>(selectorsMap.toast.close);
 
-  if (btnClose) {
+  if (closeButton) {
     let toastColor = toastElement.classList.toString().match(/text-\w+/)?.toString();
 
     if (toastColor) {
       toastColor = toastColor.substring(toastColor.indexOf('-') + 1);
 
       if (toastColor === 'white' || toastColor === 'light') {
-        btnClose.classList.add('btn-close-white');
+        closeButton.classList.add('btn-close-white');
       }
     }
 
-    btnClose.classList.remove('d-none');
+    closeButton.classList.remove('d-none');
   }
 }
 

@@ -25,37 +25,31 @@
 
 import Toaster from "@constants/useToast-data";
 
-const containerComponent = 'toast-container';
-const btnCloseComponent = 'btn-close';
-const testMessage = 'My <b>test</b> message.';
-const testOptions: Toaster.Option = { type: 'danger', autohide: false, classlist: 'text-blue border-1' };
-const defaultType = Toaster.Default.type;
-const validTemplate = `
-  <div class="toast-container position-fixed top-0 end-0 p-3" id="js-toast-container">
-    <template class="js-toast-template">
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-          <div class="toast-body"></div>
-          <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
-        </div>
-      </div>
-    </template>
-  </div>
-  `;
-const invalidTemplate = `
-  <div class="toast-container position-fixed top-0 end-0 p-3" id="js-toast-container">
-    <template class="js-toast-template">
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
-    </template>
-  </div>
-  `;
+namespace Toastify {
+  export const TestMarkupMessage = 'My <b>test</b> message.';
+  export const TestTypeOption: Toaster.Option = { type: 'success' };
+  export const TestClassListOption: Toaster.Option = { type: 'warning', classlist: 'text-warning bg-dark border-1' };
+  export const TestAutoHideOption: Toaster.Option = { type: 'danger', autohide: false };
 
-export {
-  containerComponent,
-  btnCloseComponent,
-  testMessage,
-  testOptions,
-  defaultType,
-  validTemplate,
-  invalidTemplate,
-};
+  export const ExpectedTypeClassList = Toaster.Theme[Toastify.TestTypeOption.type];
+
+  export const DefaultToastType = Toaster.Default.type;
+  export const FallbackContainerClass = 'toast-container--fallback';
+
+  export const WithContainerWithTemplate = `
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="js-toast-container">
+      <template class="js-toast-template">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
+          </div>
+        </div>
+      </template>
+    </div>
+    `;
+  export const WithContainerWithoutTemplate = '<div class="toast-container position-fixed bottom-0 start-0 p-2" id="js-toast-container"></div>';
+  export const WithoutContainer = '';
+}
+
+export default Toastify;

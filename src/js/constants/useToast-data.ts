@@ -23,19 +23,19 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import { Toast } from "bootstrap";
+import { Toast } from 'bootstrap';
 
 namespace Toaster {
-  export enum Theme {
-    light     = 'bg-light text-dark border-1',
-    dark      = 'bg-dark text-light',
-    primary   = 'bg-primary text-white',
-    secondary = 'bg-secondary text-black',
-    info      = 'bg-info text-black',
-    success   = 'bg-success text-white',
-    warning   = 'bg-warning text-black',
-    danger    = 'bg-danger text-white',
-  }
+  export const Theme = {
+    light     : 'bg-light text-dark border-1',
+    dark      : 'bg-dark text-light',
+    primary   : 'bg-primary text-white',
+    secondary : 'bg-secondary text-black',
+    info      : 'bg-info text-black',
+    success   : 'bg-success text-white',
+    warning   : 'bg-warning text-black',
+    danger    : 'bg-danger text-white',
+  } as const;
 
   export const Fallback = `
     <div class="toast-container toast-container--fallback position-fixed top-0 end-0 p-3" id="js-toast-container">

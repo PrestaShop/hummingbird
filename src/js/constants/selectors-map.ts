@@ -51,6 +51,13 @@ const selectorsMap = {
     default: '.js-quantity-button input',
     modal: '.modal-dialog .js-quantity-button input',
   },
+  toast: {
+    container: '#js-toast-container',
+    template: '.js-toast-template',
+    toast: '.toast',
+    body: '.toast-body',
+    close: '.btn-close',
+  },
   product: {
     carousel: '.js-product-carousel',
     miniature: '.js-product-miniature',

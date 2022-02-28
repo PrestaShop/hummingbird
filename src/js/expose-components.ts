@@ -22,31 +22,31 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-// @ts-ignore
-//import $ from "expose-loader?exposes=$,jQuery!jquery";
 
-import initEmitter from './prestashop';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import initResponsiveToggler from './responsive-toggler';
-import initQuantityInput from './qty-input';
-import initQuickview from './quickview';
-import './modules/blockcart';
-import initProductBehavior from './product';
-import './mobile-menu';
-import './modules/ps_searchbar';
-import './modules/facetedsearch';
-import SelectorsMap from './constants/selectors-map';
-import exposeComponents from './expose-components';
-/* eslint-enable */
+import Toaster from '@constants/useToast-data';
+import useToast from '@js/components/useToast';
 
-window.prestashop.themeSelectors = SelectorsMap;
+// Used to expose some components to the prestashop object
+// Usefull for modules or child themes without bundlers like Webpack
+const exposeComponents = () => {
+  const {prestashop} = window;
 
-$(document).ready(() => {
-  initEmitter();
-  exposeComponents();
-  initProductBehavior();
-  initQuantityInput(SelectorsMap.qtyInput.default);
-  initQuickview();
-  initResponsiveToggler();
-});
+  if (prestashop.components) {
+    prestashop.components = {
+      ...prestashop.components,
+      toast: {
+        useToast,
+        fallback: Toaster.Fallback,
+      },
+    };
+  } else {
+    prestashop.components = {
+      toast: {
+        useToast,
+        fallback: Toaster.Fallback,
+      },
+    };
+  }
+};
+
+export default exposeComponents;

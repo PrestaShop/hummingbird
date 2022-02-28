@@ -24,7 +24,7 @@
  */
 
 import selectorsMap from '@constants/selectors-map';
-import useToast from '@helpers/useToast';
+import useToast from '@js/components/useToast';
 import Toastify from '@constants/mocks/useToast-data';
 
 describe('useToast', () => {

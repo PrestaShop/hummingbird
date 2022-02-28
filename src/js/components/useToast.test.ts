@@ -26,11 +26,16 @@
 import selectorsMap from '@constants/selectors-map';
 import useToast from '@js/components/useToast';
 import Toastify from '@constants/mocks/useToast-data';
+import exposeComponents from '@js/expose-components';
 
 describe('useToast', () => {
   describe('with container and template existing in the DOM', () => {
     beforeAll(() => {
       resetHTMLBodyContent(Toastify.WithContainerWithTemplate);
+
+      window.prestashop = {};
+
+      exposeComponents();
     });
 
     it('should display the HTML markup message when used', () => {

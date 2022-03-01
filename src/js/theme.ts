@@ -26,7 +26,13 @@
 // @ts-ignore
 //import $ from "expose-loader?exposes=$,jQuery!jquery";
 
+import SelectorsMap from './constants/selectors-map';
 import initEmitter from './prestashop';
+
+initEmitter();
+
+window.prestashop.themeSelectors = SelectorsMap;
+
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
 import initQuantityInput from './qty-input';
@@ -36,14 +42,10 @@ import initProductBehavior from './product';
 import './mobile-menu';
 import './modules/ps_searchbar';
 import './modules/facetedsearch';
-import SelectorsMap from './constants/selectors-map';
 import exposeComponents from './expose-components';
 /* eslint-enable */
 
-window.prestashop.themeSelectors = SelectorsMap;
-
 $(document).ready(() => {
-  initEmitter();
   exposeComponents();
   initProductBehavior();
   initQuantityInput(SelectorsMap.qtyInput.default);

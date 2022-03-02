@@ -1,0 +1,16 @@
+name: TypeScript type check
+on: [ push, pull_request ]
+jobs:
+  typescript:
+    name: TypeScript type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Build and check types
+        run: npm install && npm run build

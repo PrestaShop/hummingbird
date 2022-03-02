@@ -1,0 +1,29 @@
+name: Lint
+on: [ push, pull_request ]
+jobs:
+  stylelint:
+    name: SCSS Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Lint scss
+        run: npm install && npm run scss-lint
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Lint js
+        run: npm install && npm run lint

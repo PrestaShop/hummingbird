@@ -13,4 +13,4 @@ jobs:
           node-version: '14.x'
 
       - name: Build and check types
-        run: npm install && npm run build
+        run: touch .env && npm install && npm run build

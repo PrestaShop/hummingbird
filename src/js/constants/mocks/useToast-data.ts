@@ -23,33 +23,46 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import Toaster from "@constants/useToast-data";
+import * as Toaster from '@constants/useToast-data';
 
-namespace Toastify {
-  export const TestMarkupMessage = 'My <b>test</b> message.';
-  export const TestTypeOption: Toaster.Option = { type: 'success' };
-  export const TestClassListOption: Toaster.Option = { type: 'warning', classlist: 'text-warning bg-dark border-1' };
-  export const TestAutoHideOption: Toaster.Option = { type: 'danger', autohide: false };
+export const TestMarkupMessage = 'My <b>test</b> message.';
+export const TestTypeOption: Toaster.Options = {type: 'success'};
+export const TestClassListOption: Toaster.Options = {type: 'warning', classlist: 'text-warning bg-dark border-1'};
+export const TestAutoHideOption: Toaster.Options = {type: 'danger', autohide: false};
 
-  export const ExpectedTypeClassList = Toaster.Theme[Toastify.TestTypeOption.type];
+export const ExpectedTypeClassList = Toaster.Theme[TestTypeOption.type];
 
-  export const DefaultToastType = Toaster.Default.type;
-  export const FallbackContainerClass = 'toast-container--fallback';
+export const DefaultToastType = Toaster.Default.type;
+export const FallbackContainerClass = 'toast-container--fallback';
+export const OverrideContainerClass = 'toast-container--override';
+export const OverridenToastClass = '.toast--overriden';
 
-  export const WithContainerWithTemplate = `
-    <div class="toast-container position-fixed top-0 end-0 p-3" id="js-toast-container">
-      <template class="js-toast-template">
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="d-flex">
-            <div class="toast-body"></div>
-            <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
-          </div>
+export const WithContainerWithTemplate = `
+  <div class="toast-container position-fixed top-0 end-0 p-3" id="js-toast-container">
+    <template class="js-toast-template">
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body"></div>
+          <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
         </div>
-      </template>
-    </div>
-    `;
-  export const WithContainerWithoutTemplate = '<div class="toast-container position-fixed bottom-0 start-0 p-2" id="js-toast-container"></div>';
-  export const WithoutContainer = '';
-}
+      </div>
+    </template>
+  </div>
+  `;
 
-export default Toastify;
+export const Override = `
+  <div class="toast-container toast-container--override position-fixed bottom-0 end-0 p-3" id="js-toast-container">
+    <template class="js-toast-template">
+      <div class="toast toast--overriden" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          custom template
+          <div class="toast-body"></div>
+          <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
+        </div>
+      </div>
+    </template>
+  </div>
+`;
+// eslint-disable-next-line
+export const WithContainerWithoutTemplate = '<div class="toast-container position-fixed bottom-0 start-0 p-2" id="js-toast-container"></div>';
+export const WithoutContainer = '';

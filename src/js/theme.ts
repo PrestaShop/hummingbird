@@ -37,18 +37,28 @@ import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
 import initQuantityInput from './qty-input';
 import initQuickview from './quickview';
+import useToast from './components/useToast';
 import './modules/blockcart';
 import initProductBehavior from './product';
 import './mobile-menu';
 import './modules/ps_searchbar';
 import './modules/facetedsearch';
-import exposeComponents from './expose-components';
 /* eslint-enable */
 
 $(document).ready(() => {
-  exposeComponents();
   initProductBehavior();
   initQuantityInput(SelectorsMap.qtyInput.default);
   initQuickview();
   initResponsiveToggler();
 });
+
+export const components = {
+  useToast,
+};
+
+export default {
+  initResponsiveToggler,
+  initQuantityInput,
+  initQuickview,
+  initProductBehavior,
+};

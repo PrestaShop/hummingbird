@@ -25,10 +25,10 @@
 
 import {Toast} from 'bootstrap';
 import selectorsMap from '@constants/selectors-map';
-import Toaster from '@constants/useToast-data';
+import * as Toaster from '@constants/useToast-data';
 
-const useToast = (message: string, options?: Toaster.Option): Toaster.Result => {
-  const toastElement = getToastElement();
+const useToast = (message: string, options?: Toaster.Options): Toaster.Result => {
+  const toastElement = getToastElement(options?.template);
 
   insertToastMessage(toastElement, message);
 
@@ -58,13 +58,21 @@ const useToast = (message: string, options?: Toaster.Option): Toaster.Result => 
   throw new DOMException('The object can not be found here.');
 };
 
-const getToastElement = (): HTMLElement => {
+const getToastElement = (template?: string): HTMLElement => {
   const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
 
   // If the toast container exist on the page, use it
   // Overwise, use the fallback
   if (toastContainer) {
-    const toastElement = cloneToastTemplate(toastContainer);
+    const overrideContainer = document.createElement('div');
+    let toastElement;
+
+    if (template) {
+      overrideContainer.innerHTML = template;
+      toastElement = cloneToastTemplate(toastContainer, overrideContainer);
+    } else {
+      toastElement = cloneToastTemplate(toastContainer);
+    }
 
     // If the template exist on the page, use it
     // Overwise, use the fallback
@@ -75,18 +83,25 @@ const getToastElement = (): HTMLElement => {
     return useFallbackToastTemplate(toastContainer);
   }
 
-  return useFallbackToastContainer();
+  return useFallbackToastContainer(template);
 };
 
 // We need to use a template, in order to generate the toast markup on the fly
-const cloneToastTemplate = (toastContainer: HTMLElement): HTMLElement | false => {
-  const toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+const cloneToastTemplate = (containerToAppend: HTMLElement, toastContainer?: HTMLElement): HTMLElement | false => {
+  let toastTemplate;
+
+  if (toastContainer) {
+    toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+  } else {
+    toastTemplate = containerToAppend.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+  }
+
   const toastClone = toastTemplate?.content.cloneNode(true) as DocumentFragment;
   const toastElement = toastClone?.querySelector<HTMLElement>(selectorsMap.toast.toast);
   const toastBody = toastElement?.querySelector<HTMLElement>(selectorsMap.toast.body);
 
   if (toastElement && toastBody) {
-    toastContainer.appendChild(toastElement);
+    containerToAppend.appendChild(toastElement);
 
     return toastElement;
   }
@@ -112,9 +127,9 @@ const useFallbackToastTemplate = (toastContainer: HTMLElement): HTMLElement => {
   throw new DOMException('The object can not be cloned.');
 };
 
-const useFallbackToastContainer = (): HTMLElement => {
+const useFallbackToastContainer = (template?: string): HTMLElement => {
   const body = document.querySelector<HTMLBodyElement>('body');
-  const fallbackContainer = getFallbackContainer();
+  const fallbackContainer = getFallbackContainer(template);
 
   if (body && fallbackContainer) {
     const toastElement = cloneToastTemplate(fallbackContainer);
@@ -130,10 +145,15 @@ const useFallbackToastContainer = (): HTMLElement => {
   throw new DOMException('The object can not be cloned.');
 };
 
-const getFallbackContainer = () => {
-  const {prestashop} = window;
+const getFallbackContainer = (template?: string) => {
   const dummyElement = document.createElement('div');
-  dummyElement.innerHTML = prestashop.components.toast.fallback;
+
+  if (template) {
+    dummyElement.innerHTML = template;
+  } else {
+    dummyElement.innerHTML = Toaster.Fallback;
+  }
+
   const fallbackContainer = dummyElement.querySelector<HTMLElement>(selectorsMap.toast.container);
 
   return fallbackContainer;
@@ -148,7 +168,7 @@ const insertToastMessage = (toastElement: HTMLElement, message: string) => {
 };
 
 // Depending on the toast type, we need different classes (success, warning, error...)
-const addToastClassList = (toastElement: HTMLElement, options: Toaster.Option) => {
+const addToastClassList = (toastElement: HTMLElement, options: Toaster.Options) => {
   let bsClassList: string = Toaster.Theme[options.type];
   const customClassList = options.classlist;
 

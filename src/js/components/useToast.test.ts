@@ -25,8 +25,7 @@
 
 import selectorsMap from '@constants/selectors-map';
 import useToast from '@js/components/useToast';
-import Toastify from '@constants/mocks/useToast-data';
-import exposeComponents from '@js/expose-components';
+import * as Toastify from '@constants/mocks/useToast-data';
 
 describe('useToast', () => {
   describe('with container and template existing in the DOM', () => {
@@ -34,13 +33,11 @@ describe('useToast', () => {
       resetHTMLBodyContent(Toastify.WithContainerWithTemplate);
 
       window.prestashop = {};
-
-      exposeComponents();
     });
 
     it('should display the HTML markup message when used', () => {
       const toast = useToast(Toastify.TestMarkupMessage);
-      toast.instance.show()
+      toast.instance.show();
 
       const toastMessage = toast.content.innerHTML;
       const expectedToastMessage = Toastify.TestMarkupMessage;
@@ -62,7 +59,7 @@ describe('useToast', () => {
 
     it('should add the custom class list to the toast when is set', () => {
       const toast = useToast('', Toastify.TestClassListOption);
-      toast.instance.show()
+      toast.instance.show();
 
       const toastClassList = toast.element.classList.toString();
       const customClassList = Toastify.TestClassListOption.classlist?.toString() ?? '';
@@ -104,6 +101,30 @@ describe('useToast', () => {
       expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeFalsy();
     });
   });
+
+  describe('with template override', () => {
+    it('should append overriden container if container is not exists in the DOM', () => {
+      resetHTMLBodyContent(Toastify.WithoutContainer);
+
+      const toast = useToast('', {type: 'success', template: Toastify.Override});
+      toast.instance.show();
+      const toastContainer = toast.element.parentElement;
+
+      expect(toastContainer?.classList.contains(Toastify.OverrideContainerClass)).toBeTruthy();
+    });
+
+    it('should insert overriden template in existing empty container in the DOM', () => {
+      resetHTMLBodyContent(Toastify.WithContainerWithoutTemplate);
+
+      const toast = useToast('', {type: 'success', template: Toastify.Override});
+      toast.instance.show();
+      const toastContainer = toast.element.parentElement;
+      const overridenToast = toastContainer?.querySelectorAll<HTMLElement>(Toastify.OverridenToastClass);
+
+      expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeFalsy();
+      expect(overridenToast?.length).toBe(1);
+    });
+  });
 });
 
 const resetHTMLBodyContent = (bodyContent: string) => {
@@ -112,7 +133,6 @@ const resetHTMLBodyContent = (bodyContent: string) => {
   if (body) {
     body.innerHTML = bodyContent;
   } else {
-
     throw new DOMException('The object can not be found here.');
   }
-}
+};

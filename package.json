@@ -12,6 +12,7 @@
     "scss-fix": "stylelint \"**/*.scss\" --fix",
     "lint": "eslint -c .eslintrc.js --ext .js,.ts ./src/js",
     "test": "jest",
+    "coverage": "jest --collect-coverage",
     "lint-fix": "eslint -c .eslintrc.js --ext .js,.ts ./src/js --fix"
   },
   "author": "PrestaShop",

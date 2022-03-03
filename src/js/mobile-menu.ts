@@ -38,8 +38,9 @@ const initMobileMenu = () => {
     ) {
       const currentMenu = document.querySelector<HTMLElement>('.menu--current');
       const currentDepth = Number(currentMenu?.dataset.depth);
+      const currentParentDepth = currentDepth === 2 ? 0 : currentDepth - 1;
       // eslint-ignore-next-line
-      const currentParent = document.querySelector<HTMLElement>(`.menu--parent[data-depth="${currentDepth === 2 ? 0 : currentDepth - 1}"]`);
+      const currentParent = document.querySelector<HTMLElement>(`.menu--parent[data-depth="${currentParentDepth}"]`);
 
       if (currentDepth === 2) {
         backButton.classList.add('d-none');

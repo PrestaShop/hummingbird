@@ -37,7 +37,7 @@ export const parseSearchUrl = function (event: {target: HTMLElement}) {
   return $(event.target).parent()[0].dataset.searchUrl;
 };
 
-export function updateProductListDOM(data: Record<string, any>) {
+export function updateProductListDOM(data: Record<string, never>) {
   $(prestashop.themeSelectors.listing.searchFilters).replaceWith(
     data.rendered_facets,
   );
@@ -111,7 +111,7 @@ export default () => {
     },
   );
 
-  prestashop.on('updateProductList', (data: Record<string, any>) => {
+  prestashop.on('updateProductList', (data: Record<string, unknown>) => {
     updateProductListDOM(data);
     window.scrollTo(0, 0);
   });

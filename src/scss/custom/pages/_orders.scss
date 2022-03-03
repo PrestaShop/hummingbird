@@ -15,10 +15,10 @@
       tbody {
         th,
         td {
-          box-shadow: none;
+          font-weight: 400;
           color: $body-color;
           vertical-align: middle;
-          font-weight: 400;
+          box-shadow: none;
         }
 
         tr {
@@ -53,16 +53,16 @@
 
   .order__actions {
     a {
-      color: $body-color;
-      padding: 0.5rem;
       display: inline-block;
+      padding: 0.5rem;
+      color: $body-color;
 
       &::after {
-        content: '';
+        display: block;
         width: 100%;
         height: 1px;
-        background: currentColor;
-        display: block;
+        content: "";
+        background: currentcolor;
         transition: 0.25s ease-out;
       }
 
@@ -78,8 +78,8 @@
     padding: 0.5rem;
 
     .order {
-      background: lighten($gray-100, 2%);
       padding: 0 1rem;
+      background: lighten($gray-100, 2%);
       border-radius: 0.5rem;
 
       &__label {

@@ -26,4 +26,4 @@ jobs:
           node-version: '14.x'
 
       - name: Lint js
-        run: npm install && npm run lint
+        run: touch .env && npm install && npm run lint

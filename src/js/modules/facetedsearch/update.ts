@@ -111,7 +111,7 @@ export default () => {
     },
   );
 
-  prestashop.on('updateProductList', (data: Record<string, unknown>) => {
+  prestashop.on('updateProductList', (data: Record<string, never>) => {
     updateProductListDOM(data);
     window.scrollTo(0, 0);
   });

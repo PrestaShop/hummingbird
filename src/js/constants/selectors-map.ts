@@ -35,7 +35,7 @@ export const listing = {
   searchFilterToggler: '#search_filter_toggler, .js-search-toggler',
   searchFiltersWrapper: '#search_filters_wrapper',
   searchFilterControls: '#search_filter_controls',
-  searchFilters: '#search_filters',
+  searchFilters: '#search-filters',
   activeSearchFilters: '#js-active-search-filters',
   listTop: '#js-product-list-top',
   product: '.js-product',

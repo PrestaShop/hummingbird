@@ -32,6 +32,7 @@ $component-name: search;
     height: auto;
     border-bottom: 0;
 
+    // stylelint-disable-next-line
     #search_widget {
       margin-bottom: 0;
     }
@@ -102,6 +103,7 @@ $component-name: search;
 
 .header__bottom,
 .#{$component-name}__offcanvas {
+  // stylelint-disable-next-line
   #search_widget {
     overflow: visible;
 

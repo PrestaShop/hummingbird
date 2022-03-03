@@ -23,8 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<div id="block_myaccount_infos" class="footer__block col-md-6 col-lg-3">
-
+<div id="block-myaccount-infos" class="footer__block col-md-6 col-lg-3">
   <p class="footer__block__title hidden-on-mobile">
     <a href="{$urls.pages.my_account}" rel="nofollow">
       {l s='Your account' d='Shop.Theme.Customeraccount'}

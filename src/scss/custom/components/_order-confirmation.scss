@@ -17,7 +17,7 @@ $component-name: order-confirmation;
       margin-right: 1rem;
       font-size: 1.5rem;
       color: $white;
-      background-color: #21834d;
+      background-color: darken($success, 10%);
       border-radius: 100%;
     }
   }

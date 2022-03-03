@@ -26,25 +26,39 @@
 // @ts-ignore
 //import $ from "expose-loader?exposes=$,jQuery!jquery";
 
+import SelectorsMap from './constants/selectors-map';
 import initEmitter from './prestashop';
+
+initEmitter();
+
+window.prestashop.themeSelectors = SelectorsMap;
+
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
 import initQuantityInput from './qty-input';
 import initQuickview from './quickview';
+import useToast from './components/useToast';
 import './modules/blockcart';
 import initProductBehavior from './product';
 import './mobile-menu';
 import './modules/ps_searchbar';
 import './modules/facetedsearch';
-import SelectorsMap from './constants/selectors-map';
 /* eslint-enable */
 
-window.prestashop.themeSelectors = SelectorsMap;
-
 $(document).ready(() => {
-  initEmitter();
   initProductBehavior();
   initQuantityInput(SelectorsMap.qtyInput.default);
   initQuickview();
   initResponsiveToggler();
 });
+
+export const components = {
+  useToast,
+};
+
+export default {
+  initResponsiveToggler,
+  initQuantityInput,
+  initQuickview,
+  initProductBehavior,
+};

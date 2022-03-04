@@ -34,9 +34,28 @@ export const ExpectedTypeClassList = Toaster.Theme[TestTypeOption.type];
 
 export const DefaultToastType = Toaster.Default.type;
 export const FallbackContainerClass = 'toast-container--fallback';
-export const OverrideContainerClass = 'toast-container--override';
-export const OverridenToastClass = '.toast--overriden';
+export const OverriddenContainerClass = 'toast-container--override';
+export const OverriddenToastSelector = '.toast--override';
 
+export const OverrideTemplate = `
+  <div class="toast-container toast-container--override position-fixed bottom-0 end-0 p-3" id="js-toast-container">
+    <template class="js-toast-template">
+      <div class="toast toast--override" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Override</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body"></div>
+      </div>
+    </template>
+  </div>
+`;
+export const TestTemplateOption: Toaster.Options = {type: 'info', template: OverrideTemplate};
+
+export const WithoutContainer = '';
+export const WithContainerWithoutTemplate = `
+  <div class="toast-container position-fixed top-0 end-0 p-3" id="js-toast-container"></div>
+`;
 export const WithContainerWithTemplate = `
   <div class="toast-container position-fixed top-0 end-0 p-3" id="js-toast-container">
     <template class="js-toast-template">
@@ -48,21 +67,4 @@ export const WithContainerWithTemplate = `
       </div>
     </template>
   </div>
-  `;
-
-export const Override = `
-  <div class="toast-container toast-container--override position-fixed bottom-0 end-0 p-3" id="js-toast-container">
-    <template class="js-toast-template">
-      <div class="toast toast--overriden" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-          custom template
-          <div class="toast-body"></div>
-          <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
-        </div>
-      </div>
-    </template>
-  </div>
 `;
-// eslint-disable-next-line
-export const WithContainerWithoutTemplate = '<div class="toast-container position-fixed bottom-0 start-0 p-2" id="js-toast-container"></div>';
-export const WithoutContainer = '';

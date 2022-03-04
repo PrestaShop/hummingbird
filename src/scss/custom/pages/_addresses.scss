@@ -1,14 +1,14 @@
 .addresses {
   &__new-address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    padding: 1rem;
     border: 1px solid $gray-200;
     border-radius: 0.5rem;
-    padding: 1rem;
 
     &:hover {
       i {
@@ -17,20 +17,20 @@
     }
 
     i {
-      width: 4rem;
-      height: 4rem;
-      background: lighten($primary, 47%); 
-      color: $primary;
-      font-size: 2rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 4rem;
+      height: 4rem;
+      font-size: 2rem;
+      color: $primary;
+      background: lighten($primary, 47%);
       border-radius: 50%;
-      transition: .25s ease-out;
+      transition: 0.25s ease-out;
 
       @include media-breakpoint-down(sm) {
-        height: 3rem;
         width: 3rem;
+        height: 3rem;
         font-size: 1.5rem;
       }
     }

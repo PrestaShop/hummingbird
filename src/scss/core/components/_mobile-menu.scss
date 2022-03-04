@@ -1,12 +1,12 @@
 $component-name: main-menu;
 
-@keyframes fromLeft {
+@keyframes from-left {
   from { transform: translateX(-100%); }
 
   to { transform: translateX(0); }
 }
 
-@keyframes fromRight {
+@keyframes from-right {
   from { transform: translateX(100%); }
 
   to { transform: translateX(0); }
@@ -18,7 +18,6 @@ $component-name: main-menu;
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    clip-path: inset(0 0 0 0);
 
     .menu {
       position: relative;
@@ -47,12 +46,12 @@ $component-name: main-menu;
 
       .menu--fromLeft,
       &.menu--fromLeft {
-        animation: fromLeft 0.25s;
+        animation: from-left 0.25s;
       }
 
       .menu--fromRight,
       &.menu--fromRight {
-        animation: fromRight 0.25s;
+        animation: from-right 0.25s;
       }
 
       .menu--parent,

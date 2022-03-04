@@ -3,13 +3,14 @@ $component-name: cart;
 .#{$component-name} {
   &-summary {
     padding: 1rem;
-    
+
     .card-footer {
       padding: 0;
       padding-top: 1rem;
     }
 
-    &, .card-footer {
+    &,
+    .card-footer {
       background-color: lighten($gray-100, 2%);
     }
 
@@ -127,9 +128,9 @@ $component-name: cart;
     .product-line {
       &__title {
         align-self: start;
+        width: 100%;
         font-weight: 600;
         color: $gray-800;
-        width: 100%;
       }
 
       &__image {
@@ -139,19 +140,19 @@ $component-name: cart;
       }
 
       &__item {
-        margin-bottom: 0.5rem;
         display: block;
+        margin-bottom: 0.5rem;
       }
 
       &__current {
         span {
-          font-weight: bold;
+          font-weight: 600;
         }
       }
 
       &__regular {
-        text-decoration: line-through;
         color: $gray-600;
+        text-decoration: line-through;
       }
 
       &__basic {
@@ -167,10 +168,10 @@ $component-name: cart;
           margin-left: -0.5rem;
 
           &::after {
-            content: '';
             display: block;
-            height: 1px;
             width: 100%;
+            height: 1px;
+            content: "";
             background: $primary;
             transition: 0.25s ease-out;
           }

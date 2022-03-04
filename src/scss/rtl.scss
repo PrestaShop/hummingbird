@@ -3,21 +3,22 @@
 @font-face {
   font-family: Vazir;
   font-style: normal;
-  font-display: swap;
   font-weight: 400;
-  src: url("~vazir-font/dist/Vazir-Regular.woff2") format("woff2"), url("~vazir-font/dist/Vazir-Regular.woff") format("woff");
+  src: url("~vazir-font/dist/Vazir-Regular.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
   font-family: Vazir;
   font-style: normal;
-  font-display: swap;
   font-weight: 700;
-  src: url("~vazir-font/dist/Vazir-Bold.woff2") format("woff2"), url("~vazir-font/dist/Vazir-Bold.woff") format("woff");
+  src: url("~vazir-font/dist/Vazir-Bold.woff2") format("woff2");
+  font-display: swap;
 }
 
 body {
-  &.lang-fa, &.lang-ar {
+  &.lang-fa,
+  &.lang-ar {
     font-family: Vazir, sans-serif;
   }
 }

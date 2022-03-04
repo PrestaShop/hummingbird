@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {if $facets|count}
-  <div id="search_filters" class="js-search-filters">
+  <div id="searc-filters" class="js-search-filters">
     {block name='facets_title'}
       <p class="text-uppercase h6 d-none d-sm-block d-md-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
     {/block}

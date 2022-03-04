@@ -23,6 +23,10 @@
   font-size: 24px; /* Preferred icon size */
   font-style: normal;
   font-weight: 500;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -35,11 +39,10 @@
   -webkit-font-smoothing: antialiased;
 
   /* Support for Safari and Chrome. */
+  // stylelint-disable-next-line
   text-rendering: optimizeLegibility;
 
   /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
 
-  /* Support for IE. */
-  font-feature-settings: "liga";
 }

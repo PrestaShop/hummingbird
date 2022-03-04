@@ -103,26 +103,26 @@ describe('useToast', () => {
   });
 
   describe('with template override', () => {
-    it('should append overriden container if container is not exists in the DOM', () => {
+    it('should append overridden container if container is not exists in the DOM', () => {
       resetHTMLBodyContent(Toastify.WithoutContainer);
 
-      const toast = useToast('', {type: 'success', template: Toastify.Override});
+      const toast = useToast('', Toastify.TestTemplateOption);
       toast.instance.show();
       const toastContainer = toast.element.parentElement;
 
-      expect(toastContainer?.classList.contains(Toastify.OverrideContainerClass)).toBeTruthy();
+      expect(toastContainer?.classList.contains(Toastify.OverriddenContainerClass)).toBeTruthy();
     });
 
-    it('should insert overriden template in existing empty container in the DOM', () => {
+    it('should insert overridden template in existing empty container in the DOM', () => {
       resetHTMLBodyContent(Toastify.WithContainerWithoutTemplate);
 
-      const toast = useToast('', {type: 'success', template: Toastify.Override});
+      const toast = useToast('', Toastify.TestTemplateOption);
       toast.instance.show();
       const toastContainer = toast.element.parentElement;
-      const overridenToast = toastContainer?.querySelectorAll<HTMLElement>(Toastify.OverridenToastClass);
+      const overrirdenToast = toastContainer?.querySelector<HTMLElement>(Toastify.OverriddenToastSelector);
 
-      expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeFalsy();
-      expect(overridenToast?.length).toBe(1);
+      expect(toastContainer?.classList.contains(Toastify.OverriddenContainerClass)).toBeFalsy();
+      expect(overrirdenToast).toBeInstanceOf(HTMLElement);
     });
   });
 });

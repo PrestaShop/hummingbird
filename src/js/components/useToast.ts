@@ -44,11 +44,11 @@ const useToast = (message: string, options?: Toaster.Options): Toaster.Result =>
 
   if (toastElementBody) {
     const toastObject: Toaster.Result = {
-      // It's a Bootstrap.Toast instance, used to show, hide and remove the toast
+      // It's a Bootstrap.Toast instance, will be used to show, hide and remove the toast
       instance: new Toast(toastElement, {autohide: clonedOptions.autohide, delay: clonedOptions.delay}),
-      // In case someone want's to modify the toast markup afterwhile
+      // In case someone wants to modify the toast markup afterwhile
       element: toastElement,
-      // In case someone want to modify the text content afterwhile
+      // In case someone wants to modify the text content afterwhile
       content: toastElementBody,
     };
 
@@ -61,20 +61,20 @@ const useToast = (message: string, options?: Toaster.Options): Toaster.Result =>
 const getToastElement = (template?: string): HTMLElement => {
   const toastContainer = document.querySelector<HTMLElement>(selectorsMap.toast.container);
 
-  // If the toast container exist on the page, use it
+  // If the toast container exists on the page, use it
   // Overwise, use the fallback
   if (toastContainer) {
-    const overrideContainer = document.createElement('div');
     let toastElement;
 
     if (template) {
+      const overrideContainer = document.createElement('div');
       overrideContainer.innerHTML = template;
       toastElement = cloneToastTemplate(toastContainer, overrideContainer);
     } else {
       toastElement = cloneToastTemplate(toastContainer);
     }
 
-    // If the template exist on the page, use it
+    // If the toast template exists on the container, use it
     // Overwise, use the fallback
     if (toastElement) {
       return toastElement;
@@ -87,13 +87,13 @@ const getToastElement = (template?: string): HTMLElement => {
 };
 
 // We need to use a template, in order to generate the toast markup on the fly
-const cloneToastTemplate = (containerToAppend: HTMLElement, toastContainer?: HTMLElement): HTMLElement | false => {
+const cloneToastTemplate = (toastContainer: HTMLElement, overrideContainer?: HTMLElement): HTMLElement | false => {
   let toastTemplate;
 
-  if (toastContainer) {
-    toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+  if (overrideContainer) {
+    toastTemplate = overrideContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
   } else {
-    toastTemplate = containerToAppend.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+    toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
   }
 
   const toastClone = toastTemplate?.content.cloneNode(true) as DocumentFragment;
@@ -101,7 +101,7 @@ const cloneToastTemplate = (containerToAppend: HTMLElement, toastContainer?: HTM
   const toastBody = toastElement?.querySelector<HTMLElement>(selectorsMap.toast.body);
 
   if (toastElement && toastBody) {
-    containerToAppend.appendChild(toastElement);
+    toastContainer.appendChild(toastElement);
 
     return toastElement;
   }
@@ -124,6 +124,7 @@ const useFallbackToastTemplate = (toastContainer: HTMLElement): HTMLElement => {
   }
 
   // This happen only if someone removed the markup AND removed the JS fallback
+  // Or the override template structure is wrong
   throw new DOMException('The object can not be cloned.');
 };
 
@@ -184,7 +185,7 @@ const addToastClassList = (toastElement: HTMLElement, options: Toaster.Options) 
 };
 
 const setCloseButtonVisible = (toastElement: HTMLElement) => {
-  const closeButton = toastElement.querySelector<HTMLElement>(selectorsMap.toast.close);
+  const closeButton = toastElement.querySelector<HTMLButtonElement>(selectorsMap.toast.close);
 
   if (closeButton) {
     let toastColor = toastElement.classList.toString().match(/text-\w+/)?.toString();

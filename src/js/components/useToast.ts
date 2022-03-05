@@ -67,9 +67,7 @@ const getToastElement = (template?: string): HTMLElement => {
     let toastElement;
 
     if (template) {
-      const overrideContainer = document.createElement('div');
-      overrideContainer.innerHTML = template;
-      toastElement = cloneToastTemplate(toastContainer, overrideContainer);
+      toastElement = cloneToastTemplate(toastContainer, template);
     } else {
       toastElement = cloneToastTemplate(toastContainer);
     }
@@ -79,19 +77,22 @@ const getToastElement = (template?: string): HTMLElement => {
     if (toastElement) {
       return toastElement;
     }
-
+    // The toast template is not exists OR the override template is not valid
+    // Then get the toast template from fallback and insert in existing container
     return useFallbackToastTemplate(toastContainer);
   }
-
+  // The toast container is not exists, then use the fallback
   return useFallbackToastContainer(template);
 };
 
 // We need to use a template, in order to generate the toast markup on the fly
-const cloneToastTemplate = (toastContainer: HTMLElement, overrideContainer?: HTMLElement): HTMLElement | false => {
+const cloneToastTemplate = (toastContainer: HTMLElement, template?: string): HTMLElement | null => {
   let toastTemplate;
 
-  if (overrideContainer) {
-    toastTemplate = overrideContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+  if (template) {
+    const dummyElement = document.createElement('div');
+    dummyElement.innerHTML = template;
+    toastTemplate = dummyElement.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
   } else {
     toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
   }
@@ -102,16 +103,13 @@ const cloneToastTemplate = (toastContainer: HTMLElement, overrideContainer?: HTM
 
   if (toastElement && toastBody) {
     toastContainer.appendChild(toastElement);
-
-    return toastElement;
   }
 
-  return false;
+  return toastElement;
 };
 
 // In case the template doesn't exist on the page, rely on the JS fallback
 const useFallbackToastTemplate = (toastContainer: HTMLElement): HTMLElement => {
-  toastContainer.innerHTML = '';
   const fallbackContainer = getFallbackContainer();
 
   if (fallbackContainer) {
@@ -123,17 +121,22 @@ const useFallbackToastTemplate = (toastContainer: HTMLElement): HTMLElement => {
     }
   }
 
-  // This happen only if someone removed the markup AND removed the JS fallback
-  // Or the override template structure is wrong
+  // This happens only if someone removed the markup AND removed the JS fallback
   throw new DOMException('The object can not be cloned.');
 };
 
 const useFallbackToastContainer = (template?: string): HTMLElement => {
   const body = document.querySelector<HTMLBodyElement>('body');
-  const fallbackContainer = getFallbackContainer(template);
+  const fallbackContainer = getFallbackContainer();
 
   if (body && fallbackContainer) {
-    const toastElement = cloneToastTemplate(fallbackContainer);
+    let toastElement;
+
+    if (template) {
+      toastElement = cloneToastTemplate(fallbackContainer, template);
+    } else {
+      toastElement = cloneToastTemplate(fallbackContainer);
+    }
 
     if (toastElement) {
       fallbackContainer.appendChild(toastElement);
@@ -142,19 +145,13 @@ const useFallbackToastContainer = (template?: string): HTMLElement => {
       return toastElement;
     }
   }
-
+  // This happens when override toast template is not valid
   throw new DOMException('The object can not be cloned.');
 };
 
-const getFallbackContainer = (template?: string) => {
+const getFallbackContainer = () => {
   const dummyElement = document.createElement('div');
-
-  if (template) {
-    dummyElement.innerHTML = template;
-  } else {
-    dummyElement.innerHTML = Toaster.Fallback;
-  }
-
+  dummyElement.innerHTML = Toaster.Fallback;
   const fallbackContainer = dummyElement.querySelector<HTMLElement>(selectorsMap.toast.container);
 
   return fallbackContainer;

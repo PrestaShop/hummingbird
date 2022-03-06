@@ -110,11 +110,11 @@ const cloneToastTemplate = (toastContainer: HTMLElement, template?: string): HTM
 
 // In case the template doesn't exist on the page, rely on the JS fallback
 const useFallbackToastTemplate = (toastContainer: HTMLElement): HTMLElement => {
-  const toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
   // Check the toast container for existing template
   // If it not exists then use JS fallback
-  // It happens when toast template is exists in the DOM but override template is empty
-  if (toastTemplate == null) {
+  const toastTemplate = toastContainer.querySelector<HTMLTemplateElement>(selectorsMap.toast.template);
+
+  if (toastTemplate === null) {
     const fallbackContainer = getFallbackContainer();
 
     if (fallbackContainer) {

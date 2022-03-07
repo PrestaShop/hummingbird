@@ -37,44 +37,44 @@ describe('useToast', () => {
 
     it('should display the HTML markup message when used', () => {
       const toast = useToast(Toastify.TestMarkupMessage);
-      toast.instance.show();
+      toast?.instance.show();
 
-      const toastMessage = toast.content.innerHTML;
+      const toastMessage = toast?.content.innerHTML;
       const expectedToastMessage = Toastify.TestMarkupMessage;
-      toast.element.remove();
+      toast?.element.remove();
 
       expect(toastMessage === expectedToastMessage).toBeTruthy();
     });
 
     it('should style the toast as same as the type when is set', () => {
       const toast = useToast('', Toastify.TestTypeOption);
-      toast.instance.show();
+      toast?.instance.show();
 
-      const toastClassList = toast.element.classList.toString();
+      const toastClassList = toast?.element.classList.toString();
       const expectedTypeClassList = Toastify.ExpectedTypeClassList;
-      toast.element.remove();
+      toast?.element.remove();
 
-      expect(toastClassList.match(new RegExp(expectedTypeClassList))?.length).toBeDefined();
+      expect(toastClassList?.match(new RegExp(expectedTypeClassList))?.length).toBeDefined();
     });
 
     it('should add the custom class list to the toast when is set', () => {
       const toast = useToast('', Toastify.TestClassListOption);
-      toast.instance.show();
+      toast?.instance.show();
 
-      const toastClassList = toast.element.classList.toString();
+      const toastClassList = toast?.element.classList.toString();
       const customClassList = Toastify.TestClassListOption.classlist?.toString() ?? '';
-      toast.element.remove();
+      toast?.element.remove();
 
-      expect(toastClassList.match(new RegExp(customClassList))?.length).toBeDefined();
+      expect(toastClassList?.match(new RegExp(customClassList))?.length).toBeDefined();
     });
 
     it('should display the close button when autohide is false', () => {
       const toast = useToast('', Toastify.TestAutoHideOption);
-      toast.instance.show();
+      toast?.instance.show();
 
-      const closeButtonElement = toast.element.querySelector<HTMLButtonElement>(selectorsMap.toast.close);
+      const closeButtonElement = toast?.element.querySelector<HTMLButtonElement>(selectorsMap.toast?.close);
       const closeBtnClassList = closeButtonElement?.classList.toString();
-      toast.element.remove();
+      toast?.element.remove();
 
       expect(closeBtnClassList?.match('d-none')?.length).toBeUndefined();
     });
@@ -85,8 +85,8 @@ describe('useToast', () => {
       resetHTMLBodyContent(Toastify.WithoutContainer);
 
       const toast = useToast('');
-      toast.instance.show();
-      const toastContainer = toast.element.parentElement;
+      toast?.instance.show();
+      const toastContainer = toast?.element.parentElement;
 
       expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeTruthy();
     });
@@ -95,9 +95,9 @@ describe('useToast', () => {
       resetHTMLBodyContent(Toastify.WithContainerWithoutTemplate);
 
       const toast = useToast('');
-      toast.instance.show();
-      const toastElement = toast.element;
-      const toastContainer = toastElement.parentElement;
+      toast?.instance.show();
+      const toastElement = toast?.element;
+      const toastContainer = toastElement?.parentElement;
 
       expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeFalsy();
       expect(toastElement?.classList.contains(Toastify.FallbackToastClass)).toBeTruthy();
@@ -109,21 +109,19 @@ describe('useToast', () => {
       resetHTMLBodyContent(Toastify.WithContainerWithoutTemplate);
 
       const toast = useToast('', Toastify.TestTemplateOption);
-      toast.instance.show();
-      const overriddenToastElement = toast.element;
-      const toastContainer = overriddenToastElement.parentElement;
+      toast?.instance.show();
+      const overrideToastElement = toast?.element;
 
-      expect(toastContainer?.classList.contains(Toastify.OverrideContainerClass)).toBeFalsy();
-      expect(overriddenToastElement?.classList.contains(Toastify.OverrideToastClass)).toBeTruthy();
+      expect(overrideToastElement?.classList.contains(Toastify.OverrideToastClass)).toBeTruthy();
     });
 
     it('should append override template to the fallback container if container is not exists in the DOM', () => {
       resetHTMLBodyContent(Toastify.WithoutContainer);
 
       const toast = useToast('', Toastify.TestTemplateOption);
-      toast.instance.show();
-      const overrideToastElement = toast.element;
-      const toastContainer = overrideToastElement.parentElement;
+      toast?.instance.show();
+      const overrideToastElement = toast?.element;
+      const toastContainer = overrideToastElement?.parentElement;
 
       expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeTruthy();
       expect(overrideToastElement?.classList.contains(Toastify.OverrideToastClass)).toBeTruthy();
@@ -136,7 +134,5 @@ const resetHTMLBodyContent = (bodyContent: string) => {
 
   if (body) {
     body.innerHTML = bodyContent;
-  } else {
-    throw new DOMException('The object can not be found here.');
   }
 };

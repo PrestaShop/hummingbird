@@ -35,17 +35,12 @@ export const ExpectedTypeClassList = Toaster.Theme[TestTypeOption.type];
 export const DefaultToastType = Toaster.Default.type;
 export const FallbackContainerClass = 'toast-container--fallback';
 export const FallbackToastClass = 'toast--fallback';
-export const OverrideContainerClass = 'toast-container--override';
 export const OverrideToastClass = 'toast--override';
 
 export const OverrideTemplate = `
-  <div class="toast-container toast-container--override" id="js-toast-container">
-    <template class="js-toast-template">
-      <div class="toast toast--override">
-        <div class="toast-header"></div>
-        <div class="toast-body"></div>
-      </div>
-    </template>
+  <div class="toast toast--override">
+    <div class="toast-header"></div>
+    <div class="toast-body"></div>
   </div>
 `;
 export const TestTemplateOption: Toaster.Options = {type: 'info', template: OverrideTemplate};

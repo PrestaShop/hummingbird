@@ -27,6 +27,9 @@ import {Toast} from 'bootstrap';
 import selectorsMap from '@constants/selectors-map';
 import * as Toaster from '@constants/useToast-data';
 
+const test = new Toast('.yolo');
+test.show();
+
 const useToast = (message: string, options?: Toaster.Options): Toaster.Result => {
   const toastElement = getToastElement(options?.template);
 

@@ -1,0 +1,94 @@
+{
+  "search_string": "Search our catalog",
+  "menu": {
+    "type": "root",
+    "label": null,
+    "url": "",
+    "children": [
+      {
+        "type": "category",
+        "label": "Clothes",
+        "url": "http:\/\/localhost\/prestashop\/en\/3-clothes",
+        "children": [
+          {
+            "type": "category",
+            "label": "Men",
+            "url": "http:\/\/localhost\/prestashop\/en\/4-men",
+            "children": [],
+            "open_in_new_window": false,
+            "image_urls": [],
+            "page_identifier": "category-4",
+            "current": false,
+            "depth": 2
+          },
+          {
+            "type": "category",
+            "label": "Women",
+            "url": "http:\/\/localhost\/prestashop\/en\/5-women",
+            "children": [],
+            "open_in_new_window": false,
+            "image_urls": [],
+            "page_identifier": "category-5",
+            "current": false,
+            "depth": 2
+          }
+        ],
+        "open_in_new_window": false,
+        "image_urls": [],
+        "page_identifier": "category-3",
+        "current": true,
+        "depth": 1
+      },
+      {
+        "type": "category",
+        "label": "Accessories",
+        "url": "http:\/\/localhost\/prestashop\/en\/6-accessories",
+        "children": [
+          {
+            "type": "category",
+            "label": "Stationery",
+            "url": "http:\/\/localhost\/prestashop\/en\/7-stationery",
+            "children": [],
+            "open_in_new_window": false,
+            "image_urls": [],
+            "page_identifier": "category-7",
+            "current": false,
+            "depth": 2
+          },
+          {
+            "type": "category",
+            "label": "Home Accessories",
+            "url": "http:\/\/localhost\/prestashop\/en\/8-home-accessories",
+            "children": [],
+            "open_in_new_window": false,
+            "image_urls": [],
+            "page_identifier": "category-8",
+            "current": false,
+            "depth": 2
+          }
+        ],
+        "open_in_new_window": false,
+        "image_urls": [],
+        "page_identifier": "category-6",
+        "current": false,
+        "depth": 1
+      },
+      {
+        "type": "category",
+        "label": "Art",
+        "url": "http:\/\/localhost\/prestashop\/en\/9-art",
+        "children": [],
+        "open_in_new_window": false,
+        "image_urls": [],
+        "page_identifier": "category-9",
+        "current": false,
+        "depth": 1
+      }
+    ],
+    "open_in_new_window": false,
+    "image_urls": [],
+    "page_identifier": null,
+    "depth": 0,
+    "current": false
+  }
+}

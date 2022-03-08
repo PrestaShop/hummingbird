@@ -1,0 +1,107 @@
+{
+  "base_url": "http:\/\/localhost\/prestashop\/",
+  "current_url": "http:\/\/localhost\/prestashop\/en\/3-clothes",
+  "shop_domain_url": "http:\/\/localhost",
+  "img_ps_url": "http:\/\/localhost\/prestashop\/img\/",
+  "img_cat_url": "http:\/\/localhost\/prestashop\/img\/c\/",
+  "img_lang_url": "http:\/\/localhost\/prestashop\/img\/l\/",
+  "img_prod_url": "http:\/\/localhost\/prestashop\/img\/p\/",
+  "img_manu_url": "http:\/\/localhost\/prestashop\/img\/m\/",
+  "img_sup_url": "http:\/\/localhost\/prestashop\/img\/su\/",
+  "img_ship_url": "http:\/\/localhost\/prestashop\/img\/s\/",
+  "img_store_url": "http:\/\/localhost\/prestashop\/img\/st\/",
+  "img_col_url": "http:\/\/localhost\/prestashop\/img\/co\/",
+  "img_url": "http:\/\/localhost\/prestashop\/themes\/theme-refacto\/assets\/img\/",
+  "css_url": "http:\/\/localhost\/prestashop\/themes\/theme-refacto\/assets\/css\/",
+  "js_url": "http:\/\/localhost\/prestashop\/themes\/theme-refacto\/assets\/js\/",
+  "pic_url": "http:\/\/localhost\/prestashop\/upload\/",
+  "theme_assets": "http:\/\/localhost\/prestashop\/themes\/theme-refacto\/assets\/",
+  "pages": {
+    "address": "http:\/\/localhost\/prestashop\/en\/address",
+    "addresses": "http:\/\/localhost\/prestashop\/en\/addresses",
+    "authentication": "http:\/\/localhost\/prestashop\/en\/login",
+    "manufacturer": "http:\/\/localhost\/prestashop\/en\/brands",
+    "cart": "http:\/\/localhost\/prestashop\/en\/cart",
+    "category": "http:\/\/localhost\/prestashop\/en\/index.php?controller=category",
+    "cms": "http:\/\/localhost\/prestashop\/en\/index.php?controller=cms",
+    "contact": "http:\/\/localhost\/prestashop\/en\/contact-us",
+    "discount": "http:\/\/localhost\/prestashop\/en\/discount",
+    "guest_tracking": "http:\/\/localhost\/prestashop\/en\/guest-tracking",
+    "history": "http:\/\/localhost\/prestashop\/en\/order-history",
+    "identity": "http:\/\/localhost\/prestashop\/en\/identity",
+    "index": "http:\/\/localhost\/prestashop\/en\/",
+    "my_account": "http:\/\/localhost\/prestashop\/en\/my-account",
+    "order_confirmation": "http:\/\/localhost\/prestashop\/en\/order-confirmation",
+    "order_detail": "http:\/\/localhost\/prestashop\/en\/index.php?controller=order-detail",
+    "order_follow": "http:\/\/localhost\/prestashop\/en\/order-follow",
+    "order": "http:\/\/localhost\/prestashop\/en\/order",
+    "order_return": "http:\/\/localhost\/prestashop\/en\/index.php?controller=order-return",
+    "order_slip": "http:\/\/localhost\/prestashop\/en\/credit-slip",
+    "pagenotfound": "http:\/\/localhost\/prestashop\/en\/page-not-found",
+    "password": "http:\/\/localhost\/prestashop\/en\/password-recovery",
+    "pdf_invoice": "http:\/\/localhost\/prestashop\/en\/index.php?controller=pdf-invoice",
+    "pdf_order_return": "http:\/\/localhost\/prestashop\/en\/index.php?controller=pdf-order-return",
+    "pdf_order_slip": "http:\/\/localhost\/prestashop\/en\/index.php?controller=pdf-order-slip",
+    "prices_drop": "http:\/\/localhost\/prestashop\/en\/prices-drop",
+    "product": "http:\/\/localhost\/prestashop\/en\/index.php?controller=product",
+    "search": "http:\/\/localhost\/prestashop\/en\/search",
+    "sitemap": "http:\/\/localhost\/prestashop\/en\/sitemap",
+    "stores": "http:\/\/localhost\/prestashop\/en\/stores",
+    "supplier": "http:\/\/localhost\/prestashop\/en\/supplier",
+    "brands": "http:\/\/localhost\/prestashop\/en\/brands",
+    "register": "http:\/\/localhost\/prestashop\/en\/login?create_account=1",
+    "order_login": "http:\/\/localhost\/prestashop\/en\/order?login=1"
+  },
+  "alternative_langs": {
+    "en-us": "http:\/\/localhost\/prestashop\/en\/3-clothes",
+    "fr": "http:\/\/localhost\/prestashop\/fr\/3-vetements"
+  },
+  "actions": {
+    "logout": "http:\/\/localhost\/prestashop\/en\/?mylogout="
+  },
+  "no_picture_image": {
+    "bySize": {
+      "small_default": {
+        "url": "http:\/\/localhost\/prestashop\/img\/p\/en-default-small_default.jpg",
+        "width": 98,
+        "height": 98
+      },
+      "cart_default": {
+        "url": "http:\/\/localhost\/prestashop\/img\/p\/en-default-cart_default.jpg",
+        "width": 125,
+        "height": 125
+      },
+      "home_default": {
+        "url": "http:\/\/localhost\/prestashop\/img\/p\/en-default-home_default.jpg",
+        "width": 250,
+        "height": 250
+      },
+      "medium_default": {
+        "url": "http:\/\/localhost\/prestashop\/img\/p\/en-default-medium_default.jpg",
+        "width": 452,
+        "height": 452
+      },
+      "large_default": {
+        "url": "http:\/\/localhost\/prestashop\/img\/p\/en-default-large_default.jpg",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "small": {
+      "url": "http:\/\/localhost\/prestashop\/img\/p\/en-default-small_default.jpg",
+      "width": 98,
+      "height": 98
+    },
+    "medium": {
+      "url": "http:\/\/localhost\/prestashop\/img\/p\/en-default-home_default.jpg",
+      "width": 250,
+      "height": 250
+    },
+    "large": {
+      "url": "http:\/\/localhost\/prestashop\/img\/p\/en-default-large_default.jpg",
+      "width": 800,
+      "height": 800
+    },
+    "legend": ""
+  }
+}

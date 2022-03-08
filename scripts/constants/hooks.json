@@ -1,0 +1,12 @@
+{
+  "displayNav1": [
+    "modules/ps_contactinfo/nav.tpl"
+  ],
+  "displayNav2": [
+    "modules/ps_customersignin/ps_customersignin.tpl"
+  ],
+  "displayTop": [
+    "modules/ps_mainmenu/ps_mainmenu.tpl",
+    "modules/ps_searchbar/ps_searchbar.tpl"
+  ]
+}

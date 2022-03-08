@@ -47,8 +47,8 @@
   {include file='_partials/microdata/product-jsonld.tpl'}
 {/block}
 
-{block name='content'}
 
+{block name='content'}
   {* FIRST PART - PHOTO, NAME, PRICES, ADD TO CART*}
   <div class="row product product-container js-product-container">
     <div class="product__left product__col--left col-lg-6 col-xl-7">

@@ -1,0 +1,1265 @@
+[
+  {
+    "add_to_cart_url": "http:\/\/localhost\/prestashop\/en\/cart?add=1&id_product=1&id_product_attribute=1&token=43fc8eff7eb0dd9521c64a607de62f74",
+    "id": "1",
+    "attributes": {
+      "1": {
+        "id_attribute": "1",
+        "id_attribute_group": "1",
+        "name": "S",
+        "group": "Size",
+        "reference": "demo_1",
+        "ean13": "",
+        "isbn": "",
+        "upc": "",
+        "mpn": ""
+      },
+      "2": {
+        "id_attribute": "8",
+        "id_attribute_group": "2",
+        "name": "White",
+        "group": "Color",
+        "reference": "demo_1",
+        "ean13": "",
+        "isbn": "",
+        "upc": "",
+        "mpn": ""
+      }
+    },
+    "show_price": true,
+    "weight_unit": "kg",
+    "url": "http:\/\/localhost\/prestashop\/en\/men\/1-1-hummingbird-printed-t-shirt.html#\/1-size-s\/8-color-white",
+    "canonical_url": "http:\/\/localhost\/prestashop\/en\/men\/1-hummingbird-printed-t-shirt.html",
+    "condition": false,
+    "delivery_information": null,
+    "embedded_attributes": {
+      "id_product": "1",
+      "id_supplier": "1",
+      "id_manufacturer": "1",
+      "id_category_default": "4",
+      "id_shop_default": "1",
+      "on_sale": "0",
+      "online_only": "0",
+      "ecotax": "0.000000",
+      "quantity": 300,
+      "minimal_quantity": "1",
+      "low_stock_threshold": null,
+      "low_stock_alert": "0",
+      "price": "\u20ac22.94",
+      "unity": "",
+      "unit_price": "\u20ac0.00",
+      "unit_price_ratio": 0,
+      "additional_shipping_cost": "0.000000",
+      "reference": "demo_1",
+      "out_of_stock": "2",
+      "customizable": "0",
+      "uploadable_files": "0",
+      "text_fields": "0",
+      "redirect_type": "301-category",
+      "id_type_redirected": "0",
+      "available_for_order": "1",
+      "available_date": null,
+      "show_condition": "0",
+      "condition": "new",
+      "show_price": "1",
+      "indexed": "1",
+      "visibility": "both",
+      "is_virtual": "0",
+      "cache_default_attribute": "1",
+      "date_add": "2022-02-28 09:18:12",
+      "date_upd": "2022-02-28 09:18:12",
+      "advanced_stock_management": "0",
+      "pack_stock_type": "3",
+      "description": "<p>Symbol of lightness and delicacy, the hummingbird evokes curiosity and joy. Studio Design' PolyFaune collection features classic products with colorful patterns, inspired by the traditional japanese origamis. To wear with a chino or jeans. The sublimation textile printing process provides an exceptional color rendering and a color, guaranteed overtime.<\/p>",
+      "description_short": "<p>Regular fit, round neckline, short sleeves. Made of extra long staple pima cotton. <\/p>\r\n<p><\/p>",
+      "link_rewrite": "hummingbird-printed-t-shirt",
+      "meta_description": "",
+      "meta_keywords": "",
+      "meta_title": "",
+      "name": "Hummingbird printed t-shirt",
+      "available_now": "",
+      "available_later": "",
+      "delivery_in_stock": "",
+      "delivery_out_stock": "",
+      "new": "1",
+      "id_product_attribute": "1",
+      "allow_oosp": 0,
+      "category": "men",
+      "category_name": "Men",
+      "link": "http:\/\/localhost\/prestashop\/en\/men\/1-hummingbird-printed-t-shirt.html",
+      "attribute_price": 0,
+      "price_tax_exc": 19.12,
+      "price_without_reduction": 28.68,
+      "reduction": 5.736,
+      "specific_prices": {
+        "id_specific_price": "1",
+        "id_specific_price_rule": "0",
+        "id_cart": "0",
+        "id_product": "1",
+        "id_shop": "0",
+        "id_shop_group": "0",
+        "id_currency": "0",
+        "id_country": "0",
+        "id_group": "0",
+        "id_customer": "0",
+        "id_product_attribute": "0",
+        "price": "-1.000000",
+        "from_quantity": "1",
+        "reduction": "0.200000",
+        "reduction_tax": "1",
+        "reduction_type": "percentage",
+        "from": "0000-00-00 00:00:00",
+        "to": "0000-00-00 00:00:00",
+        "score": "0"
+      },
+      "quantity_all_versions": 2400,
+      "id_image": "en-default",
+      "features": [
+        {
+          "name": "Composition",
+          "value": "Cotton",
+          "id_feature": "1",
+          "position": "0"
+        },
+        {
+          "name": "Property",
+          "value": "Short sleeves",
+          "id_feature": "2",
+          "position": "1"
+        }
+      ],
+      "attachments": [],
+      "virtual": 0,
+      "pack": 0,
+      "packItems": [],
+      "nopackprice": 0,
+      "customization_required": false,
+      "attributes": {
+        "1": {
+          "id_attribute": "1",
+          "id_attribute_group": "1",
+          "name": "S",
+          "group": "Size",
+          "reference": "demo_1",
+          "ean13": "",
+          "isbn": "",
+          "upc": "",
+          "mpn": ""
+        },
+        "2": {
+          "id_attribute": "8",
+          "id_attribute_group": "2",
+          "name": "White",
+          "group": "Color",
+          "reference": "demo_1",
+          "ean13": "",
+          "isbn": "",
+          "upc": "",
+          "mpn": ""
+        }
+      },
+      "rate": 20,
+      "tax_name": "TVA FR 20%",
+      "ecotax_rate": 0,
+      "images": [
+        {
+          "bySize": {
+            "small_default": {
+              "url": "http:\/\/localhost\/prestashop\/2-small_default\/hummingbird-printed-t-shirt.jpg",
+              "width": 98,
+              "height": 98
+            },
+            "cart_default": {
+              "url": "http:\/\/localhost\/prestashop\/2-cart_default\/hummingbird-printed-t-shirt.jpg",
+              "width": 125,
+              "height": 125
+            },
+            "home_default": {
+              "url": "http:\/\/localhost\/prestashop\/2-home_default\/hummingbird-printed-t-shirt.jpg",
+              "width": 250,
+              "height": 250
+            },
+            "medium_default": {
+              "url": "http:\/\/localhost\/prestashop\/2-medium_default\/hummingbird-printed-t-shirt.jpg",
+              "width": 452,
+              "height": 452
+            },
+            "large_default": {
+              "url": "http:\/\/localhost\/prestashop\/2-large_default\/hummingbird-printed-t-shirt.jpg",
+              "width": 800,
+              "height": 800
+            }
+          },
+          "small": {
+            "url": "http:\/\/localhost\/prestashop\/2-small_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 98,
+            "height": 98
+          },
+          "medium": {
+            "url": "http:\/\/localhost\/prestashop\/2-home_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 250,
+            "height": 250
+          },
+          "large": {
+            "url": "http:\/\/localhost\/prestashop\/2-large_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 800,
+            "height": 800
+          },
+          "legend": "Hummingbird printed t-shirt",
+          "id_image": "2",
+          "cover": null,
+          "position": "2",
+          "associatedVariants": [
+            "1",
+            "3",
+            "5",
+            "7"
+          ]
+        }
+      ],
+      "cover": {
+        "bySize": {
+          "small_default": {
+            "url": "http:\/\/localhost\/prestashop\/1-small_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 98,
+            "height": 98
+          },
+          "cart_default": {
+            "url": "http:\/\/localhost\/prestashop\/1-cart_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 125,
+            "height": 125
+          },
+          "home_default": {
+            "url": "http:\/\/localhost\/prestashop\/1-home_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 250,
+            "height": 250
+          },
+          "medium_default": {
+            "url": "http:\/\/localhost\/prestashop\/1-medium_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 452,
+            "height": 452
+          },
+          "large_default": {
+            "url": "http:\/\/localhost\/prestashop\/1-large_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 800,
+            "height": 800
+          }
+        },
+        "small": {
+          "url": "http:\/\/localhost\/prestashop\/1-small_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 98,
+          "height": 98
+        },
+        "medium": {
+          "url": "http:\/\/localhost\/prestashop\/1-home_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 250,
+          "height": 250
+        },
+        "large": {
+          "url": "http:\/\/localhost\/prestashop\/1-large_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 800,
+          "height": 800
+        },
+        "legend": "Hummingbird printed t-shirt",
+        "id_image": "1",
+        "cover": "1",
+        "position": "1",
+        "associatedVariants": [
+          "2",
+          "4",
+          "6",
+          "8"
+        ]
+      },
+      "has_discount": true,
+      "discount_type": "percentage",
+      "discount_percentage": "-20%",
+      "discount_percentage_absolute": "20%",
+      "discount_amount": "\u20ac5.74",
+      "discount_amount_to_display": "-\u20ac5.74",
+      "price_amount": 22.94,
+      "unit_price_full": "\u20ac0.00 ",
+      "show_availability": true,
+      "availability_date": null,
+      "availability_message": "",
+      "availability": "available"
+    },
+    "file_size_formatted": null,
+    "attachments": [],
+    "quantity_discounts": [],
+    "reference_to_display": "demo_1",
+    "grouped_features": {
+      "Composition": {
+        "name": "Composition",
+        "value": "Cotton",
+        "id_feature": "1",
+        "position": "0"
+      },
+      "Property": {
+        "name": "Property",
+        "value": "Short sleeves",
+        "id_feature": "2",
+        "position": "1"
+      }
+    },
+    "seo_availability": "https:\/\/schema.org\/InStock",
+    "labels": {
+      "tax_short": "(tax incl.)",
+      "tax_long": "Tax included"
+    },
+    "ecotax": {
+      "value": "\u20ac0.00",
+      "amount": "0.000000",
+      "rate": 0
+    },
+    "flags": {
+      "discount": {
+        "type": "discount",
+        "label": "-20%"
+      },
+      "new": {
+        "type": "new",
+        "label": "New"
+      }
+    },
+    "main_variants": [
+      {
+        "id_product_attribute": 1,
+        "texture": "",
+        "id_product": "1",
+        "name": "White",
+        "id_attribute": "8",
+        "add_to_cart_url": "http:\/\/localhost\/prestashop\/en\/cart?add=1&id_product=1&id_product_attribute=1&token=43fc8eff7eb0dd9521c64a607de62f74",
+        "url": "http:\/\/localhost\/prestashop\/en\/men\/1-1-hummingbird-printed-t-shirt.html#\/1-size-s\/8-color-white",
+        "type": "color",
+        "html_color_code": "#ffffff"
+      },
+      {
+        "id_product_attribute": 2,
+        "texture": "",
+        "id_product": "1",
+        "name": "Black",
+        "id_attribute": "11",
+        "add_to_cart_url": "http:\/\/localhost\/prestashop\/en\/cart?add=1&id_product=1&id_product_attribute=2&token=43fc8eff7eb0dd9521c64a607de62f74",
+        "url": "http:\/\/localhost\/prestashop\/en\/men\/1-2-hummingbird-printed-t-shirt.html#\/1-size-s\/11-color-black",
+        "type": "color",
+        "html_color_code": "#434A54"
+      }
+    ],
+    "specific_references": null,
+    "id_product": "1",
+    "id_supplier": "1",
+    "id_manufacturer": "1",
+    "id_category_default": "4",
+    "id_shop_default": "1",
+    "id_tax_rules_group": "1",
+    "on_sale": "0",
+    "online_only": "0",
+    "ean13": "",
+    "isbn": "",
+    "upc": "",
+    "mpn": "",
+    "quantity": 300,
+    "minimal_quantity": "1",
+    "low_stock_threshold": null,
+    "low_stock_alert": "0",
+    "price": "\u20ac22.94",
+    "wholesale_price": "0.000000",
+    "unity": "",
+    "unit_price": "\u20ac0.00",
+    "unit_price_ratio": 0,
+    "additional_shipping_cost": "0.000000",
+    "reference": "demo_1",
+    "supplier_reference": "",
+    "location": "",
+    "width": "0.000000",
+    "height": "0.000000",
+    "depth": "0.000000",
+    "weight": "0.300000",
+    "out_of_stock": "2",
+    "additional_delivery_times": "1",
+    "quantity_discount": "0",
+    "customizable": "0",
+    "uploadable_files": "0",
+    "text_fields": "0",
+    "active": "1",
+    "redirect_type": "301-category",
+    "id_type_redirected": "0",
+    "available_for_order": "1",
+    "available_date": null,
+    "show_condition": "0",
+    "indexed": "1",
+    "visibility": "both",
+    "cache_is_pack": "0",
+    "cache_has_attachments": "0",
+    "is_virtual": "0",
+    "cache_default_attribute": "1",
+    "date_add": "2022-02-28 09:18:12",
+    "date_upd": "2022-02-28 09:18:12",
+    "advanced_stock_management": "0",
+    "pack_stock_type": "3",
+    "state": "1",
+    "product_type": "combinations",
+    "id_shop": "1",
+    "id_lang": "1",
+    "description": "<p>Symbol of lightness and delicacy, the hummingbird evokes curiosity and joy. Studio Design' PolyFaune collection features classic products with colorful patterns, inspired by the traditional japanese origamis. To wear with a chino or jeans. The sublimation textile printing process provides an exceptional color rendering and a color, guaranteed overtime.<\/p>",
+    "description_short": "<p>Regular fit, round neckline, short sleeves. Made of extra long staple pima cotton. <\/p>\r\n<p><\/p>",
+    "link_rewrite": "hummingbird-printed-t-shirt",
+    "meta_description": "",
+    "meta_keywords": "",
+    "meta_title": "",
+    "name": "Hummingbird printed t-shirt",
+    "available_now": "",
+    "available_later": "",
+    "delivery_in_stock": "",
+    "delivery_out_stock": "",
+    "new": "1",
+    "id_product_attribute": "1",
+    "allow_oosp": 0,
+    "cover_image_id": "1",
+    "category": "men",
+    "category_name": "Men",
+    "link": "http:\/\/localhost\/prestashop\/en\/men\/1-hummingbird-printed-t-shirt.html",
+    "attribute_price": 0,
+    "price_tax_exc": 19.12,
+    "price_without_reduction": 28.68,
+    "price_without_reduction_without_tax": 23.9,
+    "reduction": 5.736,
+    "reduction_without_tax": 4.78,
+    "specific_prices": {
+      "id_specific_price": "1",
+      "id_specific_price_rule": "0",
+      "id_cart": "0",
+      "id_product": "1",
+      "id_shop": "0",
+      "id_shop_group": "0",
+      "id_currency": "0",
+      "id_country": "0",
+      "id_group": "0",
+      "id_customer": "0",
+      "id_product_attribute": "0",
+      "price": "-1.000000",
+      "from_quantity": "1",
+      "reduction": "0.200000",
+      "reduction_tax": "1",
+      "reduction_type": "percentage",
+      "from": "0000-00-00 00:00:00",
+      "to": "0000-00-00 00:00:00",
+      "score": "0"
+    },
+    "quantity_all_versions": 2400,
+    "id_image": "en-default",
+    "features": [
+      {
+        "name": "Composition",
+        "value": "Cotton",
+        "id_feature": "1",
+        "position": "0"
+      },
+      {
+        "name": "Property",
+        "value": "Short sleeves",
+        "id_feature": "2",
+        "position": "1"
+      }
+    ],
+    "virtual": 0,
+    "pack": 0,
+    "packItems": [],
+    "nopackprice": 0,
+    "customization_required": false,
+    "rate": 20,
+    "tax_name": "TVA FR 20%",
+    "ecotax_rate": 0,
+    "unit_price_tax_excluded": 0,
+    "unit_price_tax_included": 0,
+    "images": [
+      {
+        "bySize": {
+          "small_default": {
+            "url": "http:\/\/localhost\/prestashop\/2-small_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 98,
+            "height": 98
+          },
+          "cart_default": {
+            "url": "http:\/\/localhost\/prestashop\/2-cart_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 125,
+            "height": 125
+          },
+          "home_default": {
+            "url": "http:\/\/localhost\/prestashop\/2-home_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 250,
+            "height": 250
+          },
+          "medium_default": {
+            "url": "http:\/\/localhost\/prestashop\/2-medium_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 452,
+            "height": 452
+          },
+          "large_default": {
+            "url": "http:\/\/localhost\/prestashop\/2-large_default\/hummingbird-printed-t-shirt.jpg",
+            "width": 800,
+            "height": 800
+          }
+        },
+        "small": {
+          "url": "http:\/\/localhost\/prestashop\/2-small_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 98,
+          "height": 98
+        },
+        "medium": {
+          "url": "http:\/\/localhost\/prestashop\/2-home_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 250,
+          "height": 250
+        },
+        "large": {
+          "url": "http:\/\/localhost\/prestashop\/2-large_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 800,
+          "height": 800
+        },
+        "legend": "Hummingbird printed t-shirt",
+        "id_image": "2",
+        "cover": null,
+        "position": "2",
+        "associatedVariants": [
+          "1",
+          "3",
+          "5",
+          "7"
+        ]
+      }
+    ],
+    "default_image": {
+      "bySize": {
+        "small_default": {
+          "url": "http:\/\/localhost\/prestashop\/2-small_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 98,
+          "height": 98
+        },
+        "cart_default": {
+          "url": "http:\/\/localhost\/prestashop\/2-cart_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 125,
+          "height": 125
+        },
+        "home_default": {
+          "url": "http:\/\/localhost\/prestashop\/2-home_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 250,
+          "height": 250
+        },
+        "medium_default": {
+          "url": "http:\/\/localhost\/prestashop\/2-medium_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 452,
+          "height": 452
+        },
+        "large_default": {
+          "url": "http:\/\/localhost\/prestashop\/2-large_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 800,
+          "height": 800
+        }
+      },
+      "small": {
+        "url": "http:\/\/localhost\/prestashop\/2-small_default\/hummingbird-printed-t-shirt.jpg",
+        "width": 98,
+        "height": 98
+      },
+      "medium": {
+        "url": "http:\/\/localhost\/prestashop\/2-home_default\/hummingbird-printed-t-shirt.jpg",
+        "width": 250,
+        "height": 250
+      },
+      "large": {
+        "url": "http:\/\/localhost\/prestashop\/2-large_default\/hummingbird-printed-t-shirt.jpg",
+        "width": 800,
+        "height": 800
+      },
+      "legend": "Hummingbird printed t-shirt",
+      "id_image": "2",
+      "cover": null,
+      "position": "2",
+      "associatedVariants": [
+        "1",
+        "3",
+        "5",
+        "7"
+      ]
+    },
+    "cover": {
+      "bySize": {
+        "small_default": {
+          "url": "http:\/\/localhost\/prestashop\/1-small_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 98,
+          "height": 98
+        },
+        "cart_default": {
+          "url": "http:\/\/localhost\/prestashop\/1-cart_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 125,
+          "height": 125
+        },
+        "home_default": {
+          "url": "http:\/\/localhost\/prestashop\/1-home_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 250,
+          "height": 250
+        },
+        "medium_default": {
+          "url": "http:\/\/localhost\/prestashop\/1-medium_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 452,
+          "height": 452
+        },
+        "large_default": {
+          "url": "http:\/\/localhost\/prestashop\/1-large_default\/hummingbird-printed-t-shirt.jpg",
+          "width": 800,
+          "height": 800
+        }
+      },
+      "small": {
+        "url": "http:\/\/localhost\/prestashop\/1-small_default\/hummingbird-printed-t-shirt.jpg",
+        "width": 98,
+        "height": 98
+      },
+      "medium": {
+        "url": "http:\/\/localhost\/prestashop\/1-home_default\/hummingbird-printed-t-shirt.jpg",
+        "width": 250,
+        "height": 250
+      },
+      "large": {
+        "url": "http:\/\/localhost\/prestashop\/1-large_default\/hummingbird-printed-t-shirt.jpg",
+        "width": 800,
+        "height": 800
+      },
+      "legend": "Hummingbird printed t-shirt",
+      "id_image": "1",
+      "cover": "1",
+      "position": "1",
+      "associatedVariants": [
+        "2",
+        "4",
+        "6",
+        "8"
+      ]
+    },
+    "has_discount": true,
+    "discount_type": "percentage",
+    "discount_percentage": "-20%",
+    "discount_percentage_absolute": "20%",
+    "discount_amount": "\u20ac5.74",
+    "discount_amount_to_display": "-\u20ac5.74",
+    "price_amount": 22.94,
+    "regular_price_amount": 28.68,
+    "regular_price": "\u20ac28.68",
+    "discount_to_display": "\u20ac5.74",
+    "unit_price_full": "\u20ac0.00 ",
+    "show_availability": true,
+    "availability_date": null,
+    "availability_message": "",
+    "availability": "available"
+  },
+  {
+    "add_to_cart_url": "http:\/\/localhost\/prestashop\/en\/cart?add=1&id_product=2&id_product_attribute=9&token=43fc8eff7eb0dd9521c64a607de62f74",
+    "id": "2",
+    "attributes": {
+      "1": {
+        "id_attribute": "1",
+        "id_attribute_group": "1",
+        "name": "S",
+        "group": "Size",
+        "reference": "demo_3",
+        "ean13": "",
+        "isbn": "",
+        "upc": "",
+        "mpn": ""
+      }
+    },
+    "show_price": true,
+    "weight_unit": "kg",
+    "url": "http:\/\/localhost\/prestashop\/en\/women\/2-9-brown-bear-printed-sweater.html#\/1-size-s",
+    "canonical_url": "http:\/\/localhost\/prestashop\/en\/women\/2-brown-bear-printed-sweater.html",
+    "condition": false,
+    "delivery_information": null,
+    "embedded_attributes": {
+      "id_product": "2",
+      "id_supplier": "1",
+      "id_manufacturer": "1",
+      "id_category_default": "5",
+      "id_shop_default": "1",
+      "on_sale": "0",
+      "online_only": "0",
+      "ecotax": "0.000000",
+      "quantity": 1200,
+      "minimal_quantity": "1",
+      "low_stock_threshold": null,
+      "low_stock_alert": "0",
+      "price": "\u20ac34.46",
+      "unity": "",
+      "unit_price": "\u20ac0.00",
+      "unit_price_ratio": 0,
+      "additional_shipping_cost": "0.000000",
+      "reference": "demo_3",
+      "out_of_stock": "2",
+      "customizable": "0",
+      "uploadable_files": "0",
+      "text_fields": "0",
+      "redirect_type": "404",
+      "id_type_redirected": "0",
+      "available_for_order": "1",
+      "available_date": null,
+      "show_condition": "0",
+      "condition": "new",
+      "show_price": "1",
+      "indexed": "1",
+      "visibility": "both",
+      "is_virtual": "0",
+      "cache_default_attribute": "9",
+      "date_add": "2022-02-28 09:18:12",
+      "date_upd": "2022-02-28 09:18:12",
+      "advanced_stock_management": "0",
+      "pack_stock_type": "3",
+      "description": "<p>Studio Design' PolyFaune collection features classic products with colorful patterns, inspired by the traditional japanese origamis. To wear with a chino or jeans. The sublimation textile printing process provides an exceptional color rendering and a color, guaranteed overtime.<\/p>",
+      "description_short": "<p>Regular fit, round neckline, long sleeves. 100% cotton, brushed inner side for extra comfort. <\/p>",
+      "link_rewrite": "brown-bear-printed-sweater",
+      "meta_description": "",
+      "meta_keywords": "",
+      "meta_title": "",
+      "name": "Hummingbird printed sweater",
+      "available_now": "",
+      "available_later": "",
+      "delivery_in_stock": "",
+      "delivery_out_stock": "",
+      "new": "1",
+      "id_product_attribute": "9",
+      "allow_oosp": 0,
+      "category": "women",
+      "category_name": "Women",
+      "link": "http:\/\/localhost\/prestashop\/en\/women\/2-brown-bear-printed-sweater.html",
+      "attribute_price": 0,
+      "price_tax_exc": 28.72,
+      "price_without_reduction": 43.08,
+      "reduction": 8.616,
+      "specific_prices": {
+        "id_specific_price": "2",
+        "id_specific_price_rule": "0",
+        "id_cart": "0",
+        "id_product": "2",
+        "id_shop": "0",
+        "id_shop_group": "0",
+        "id_currency": "0",
+        "id_country": "0",
+        "id_group": "0",
+        "id_customer": "0",
+        "id_product_attribute": "0",
+        "price": "-1.000000",
+        "from_quantity": "1",
+        "reduction": "0.200000",
+        "reduction_tax": "1",
+        "reduction_type": "percentage",
+        "from": "0000-00-00 00:00:00",
+        "to": "0000-00-00 00:00:00",
+        "score": "0"
+      },
+      "quantity_all_versions": 2100,
+      "id_image": "en-default",
+      "features": [
+        {
+          "name": "Composition",
+          "value": "Cotton",
+          "id_feature": "1",
+          "position": "0"
+        },
+        {
+          "name": "Property",
+          "value": "Long sleeves",
+          "id_feature": "2",
+          "position": "1"
+        }
+      ],
+      "attachments": [],
+      "virtual": 0,
+      "pack": 0,
+      "packItems": [],
+      "nopackprice": 0,
+      "customization_required": false,
+      "attributes": {
+        "1": {
+          "id_attribute": "1",
+          "id_attribute_group": "1",
+          "name": "S",
+          "group": "Size",
+          "reference": "demo_3",
+          "ean13": "",
+          "isbn": "",
+          "upc": "",
+          "mpn": ""
+        }
+      },
+      "rate": 20,
+      "tax_name": "TVA FR 20%",
+      "ecotax_rate": 0,
+      "images": [
+        {
+          "bySize": {
+            "small_default": {
+              "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+              "width": 98,
+              "height": 98
+            },
+            "cart_default": {
+              "url": "http:\/\/localhost\/prestashop\/21-cart_default\/brown-bear-printed-sweater.jpg",
+              "width": 125,
+              "height": 125
+            },
+            "home_default": {
+              "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+              "width": 250,
+              "height": 250
+            },
+            "medium_default": {
+              "url": "http:\/\/localhost\/prestashop\/21-medium_default\/brown-bear-printed-sweater.jpg",
+              "width": 452,
+              "height": 452
+            },
+            "large_default": {
+              "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+              "width": 800,
+              "height": 800
+            }
+          },
+          "small": {
+            "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+            "width": 98,
+            "height": 98
+          },
+          "medium": {
+            "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+            "width": 250,
+            "height": 250
+          },
+          "large": {
+            "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+            "width": 800,
+            "height": 800
+          },
+          "legend": "Brown bear printed sweater",
+          "id_image": "21",
+          "cover": "1",
+          "position": "1",
+          "associatedVariants": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ]
+        }
+      ],
+      "cover": {
+        "bySize": {
+          "small_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+            "width": 98,
+            "height": 98
+          },
+          "cart_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-cart_default\/brown-bear-printed-sweater.jpg",
+            "width": 125,
+            "height": 125
+          },
+          "home_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+            "width": 250,
+            "height": 250
+          },
+          "medium_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-medium_default\/brown-bear-printed-sweater.jpg",
+            "width": 452,
+            "height": 452
+          },
+          "large_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+            "width": 800,
+            "height": 800
+          }
+        },
+        "small": {
+          "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+          "width": 98,
+          "height": 98
+        },
+        "medium": {
+          "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+          "width": 250,
+          "height": 250
+        },
+        "large": {
+          "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+          "width": 800,
+          "height": 800
+        },
+        "legend": "Brown bear printed sweater",
+        "id_image": "21",
+        "cover": "1",
+        "position": "1",
+        "associatedVariants": [
+          "9",
+          "10",
+          "11",
+          "12"
+        ]
+      },
+      "has_discount": true,
+      "discount_type": "percentage",
+      "discount_percentage": "-20%",
+      "discount_percentage_absolute": "20%",
+      "discount_amount": "\u20ac8.62",
+      "discount_amount_to_display": "-\u20ac8.62",
+      "price_amount": 34.46,
+      "unit_price_full": "\u20ac0.00 ",
+      "show_availability": true,
+      "availability_date": null,
+      "availability_message": "",
+      "availability": "available"
+    },
+    "file_size_formatted": null,
+    "attachments": [],
+    "quantity_discounts": [],
+    "reference_to_display": "demo_3",
+    "grouped_features": {
+      "Composition": {
+        "name": "Composition",
+        "value": "Cotton",
+        "id_feature": "1",
+        "position": "0"
+      },
+      "Property": {
+        "name": "Property",
+        "value": "Long sleeves",
+        "id_feature": "2",
+        "position": "1"
+      }
+    },
+    "seo_availability": "https:\/\/schema.org\/InStock",
+    "labels": {
+      "tax_short": "(tax incl.)",
+      "tax_long": "Tax included"
+    },
+    "ecotax": {
+      "value": "\u20ac0.00",
+      "amount": "0.000000",
+      "rate": 0
+    },
+    "flags": {
+      "discount": {
+        "type": "discount",
+        "label": "-20%"
+      },
+      "new": {
+        "type": "new",
+        "label": "New"
+      }
+    },
+    "main_variants": [],
+    "specific_references": null,
+    "id_product": "2",
+    "id_supplier": "1",
+    "id_manufacturer": "1",
+    "id_category_default": "5",
+    "id_shop_default": "1",
+    "id_tax_rules_group": "1",
+    "on_sale": "0",
+    "online_only": "0",
+    "ean13": "",
+    "isbn": "",
+    "upc": "",
+    "mpn": "",
+    "quantity": 1200,
+    "minimal_quantity": "1",
+    "low_stock_threshold": null,
+    "low_stock_alert": "0",
+    "price": "\u20ac34.46",
+    "wholesale_price": "0.000000",
+    "unity": "",
+    "unit_price": "\u20ac0.00",
+    "unit_price_ratio": 0,
+    "additional_shipping_cost": "0.000000",
+    "reference": "demo_3",
+    "supplier_reference": "",
+    "location": "",
+    "width": "0.000000",
+    "height": "0.000000",
+    "depth": "0.000000",
+    "weight": "0.300000",
+    "out_of_stock": "2",
+    "additional_delivery_times": "1",
+    "quantity_discount": "0",
+    "customizable": "0",
+    "uploadable_files": "0",
+    "text_fields": "0",
+    "active": "1",
+    "redirect_type": "404",
+    "id_type_redirected": "0",
+    "available_for_order": "1",
+    "available_date": null,
+    "show_condition": "0",
+    "indexed": "1",
+    "visibility": "both",
+    "cache_is_pack": "0",
+    "cache_has_attachments": "0",
+    "is_virtual": "0",
+    "cache_default_attribute": "9",
+    "date_add": "2022-02-28 09:18:12",
+    "date_upd": "2022-02-28 09:18:12",
+    "advanced_stock_management": "0",
+    "pack_stock_type": "3",
+    "state": "1",
+    "product_type": "combinations",
+    "id_shop": "1",
+    "id_lang": "1",
+    "description": "<p>Studio Design' PolyFaune collection features classic products with colorful patterns, inspired by the traditional japanese origamis. To wear with a chino or jeans. The sublimation textile printing process provides an exceptional color rendering and a color, guaranteed overtime.<\/p>",
+    "description_short": "<p>Regular fit, round neckline, long sleeves. 100% cotton, brushed inner side for extra comfort. <\/p>",
+    "link_rewrite": "brown-bear-printed-sweater",
+    "meta_description": "",
+    "meta_keywords": "",
+    "meta_title": "",
+    "name": "Hummingbird printed sweater",
+    "available_now": "",
+    "available_later": "",
+    "delivery_in_stock": "",
+    "delivery_out_stock": "",
+    "new": "1",
+    "id_product_attribute": "9",
+    "allow_oosp": 0,
+    "cover_image_id": "21",
+    "category": "women",
+    "category_name": "Women",
+    "link": "http:\/\/localhost\/prestashop\/en\/women\/2-brown-bear-printed-sweater.html",
+    "attribute_price": 0,
+    "price_tax_exc": 28.72,
+    "price_without_reduction": 43.08,
+    "price_without_reduction_without_tax": 35.9,
+    "reduction": 8.616,
+    "reduction_without_tax": 7.18,
+    "specific_prices": {
+      "id_specific_price": "2",
+      "id_specific_price_rule": "0",
+      "id_cart": "0",
+      "id_product": "2",
+      "id_shop": "0",
+      "id_shop_group": "0",
+      "id_currency": "0",
+      "id_country": "0",
+      "id_group": "0",
+      "id_customer": "0",
+      "id_product_attribute": "0",
+      "price": "-1.000000",
+      "from_quantity": "1",
+      "reduction": "0.200000",
+      "reduction_tax": "1",
+      "reduction_type": "percentage",
+      "from": "0000-00-00 00:00:00",
+      "to": "0000-00-00 00:00:00",
+      "score": "0"
+    },
+    "quantity_all_versions": 2100,
+    "id_image": "en-default",
+    "features": [
+      {
+        "name": "Composition",
+        "value": "Cotton",
+        "id_feature": "1",
+        "position": "0"
+      },
+      {
+        "name": "Property",
+        "value": "Long sleeves",
+        "id_feature": "2",
+        "position": "1"
+      }
+    ],
+    "virtual": 0,
+    "pack": 0,
+    "packItems": [],
+    "nopackprice": 0,
+    "customization_required": false,
+    "rate": 20,
+    "tax_name": "TVA FR 20%",
+    "ecotax_rate": 0,
+    "unit_price_tax_excluded": 0,
+    "unit_price_tax_included": 0,
+    "images": [
+      {
+        "bySize": {
+          "small_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+            "width": 98,
+            "height": 98
+          },
+          "cart_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-cart_default\/brown-bear-printed-sweater.jpg",
+            "width": 125,
+            "height": 125
+          },
+          "home_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+            "width": 250,
+            "height": 250
+          },
+          "medium_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-medium_default\/brown-bear-printed-sweater.jpg",
+            "width": 452,
+            "height": 452
+          },
+          "large_default": {
+            "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+            "width": 800,
+            "height": 800
+          }
+        },
+        "small": {
+          "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+          "width": 98,
+          "height": 98
+        },
+        "medium": {
+          "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+          "width": 250,
+          "height": 250
+        },
+        "large": {
+          "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+          "width": 800,
+          "height": 800
+        },
+        "legend": "Brown bear printed sweater",
+        "id_image": "21",
+        "cover": "1",
+        "position": "1",
+        "associatedVariants": [
+          "9",
+          "10",
+          "11",
+          "12"
+        ]
+      }
+    ],
+    "default_image": {
+      "bySize": {
+        "small_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+          "width": 98,
+          "height": 98
+        },
+        "cart_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-cart_default\/brown-bear-printed-sweater.jpg",
+          "width": 125,
+          "height": 125
+        },
+        "home_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+          "width": 250,
+          "height": 250
+        },
+        "medium_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-medium_default\/brown-bear-printed-sweater.jpg",
+          "width": 452,
+          "height": 452
+        },
+        "large_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+          "width": 800,
+          "height": 800
+        }
+      },
+      "small": {
+        "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+        "width": 98,
+        "height": 98
+      },
+      "medium": {
+        "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+        "width": 250,
+        "height": 250
+      },
+      "large": {
+        "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+        "width": 800,
+        "height": 800
+      },
+      "legend": "Brown bear printed sweater",
+      "id_image": "21",
+      "cover": "1",
+      "position": "1",
+      "associatedVariants": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ]
+    },
+    "cover": {
+      "bySize": {
+        "small_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+          "width": 98,
+          "height": 98
+        },
+        "cart_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-cart_default\/brown-bear-printed-sweater.jpg",
+          "width": 125,
+          "height": 125
+        },
+        "home_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+          "width": 250,
+          "height": 250
+        },
+        "medium_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-medium_default\/brown-bear-printed-sweater.jpg",
+          "width": 452,
+          "height": 452
+        },
+        "large_default": {
+          "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+          "width": 800,
+          "height": 800
+        }
+      },
+      "small": {
+        "url": "http:\/\/localhost\/prestashop\/21-small_default\/brown-bear-printed-sweater.jpg",
+        "width": 98,
+        "height": 98
+      },
+      "medium": {
+        "url": "http:\/\/localhost\/prestashop\/21-home_default\/brown-bear-printed-sweater.jpg",
+        "width": 250,
+        "height": 250
+      },
+      "large": {
+        "url": "http:\/\/localhost\/prestashop\/21-large_default\/brown-bear-printed-sweater.jpg",
+        "width": 800,
+        "height": 800
+      },
+      "legend": "Brown bear printed sweater",
+      "id_image": "21",
+      "cover": "1",
+      "position": "1",
+      "associatedVariants": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ]
+    },
+    "has_discount": true,
+    "discount_type": "percentage",
+    "discount_percentage": "-20%",
+    "discount_percentage_absolute": "20%",
+    "discount_amount": "\u20ac8.62",
+    "discount_amount_to_display": "-\u20ac8.62",
+    "price_amount": 34.46,
+    "regular_price_amount": 43.08,
+    "regular_price": "\u20ac43.08",
+    "discount_to_display": "\u20ac8.62",
+    "unit_price_full": "\u20ac0.00 ",
+    "show_availability": true,
+    "availability_date": null,
+    "availability_message": "",
+    "availability": "available"
+  }
+]

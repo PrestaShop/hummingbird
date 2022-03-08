@@ -1,0 +1,21 @@
+{
+  "title": "",
+  "canonical": null,
+  "meta": {
+    "title": "LocalShop",
+    "description": "Shop powered by PrestaShop",
+    "keywords": "",
+    "robots": "index"
+  },
+  "page_name": "index",
+  "body_classes": {
+    "lang-en": true,
+    "lang-rtl": false,
+    "country-FR": true,
+    "currency-EUR": true,
+    "layout-full-width": true,
+    "page-index": true,
+    "tax-display-enabled": true
+  },
+  "admin_notifications": []
+}

@@ -37,44 +37,43 @@ describe('useToast', () => {
 
     it('should display the HTML markup message when used', () => {
       const toast = useToast(Toastify.TestMarkupMessage);
-      toast?.instance.show();
-
-      const toastMessage = toast?.content.innerHTML;
+      toast.show();
+      const toastMessage = toast.content();
       const expectedToastMessage = Toastify.TestMarkupMessage;
-      toast?.element.remove();
+      toast.remove();
 
       expect(toastMessage === expectedToastMessage).toBeTruthy();
     });
 
     it('should style the toast as same as the type when is set', () => {
       const toast = useToast('', Toastify.TestTypeOption);
-      toast?.instance.show();
-
-      const toastClassList = toast?.element.classList.toString();
+      toast.show();
+      const toastElement = toast.element();
+      const toastClassList = toastElement?.classList.toString();
       const expectedTypeClassList = Toastify.ExpectedTypeClassList;
-      toast?.element.remove();
+      toast.remove();
 
       expect(toastClassList?.match(new RegExp(expectedTypeClassList))?.length).toBeDefined();
     });
 
     it('should add the custom class list to the toast when is set', () => {
       const toast = useToast('', Toastify.TestClassListOption);
-      toast?.instance.show();
-
-      const toastClassList = toast?.element.classList.toString();
+      toast.show();
+      const toastElement = toast.element();
+      const toastClassList = toastElement?.classList.toString();
       const customClassList = Toastify.TestClassListOption.classlist?.toString() ?? '';
-      toast?.element.remove();
+      toast.remove();
 
       expect(toastClassList?.match(new RegExp(customClassList))?.length).toBeDefined();
     });
 
     it('should display the close button when autohide is false', () => {
       const toast = useToast('', Toastify.TestAutoHideOption);
-      toast?.instance.show();
-
-      const closeButtonElement = toast?.element.querySelector<HTMLButtonElement>(selectorsMap.toast?.close);
+      toast.show();
+      const toastElement = toast.element();
+      const closeButtonElement = toastElement?.querySelector<HTMLButtonElement>(selectorsMap.toast.close);
       const closeBtnClassList = closeButtonElement?.classList.toString();
-      toast?.element.remove();
+      toast.remove();
 
       expect(closeBtnClassList?.match('d-none')?.length).toBeUndefined();
     });
@@ -85,8 +84,9 @@ describe('useToast', () => {
       resetHTMLBodyContent(Toastify.WithoutContainer);
 
       const toast = useToast('');
-      toast?.instance.show();
-      const toastContainer = toast?.element.parentElement;
+      toast.show();
+      const toastElement = toast.element();
+      const toastContainer = toastElement?.parentElement;
 
       expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeTruthy();
     });
@@ -95,8 +95,8 @@ describe('useToast', () => {
       resetHTMLBodyContent(Toastify.WithContainerWithoutTemplate);
 
       const toast = useToast('');
-      toast?.instance.show();
-      const toastElement = toast?.element;
+      toast.show();
+      const toastElement = toast.element();
       const toastContainer = toastElement?.parentElement;
 
       expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeFalsy();
@@ -109,8 +109,8 @@ describe('useToast', () => {
       resetHTMLBodyContent(Toastify.WithContainerWithoutTemplate);
 
       const toast = useToast('', Toastify.TestTemplateOption);
-      toast?.instance.show();
-      const overrideToastElement = toast?.element;
+      toast.show();
+      const overrideToastElement = toast.element();
 
       expect(overrideToastElement?.classList.contains(Toastify.OverrideToastClass)).toBeTruthy();
     });
@@ -119,8 +119,8 @@ describe('useToast', () => {
       resetHTMLBodyContent(Toastify.WithoutContainer);
 
       const toast = useToast('', Toastify.TestTemplateOption);
-      toast?.instance.show();
-      const overrideToastElement = toast?.element;
+      toast.show();
+      const overrideToastElement = toast.element();
       const toastContainer = overrideToastElement?.parentElement;
 
       expect(toastContainer?.classList.contains(Toastify.FallbackContainerClass)).toBeTruthy();

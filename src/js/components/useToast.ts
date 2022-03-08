@@ -27,7 +27,25 @@ import {Toast} from 'bootstrap';
 import selectorsMap from '@constants/selectors-map';
 import * as Toaster from '@constants/useToast-data';
 
-const useToast = (message: string, options?: Toaster.Options): Toaster.Result | undefined => {
+const useToast = (message: string, options?: Toaster.Options): Toaster.Instance => {
+  let toastObject: Toaster.Instance = {
+    show: () => {
+      // Reveals the toast element’s instance
+    },
+    hide: () => {
+      // Hides the toast element’s instance
+    },
+    remove: () => {
+      // Removes the toast element from the toast container
+    },
+    element: () => {
+      // Returns the toast instance's element
+    },
+    content: () => {
+      // Gets or sets the HTML markup contained within the element
+    },
+  };
+
   const toastElement = getToastElement(options?.template);
 
   if (toastElement) {
@@ -43,20 +61,24 @@ const useToast = (message: string, options?: Toaster.Options): Toaster.Result | 
     const toastElementBody = toastElement.querySelector<HTMLElement>(selectorsMap.toast.body);
 
     if (toastElementBody) {
-      const toastObject: Toaster.Result = {
-        // It's a Bootstrap.Toast instance, will be used to show, hide and remove the toast
-        instance: new Toast(toastElement, {autohide: clonedOptions.autohide, delay: clonedOptions.delay}),
-        // In case someone wants to modify the toast markup afterwhile
-        element: toastElement,
-        // In case someone wants to modify the text content afterwhile
-        content: toastElementBody,
+      // It's a Bootstrap's Toast instance, will be used to show, hide and remove the toast
+      const instance = new Toast(toastElement, {autohide: clonedOptions.autohide, delay: clonedOptions.delay});
+      toastObject = {
+        show: () => instance.show(),
+        hide: () => instance.hide(),
+        remove: () => toastElement.remove(),
+        element: () => toastElement,
+        content: (markup) => {
+          if (markup) {
+            toastElementBody.innerHTML = markup;
+          }
+          return toastElementBody.innerHTML;
+        },
       };
-
-      return toastObject;
     }
   }
 
-  return undefined;
+  return toastObject;
 };
 
 const getToastElement = (template?: string): HTMLElement | undefined => {

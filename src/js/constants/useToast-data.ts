@@ -23,8 +23,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import {Toast} from 'bootstrap';
-
 export const Theme = {
   light: 'bg-light text-dark border-1',
   dark: 'bg-dark text-light',
@@ -63,8 +61,10 @@ export interface Options {
   template?: string;
 }
 
-export interface Result {
-  instance: Toast;
-  element: HTMLElement;
-  content: HTMLElement;
+export interface Instance {
+  show: () => void;
+  hide: () => void;
+  remove: () => void;
+  element: () => HTMLElement | void;
+  content: (markup?: string) => string | void;
 }

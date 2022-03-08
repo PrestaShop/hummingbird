@@ -1,0 +1,13 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import headingsContent from './headings.html'
+
+<Meta title="UI/Headings" />
+
+# Headings
+
+<Canvas>
+  <Story name="Headings" parameters={{ docs: { source: { code: headingsContent } } }}>
+    {() => headingsContent}
+  </Story>
+</Canvas>
+

@@ -1,0 +1,106 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import inputContent from './input.html'
+import disabledContent from './disabled.html'
+import helperContent from './helper.html'
+import checkboxesContent from './checkboxes.html'
+import radiosContent from './radios.html'
+import switchContent from './switch.html'
+import selectContent from './selects.html'
+import statesContent from './states.html'
+import groupContent from './input-group.html'
+import inputDropdownContent from './input-dropdown.html'
+import loginContent from './login-example.html'
+
+<Meta title="UI/Forms" />
+
+# Normal
+
+<Canvas>
+  <Story name="Normal" parameters={{ docs: { source: { code: inputContent } } }}>
+    {() => inputContent}
+  </Story>
+</Canvas>
+
+# Disabled
+
+<Canvas>
+  <Story name="Disabled" parameters={{ docs: { source: { code: disabledContent } } }}>
+    {() => disabledContent}
+  </Story>
+</Canvas>
+
+# Input states
+
+<Canvas>
+  <Story name="Input states" parameters={{ docs: { source: { code: statesContent } } }}>
+    {() => statesContent}
+  </Story>
+</Canvas>
+
+# Input group
+
+<Canvas>
+  <Story name="Input group" parameters={{ docs: { source: { code: groupContent } } }}>
+    {() => groupContent}
+  </Story>
+</Canvas>
+
+# Input with dropdown
+
+<Canvas>
+  <Story name="Input with dropdown" parameters={{ docs: { source: { code: inputDropdownContent } } }}>
+    {() => inputDropdownContent}
+  </Story>
+</Canvas>
+
+# Example of login form
+
+<Canvas>
+  <Story name="Example of login form" parameters={{ docs: { source: { code: loginContent } } }}>
+    {() => loginContent}
+  </Story>
+</Canvas>
+
+# Helpers
+
+<Canvas>
+  <Story name="Helpers" parameters={{ docs: { source: { code: helperContent } } }}>
+    {() => helperContent}
+  </Story>
+</Canvas>
+
+# Checkboxes
+
+<Canvas>
+  <Story name="Checkboxes" parameters={{ docs: { source: { code: checkboxesContent } } }}>
+    {() => checkboxesContent}
+  </Story>
+</Canvas>
+
+# Radio buttons
+
+<Canvas>
+  <Story name="Radio buttons" parameters={{ docs: { source: { code: radiosContent } } }}>
+    {() => radiosContent}
+  </Story>
+</Canvas>
+
+# Switch
+
+<Canvas>
+  <Story name="Switch" parameters={{ docs: { source: { code: switchContent } } }}>
+    {() => {
+      return switchContent;
+    }}
+  </Story>
+</Canvas>
+
+# Selects
+
+<Canvas>
+  <Story name="Selects" parameters={{ docs: { source: { code: selectContent } } }}>
+    {() => {
+      return selectContent;
+    }}
+  </Story>
+</Canvas>

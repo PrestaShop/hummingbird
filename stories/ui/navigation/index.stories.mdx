@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import navtabsContent from './navtabs.html';
+import navWithoutBackgroundContent from './navtabs-without-background.html';
+
+<Meta title="UI/Navigation" />
+
+# Navigation tabs (Works with background)
+
+<Canvas>
+  <Story name="Navigation tabs" parameters={{ docs: { source: { code: navtabsContent } } }}>
+    {() => navtabsContent}
+  </Story>
+</Canvas>
+
+# Navigation pills (Works without background)
+
+<Canvas>
+  <Story name="Navigation pills" parameters={{ docs: { source: { code: navWithoutBackgroundContent } } }}>
+    {() => navWithoutBackgroundContent}
+  </Story>
+</Canvas>

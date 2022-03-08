@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import productContent from '../../../scripts/build/catalog/_partials/miniature/product.html'
+
+<Meta title="Theme/Product list" />
+
+# Basics
+
+These alerts are used to display messages.
+
+<Canvas>
+  <Story name="Product list" parameters={{ docs: { source: { code: productContent } } }}>
+      {() => productContent}
+  </Story>
+</Canvas>

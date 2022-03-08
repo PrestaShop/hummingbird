@@ -20,6 +20,7 @@ exports.commonConfig = ({
         alias: {
           '@js': path.resolve(__dirname, '../src/js'),
           '@services': path.resolve(__dirname, '../src/js/services'),
+          '@scripts': path.resolve(__dirname, '../scripts'),
           '@constants': path.resolve(__dirname, '../src/js/constants'),
           '@helpers': path.resolve(__dirname, '../src/js/helpers'),
         },

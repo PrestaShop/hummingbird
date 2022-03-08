@@ -4,3 +4,4 @@ webpack.config.js
 postcss.config.js
 /classic/
 /js/lib/
+/scripts/

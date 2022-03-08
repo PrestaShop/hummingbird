@@ -1,0 +1,12 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import basicContent from './basic.html';
+
+<Meta title="UI/Pagination" />
+
+# Basic
+
+<Canvas>
+  <Story name="Basic" parameters={{ docs: { source: { code: basicContent } } }}>
+    {() => basicContent}
+  </Story>
+</Canvas>

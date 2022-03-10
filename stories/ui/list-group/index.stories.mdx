@@ -1,0 +1,13 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import listGroupContent from './list-group.html'
+
+<Meta title="UI/List group" />
+
+# List group
+
+<Canvas>
+  <Story name="List group" parameters={{ docs: { source: { code: listGroupContent } } }}>
+    {() => listGroupContent}
+  </Story>
+</Canvas>
+

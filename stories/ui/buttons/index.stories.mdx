@@ -1,0 +1,90 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import basicsContent from './basics.html'
+import outlineContent from './outline.html'
+import disabledContent from './disabled.html'
+import sizesContent from './sizes.html'
+import transparentContent from './transparent.html'
+import anchorContent from './anchor.html'
+import withIconsContent from './with-icons.html'
+import groupContent from './group.html'
+import groupRadioContent from './group-radio.html'
+
+<Meta title="UI/Buttons" />
+
+# Basics
+
+Some basic buttons
+
+<Canvas>
+  <Story name="Basics" parameters={{ docs: { source: { code: basicsContent } } }}>
+    {() => basicsContent}
+  </Story>
+</Canvas>
+
+# Outline
+
+<Canvas>
+  <Story name="Outline" parameters={{ docs: { source: { code: outlineContent } } }}>
+    {() => outlineContent}
+  </Story>
+</Canvas>
+
+# Disabled
+
+Every buttons have this style when they're disabled.
+
+<Canvas>
+  <Story name="Disabled" parameters={{ docs: { source: { code: disabledContent } } }}>
+    {() => disabledContent}
+  </Story>
+</Canvas>
+
+# Sizes
+
+You are able to use different sizes of buttons
+
+<Canvas>
+  <Story name="Sizes" parameters={{ docs: { source: { code: sizesContent } } }}>
+    {() => sizesContent}
+  </Story>
+</Canvas>
+
+# Transparent
+
+<Canvas>
+  <Story name="Transparent" parameters={{ docs: { source: { code: transparentContent } } }}>
+    {() => transparentContent}
+  </Story>
+</Canvas>
+
+# Anchor
+
+<Canvas>
+  <Story name="Anchor" parameters={{ docs: { source: { code: anchorContent } } }}>
+    {() => anchorContent}
+  </Story>
+</Canvas>
+
+# Buttons with icons
+
+<Canvas>
+  <Story name="Buttons with icons" parameters={{ docs: { source: { code: withIconsContent } } }}>
+    {() => withIconsContent}
+  </Story>
+</Canvas>
+
+# Group
+
+<Canvas>
+  <Story name="Button group" parameters={{ docs: { source: { code: groupContent } } }}>
+    {() => groupContent}
+  </Story>
+</Canvas>
+
+# Group with radio buttons
+
+<Canvas>
+  <Story name="Button group with radio buttons" parameters={{ docs: { source: { code: groupRadioContent } } }}>
+    {() => groupRadioContent}
+  </Story>
+</Canvas>

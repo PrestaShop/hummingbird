@@ -1,0 +1,120 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import basicContent from './basic.html'
+import borderedContent from './bordered.html'
+import hoverableContent from './hoverable.html'
+import withfiltersContent from './withfilters.html'
+import withformContent from './withform.html'
+import stripedContent from './striped.html'
+import sortableContent from './sortable.html'
+import bootstrapContent from './bootstrap.html'
+import darkContent from './dark.html'
+import darkStripedContent from './dark-striped.html'
+import darkHoverableContent from './dark-hoverable.html'
+import darkBorderedContent from './dark-bordered.html'
+import darkWithHeadContent from './dark-with-head.html'
+
+<Meta title="UI/Tables" />
+
+# Basic
+
+<Canvas>
+  <Story name="Basic" parameters={{ docs: { source: { code: basicContent } } }}>
+    {() => basicContent}
+  </Story>
+</Canvas>
+
+# Bordered
+
+<Canvas>
+  <Story name="Bordered" parameters={{ docs: { source: { code: borderedContent } } }}>
+    {() => borderedContent}
+  </Story>
+</Canvas>
+
+# Hoverable
+
+<Canvas>
+  <Story name="Hoverable" parameters={{ docs: { source: { code: hoverableContent } } }}>
+    {() => hoverableContent}
+  </Story>
+</Canvas>
+
+# With filters
+
+<Canvas>
+  <Story name="With filters" parameters={{ docs: { source: { code: withfiltersContent } } }}>
+    {() => withfiltersContent}
+  </Story>
+</Canvas>
+
+# With form
+
+<Canvas>
+  <Story name="With form" parameters={{ docs: { source: { code: withformContent } } }}>
+    {() => withformContent}
+  </Story>
+</Canvas>
+
+# Striped
+
+<Canvas>
+  <Story name="Striped" parameters={{ docs: { source: { code: stripedContent } } }}>
+    {() => stripedContent}
+  </Story>
+</Canvas>
+
+# Sortable
+
+<Canvas>
+  <Story name="Sortable" parameters={{ docs: { source: { code: sortableContent } } }}>
+    {() => sortableContent}
+  </Story>
+</Canvas>
+
+# Bootstrap
+
+<Canvas>
+  <Story name="Bootstrap" parameters={{ docs: { source: { code: bootstrapContent } } }}>
+    {() => bootstrapContent}
+  </Story>
+</Canvas>
+
+# Dark
+
+<Canvas>
+  <Story name="Dark" parameters={{ docs: { source: { code: darkContent } } }}>
+    {() => darkContent}
+  </Story>
+</Canvas>
+
+# Dark striped
+
+<Canvas>
+  <Story name="Dark striped" parameters={{ docs: { source: { code: darkStripedContent } } }}>
+    {() => darkStripedContent}
+  </Story>
+</Canvas>
+
+# Dark hoverable
+
+<Canvas>
+  <Story name="Dark hoverable" parameters={{ docs: { source: { code: darkHoverableContent } } }}>
+    {() => darkHoverableContent}
+  </Story>
+</Canvas>
+
+# Dark bordered
+
+<Canvas>
+  <Story name="Dark bordered" parameters={{ docs: { source: { code: darkBorderedContent } } }}>
+    {() => darkBorderedContent}
+  </Story>
+</Canvas>
+
+# Dark with head
+
+<Canvas>
+  <Story name="Dark with head" parameters={{ docs: { source: { code: darkWithHeadContent } } }}>
+    {() => darkWithHeadContent}
+  </Story>
+</Canvas>

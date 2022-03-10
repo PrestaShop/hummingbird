@@ -1,0 +1,15 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import textsContent from './texts.html'
+
+<Meta title="UI/Texts" />
+
+# Texts
+
+Here are every texts components you can use.
+
+<Canvas>
+  <Story name="Texts" parameters={{ docs: { source: { code: textsContent } } }}>
+    {() => textsContent}
+  </Story>
+</Canvas>
+

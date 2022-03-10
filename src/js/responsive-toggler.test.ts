@@ -20,7 +20,7 @@ beforeAll(() => {
 });
 
 describe('Responsive Toggler', () => {
-  test('should switch desktop to mobile elements if screen width < 768', () => {
+  it('should switch desktop to mobile elements if screen width < 768', () => {
     Object.defineProperty(window, 'innerWidth', {writable: true, configurable: true, value: 320});
     window.dispatchEvent(new window.Event('resize'));
     const mobileDomElement = document.querySelector(`#${mobileElementId}`) as HTMLElement;
@@ -28,7 +28,7 @@ describe('Responsive Toggler', () => {
     expect(mobileDomElement.innerHTML).toEqual(contentValue);
   });
 
-  test('should switch mobile to desktop element if screen width > 768', () => {
+  it('should switch mobile to desktop element if screen width > 768', () => {
     Object.defineProperty(window, 'innerWidth', {writable: true, configurable: true, value: 1920});
     window.dispatchEvent(new window.Event('resize'));
     const desktopDomElement = document.querySelector(`#${desktopElementId}`) as HTMLElement;

@@ -4,7 +4,7 @@ import {
 } from '../constants/mocks/swapElements-data';
 
 describe('Helpers', () => {
-  test('should swap children 1 with children 2', () => {
+  it('should swap children 1 with children 2', () => {
     document.body.innerHTML = `
       ${desktopElement}
       ${mobileElement}

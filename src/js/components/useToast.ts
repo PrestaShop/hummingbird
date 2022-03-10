@@ -41,10 +41,10 @@ const useToast = (message: string, options?: Toaster.Options): Toaster.Instance 
     hide: () => false,
     // Hides the element’s toast, element will remain on the DOM but toast won’t show anymore
     dispose: () => false,
-    // Removes the toast's element from the DOM and toast won’t show anymore
-    remove: () => false,
     // Gets or sets the HTML markup contained within the toast's element
     message: () => false,
+    // Removes the toast's element from the DOM and toast won’t show anymore
+    remove: () => false,
   };
 
   const toastElement = getToastElement(options?.template);
@@ -88,19 +88,19 @@ const useToast = (message: string, options?: Toaster.Options): Toaster.Instance 
           }
           return false;
         },
-        remove: () => {
-          if (toastElement.isConnected) {
-            toastElement.remove();
-            return true;
-          }
-          return false;
-        },
         message: (markup: string) => {
           if (toastElement.isConnected) {
             if (markup) {
               toastElementBody.innerHTML = markup;
             }
             return toastElementBody.innerHTML;
+          }
+          return false;
+        },
+        remove: () => {
+          if (toastElement.isConnected) {
+            toastElement.remove();
+            return true;
           }
           return false;
         },

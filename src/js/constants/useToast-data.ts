@@ -39,7 +39,7 @@ export const Theme = {
 export const Fallback = `
   <div class="toast-container toast-container--fallback position-fixed top-0 end-0 p-3" id="js-toast-container">
     <template class="js-toast-template">
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast toast--fallback" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
           <div class="toast-body"></div>
           <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
@@ -63,8 +63,13 @@ export interface Options {
   template?: string;
 }
 
-export interface Result {
-  instance: Toast;
-  element: HTMLElement;
-  content: HTMLElement;
+export interface Instance {
+  instance: Toast | null;
+  element: HTMLElement | null;
+  content: HTMLElement | null;
+  show: () => boolean;
+  hide: () => boolean;
+  dispose: () => boolean;
+  remove: () => boolean;
+  message: (markup?: string) => string | boolean;
 }

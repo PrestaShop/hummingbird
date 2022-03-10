@@ -1,6 +1,4 @@
 import '../assets/css/theme.css';
-import '../vendor/prestashop/ps_searchbar/ps_searchbar.css';
-import bootstrap from 'bootstrap'
 //import '../../core.js';
 //import '../assets/js/theme.js';
 
@@ -15,7 +13,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Theme', ['Introduction', '*'], 'UI', ['Introduction']],
+      order: ['UI', ['Introduction']],
     },
   },
 }

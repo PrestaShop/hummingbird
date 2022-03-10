@@ -54,6 +54,7 @@ export const WithContainerWithTemplate = `
     <template class="js-toast-template">
       <div class="toast">
         <div class="toast-body"></div>
+        <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>
       </div>
     </template>
   </div>

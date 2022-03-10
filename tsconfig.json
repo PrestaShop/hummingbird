@@ -15,7 +15,6 @@
       "@services/*": ["src/js/services/*"],
       "@helpers/*": ["src/js/helpers/*"],
       "@constants/*": ["src/js/constants/*"],
-      "@scripts/*": ["scripts/*"],
       "@js/*": ["src/js/*"]
     }
   }

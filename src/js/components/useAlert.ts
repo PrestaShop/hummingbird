@@ -135,7 +135,7 @@ const appendAlertElement = (options?: Alerter.Options): HTMLElement | null => {
   }
 
   printConsoleError(
-    'The container for alert not found here.',
+    'The notifications container not found here.',
   );
 
   return null;

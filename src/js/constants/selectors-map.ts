@@ -23,60 +23,59 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import {Alert} from 'bootstrap';
-
-export const Theme = {
-  light: 'alert-light',
-  dark: 'alert-dark',
-  primary: 'alert-primary',
-  secondary: 'alert-secondary',
-  info: 'alert-info',
-  success: 'alert-success',
-  warning: 'alert-warning',
-  danger: 'alert-danger',
+export const facetedsearch = {
+  range: '.js-faceted-slider',
+  rangeContainer: '.js-faceted-slider-container',
+  filterSlider: '.js-faceted-filter-slider',
 };
 
-export const Codepoint = {
-  light: 'e88f',
-  dark: 'e88f',
-  primary: 'e88f',
-  secondary: 'e88f',
-  info: 'e88e',
-  success: 'e5ca',
-  warning: 'e002',
-  danger: 'e000',
+export const pageLoader = '.js-page-loader';
+
+export const listing = {
+  searchFilterToggler: '#search_filter_toggler, .js-search-toggler',
+  searchFiltersWrapper: '#search_filters_wrapper',
+  searchFilterControls: '#search_filter_controls',
+  searchFilters: '#search-filters',
+  activeSearchFilters: '#js-active-search-filters',
+  listTop: '#js-product-list-top',
+  product: '.js-product',
+  list: '#js-product-list',
+  listBottom: '#js-product-list-bottom',
+  listHeader: '#js-product-list-header',
+  searchFiltersClearAll: '.js-search-filters-clear-all',
+  searchLink: '.js-search-link',
 };
 
-export const Template = `
-  <div class="alert alert-dismissible fade d-flex flex-wrap align-items-center" role="alert">
-    <h4 class="alert-heading w-100 d-none"></h4>
-    <i class="material-icons flex-shrink-0 me-2"></i>
-    <div class="alert-body flex-fill"></div>
-    <button type="button" class="btn-close ms-2" data-bs-dismiss="alert"></button>
-  </div>
-`;
-
-export const Default: Options = {
-  type: 'info',
-  dismissible: true,
+const selectorsMap = {
+  qtyInput: {
+    default: '.js-quantity-button input',
+    modal: '.modal-dialog .js-quantity-button input',
+  },
+  toast: {
+    container: '#js-toast-container',
+    template: '.js-toast-template',
+    toast: '.toast',
+    body: '.toast-body',
+    close: '.btn-close',
+  },
+  alert: {
+    selector: '#notifications .container',
+    alert: '.alert',
+    heading: '.alert-heading',
+    body: '.alert-body',
+    icon: '.material-icons',
+    close: '.btn-close',
+  },
+  product: {
+    carousel: '.js-product-carousel',
+    miniature: '.js-product-miniature',
+    thumbnail: '.js-thumb-container',
+    activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
+  },
+  quickview: '.js-quickview',
+  facetedsearch,
+  pageLoader,
+  listing,
 };
 
-export interface Options {
-  type: keyof typeof Theme;
-  icon?: string;
-  title?: string;
-  dismissible?: boolean;
-  classlist?: string;
-  selector?: string;
-}
-
-export interface Instance {
-  instance: Alert | null;
-  element: HTMLElement | null;
-  show: () => boolean;
-  hide: () => boolean;
-  dispose: () => boolean;
-  remove: () => boolean;
-  title: (markup?: string) => string | boolean;
-  message: (markup?: string) => string | boolean;
-}
+export default selectorsMap;

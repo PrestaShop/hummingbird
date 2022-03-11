@@ -33,23 +33,24 @@ const useAlert = (message: string, options?: Alerter.Options): Alerter.Instance 
     instance: null,
     // In case someone wants to access the alert's element afterwhile
     element: null,
-    // In case someone wants to modify the alert's content afterwhile
-    content: null,
     // Reveals the element’s alert
     show: () => false,
     // Hides the element’s alert
     hide: () => false,
     // Hides the element’s alert, element will remain on the DOM but alert won’t show anymore
     dispose: () => false,
-    // Gets or sets the HTML markup contained within the alert's element
+    // Gets or sets the HTML markup contained within the alert's header
+    title: () => false,
+    // Gets or sets the HTML markup contained within the alert's body
     message: () => false,
     // Removes the alert's element from the DOM and alert won’t show anymore
     remove: () => false,
   };
 
-  const alertElement = appendAlertElement(options);
+  const alertElement = createAlertElement(options);
 
   if (alertElement) {
+    const alertElementHeader = insertAlertTitle(alertElement, options?.title);
     const alertElementBody = insertAlertMessage(alertElement, message);
 
     if (alertElementBody) {
@@ -57,7 +58,6 @@ const useAlert = (message: string, options?: Alerter.Options): Alerter.Instance 
       alertObject = {
         instance: alertInstance,
         element: alertElement,
-        content: alertElementBody,
         show: () => {
           if (alertElement.isConnected) {
             alertElement.classList.add('show');
@@ -79,8 +79,17 @@ const useAlert = (message: string, options?: Alerter.Options): Alerter.Instance 
           }
           return false;
         },
+        title: (markup: string) => {
+          if (alertElementHeader?.isConnected) {
+            if (markup) {
+              alertElementHeader.innerHTML = markup;
+            }
+            return alertElementHeader.innerHTML;
+          }
+          return false;
+        },
         message: (markup: string) => {
-          if (alertElement.isConnected) {
+          if (alertElementBody.isConnected) {
             if (markup) {
               alertElementBody.innerHTML = markup;
             }
@@ -102,41 +111,77 @@ const useAlert = (message: string, options?: Alerter.Options): Alerter.Instance 
   return alertObject;
 };
 
-const appendAlertElement = (options?: Alerter.Options): HTMLElement | null => {
+const createAlertElement = (options?: Alerter.Options): HTMLElement | null => {
   const alertOptions = {...Alerter.Default, ...options};
+  // If selector sent then append alert inside it
+  // Otherwise use the notifications container
+  const selector = alertOptions.selector ?? selectorsMap.alert.selector;
+  const alertSelectorElement = document.querySelector<HTMLElement>(selector);
 
-  const alertContainer = (alertOptions.container)
-    ? document.querySelector<HTMLElement>(alertOptions.container)
-    : document.querySelector<HTMLElement>(selectorsMap.alert.container);
-
-  if (alertContainer) {
+  if (alertSelectorElement) {
     const dummyElement = document.createElement('div');
     dummyElement.innerHTML = Alerter.Template;
     const alertElement = dummyElement.querySelector<HTMLElement>(selectorsMap.alert.alert);
 
     if (alertElement) {
+      // Style the alert based on corresponding type
       alertElement.classList.add(Alerter.Theme[alertOptions.type]);
 
-      const alertIconElement = dummyElement.querySelector<HTMLElement>(selectorsMap.alert.icon);
+      // The icon will be displayed only when alert hasn't title
+      const alertElementIcon = alertElement.querySelector<HTMLElement>(selectorsMap.alert.icon);
 
-      if (alertIconElement) {
-        alertIconElement.innerHTML = `&#x${Alerter.Codepoint[alertOptions.type]};`;
+      if (alertOptions.title === undefined) {
+        // If custom icon sent then use it
+        // otherwise use the corresponding icon based on the type
+        const codepoint = (alertOptions.icon)
+          ? alertOptions.icon
+          : Alerter.Codepoint[alertOptions.type];
+
+        if (alertElementIcon) {
+          alertElementIcon.innerHTML = `&#x${codepoint};`;
+        }
+      } else {
+        alertElementIcon?.classList.add('d-none');
       }
 
+      // By default alert has close button
       if (alertOptions.dismissible === false) {
-        const closeButtonElement = alertElement.querySelector<HTMLElement>(selectorsMap.alert.close);
-        closeButtonElement?.classList.add('d-none');
+        const alertElementCloseBtn = alertElement.querySelector<HTMLElement>(selectorsMap.alert.close);
+        alertElementCloseBtn?.classList.add('d-none');
       }
 
-      alertContainer.appendChild(alertElement);
+      // The custom class list will be added to the alert element
+      if (alertOptions.classlist) {
+        alertOptions.classlist.split(' ').forEach((value) => {
+          if (value) {
+            alertElement.classList.add(value);
+          }
+        });
+      }
+
+      alertSelectorElement.appendChild(alertElement);
     }
 
     return alertElement;
   }
 
-  printConsoleError(
-    'The notifications container not found here.',
-  );
+  // The notifications container is not exists in the DOM and the selector not sent as parameter
+  console.error('The selector for alert is not valid: %c%o', 'color: white', selector);
+
+  return null;
+};
+
+const insertAlertTitle = (alertElement: HTMLElement, title?: string): HTMLElement | null => {
+  if (title) {
+    const alertHeader = alertElement.querySelector<HTMLElement>(selectorsMap.alert.heading);
+
+    if (alertHeader) {
+      alertHeader.innerHTML = title;
+      alertHeader.classList.remove('d-none');
+
+      return alertHeader;
+    }
+  }
 
   return null;
 };
@@ -149,17 +194,6 @@ const insertAlertMessage = (alertElement: HTMLElement, message: string): HTMLEle
   }
 
   return alertBody;
-};
-
-const printConsoleError = (error: string, info?: string): void => {
-  if (info) {
-    console.group('useAlert');
-    console.error(error);
-    console.info(info);
-    console.groupEnd();
-  } else {
-    console.error(error);
-  }
 };
 
 export default useAlert;

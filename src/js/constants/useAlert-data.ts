@@ -26,6 +26,10 @@
 import {Alert} from 'bootstrap';
 
 export const Theme = {
+  light: 'alert-light',
+  dark: 'alert-dark',
+  primary: 'alert-primary',
+  secondary: 'alert-secondary',
   info: 'alert-info',
   success: 'alert-success',
   warning: 'alert-warning',
@@ -33,6 +37,10 @@ export const Theme = {
 };
 
 export const Codepoint = {
+  light: 'e88f',
+  dark: 'e88f',
+  primary: 'e88f',
+  secondary: 'e88f',
   info: 'e88e',
   success: 'e5ca',
   warning: 'e002',
@@ -40,7 +48,8 @@ export const Codepoint = {
 };
 
 export const Template = `
-  <div class="alert alert-dismissible fade d-flex align-items-center" role="alert">
+  <div class="alert alert-dismissible fade d-flex flex-wrap align-items-center" role="alert">
+    <h4 class="alert-heading w-100 d-none"></h4>
     <i class="material-icons flex-shrink-0 me-2"></i>
     <div class="alert-body flex-fill"></div>
     <button type="button" class="btn-close ms-2" data-bs-dismiss="alert"></button>
@@ -54,17 +63,20 @@ export const Default: Options = {
 
 export interface Options {
   type: keyof typeof Theme;
+  icon?: string;
+  title?: string;
   dismissible?: boolean;
-  container?: string;
+  classlist?: string;
+  selector?: string;
 }
 
 export interface Instance {
   instance: Alert | null;
   element: HTMLElement | null;
-  content: HTMLElement | null;
   show: () => boolean;
   hide: () => boolean;
   dispose: () => boolean;
   remove: () => boolean;
+  title: (markup?: string) => string | boolean;
   message: (markup?: string) => string | boolean;
 }

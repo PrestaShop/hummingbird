@@ -59,8 +59,9 @@ const selectorsMap = {
     close: '.btn-close',
   },
   alert: {
-    container: '#notifications .container',
+    selector: '#notifications .container',
     alert: '.alert',
+    heading: '.alert-heading',
     body: '.alert-body',
     icon: '.material-icons',
     close: '.btn-close',

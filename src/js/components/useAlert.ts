@@ -47,7 +47,7 @@ const useAlert = (message: string, options?: Alerter.Options): Alerter.Instance 
     remove: () => false,
   };
 
-  const alertElement = createAlertElement(options);
+  const alertElement = cloneAlertElement(options);
 
   if (alertElement) {
     const alertElementHeader = insertAlertTitle(alertElement, options?.title);
@@ -111,7 +111,7 @@ const useAlert = (message: string, options?: Alerter.Options): Alerter.Instance 
   return alertObject;
 };
 
-const createAlertElement = (options?: Alerter.Options): HTMLElement | null => {
+const cloneAlertElement = (options?: Alerter.Options): HTMLElement | null => {
   const alertOptions = {...Alerter.Default, ...options};
   // If selector sent then append alert inside it
   // Otherwise use the notifications container

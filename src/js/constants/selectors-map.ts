@@ -58,6 +58,13 @@ const selectorsMap = {
     body: '.toast-body',
     close: '.btn-close',
   },
+  alert: {
+    container: '#notifications .container',
+    alert: '.alert',
+    body: '.alert-body',
+    icon: '.material-icons',
+    close: '.btn-close',
+  },
   product: {
     carousel: '.js-product-carousel',
     miniature: '.js-product-miniature',

@@ -1,0 +1,12 @@
+$component-name: search-filters;
+
+.#{$component-name} {
+  & &-subtitle {
+    // stylelint-disable-next-line
+    width: auto !important;
+  }
+
+  .noUi-horizontal {
+    margin-top: 2rem;
+  }
+}

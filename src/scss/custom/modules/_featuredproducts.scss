@@ -1,0 +1,11 @@
+.all-product-link.btn {
+  i {
+    color: $primary;
+  }
+
+  &:hover {
+    i {
+      color: $white;
+    }
+  }
+}

@@ -34,7 +34,7 @@
     "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}",
     {if $product.ean13}"gtin13": "{$product.ean13}",{else if $product.upc}"gtin13": "{$product.upc}",{/if}
     {if $product_manufacturer->name OR $shop.name}"brand": {
-      "@type": "Thing",
+      "@type": "Brand",
       "name": "{if $product_manufacturer->name}{$product_manufacturer->name|escape:'html':'UTF-8'}{else}{$shop.name}{/if}"
     },{/if}
     {if isset($nbComments) && $nbComments && $ratings.avg}"aggregateRating": {
@@ -57,7 +57,7 @@
             "price": "{$product.price_amount}",
             "url": "{$product.url}",
             "priceValidUntil": "{($smarty.now + (int) (60*60*24*15))|date_format:"%Y-%m-%d"}",
-            {if $product.images|count > 0}
+            {if $product.images|count> 0}
               "image": {strip}[
                 {foreach from=$product.images item=p_img name="p_img_list"}
                   "{$p_img.large.url}"{if not $smarty.foreach.p_img_list.last},{/if}
@@ -68,7 +68,7 @@
             "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}",
             {if $product.ean13}"gtin13": "{$product.ean13}",{else if $product.upc}"gtin13": "0{$product.upc}",{/if}
             {if $product.condition == 'new'}"itemCondition": "https://schema.org/NewCondition",{/if}
-            {if $product.show_condition > 0}
+            {if $product.show_condition> 0}
               {if $product.condition == 'used'}"itemCondition": "https://schema.org/UsedCondition",{/if}
               {if $product.condition == 'refurbished'}"itemCondition": "https://schema.org/RefurbishedCondition",{/if}
             {/if}

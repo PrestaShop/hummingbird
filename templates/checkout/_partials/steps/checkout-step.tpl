@@ -31,13 +31,15 @@
                         '-complete'       => $step_is_complete,
                         'js-current-step' => $step_is_current
                     ]|classnames}"
-  >
-    <h1 class="step-title js-step-title h3">
-      <i class="material-icons rtl-no-flip done">&#xE876;</i>
-      <span class="step-number">{$position}</span>
-      {$title}
-      <span class="step-edit text-muted"><i class="material-icons edit">mode_edit</i> {l s='Edit' d='Shop.Theme.Actions'}</span>
-    </h1>
+ >
+    <div class="step-title js-step-title">
+      <h1 class="step-title-left h3">
+        <span class="step-number">{$position}</span>
+        {$title}
+      </h1>
+
+      <span class="step-edit text-muted">{l s='Edit' d='Shop.Theme.Actions'}</span>
+    </div>
 
     <div class="content">
       {block name='step_content'}DUMMY STEP CONTENT{/block}

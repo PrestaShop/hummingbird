@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "./assets/js/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "strict": true,
+    "strictFunctionTypes": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "baseUrl": "./",
+    "paths": {
+      "@services/*": ["src/js/services/*"],
+      "@helpers/*": ["src/js/helpers/*"],
+      "@constants/*": ["src/js/constants/*"],
+      "@js/*": ["src/js/*"]
+    }
+  }
+}

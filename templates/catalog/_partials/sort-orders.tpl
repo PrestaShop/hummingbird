@@ -23,8 +23,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<span class="col-sm-3 col-md-3 d-none d-sm-block d-md-block sort-by">{l s='Sort by:' d='Shop.Theme.Global'}</span>
-<div class="{if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if} col-md-9 products-sort-order dropdown">
+<span class="col-sm-3 d-none d-sm-block d-md-block sort-by">{l s='Sort by:' d='Shop.Theme.Global'}</span>
+<div class="{if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12{/if} col-md-9 products-sort-order dropdown">
   <button
     class="btn-unstyle select-title"
     rel="nofollow"
@@ -32,7 +32,7 @@
     aria-haspopup="true"
     aria-expanded="false">
     {if $listing.sort_selected}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if}
-    <i class="material-icons float-xs-right">&#xE5C5;</i>
+    <i class="material-icons">&#xE5C5;</i>
   </button>
   <div class="dropdown-menu">
     {foreach from=$listing.sort_orders item=sort_order}
@@ -40,7 +40,7 @@
         rel="nofollow"
         href="{$sort_order.url}"
         class="select-list {['current' => $sort_order.current, 'js-search-link' => true]|classnames}"
-      >
+     >
         {$sort_order.label}
       </a>
     {/foreach}

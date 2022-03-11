@@ -22,83 +22,25 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-const webpack = require('webpack');
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-let config = {
-  entry: {
-    theme: ['./src/js/theme.js', './src/css/theme.scss'],
-    error: ['./src/css/error.scss'],
-  },
-  output: {
-    path: path.resolve(__dirname, 'assets/js'),
-    filename: '[name].js',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.scss$/,
-        use:[ 
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
-            'sass-loader',
-          ],
-      },
-      {
-        test: /.(png|woff(2)?|eot|otf|ttf|svg|gif)(\?[a-z0-9=\.]+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '../css/[hash].[ext]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader', 'postcss-loader'],
-      },
-    ],
-  },
-  externals: {
-    prestashop: 'prestashop',
-    $: '$',
-    jquery: 'jQuery',
-  },
-  plugins: [
-    new MiniCssExtractPlugin({filename: path.join('..', 'css', '[name].css')}),
-  ]
+const { webpackVars } = require('./webpack/webpack.vars.js');
+const { commonConfig } = require('./webpack/webpack.common.js');
+const { productionConfig } = require('./webpack/webpack.production.js');
+const { developmentConfig } = require('./webpack/webpack.development.js');
+const { merge } = require('webpack-merge');
+
+const getConfig = ({mode, ...vars}) => {
+  switch (mode) {
+    case 'production':
+      return merge(commonConfig({mode, ...vars}), productionConfig({mode, ...vars}));
+    case 'development':
+      return merge(commonConfig({mode, ...vars}), developmentConfig({mode, ...vars}));
+    default:
+      throw new Error(`Trying to use an unknown mode, ${mode}`);
+  }
 };
 
-if (process.env.NODE_ENV === 'production') {
-  config.optimization = {
-    minimizer: [
-      new UglifyJsPlugin({
-        sourceMap: false,
-        uglifyOptions: {
-          compress: {
-            sequences: true,
-            conditionals: true,
-            booleans: true,
-            if_return: true,
-            join_vars: true,
-            drop_console: true,
-          },
-          output: {
-            comments: false,
-          },
-        }
-      })
-    ]
-  }
-}
-
-module.exports = config;
+module.exports = (env, options) => getConfig({
+  mode: options.mode ?? 'production',
+  ...webpackVars
+});

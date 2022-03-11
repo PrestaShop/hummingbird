@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<section id="js-checkout-summary" class="card js-cart" data-refresh-url="{$urls.pages.cart}?ajax=1&action=refresh">
+<section id="js-checkout-summary" class="card cart-summary js-cart" data-refresh-url="{$urls.pages.cart}?ajax=1&action=refresh">
   <div class="card-block">
     {block name='hook_checkout_summary_top'}
       {include file='checkout/_partials/cart-summary-top.tpl' cart=$cart}
@@ -44,5 +44,4 @@
   {block name='cart_summary_voucher'}
     {include file='checkout/_partials/cart-voucher.tpl'}
   {/block}
-
 </section>

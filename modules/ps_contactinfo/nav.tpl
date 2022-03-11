@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div id="_desktop_contact_link">
-  <div id="contact-link">
+  <div id="contact-link" class="contact-link">
     {if $contact_infos.phone}
       {* [1][/1] is for a HTML tag. *}
       {l

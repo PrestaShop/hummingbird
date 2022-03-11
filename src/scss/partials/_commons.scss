@@ -1,0 +1,72 @@
+@use "sass:color";
+
+$default-icon-color: $primary !default;
+
+
+body,
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: $font-family-base;
+  line-height: 1.25em;
+  color: $body-color;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+p {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: $gray-800;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.25s ease-out;
+
+  .material-icons {
+    color: $default-icon-color;
+    transition: 0.25s ease-out;
+  }
+}
+
+label .color,
+.variant-links .color,
+.custom-checkbox input[type="checkbox"] + span.color {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0.3125rem;
+  margin-right: 0.5rem;
+  margin-left: 0;
+  cursor: pointer;
+  background-size: contain;
+  border: 1px solid $input-border-color;
+  border-radius: 4px;
+  transition: 0.25s ease-out;
+
+  &.active,
+  &:hover {
+    border: 2px solid $primary;
+  }
+}
+
+.input-color {
+  display: none;
+}
+
+.bright {
+  color: $gray-100;
+}
+
+.dark {
+  color: $gray-800;
+}

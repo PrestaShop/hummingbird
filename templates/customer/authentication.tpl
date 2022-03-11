@@ -22,25 +22,37 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+{$componentName = 'login'}
+
 {extends file='page.tpl'}
 
+{block name="container_class"}container container--limited-sm{/block}
+
 {block name='page_title'}
-  {l s='Log in to your account' d='Shop.Theme.Customeraccount'}
+  {l s='Sign in' d='Shop.Theme.Customeraccount'}
 {/block}
 
 {block name='page_content'}
-    {block name='login_form_container'}
-      <section class="login-form">
+  {block name='login_form_container'}
+    <div class="{$componentName}">
+      <section class="{$componentName}__form-wrapper">
         {render file='customer/_partials/login-form.tpl' ui=$login_form}
       </section>
+      
       <hr/>
+
       {block name='display_after_login_form'}
         {hook h='displayCustomerLoginFormAfter'}
       {/block}
-      <div class="no-account">
-        <a href="{$urls.pages.register}" data-link-action="display-register-form">
-          {l s='No account? Create one here' d='Shop.Theme.Customeraccount'}
-        </a>
+
+      <div class="{$componentName}__register-prompt">
+        <h2 class="mb-3">{l s='No account?' d='Shop.Theme.Customeraccount'}</h2>
+        <div class="d-grid">
+          <a href="{$urls.pages.register}" class="btn btn-outline-primary" data-link-action="display-register-form">
+            {l s='Create your account' d='Shop.Theme.Actions'}
+          </a>
+        </div>
       </div>
-    {/block}
+    </div>
+  {/block}
 {/block}

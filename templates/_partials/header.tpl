@@ -22,36 +22,46 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{$headerTopName = 'header-top'}
-{$headerBottomName = 'header-bottom'}
+{$headerTopName = 'header__top'}
+{$headerBottomName = 'header__bottom'}
 
 {block name='header_banner'}
-  <div class="header-banner">
+  <div class="header__banner">
     {hook h='displayBanner'}
   </div>
 {/block}
 
 {block name='header_nav'}
   <nav class="{$headerTopName}">
-    <div class="container">
-      <div class="{$headerTopName}-content row">
-        <div class="{$headerTopName}-desktop hidden-on-mobile">
-          <div class="{$headerTopName}-left col-md-5 col-xs-12">
-            {hook h='displayNav1'}
-          </div>
-          <div class="{$headerTopName}-right col-md-7">
-              {hook h='displayNav2'}
+    <div class="container-md">
+      <div class="{$headerTopName}-desktop hidden-on-mobile row">
+        <div class="{$headerTopName}__left col-md-5">
+          {hook h='displayNav1'}
+        </div>
+        <div class="{$headerTopName}__right col-md-7">
+          {hook h='displayNav2'}
+        </div>
+      </div>
+
+      <div class="{$headerTopName}-mobile hidden-on-desktop">
+        <div id="_mobile_menu"></div>
+        <div id="_mobile_logo" class="logo logo-mobile"></div>
+
+        <div class="search__mobile hide-on-desktop">
+          <button class="search__mobile__toggler btn d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
+            <span class="material-icons">search</span>  
+          </button>
+
+          <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top" data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
+            <div class="offcanvas-header">
+              <div id="_mobile_search" class="search__container"></div>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">{l s='Cancel' d='Shop.Theme.Global'}</button>
+            </div>
           </div>
         </div>
-        <div class="hidden-on-desktop text-sm-center mobile">
-          <div class="float-xs-left" id="menu-icon">
-            <i class="material-icons d-inline">&#xE5D2;</i>
-          </div>
-          <div class="float-xs-right" id="_mobile_cart"></div>
-          <div class="float-xs-right" id="_mobile_user_info"></div>
-          <div class="top-logo" id="_mobile_logo"></div>
-          <div class="clearfix"></div>
-        </div>
+
+        <div id="_mobile_user_info"></div>
+        <div id="_mobile_cart"></div>
       </div>
     </div>
   </nav>
@@ -59,33 +69,16 @@
 
 {block name='header_top'}
   <div class="{$headerBottomName}">
-    <div class="container">
-       <div class="{$headerBottomName}-content row">
-        <div class="col-md-2 d-none d-sm-block d-md-block" id="_desktop_logo">
-            {if $page.page_name == 'index'}
-              <h1>
-                <a href="{$urls.pages.index}">
-                  <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name}" loading="lazy" width="100" height="28">
-                </a>
-              </h1>
-            {else}
-                <a href="{$urls.pages.index}">
-                  <img class="logo img-responsive" src="{$shop.logo}" alt="{$shop.name}" loading="lazy" width="100" height="28">
-                </a>
-            {/if}
-        </div>
-        <div class="{$headerBottomName}-right col-md-10 col-sm-12 position-static">
-          {hook h='displayTop'}
-        </div>
+    <div class="container {$headerBottomName}__container">
+      <div id="_desktop_logo" class="logo logo-desktop order-1 order-xl-0">
+        {if $page.page_name == 'index'}<h1>{/if}
+        <a class="navbar-brand" href="{$urls.pages.index}">
+          <img class="logo img-fluid" src="{$shop.logo_details.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo_details.width}" height="{$shop.logo_details.height}">
+        </a>
+        {if $page.page_name == 'index'}</h1>{/if}
       </div>
-      <div id="mobile_top_menu_wrapper" class="row d-none d-sm-block d-md-none" style="display:none;">
-        <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
-        <div class="js-top-menu-bottom">
-          <div id="_mobile_currency_selector"></div>
-          <div id="_mobile_language_selector"></div>
-          <div id="_mobile_contact_link"></div>
-        </div>
-      </div>
+
+      {hook h='displayTop'}
     </div>
   </div>
   {hook h='displayNavFullWidth'}

@@ -1,0 +1,30 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import badgesContent from './badges.html'
+import pillsContent from './pills.html'
+import notificationsContent from './notifications.html'
+
+<Meta title="UI/Badges" />
+
+# Badges
+
+<Canvas>
+  <Story name="Badges" height="100px" parameters={{ docs: { source: { code: badgesContent } } }}>
+    {() => badgesContent}
+  </Story>
+</Canvas>
+
+# Pills
+
+<Canvas>
+  <Story name="Pills" height="100px" parameters={{ docs: { source: { code: pillsContent } } }}>
+    {() => pillsContent}
+  </Story>
+</Canvas>
+
+# Notifications pills
+
+<Canvas>
+  <Story name="Notifications" height="100px" parameters={{ docs: { source: { code: notificationsContent } } }}>
+    {() => notificationsContent}
+  </Story>
+</Canvas>

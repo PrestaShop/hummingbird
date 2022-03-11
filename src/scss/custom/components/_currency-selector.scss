@@ -1,0 +1,16 @@
+$component-name: currency-selector;
+
+.#{$component-name} {
+  display: flex;
+  align-items: center;
+
+  > span {
+    margin-right: 0.5rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    &__wrapper {
+      margin-bottom: 1rem;
+    }
+  }
+}

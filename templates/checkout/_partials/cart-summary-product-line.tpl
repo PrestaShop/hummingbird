@@ -23,28 +23,45 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='cart_summary_product_line'}
-  <div class="media-left">
+  <div class="cart-summary__product__image col-md-2">
     <a href="{$product.url}" title="{$product.name}">
       {if $product.default_image}
-        <img class="media-object" src="{$product.default_image.small.url}" alt="{$product.name}" loading="lazy">
+        <img src="{$product.default_image.small.url}" alt="{$product.name}" class="img-fluid rounded" loading="lazy">
       {else}
-        <img src="{$urls.no_picture_image.bySize.small_default.url}" loading="lazy" />
+        <img src="{$urls.no_picture_image.bySize.small_default.url}" class="img-fluid" loading="lazy" />
       {/if}
     </a>
   </div>
-  <div class="media-body">
+
+  <div class="cart-summary__product__body col-md-7">
     <span class="product-name">
         <a href="{$product.url}" target="_blank" rel="noopener noreferrer nofollow">{$product.name}</a>
     </span>
-    <span class="product-quantity">x{$product.quantity}</span>
-    <span class="product-price float-xs-right">{$product.price}</span>
-    {hook h='displayProductPriceBlock' product=$product type="unit_price"}
+
     {foreach from=$product.attributes key="attribute" item="value"}
-        <div class="product-line-info product-line-info-secondary text-muted">
-            <span class="label">{$attribute}:</span>
-            <span class="value">{$value}</span>
-        </div>
+      <div class="product-line-info product-line-info-secondary text-muted">
+          <span class="label">{$attribute}:</span>
+          <span class="value">{$value}</span>
+      </div>
     {/foreach}
-    <br/>
+    <div class="product-line-info product-line-info-secondary text-muted">
+        <span class="label">{l s='Quantity' d='Shop.Theme.Checkout'}</span>
+        <span class="value">x{$product.quantity}</span>
+    </div>
+  </div>
+
+  <div class="cart-summary__product__price text-end col-md-3">
+    <div class="cart-summary__product__current">
+      <span class="price fw-bold">{$product.price}</span>
+      {if $product.unit_price_full}
+        <div class="unit-price-cart">{$product.unit_price_full}</div>
+      {/if}
+    </div>
+
+    <div class="cart-summary__product__basic">
+      <span class="cart-summary__product__regular text-decoration-line-through">{$product.regular_price}</span>
+    </div>
+
+    {hook h='displayProductPriceBlock' product=$product type="unit_price"}
   </div>
 {/block}

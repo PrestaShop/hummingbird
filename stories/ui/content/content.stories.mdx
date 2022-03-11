@@ -1,0 +1,15 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import contentHtml from './content.html'
+
+<Meta title="UI/Content" />
+
+# Content
+
+Here is the content markup you can use.
+
+<Canvas>
+  <Story name="Content" parameters={{ docs: { source: { code: contentHtml } } }}>
+    {() => contentHtml}
+  </Story>
+</Canvas>
+

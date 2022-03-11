@@ -32,7 +32,7 @@
       action="{url entity='address' params=['id_address' => $id_address]}"
       data-id-address="{$id_address}"
       data-refresh-url="{url entity='address' params=['ajax' => 1, 'action' => 'addressForm']}"
-    >
+   >
     {/block}
 
       {block name="address_form_fields"}
@@ -48,10 +48,10 @@
       {/block}
 
       {block name="address_form_footer"}
-      <footer class="form-footer clearfix">
+      <footer class="form-footer">
         <input type="hidden" name="submitAddress" value="1">
         {block name='form_buttons'}
-          <button class="btn btn-primary form-control-submit float-xs-right" type="submit">
+          <button class="btn btn-primary form-control-submit" type="submit">
             {l s='Save' d='Shop.Theme.Actions'}
           </button>
         {/block}

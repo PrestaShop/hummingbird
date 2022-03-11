@@ -22,25 +22,38 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file='page.tpl'}
 
-{block name='notifications'}{/block}
+{extends file=$layout}
 
-{block name='page_content_container'}
-  <section id="content" class="page-content">
-    {block name='page_content_top'}
-      {block name='customer_notifications'}
-        {include file='_partials/notifications.tpl'}
+{block name='content'}
+  <div class="row">
+    <div class="col-md-4 col-lg-3">
+      {include file='components/account-menu.tpl'}
+    </div>
+    <div class="col-md-8 col-lg-9">
+      {block name='page_header_container'}
+        {block name='page_title'}
+          <div class="page-header">
+            <h1 class="h4">{$smarty.block.child}</h1>
+          </div>
+        {/block}
       {/block}
-    {/block}
-    {block name='page_content'}
-      <!-- Page content -->
-    {/block}
-  </section>
-{/block}
 
-{block name='page_footer'}
-  {block name='my_account_links'}
-    {include file='customer/_partials/my-account-links.tpl'}
-  {/block}
+      {block name='page_content_container'}
+        <section id="content" class="page-content page-customer">
+          {block name='page_content_top'}{/block}
+          {block name='page_content'}
+            <!-- Page content -->
+          {/block}
+        </section>
+      {/block}
+
+      {block name='page_footer_container'}
+          {block name='page_footer'}
+            {block name='my_account_links'}
+            {/block}
+          {/block}
+      {/block}
+    </div>
+  </div>
 {/block}

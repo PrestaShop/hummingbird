@@ -1,5 +1,5 @@
-name: classic-v2 
-display_name: Classic v2 
+name: theme-refacto 
+display_name: New Theme 
 version: 2.0.0
 author:
   name: "PrestaShop Team"
@@ -55,10 +55,6 @@ global_settings:
      - ps_linklist
   hooks:
     modules_to_hook:
-      displayAfterBodyOpeningTag:
-        - blockreassurance
-      displayNavFullWidth:
-        - blockreassurance
       displayNav1:
         - ps_contactinfo
       displayNav2:
@@ -75,15 +71,12 @@ global_settings:
         - ps_banner
         - ps_customtext
       displayFooterBefore:
-        - blockreassurance
         - ps_emailsubscription
         - ps_socialfollow
       displayFooter:
         - ps_linklist
         - ps_customeraccountlinks
         - ps_contactinfo
-      displayFooterAfter:
-        - blockreassurance
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch
@@ -91,8 +84,6 @@ global_settings:
         - ps_searchbar
       displayProductAdditionalInfo:
         - ps_sharebuttons
-      displayReassurance:
-        - blockreassurance
       displayOrderConfirmation2:
         - ps_featuredproducts
       displayCrossSellingShoppingCart:
@@ -129,6 +120,7 @@ global_settings:
       scope: [stores]
 
 theme_settings:
+  rtl_generation: false
   default_layout: layout-full-width
   layouts:
     category: layout-left-column

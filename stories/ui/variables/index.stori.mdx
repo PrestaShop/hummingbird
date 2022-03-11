@@ -1,0 +1,95 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import basics from '../../../scss/export/_basic.scss';
+import principal from '../../../scss/export/_principal.scss';
+import principalVariations from '../../../scss/export/_principal-variations.scss';
+import alerts from '../../../scss/export/_alerts.scss';
+import theme from '../../../scss/export/_theme.scss';
+import spacers from '../../../scss/export/_spacers.scss';
+import breakpoints from '../../../scss/export/_breakpoints.scss';
+import gridWidths from '../../../scss/export/_grid-max-width.scss';
+import fonts from '../../../scss/export/_fonts.scss';
+import renderContent from './functions';
+
+<Meta title="UI/SCSS Variables" />
+
+# Bootstrap variables
+
+<Canvas>
+  <Story name="Main colors" parameters={{ docs: { source: { code: JSON.stringify(principal) } } }}>
+    {() => renderContent(principal, true)}
+  </Story>
+</Canvas>
+
+# Main variants
+
+<Canvas>
+  <Story name="Main variants" parameters={{ docs: { source: { code: JSON.stringify(principalVariations) } } }}>
+    {() => renderContent(principalVariations, true)}
+  </Story>
+</Canvas>
+
+# Basic variables
+
+<Canvas>
+  <Story name="Basic colors" parameters={{ docs: { source: { code: JSON.stringify(basics) } } }}>
+    {() => renderContent(basics, true)}
+  </Story>
+</Canvas>
+
+# Alerts colors 
+
+These one are inside a map object (alerts-background-colors and alerts-second-colors)
+
+<Canvas>
+  <Story name="Alerts colors" parameters={{ docs: { source: { code: JSON.stringify(alerts) } } }}>
+    {() => renderContent(alerts, true)}
+  </Story>
+</Canvas>
+
+# Theme variables 
+
+These one are inside a map object
+
+<Canvas>
+  <Story name="Theme variables" parameters={{ docs: { source: { code: JSON.stringify(theme) } } }}>
+    {() => renderContent(theme, true)}
+  </Story>
+</Canvas>
+
+# Spacers variables 
+
+These one are inside a map object (1rem = 16px)
+
+<Canvas>
+  <Story name="Spacers variables" parameters={{ docs: { source: { code: JSON.stringify(spacers) } } }}>
+    {() => renderContent(spacers)}
+  </Story>
+</Canvas>
+
+# Responsive breakpoints 
+
+These one are inside a map object
+
+<Canvas>
+  <Story name="Responsive breakpoints" parameters={{ docs: { source: { code: JSON.stringify(breakpoints) } } }}>
+    {() => renderContent(breakpoints)}
+  </Story>
+</Canvas>
+
+# Grid max widths 
+
+These one are inside a map object
+
+<Canvas>
+  <Story name="Grid max widths" parameters={{ docs: { source: { code: JSON.stringify(gridWidths) } } }}>
+    {() => renderContent(gridWidths)}
+  </Story>
+</Canvas>
+
+# Fonts variables
+
+<Canvas>
+  <Story name="Fonts variables" parameters={{ docs: { source: { code: JSON.stringify(fonts) } } }}>
+    {() => renderContent(fonts)}
+  </Story>
+</Canvas>

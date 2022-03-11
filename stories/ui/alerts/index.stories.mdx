@@ -1,0 +1,32 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import basicsContent from './basics.html'
+import additionalContent from './additional.html'
+import iconsContent from './icons.html'
+
+<Meta title="UI/Alerts" />
+
+# Basics
+
+These alerts are used to display messages.
+
+<Canvas>
+  <Story name="Basics" parameters={{ docs: { source: { code: basicsContent } } }}>
+    {() => basicsContent}
+  </Story>
+</Canvas>
+
+# Additional content
+
+<Canvas>
+  <Story name="Additional" parameters={{ docs: { source: { code: additionalContent } } }}>
+    {() => additionalContent}
+  </Story>
+</Canvas>
+
+# With icons
+
+<Canvas>
+  <Story name="With icons" parameters={{ docs: { source: { code: iconsContent } } }}>
+    {() => iconsContent}
+  </Story>
+</Canvas>

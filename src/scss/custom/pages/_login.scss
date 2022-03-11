@@ -1,0 +1,14 @@
+.login {
+  .forgot-password,
+  &-create {
+    text-align: center;
+  }
+
+  hr {
+    margin: 1rem auto;
+  }
+
+  .forgot-password {
+    margin-bottom: 1.25rem;
+  }
+}

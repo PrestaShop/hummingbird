@@ -30,7 +30,7 @@
       method="POST"
       action="{url entity='order' params=['id_address' => $id_address]}"
       data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm']}"
-    >
+   >
 
       {if $use_same_address}
         <p>
@@ -53,7 +53,7 @@
             form_has_continue_button  = $form_has_continue_button
           }
         </div>
-      {elseif $customer.addresses|count > 0}
+      {elseif $customer.addresses|count> 0}
         <div id="delivery-addresses" class="address-selector js-address-selector">
           {include  file        = 'checkout/_partials/address-selector-block.tpl'
             addresses   = $customer.addresses
@@ -122,8 +122,8 @@
       {/if}
 
       {if !$form_has_continue_button}
-        <div class="clearfix">
-          <button type="submit" class="btn btn-primary continue float-xs-right" name="confirm-addresses" value="1">
+        <div>
+          <button type="submit" class="btn btn-primary continue" name="confirm-addresses" value="1">
             {l s='Continue' d='Shop.Theme.Actions'}
           </button>
           <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">

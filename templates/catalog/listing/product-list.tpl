@@ -29,14 +29,13 @@
 {/block}
 
 {block name='content'}
-  <section id="main">
 
     {block name='product_list_header'}
-      <h1 id="js-product-list-header" class="h2">{$listing.label}</h1>
+      <h1 id="js-product-list-header" class="h4">{$listing.label}</h1>
     {/block}
 
     {block name='subcategory_list'}
-      {if isset($subcategories) && $subcategories|@count > 0}
+      {if isset($subcategories) && $subcategories|@count> 0}
         {include file='catalog/_partials/subcategories.tpl' subcategories=$subcategories}
       {/if}
     {/block}
@@ -60,7 +59,7 @@
 
         <div>
           {block name='product_list'}
-            {include file='catalog/_partials/products.tpl' listing=$listing}
+            {include file='catalog/_partials/products.tpl' listing=$listing productClass="col-6 col-xl-4"}
           {/block}
         </div>
 
@@ -88,5 +87,4 @@
 
     {hook h="displayFooterCategory"}
 
-  </section>
 {/block}

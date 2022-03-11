@@ -1,0 +1,13 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import cardContent from './cards.html'
+
+<Meta title="UI/Cards" />
+
+# Cards
+
+<Canvas>
+  <Story name="Cards" parameters={{ docs: { source: { code: cardContent } } }}>
+    {() => cardContent}
+  </Story>
+</Canvas>
+

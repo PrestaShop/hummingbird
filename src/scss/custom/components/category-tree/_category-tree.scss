@@ -1,0 +1,46 @@
+$component-name: category-tree;
+
+#left-column {
+  --#{$component-name}-title-color: #{$gray-800};
+  --#{$component-name}-title-size: 1.5rem;
+  --#{$component-name}-title-spacing: 1rem;
+  --#{$component-name}-subtitle-color: #{$gray-800};
+  --#{$component-name}-subtitle-size: 1rem;
+  --#{$component-name}-subtitle-spacing: 0.25rem;
+  --#{$component-name}-border-bottom: 1px solid #{$gray-200};
+}
+
+.#{$component-name} {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: var(--#{$component-name}-border-bottom);
+
+  &-child {
+    padding: 0;
+    border: none;
+  }
+
+  & &-title {
+    padding: 0;
+    margin-bottom: var(--#{$component-name}-title-spacing);
+    font-size: var(--#{$component-name}-title-size);
+    border: none;
+
+    &-link {
+      display: block;
+      font-weight: 600;
+      line-height: 2rem;
+      color: var(--#{$component-name}-title-color);
+    }
+  }
+
+  & &-item {
+    &-link {
+      display: block;
+      padding: var(--#{$component-name}-subtitle-spacing) 0;
+      font-size: var(--#{$component-name}-subtitle-size);
+      font-weight: 600;
+      color: var(--#{$component-name}-subtitle-color);
+    }
+  }
+}

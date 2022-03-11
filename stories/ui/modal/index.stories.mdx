@@ -1,0 +1,13 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import modalContent from './modal.html'
+
+<Meta title="UI/Modals" />
+
+# Modal
+
+<Canvas>
+  <Story name="Modal" parameters={{ docs: { source: { code: modalContent } } }}>
+    {() => modalContent}
+  </Story>
+</Canvas>
+

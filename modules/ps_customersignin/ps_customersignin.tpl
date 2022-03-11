@@ -22,34 +22,44 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+
 <div id="_desktop_user_info">
   <div class="user-info">
-    {if $logged}
-      <a
-        class="logout d-none d-sm-block d-md-block"
-        href="{$urls.actions.logout}"
-        rel="nofollow"
-      >
-        <i class="material-icons">&#xE7FF;</i>
-        {l s='Sign out' d='Shop.Theme.Actions'}
-      </a>
-      <a
-        class="account"
-        href="{$urls.pages.my_account}"
-        title="{l s='View my customer account' d='Shop.Theme.Customeraccount'}"
-        rel="nofollow"
-      >
-        <i class="material-icons d-none d-sm-inline d-md-none logged">&#xE7FF;</i>
-        <span class="d-none d-sm-inline d-md-inline">{$customerName}</span>
-      </a>
+    {if $customer.is_logged}
+      <div class="dropdown">
+        <button class="dropdown-toggle btn btn-link btn-with-icon" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="material-icons">person</i>
+          <span class="user-info__name">{$customerName|truncate:22:"..":true}</span>
+        </button>
+
+        <div class="dropdown-menu" aria-labelledby="userMenuButton">
+          <a class="dropdown-item" href="{$urls.pages.my_account}">{l s='Your account' d='Shop.Theme.Customeraccount'}</a>
+          <div class="dropdown-divider"></div>
+          <a href="{$urls.pages.identity}" title="{l s='Information' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Information' d='Shop.Theme.Customeraccount'}</a>
+          {if $customer.addresses|count}
+            <a href="{$urls.pages.addresses}" title="{l s='Addresses' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Addresses' d='Shop.Theme.Customeraccount'}</a>
+          {else}
+            <a href="{$urls.pages.address}" title="{l s='Add first address' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Add first address' d='Shop.Theme.Customeraccount'}</a>
+          {/if}
+          {if !$configuration.is_catalog}
+            <a href="{$urls.pages.history}" title="{l s='Orders' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Orders' d='Shop.Theme.Customeraccount'}</a>
+          {/if}
+          {if !$configuration.is_catalog}
+            <a href="{$urls.pages.order_slip}" title="{l s='Credit slips' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Credit slips' d='Shop.Theme.Customeraccount'}</a>
+          {/if}
+          {if $configuration.voucher_enabled && !$configuration.is_catalog}
+            <a href="{$urls.pages.discount}" title="{l s='Vouchers' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Vouchers' d='Shop.Theme.Customeraccount'}</a>
+          {/if}
+          {if $configuration.return_enabled && !$configuration.is_catalog}
+            <a href="{$urls.pages.order_follow}" title="{l s='Merchandise returns' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">{l s='Merchandise returns' d='Shop.Theme.Customeraccount'}</a>
+          {/if}
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{$logout_url}">{l s='Sign out' d='Shop.Theme.Actions'}</a>
+        </div>
+      </div>
     {else}
-      <a
-        href="{$urls.pages.my_account}"
-        title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
-        rel="nofollow"
-      >
-        <i class="material-icons">&#xE7FF;</i>
-        <span class="d-none d-sm-inline d-md-inline">{l s='Sign in' d='Shop.Theme.Actions'}</span>
+      <a href="{$urls.pages.my_account}" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}" class="btn" rel="nofollow" role="button">
+        <i class="material-icons">person</i><span class="d-none d-md-inline">{l s='Sign in' d='Shop.Theme.Actions'}</span>
       </a>
     {/if}
   </div>

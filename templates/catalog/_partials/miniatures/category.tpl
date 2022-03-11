@@ -31,10 +31,10 @@
         loading="lazy"
         width="250"
         height="250"
-      >
+     >
     </a>
 
-    <h1 class="h2">
+    <h1 class="h4">
       <a href="{$category.url}">{$category.name}</a>
     </h1>
 

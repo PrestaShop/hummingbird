@@ -47,7 +47,7 @@
           <tr>
             <th scope="row">{$cart_rule.code}</th>
             <td>{$cart_rule.name}</td>
-            <td class="text-xs-right">{$cart_rule.quantity_for_user}</td>
+            <td class="text-xs-end">{$cart_rule.quantity_for_user}</td>
             <td>{$cart_rule.value}</td>
             <td>{$cart_rule.voucher_minimal}</td>
             <td>{$cart_rule.voucher_cumulable}</td>
@@ -92,5 +92,7 @@
         </div>
       {/foreach}
     </div>
-  {/if}
+    {else}
+      <div class="alert alert-info" role="alert" data-alert="info">{l s='You do not have any vouchers.' d='Shop.Notifications.Warning'}</div>
+    {/if}
 {/block}

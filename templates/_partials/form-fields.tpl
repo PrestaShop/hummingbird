@@ -30,163 +30,174 @@
 
 {else}
 
-  <div class="form-group row {if !empty($field.errors)}has-error{/if}">
-    <label class="col-md-3 form-control-label{if $field.required} required{/if}">
-      {if $field.type !== 'checkbox'}
-        {$field.label}
-      {/if}
-    </label>
-    <div class="col-md-6{if ($field.type === 'radio-buttons')} form-control-valign{/if}">
+  <div class="mb-3 {if !empty($field.errors)}has-error{/if}">
 
-      {if $field.type === 'select'}
+    {if ($field.type !== 'checkbox')}
+      <label class="form-label{if $field.required} required{/if}">
+        {if $field.type !== 'checkbox'}
+          {$field.label}
+        {/if}
+      </label>
+    {/if}
 
-        {block name='form_field_item_select'}
-          <select class="form-control form-control-select" name="{$field.name}" {if $field.required}required{/if}>
-            <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
-            {foreach from=$field.availableValues item="label" key="value"}
-              <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
-            {/foreach}
-          </select>
-        {/block}
+    {if $field.type === 'select'}
 
-      {elseif $field.type === 'countrySelect'}
-
-        {block name='form_field_item_country'}
-          <select
-          class="form-control form-control-select js-country"
-          name="{$field.name}"
-          {if $field.required}required{/if}
-          >
-            <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
-            {foreach from=$field.availableValues item="label" key="value"}
-              <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
-            {/foreach}
-          </select>
-        {/block}
-
-      {elseif $field.type === 'radio-buttons'}
-
-        {block name='form_field_item_radio'}
+      {block name='form_field_item_select'}
+        <select class="form-select" name="{$field.name}" {if $field.required}required{/if}>
+          <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
           {foreach from=$field.availableValues item="label" key="value"}
-            <label class="radio-inline">
-              <span class="custom-radio">
-                <input
-                  name="{$field.name}"
-                  type="radio"
-                  value="{$value}"
-                  {if $field.required}required{/if}
-                  {if $value eq $field.value} checked {/if}
-                >
-                <span></span>
-              </span>
-              {$label}
-            </label>
+            <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
           {/foreach}
-        {/block}
-
-      {elseif $field.type === 'checkbox'}
-
-        {block name='form_field_item_checkbox'}
-          <span class="custom-checkbox">
-            <label>
-              <input name="{$field.name}" type="checkbox" value="1" {if $field.value}checked="checked"{/if} {if $field.required}required{/if}>
-              <span><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
-              {$field.label nofilter}
-            </label>
-          </span>
-        {/block}
-
-      {elseif $field.type === 'date'}
-
-        {block name='form_field_item_date'}
-          <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
-          {if isset($field.availableValues.comment)}
-            <span class="form-control-comment">
-              {$field.availableValues.comment}
-            </span>
-          {/if}
-        {/block}
-
-      {elseif $field.type === 'birthday'}
-
-        {block name='form_field_item_birthday'}
-          <div class="js-parent-focus">
-            {html_select_date
-            field_order=DMY
-            time={$field.value}
-            field_array={$field.name}
-            prefix=false
-            reverse_years=true
-            field_separator='<br>'
-            day_extra='class="form-control form-control-select"'
-            month_extra='class="form-control form-control-select"'
-            year_extra='class="form-control form-control-select"'
-            day_empty={l s='-- day --' d='Shop.Forms.Labels'}
-            month_empty={l s='-- month --' d='Shop.Forms.Labels'}
-            year_empty={l s='-- year --' d='Shop.Forms.Labels'}
-            start_year={'Y'|date}-100 end_year={'Y'|date}
-            }
-          </div>
-        {/block}
-
-      {elseif $field.type === 'password'}
-
-        {block name='form_field_item_password'}
-          <div class="input-group js-parent-focus">
-            <input
-              class="form-control js-child-focus js-visible-password"
-              name="{$field.name}"
-              title="{l s='At least 5 characters long' d='Shop.Forms.Help'}"
-              type="password"
-              {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
-              value=""
-              pattern=".{literal}{{/literal}5,{literal}}{/literal}"
-              {if $field.required}required{/if}
-            >
-            <span class="input-group-btn">
-              <button
-                class="btn"
-                type="button"
-                data-action="show-password"
-                data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
-                data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
-              >
-                {l s='Show' d='Shop.Theme.Actions'}
-              </button>
-            </span>
-          </div>
-        {/block}
-
-      {else}
-
-        {block name='form_field_item_other'}
-          <input
-            class="form-control"
-            name="{$field.name}"
-            type="{$field.type}"
-            value="{$field.value}"
-            {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
-            {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
-            {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
-            {if $field.required}required{/if}
-            aria-label="{$field.name}"
-          >
-          {if isset($field.availableValues.comment)}
-            <span class="form-control-comment">
-              {$field.availableValues.comment}
-            </span>
-          {/if}
-        {/block}
-
-      {/if}
-
-      {block name='form_field_errors'}
-        {include file='_partials/form-errors.tpl' errors=$field.errors}
+        </select>
       {/block}
 
-    </div>
+    {elseif $field.type === 'countrySelect'}
 
-    <div class="col-md-3 form-control-comment">
+      {block name='form_field_item_country'}
+        <select
+        class="form-select js-country"
+        name="{$field.name}"
+        {if $field.required}required{/if}
+        >
+          <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
+          {foreach from=$field.availableValues item="label" key="value"}
+            <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
+          {/foreach}
+        </select>
+      {/block}
+
+    {elseif $field.type === 'radio-buttons'}
+
+      {block name='form_field_item_radio'}
+        <div>
+          {foreach from=$field.availableValues item="label" key="value"}
+            <div class="form-check form-check-inline">
+              <input 
+                class="form-check-input"
+                type="radio"
+                name="{$field.name}"
+                id="{$field.name}_{$value}"
+                value="{$value}"
+                checked
+                {if $field.required}required{/if}
+                {if $value eq $field.value} checked {/if}
+              >
+              <label class="form-check-label" for="{$field.name}_{$value}">
+                {$label}
+              </label>
+            </div>
+          {/foreach}
+        </div>
+      {/block}
+
+    {elseif $field.type === 'checkbox'}
+
+      {block name='form_field_item_checkbox'}
+        <div class="form-check">
+          <input 
+            class="form-check-input"
+            name="{$field.name}"
+            type="checkbox"
+            value="1"
+            id="{$field.name}"
+            value="1" {if $field.value}checked="checked"{/if}
+            {if $field.required}required{/if}
+          >
+          <label class="form-check-label" for="{$field.name}">
+            {$field.label nofilter}
+          </label>
+        </div>
+      {/block}
+
+    {elseif $field.type === 'date'}
+
+      {block name='form_field_item_date'}
+        <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
+        {if isset($field.availableValues.comment)}
+          <span class="form-text">
+            {$field.availableValues.comment}
+          </span>
+        {/if}
+      {/block}
+
+    {elseif $field.type === 'birthday'}
+
+      {block name='form_field_item_birthday'}
+        <div class="js-parent-focus">
+          {html_select_date
+          field_order=DMY
+          time={$field.value}
+          field_array={$field.name}
+          prefix=false
+          reverse_years=true
+          field_separator='<br>'
+          day_extra='class="form-select"'
+          month_extra='class="form-select"'
+          year_extra='class="form-select"'
+          day_empty={l s='-- day --' d='Shop.Forms.Labels'}
+          month_empty={l s='-- month --' d='Shop.Forms.Labels'}
+          year_empty={l s='-- year --' d='Shop.Forms.Labels'}
+          start_year={'Y'|date}-100 end_year={'Y'|date}
+          }
+        </div>
+      {/block}
+
+    {elseif $field.type === 'password'}
+
+      {block name='form_field_item_password'}
+
+        <div class="input-group password-field js-parent-focus">
+          <input
+            class="form-control js-child-focus js-visible-password"
+            name="{$field.name}"
+            title="{l s='At least 5 characters long' d='Shop.Forms.Help'}"
+            type="password"
+            {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
+            value=""
+            pattern=".{literal}{{/literal}5,{literal}}{/literal}"
+            {if $field.required}required{/if}
+          >
+
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-action="show-password"
+            data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
+            data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
+          >
+            <i class="material-icons">visibility</i>
+          </button>
+        </div>
+      {/block}
+
+    {else}
+
+      {block name='form_field_item_other'}
+        <input
+          class="form-control"
+          name="{$field.name}"
+          type="{$field.type}"
+          value="{$field.value}"
+          {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
+          {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
+          {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
+          {if $field.required}required{/if}
+          aria-label="{$field.name}"
+        >
+        {if isset($field.availableValues.comment)}
+          <span class="form-text">
+            {$field.availableValues.comment}
+          </span>
+        {/if}
+      {/block}
+
+    {/if}
+
+    {block name='form_field_errors'}
+      {include file='_partials/form-errors.tpl' errors=$field.errors}
+    {/block}
+
+    <div class="form-text">
       {block name='form_field_comment'}
         {if (!$field.required && !in_array($field.type, ['radio-buttons', 'checkbox']))}
          {l s='Optional' d='Shop.Forms.Labels'}

@@ -1,0 +1,41 @@
+$component-name: noui;
+
+.#{$component-name} {
+  &-tooltip {
+    position: absolute;
+    display: block;
+    padding: $nouislider-tooltips-padding;
+    font-size: $nouislider-tooltips-font-size;
+    font-weight: $nouislider-tooltips-font-weight;
+    color: $nouislider-tooltips-color;
+    text-align: center;
+    white-space: nowrap;
+    background: $nouislider-tooltips-background-color;
+    border: $nouislider-tooltips-border-width solid $nouislider-tooltips-border-color;
+    border-radius: $nouislider-tooltips-border-radius;
+  }
+
+  &-horizontal .#{$component-name}-tooltip {
+    bottom: 120%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  &-vertical .#{$component-name}-tooltip {
+    top: 50%;
+    right: 120%;
+    transform: translate(0, -50%);
+  }
+
+  &-horizontal .#{$component-name}-origin > .#{$component-name}-tooltip {
+    bottom: 10px;
+    left: auto;
+    transform: translate(50%, 0);
+  }
+
+  &-vertical .#{$component-name}-origin > .#{$component-name}-tooltip {
+    top: auto;
+    right: 28px;
+    transform: translate(0, -18px);
+  }
+}

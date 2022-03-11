@@ -16,13 +16,13 @@
   {if $is_free}
     <p>{l s='No payment needed for this order' d='Shop.Theme.Checkout'}</p>
   {/if}
-  <div class="payment-options {if $is_free}hidden-xs-up{/if}">
+  <div class="payment-options {if $is_free}d-block d-sm-none{/if}">
     {foreach from=$payment_options item="module_options"}
       {foreach from=$module_options item="option"}
         <div>
-          <div id="{$option.id}-container" class="payment-option clearfix">
+          <div id="{$option.id}-container" class="payment-option">
             {* This is the way an option should be selected when Javascript is enabled *}
-            <span class="custom-radio float-xs-left">
+            <span class="custom-radio">
               <input
                 class="ps-shown-by-js {if $option.binary} binary {/if}"
                 id="{$option.id}"
@@ -31,7 +31,7 @@
                 type="radio"
                 required
                 {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
-              >
+             >
               <span></span>
             </span>
             {* This is the way an option should be selected when Javascript is disabled *}
@@ -59,7 +59,7 @@
           <div
             id="{$option.id}-additional-information"
             class="js-additional-information definition-list additional-information{if $option.id != $selected_payment_option} ps-hidden {/if}"
-          >
+         >
             {$option.additionalInformation nofilter}
           </div>
         {/if}
@@ -67,7 +67,7 @@
         <div
           id="pay-with-{$option.id}-form"
           class="js-payment-option-form {if $option.id != $selected_payment_option} ps-hidden {/if}"
-        >
+       >
           {if $option.form}
             {$option.form nofilter}
           {else}
@@ -95,29 +95,22 @@
     </p>
 
     <form id="conditions-to-approve" class="js-conditions-to-approve" method="GET">
-      <ul>
+
         {foreach from=$conditions_to_approve item="condition" key="condition_name"}
-          <li>
-            <div class="float-xs-left">
-              <span class="custom-checkbox">
-                <input  id    = "conditions_to_approve[{$condition_name}]"
-                        name  = "conditions_to_approve[{$condition_name}]"
-                        required
-                        type  = "checkbox"
-                        value = "1"
-                        class = "ps-shown-by-js"
-                >
-                <span><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
-              </span>
-            </div>
-            <div class="condition-label">
-              <label class="js-terms" for="conditions_to_approve[{$condition_name}]">
-                {$condition nofilter}
-              </label>
-            </div>
-          </li>
+          <div class="mb-3 form-check">
+            <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
+              {$condition nofilter}
+            </label>
+            <input  id    = "conditions_to_approve[{$condition_name}]"
+                    name  = "conditions_to_approve[{$condition_name}]"
+                    required
+                    type  = "checkbox"
+                    value = "1"
+                    class = "ps-shown-by-js form-check-input"
+            >
+          </div>
         {/foreach}
-      </ul>
+
     </form>
   {/if}
 
@@ -127,7 +120,7 @@
 
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
-      <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
+      <button type="submit" class="btn btn-success center-block{if !$selected_payment_option} disabled{/if}">
         {l s='Place order' d='Shop.Theme.Checkout'}
       </button>
       {if $show_final_summary}

@@ -1,0 +1,9 @@
+$component-name: carousel;
+
+.#{$component-name} {
+  .caption-description {
+    p {
+      color: $white;
+    }
+  }
+}

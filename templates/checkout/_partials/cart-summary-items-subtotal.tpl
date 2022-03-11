@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='cart_summary_items_subtotal'}
-  <div class="card-block cart-summary-line cart-summary-items-subtotal clearfix" id="items-subtotal">
+  <div class="card-block cart-summary-line cart-summary-items-subtotal " id="items-subtotal">
     <span class="label">{$cart.summary_string}</span>
     <span class="value">{$cart.subtotals.products.amount}</span>
   </div>

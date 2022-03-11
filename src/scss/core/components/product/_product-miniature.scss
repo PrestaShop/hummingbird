@@ -1,0 +1,48 @@
+$component-name: product-miniature;
+
+.#{$component-name} {
+  & &__infos {
+    position: relative;
+    z-index: 90;
+    padding: 0;
+
+    &__top,
+    &__bottom {
+      padding: 0.25rem 0.5rem;
+      background-color: $white;
+    }
+
+    &__top {
+      padding-top: 0.5rem;
+    }
+
+    &__bottom {
+      margin-bottom: 1rem;
+    }
+  }
+
+  & &__title {
+    margin: 0;
+  }
+
+  & &__image {
+    height: auto;
+  }
+
+  & &__quickview {
+    display: flex;
+    margin: auto;
+  }
+
+  & &__regular-price {
+    text-decoration: line-through;
+  }
+
+  & &__prices {
+    display: flex;
+  }
+
+  & &__price {
+    @extend .me-2;
+  }
+}

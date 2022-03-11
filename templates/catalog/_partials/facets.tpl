@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {if $facets|count}
-  <div id="search_filters" class="js-search-filters">
+  <div id="searc-filters" class="js-search-filters">
     {block name='facets_title'}
       <p class="text-uppercase h6 d-none d-sm-block d-md-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
     {/block}
@@ -44,7 +44,7 @@
         {continue}
       {/if}
 
-      <section class="facet clearfix">
+      <section class="facet">
         <p class="h6 facet-title d-none d-sm-block d-md-block">{$facet.label}</p>
         {assign var=_expand_id value=10|mt_rand:100000}
         {assign var=_collapse value=true}
@@ -54,7 +54,7 @@
 
         <div class="title d-none d-sm-block d-md-none" data-target="#facet_{$_expand_id}" data-bs-toggle="collapse"{if !$_collapse} aria-expanded="true"{/if}>
           <p class="h6 facet-title">{$facet.label}</p>
-          <span class="float-xs-right">
+          <span>
             <span class="navbar-toggler collapse-icons">
               <i class="material-icons add">&#xE313;</i>
               <i class="material-icons remove">&#xE316;</i>
@@ -79,7 +79,7 @@
                           data-search-url="{$filter.nextEncodedFacetsURL}"
                           type="checkbox"
                           {if $filter.active }checked{/if}
-                        >
+                       >
                         {if isset($filter.properties.texture)}
                           <span class="color texture" style="background-image:url({$filter.properties.texture})"></span>
                         {elseif isset($filter.properties.color)}
@@ -96,7 +96,7 @@
                           type="radio"
                           name="filter {$facet.label}"
                           {if $filter.active }checked{/if}
-                        >
+                       >
                         <span {if !$js_enabled} class="ps-shown-by-js" {/if}></span>
                       </span>
                     {/if}
@@ -105,7 +105,7 @@
                       href="{$filter.nextEncodedFacetsURL}"
                       class="_gray-darker search-link js-search-link"
                       rel="nofollow"
-                    >
+                   >
                       {$filter.label}
                       {if $filter.magnitude}
                         <span class="magnitude">({$filter.magnitude})</span>
@@ -122,7 +122,7 @@
           {block name='facet_item_dropdown'}
             <ul id="facet_{$_expand_id}" class="collapse{if !$_collapse} in{/if}">
               <li>
-                <div class="col-sm-12 col-xs-12 col-md-12 facet-dropdown dropdown">
+                <div class="facet-dropdown dropdown">
                   <a class="select-title" rel="nofollow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {$active_found = false}
                     <span>
@@ -139,7 +139,7 @@
                         {l s='(no filter)' d='Shop.Theme.Global'}
                       {/if}
                     </span>
-                    <i class="material-icons float-xs-right">&#xE5C5;</i>
+                    <i class="material-icons">&#xE5C5;</i>
                   </a>
                   <div class="dropdown-menu">
                     {foreach from=$facet.filters item="filter"}
@@ -148,7 +148,7 @@
                           rel="nofollow"
                           href="{$filter.nextEncodedFacetsURL}"
                           class="select-list"
-                        >
+                       >
                           {$filter.label}
                           {if $filter.magnitude}
                             ({$filter.magnitude})

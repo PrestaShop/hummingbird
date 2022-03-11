@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file='customer/page.tpl'}
+{extends 'customer/page.tpl'}
 
 {block name='page_title'}
   {if $editing}

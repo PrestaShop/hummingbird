@@ -22,96 +22,99 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+{$componentName = 'product-miniature'}
+
 {block name='product_miniature_item'}
-<div class="product">
-  <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
-    <div class="thumbnail-container">
-      {block name='product_thumbnail'}
-        {if $product.cover}
-          <a href="{$product.url}" class="thumbnail product-thumbnail">
-            <img
-              src="{$product.cover.bySize.home_default.url}"
-              alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
-              loading="lazy"
-              data-full-size-image-url="{$product.cover.large.url}"
-              width="250"
-              height="250"
-            />
-          </a>
-        {else}
-          <a href="{$product.url}" class="thumbnail product-thumbnail">
-            <img
-              src="{$urls.no_picture_image.bySize.home_default.url}"
-              loading="lazy"
-              width="250"
-              height="250"
-            />
-          </a>
-        {/if}
-      {/block}
+  <article class="{$componentName} js-{$componentName}{if !empty($productClasses)} {$productClasses}{/if}" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
+    <div class="card">
+      <a href="{$product.url}" class="{$componentName}__link">
+        {include file='catalog/_partials/product-flags.tpl'}
 
-      <div class="product-description">
-        {block name='product_name'}
-          {if $page.page_name == 'index'}
-            <h3 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name|truncate:30:'...'}</a></h3>
-          {else}
-            <h2 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name|truncate:30:'...'}</a></h2>
-          {/if}
+        {block name='product_miniature_image'}
+          <div class="{$componentName}__image-container thumbnail-container">
+            {if $product.cover}
+              <img
+                src="{$product.cover.bySize.home_default.url}"
+                alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                loading="lazy"
+                data-full-size-image-url="{$product.cover.large.url}"
+                width="250"
+                height="250"
+                class="{$componentName}__image card-img-top"
+              />
+            {else}
+              <img
+                src="{$urls.no_picture_image.bySize.home_default.url}"
+                loading="lazy"
+                width="250"
+                height="250"
+                class="{$componentName}__image card-img-top"
+              />
+            {/if}
+          </div>
         {/block}
+      </a>
 
-        {block name='product_price_and_shipping'}
-          {if $product.show_price}
-            <div class="product-price-and-shipping">
-              {if $product.has_discount}
-                {hook h='displayProductPriceBlock' product=$product type="old_price"}
-
-                <span class="regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
-                {if $product.discount_type === 'percentage'}
-                  <span class="discount-percentage discount-product">{$product.discount_percentage}</span>
-                {elseif $product.discount_type === 'amount'}
-                  <span class="discount-amount discount-product">{$product.discount_amount_to_display}</span>
-                {/if}
-              {/if}
-
-              {hook h='displayProductPriceBlock' product=$product type="before_price"}
-
-              <span class="price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
-                {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
-                {if '' !== $smarty.capture.custom_price}
-                  {$smarty.capture.custom_price nofilter}
-                {else}
-                  {$product.price}
-                {/if}
-              </span>
-
-              {hook h='displayProductPriceBlock' product=$product type='unit_price'}
-
-              {hook h='displayProductPriceBlock' product=$product type='weight'}
+      {block name='product_miniature_bottom'}
+        <div class="{$componentName}__infos card-body">
+          {block name='quick_view'}
+            <div class="{$componentName}__quickview">
+              <button class="{$componentName}__quickview_button btn btn-link js-quickview btn-with-icon" data-link-action="quickview">
+                <i class="material-icons search">remove_red_eye</i> {l s='Quick view' d='Shop.Theme.Actions'}
+              </button>
             </div>
-          {/if}
-        {/block}
+          {/block}
 
-        {block name='product_reviews'}
-          {hook h='displayProductListReviews' product=$product}
-        {/block}
-      </div>
+          <div class="{$componentName}__infos__top">
+            {block name='product_name'}
+              <a href="{$product.url}"><p class="{$componentName}__title">{$product.name|truncate:30:'...'}</p></a>
+            {/block}
+          </div>
 
-      {include file='catalog/_partials/product-flags.tpl'}
+          <div class="{$componentName}__infos__bottom">
+            {block name='product_variants'}
+              <div class="{$componentName}-variants">
+                {if $product.main_variants}
+                  {include file='catalog/_partials/variant-links.tpl' variants=$product.main_variants}
+                {/if}
+              </div>
+            {/block}
 
-      <div class="highlighted-informations{if !$product.main_variants} no-variants{/if} d-none d-sm-block d-md-block">
-        {block name='quick_view'}
-          <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-            <i class="material-icons search">&#xE8B6;</i> {l s='Quick view' d='Shop.Theme.Actions'}
-          </a>
-        {/block}
+            <div class="{$componentName}__prices">
+              {block name='product_price'}
+                {if $product.show_price}
+                  {hook h='displayProductPriceBlock' product=$product type="before_price"}
 
-        {block name='product_variants'}
-          {if $product.main_variants}
-            {include file='catalog/_partials/variant-links.tpl' variants=$product.main_variants}
-          {/if}
-        {/block}
-      </div>
+                  <span class="{$componentName}__price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
+                    {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
+                    {if '' !== $smarty.capture.custom_price}
+                      {$smarty.capture.custom_price nofilter}
+                    {else}
+                      {$product.price}
+                    {/if}
+                  </span>
+
+                  {hook h='displayProductPriceBlock' product=$product type='unit_price'}
+
+                  {hook h='displayProductPriceBlock' product=$product type='weight'}
+                {/if}
+              {/block}
+
+              {block name='product_discount_price'}
+                {if $product.show_price}
+                  <div class="{$componentName}__discount-price">
+                    {if $product.has_discount}
+                      {hook h='displayProductPriceBlock' product=$product type="old_price"}
+
+                      <span class="{$componentName}__regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
+                    {/if}
+                  </div>
+                {/if}
+              {/block}
+            </div>
+          </div>
+        </div>
+      {/block}
     </div>
   </article>
-</div>
 {/block}

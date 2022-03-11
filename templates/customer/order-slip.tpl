@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file='customer/page.tpl'}
+{extends 'customer/page.tpl'}
 
 {block name='page_title'}
   {l s='Credit slips' d='Shop.Theme.Customeraccount'}
@@ -30,6 +30,7 @@
 
 {block name='page_content'}
   <h6>{l s='Credit slips you have received after canceled orders.' d='Shop.Theme.Customeraccount'}</h6>
+
   {if $credit_slips}
     <table class="table table-striped table-bordered d-none d-sm-block d-md-block">
       <thead class="thead-default">
@@ -76,5 +77,7 @@
         </div>
       {/foreach}
     </div>
+  {else}
+    <div class="alert alert-info" role="alert" data-alert="info">{l s='You have not received any credit slips.' d='Shop.Notifications.Warning'}</div>
   {/if}
 {/block}

@@ -1,0 +1,13 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import progressContent from './progress.html'
+
+<Meta title="UI/Progress Bar" />
+
+# Progress Bar
+
+<Canvas>
+  <Story name="Progress Bar" parameters={{ docs: { source: { code: progressContent } } }}>
+    {() => progressContent}
+  </Story>
+</Canvas>
+

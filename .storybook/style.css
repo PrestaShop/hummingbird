@@ -1,0 +1,11 @@
+.sbdocs-preview > div:last-of-type code {
+  color: white;
+}
+
+body {
+  background-color: transparent;
+}
+
+.os-host {
+  color: red;
+}

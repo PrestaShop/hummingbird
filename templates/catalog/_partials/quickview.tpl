@@ -23,25 +23,19 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}">
-         <span aria-hidden="true">&times;</span>
-       </button>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
      </div>
-     <div class="modal-body">
+     <div class="modal-body page-product">
       <div class="row">
-        <div class="col-md-6 col-sm-6 hidden-xs-down">
+        <div class="col-sm-6 d-none d-sm-block">
           {block name='product_cover_thumbnails'}
             {include file='catalog/_partials/product-cover-thumbnails.tpl'}
           {/block}
-          <div class="arrows js-arrows">
-            <i class="material-icons arrow-up js-arrow-up">&#xE316;</i>
-            <i class="material-icons arrow-down js-arrow-down">&#xE313;</i>
-          </div>
         </div>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-sm-6">
           <h1 class="h1">{$product.name}</h1>
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}

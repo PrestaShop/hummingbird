@@ -1,0 +1,11 @@
+.toast-container {
+  z-index: $zindex-fixed;
+
+  .toast {
+    .btn-close {
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}

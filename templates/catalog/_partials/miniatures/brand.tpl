@@ -23,15 +23,14 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='brand_miniature_item'}
-  <li class="brand">
-    <div class="brand-img"><a href="{$brand.url}"><img src="{$brand.image}" alt="{$brand.name}" loading="lazy"></a></div>
-    <div class="brand-infos">
-      <p><a href="{$brand.url}">{$brand.name}</a></p>
+  <li class="brand card col-6 col-md-4 col-lg-3">
+    <div class="brand__img"><a href="{$brand.url}"><img src="{$brand.image}" alt="{$brand.name}" loading="lazy"></a></div>
+    <div class="brand__infos">
+      <p><a class="brand__link" href="{$brand.url}">{$brand.name}</a></p>
       {$brand.text nofilter}
     </div>
-    <div class="brand-products">
-      <a href="{$brand.url}">{$brand.nb_products}</a>
-      <a href="{$brand.url}">{l s='View products' d='Shop.Theme.Actions'}</a>
+    <div class="brand__products">
+      <a class="btn" href="{$brand.url}">{$brand.nb_products}</a>
     </div>
   </li>
 {/block}

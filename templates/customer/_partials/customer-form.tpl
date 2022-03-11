@@ -40,11 +40,11 @@
   </section>
 
   {block name='customer_form_footer'}
-    <footer class="form-footer clearfix">
+    <footer class="form-footer">
       <input type="hidden" name="submitCreate" value="1">
       {block "form_buttons"}
-        <button class="btn btn-primary form-control-submit float-xs-right" data-link-action="save-customer" type="submit">
-          {l s='Save' d='Shop.Theme.Actions'}
+        <button class="btn btn-primary form-control-submit" data-link-action="save-customer" type="submit">
+          {l s='Create account' d='Shop.Theme.Actions'}
         </button>
       {/block}
     </footer>

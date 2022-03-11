@@ -1,0 +1,19 @@
+#home-slider {
+  .carousel-link {
+    align-items: start;
+    height: 100%;
+  }
+
+  .carousel-content {
+    height: 100%;
+  }
+}
+
+.ratio-homeSlider {
+  min-height: 300px;
+
+  --bs-aspect-ratio: calc(9 / 21 * 100%); // 21x9
+  @include media-breakpoint-up(md) {
+    --bs-aspect-ratio: calc(7 / 30 * 100%); // 30x7
+  }
+}

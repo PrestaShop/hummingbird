@@ -1,0 +1,20 @@
+.blockreassurance_product {
+  .item-product {
+    // stylelint-disable-next-line
+    margin-right: 1.5rem !important;
+  }
+
+  svg {
+    path {
+      fill: $gray-600;
+    }
+  }
+
+  span,
+  p {
+    display: block;
+    line-height: 1.5rem;
+    // stylelint-disable-next-line
+    color: $gray-600 !important;
+  }
+}

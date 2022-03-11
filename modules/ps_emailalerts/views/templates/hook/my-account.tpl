@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<a class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="emailsalerts"
+<a class="col-md-6 col-lg-4" id="emailsalerts"
    href="{url entity='module' name='ps_emailalerts' controller='account'}" title="{l s='My alerts' d='Shop.Theme.Catalog'}">
   <span class="link-item">
   <i class="material-icons">&#xE151;</i>

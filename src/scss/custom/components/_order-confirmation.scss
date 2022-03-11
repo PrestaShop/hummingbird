@@ -1,0 +1,76 @@
+$component-name: order-confirmation;
+
+.#{$component-name} {
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+      font-size: 1.5rem;
+      color: $white;
+      background-color: darken($success, 10%);
+      border-radius: 100%;
+    }
+  }
+
+  &__subtext {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: $gray-800;
+  }
+
+  &__details {
+    .order-details {
+      margin-bottom: 0;
+
+      li {
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+
+  &__totals > .row:not(:last-child),
+  &__subtotals > .row:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &__items > .row:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &__items .item {
+    .item__prices {
+      div {
+        font-weight: 500;
+        color: $gray-800;
+      }
+    }
+
+    .item__reference {
+      margin-bottom: 0;
+    }
+
+    .item__title {
+      margin-bottom: 0;
+      font-weight: 600;
+      color: $gray-800;
+    }
+
+    .item__image {
+      text-align: center;
+
+      img {
+        border-radius: 8px;
+      }
+    }
+  }
+}

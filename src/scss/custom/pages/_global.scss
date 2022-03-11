@@ -1,0 +1,15 @@
+#content-wrapper {
+  padding-bottom: 4rem;
+
+  .page-header {
+    margin-bottom: 3rem;
+
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+hr {
+  color: $gray-500;
+}

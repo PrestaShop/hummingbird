@@ -1,4 +1,4 @@
-import '../assets/css/theme.css';
+import '../src/scss/theme.scss';
 import 'bootstrap';
 //import '../../core.js';
 //import '../assets/js/theme.js';

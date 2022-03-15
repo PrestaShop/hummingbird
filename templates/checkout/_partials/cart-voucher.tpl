@@ -75,14 +75,15 @@
       </div>
 
       {if $cart.discounts|count> 0}
-        <p class="block-promo promo-highlighted">
+        <hr />
+        <p class="fw-bold fs-6">
           {l s='Take advantage of our exclusive offers:' d='Shop.Theme.Actions'}
         </p>
-        <ul class="js-discount card-block promo-discounts">
+        <ul class="js-discount card-voucher__list">
           {foreach from=$cart.discounts item=discount}
-            <li class="cart-summary-line">
+            <li class="cart-voucher__code">
               <span class="label">
-                <span class="code">{$discount.code}</span> - {$discount.name}
+                <span class="text-sm">{$discount.code}</span> - {$discount.name}
               </span>
             </li>
           {/foreach}

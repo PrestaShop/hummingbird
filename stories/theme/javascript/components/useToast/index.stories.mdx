@@ -8,6 +8,18 @@ import useMultipleContent from './multiple.html'
 
 **useToast** is accessible through `window.Theme.components.useToast`.
 
+## Concept
+
+The useToast function use the markup of [toast-container.tpl](https://github.com/PrestaShop/theme-refacto/blob/develop/templates/components/toast-container.tpl) and [toast.tpl](https://github.com/PrestaShop/theme-refacto/blob/develop/templates/components/toast.tpl).  
+
+The toast container is placed on the top right of the viewport by default.  
+
+The toast markup is generated on the fly using the `<template>` element.
+
+If these files has been removed from the theme, it generates everything on-the fly using JavaScript only, to avoid failure cases.
+
+If the template is not on the page, and you override the toast template, if your override is wrong, it will not throw an error to avoid blocking the JavaScript execution but it will send an error to the console and return `false`.
+
 ## Options
 
 **type**:  'light' | 'dark' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'   
@@ -15,6 +27,23 @@ import useMultipleContent from './multiple.html'
 **delay** (Optional): number;  
 **classlist** (Optional): string;  
 **template** (Optional): string;  
+
+## Return
+useToast return an Object, here is the definition:
+```ts 
+interface Instance {
+  // Bootstrap instance
+  instance: Toast | null;
+  element: HTMLElement | null;
+  content: HTMLElement | null;
+  // Bootstrap methods wrapped
+  show: () => boolean;
+  hide: () => boolean;
+  dispose: () => boolean;
+  remove: () => boolean;
+  message: (markup?: string) => string | boolean;
+}
+```
 
 ### Examples (only testable inside the Canvas tab)
 Overall destructuring is a good practice, if you can, use it!

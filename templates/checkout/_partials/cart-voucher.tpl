@@ -34,7 +34,7 @@
               <li class="cart-voucher__item row">
                 <span class="cart-voucher__name col">{$voucher.name}</span>
                 <div class="d-flex align-items-center justify-content-end col">
-                  <span class="me-2">{$voucher.reduction_formatted}</span>
+                  <span class="me-2 fw-bold">{$voucher.reduction_formatted}</span>
                     {if isset($voucher.code) && $voucher.code !== ''}
                       <a href="{$voucher.delete_url}" data-link-action="remove-voucher"><i class="material-icons">&#xE872;</i></a>
                     {/if}
@@ -49,17 +49,17 @@
 
       <div class="accordion">
         <div class="accordion-item bg-transparent">
-          <button class="accordion-button collapsed px-0 bg-transparent" type="button" data-bs-target="#promo-code" data-bs-toggle="collapse" aria-expanded="{if $cart.discounts|count> 0}true{else}false{/if}">
+          <button class="accordion-button collapsed px-0 bg-transparent" type="button" data-bs-target="#promo-code" data-bs-toggle="collapse" aria-expanded="false">
             {l s='Promo code' d='Shop.Theme.Checkout'}
           </button>
 
-          <div id="promo-code" class="accordion-collapse collapse{if $cart.discounts|count> 0} show{/if}">
+          <div id="promo-code" class="accordion-collapse collapse">
             <div class="accordion-body px-0">
               {block name='cart_voucher_form'}
                 <form action="{$urls.pages.cart}" data-link-action="add-voucher" class="d-flex" method="post">
                   <input type="hidden" name="token" value="{$static_token}">
                   <input type="hidden" name="addDiscount" value="1">
-                  <input class="form-control" type="text" name="discount_name" placeholder="{l s='Promo code' d='Shop.Theme.Checkout'}">
+                  <input class="form-control" type="text" name="discount_name" placeholder="{l s='Paste your voucher here' d='Shop.Theme.Checkout'}">
                   <button type="submit" class="btn btn-primary ms-2"><span>{l s='Apply' d='Shop.Theme.Actions'}</span></button>
                 </form>
               {/block}
@@ -79,11 +79,11 @@
         <p class="fw-bold fs-6">
           {l s='Take advantage of our exclusive offers:' d='Shop.Theme.Actions'}
         </p>
-        <ul class="js-discount card-voucher__list">
+        <ul class="js-discount cart-voucher__list">
           {foreach from=$cart.discounts item=discount}
             <li class="cart-voucher__code">
               <span class="label">
-                <span class="text-sm">{$discount.code}</span> - {$discount.name}
+                <span class="js-code text-sm">{$discount.code}</span> - {$discount.name}
               </span>
             </li>
           {/foreach}

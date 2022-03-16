@@ -22,45 +22,32 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-// @ts-ignore
-//import $ from "expose-loader?exposes=$,jQuery!jquery";
 
-import SelectorsMap from './constants/selectors-map';
-import initEmitter from './prestashop';
+import {Collapse} from 'bootstrap';
 
-initEmitter();
+function isHTMLElement(element: EventTarget | null): element is HTMLElement {
+  return (element as HTMLElement).innerText !== undefined;
+}
 
-window.prestashop.themeSelectors = SelectorsMap;
+export default () => {
+  const {prestashop} = window;
+  const voucherCodes = document.querySelectorAll(prestashop.themeSelectors.cart.discountCode);
 
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
-import initResponsiveToggler from './responsive-toggler';
-import initQuantityInput from './qty-input';
-import initQuickview from './quickview';
-import initCart from './pages/cart';
-import useToast from './components/useToast';
-import './modules/blockcart';
-import initProductBehavior from './product';
-import './mobile-menu';
-import './modules/ps_searchbar';
-import './modules/facetedsearch';
-/* eslint-enable */
+  voucherCodes.forEach((voucher) => {
+    voucher.addEventListener('click', (event: Event) => {
+      event.stopPropagation();
 
-$(() => {
-  initProductBehavior();
-  initQuantityInput(SelectorsMap.qtyInput.default);
-  initQuickview();
-  initResponsiveToggler();
-  initCart();
-});
+      if (isHTMLElement(event.currentTarget)) {
+        const code = event.currentTarget;
+        const discountInput = document.querySelector(prestashop.themeSelectors.cart.discountName);
+        const formCollapser = new Collapse(document.querySelector(prestashop.themeSelectors.cart.promoCode));
 
-export const components = {
-  useToast,
-};
+        discountInput.value = code.innerText;
+        // Show promo code field
+        formCollapser.show();
+      }
 
-export default {
-  initResponsiveToggler,
-  initQuantityInput,
-  initQuickview,
-  initProductBehavior,
+      return false;
+    });
+  })
 };

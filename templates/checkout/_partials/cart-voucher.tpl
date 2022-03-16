@@ -83,7 +83,7 @@
           {foreach from=$cart.discounts item=discount}
             <li class="cart-voucher__code">
               <span class="label">
-                <span class="js-code text-sm">{$discount.code}</span> - {$discount.name}
+                <span class="js-code btn btn-link p-0 lh-1">{$discount.code}</span> - {$discount.name}
               </span>
             </li>
           {/foreach}

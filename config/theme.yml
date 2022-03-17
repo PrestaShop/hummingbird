@@ -1,6 +1,6 @@
-name: theme-refacto 
-display_name: New Theme 
-version: 2.0.0
+name: hummingbird 
+display_name: Hummingbird
+version: 0.1.0
 author:
   name: "PrestaShop Team"
   email: "pub@prestashop.com"

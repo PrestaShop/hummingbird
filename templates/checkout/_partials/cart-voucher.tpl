@@ -34,9 +34,9 @@
               <li class="cart-voucher__item row">
                 <span class="cart-voucher__name col">{$voucher.name}</span>
                 <div class="d-flex align-items-center justify-content-end col">
-                  <span class="me-2 fw-bold">{$voucher.reduction_formatted}</span>
+                  <span class="fw-bold">{$voucher.reduction_formatted}</span>
                     {if isset($voucher.code) && $voucher.code !== ''}
-                      <a href="{$voucher.delete_url}" data-link-action="remove-voucher"><i class="material-icons">&#xE872;</i></a>
+                      <a href="{$voucher.delete_url}" class="ms-2" data-link-action="remove-voucher"><i class="material-icons">&#xE872;</i></a>
                     {/if}
                 </div>
               </li>
@@ -79,12 +79,10 @@
         <p class="fw-bold fs-6">
           {l s='Take advantage of our exclusive offers:' d='Shop.Theme.Actions'}
         </p>
-        <ul class="js-discount cart-voucher__list">
+        <ul class="js-discount cart-voucher__offers">
           {foreach from=$cart.discounts item=discount}
             <li class="cart-voucher__code">
-              <span class="label">
-                <span class="js-code btn btn-link p-0 lh-1">{$discount.code}</span> - {$discount.name}
-              </span>
+              <span class="js-code btn btn-link p-0 lh-1">{$discount.code}</span> - {$discount.name}
             </li>
           {/foreach}
         </ul>

@@ -1,6 +1,6 @@
-# PrestaShop 8.0
+# Hummingbird theme
 
-This theme is the new theme of PrestaShop. Please, if you work on this theme, use the `develop` branch of PrestaShop, because this theme will be available on 8.0
+This is the new theme of PrestaShop we are working on. Please, if you work on this theme, use the `develop` branch of PrestaShop, because this theme will be available from version 8.0.
 
 [Read more](https://build.prestashop.com/news/new-theme-announce/) about this theme on the blog.
 

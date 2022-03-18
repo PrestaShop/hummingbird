@@ -1,7 +1,6 @@
 // IT IS FORBIDDEN TO USE REFERENCES TO BS5 VARIABLES BECAUSE THEY ARE NOT YET DECLARED.
 $primary: #5434d0;
 $secondary: #f39d72;
-$info: #f39d72;
 $success: #4cbb6c;
 $warning: #ff9a52;
 $danger: #ff4c4c;
@@ -22,3 +21,4 @@ $body-color: $gray-800;
 
 // Toasts
 $toast-border-width: 0;
+$carousel-transition-duration: 0.25s;

@@ -1,0 +1,35 @@
+$component-name: checkout__steps;
+
+.#{$component-name} {
+  &__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+    background: $gray-300;
+    border-radius: 100%;
+    margin: auto;
+    color: $white;
+  }
+
+  &__text {
+    color: $gray-300;
+  }
+
+  &--current {
+    .#{$component-name}__number {
+      background: $gray-900;
+    }
+
+    .#{$component-name}__text {
+      color: $gray-900;
+    }
+  }
+
+  &__list {
+    width: 100%;
+    max-width: 40rem;
+    margin: auto;
+  }
+}

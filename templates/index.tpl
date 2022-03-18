@@ -31,8 +31,6 @@
     <div id="content-wrapper" class="wrapper__content">
       {hook h="displayContentWrapperTop"}
       {block name='content'}
-
-
         <!-- TODO INSIDE -->
           {block name='page_header_container'}
             {block name='page_title' hide}
@@ -62,8 +60,6 @@
             </footer>
           {/block}
         <!-- TODO INSIDE -->
-
-
       {/block}
       {hook h="displayContentWrapperBottom"}
     </div>

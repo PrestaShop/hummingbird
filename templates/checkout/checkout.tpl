@@ -24,18 +24,22 @@
  *}
 {extends file=$layout}
 
-{block name='content'}
-      <div class="row">
-        <div class="cart-grid-body col-lg-7">
-          {block name='checkout_process'}
-            {render file='checkout/checkout-process.tpl' ui=$checkout_process}
-          {/block}
-        </div>
-        <div class="cart-grid-right col-lg-5">
-          {block name='cart_summary'}
-            {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
-          {/block}
-          {hook h='displayReassurance'}
-        </div>
+{block name='content_columns'}
+  {include file="components/checkout-steps.tpl"}
+
+  <div class="container">
+    <div class="row">
+      <div class="cart-grid-body col-lg-7">
+        {block name='checkout_process'}
+          {render file='checkout/checkout-process.tpl' ui=$checkout_process}
+        {/block}
       </div>
+      <div class="cart-grid-right col-lg-5">
+        {block name='cart_summary'}
+          {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
+        {/block}
+        {hook h='displayReassurance'}
+      </div>
+    </div>
+  </div>
 {/block}

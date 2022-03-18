@@ -46,6 +46,13 @@ export const listing = {
   searchLink: '.js-search-link',
 };
 
+export const cart = {
+  discountCode: '.js-discount .js-code',
+  discountName: '[name=discount_name]',
+  displayPromo: '.display-promo',
+  promoCode: '#promo-code',
+};
+
 const selectorsMap = {
   qtyInput: {
     default: '.js-quantity-button input',
@@ -68,6 +75,7 @@ const selectorsMap = {
   facetedsearch,
   pageLoader,
   listing,
+  cart,
 };
 
 export default selectorsMap;

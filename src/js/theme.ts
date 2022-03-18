@@ -37,6 +37,7 @@ import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
 import initQuantityInput from './qty-input';
 import initQuickview from './quickview';
+import initCart from './pages/cart';
 import useToast from './components/useToast';
 import './modules/blockcart';
 import initProductBehavior from './product';
@@ -45,11 +46,12 @@ import './modules/ps_searchbar';
 import './modules/facetedsearch';
 /* eslint-enable */
 
-$(document).ready(() => {
+$(() => {
   initProductBehavior();
   initQuantityInput(SelectorsMap.qtyInput.default);
   initQuickview();
   initResponsiveToggler();
+  initCart();
 });
 
 export const components = {

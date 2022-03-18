@@ -22,44 +22,12 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<div 
-  id="product-images" 
-  class="carousel carousel-dark slide js-product-carousel row" 
-  data-bs-ride="carousel"
-  data-bs-interval="false"
->
-  {block name='product_images'}
-    <div class="product-thumbnails-container js-qv-mask col-lg-2">
-      <ul class="product-thumbnails js-qv-product-images">
-        {foreach from=$product.images item=image key=key}
-          <li 
-            class="thumb-container js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}" 
-            data-bs-target="#product-images"
-            data-bs-slide-to="{$key}"
-            {if $image.id_image == $product.default_image.id_image} 
-              aria-current="true"
-            {/if}
-            aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
-         >
-            <img
-              class="img-fluid thumb js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
-              data-image-medium-src="{$image.bySize.medium_default.url}"
-              data-image-large-src="{$image.bySize.large_default.url}"
-              src="{$image.bySize.home_default.url}"
-              {if !empty($image.legend)}
-                alt="{$image.legend}"
-                title="{$image.legend}"
-              {else}
-                alt="{$product.name}"
-              {/if}
-              loading="lazy"
-           >
-          </li>
-        {/foreach}
-      </ul>
-    </div>
-  {/block}
-  <div class="col-lg-9 p-0 h-100">
+
+<div class="product__images js-images-container">
+
+  <div id="product-images" class="carousel slide js-product-carousel" 
+    data-bs-ride="carousel" data-bs-interval="false">
+
     <div class="carousel-inner">
       {include file='catalog/_partials/product-flags.tpl'}
 
@@ -77,9 +45,7 @@
       {block name='product_cover'}
         {if $product.default_image}
           {foreach from=$product.images item=image key=key}
-            <li 
-              class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}" 
-           >
+            <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
               <img
                 class="img-fluid"
                 src="{$image.bySize.large_default.url}"
@@ -89,21 +55,49 @@
                 {else}
                   alt="{$product.name}"
                 {/if}
-                loading="lazy"
-             >
-            </li>
+                loading="lazy">
+            </div>
           {/foreach}
         {else}
-          <li class="carousel-item">
-            <img 
-              src="{$urls.no_picture_image.bySize.large_default.url}"
-              loading="lazy"
-           >
-          </li>
+          <div class="carousel-item">
+            <img src="{$urls.no_picture_image.bySize.large_default.url}" loading="lazy">
+          </div>
         {/if}
       {/block}
     </div>
   </div>
-</div>
 
-{hook h='displayAfterProductThumbs' product=$product}
+  {block name='product_images'}
+    <div class="thumbnails__container">
+      <ul class="thumbnails__list row g-2">
+        {foreach from=$product.images item=image key=key}
+          <li 
+            class="thumbnail js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if} col-3 col-md-2" 
+            data-bs-target="#product-images"
+            data-bs-slide-to="{$key}"
+            {if $image.id_image == $product.default_image.id_image} 
+              aria-current="true"
+            {/if}
+            aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
+        >
+            <img
+              class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
+              data-image-medium-src="{$image.bySize.medium_default.url}"
+              data-image-large-src="{$image.bySize.large_default.url}"
+              src="{$image.bySize.home_default.url}"
+              {if !empty($image.legend)}
+                alt="{$image.legend}"
+                title="{$image.legend}"
+              {else}
+                alt="{$product.name}"
+              {/if}
+              loading="lazy"
+          >
+          </li>
+        {/foreach}
+      </ul>
+    </div>
+  {/block}
+
+  {hook h='displayAfterProductThumbs' product=$product}
+</div>

@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import toastsContent from './toasts.html'
+import extendedContent from './toasts-extended.html'
+
+<Meta title="UI/Toasts" />
+
+# Basic toasts
+
+<Canvas>
+  <Story name="Toasts" parameters={{ docs: { source: { code: toastsContent } } }}>
+    {() => toastsContent}
+  </Story>
+</Canvas>
+
+# Extended toasts
+
+<Canvas>
+  <Story name="Extended toasts" parameters={{ docs: { source: { code: extendedContent } } }}>
+    {() => extendedContent}
+  </Story>
+</Canvas>

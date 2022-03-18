@@ -22,6 +22,19 @@ module.exports = {
       include: path.resolve(__dirname, '../'),
     });
 
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@js': path.resolve(__dirname, '../src/js'),
+      '@services': path.resolve(__dirname, '../src/js/services'),
+      '@constants': path.resolve(__dirname, '../src/js/constants'),
+      '@helpers': path.resolve(__dirname, '../src/js/helpers'),
+    }
+
+    config.externals = {
+      ...config.externals,
+      prestashop: 'prestashop',
+    };
+
     return config;
   },
   addonActionsTheme: {

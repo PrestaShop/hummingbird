@@ -1,0 +1,9 @@
+.thumbnails__container {
+  margin-top: 1rem;
+
+  .thumbnail {
+    &:not(:last-child) {
+      margin-bottom: 0.75rem;
+    }
+  }
+}

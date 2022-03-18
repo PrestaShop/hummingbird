@@ -1,0 +1,114 @@
+.page-product {
+  .product {
+    &__name {
+      margin-bottom: 2rem;
+    }
+
+    &__infos {
+      .accordion-button {
+        padding: 1.25rem 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .accordion-body {
+        padding: 0;
+      }
+    }
+
+    &__images {
+      margin-bottom: 1rem;
+
+      .carousel {
+        overflow: hidden;
+        border-radius: 8px;
+      }
+    }
+
+    .thumbnails__container {
+      .thumbnail {
+        img {
+          border: 2px solid transparent;
+          border-radius: 8px;
+        }
+
+        &.active img {
+          border: 2px solid $primary;
+        }
+      }
+    }
+
+    &__description-short {
+      margin-bottom: 1.5rem;
+    }
+
+    &__tax-label {
+      margin-bottom: 1.5rem;
+      color: $gray-700;
+    }
+
+    &__prices {
+      font-size: 1.25rem;
+    }
+
+    .prices__wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    &__current-price {
+      font-weight: 700;
+    }
+
+    &__discount {
+      margin-left: 0.5rem;
+      color: $gray-700;
+    }
+
+    &__price-regular {
+      text-decoration: line-through;
+    }
+
+    &__variants {
+      .variant {
+        margin-bottom: 1.5rem;
+
+        ul {
+          display: flex;
+          align-items: center;
+
+          li {
+            &:first-of-type {
+              span {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+
+        .input-color {
+          display: none;
+        }
+
+        .color {
+          span {
+            font-size: 0;
+          }
+        }
+      }
+    }
+
+    &__add-to-cart {
+      margin-bottom: 2rem;
+
+      .product-actions__button button {
+        width: 100%;
+      }
+    }
+
+    &-pack__item {
+      border: 1px $gray-200 solid;
+    }
+  }
+}

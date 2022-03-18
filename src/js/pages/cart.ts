@@ -1,4 +1,4 @@
-{**
+/**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -21,13 +21,33 @@
  * @author    PrestaShop SA and Contributors <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
- <section class="product-pack">
-  <p class="h6">{l s='This pack contains' d='Shop.Theme.Catalog'}</p>
+ */
 
-  {foreach from=$packItems item="product_pack"}
-    {block name='product_miniature'}
-      {include file='catalog/_partials/miniatures/pack-product.tpl' product=$product_pack showPackProductsPrice=$product.show_price}
-    {/block}
-  {/foreach}
-</section>
+import {Collapse} from 'bootstrap';
+
+function isHTMLElement(element: EventTarget | null): element is HTMLElement {
+  return (element as HTMLElement).innerText !== undefined;
+}
+
+export default () => {
+  const {prestashop} = window;
+  const voucherCodes = document.querySelectorAll(prestashop.themeSelectors.cart.discountCode);
+
+  voucherCodes.forEach((voucher) => {
+    voucher.addEventListener('click', (event: Event) => {
+      event.stopPropagation();
+
+      if (isHTMLElement(event.currentTarget)) {
+        const code = event.currentTarget;
+        const discountInput = document.querySelector(prestashop.themeSelectors.cart.discountName);
+        const formCollapser = new Collapse(document.querySelector(prestashop.themeSelectors.cart.promoCode));
+
+        discountInput.value = code.innerText;
+        // Show promo code field
+        formCollapser.show();
+      }
+
+      return false;
+    });
+  });
+};

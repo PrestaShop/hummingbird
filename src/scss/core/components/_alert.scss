@@ -1,0 +1,5 @@
+.alert {
+  &.fade:not(.show) {
+    @extend .visually-hidden;
+  }
+}

@@ -30,9 +30,7 @@ import * as Alertify from '@constants/mocks/useAlert-data';
 describe('useAlert', () => {
   describe('wrapper functions', () => {
     beforeAll(() => {
-      console.group = jest.fn();
       console.error = jest.fn();
-      console.info = jest.fn();
     });
 
     it('must returns false when useAlert failed to initialize', () => {

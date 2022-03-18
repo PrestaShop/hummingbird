@@ -67,14 +67,6 @@
     </div>
   </div>
 
-
-
-
-
-
-
-
-
   {block name='product_images'}
     <div class="thumbnails__container">
       <ul class="thumbnails__list row g-2">

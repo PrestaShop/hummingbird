@@ -26,42 +26,37 @@
   {if !$configuration.is_catalog}
 
     <div class="mb-3">
-    {block name='product_availability'}
-      <span id="product__availability" class="product__availability js-product-availability">
-        {if $product.show_availability && $product.availability_message}
-          {if $product.availability == 'available'}
-            <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i>
-          {elseif $product.availability == 'last_remaining_items'}
-            <i class="material-icons product-last-items">&#xE002;</i>
-          {else}
-            <i class="material-icons product-unavailable">&#xE14B;</i>
+      {block name='product_availability'}
+        <span id="product__availability" class="product__availability js-product-availability">
+          {if $product.show_availability && $product.availability_message}
+            {if $product.availability == 'available'}
+              <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i>
+            {elseif $product.availability == 'last_remaining_items'}
+              <i class="material-icons product-last-items">&#xE002;</i>
+            {else}
+              <i class="material-icons product-unavailable">&#xE14B;</i>
+            {/if}
+            {$product.availability_message}
           {/if}
-          {$product.availability_message}
+        </span>
+      {/block}
+      {block name='product_delivery_times'}
+        {if $product.is_virtual	== 0}
+          {if $product.additional_delivery_times == 1}
+            {if $product.delivery_information}
+              <span class="product__delivery__information">{$product.delivery_information}</span>
+            {/if}
+          {elseif $product.additional_delivery_times == 2}
+            {if $product.quantity> 0}
+              <span class="product__delivery__information">{$product.delivery_in_stock}</span>
+            {* Out of stock message should not be displayed if customer can't order the product. *}
+            {elseif $product.quantity <= 0 && $product.add_to_cart_url}
+              <span class="product__delivery__information">{$product.delivery_out_stock}</span>
+            {/if}
+          {/if}
         {/if}
-      </span>
-    {/block}
-    {block name='product_delivery_times'}
-      {if $product.is_virtual	== 0}
-        {if $product.additional_delivery_times == 1}
-          {if $product.delivery_information}
-            <span class="product__delivery__information">{$product.delivery_information}</span>
-          {/if}
-        {elseif $product.additional_delivery_times == 2}
-          {if $product.quantity> 0}
-            <span class="product__delivery__information">{$product.delivery_in_stock}</span>
-          {* Out of stock message should not be displayed if customer can't order the product. *}
-          {elseif $product.quantity <= 0 && $product.add_to_cart_url}
-            <span class="product__delivery__information">{$product.delivery_out_stock}</span>
-          {/if}
-        {/if}
-      {/if}
-    {/block}
+      {/block}
     </div>
-
-
-
-
-
 
     {block name='product_quantity'}
       <div class="row g-2">

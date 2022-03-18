@@ -115,7 +115,6 @@
   </div>
 </div>
 
-
 {block name='product_features'}
   {if $product.grouped_features}
     <div class="info accordion-item" id="product-features">

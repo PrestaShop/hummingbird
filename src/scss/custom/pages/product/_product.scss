@@ -6,9 +6,9 @@
 
     &__infos {
       .accordion-button {
-        font-weight: bold;
-        font-size: 1.25rem;
         padding: 1.25rem 0;
+        font-size: 1.25rem;
+        font-weight: 700;
       }
 
       .accordion-body {
@@ -18,18 +18,18 @@
 
     &__images {
       margin-bottom: 1rem;
-  
+
       .carousel {
-        border-radius: 8px;
         overflow: hidden;
+        border-radius: 8px;
       }
     }
 
     .thumbnails__container {
       .thumbnail {
         img {
-          border-radius: 8px;
           border: 2px solid transparent;
+          border-radius: 8px;
         }
 
         &.active img {
@@ -58,7 +58,7 @@
     }
 
     &__current-price {
-      font-weight: bold;
+      font-weight: 700;
     }
 
     &__discount {
@@ -101,7 +101,7 @@
 
     &__add-to-cart {
       margin-bottom: 2rem;
-  
+
       .product-actions__button button {
         width: 100%;
       }

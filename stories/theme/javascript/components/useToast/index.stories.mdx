@@ -1,0 +1,191 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import useToastContent from './usetoast.html'
+import useMultipleContent from './multiple.html'
+
+<Meta title="Theme/JavaScript/Components/useToast" />
+
+# useToast
+
+**useToast** is accessible through `window.Theme.components.useToast`.
+
+## Concept
+
+The useToast function use the markup of [toast-container.tpl](https://github.com/PrestaShop/theme-refacto/blob/develop/templates/components/toast-container.tpl) and [toast.tpl](https://github.com/PrestaShop/theme-refacto/blob/develop/templates/components/toast.tpl).  
+
+The toast container is placed on the top right of the viewport by default.  
+
+The toast markup is generated on the fly using the `<template>` element.
+
+If these files has been removed from the theme, it generates everything on-the fly using JavaScript only, to avoid failure cases.
+
+If the template is not on the page, and you override the toast template, if your override is wrong, it will not throw an error to avoid blocking the JavaScript execution but it will send an error to the console and return `false`.
+
+## Options
+
+**type**:  'light' | 'dark' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'   
+**autohide** (Optional): boolean;  
+**delay** (Optional): number;  
+**classlist** (Optional): string;  
+**template** (Optional): string;  
+
+## Return
+useToast return an Object, here is the definition:
+```ts 
+interface Instance {
+  // Bootstrap instance
+  instance: Toast | null;
+  element: HTMLElement | null;
+  content: HTMLElement | null;
+  // Bootstrap methods wrapped
+  show: () => boolean;
+  hide: () => boolean;
+  dispose: () => boolean;
+  remove: () => boolean;
+  message: (markup?: string) => string | boolean;
+}
+```
+
+### Examples (only testable inside the Canvas tab)
+Overall destructuring is a good practice, if you can, use it!
+
+Without any options:
+
+<Canvas>
+  <Story 
+    name="Basic usage" 
+    parameters={{ docs: { source: { code: useToastContent } } }} 
+    play={async ({canvasElement}) => {
+      const btn = document.querySelector('.btn');
+      btn.addEventListener('click', () => {
+        const {show} = window.Theme.components.useToast('Test');
+        show();
+      });
+    }}
+  >
+    {() =>  useToastContent}
+  </Story>
+</Canvas>  
+
+Without a different colorscheme:
+
+```js
+const {show} = window.Theme.components.useToast('Test', {type: 'primary'});
+show();
+```
+
+<Canvas>
+  <Story 
+    name="with primary parameter" 
+    parameters={{ docs: { source: { code: useToastContent } } }} 
+    play={async ({canvasElement}) => {
+      const btn = document.querySelector('.btn');
+      btn.addEventListener('click', () => {
+        const {show} = window.Theme.components.useToast('Test', {type: 'primary'});
+        show();
+      });
+    }}
+  >
+    {() =>  useToastContent}
+  </Story>
+</Canvas>  
+
+Without autohide:
+
+```js
+const {show} = window.Theme.components.useToast('Test', {autohide: false});
+show();
+```
+
+<Canvas>
+  <Story 
+    name="without autohide" 
+    parameters={{ docs: { source: { code: useToastContent } } }} 
+    play={async ({canvasElement}) => {
+      const btn = document.querySelector('.btn');
+      btn.addEventListener('click', () => {
+        const {show} = window.Theme.components.useToast('Test', {autohide: false});
+        show();
+      });
+    }}
+  >
+    {() =>  useToastContent}
+  </Story>
+</Canvas>  
+
+
+With template overridden:
+
+```js
+const myTemplate = `
+  <div class="toast toast--override">
+    <div class="toast-header">My header text</div>
+    <div class="toast-body"></div>
+  </div>
+`
+const {show} = window.Theme.components.useToast('Test', {template: myTemplate});
+show();
+```
+
+<Canvas>
+  <Story 
+    name="with template overridden" 
+    parameters={{ docs: { source: { code: useToastContent } } }} 
+    play={async ({canvasElement}) => {
+      const myTemplate = `
+        <div class="toast toast--override">
+          <div class="toast-header">My header text</div>
+          <div class="toast-body"></div>
+        </div>
+      `
+      const btn = document.querySelector('.btn');
+      btn.addEventListener('click', () => {
+        const {show} = window.Theme.components.useToast('Test', {template: myTemplate});
+        show();
+      });
+    }}
+  >
+    {() =>  useToastContent}
+  </Story>
+</Canvas>  
+
+Use multiple toasts at the same time:
+
+```js
+const {useToast} = window.Theme.components;
+
+const btnPrimary = document.querySelector('.btn-primary');
+const btnSecondary = document.querySelector('.btn-secondary');
+
+const {show: showPrimaryToast} = useToast('Test with primary', {type: 'primary'});
+const {show: showSecondaryToast} = useToast('Test with secondary', {type: 'secondary'});
+
+btnPrimary.addEventListener('click', () => {
+  showPrimaryToast();
+});
+
+btnSecondary.addEventListener('click', () => {
+  showSecondaryToast();
+});
+```
+
+<Canvas>
+  <Story 
+    name="multiple toasts at the same time" 
+    parameters={{ docs: { source: { code: useMultipleContent } } }} 
+    play={async ({canvasElement}) => {
+      const {useToast} = window.Theme.components;
+      const btnPrimary = document.querySelector('.btn-primary');
+      const btnSecondary = document.querySelector('.btn-secondary');
+      const {show: showPrimaryToast} = useToast('Test with primary', {type: 'primary'});
+      const {show: showSecondaryToast} = useToast('Test with secondary', {type: 'secondary'});
+      btnPrimary.addEventListener('click', () => {
+        showPrimaryToast();
+      });
+      btnSecondary.addEventListener('click', () => {
+        showSecondaryToast();
+      });
+    }}
+  >
+    {() =>  useMultipleContent}
+  </Story>
+</Canvas>  

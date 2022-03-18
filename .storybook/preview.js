@@ -1,8 +1,12 @@
 import '../src/scss/theme.scss';
 import 'bootstrap';
-//import '../../core.js';
-//import '../assets/js/theme.js';
+import useToast from '../src/js/components/useToast';
 
+window.Theme = {
+  components: {
+    useToast
+  }
+}
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -14,7 +18,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['UI', ['Introduction']],
+      order: ['Theme', ['Introduction', 'JavaScript', ['Components', ['Introduction']]], 'UI', ['Introduction']],
     },
   },
 }

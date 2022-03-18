@@ -40,6 +40,7 @@
         {hook h='displayFooterAfter'}
       {/block}
     </div>
+    {if $configuration.display_footer_copyright}
     <p class="copyright">
       {block name='copyright_link'}
         <a href="https://www.prestashop.com" target="_blank" rel="noopener noreferrer nofollow">
@@ -47,5 +48,6 @@
         </a>
       {/block}
     </p>
+    {/if}
   </div>
 </div>

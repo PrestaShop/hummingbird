@@ -25,27 +25,27 @@
 {$componentName = 'checkout__steps'}
 
 {block name='checkout_steps'}
-  <div class="{$componentName} bg-light border-top border-bottom d-flex justify-content-center py-4 mb-5">
-    <ul class="{$componentName}__list d-flex align-items-start justify-content-between mb-0">
-      <li class="{$componentName}__item {$componentName}--current text-center">
+  <div class="{$componentName} bg-light border-top border-bottom py-2 mb-5 py-md-4">
+    <ul class="{$componentName}__list row mb-0 d-none d-md-flex">
+      <li class="{$componentName}__item {$componentName}--success text-center col-3">
         <span class="{$componentName}__number mb-1">
-          {l s='1' d='Shop.Theme.Checkout'}
+          <i class="material-icons fs-6">check</i>
         </span> 
-        <p class="{$componentName}__text mb-0">
+        <a href="#" class="{$componentName}__text mb-0 text-decoration-underline">
           {l s='Personal Information' d='Shop.Theme.Checkout'}
-        </p>
+        </a>
       </li>
 
-      <li class="{$componentName}__item text-center">
+      <li class="{$componentName}__item {$componentName}--success  text-center col-3">
         <span class="{$componentName}__number mb-1">
-          {l s='2' d='Shop.Theme.Checkout'}
+          <i class="material-icons fs-6">check</i>
         </span> 
-        <p class="{$componentName}__text mb-0">
+        <a href="#" class="{$componentName}__text mb-0 text-decoration-underline">
           {l s='Addresses' d='Shop.Theme.Checkout'}
-        </p>
+        </a>
       </li>
 
-      <li class="{$componentName}__item text-center">
+      <li class="{$componentName}__item {$componentName}--current text-center col-3">
         <span class="{$componentName}__number mb-1">
           {l s='3' d='Shop.Theme.Checkout'}
         </span> 
@@ -54,7 +54,7 @@
         </p>
       </li>
 
-      <li class="{$componentName}__item text-center">
+      <li class="{$componentName}__item text-center col-3">
         <span class="{$componentName}__number mb-1">
           {l s='4' d='Shop.Theme.Checkout'}
         </span> 
@@ -62,6 +62,45 @@
           {l s='Payment' d='Shop.Theme.Checkout'}
         </p>
       </li>
-    </li>
+    </ul>
+
+    <div class="{$componentName}__mobile mb-0 d-flex align-items-center d-md-none">
+      <div class="{$componentName}__left mx-3">
+        {include file="components/progress-circle.tpl" classes="text-success col-4" text={l s='2 / 4' d='Shop.Theme.Checkout'}}
+      </div>
+
+      <div class="{$componentName}__step d-none" data-step="1">
+        <p class="fw-bold fs-5 mb-0">
+          {l s='Personal Information' d='Shop.Theme.Checkout'}
+        </p>
+        <p class="{$componentName}__subtitle mb-0 mt-1">
+          {l s='Next: Addresses' d='Shop.Theme.Checkout'}
+        </p>
+      </div>
+
+      <div class="{$componentName}__step" data-step="2">
+        <p class="fw-bold fs-5 mb-0">
+          {l s='Addresses' d='Shop.Theme.Checkout'}
+        </p>
+        <p class="{$componentName}__subtitle mb-0 mt-1">
+          {l s='Next: Shipping Method' d='Shop.Theme.Checkout'}
+        </p>
+      </div>
+
+      <div class="{$componentName}__step d-none" data-step="3">
+        <p class="fw-bold fs-5 mb-0">
+          {l s='Shipping Method' d='Shop.Theme.Checkout'}
+        </p>
+        <p class="{$componentName}__subtitle mb-0 mt-1">
+          {l s='Next: Payment' d='Shop.Theme.Checkout'}
+        </p>
+      </div>
+
+      <div class="{$componentName}__step d-none" data-step="4">
+        <p class="fw-bold fs-5 mb-0">
+          {l s='Payment' d='Shop.Theme.Checkout'}
+        </p>
+      </div>
+    </div>
   </div>
 {/block}

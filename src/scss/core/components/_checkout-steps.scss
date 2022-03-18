@@ -11,6 +11,42 @@ $component-name: checkout__steps;
     border-radius: 100%;
     margin: auto;
     color: $white;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__item {
+    position: relative;
+
+    &::after, &::before {
+      content: '';
+      height: 2px;
+      width: 50%;
+      position: absolute;
+      top: 0.75rem;
+      z-index: 0;
+      background: $gray-300;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+
+    &:first-of-type {
+      &::before {
+        display: none;
+      }
+    }
+
+    &:last-of-type {
+      &::after {
+        display: none;
+      }
+    }
   }
 
   &__text {
@@ -25,11 +61,51 @@ $component-name: checkout__steps;
     .#{$component-name}__text {
       color: $gray-900;
     }
+
+    &::before {
+      background: $success;
+    }
+  }
+
+  &--success {
+    .#{$component-name}__number {
+      background: $success;
+    }
+
+    .#{$component-name}__text {
+      color: $success;
+    }
+
+    &::before {
+      background: $success;
+    }
+
+    &::after {
+      background: $success;
+    }
   }
 
   &__list {
     width: 100%;
-    max-width: 40rem;
+    max-width: 45rem;
     margin: auto;
+  }
+
+  &__mobile {
+    width: 100%;
+  }
+
+  .progress-ring {
+    &__circle {
+      transition: stroke-dashoffset 0.35s;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+
+    &__background-circle {
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      stroke: $gray-200;
+    }
   }
 }

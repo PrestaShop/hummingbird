@@ -58,6 +58,14 @@ const selectorsMap = {
     default: '.js-quantity-button input',
     modal: '.modal-dialog .js-quantity-button input',
   },
+  alert: {
+    selector: '#notifications .container',
+    alert: '.alert',
+    heading: '.alert-heading',
+    body: '.alert-body',
+    icon: '.material-icons',
+    close: '.btn-close',
+  },
   toast: {
     container: '#js-toast-container',
     template: '.js-toast-template',

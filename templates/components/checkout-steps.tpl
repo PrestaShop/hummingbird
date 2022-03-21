@@ -29,7 +29,7 @@
     <ul class="{$componentName}__list row mb-0 d-none d-md-flex">
       <li class="{$componentName}__item {$componentName}--success text-center col-3">
         <span class="{$componentName}__number mb-1">
-          <i class="material-icons fs-6">check</i>
+          {l s='1' d='Shop.Theme.Checkout'}
         </span> 
         <a href="#" class="{$componentName}__text mb-0 text-decoration-underline">
           {l s='Personal Information' d='Shop.Theme.Checkout'}
@@ -38,7 +38,7 @@
 
       <li class="{$componentName}__item {$componentName}--success  text-center col-3">
         <span class="{$componentName}__number mb-1">
-          <i class="material-icons fs-6">check</i>
+          {l s='2' d='Shop.Theme.Checkout'}
         </span> 
         <a href="#" class="{$componentName}__text mb-0 text-decoration-underline">
           {l s='Addresses' d='Shop.Theme.Checkout'}

@@ -23,10 +23,10 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='step'}
-  <section class="checkout-step -unreachable" id="{$identifier}">
-    <div class="step-title js-step-title">
-      <h1 class="step-title-left h3">
-        <span class="step-number">{$position}</span> {$title}
+  <section class="step step--unreachable d-none" id="{$identifier}">
+    <div class="step__title js-step-title">
+      <h1 class="step__title-left h3">
+        {$title}
       </h1>
     </div>
   </section>

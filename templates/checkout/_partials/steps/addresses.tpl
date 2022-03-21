@@ -31,7 +31,6 @@
       action="{url entity='order' params=['id_address' => $id_address]}"
       data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm']}"
    >
-
       {if $use_same_address}
         <p>
           {if $cart.is_virtual}

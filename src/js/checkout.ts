@@ -28,6 +28,51 @@ import selectorsMap from '@constants/selectors-map';
 const {progressRing: ProgressRingMap} = selectorsMap;
 
 const initCheckout = () => {
+  const steps = document.querySelectorAll<HTMLElement>('.js-step-item');
+
+  const toggleStep = (content: HTMLElement) => {
+    const currentContent = document.querySelector('.js-current-step');
+    currentContent?.classList.remove('step--current', 'js-current-step');
+    currentContent?.classList.add('d-none');
+
+    content.classList.remove('d-none');
+    content.classList.add('js-current-step');
+  }
+
+  steps.forEach(step => {
+    const stepContent = document.querySelector<HTMLElement>(`#${step.dataset.step}`)
+
+    if (stepContent) {
+      if(stepContent.classList.contains('step--complete')) {
+        step.classList.add('checkout__steps--success');
+      }
+
+      if(stepContent.classList.contains('step--current')) {
+        step.classList.add('checkout__steps--current');
+      }
+
+      if(stepContent.classList.contains('step--reachable')) {
+        const button = step.querySelector<HTMLButtonElement>('button');
+
+        button?.classList.add('btn-link')
+
+        button?.addEventListener('click', () => {
+          toggleStep(stepContent);
+        })
+      }
+
+      if(stepContent.classList.contains('step--unreachable')) {
+        const button = step.querySelector<HTMLButtonElement>('button');
+
+        button?.setAttribute('disabled', 'true')
+
+        button?.addEventListener('click', () => {
+          toggleStep(stepContent);
+        })
+      }
+    }
+  })
+
   const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
   const {setProgress, error} = useProgressRing(progressElement);
 

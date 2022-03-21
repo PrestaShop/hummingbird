@@ -29,6 +29,8 @@ const {progressRing: ProgressRingMap} = selectorsMap;
 
 const initCheckout = () => {
   const steps = document.querySelectorAll<HTMLElement>('.js-step-item');
+  const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
+  const {setProgress} = useProgressRing(progressElement);
 
   const toggleStep = (content: HTMLElement) => {
     const currentContent = document.querySelector('.js-current-step');
@@ -39,7 +41,7 @@ const initCheckout = () => {
     content.classList.add('js-current-step');
   }
 
-  steps.forEach(step => {
+  steps.forEach((step, index) => {
     const stepContent = document.querySelector<HTMLElement>(`#${step.dataset.step}`)
 
     if (stepContent) {
@@ -49,6 +51,21 @@ const initCheckout = () => {
 
       if(stepContent.classList.contains('step--current')) {
         step.classList.add('checkout__steps--current');
+        const responsiveStep = document.querySelector<HTMLElement>(`.checkout__steps__step[data-step="${step.dataset.step}"]`)
+        const shownResponsiveStep = document.querySelector<HTMLElement>(`.checkout__steps__step:not(.d-none)`);
+
+        responsiveStep?.classList.remove('d-none');
+        shownResponsiveStep?.classList.add('d-none');
+
+        const progressText = progressElement?.querySelector('text');
+
+        if (progressText) {
+          progressText.innerHTML = `${index + 1} / 4`;
+        }
+
+        if (setProgress) {
+          setProgress((index + 1) / 4 * 100);
+        }
       }
 
       if(stepContent.classList.contains('step--reachable')) {
@@ -72,13 +89,6 @@ const initCheckout = () => {
       }
     }
   })
-
-  const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
-  const {setProgress, error} = useProgressRing(progressElement);
-
-  if (!error && setProgress) {
-    setProgress(75);
-  }
 };
 
 export default initCheckout;

@@ -73,7 +73,7 @@
         {include file="components/progress-circle.tpl" classes="text-success col-4" size=74 stroke=4 percent=50 text={l s='2 / 4' d='Shop.Theme.Checkout'}}
       </div>
 
-      <div class="{$componentName}__step d-none" data-step="1">
+      <div class="{$componentName}__step d-none" data-step="checkout-personal-information-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Personal Information' d='Shop.Theme.Checkout'}
         </p>
@@ -82,7 +82,7 @@
         </p>
       </div>
 
-      <div class="{$componentName}__step" data-step="2">
+      <div class="{$componentName}__step" data-step="checkout-addresses-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Addresses' d='Shop.Theme.Checkout'}
         </p>
@@ -91,7 +91,7 @@
         </p>
       </div>
 
-      <div class="{$componentName}__step d-none" data-step="3">
+      <div class="{$componentName}__step d-none" data-step="checkout-delivery-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Shipping Method' d='Shop.Theme.Checkout'}
         </p>
@@ -100,7 +100,7 @@
         </p>
       </div>
 
-      <div class="{$componentName}__step d-none" data-step="4">
+      <div class="{$componentName}__step d-none" data-step="checkout-payment-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Payment' d='Shop.Theme.Checkout'}
         </p>

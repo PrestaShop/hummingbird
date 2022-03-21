@@ -24,8 +24,12 @@
  *}
 {$componentName = 'checkout__steps'}
 
+{if isset($notifications)}
+  {$hasNotifications = $notifications.warning|@count > 0 || $notifications.error|@count > 0 || $notifications.success|@count > 0 || $notifications.info|@count > 0}
+{/if}
+
 {block name='checkout_steps'}
-  <div class="{$componentName} bg-light border-top border-bottom py-2 mb-5 py-md-4">
+<div class="{$componentName} bg-light border-top border-bottom py-2 {if isset($notifications) && $hasNotifications}mb-4{else}mb-5{/if} py-md-4">
     <ul class="{$componentName}__list row mb-0 d-none d-md-flex">
       <li class="{$componentName}__item {$componentName}--success text-center col-3">
         <span class="{$componentName}__number mb-1">

@@ -24,8 +24,15 @@
  *}
 {extends file=$layout}
 
+{block name='notifications'}
+{/block}
+
 {block name='content_columns'}
   {include file="components/checkout-steps.tpl"}
+
+  {block name='checkout_notifications'}
+    {include file='_partials/notifications.tpl'}
+  {/block}
 
   <div class="container">
     <div class="row">

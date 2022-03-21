@@ -55,8 +55,12 @@ export const cart = {
 
 const selectorsMap = {
   qtyInput: {
-    default: '.js-quantity-button input',
-    modal: '.modal-dialog .js-quantity-button input',
+    default: '.js-quantity-button',
+    modal: '.modal-dialog .js-quantity-button',
+    increment: '.js-increment-button',
+    decrement: '.js-decrement-button',
+    icon: '.material-icons',
+    spinner: '.spinner-border',
   },
   alert: {
     selector: '#notifications .container',
@@ -83,7 +87,9 @@ const selectorsMap = {
   facetedsearch,
   pageLoader,
   listing,
-  cart,
+  cart: {
+    alert: '#js-product-line-alert--{pid}',
+  },
 };
 
 export default selectorsMap;

@@ -48,7 +48,7 @@ export const Codepoint = {
 };
 
 export const Template = `
-  <div class="alert alert-dismissible fade d-flex flex-wrap align-items-center" role="alert">
+  <div class="alert alert-dismissible fade d-flex align-items-center" role="alert">
     <h4 class="alert-heading w-100 d-none"></h4>
     <i class="material-icons flex-shrink-0 me-2"></i>
     <div class="alert-body flex-fill"></div>

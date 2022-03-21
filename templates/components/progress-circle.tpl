@@ -23,20 +23,37 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
+{$radius = $size / 2 - $stroke * 2}
+{$circumference = $radius * 2 * constant('M_PI')}
+{$dashoffset = $circumference - (($percent / 100 ) * $circumference)}
+
+{$circumference = $circumference|string_format:"%.4f"}
+{$dashoffset = $dashoffset|string_format:"%.4f"}
+
 <svg
   class="progress-ring{if $classes} {$classes}{/if}"
+  width="{$size}"
+  height="{$size}"
+  style="width: {$size}px; height: {$size}px;"
 >
   <circle
     class="progress-ring__background-circle"
-    stroke-width="4"
+    stroke-width="{$stroke}"
     fill="transparent"
+    r="{$radius}"
+    cx="{$size / 2}"
+    cy="{$size / 2}"
   />
   <circle
     class="progress-ring__circle"
     stroke="currentColor"
-    stroke-width="4"
+    stroke-width="{$stroke}"
     data-percent="50"
     fill="transparent"
+    r="{$radius}"
+    cx="{$size / 2}"
+    cy="{$size / 2}"
+    style="stroke-dasharray: {$circumference}, {$circumference}; stroke-dashoffset: {$dashoffset};"
   />
   {if $text}
     <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">{$text}</text>

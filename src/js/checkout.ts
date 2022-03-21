@@ -29,7 +29,11 @@ const {progressRing: ProgressRingMap} = selectorsMap;
 
 const initCheckout = () => {
   const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
-  useProgressRing(progressElement);
+  const {setProgress, error} = useProgressRing(progressElement);
+
+  if (!error && setProgress) {
+    setProgress(75);
+  }
 };
 
 export default initCheckout;

@@ -24,6 +24,16 @@
  */
 import swapElements from '@helpers/swapElements';
 
+const {prestashop} = window;
+
+if(prestashop) {
+  prestashop.responsive = prestashop.responsive || {};
+
+  prestashop.responsive.current_width = window.innerWidth;
+  prestashop.responsive.min_width = 768;
+  prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
+}
+
 export function toggleMobileStyles() {
   const {prestashop} = window;
 
@@ -46,12 +56,14 @@ export function toggleMobileStyles() {
       }
     });
   }
+
   prestashop.emit('responsive update', {
     mobile: prestashop.responsive.mobile,
   });
 }
 
 export default function initResponsiveToggler() {
+  // TODO: Find a better way to manage this with JSDom for tests
   const {prestashop} = window;
 
   prestashop.responsive = prestashop.responsive || {};
@@ -74,9 +86,10 @@ export default function initResponsiveToggler() {
     }
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    if (prestashop.responsive.mobile) {
-      toggleMobileStyles();
-    }
-  });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (prestashop.responsive.mobile) {
+    toggleMobileStyles();
+  }
+});

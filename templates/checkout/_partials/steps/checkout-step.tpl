@@ -28,8 +28,8 @@
                         'step'   => true,
                         'step--current'        => $step_is_current,
                         'step--reachable'      => $step_is_reachable,
-                        'step--complete'       => $step_is_complete,
-                        'd-none'       => $step_is_complete,
+                        'step--complete'       => $step_is_complete && !$step_is_current,
+                        'd-none'       => $step_is_complete && !$step_is_current,
                         'js-current-step' => $step_is_current
                     ]|classnames} mb-5"
   >

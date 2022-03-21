@@ -57,7 +57,7 @@ $component-name: header;
           }
 
           .dropdown-menu {
-            top: calc(100% + 1px);
+            top: 100%;
             right: 0;
             left: 0;
             display: flex;

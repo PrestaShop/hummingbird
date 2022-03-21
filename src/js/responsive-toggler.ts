@@ -64,8 +64,8 @@ export default function initResponsiveToggler() {
     const currentWidth = prestashop.responsive.current_width;
     const minWidth = prestashop.responsive.min_width;
     const screenWidth = window.innerWidth;
-    // eslint-disable-next-line
-    const toggle = (currentWidth >= minWidth && screenWidth < minWidth) || (currentWidth < minWidth && screenWidth >= minWidth);
+    const toggle = (currentWidth >= minWidth && screenWidth < minWidth)
+      || (currentWidth < minWidth && screenWidth >= minWidth);
 
     prestashop.responsive.current_width = screenWidth;
     prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;

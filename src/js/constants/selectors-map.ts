@@ -53,6 +53,14 @@ export const cart = {
   promoCode: '#promo-code',
 };
 
+export const progressRing = {
+  checkout: {
+    element: '.progress-ring',
+    circle: '.progress-ring__circle',
+    backgroundCircle: '.progress-ring__background-circle',
+  },
+};
+
 const selectorsMap = {
   qtyInput: {
     default: '.js-quantity-button input',
@@ -84,6 +92,7 @@ const selectorsMap = {
   pageLoader,
   listing,
   cart,
+  progressRing,
 };
 
 export default selectorsMap;

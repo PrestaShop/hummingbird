@@ -23,9 +23,12 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 import useProgressRing from '@js/components/useProgressRing';
+import selectorsMap from '@constants/selectors-map';
+
+const {progressRing: ProgressRingMap} = selectorsMap;
 
 const initCheckout = () => {
-  const progressElement = document.querySelector<SVGCircleElement>('.progress-ring .progress-ring__circle');
+  const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
   useProgressRing(progressElement);
 };
 

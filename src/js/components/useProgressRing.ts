@@ -22,57 +22,63 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
+import selectorsMap from '@constants/selectors-map';
+
+const {progressRing: ProgressRingMap} = selectorsMap;
 
 export interface ProgressRingReturn {
   setProgress: (perfect: number) => void
 }
 
 // Not testable because it manipulates SVG elements, unsupported by JSDom
-const useProgressRing = (element: SVGCircleElement | null, size = 74): ProgressRingReturn | Error => {
-  if (element && element.parentElement) {
-    const backgroundCircle = element.parentElement.querySelector<SVGCircleElement>('.progress-ring__background-circle');
+const useProgressRing = (element: HTMLElement | null, size = 74): ProgressRingReturn | Error => {
+  if (element) {
+    const circle = element.querySelector<SVGCircleElement>(ProgressRingMap.checkout.circle);
+    const backgroundCircle = element.querySelector<SVGCircleElement>(ProgressRingMap.checkout.backgroundCircle);
 
-    // We need to dynamically set the sizes of circles because we can use any progress circle sizes
-    const setSizes = (sizedElement: SVGCircleElement, parentElement: HTMLElement | null) => {
-      if (parentElement) {
-        parentElement.style.width = `${size}px`;
-        parentElement.style.height = `${size}px`;
-        parentElement.setAttribute('width', size.toString());
-        parentElement.setAttribute('height', size.toString());
+    if (circle) {
+      // We need to dynamically set the sizes of circles because we can use any progress circle sizes
+      const setSizes = (sizedElement: SVGCircleElement, parentElement: HTMLElement | null) => {
+        if (parentElement) {
+          parentElement.style.width = `${size}px`;
+          parentElement.style.height = `${size}px`;
+          parentElement.setAttribute('width', size.toString());
+          parentElement.setAttribute('height', size.toString());
 
-        if (parentElement.getAttribute('width') && element.getAttribute('stroke-width')) {
-          // eslint-disable-next-line max-len, @typescript-eslint/no-non-null-assertion
-          sizedElement.r.baseVal.value = (parseFloat(parentElement.getAttribute('width')!) / 2) - (parseFloat(element.getAttribute('stroke-width')!) * 2);
+          if (parentElement.getAttribute('width') && sizedElement.getAttribute('stroke-width')) {
+            // eslint-disable-next-line max-len, @typescript-eslint/no-non-null-assertion
+            sizedElement.r.baseVal.value = (parseFloat(parentElement.getAttribute('width')!) / 2) - (parseFloat(sizedElement.getAttribute('stroke-width')!) * 2);
+          }
         }
+
+        sizedElement.cx.baseVal.value = size / 2;
+        sizedElement.cy.baseVal.value = size / 2;
+      };
+
+      setSizes(circle, element);
+
+      if (backgroundCircle) {
+        setSizes(backgroundCircle, element);
       }
 
-      sizedElement.cx.baseVal.value = size / 2;
-      sizedElement.cy.baseVal.value = size / 2;
-    };
+      const radius = circle.r.baseVal.value;
+      const circumference = radius * 2 * Math.PI;
 
-    setSizes(element, element.parentElement);
+      circle.style.strokeDasharray = `${circumference} ${circumference}`;
+      circle.style.strokeDashoffset = `${circumference}`;
 
-    if (backgroundCircle) {
-      setSizes(backgroundCircle, backgroundCircle.parentElement);
+      // This function makes the progress editable after initialization
+      const setProgress = (percent: number) => {
+        const offset = circumference - (percent / 100) * circumference;
+        circle.style.strokeDashoffset = offset.toString();
+      };
+
+      setProgress(circle.dataset.percent ? parseFloat(circle.dataset.percent) : 0);
+
+      return {
+        setProgress,
+      };
     }
-
-    const radius = element.r.baseVal.value;
-    const circumference = radius * 2 * Math.PI;
-
-    element.style.strokeDasharray = `${circumference} ${circumference}`;
-    element.style.strokeDashoffset = `${circumference}`;
-
-    // This function makes the progress editable after initialization
-    const setProgress = (percent: number) => {
-      const offset = circumference - (percent / 100) * circumference;
-      element.style.strokeDashoffset = offset.toString();
-    };
-
-    setProgress(element.dataset.percent ? parseFloat(element.dataset.percent) : 0);
-
-    return {
-      setProgress,
-    };
   }
 
   return new Error('The circle is not linked to an SVG circle');

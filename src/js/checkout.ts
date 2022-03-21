@@ -54,10 +54,8 @@ const initCheckout = () => {
         const responsiveStep = document.querySelector<HTMLElement>(`.checkout__steps__step[data-step="${step.dataset.step}"]`)
         const shownResponsiveStep = document.querySelector<HTMLElement>(`.checkout__steps__step:not(.d-none)`);
 
-        console.log(responsiveStep)
         shownResponsiveStep?.classList.add('d-none');
         responsiveStep?.classList.remove('d-none');
-        console.log(shownResponsiveStep)
 
         const progressText = progressElement?.querySelector('text');
 

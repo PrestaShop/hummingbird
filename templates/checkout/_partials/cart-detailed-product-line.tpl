@@ -24,6 +24,7 @@
   *}
 
 <div class="product-line row">
+  <div id="js-product-line-alert--{$product.id_product}"></div>
   <div class="product-line__image col-4 col-sm-2">
     {if $product.default_image}
       <img src="{$product.default_image.bySize.cart_default.url}" class="img-fluid" alt="{$product.name|escape:'quotes'}"
@@ -76,20 +77,54 @@
 
   <div class="product-line__informations col-8 col-sm-6 col-md-4">
     <div class="row">
-      <div class="quantity-button js-quantity-button col-6">
+      <div class="quantity-button js-quantity-button col-12">
         {if !empty($product.is_gift)}
           <span class="gift-quantity">{$product.quantity}</span>
         {else}
-          <input class="js-cart-line-product-quantity" data-down-url="{$product.down_quantity_url}"
-            data-up-url="{$product.up_quantity_url}" data-update-url="{$product.update_quantity_url}"
-            data-product-id="{$product.id_product}" type="number" inputmode="numeric" pattern="[0-9]*"
-            value="{$product.quantity}" name="product-quantity-spin" />
+          <div class="input-group flex-nowrap mb-3">
+            {if $language.is_rtl}
+              <button class="btn js-increment-button" type="button">
+                <i class="material-icons">&#xE145;</i>
+                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
+              </button>
+            {else}
+              <button class="btn js-decrement-button" type="button">
+                <i class="material-icons">&#xE15B;</i>
+                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
+              </button>
+            {/if}
+            <input
+              class="js-cart-line-product-quantity form-control"
+              aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
+              data-down-url="{$product.down_quantity_url}"
+              data-up-url="{$product.up_quantity_url}"
+              data-update-url="{$product.update_quantity_url}"
+              data-product-id="{$product.id_product}"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              value="{$product.quantity}"
+              name="product-quantity-spin"
+              min="{$product.minimal_quantity}"
+            />
+            {if $language.is_rtl}
+              <button class="btn js-decrement-button" type="button">
+                <i class="material-icons">&#xE15B;</i>
+                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
+              </button>
+            {else}
+              <button class="btn js-increment-button" type="button">
+                <i class="material-icons">&#xE145;</i>
+                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
+              </button>
+            {/if}
+          </div>
         {/if}
       </div>
 
-      <div class="col-6">
+      <div class="col-12">
         {if $product.has_discount}
-          <div class="product-line__discount text-end">
+          <div class="product-line__discount">
             <div class="price">
               <span class="product-line__price">
                 <strong>

@@ -23,23 +23,106 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-export default function initQuantityInput(selector: string) {
-  $(document).ready(() => {
-    $(selector).inputSpinner({
-      decrementButton: '<i class="material-icons">expand_more</i>',
-      incrementButton: '<i class="material-icons">expand_less</i>',
-      buttonsClass: '',
-      buttonsWidth: '1.25rem',
-      /* eslint-disable */
-      template: 
-          '<div class="input-group ${groupClass}">' +
-            '<input type="text" inputmode="decimal" style="text-align: ${textAlign}" class="form-control form-control-text-input"/>' +
-            '<div class="qty-right">' +
-              '<button style="min-width: ${buttonsWidth}" class="btn btn-increment ${buttonsClass} btn-plus" type="button">${incrementButton}</button>' +
-              '<button style="min-width: ${buttonsWidth}" class="btn btn-decrement ${buttonsClass} btn-minus" type="button">${decrementButton}</button>' +
-            '</div>' +
-          '</div>'
-      /* eslint-enable */
+import selectorsMap from '@constants/selectors-map';
+import useAlert from './components/useAlert';
+
+const initQuantityInput = (selector = selectorsMap.qtyInput.default) => {
+  const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<Element>;
+
+  if (qtyInputNodeList.length > 0) {
+    qtyInputNodeList.forEach((qtyInputWrapper: HTMLInputElement) => {
+      const qtyInput = qtyInputWrapper.querySelector('input');
+
+      if (qtyInput) {
+        const incrementButton = qtyInputWrapper?.querySelector(selectorsMap.qtyInput.increment);
+        incrementButton?.addEventListener('click', (event) => changeQuantity(event, qtyInput, 1));
+        const decrementButton = qtyInputWrapper?.querySelector(selectorsMap.qtyInput.decrement);
+        decrementButton?.addEventListener('click', (event) => changeQuantity(event, qtyInput, -1));
+      }
     });
-  });
+  }
+};
+
+function changeQuantity(event: Event, qtyInput: HTMLInputElement, change: number): void {
+  const quantity = Number(qtyInput.value);
+
+  if (quantity) {
+    const min = Number(qtyInput.getAttribute('min')) ?? 0;
+    const newValue = Math.max(quantity + change, min);
+    qtyInput.value = String(newValue);
+
+    const requestUrl = (change > 0) ? qtyInput.dataset.upUrl : qtyInput.dataset.downUrl;
+
+    if (requestUrl !== undefined) {
+      const {prestashop} = window;
+
+      const targetButton = event.target as HTMLElement;
+      const targetButtonIcon = targetButton.querySelector<HTMLElement>(selectorsMap.qtyInput.icon);
+      const targetButtonSpinner = targetButton.querySelector<HTMLElement>(selectorsMap.qtyInput.spinner);
+
+      toggleSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
+
+      sendUpdateCartRequest(requestUrl)
+        .then((response) => {
+          toggleSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
+
+          return response.json();
+        })
+        .then((data) => {
+          const {productId: pid} = qtyInput.dataset;
+          let alertSelector: string;
+
+          if (pid) {
+            alertSelector = selectorsMap.cart.alert.replace('{pid}', pid);
+            const productLineAlert = document.querySelector<HTMLElement>(alertSelector);
+
+            if (productLineAlert) {
+              productLineAlert.innerHTML = '';
+            }
+          }
+
+          if (data.hasError) {
+            const errors = data.errors as Array<string>;
+            errors.forEach((error: string) => {
+              useAlert(error, {type: 'danger', selector: alertSelector}).show();
+            });
+          } else {
+            prestashop.emit('updateCart', {
+              reason: qtyInput.dataset,
+              resp: data,
+            });
+          }
+        })
+        .catch((error) => {
+          prestashop.emit('handleError', {
+            eventType: 'updateProductInCart',
+            resp: error,
+          });
+        });
+    }
+  }
 }
+
+function toggleSpinner(button: HTMLElement, icon: HTMLElement | null, spinner: HTMLElement | null) {
+  button.toggleAttribute('disabled');
+  icon?.classList.toggle('d-none');
+  spinner?.classList.toggle('d-none');
+}
+
+async function sendUpdateCartRequest(url: string) {
+  const formData = new FormData();
+  formData.append('ajax', '1');
+  formData.append('action', 'update');
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json, text/javascript, */*; q=0.01',
+    },
+    body: formData,
+  });
+
+  return response;
+}
+
+export default initQuantityInput;

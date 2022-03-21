@@ -1,6 +1,9 @@
 $component-name: checkout__steps;
 
 .#{$component-name} {
+  border-top: 1px solid $gray-200;
+  border-bottom: 1px solid $gray-200;
+
   &__number {
     position: relative;
     z-index: 1;

@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import search from '@services/search';
+import {searchProduct, Result} from '@services/search';
 import debounce from '@helpers/debounce';
 
 const {prestashop} = window;
@@ -47,10 +47,10 @@ const initSearchbar = () => {
   if (searchInput && searchResults && searchDropdown) {
     searchInput.addEventListener('keydown', debounce(async () => {
       if (searchUrl) {
-        const products = await search(searchUrl, searchInput.value, 10);
+        const products = await searchProduct(searchUrl, searchInput.value, 10);
 
         if (products.length > 0) {
-          products.forEach((e: Record<string, any>) => {
+          products.forEach((e: Result) => {
             const product = <HTMLElement>searchTemplate?.content.cloneNode(true);
 
             if (product) {

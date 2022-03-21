@@ -23,7 +23,18 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-const searchProduct = async (url: string, value: string, resultsPerPage = 10): Promise<Record<string, any>> => {
+export interface Result {
+  // eslint-disable-next-line camelcase
+  canonical_url: string;
+  name: string;
+  cover: {
+    small: {
+      url: string;
+    };
+  };
+}
+
+export const searchProduct = async (url: string, value: string, resultsPerPage = 10): Promise<Array<Result>> => {
   const formData = new FormData();
   formData.append('s', value);
   formData.append('resultsPerPage', resultsPerPage.toString());
@@ -40,5 +51,3 @@ const searchProduct = async (url: string, value: string, resultsPerPage = 10): P
 
   return jsonDatas.products;
 };
-
-export default searchProduct;

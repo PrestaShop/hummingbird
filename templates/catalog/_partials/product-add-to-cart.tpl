@@ -65,12 +65,10 @@
             {if $language.is_rtl}
               <button class="btn js-increment-button" type="button">
                 <i class="material-icons">&#xE145;</i>
-                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
               </button>
             {else}
               <button class="btn js-decrement-button" type="button">
                 <i class="material-icons">&#xE15B;</i>
-                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
               </button>
             {/if}
             <input
@@ -92,12 +90,10 @@
             {if $language.is_rtl}
               <button class="btn js-decrement-button" type="button">
                 <i class="material-icons">&#xE15B;</i>
-                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
               </button>
             {else}
               <button class="btn js-increment-button" type="button">
                 <i class="material-icons">&#xE145;</i>
-                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
               </button>
             {/if}
           </div>

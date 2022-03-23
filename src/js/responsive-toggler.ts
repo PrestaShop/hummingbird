@@ -26,7 +26,7 @@ import swapElements from '@helpers/swapElements';
 
 const {prestashop} = window;
 
-if(prestashop) {
+if (prestashop) {
   prestashop.responsive = prestashop.responsive || {};
 
   prestashop.responsive.current_width = window.innerWidth;
@@ -35,6 +35,8 @@ if(prestashop) {
 }
 
 export function toggleMobileStyles() {
+  // TODO: Find a better way to manage this with JSDom for tests
+  // eslint-disable-next-line no-shadow
   const {prestashop} = window;
 
   if (prestashop.responsive.mobile) {
@@ -64,6 +66,7 @@ export function toggleMobileStyles() {
 
 export default function initResponsiveToggler() {
   // TODO: Find a better way to manage this with JSDom for tests
+  // eslint-disable-next-line no-shadow
   const {prestashop} = window;
 
   prestashop.responsive = prestashop.responsive || {};
@@ -85,7 +88,6 @@ export default function initResponsiveToggler() {
       toggleMobileStyles();
     }
   });
-
 }
 
 document.addEventListener('DOMContentLoaded', () => {

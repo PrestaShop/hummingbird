@@ -82,7 +82,7 @@
         </p>
       </div>
 
-      <div class="{$componentName}__step" data-step="checkout-addresses-step">
+      <div class="{$componentName}__step d-none" data-step="checkout-addresses-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Addresses' d='Shop.Theme.Checkout'}
         </p>

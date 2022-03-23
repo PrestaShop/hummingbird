@@ -39,20 +39,22 @@ const initCheckout = () => {
 
     content.classList.remove('d-none');
     content.classList.add('js-current-step');
-  }
+  };
 
   steps.forEach((step, index) => {
-    const stepContent = document.querySelector<HTMLElement>(`#${step.dataset.step}`)
+    const stepContent = document.querySelector<HTMLElement>(`#${step.dataset.step}`);
 
     if (stepContent) {
-      if(stepContent.classList.contains('step--complete')) {
+      if (stepContent.classList.contains('step--complete')) {
         step.classList.add('checkout__steps--success');
       }
 
-      if(stepContent.classList.contains('step--current')) {
+      if (stepContent.classList.contains('step--current')) {
         step.classList.add('checkout__steps--current');
-        const responsiveStep = document.querySelector<HTMLElement>(`.checkout__steps__step[data-step="${step.dataset.step}"]`)
-        const shownResponsiveStep = document.querySelector<HTMLElement>(`.checkout__steps__step:not(.d-none)`);
+        const responsiveStep = document.querySelector<HTMLElement>(
+          `.checkout__steps__step[data-step="${step.dataset.step}"]`,
+        );
+        const shownResponsiveStep = document.querySelector<HTMLElement>('.checkout__steps__step:not(.d-none)');
 
         shownResponsiveStep?.classList.add('d-none');
         responsiveStep?.classList.remove('d-none');
@@ -64,31 +66,31 @@ const initCheckout = () => {
         }
 
         if (setProgress) {
-          setProgress((index + 1) / 4 * 100);
+          setProgress(((index + 1) / 4) * 100);
         }
       }
 
-      if(stepContent.classList.contains('step--reachable')) {
+      if (stepContent.classList.contains('step--reachable')) {
         const button = step.querySelector<HTMLButtonElement>('button');
 
-        button?.classList.add('btn-link')
+        button?.classList.add('btn-link');
 
         button?.addEventListener('click', () => {
           toggleStep(stepContent);
-        })
+        });
       }
 
-      if(stepContent.classList.contains('step--unreachable')) {
+      if (stepContent.classList.contains('step--unreachable')) {
         const button = step.querySelector<HTMLButtonElement>('button');
 
-        button?.setAttribute('disabled', 'true')
+        button?.setAttribute('disabled', 'true');
 
         button?.addEventListener('click', () => {
           toggleStep(stepContent);
-        })
+        });
       }
     }
-  })
+  });
 };
 
 export default initCheckout;

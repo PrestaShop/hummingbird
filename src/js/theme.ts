@@ -38,7 +38,9 @@ import initResponsiveToggler from './responsive-toggler';
 import initQuantityInput from './qty-input';
 import initQuickview from './quickview';
 import initCart from './pages/cart';
+import initCheckout from './checkout';
 import useToast from './components/useToast';
+import useProgressRing from './components/useProgressRing';
 import './modules/blockcart';
 import initProductBehavior from './product';
 import './mobile-menu';
@@ -50,12 +52,14 @@ $(() => {
   initProductBehavior();
   initQuantityInput(SelectorsMap.qtyInput.default);
   initQuickview();
+  initCheckout();
   initResponsiveToggler();
   initCart();
 });
 
 export const components = {
   useToast,
+  useProgressRing,
 };
 
 export default {

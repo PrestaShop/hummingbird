@@ -26,6 +26,7 @@
 import selectorsMap from '@constants/selectors-map';
 import useToast from '@js/components/useToast';
 import * as Toastify from '@constants/mocks/useToast-data';
+import resetHTMLBodyContent from '@helpers/resetBody';
 
 describe('useToast', () => {
   describe('wrapper functions', () => {
@@ -180,11 +181,3 @@ describe('useToast', () => {
     });
   });
 });
-
-const resetHTMLBodyContent = (bodyContent: string) => {
-  const body = document.querySelector<HTMLBodyElement>('body');
-
-  if (body) {
-    body.innerHTML = bodyContent;
-  }
-};

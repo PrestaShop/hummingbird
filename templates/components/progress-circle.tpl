@@ -22,31 +22,40 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file=$layout}
 
-{block name='notifications'}
-{/block}
+{$radius = $size / 2 - $stroke * 2}
+{$circumference = $radius * 2 * constant('M_PI')}
+{$dashoffset = $circumference - (($percent / 100 ) * $circumference)}
 
-{block name='content_columns'}
-  {include file="components/checkout-steps.tpl"}
+{$circumference = $circumference|string_format:"%.4f"}
+{$dashoffset = $dashoffset|string_format:"%.4f"}
 
-  {block name='checkout_notifications'}
-    {include file='_partials/notifications.tpl'}
-  {/block}
-
-  <div class="container">
-    <div class="row">
-      <div class="cart-grid-body col-lg-7">
-        {block name='checkout_process'}
-          {render file='checkout/checkout-process.tpl' ui=$checkout_process}
-        {/block}
-      </div>
-      <div class="cart-grid-right col-lg-5">
-        {block name='cart_summary'}
-          {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
-        {/block}
-        {hook h='displayReassurance'}
-      </div>
-    </div>
-  </div>
-{/block}
+<svg
+  class="progress-ring{if $classes} {$classes}{/if}"
+  width="{$size}"
+  height="{$size}"
+  style="width: {$size}px; height: {$size}px;"
+>
+  <circle
+    class="progress-ring__background-circle"
+    stroke-width="{$stroke}"
+    fill="transparent"
+    r="{$radius}"
+    cx="{$size / 2}"
+    cy="{$size / 2}"
+  />
+  <circle
+    class="progress-ring__circle"
+    stroke="currentColor"
+    stroke-width="{$stroke}"
+    data-percent="50"
+    fill="transparent"
+    r="{$radius}"
+    cx="{$size / 2}"
+    cy="{$size / 2}"
+    style="stroke-dasharray: {$circumference}, {$circumference}; stroke-dashoffset: {$dashoffset};"
+  />
+  {if $text}
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">{$text}</text>
+  {/if}
+</svg>

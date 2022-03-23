@@ -1,4 +1,4 @@
-{**
+/**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -21,32 +21,15 @@
  * @author    PrestaShop SA and Contributors <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
-{extends file=$layout}
+ */
 
-{block name='notifications'}
-{/block}
+// Mainly used by tests
+const resetHTMLBodyContent = (bodyContent: string) => {
+  const body = document.querySelector<HTMLBodyElement>('body');
 
-{block name='content_columns'}
-  {include file="components/checkout-steps.tpl"}
+  if (body) {
+    body.innerHTML = bodyContent;
+  }
+};
 
-  {block name='checkout_notifications'}
-    {include file='_partials/notifications.tpl'}
-  {/block}
-
-  <div class="container">
-    <div class="row">
-      <div class="cart-grid-body col-lg-7">
-        {block name='checkout_process'}
-          {render file='checkout/checkout-process.tpl' ui=$checkout_process}
-        {/block}
-      </div>
-      <div class="cart-grid-right col-lg-5">
-        {block name='cart_summary'}
-          {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
-        {/block}
-        {hook h='displayReassurance'}
-      </div>
-    </div>
-  </div>
-{/block}
+export default resetHTMLBodyContent;

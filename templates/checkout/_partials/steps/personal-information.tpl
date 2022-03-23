@@ -7,7 +7,7 @@
 
   {if $customer.is_logged && !$customer.is_guest}
     <div class="checkout-step-account">
-      <p class="identity">
+      <p class="mb-3">
         {* [1][/1] is for a HTML tag. *}
         {l s='Connected as [1]%firstname% %lastname%[/1].'
           d='Shop.Theme.Customeraccount'
@@ -19,31 +19,32 @@
           ]
         }
       </p>
-      <p>
+      <p class="mb-1">
         {* [1][/1] is for a HTML tag. *}
         {l
-          s='Not you? [1]Log out[/1]'
+          s='Not you? [1]Sign out[/1]'
           d='Shop.Theme.Customeraccount'
           sprintf=[
-          '[1]' => "<a href='{$urls.actions.logout}'>",
+          '[1]' => "<a class='text-danger' href='{$urls.actions.logout}'>",
           '[/1]' => "</a>"
           ]
         }
       </p>
       {if !isset($empty_cart_on_logout) || $empty_cart_on_logout}
-        <p><small>{l s='If you sign out now, your cart will be emptied.' d='Shop.Theme.Checkout'}</small></p>
+        <p><small class="text-gray">{l s='If you sign out now, your cart will be emptied.' d='Shop.Theme.Checkout'}</small></p>
       {/if}
     </div>
 
-    <div>
+    <div class="mt-4">
       <form method="GET" action="{$urls.pages.order}">
         <button
-          class="continue btn btn-primary"
+          class="continue btn btn-primary btn-with-icon"
           name="controller"
           type="submit"
           value="order"
-       >
-          {l s='Continue' d='Shop.Theme.Actions'}
+       > 
+          <div class="material-icons">arrow_forward</div>
+          {l s='Continue to Addresses' d='Shop.Theme.Actions'}
         </button>
       </form>
     </div>

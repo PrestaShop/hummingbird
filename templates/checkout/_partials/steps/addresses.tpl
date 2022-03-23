@@ -53,7 +53,7 @@
           }
         </div>
       {elseif $customer.addresses|count> 0}
-        <div id="delivery-addresses" class="address-selector js-address-selector">
+        <div id="delivery-addresses" class="address-selector js-address-selector row">
           {include  file        = 'checkout/_partials/address-selector-block.tpl'
             addresses   = $customer.addresses
             name        = "id_address_delivery"
@@ -69,23 +69,17 @@
           <p class="alert alert-danger js-address-error" name="alert-delivery" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
         {/if}
 
-        <p class="add-address">
-          <a href="{$new_address_delivery_url}"><i class="material-icons">&#xE145;</i>{l s='add new address' d='Shop.Theme.Actions'}</a>
-        </p>
+        <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon mb-3"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
 
         {if $use_same_address && !$cart.is_virtual}
-          <p>
-            <a data-link-action="different-invoice-address" href="{$use_different_address_url}">
-              {l s='Billing address differs from shipping address' d='Shop.Theme.Checkout'}
-            </a>
-          </p>
+          <a data-link-action="different-invoice-address" href="{$use_different_address_url}" class="d-block">
+            {l s='Billing address differs from shipping address' d='Shop.Theme.Checkout'}
+          </a>
         {/if}
-
       {/if}
 
       {if !$use_same_address}
-
-        <h2 class="h4">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</h2>
+        <h2 class="h4 mt-4">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</h2>
 
         {if $show_invoice_address_form}
           <div id="invoice-address">
@@ -97,7 +91,7 @@
             }
           </div>
         {else}
-          <div id="invoice-addresses" class="address-selector js-address-selector">
+          <div id="invoice-addresses" class="row address-selector js-address-selector">
             {include  file        = 'checkout/_partials/address-selector-block.tpl'
               addresses   = $customer.addresses
               name        = "id_address_invoice"
@@ -113,22 +107,20 @@
             <p class="alert alert-danger js-address-error" name="alert-invoice" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
           {/if}
 
-          <p class="add-address">
-            <a href="{$new_address_invoice_url}"><i class="material-icons">&#xE145;</i>{l s='add new address' d='Shop.Theme.Actions'}</a>
-          </p>
+          <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
         {/if}
 
       {/if}
 
       {if !$form_has_continue_button}
-        <div>
-          <button type="submit" class="btn btn-primary continue" name="confirm-addresses" value="1">
-            {l s='Continue' d='Shop.Theme.Actions'}
+        <div class="mt-4">
+          <button type="submit" class="btn btn-primary btn-with-icon continue" name="confirm-addresses" value="1">
+            <div class="material-icons">arrow_forward</div>
+            {l s='Continue to Shipping' d='Shop.Theme.Actions'}
           </button>
           <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         </div>
       {/if}
-
     </form>
   </div>
 {/block}

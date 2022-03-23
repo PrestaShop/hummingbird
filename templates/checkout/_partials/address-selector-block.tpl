@@ -24,21 +24,21 @@
  *}
 {block name='address_selector_blocks'}
   {foreach $addresses as $address}
-    <div class="col col-sm-6">
+    <div class="col-12 col-sm-6 mb-2">
       <article id="{$name|classname}-address-{$address.id}" class="address card js-address-item{if $address.id == $selected} selected{/if}" data-id-address="{$address.id}">
         <div class="card-body">
           <label class="form-check-label row">
-            <span class="custom-radio col-2 col-md-1">
+            <span class="custom-radio col-2">
               <input
                 type="radio"
                 class="form-check-input"
                 name="{$name}"
                 value="{$address.id}"
                 {if $address.id == $selected}checked{/if}
-            >
-            <i class="form-check-round"></i>
+              >
+              <i class="form-check-round"></i>
             </span>
-            <div class="address__content col col-10 col-md-11">
+            <div class="address__content col-10">
               <h4 class="address__alias card-title">{$address.alias}</h4>
               <address class="address__content">{$address.formatted nofilter}</address>
 

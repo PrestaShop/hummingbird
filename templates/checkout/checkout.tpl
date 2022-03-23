@@ -28,7 +28,7 @@
 {/block}
 
 {block name='content_columns'}
-  {include file="components/checkout-steps.tpl"}
+  {include file="checkout/checkout-steps.tpl"}
 
   {block name='checkout_notifications'}
     {include file='_partials/notifications.tpl'}
@@ -36,12 +36,12 @@
 
   <div class="container">
     <div class="row">
-      <div class="cart-grid-body col-lg-7">
+      <div class="cart-grid-body col-lg-7 order-1 order-lg-0">
           {render file='checkout/checkout-process.tpl' ui=$checkout_process}
         {block name='checkout_process'}
         {/block}
       </div>
-      <div class="cart-grid-right col-lg-5">
+      <div class="cart-grid-right col-lg-5 order-0 order-lg-1">
         {block name='cart_summary'}
           {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
         {/block}

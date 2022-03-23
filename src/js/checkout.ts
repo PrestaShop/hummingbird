@@ -29,20 +29,43 @@ const {progressRing: ProgressRingMap} = selectorsMap;
 
 const initCheckout = () => {
   const steps = document.querySelectorAll<HTMLElement>('.js-step-item');
+  const backButtons = document.querySelectorAll<HTMLElement>('.js-back');
   const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
   const {setProgress} = useProgressRing(progressElement);
 
-  const toggleStep = (content: HTMLElement) => {
+  const toggleStep = (content: HTMLElement, step?: HTMLElement) => {
     const currentContent = document.querySelector('.js-current-step');
     currentContent?.classList.remove('step--current', 'js-current-step');
     currentContent?.classList.add('d-none');
+    if (step) {
+      const responsiveStep = document.querySelector<HTMLElement>(
+        `.checkout__steps__step[data-step="${step.dataset.step}"]`,
+      );
+      const shownResponsiveStep = document.querySelector<HTMLElement>('.checkout__steps__step:not(.d-none)');
+
+      shownResponsiveStep?.classList.add('d-none');
+      responsiveStep?.classList.remove('d-none');
+    }
 
     content.classList.remove('d-none');
     content.classList.add('js-current-step');
   };
 
+  backButtons.forEach((button) => {
+    const stepContent = document.querySelector<HTMLElement>(`#${button.dataset.step}`);
+
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (stepContent) {
+        toggleStep(stepContent);
+      }
+    });
+  });
+
   steps.forEach((step, index) => {
     const stepContent = document.querySelector<HTMLElement>(`#${step.dataset.step}`);
+    const progressText = progressElement?.querySelector('text');
 
     if (stepContent) {
       if (stepContent.classList.contains('step--complete')) {
@@ -59,8 +82,6 @@ const initCheckout = () => {
         shownResponsiveStep?.classList.add('d-none');
         responsiveStep?.classList.remove('d-none');
 
-        const progressText = progressElement?.querySelector('text');
-
         if (progressText) {
           progressText.innerHTML = `${index + 1} / 4`;
         }
@@ -76,7 +97,15 @@ const initCheckout = () => {
         button?.classList.add('btn-link');
 
         button?.addEventListener('click', () => {
-          toggleStep(stepContent);
+          if (setProgress) {
+            setProgress(((index + 1) / 4) * 100);
+          }
+
+          if (progressText) {
+            progressText.innerHTML = `${index + 1} / 4`;
+          }
+
+          toggleStep(stepContent, step);
         });
       }
 
@@ -86,7 +115,7 @@ const initCheckout = () => {
         button?.setAttribute('disabled', 'true');
 
         button?.addEventListener('click', () => {
-          toggleStep(stepContent);
+          toggleStep(stepContent, step);
         });
       }
     }

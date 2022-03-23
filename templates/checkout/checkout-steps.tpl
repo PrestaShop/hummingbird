@@ -29,7 +29,7 @@
 {/if}
 
 {block name='checkout_steps'}
-<div class="{$componentName} bg-light py-2 {if isset($notifications) && $hasNotifications}mb-4{else}mb-5{/if} py-md-4">
+<div class="{$componentName} bg-light py-2 {if isset($notifications) && $hasNotifications}mb-2 mb-lg-4{else}mb-3 mb-lg-5{/if} py-md-4">
     <ul class="{$componentName}__list row mb-0 d-none d-md-flex">
       <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-personal-information-step">
         <span class="{$componentName}__number mb-1">

@@ -4,8 +4,38 @@ $component-name: step;
   .address {
     border: 1px solid $gray-300;
 
+    &,
+    &__content {
+      cursor: pointer;
+    }
+
     &.selected {
       border: 2px solid $primary;
+    }
+  }
+
+  dl {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: $gray-100;
+    border-radius: $border-radius;
+
+    dd,
+    dt {
+      width: 50%;
+      padding: 1rem 0;
+      margin: 0;
+
+      &:not(:last-of-type) {
+        border-bottom: 1px solid $gray-300;
+      }
+    }
+
+    dd {
+      text-align: right;
     }
   }
 }

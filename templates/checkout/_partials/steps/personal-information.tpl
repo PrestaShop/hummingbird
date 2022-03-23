@@ -38,7 +38,7 @@
     <div class="mt-4">
       <form method="GET" action="{$urls.pages.order}">
         <button
-          class="continue btn btn-primary btn-with-icon"
+          class="continue btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto"
           name="controller"
           type="submit"
           value="order"

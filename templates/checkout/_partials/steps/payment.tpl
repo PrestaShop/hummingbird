@@ -52,7 +52,7 @@
         {if $option.additionalInformation}
           <div
             id="{$option.id}-additional-information"
-            class="js-additional-information definition-list ps-4 mt-2 additional-information{if $option.id != $selected_payment_option} ps-hidden {/if}"
+            class="js-additional-information definition-list ps-sm-4 mt-2 additional-information{if $option.id != $selected_payment_option} ps-hidden {/if}"
          >
             {$option.additionalInformation nofilter}
           </div>
@@ -112,32 +112,43 @@
     {include file='checkout/_partials/order-final-summary.tpl'}
   {/if}
 
-  <div id="payment-confirmation" class="js-payment-confirmation">
-    <div class="ps-shown-by-js">
-      <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
-        {l s='Place order' d='Shop.Theme.Checkout'}
-      </button>
-      {if $show_final_summary}
-        <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
-          {l
-            s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
-            sprintf=[
-              '[1]' => '<a href="#checkout-payment-step">',
-              '[/1]' => '</a>',
-              '[2]' => '<a href="#conditions-to-approve">',
-              '[/2]' => '</a>'
-            ]
-            d='Shop.Theme.Checkout'
-          }
-        </article>
-      {/if}
-    </div>
-    <div class="ps-hidden-by-js">
-      {if $selected_payment_option and $all_conditions_approved}
-        <label for="pay-with-{$selected_payment_option}">{l s='Order with an obligation to pay' d='Shop.Theme.Checkout'}</label>
-      {/if}
+  <div class="payment__actions d-block d-md-flex">
+    <button class="btn btn-outline-primary btn-with-icon d-none d-md-inline-block me-2 js-back" data-step="checkout-delivery-step">
+      <div class="material-icons">arrow_backward</div>
+      {l s='Back to Shipping method' d='Shop.Theme.Actions'}
+    </button>
+
+    <div id="payment-confirmation" class="js-payment-confirmation">
+      <div class="ps-shown-by-js">
+        <div class="payment__actions">
+          <button type="submit" class="btn btn-primary btn-with-icon center-block d-block d-md-inline-block w-full w-md-auto{if !$selected_payment_option} disabled{/if}">
+            <div class="material-icons">arrow_forward</div>
+            {l s='Place order' d='Shop.Theme.Checkout'}
+          </button>
+        </div>
+      </div>
+      <div class="ps-hidden-by-js">
+        {if $selected_payment_option and $all_conditions_approved}
+          <label for="pay-with-{$selected_payment_option}">{l s='Order with an obligation to pay' d='Shop.Theme.Checkout'}</label>
+        {/if}
+      </div>
     </div>
   </div>
+
+  {if $show_final_summary}
+    <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
+      {l
+        s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
+        sprintf=[
+          '[1]' => '<a href="#checkout-payment-step">',
+          '[/1]' => '</a>',
+          '[2]' => '<a href="#conditions-to-approve">',
+          '[/2]' => '</a>'
+        ]
+        d='Shop.Theme.Checkout'
+      }
+    </article>
+  {/if}
 
   {hook h='displayPaymentByBinaries'}
 {/block}

@@ -69,7 +69,7 @@
           <p class="alert alert-danger js-address-error" name="alert-delivery" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
         {/if}
 
-        <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon mb-3"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
+        <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon w-full w-md-auto mb-3"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
 
         {if $use_same_address && !$cart.is_virtual}
           <a data-link-action="different-invoice-address" href="{$use_different_address_url}" class="d-block">
@@ -107,20 +107,25 @@
             <p class="alert alert-danger js-address-error" name="alert-invoice" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
           {/if}
 
-          <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
+          <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon w-full w-md-auto"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
         {/if}
 
       {/if}
 
-      {if !$form_has_continue_button}
-        <div class="mt-4">
-          <button type="submit" class="btn btn-primary btn-with-icon continue" name="confirm-addresses" value="1">
-            <div class="material-icons">arrow_forward</div>
-            {l s='Continue to Shipping' d='Shop.Theme.Actions'}
-          </button>
-          <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
-        </div>
-      {/if}
+      <div class="mt-4">
+        <button class="btn btn-outline-primary btn-with-icon d-none d-md-inline-block me-2 js-back" data-step="checkout-personal-information-step">
+          <div class="material-icons">arrow_backward</div>
+          {l s='Continue to Personal Information' d='Shop.Theme.Actions'}
+        </button>
+
+        {if !$form_has_continue_button}
+            <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto continue" name="confirm-addresses" value="1">
+              <div class="material-icons">arrow_forward</div>
+              {l s='Continue to Shipping' d='Shop.Theme.Actions'}
+            </button>
+            <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
+        {/if}
+      </div>
     </form>
   </div>
 {/block}

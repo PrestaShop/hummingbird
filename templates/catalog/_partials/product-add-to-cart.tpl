@@ -61,42 +61,13 @@
     {block name='product_quantity'}
       <div class="row g-2">
         <div class="product-actions__quantity quantity-button js-quantity-button col-md-auto">
-          <div class="input-group flex-nowrap mb-3 me-3">
-            {if $language.is_rtl}
-              <button class="btn js-increment-button" type="button">
-                <i class="material-icons">&#xE145;</i>
-              </button>
-            {else}
-              <button class="btn js-decrement-button" type="button">
-                <i class="material-icons">&#xE15B;</i>
-              </button>
-            {/if}
-            <input
-              type="text"
-              name="qty"
-              id="quantity_wanted"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              {if $product.quantity_wanted}
-                value="{$product.quantity_wanted}"
-                min="{$product.minimal_quantity}"
-              {else}
-                value="1"
-                min="1"
-              {/if}
-              class="form-control"
-              aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
-            />
-            {if $language.is_rtl}
-              <button class="btn js-decrement-button" type="button">
-                <i class="material-icons">&#xE15B;</i>
-              </button>
-            {else}
-              <button class="btn js-increment-button" type="button">
-                <i class="material-icons">&#xE145;</i>
-              </button>
-            {/if}
-          </div>
+          {include file='components/qty-input.tpl'
+            attributes=[
+              "value"=>"{$product.quantity_wanted}",
+              "name"=>"qty",
+              "min"=>"{$product.minimal_quantity}"
+            ]
+          }
         </div>
 
         <div class="product-actions__button col">

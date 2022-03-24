@@ -24,97 +24,217 @@
  */
 
 import selectorsMap from '@constants/selectors-map';
+import debounce from '@helpers/debounce';
 import useAlert from './components/useAlert';
 
+const {prestashop} = window;
+const delay = 250;
+
+interface QuantityInputGroup {
+  qtyInput: HTMLInputElement;
+  incrementButton: HTMLButtonElement;
+  decrementButton: HTMLButtonElement;
+}
+
 const initQuantityInput = (selector = selectorsMap.qtyInput.default) => {
-  const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<Element>;
+  const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
 
   if (qtyInputNodeList.length > 0) {
-    qtyInputNodeList.forEach((qtyInputWrapper: HTMLInputElement) => {
-      const qtyInput = qtyInputWrapper.querySelector('input');
+    qtyInputNodeList.forEach((qtyInputWrapper: HTMLDivElement) => {
+      const qtyInput = qtyInputWrapper.querySelector<HTMLInputElement>('input');
 
       if (qtyInput) {
-        const incrementButton = qtyInputWrapper?.querySelector(selectorsMap.qtyInput.increment);
-        incrementButton?.addEventListener('click', (event) => changeQuantity(event, qtyInput, 1));
-        const decrementButton = qtyInputWrapper?.querySelector(selectorsMap.qtyInput.decrement);
-        decrementButton?.addEventListener('click', (event) => changeQuantity(event, qtyInput, -1));
+        const incrementButton = qtyInputWrapper.querySelector<HTMLButtonElement>(selectorsMap.qtyInput.increment);
+        const decrementButton = qtyInputWrapper.querySelector<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
+
+        if (incrementButton && decrementButton) {
+          const qtyInputGroup: QuantityInputGroup = {qtyInput, incrementButton, decrementButton};
+          // The changeQuantity() will be called immediatly and change the input value
+          incrementButton.addEventListener('click', () => changeQuantity(qtyInput, 1));
+          decrementButton.addEventListener('click', () => changeQuantity(qtyInput, -1));
+          // The updateQuantity() will be called after timeout and send the update request with current input value
+          incrementButton.addEventListener('click', debounce(async () => updateQuantity(qtyInputGroup, 1), delay));
+          decrementButton.addEventListener('click', debounce(async () => updateQuantity(qtyInputGroup, -1), delay));
+
+          // If the input is an update qty input (e.g. Cart)
+          // then change the buttons when user changed the value manually
+          if (qtyInput.hasAttribute('data-update-url')) {
+            qtyInput.addEventListener('keyup', () => {
+              showConfirmationButtons(qtyInputGroup);
+            });
+          }
+        }
       }
     });
   }
 };
 
-function changeQuantity(event: Event, qtyInput: HTMLInputElement, change: number): void {
-  const quantity = Number(qtyInput.value);
+const changeQuantity = (qtyInput: HTMLInputElement, change: number) => {
+  const state = qtyInput.getAttribute('data-state');
 
-  if (quantity) {
-    const min = Number(qtyInput.getAttribute('min')) ?? 0;
-    const newValue = Math.max(quantity + change, min);
+  // If the confirmation buttons displayed then skip changing the input value
+  if (state !== 'confirmation') {
+    const currentValue = Number(qtyInput.value);
+    const min = (qtyInput.dataset.updateUrl === undefined) ? Number(qtyInput.getAttribute('min')) : 0;
+    const newValue = Math.max(currentValue + change, min);
+
     qtyInput.value = String(newValue);
+  }
+};
 
-    const requestUrl = (change > 0) ? qtyInput.dataset.upUrl : qtyInput.dataset.downUrl;
+const updateQuantity = async (qtyInputGroup: QuantityInputGroup, change: number) => {
+  const {qtyInput} = qtyInputGroup;
+  const state = qtyInput.getAttribute('data-state');
 
-    if (requestUrl !== undefined) {
-      const {prestashop} = window;
+  // If confirmation buttons displayed and the Cancel button selected then change the buttons to the spin sate
+  // else send the update request (user clicked spin buttons or the OK button in the confirmation state)
+  if (state === 'confirmation' && change < 0) {
+    showSpinButtons(qtyInputGroup);
+  } else {
+    const targetValue = Number(qtyInput.value);
+    const baseValue = Number(qtyInput.getAttribute('value'));
+    const quantity = targetValue - baseValue;
 
-      const targetButton = event.target as HTMLElement;
-      const targetButtonIcon = targetButton.querySelector<HTMLElement>(selectorsMap.qtyInput.icon);
-      const targetButtonSpinner = targetButton.querySelector<HTMLElement>(selectorsMap.qtyInput.spinner);
+    if (Number.isNaN(targetValue) === false && quantity !== 0) {
+      const requestUrl = qtyInput.dataset.updateUrl;
 
-      toggleSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
+      if (requestUrl !== undefined) {
+        const targetButton = getTargetButton(qtyInputGroup, change);
+        const targetButtonIcon = targetButton.querySelector<HTMLElement>('i:not(.d-none)');
+        const targetButtonSpinner = targetButton.querySelector<HTMLElement>(selectorsMap.qtyInput.spinner);
 
-      sendUpdateCartRequest(requestUrl)
-        .then((response) => {
-          toggleSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
+        toggleButtonSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
 
-          return response.json();
-        })
-        .then((data) => {
-          const {productId: pid} = qtyInput.dataset;
-          let alertSelector: string;
+        const {productId} = qtyInput.dataset;
+        const productAlertSelector = resetAlertContainer(Number(productId));
 
-          if (pid) {
-            alertSelector = selectorsMap.cart.alert.replace('{pid}', pid);
-            const productLineAlert = document.querySelector<HTMLElement>(alertSelector);
+        try {
+          const response = await sendUpdateCartRequest(requestUrl, quantity);
 
-            if (productLineAlert) {
-              productLineAlert.innerHTML = '';
+          if (response.ok) {
+            const data = await response.json();
+
+            if (data.hasError) {
+              const errors = data.errors as Array<string>;
+
+              if (productAlertSelector) {
+                errors.forEach((error: string) => {
+                  useAlert(error, {type: 'danger', selector: productAlertSelector}).show();
+                });
+              }
+            } else {
+              prestashop.emit('updateCart', {
+                reason: qtyInput.dataset,
+                resp: data,
+              });
             }
-          }
-
-          if (data.hasError) {
-            const errors = data.errors as Array<string>;
-            errors.forEach((error: string) => {
-              useAlert(error, {type: 'danger', selector: alertSelector}).show();
-            });
+            // Change the input value based on returned quantity
+            qtyInput.value = data.quantity;
+            // If user used the confirmation input form, need to update input value in the DOM
+            qtyInput.setAttribute('value', data.quantity);
           } else {
-            prestashop.emit('updateCart', {
-              reason: qtyInput.dataset,
-              resp: data,
+            // Something went wrong so call the catch block
+            throw response;
+          }
+        } catch (error) {
+          // An error has occurred on update so revert to the value in the DOM
+          qtyInput.value = String(baseValue);
+          const errorData = error as Response;
+
+          if (errorData.status !== undefined) {
+            console.log(errorData);
+            const errorMsg = `${errorData.statusText}: ${errorData.url}`;
+            useAlert(errorMsg, {type: 'danger', selector: productAlertSelector}).show();
+
+            prestashop.emit('handleError', {
+              eventType: 'updateProductInCart',
+              resp: errorData,
             });
           }
-        })
-        .catch((error) => {
-          prestashop.emit('handleError', {
-            eventType: 'updateProductInCart',
-            resp: error,
-          });
-        });
+        } finally {
+          toggleButtonSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
+          showSpinButtons(qtyInputGroup);
+        }
+      }
+    } else {
+      // The input value is not a correct number so revert to the value in the DOM
+      qtyInput.value = String(baseValue);
+      showSpinButtons(qtyInputGroup);
     }
   }
-}
+};
 
-function toggleSpinner(button: HTMLElement, icon: HTMLElement | null, spinner: HTMLElement | null) {
+const getTargetButton = (qtyInputGroup: QuantityInputGroup, change: number) => {
+  const {incrementButton, decrementButton} = qtyInputGroup;
+
+  return (change > 0) ? incrementButton : decrementButton;
+};
+
+const resetAlertContainer = (productId: number) => {
+  if (productId) {
+    const productAlertSelector = selectorsMap.qtyInput.alert(productId);
+    const productAlertContainer = document.querySelector<HTMLDivElement>(productAlertSelector);
+
+    if (productAlertContainer) {
+      productAlertContainer.innerHTML = '';
+    }
+    return productAlertSelector;
+  }
+  return undefined;
+};
+
+const toggleButtonSpinner = (button: HTMLButtonElement, icon: HTMLElement | null, spinner: HTMLElement | null) => {
   button.toggleAttribute('disabled');
   icon?.classList.toggle('d-none');
   spinner?.classList.toggle('d-none');
-}
+};
 
-async function sendUpdateCartRequest(url: string) {
+const showSpinButtons = (qtyInputGroup: QuantityInputGroup) => {
+  const {qtyInput, incrementButton, decrementButton} = qtyInputGroup;
+  const state = qtyInput.getAttribute('data-state');
+
+  if (state === 'confirmation') {
+    toggleButtonIcon(incrementButton, decrementButton);
+    qtyInput.removeAttribute('data-state');
+    const baseValue = qtyInput.getAttribute('value');
+
+    // Maybe user changed the input value manually bu not confirmed
+    // so revert the input value based on the value in the DOM
+    if (baseValue) {
+      qtyInput.value = baseValue;
+    }
+  }
+};
+
+const showConfirmationButtons = (qtyInputGroup: QuantityInputGroup) => {
+  const {qtyInput, incrementButton, decrementButton} = qtyInputGroup;
+  const state = qtyInput.getAttribute('data-state');
+
+  if (state !== 'confirmation') {
+    toggleButtonIcon(incrementButton, decrementButton);
+    qtyInput.setAttribute('data-state', 'confirmation');
+  }
+};
+
+const toggleButtonIcon = (incrementButton: HTMLButtonElement, decrementButton: HTMLButtonElement) => {
+  const incrementButtonIcons = incrementButton.querySelectorAll('i') as NodeListOf<HTMLElement>;
+  incrementButtonIcons.forEach((icon: HTMLElement) => {
+    icon.classList.toggle('d-none');
+  });
+  const decrementButtonIcons = decrementButton.querySelectorAll('i') as NodeListOf<HTMLElement>;
+  decrementButtonIcons.forEach((icon: HTMLElement) => {
+    icon.classList.toggle('d-none');
+  });
+};
+
+async function sendUpdateCartRequest(updateUrl: string, quantity: number) {
   const formData = new FormData();
   formData.append('ajax', '1');
   formData.append('action', 'update');
+  formData.append('qty', String(Math.abs(quantity)));
+  formData.append('op', (quantity > 0) ? 'up' : 'down');
 
-  const response = await fetch(url, {
+  const response = await fetch(updateUrl, {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/javascript, */*; q=0.01',

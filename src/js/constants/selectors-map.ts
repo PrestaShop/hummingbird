@@ -61,6 +61,7 @@ const selectorsMap = {
     decrement: '.js-decrement-button',
     icon: '.material-icons',
     spinner: '.spinner-border',
+    alert: (id: number): string => `#js-product-line-alert--${id}`,
   },
   alert: {
     selector: '#notifications .container',
@@ -87,9 +88,7 @@ const selectorsMap = {
   facetedsearch,
   pageLoader,
   listing,
-  cart: {
-    alert: '#js-product-line-alert--{pid}',
-  },
+  cart,
 };
 
 export default selectorsMap;

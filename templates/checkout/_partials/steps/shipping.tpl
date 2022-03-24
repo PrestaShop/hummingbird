@@ -42,18 +42,18 @@
             <div class="delivery-options__list bg-light rounded-3 p-3 mb-4">
               {foreach from=$delivery_options item=carrier key=carrier_id name=delivery_options}
                 <div class="delivery-options__item js-delivery-option">
-                  <label for="delivery_option_{$carrier.id}" class="col-12 delivery-option-2">
+                  <label for="delivery_option_{$carrier.id}" class="col-12">
                     <div class="row">
-                      <div class="delivery-option-left col-6 col-sm-4 mb-2 mb-sm-0 order-0">
+                      <div class="delivery-option__left col-6 col-sm-4 mb-2 mb-sm-0 order-0">
                         <div class="row align-items-center">
                           <span class="custom-radio col-2">
                             <input type="radio" class="form-check-input" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
                             <i class="form-check-round"></i>
                           </span>
-                          <div class="carrier col-10{if $carrier.logo} carrier-hasLogo{/if}">
+                          <div class="carrier col-10{if $carrier.logo} carrier--hasLogo{/if}">
                             <div class="row align-items-center">
                               {if $carrier.logo}
-                                <div class="col-md-4 carrier-logo">
+                                <div class="col-md-4 carrier__logo">
                                     <img src="{$carrier.logo}" class="rounded" alt="{$carrier.name}" loading="lazy" />
                                 </div>
                               {/if}
@@ -65,15 +65,15 @@
                           </div>
                         </div> 
                       </div>
-                      <span class="delivery-option-center col-6 col-sm-4 order-2 order-sm-1 d-flex align-items-center">
+                      <span class="delivery-option__center col-6 col-sm-4 order-2 order-sm-1 d-flex align-items-center">
                         {$carrier.delay}
                       </span>
-                      <span class="delivery-option-right col-6 col-sm-4 order-1 order-sm-2 d-flex align-items-center">
+                      <span class="delivery-option__right col-6 col-sm-4 order-1 order-sm-2 d-flex align-items-center">
                         {$carrier.price}
                       </span>
                     </div>
                   </label>
-                  <div class="carrier-extra-content js-carrier-extra-content"{if $delivery_option != $carrier_id} style="display:none;"{/if}>
+                  <div class="carrier__extra-content js-carrier-extra-content"{if $delivery_option != $carrier_id} style="display:none;"{/if}>
                     {$carrier.extraContent nofilter}
                   </div>
                   {if !$smarty.foreach.delivery_options.last}
@@ -121,7 +121,7 @@
             {l s='Back to Addresses' d='Shop.Theme.Actions'}
           </button>
 
-          <button type="submit" class="continue btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto" name="confirmDeliveryOption" value="1">
+          <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto" name="confirmDeliveryOption" value="1">
             <div class="material-icons">arrow_forward</div>
             {l s='Continue to Payment' d='Shop.Theme.Actions'}
           </button>

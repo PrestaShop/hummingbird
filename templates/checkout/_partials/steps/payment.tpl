@@ -8,18 +8,19 @@
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
 
   {if !empty($display_transaction_updated_info)}
-  <p class="cart-payment-step-refreshed-info">
-    {l s='Transaction amount has been correctly updated' d='Shop.Theme.Checkout'}
-  </p>
+    <p class="payment__updated">
+      {l s='Transaction amount has been correctly updated' d='Shop.Theme.Checkout'}
+    </p>
   {/if}
 
   {if $is_free}
     <p>{l s='No payment needed for this order' d='Shop.Theme.Checkout'}</p>
   {/if}
-  <div class="payment-options {if $is_free}d-block d-sm-none{/if}">
+
+  <div class="payment__list{if $is_free} d-block d-sm-none{/if}">
     {foreach from=$payment_options item="module_options"}
       {foreach from=$module_options item="option"}
-        <div id="{$option.id}-container" class="payment-option">
+        <div id="{$option.id}-container" class="payment__option">
           {* This is the way an option should be selected when Javascript is enabled *}
           <label class="form-check-label mb-2">
             <input
@@ -30,10 +31,13 @@
               id="{$option.id}"
               {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
             />
+
             <i class="form-check-round"></i>
+
             {if $option.logo}
               <img src="{$option.logo}" loading="lazy">
             {/if}
+
             {$option.call_to_action_text}
           </label>
 
@@ -52,7 +56,7 @@
         {if $option.additionalInformation}
           <div
             id="{$option.id}-additional-information"
-            class="js-additional-information definition-list ps-sm-4 mt-2 additional-information{if $option.id != $selected_payment_option} ps-hidden {/if}"
+            class="js-additional-information payment__definitions ps-sm-4 mt-2 additional-information{if $option.id != $selected_payment_option} ps-hidden{/if}"
          >
             {$option.additionalInformation nofilter}
           </div>
@@ -60,7 +64,7 @@
 
         <div
           id="pay-with-{$option.id}-form"
-          class="js-payment-option-form {if $option.id != $selected_payment_option} ps-hidden {/if}"
+          class="js-payment-option-form{if $option.id != $selected_payment_option} ps-hidden{/if}"
        >
           {if $option.form}
             {$option.form nofilter}
@@ -89,7 +93,6 @@
     </p>
 
     <form id="conditions-to-approve" class="js-conditions-to-approve" method="GET">
-
         {foreach from=$conditions_to_approve item="condition" key="condition_name"}
           <div class="my-3 form-check">
             <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
@@ -104,7 +107,6 @@
             >
           </div>
         {/foreach}
-
     </form>
   {/if}
 

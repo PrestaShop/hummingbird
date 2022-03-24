@@ -6,7 +6,7 @@
   {hook h='displayPersonalInformationTop' customer=$customer}
 
   {if $customer.is_logged && !$customer.is_guest}
-    <div class="checkout-step-account">
+    <div class="step__account">
       <p class="mb-3">
         {* [1][/1] is for a HTML tag. *}
         {l s='Connected as [1]%firstname% %lastname%[/1].'

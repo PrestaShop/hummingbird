@@ -81,44 +81,16 @@
         {if !empty($product.is_gift)}
           <span class="gift-quantity">{$product.quantity}</span>
         {else}
-          <div class="input-group flex-nowrap mb-3">
-            {if $language.is_rtl}
-              <button class="btn js-increment-button" type="button">
-                <i class="material-icons">&#xE145;</i>
-                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
-              </button>
-            {else}
-              <button class="btn js-decrement-button" type="button">
-                <i class="material-icons">&#xE15B;</i>
-                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
-              </button>
-            {/if}
-            <input
-              class="js-cart-line-product-quantity form-control"
-              aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
-              data-down-url="{$product.down_quantity_url}"
-              data-up-url="{$product.up_quantity_url}"
-              data-update-url="{$product.update_quantity_url}"
-              data-product-id="{$product.id_product}"
-              type="text"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              value="{$product.quantity}"
-              name="product-quantity-spin"
-              min="{$product.minimal_quantity}"
-            />
-            {if $language.is_rtl}
-              <button class="btn js-decrement-button" type="button">
-                <i class="material-icons">&#xE15B;</i>
-                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
-              </button>
-            {else}
-              <button class="btn js-increment-button" type="button">
-                <i class="material-icons">&#xE145;</i>
-                <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
-              </button>
-            {/if}
-          </div>
+          {include file='components/qty-input.tpl'
+            attributes=[
+              "class"=>"js-cart-line-product-quantity form-control",
+              "data-update-url"=>"{$product.update_quantity_url}",
+              "data-product-id"=>"{$product.id_product}",
+              "value"=>"{$product.quantity}",
+              "name"=>"product-quantity-spin",
+              "min"=>"{$product.minimal_quantity}"
+            ]
+          }
         {/if}
       </div>
 

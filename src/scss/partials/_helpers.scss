@@ -35,3 +35,17 @@
     max-width: 1140px;
   }
 }
+
+.text-gray {
+  color: $gray-700;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-md-auto {
+  @include media-breakpoint-up(md) {
+    width: auto;
+  }
+}

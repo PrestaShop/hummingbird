@@ -22,26 +22,36 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<section id="js-checkout-summary" class="card cart-summary js-cart" data-refresh-url="{$urls.pages.cart}?ajax=1&action=refresh">
-  <div class="card-block">
-    {block name='hook_checkout_summary_top'}
-      {include file='checkout/_partials/cart-summary-top.tpl' cart=$cart}
-    {/block}
 
-    {block name='cart_summary_products'}
-      {include file='checkout/_partials/cart-summary-products.tpl' cart=$cart}
-    {/block}
+<div class="accordion">
+  <div class="accordion-item bg-transparent">
+    <button class="accordion-button collapsed px-0 mb-3 d-flex d-lg-none bg-transparent" type="button" data-bs-target="#js-checkout-summary" data-bs-toggle="collapse" aria-expanded="false">
+      {l s='Order summary' d='Shop.Theme.Checkout'}
+    </button>
 
-    {block name='cart_summary_subtotals'}
-      {include file='checkout/_partials/cart-summary-subtotals.tpl' cart=$cart}
-    {/block}
+    <section id="js-checkout-summary" class="accordion-collapse collapse d-lg-block card cart-summary mb-4 js-cart" data-refresh-url="{$urls.pages.cart}?ajax=1&action=refresh">
+      <div class="card-block">
+        {block name='hook_checkout_summary_top'}
+          {include file='checkout/_partials/cart-summary-top.tpl' cart=$cart}
+        {/block}
+
+        {block name='cart_summary_products'}
+          {include file='checkout/_partials/cart-summary-products.tpl' cart=$cart}
+        {/block}
+
+        {block name='cart_summary_subtotals'}
+          {include file='checkout/_partials/cart-summary-subtotals.tpl' cart=$cart}
+        {/block}
+      </div>
+
+      {block name='cart_summary_totals'}
+        {include file='checkout/_partials/cart-summary-totals.tpl' cart=$cart}
+      {/block}
+
+      {block name='cart_summary_voucher'}
+        {include file='checkout/_partials/cart-voucher.tpl'}
+      {/block}
+    </section>
   </div>
-
-  {block name='cart_summary_totals'}
-    {include file='checkout/_partials/cart-summary-totals.tpl' cart=$cart}
-  {/block}
-
-  {block name='cart_summary_voucher'}
-    {include file='checkout/_partials/cart-voucher.tpl'}
-  {/block}
-</section>
+  <hr />
+</div>

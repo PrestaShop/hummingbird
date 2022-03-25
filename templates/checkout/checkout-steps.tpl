@@ -29,42 +29,42 @@
 {/if}
 
 {block name='checkout_steps'}
-<div class="{$componentName} bg-light py-2 {if isset($notifications) && $hasNotifications}mb-4{else}mb-5{/if} py-md-4">
+<div class="{$componentName} bg-light py-2 {if isset($notifications) && $hasNotifications}mb-2 mb-lg-4{else}mb-3 mb-lg-5{/if} py-md-4">
     <ul class="{$componentName}__list row mb-0 d-none d-md-flex">
-      <li class="{$componentName}__item {$componentName}--success text-center col-3">
+      <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-personal-information-step">
         <span class="{$componentName}__number mb-1">
           {l s='1' d='Shop.Theme.Checkout'}
         </span> 
-        <a href="#" class="{$componentName}__text mb-0 text-decoration-underline">
+        <button class="{$componentName}__text btn p-0 border-0 mb-0">
           {l s='Personal Information' d='Shop.Theme.Checkout'}
-        </a>
+        </button>
       </li>
 
-      <li class="{$componentName}__item {$componentName}--success  text-center col-3">
+      <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-addresses-step">
         <span class="{$componentName}__number mb-1">
           {l s='2' d='Shop.Theme.Checkout'}
         </span> 
-        <a href="#" class="{$componentName}__text mb-0 text-decoration-underline">
+        <button class="{$componentName}__text btn p-0 border-0 mb-0">
           {l s='Addresses' d='Shop.Theme.Checkout'}
-        </a>
+        </button>
       </li>
 
-      <li class="{$componentName}__item {$componentName}--current text-center col-3">
+      <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-delivery-step">
         <span class="{$componentName}__number mb-1">
           {l s='3' d='Shop.Theme.Checkout'}
         </span> 
-        <p class="{$componentName}__text mb-0">
+        <button class="{$componentName}__text btn p-0 border-0 mb-0">
           {l s='Shipping method' d='Shop.Theme.Checkout'}
-        </p>
+        </button>
       </li>
 
-      <li class="{$componentName}__item text-center col-3">
+      <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-payment-step">
         <span class="{$componentName}__number mb-1">
           {l s='4' d='Shop.Theme.Checkout'}
         </span> 
-        <p class="{$componentName}__text mb-0">
+        <button class="{$componentName}__text btn p-0 border-0 mb-0">
           {l s='Payment' d='Shop.Theme.Checkout'}
-        </p>
+        </button>
       </li>
     </ul>
 
@@ -73,7 +73,7 @@
         {include file="components/progress-circle.tpl" classes="text-success col-4" size=74 stroke=4 percent=50 text={l s='2 / 4' d='Shop.Theme.Checkout'}}
       </div>
 
-      <div class="{$componentName}__step d-none" data-step="1">
+      <div class="{$componentName}__step d-none" data-step="checkout-personal-information-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Personal Information' d='Shop.Theme.Checkout'}
         </p>
@@ -82,7 +82,7 @@
         </p>
       </div>
 
-      <div class="{$componentName}__step" data-step="2">
+      <div class="{$componentName}__step d-none" data-step="checkout-addresses-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Addresses' d='Shop.Theme.Checkout'}
         </p>
@@ -91,7 +91,7 @@
         </p>
       </div>
 
-      <div class="{$componentName}__step d-none" data-step="3">
+      <div class="{$componentName}__step d-none" data-step="checkout-delivery-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Shipping Method' d='Shop.Theme.Checkout'}
         </p>
@@ -100,7 +100,7 @@
         </p>
       </div>
 
-      <div class="{$componentName}__step d-none" data-step="4">
+      <div class="{$componentName}__step d-none" data-step="checkout-payment-step">
         <p class="fw-bold fs-5 mb-0">
           {l s='Payment' d='Shop.Theme.Checkout'}
         </p>

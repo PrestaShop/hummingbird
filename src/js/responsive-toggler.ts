@@ -24,7 +24,19 @@
  */
 import swapElements from '@helpers/swapElements';
 
+const {prestashop} = window;
+
+if (prestashop) {
+  prestashop.responsive = prestashop.responsive || {};
+
+  prestashop.responsive.current_width = window.innerWidth;
+  prestashop.responsive.min_width = 768;
+  prestashop.responsive.mobile = prestashop.responsive.current_width < prestashop.responsive.min_width;
+}
+
 export function toggleMobileStyles() {
+  // TODO: Find a better way to manage this with JSDom for tests
+  // eslint-disable-next-line no-shadow
   const {prestashop} = window;
 
   if (prestashop.responsive.mobile) {
@@ -46,12 +58,15 @@ export function toggleMobileStyles() {
       }
     });
   }
+
   prestashop.emit('responsive update', {
     mobile: prestashop.responsive.mobile,
   });
 }
 
 export default function initResponsiveToggler() {
+  // TODO: Find a better way to manage this with JSDom for tests
+  // eslint-disable-next-line no-shadow
   const {prestashop} = window;
 
   prestashop.responsive = prestashop.responsive || {};
@@ -73,10 +88,10 @@ export default function initResponsiveToggler() {
       toggleMobileStyles();
     }
   });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    if (prestashop.responsive.mobile) {
-      toggleMobileStyles();
-    }
-  });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (prestashop.responsive.mobile) {
+    toggleMobileStyles();
+  }
+});

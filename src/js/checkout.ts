@@ -28,12 +28,98 @@ import selectorsMap from '@constants/selectors-map';
 const {progressRing: ProgressRingMap} = selectorsMap;
 
 const initCheckout = () => {
+  const steps = document.querySelectorAll<HTMLElement>('.js-step-item');
+  const backButtons = document.querySelectorAll<HTMLElement>('.js-back');
   const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
-  const {setProgress, error} = useProgressRing(progressElement);
+  const {setProgress} = useProgressRing(progressElement);
 
-  if (!error && setProgress) {
-    setProgress(75);
-  }
+  const toggleStep = (content: HTMLElement, step?: HTMLElement) => {
+    const currentContent = document.querySelector('.js-current-step');
+    currentContent?.classList.remove('step--current', 'js-current-step');
+    currentContent?.classList.add('d-none');
+    if (step) {
+      const responsiveStep = document.querySelector<HTMLElement>(
+        `.checkout__steps__step[data-step="${step.dataset.step}"]`,
+      );
+      const shownResponsiveStep = document.querySelector<HTMLElement>('.checkout__steps__step:not(.d-none)');
+
+      shownResponsiveStep?.classList.add('d-none');
+      responsiveStep?.classList.remove('d-none');
+    }
+
+    content.classList.remove('d-none');
+    content.classList.add('js-current-step');
+  };
+
+  backButtons.forEach((button) => {
+    const stepContent = document.querySelector<HTMLElement>(`#${button.dataset.step}`);
+
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (stepContent) {
+        toggleStep(stepContent);
+      }
+    });
+  });
+
+  steps.forEach((step, index) => {
+    const stepContent = document.querySelector<HTMLElement>(`#${step.dataset.step}`);
+    const progressText = progressElement?.querySelector('text');
+
+    if (stepContent) {
+      if (stepContent.classList.contains('step--complete')) {
+        step.classList.add('checkout__steps--success');
+      }
+
+      if (stepContent.classList.contains('step--current')) {
+        step.classList.add('checkout__steps--current');
+        const responsiveStep = document.querySelector<HTMLElement>(
+          `.checkout__steps__step[data-step="${step.dataset.step}"]`,
+        );
+        const shownResponsiveStep = document.querySelector<HTMLElement>('.checkout__steps__step:not(.d-none)');
+
+        shownResponsiveStep?.classList.add('d-none');
+        responsiveStep?.classList.remove('d-none');
+
+        if (progressText) {
+          progressText.innerHTML = `${index + 1} / 4`;
+        }
+
+        if (setProgress) {
+          setProgress(((index + 1) / 4) * 100);
+        }
+      }
+
+      if (stepContent.classList.contains('step--reachable')) {
+        const button = step.querySelector<HTMLButtonElement>('button');
+
+        button?.classList.add('btn-link');
+
+        button?.addEventListener('click', () => {
+          if (setProgress) {
+            setProgress(((index + 1) / 4) * 100);
+          }
+
+          if (progressText) {
+            progressText.innerHTML = `${index + 1} / 4`;
+          }
+
+          toggleStep(stepContent, step);
+        });
+      }
+
+      if (stepContent.classList.contains('step--unreachable')) {
+        const button = step.querySelector<HTMLButtonElement>('button');
+
+        button?.setAttribute('disabled', 'true');
+
+        button?.addEventListener('click', () => {
+          toggleStep(stepContent, step);
+        });
+      }
+    }
+  });
 };
 
 export default initCheckout;

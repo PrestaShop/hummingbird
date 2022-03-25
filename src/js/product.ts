@@ -26,7 +26,15 @@
 import SelectorsMap from './constants/selectors-map';
 
 export default () => {
-  const imagesCarousel = document.querySelector(SelectorsMap.product.carousel);
+  const {prestashop} = window;
+
+  const initProductSlide = () => {
+    const imagesCarousel = document.querySelector(SelectorsMap.product.carousel);
+
+    if (imagesCarousel) {
+      imagesCarousel.addEventListener('slide.bs.carousel', onProductSlide);
+    }
+  };
 
   function onProductSlide(event: Event & {to: number}): void {
     const thumbnails = document.querySelectorAll(SelectorsMap.product.thumbnail);
@@ -42,7 +50,9 @@ export default () => {
     }
   }
 
-  if (imagesCarousel) {
-    imagesCarousel.addEventListener('slide.bs.carousel', onProductSlide);
-  }
+  initProductSlide();
+
+  prestashop.on('updatedProduct', () => {
+    initProductSlide();
+  });
 };

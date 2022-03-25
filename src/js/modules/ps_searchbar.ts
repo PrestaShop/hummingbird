@@ -44,7 +44,7 @@ const initSearchbar = () => {
     }
   });
 
-  if (searchInput && searchResults && searchDropdown) {
+  if (searchWidget && searchInput && searchResults && searchDropdown) {
     searchInput.addEventListener('keydown', debounce(async () => {
       if (searchUrl) {
         const products = await searchProduct(searchUrl, searchInput.value, 10);
@@ -61,7 +61,12 @@ const initSearchbar = () => {
               if (productLink && productTitle && productImage) {
                 productLink.href = e.canonical_url;
                 productTitle.innerHTML = e.name;
-                productImage.src = e.cover.small.url;
+
+                if (!e.cover) {
+                  productImage.innerHTML = '';
+                } else {
+                  productImage.src = e.cover.small.url;
+                }
 
                 searchResults.append(product);
               }
@@ -69,6 +74,12 @@ const initSearchbar = () => {
           });
 
           searchDropdown.classList.remove('d-none');
+
+          window.addEventListener('click', (e: Event) => {
+            if (!searchWidget.contains(<Node>e.target)) {
+              searchDropdown.classList.add('d-none');
+            }
+          });
         } else {
           searchResults.innerHTML = '';
           searchDropdown.classList.add('d-none');

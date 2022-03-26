@@ -28,8 +28,6 @@ import selectorsMap from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
 
-const {prestashop} = window;
-
 const useQuantityInput = (selector = selectorsMap.qtyInput.default) => {
   const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
 
@@ -81,6 +79,7 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number) => {
 };
 
 const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number) => {
+  const {prestashop} = window;
   const {qtyInput} = qtyInputGroup;
   const state = qtyInput.getAttribute('data-state');
 

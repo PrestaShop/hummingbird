@@ -28,7 +28,7 @@ import selectorsMap from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
 
-const useQuantityInput = (selector = selectorsMap.qtyInput.default) => {
+const useQuantityInput = (selector = selectorsMap.qtyInput.default, delay = Quantity.delay) => {
   const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
 
   if (qtyInputNodeList.length > 0) {
@@ -47,10 +47,10 @@ const useQuantityInput = (selector = selectorsMap.qtyInput.default) => {
           // The updateQuantity() will be called after timeout and send the update request with current input value
           incrementButton.addEventListener('click', debounce(async () => {
             updateQuantity(qtyInputGroup, 1);
-          }, Quantity.delay));
+          }, delay));
           decrementButton.addEventListener('click', debounce(async () => {
             updateQuantity(qtyInputGroup, -1);
-          }, Quantity.delay));
+          }, delay));
 
           // If the input is an update qty input (e.g. Cart)
           // then change the buttons when user changed the value manually

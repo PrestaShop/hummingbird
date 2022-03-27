@@ -52,8 +52,8 @@ const useQuantityInput = (selector = selectorsMap.qtyInput.default, delay = Quan
             updateQuantity(qtyInputGroup, -1);
           }, delay));
 
-          // If the input is an update qty input (e.g. Cart)
-          // then change the buttons when user changed the value manually
+          // If the input element has update URL (e.g. Cart)
+          // then convert the buttons when user changed the value manually
           if (qtyInput.hasAttribute('data-update-url')) {
             qtyInput.addEventListener('keyup', () => {
               showConfirmationButtons(qtyInputGroup);
@@ -66,7 +66,7 @@ const useQuantityInput = (selector = selectorsMap.qtyInput.default, delay = Quan
 };
 
 const changeQuantity = (qtyInput: HTMLInputElement, change: number) => {
-  const state = qtyInput.getAttribute('data-state');
+  const state = qtyInput.getAttribute('data-mode');
 
   // If the confirmation buttons displayed then skip changing the input value
   if (state !== 'confirmation') {
@@ -81,10 +81,10 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number) => {
 const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number) => {
   const {prestashop} = window;
   const {qtyInput} = qtyInputGroup;
-  const state = qtyInput.getAttribute('data-state');
+  const state = qtyInput.getAttribute('data-mode');
 
-  // If confirmation buttons displayed and the Cancel button selected then change the buttons to the spin sate
-  // else send the update request (user clicked spin buttons or the OK button in the confirmation state)
+  // If confirmation buttons displayed and the Cancel button selected then change the buttons to the spin mode
+  // else send the update request (user clicked spin buttons or the OK button in the confirmation mode)
   if (state === 'confirmation' && change < 0) {
     showSpinButtons(qtyInputGroup);
   } else {
@@ -127,7 +127,7 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
             }
             // Change the input value based on returned quantity
             qtyInput.value = data.quantity;
-            // If user used the confirmation input form, need to update input value in the DOM
+            // If user used the confirmation mode, need to update input value in the DOM
             qtyInput.setAttribute('value', data.quantity);
           } else {
             // Something went wrong so call the catch block
@@ -187,11 +187,11 @@ const toggleButtonSpinner = (button: HTMLButtonElement, icon: HTMLElement | null
 
 const showSpinButtons = (qtyInputGroup: Quantity.InputGroup) => {
   const {qtyInput, incrementButton, decrementButton} = qtyInputGroup;
-  const state = qtyInput.getAttribute('data-state');
+  const state = qtyInput.getAttribute('data-mode');
 
   if (state === 'confirmation') {
     toggleButtonIcon(incrementButton, decrementButton);
-    qtyInput.removeAttribute('data-state');
+    qtyInput.removeAttribute('data-mode');
     const baseValue = qtyInput.getAttribute('value');
 
     // Maybe user changed the input value manually bu not confirmed
@@ -204,11 +204,11 @@ const showSpinButtons = (qtyInputGroup: Quantity.InputGroup) => {
 
 const showConfirmationButtons = (qtyInputGroup: Quantity.InputGroup) => {
   const {qtyInput, incrementButton, decrementButton} = qtyInputGroup;
-  const state = qtyInput.getAttribute('data-state');
+  const state = qtyInput.getAttribute('data-mode');
 
   if (state !== 'confirmation') {
     toggleButtonIcon(incrementButton, decrementButton);
-    qtyInput.setAttribute('data-state', 'confirmation');
+    qtyInput.setAttribute('data-mode', 'confirmation');
   }
 };
 
@@ -223,7 +223,7 @@ const toggleButtonIcon = (incrementButton: HTMLButtonElement, decrementButton: H
   });
 };
 
-async function sendUpdateCartRequest(updateUrl: string, quantity: number) {
+const sendUpdateCartRequest = async (updateUrl: string, quantity: number) => {
   const formData = new FormData();
   formData.append('ajax', '1');
   formData.append('action', 'update');
@@ -239,6 +239,6 @@ async function sendUpdateCartRequest(updateUrl: string, quantity: number) {
   });
 
   return response;
-}
+};
 
 export default useQuantityInput;

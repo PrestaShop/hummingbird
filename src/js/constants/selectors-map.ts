@@ -67,6 +67,7 @@ const selectorsMap = {
     modal: '.modal-dialog .js-quantity-button',
     increment: '.js-increment-button',
     decrement: '.js-decrement-button',
+    confirm: '.confirmation',
     icon: '.material-icons',
     spinner: '.spinner-border',
     alert: (id: number): string => `#js-product-line-alert--${id}`,

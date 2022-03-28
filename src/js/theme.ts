@@ -50,12 +50,15 @@ import './modules/facetedsearch';
 /* eslint-enable */
 
 $(() => {
+  const {prestashop} = window;
+
   initProductBehavior();
   initQuickview();
   initCheckout();
   initResponsiveToggler();
   initCart();
   useQuantityInput();
+  prestashop.on('updatedCart', () => useQuantityInput());
 });
 
 export const components = {

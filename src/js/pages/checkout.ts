@@ -33,7 +33,7 @@ const initCheckout = () => {
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);
   const actionButtons = document.querySelectorAll<HTMLElement>(CheckoutMap.actionsButtons);
   const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
-  const {setProgress} = useProgressRing(progressElement);
+  const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: steps.length, text: 'enum'});
   const termsLink = document.querySelector<HTMLLinkElement>(CheckoutMap.termsLink);
   const termsModalElement = document.querySelector<HTMLLinkElement>(CheckoutMap.checkoutModal);
 
@@ -76,7 +76,6 @@ const initCheckout = () => {
     const stepContent = document.querySelector<HTMLElement>(
       CheckoutMap.steps.specificStepContent(step.dataset.step),
     );
-    const progressText = progressElement?.querySelector('text');
 
     if (stepContent) {
       if (stepContent.classList.contains('step--complete')) {
@@ -93,12 +92,8 @@ const initCheckout = () => {
         shownResponsiveStep?.classList.add('d-none');
         responsiveStep?.classList.remove('d-none');
 
-        if (progressText) {
-          progressText.innerHTML = `${index + 1} / 4`;
-        }
-
         if (setProgress) {
-          setProgress(((index + 1) / 4) * 100);
+          setProgress(index + 1);
         }
       }
 
@@ -109,11 +104,7 @@ const initCheckout = () => {
 
         button?.addEventListener('click', () => {
           if (setProgress) {
-            setProgress(((index + 1) / 4) * 100);
-          }
-
-          if (progressText) {
-            progressText.innerHTML = `${index + 1} / 4`;
+            setProgress(index + 1);
           }
 
           toggleStep(stepContent, step);

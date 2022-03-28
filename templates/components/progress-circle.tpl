@@ -25,10 +25,8 @@
 
 {$radius = $size / 2 - $stroke * 2}
 {$circumference = $radius * 2 * constant('M_PI')}
-{$dashoffset = $circumference - (($percent / 100 ) * $circumference)}
 
 {$circumference = $circumference|string_format:"%.4f"}
-{$dashoffset = $dashoffset|string_format:"%.4f"}
 
 <svg
   class="progress-ring{if $classes} {$classes}{/if}"
@@ -48,14 +46,12 @@
     class="progress-ring__circle"
     stroke="currentColor"
     stroke-width="{$stroke}"
-    data-percent="50"
+    data-percent="0"
     fill="transparent"
     r="{$radius}"
     cx="{$size / 2}"
     cy="{$size / 2}"
-    style="stroke-dasharray: {$circumference}, {$circumference}; stroke-dashoffset: {$dashoffset};"
+    style="stroke-dasharray: {$circumference}, {$circumference}; stroke-dashoffset: {$circumference};"
   />
-  {if $text}
-    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">{$text}</text>
-  {/if}
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
 </svg>

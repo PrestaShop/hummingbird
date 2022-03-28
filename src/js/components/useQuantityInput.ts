@@ -27,6 +27,7 @@ import * as Quantity from '@constants/useQuantityInput-data';
 import selectorsMap from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
+import useToast from './useToast';
 
 const useQuantityInput = (selector = selectorsMap.qtyInput.default, delay = Quantity.delay) => {
   const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
@@ -102,7 +103,6 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
         toggleButtonSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
 
         const {productId} = qtyInput.dataset;
-        const productAlertSelector = resetAlertContainer(Number(productId));
 
         try {
           const response = await sendUpdateCartRequest(requestUrl, quantity);
@@ -112,13 +112,19 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
 
             if (data.hasError) {
               const errors = data.errors as Array<string>;
+              const productAlertSelector = resetAlertContainer(Number(productId));
 
-              if (productAlertSelector) {
+              if (errors && productAlertSelector) {
                 errors.forEach((error: string) => {
                   useAlert(error, {type: 'danger', selector: productAlertSelector}).show();
                 });
               }
             } else {
+              const errors = data.errors as string;
+
+              if (errors) {
+                useToast(errors, {type: 'warning', autohide: false}).show();
+              }
               prestashop.emit('updateCart', {
                 reason: qtyInput.dataset,
                 resp: data,
@@ -139,6 +145,7 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
 
           if (errorData.status !== undefined) {
             const errorMsg = `${errorData.statusText}: ${errorData.url}`;
+            const productAlertSelector = resetAlertContainer(Number(productId));
             useAlert(errorMsg, {type: 'danger', selector: productAlertSelector}).show();
 
             prestashop.emit('handleError', {

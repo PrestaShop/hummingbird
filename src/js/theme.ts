@@ -47,6 +47,8 @@ import initProductBehavior from './product';
 import './mobile-menu';
 import './modules/ps_searchbar';
 import './modules/facetedsearch';
+import './modules/ps_languageselector';
+import './modules/ps_currencyselector';
 /* eslint-enable */
 
 $(() => {

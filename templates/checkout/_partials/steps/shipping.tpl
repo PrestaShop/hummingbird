@@ -116,7 +116,7 @@
         </div>
 
         <div class="shipping__actions">
-          <button class="btn btn-outline-primary btn-with-icon d-none d-md-inline-block me-2 js-back" data-step="checkout-addresses-step">
+          <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
             <div class="material-icons">arrow_backward</div>
             {l s='Back to Addresses' d='Shop.Theme.Actions'}
           </button>

@@ -54,21 +54,32 @@
     <div class="cart-grid__right col-lg-4">
       <h2 class="h4">{l s='Order summary' d='Shop.Theme.Checkout'}</h2>
 
-      {block name='cart_summary'}
-        <div class="card cart-summary">
-          {block name='hook_shopping_cart'}
-            {hook h='displayShoppingCart'}
-          {/block}
 
-          {block name='cart_totals'}
-            {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
-          {/block}
+      <div class="accordion">
+        <div class="accordion-item bg-transparent">
+          <button class="accordion-button collapsed px-0 mb-3 d-flex d-lg-none bg-transparent" type="button" data-bs-target="#js-checkout-summary" data-bs-toggle="collapse" aria-expanded="false">
+            {l s='Order summary' d='Shop.Theme.Checkout'}
+          </button>
 
-          {block name='cart_actions'}
-            {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
+          {block name='cart_summary'}
+            <div class="card cart-summary">
+              {block name='hook_shopping_cart'}
+                {hook h='displayShoppingCart'}
+              {/block}
+
+              {block name='cart_totals'}
+                {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
+              {/block}
+
+              {block name='cart_actions'}
+                {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
+              {/block}
+            </div>
           {/block}
         </div>
-      {/block}
+      </div>
+
+      <hr />
 
       {block name='hook_reassurance'}
         {hook h='displayReassurance'}

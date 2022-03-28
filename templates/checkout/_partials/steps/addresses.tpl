@@ -113,7 +113,7 @@
       {/if}
 
       <div class="mt-4">
-        <button class="btn btn-outline-primary btn-with-icon d-none d-md-inline-block me-2 js-back" data-step="checkout-personal-information-step">
+        <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-personal-information-step">
           <div class="material-icons">arrow_backward</div>
           {l s='Continue to Personal Information' d='Shop.Theme.Actions'}
         </button>

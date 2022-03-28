@@ -66,14 +66,13 @@ const useQuantityInput = (selector = selectorsMap.qtyInput.default, delay = Quan
 };
 
 const changeQuantity = (qtyInput: HTMLInputElement, change: number) => {
-  const state = qtyInput.getAttribute('data-mode');
+  const {mode} = qtyInput.dataset;
 
   // If the confirmation buttons displayed then skip changing the input value
-  if (state !== 'confirmation') {
+  if (mode !== 'confirmation') {
     const currentValue = Number(qtyInput.value);
     const min = (qtyInput.dataset.updateUrl === undefined) ? Number(qtyInput.getAttribute('min')) : 0;
     const newValue = Math.max(currentValue + change, min);
-
     qtyInput.value = String(newValue);
   }
 };
@@ -81,11 +80,11 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number) => {
 const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number) => {
   const {prestashop} = window;
   const {qtyInput} = qtyInputGroup;
-  const state = qtyInput.getAttribute('data-mode');
+  const {mode} = qtyInput.dataset;
 
   // If confirmation buttons displayed and the Cancel button selected then change the buttons to the spin mode
   // else send the update request (user clicked spin buttons or the OK button in the confirmation mode)
-  if (state === 'confirmation' && change < 0) {
+  if (mode === 'confirmation' && change < 0) {
     showSpinButtons(qtyInputGroup);
   } else {
     const targetValue = Number(qtyInput.value);
@@ -187,11 +186,11 @@ const toggleButtonSpinner = (button: HTMLButtonElement, icon: HTMLElement | null
 
 const showSpinButtons = (qtyInputGroup: Quantity.InputGroup) => {
   const {qtyInput, incrementButton, decrementButton} = qtyInputGroup;
-  const state = qtyInput.getAttribute('data-mode');
+  const {mode} = qtyInput.dataset;
 
-  if (state === 'confirmation') {
+  if (mode === 'confirmation') {
     toggleButtonIcon(incrementButton, decrementButton);
-    qtyInput.removeAttribute('data-mode');
+    qtyInput.dataset.mode = 'spin';
     const baseValue = qtyInput.getAttribute('value');
 
     // Maybe user changed the input value manually bu not confirmed
@@ -204,11 +203,11 @@ const showSpinButtons = (qtyInputGroup: Quantity.InputGroup) => {
 
 const showConfirmationButtons = (qtyInputGroup: Quantity.InputGroup) => {
   const {qtyInput, incrementButton, decrementButton} = qtyInputGroup;
-  const state = qtyInput.getAttribute('data-mode');
+  const {mode} = qtyInput.dataset;
 
-  if (state !== 'confirmation') {
+  if (mode !== 'confirmation') {
     toggleButtonIcon(incrementButton, decrementButton);
-    qtyInput.setAttribute('data-mode', 'confirmation');
+    qtyInput.dataset.mode = 'confirmation';
   }
 };
 

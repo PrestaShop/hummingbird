@@ -32,8 +32,7 @@ const initCheckout = () => {
 
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);
   const actionButtons = document.querySelectorAll<HTMLElement>(CheckoutMap.actionsButtons);
-  const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
-  const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: steps.length, text: 'enum'});
+  const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: steps.length});
   const termsLink = document.querySelector<HTMLLinkElement>(CheckoutMap.termsLink);
   const termsModalElement = document.querySelector<HTMLLinkElement>(CheckoutMap.checkoutModal);
 

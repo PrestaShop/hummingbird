@@ -124,8 +124,8 @@
       <div class="ps-shown-by-js">
         <div class="payment__actions">
           <button type="submit" class="btn btn-primary btn-with-icon center-block d-block d-md-inline-block w-full w-md-auto{if !$selected_payment_option} disabled{/if}">
-            <div class="material-icons">arrow_forward</div>
             {l s='Place order' d='Shop.Theme.Checkout'}
+            <div class="material-icons">arrow_forward</div>
           </button>
         </div>
       </div>

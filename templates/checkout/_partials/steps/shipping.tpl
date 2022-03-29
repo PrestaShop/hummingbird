@@ -122,8 +122,8 @@
           </button>
 
           <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto" name="confirmDeliveryOption" value="1">
-            <div class="material-icons">arrow_forward</div>
             {l s='Continue to Payment' d='Shop.Theme.Actions'}
+            <div class="material-icons">arrow_forward</div>
           </button>
         </div>
       </form>

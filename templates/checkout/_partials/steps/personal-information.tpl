@@ -43,8 +43,8 @@
           type="submit"
           value="order"
        > 
-          <div class="material-icons">arrow_forward</div>
           {l s='Continue to Addresses' d='Shop.Theme.Actions'}
+          <div class="material-icons">arrow_forward</div>
         </button>
       </form>
     </div>

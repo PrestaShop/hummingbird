@@ -36,7 +36,6 @@ const initCheckout = () => {
   const toggleStep = (content: HTMLElement, step?: HTMLElement) => {
     const currentContent = document.querySelector('.js-current-step');
     currentContent?.classList.remove('step--current', 'js-current-step');
-    currentContent?.classList.add('d-none');
     if (step) {
       const responsiveStep = document.querySelector<HTMLElement>(
         `.checkout__steps__step[data-step="${step.dataset.step}"]`,
@@ -47,7 +46,6 @@ const initCheckout = () => {
       responsiveStep?.classList.remove('d-none');
     }
 
-    content.classList.remove('d-none');
     content.classList.add('js-current-step');
   };
 

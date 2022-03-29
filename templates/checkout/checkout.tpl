@@ -27,6 +27,9 @@
 {block name='notifications'}
 {/block}
 
+{block name='breadcrumb'}
+{/block}
+
 {block name='content_columns'}
   {include file="checkout/checkout-steps.tpl"}
 
@@ -37,9 +40,9 @@
   <div class="container">
     <div class="row">
 
-      <div class="cart-grid-body col-lg-7 order-1 order-lg-0">
-          {render file='checkout/checkout-process.tpl' ui=$checkout_process}
+      <div class="cart-grid-body tab-content col-lg-7 order-1 order-lg-0">
         {block name='checkout_process'}
+          {render file='checkout/checkout-process.tpl' ui=$checkout_process}
         {/block}
       </div>
       <div class="cart-grid-right col-lg-5 order-0 order-lg-1">

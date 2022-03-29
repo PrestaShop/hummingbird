@@ -100,15 +100,15 @@
             {/if}
 
             {if $gift.allowed}
-              <div class="form-check">
-                <label class="form-check-label" for="input_gift">
+              <div class="form-check mb-3">
+                <label class="form-check-label" for="input_gift" data-bs-toggle="collapse" data-bs-target="#gift">
                   <input class="form-check-input js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1" {if $gift.isGift}checked="checked"{/if}/>
                   {$gift.label}
                 </label>
               </div>
 
-              <div id="gift" class="collapse{if $gift.isGift} in{/if}">
-                <label for="gift_message">{l s='If you\'d like, you can add a note to the gift:' d='Shop.Theme.Checkout'}</label>
+              <div id="gift" class="collapse{if $gift.isGift} show{/if}">
+                <label for="gift_message" class="form-label fw-bold">{l s='If you\'d like, you can add a note to the gift:' d='Shop.Theme.Checkout'}</label>
                 <textarea class="form-control" rows="2" cols="120" id="gift_message" name="gift_message">{$gift.message}</textarea>
               </div>
             {/if}

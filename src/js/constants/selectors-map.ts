@@ -63,8 +63,14 @@ export const progressRing = {
 
 const selectorsMap = {
   qtyInput: {
-    default: '.js-quantity-button input',
-    modal: '.modal-dialog .js-quantity-button input',
+    default: '.js-quantity-button',
+    modal: '.modal-dialog .js-quantity-button',
+    increment: '.js-increment-button',
+    decrement: '.js-decrement-button',
+    confirm: '.confirmation',
+    icon: '.material-icons',
+    spinner: '.spinner-border',
+    alert: (id: number): string => `#js-product-line-alert--${id}`,
   },
   alert: {
     selector: '#notifications .container',

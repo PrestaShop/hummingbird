@@ -138,6 +138,7 @@ const cloneAlertElement = (options?: Alerter.Options): HTMLElement | null => {
 
           alertElementIcon.innerHTML = `&#x${codepoint};`;
         } else {
+          alertElement.classList.add('flex-wrap');
           alertElementIcon.classList.add('d-none');
         }
       }

@@ -26,21 +26,22 @@
 // @ts-ignore
 //import $ from "expose-loader?exposes=$,jQuery!jquery";
 
-import SelectorsMap from './constants/selectors-map';
+import selectorsMap from './constants/selectors-map';
 import initEmitter from './prestashop';
 
 initEmitter();
 
-window.prestashop.themeSelectors = SelectorsMap;
+window.prestashop.themeSelectors = selectorsMap;
 
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
-import initQuantityInput from './qty-input';
 import initQuickview from './quickview';
 import initCart from './pages/cart';
 import initCheckout from './checkout';
 import useToast from './components/useToast';
+import useAlert from './components/useToast';
 import useProgressRing from './components/useProgressRing';
+import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
 import initProductBehavior from './product';
 import './mobile-menu';
@@ -49,22 +50,26 @@ import './modules/facetedsearch';
 /* eslint-enable */
 
 $(() => {
+  const {prestashop} = window;
+
   initProductBehavior();
-  initQuantityInput(SelectorsMap.qtyInput.default);
   initQuickview();
   initCheckout();
   initResponsiveToggler();
   initCart();
+  useQuantityInput();
+  prestashop.on('updatedCart', () => useQuantityInput());
 });
 
 export const components = {
   useToast,
+  useAlert,
   useProgressRing,
+  useQuantityInput,
 };
 
 export default {
   initResponsiveToggler,
-  initQuantityInput,
   initQuickview,
   initProductBehavior,
 };

@@ -27,14 +27,14 @@
 
     <div class="mb-3">
       {block name='product_availability'}
-        <span id="product__availability" class="product__availability js-product-availability">
+        <span id="product__availability" class="product__availability js-product-availability d-flex align-items-center">
           {if $product.show_availability && $product.availability_message}
             {if $product.availability == 'available'}
               <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i>
             {elseif $product.availability == 'last_remaining_items'}
-              <i class="material-icons product-last-items">&#xE002;</i>
+              <i class="material-icons product-last-items me-2">&#xE002;</i>
             {else}
-              <i class="material-icons product-unavailable">&#xE14B;</i>
+              <i class="material-icons product-unavailable me-2">&#xE14B;</i>
             {/if}
             {$product.availability_message}
           {/if}
@@ -60,23 +60,14 @@
 
     {block name='product_quantity'}
       <div class="row g-2">
-        <div class="product-actions__quantity quantity-button js-quantity-button col-auto">
-          <input
-            type="number"
-            name="qty"
-            id="quantity_wanted"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            {if $product.quantity_wanted}
-              value="{$product.quantity_wanted}"
-              min="{$product.minimal_quantity}"
-            {else}
-              value="1"
-              min="1"
-            {/if}
-            class="form-control"
-            aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
-         >
+        <div class="product-actions__quantity quantity-button js-quantity-button col-md-auto">
+          {include file='components/qty-input.tpl'
+            attributes=[
+              "id"=>"quantity_wanted",
+              "value"=>"{if $product.quantity_wanted}{$product.quantity_wanted}{else}1{/if}",
+              "min"=>"{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
+            ]
+          }
         </div>
 
         <div class="product-actions__button col">
@@ -98,8 +89,9 @@
     {/block}
 
     {block name='product_minimal_quantity'}
-      <p class="product__minimal-quantity js-product-minimal-quantity">
+      <p class="product__minimal-quantity js-product-minimal-quantity d-flex align-items-center mt-3 mt-md-0">
         {if $product.minimal_quantity> 1}
+          <i class="material-icons me-2">&#xE88F;</i>
           {l
           s='The minimum purchase order quantity for the product is %quantity%.'
           d='Shop.Theme.Checkout'

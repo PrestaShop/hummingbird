@@ -30,18 +30,20 @@ const {progressRing: ProgressRingMap} = selectorsMap;
 const PROGRESS_ERROR = 'The circle is not linked to an SVG circle';
 
 export interface ProgressRingReturn {
-  setProgress?: (perfect: number) => void
-  error?: Error
+  setProgress?: (perfect: number) => void,
+  progressElement?: HTMLElement,
+  error?: Error,
 }
 
-export const TextType = {
+export const ProgressRingText = {
   enum: 'enum',
   percent: 'percent',
-};
+  hidden: 'hidden',
+} as const;
 
 export interface ProgressRingOptions {
   steps: number;
-  text: keyof typeof TextType;
+  text?: keyof typeof ProgressRingText;
 }
 
 export const useProgressRing = (selector: string, options: ProgressRingOptions): ProgressRingReturn => {
@@ -56,20 +58,22 @@ export const useProgressRing = (selector: string, options: ProgressRingOptions):
       const circumference = radius * 2 * Math.PI;
 
       // This function makes the progress editable after initialization
-      const setProgress = (index: number) => {
-        const percent = (index / options.steps) * 100;
+      const setProgress = (step: number) => {
+        const percent = (Math.min(step, options.steps) / options.steps) * 100;
         const offset = circumference - (percent / 100) * circumference;
         circle.style.strokeDashoffset = offset.toString();
         circle.dataset.percent = String(percent);
 
-        if (progressText) {
-          const text = (options.text === TextType.enum) ? `${index} / ${options.steps}` : `${percent}%`;
+        if (progressText && options.text !== ProgressRingText.hidden) {
+          const text = (options.text === undefined || options.text === ProgressRingText.enum)
+            ? `${Math.min(step, options.steps)} / ${options.steps}` : `${percent}%`;
           progressText.innerHTML = text;
         }
       };
 
       return {
         setProgress,
+        progressElement,
       };
     }
   }

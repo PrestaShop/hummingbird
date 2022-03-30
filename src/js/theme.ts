@@ -37,7 +37,7 @@ import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
 import initCart from './pages/cart';
-import initCheckout from './checkout';
+import initCheckout from './pages/checkout';
 import useToast from './components/useToast';
 import useAlert from './components/useToast';
 import useProgressRing from './components/useProgressRing';

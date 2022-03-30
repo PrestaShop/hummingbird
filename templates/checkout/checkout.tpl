@@ -64,4 +64,6 @@
       </div>
     </div>
   </div>
+
+  {include file='checkout/_partials/modal-terms.tpl'}
 {/block}

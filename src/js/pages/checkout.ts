@@ -22,16 +22,20 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
+import {Modal} from 'bootstrap';
 import useProgressRing from '@js/components/useProgressRing';
 import selectorsMap from '@constants/selectors-map';
 
 const {progressRing: ProgressRingMap} = selectorsMap;
 
 const initCheckout = () => {
+  const {prestashop} = window;
   const steps = document.querySelectorAll<HTMLElement>('.js-step-item');
   const backButtons = document.querySelectorAll<HTMLElement>('.js-back');
   const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
   const {setProgress} = useProgressRing(progressElement);
+  const termsLink = document.querySelector<HTMLLinkElement>('.js-terms a');
+  const termsModalElement = document.querySelector<HTMLLinkElement>('#checkout-modal');
 
   const toggleStep = (content: HTMLElement, step?: HTMLElement) => {
     const currentContent = document.querySelector('.js-current-step');
@@ -116,6 +120,42 @@ const initCheckout = () => {
           toggleStep(stepContent, step);
         });
       }
+    }
+  });
+
+  termsLink?.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    if (termsModalElement) {
+      const termsModal = new Modal(termsModalElement);
+
+      const linkElement = event.target as HTMLLinkElement;
+      let url = linkElement.getAttribute('href');
+
+      if (url) {
+        url += '?content_only=1';
+
+        (async () => {
+          try {
+            const response = await fetch(url);
+            const content = await response.text();
+            const contentElement = document.createElement('div');
+            contentElement.innerHTML = content;
+            const modalBody = termsModalElement.querySelector('.modal-body');
+            const sanitizedContent = contentElement.querySelector('.page-cms');
+
+            if (sanitizedContent && modalBody) {
+              modalBody.innerHTML = sanitizedContent.innerHTML;
+
+              termsModal.show();
+            }
+          } catch (e) {
+            prestashop.emit('handleError', {eventType: 'clickOnTermsLink', error: e});
+          }
+        })();
+      }
+
+      $(prestashop.themeSelectors.modal).modal('show');
     }
   });
 };

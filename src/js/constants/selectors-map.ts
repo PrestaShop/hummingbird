@@ -61,6 +61,15 @@ export const progressRing = {
   },
 };
 
+export const passwordPolicy = {
+  template: '#password-feedback',
+  hint: '.js-hint-password',
+  container: '.password-strength-feedback',
+  strengthText: '.password-strength-text',
+  requirementScore: '.password-requirements-score',
+  requirementLength: '.password-requirements-length'
+};
+
 const selectorsMap = {
   qtyInput: {
     default: '.js-quantity-button',
@@ -99,6 +108,7 @@ const selectorsMap = {
   listing,
   cart,
   progressRing,
+  passwordPolicy,
 };
 
 export default selectorsMap;

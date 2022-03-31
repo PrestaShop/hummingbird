@@ -22,33 +22,65 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{block name='customer_form'}
-  {block name='customer_form_errors'}
-    {include file='_partials/form-errors.tpl' errors=$errors['']}
+{block name="customer_form"}
+  {block name="customer_form_errors"}
+    {include file="_partials/form-errors.tpl" errors=$errors[""]}
   {/block}
 
-<form action="{block name='customer_form_actionurl'}{$action}{/block}" id="customer-form" class="js-customer-form" method="post">
+<form action="{block name="customer_form_actionurl"}{$action}{/block}" id="customer-form" class="js-customer-form" method="post">
   <section>
     {block "form_fields"}
       {foreach from=$formFields item="field"}
         {block "form_field"}
-          {form_field field=$field}
+          {if $field.type === "password"}
+            <div class="field-password-policy">
+              {form_field field=$field}
+            </div>
+          {else}
+            {form_field field=$field}
+          {/if}
         {/block}
       {/foreach}
       {$hook_create_account_form nofilter}
     {/block}
   </section>
 
-  {block name='customer_form_footer'}
+  {block name="customer_form_footer"}
     <footer class="form-footer">
       <input type="hidden" name="submitCreate" value="1">
       {block "form_buttons"}
         <button class="btn btn-primary form-control-submit" data-link-action="save-customer" type="submit">
-          {l s='Create account' d='Shop.Theme.Actions'}
+          {l s="Create account" d="Shop.Theme.Actions"}
         </button>
       {/block}
     </footer>
   {/block}
 
+  <template id="password-feedback">
+    <div
+      class="password-strength-feedback d-none"
+    >
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div></div>
+        </div>
+      </div>
+      <script type="text/javascript" class="js-hint-password">
+       {
+       }
+      </script>
+      <div class="password-strength-text"></div>
+      <div class="password-requirements">
+        <p class="password-requirements-length" data-translation="{{ ("Enter a password between %s and %s characters"|trans({}, "Admin.Security.Feature"))|escape("html_attr") }}">
+          <i class="material-icons">check_circle</i>
+          <span></span>
+        </p>
+        <p class="password-requirements-score" data-translation="{{ ("The minimum score must be: %s"|trans({}, "Admin.Security.Feature"))|escape("html_attr") }}">
+          <i class="material-icons">check_circle</i>
+          <span></span>
+        </p>
+      </div>
+    </div>
+  </template>
 </form>
 {/block}

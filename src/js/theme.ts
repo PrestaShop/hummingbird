@@ -40,6 +40,7 @@ import initCart from './pages/cart';
 import initCheckout from './checkout';
 import useToast from './components/useToast';
 import useAlert from './components/useToast';
+import usePasswordPolicy from './components/usePasswordPolicy';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
@@ -58,6 +59,7 @@ $(() => {
   initResponsiveToggler();
   initCart();
   useQuantityInput();
+  usePasswordPolicy('.field-password-policy');
   prestashop.on('updatedCart', () => useQuantityInput());
 });
 

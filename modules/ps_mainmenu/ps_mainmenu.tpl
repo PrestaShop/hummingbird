@@ -69,7 +69,7 @@
                 {/if}
               </li>
               {if $node.children|count}
-                {$node.parent = $parent}
+                {$node.parent = $node}
                 {$node.expandId = $_expand_id}
                 {$children[] = $node}
               {/if}

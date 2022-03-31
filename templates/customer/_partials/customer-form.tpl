@@ -34,7 +34,7 @@
         {block "form_field"}
           {if $field.type === "password"}
             <div class="field-password-policy">
-              {form_field field=$field}
+              {form_field field=$field minlength="8" maxlength="72" minscore="3"}
             </div>
           {else}
             {form_field field=$field}
@@ -61,8 +61,8 @@
       class="password-strength-feedback d-none"
     >
       <div class="progress-container">
-        <div class="progress-bar">
-          <div></div>
+        <div class="progress mb-3">
+          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
       <script type="text/javascript" class="js-hint-password">
@@ -71,11 +71,11 @@
       </script>
       <div class="password-strength-text"></div>
       <div class="password-requirements">
-        <p class="password-requirements-length" data-translation="{{ ("Enter a password between %s and %s characters"|trans({}, "Admin.Security.Feature"))|escape("html_attr") }}">
+        <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' d='Shop.Theme.Customeraccount'}">
           <i class="material-icons">check_circle</i>
           <span></span>
         </p>
-        <p class="password-requirements-score" data-translation="{{ ("The minimum score must be: %s"|trans({}, "Admin.Security.Feature"))|escape("html_attr") }}">
+        <p class="password-requirements-score" data-translation="{l s='The minimum score must be: %s' d='Shop.Theme.Customeraccount'}">
           <i class="material-icons">check_circle</i>
           <span></span>
         </p>

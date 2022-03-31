@@ -24,6 +24,8 @@
  */
 
 import selectorsMap from '@constants/selectors-map';
+import {sprintf} from 'sprintf-js';
+import {Popover} from 'bootstrap';
 
 const {passwordPolicy: PasswordPolicyMap} = selectorsMap;
 
@@ -34,20 +36,92 @@ export interface PasswordPolicyReturn {
 
 const PASSWORD_POLICY_ERROR = 'The password policy elements are undefined.';
 
-const watchPassword = (element: HTMLElement, elementInput: HTMLInputElement, feedbackContainer: HTMLElement, event: Event) => {
+const getPasswordStrengthFeedback = (
+  strength: number
+) => {
+  switch (strength) {
+  case 0:
+    return {
+      color: 'bg-danger',
+    };
+
+  case 1:
+    return {
+      color: 'bg-danger',
+    };
+
+  case 2:
+    return {
+      color: 'bg-warning',
+    };
+
+  case 3:
+    return {
+      color: 'bg-success',
+    };
+
+  case 4:
+    return {
+      color: 'bg-success',
+    };
+
+  default:
+    throw new Error('Invalid password strength indicator.');
+  }
+}
+
+const watchPassword = (elementInput: HTMLInputElement, feedbackContainer: HTMLElement, popover: Popover, event: Event) => {
+  const {prestashop} = window;
   const hintElement = document.querySelector(PasswordPolicyMap.hint);
   const passwordValue = elementInput.value;
+  const elementIcon = feedbackContainer.querySelector(PasswordPolicyMap.requirementScoreIcon);
+  const result = prestashop.checkPasswordScore(passwordValue);
+  const feedback = getPasswordStrengthFeedback(result.score);
+  const passwordLength = passwordValue.length;
+
+  feedbackContainer.classList.toggle('d-none', passwordValue === '')
 
   if (hintElement) {
     const hint = {
       "Straight rows of keys are easy to guess": "Straight rows of keys are easy to guess",
     } 
-    console.log(hint)
+  popover.show()
+
+    const passwordLengthValid = passwordLength >= parseInt(<string>elementInput.dataset.minlength)
+      && passwordLength <= parseInt(<string>elementInput.dataset.maxlength);
+    const passwordScoreValid = parseInt(<string>elementInput.dataset.minscore) <= result.score;
+
+    feedbackContainer.querySelector(PasswordPolicyMap.requirementLengthIcon)?.classList.toggle(
+      'text-success',
+      passwordLengthValid,
+    );
+
+    elementIcon?.classList.toggle(
+      'text-success',
+      passwordScoreValid,
+    );
+
+    // Change input border color depending on the validity
+    elementInput
+      .classList.remove('border-success', 'border-danger')
+    elementInput
+      .classList.add(passwordScoreValid && passwordLengthValid ? 'border-success' : 'border-danger')
+    elementInput
+      .classList.add('form-control', 'border')
+
+    const percentage = (result.score * 20) + 20;
+    const progressBar = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.progressBar);
+    // increase and decrease progress bar
+    if (progressBar) {
+      progressBar.style.width = `${percentage}%`;
+      progressBar.classList.remove('bg-success', 'bg-danger', 'bg-warning');
+      progressBar.classList.add(feedback.color);
+    }
   }
 }
 
 // Not testable because it manipulates SVG elements, unsupported by JSDom
-const useProgressRing = (selector: string): PasswordPolicyReturn => {
+const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
   const element = document.querySelector<HTMLElement>(selector);
   const elementInput = element?.querySelector<HTMLInputElement>('input');
   const templateElement = document.createElement('div');
@@ -55,12 +129,34 @@ const useProgressRing = (selector: string): PasswordPolicyReturn => {
   let feedbackContainer: HTMLElement | null;
 
   if (feedbackTemplate && element && elementInput) {
+    const popover = new Popover(elementInput);
     templateElement.innerHTML = feedbackTemplate.innerHTML;
     element.append(templateElement)
     feedbackContainer = element.querySelector<HTMLElement>(PasswordPolicyMap.container);
 
     if (feedbackContainer) {
-      elementInput.addEventListener('keyup', (event) => watchPassword(element, elementInput, feedbackContainer!, event))
+      const passwordRequirementsLength = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementLength);
+      const passwordRequirementsScore = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementScore);
+      const passwordLengthText = passwordRequirementsLength?.querySelector<HTMLElement>('span')
+      const passwordRequirementsText = passwordRequirementsScore?.querySelector<HTMLElement>('span')
+
+      if(passwordLengthText && passwordRequirementsLength && passwordRequirementsLength.dataset.translation) {
+        passwordLengthText.innerText = sprintf(
+          passwordRequirementsLength.dataset.translation,
+          elementInput.dataset.minlength,
+          elementInput.dataset.maxlength,
+        );
+      }
+
+      if(passwordRequirementsText && passwordRequirementsScore && passwordRequirementsScore.dataset.translation) {
+        passwordRequirementsText.innerText = sprintf(
+          passwordRequirementsScore.dataset.translation,
+          elementInput.dataset.minlength,
+          elementInput.dataset.maxlength,
+        );
+      }
+
+      elementInput.addEventListener('keyup', (event) => watchPassword(elementInput, feedbackContainer!, popover, event))
     }
   }
 
@@ -75,4 +171,4 @@ const useProgressRing = (selector: string): PasswordPolicyReturn => {
   };
 };
 
-export default useProgressRing;
+export default usePasswordPolicy;

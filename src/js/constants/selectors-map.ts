@@ -67,7 +67,10 @@ export const passwordPolicy = {
   container: '.password-strength-feedback',
   strengthText: '.password-strength-text',
   requirementScore: '.password-requirements-score',
-  requirementLength: '.password-requirements-length'
+  requirementLength: '.password-requirements-length',
+  requirementScoreIcon: '.password-requirements-score i',
+  requirementLengthIcon: '.password-requirements-length i',
+  progressBar: '.progress-bar'
 };
 
 const selectorsMap = {

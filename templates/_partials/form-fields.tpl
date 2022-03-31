@@ -156,6 +156,11 @@
             value=""
             pattern=".{literal}{{/literal}5,{literal}}{/literal}"
             {if $field.required}required{/if}
+            {if $minlength}data-minlength="{$minlength}"{/if}
+            {if $maxlength}data-maxlength="{$maxlength}"{/if}
+            {if $minscore}data-minscore="{$minscore}"{/if}
+            data-bs-placement="top"
+            data-bs-trigger="manual"
           >
 
           <button

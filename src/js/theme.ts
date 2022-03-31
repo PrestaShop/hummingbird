@@ -18,6 +18,7 @@ import initCurrencySelector from './modules/ps_currencyselector';
 import initVisiblePassword from './visible-password';
 import useToast from './components/useToast';
 import useAlert from './components/useAlert';
+import usePasswordPolicy from './components/usePasswordPolicy';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
@@ -44,6 +45,7 @@ $(() => {
   initVisiblePassword();
   initDesktopMenu();
   initFormValidation();
+  usePasswordPolicy('.field-password-policy');
 
   prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();

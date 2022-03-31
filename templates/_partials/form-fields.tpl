@@ -11,7 +11,6 @@
 {else}
 
   <div class="mb-3 {if !empty($field.errors)}has-error{/if}">
-
     {if ($field.type !== 'checkbox')}
       <label class="form-label{if $field.required} required{/if}">
         {if $field.type !== 'checkbox'}
@@ -52,7 +51,7 @@
         <div>
           {foreach from=$field.availableValues item="label" key="value"}
             <div class="form-check form-check-inline">
-              <input 
+              <input
                 class="form-check-input"
                 type="radio"
                 name="{$field.name}"
@@ -74,7 +73,7 @@
 
       {block name='form_field_item_checkbox'}
         <div class="form-check">
-          <input 
+          <input
             class="form-check-input"
             name="{$field.name}"
             type="checkbox"
@@ -130,12 +129,16 @@
           <input
             class="form-control js-child-focus js-visible-password"
             name="{$field.name}"
-            title="{l s='At least 5 characters long' d='Shop.Forms.Help'}"
             type="password"
             {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
             value=""
             pattern=".{literal}{{/literal}5,{literal}}{/literal}"
             {if $field.required}required{/if}
+            {if isset($configuration.password_policy.minimum_length)}data-minlength="{$configuration.password_policy.minimum_length}"{/if}
+            {if isset($configuration.password_policy.maximum_length)}data-maxlength="{$configuration.password_policy.maximum_length}"{/if}
+            {if isset($configuration.password_policy.minimum_score)}data-minscore="{$configuration.password_policy.minimum_score}"{/if}
+            data-bs-placement="top"
+            data-bs-trigger="manual"
           >
 
           <button

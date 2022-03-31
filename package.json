@@ -35,6 +35,7 @@
     "@storybook/manager-webpack5": "^6.4.19",
     "@types/bootstrap": "^5.1.6",
     "@types/jest": "^27.4.0",
+    "@types/sprintf-js": "^1.1.2",
     "@types/wnumb": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
@@ -92,6 +93,7 @@
     "nouislider": "^15.5.0",
     "swiper": "^7.4.1",
     "vazirmatn": "^32.102.0",
+    "sprintf-js": "^1.1.2",
     "wnumb": "^1.2.0"
   }
 }

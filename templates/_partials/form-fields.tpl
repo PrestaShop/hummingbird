@@ -156,9 +156,9 @@
             value=""
             pattern=".{literal}{{/literal}5,{literal}}{/literal}"
             {if $field.required}required{/if}
-            {if !empty($minlength)}data-minlength="{$minlength}"{/if}
-            {if !empty($maxlength)}data-maxlength="{$maxlength}"{/if}
-            {if !empty($minscore)}data-minscore="{$minscore}"{/if}
+            {if isset($configuration.password_policy.minimum_length)}data-minlength="{$configuration.password_policy.minimum_length}"{/if}
+            {if isset($configuration.password_policy.maximum_length)}data-maxlength="{$configuration.password_policy.maximum_length}"{/if}
+            {if isset($configuration.password_policy.minimum_score)}data-minscore="{$configuration.password_policy.minimum_score}"{/if}
             data-bs-placement="top"
             data-bs-trigger="manual"
           >

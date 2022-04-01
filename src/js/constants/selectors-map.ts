@@ -70,7 +70,7 @@ export const passwordPolicy = {
   requirementLength: '.password-requirements-length',
   requirementScoreIcon: '.password-requirements-score i',
   requirementLengthIcon: '.password-requirements-length i',
-  progressBar: '.progress-bar'
+  progressBar: '.progress-bar',
 };
 
 const selectorsMap = {

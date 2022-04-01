@@ -37,40 +37,44 @@ export interface PasswordPolicyReturn {
 const PASSWORD_POLICY_ERROR = 'The password policy elements are undefined.';
 
 const getPasswordStrengthFeedback = (
-  strength: number
+  strength: number,
 ) => {
   switch (strength) {
-  case 0:
-    return {
-      color: 'bg-danger',
-    };
+    case 0:
+      return {
+        color: 'bg-danger',
+      };
 
-  case 1:
-    return {
-      color: 'bg-danger',
-    };
+    case 1:
+      return {
+        color: 'bg-danger',
+      };
 
-  case 2:
-    return {
-      color: 'bg-warning',
-    };
+    case 2:
+      return {
+        color: 'bg-warning',
+      };
 
-  case 3:
-    return {
-      color: 'bg-success',
-    };
+    case 3:
+      return {
+        color: 'bg-success',
+      };
 
-  case 4:
-    return {
-      color: 'bg-success',
-    };
+    case 4:
+      return {
+        color: 'bg-success',
+      };
 
-  default:
-    throw new Error('Invalid password strength indicator.');
+    default:
+      throw new Error('Invalid password strength indicator.');
   }
-}
+};
 
-const watchPassword = (elementInput: HTMLInputElement, feedbackContainer: HTMLElement, popover: Popover, event: Event) => {
+const watchPassword = (
+  elementInput: HTMLInputElement,
+  feedbackContainer: HTMLElement,
+  popover: Popover,
+) => {
   const {prestashop} = window;
   const hintElement = document.querySelector(PasswordPolicyMap.hint);
   const passwordValue = elementInput.value;
@@ -79,17 +83,17 @@ const watchPassword = (elementInput: HTMLInputElement, feedbackContainer: HTMLEl
   const feedback = getPasswordStrengthFeedback(result.score);
   const passwordLength = passwordValue.length;
 
-  feedbackContainer.classList.toggle('d-none', passwordValue === '')
+  feedbackContainer.classList.toggle('d-none', passwordValue === '');
 
   if (hintElement) {
     const hint = {
-      "Straight rows of keys are easy to guess": "Straight rows of keys are easy to guess",
-    } 
-  popover.show()
+      'Straight rows of keys are easy to guess': 'Straight rows of keys are easy to guess',
+    };
+    popover.show();
 
-    const passwordLengthValid = passwordLength >= parseInt(<string>elementInput.dataset.minlength)
-      && passwordLength <= parseInt(<string>elementInput.dataset.maxlength);
-    const passwordScoreValid = parseInt(<string>elementInput.dataset.minscore) <= result.score;
+    const passwordLengthValid = passwordLength >= parseInt(<string>elementInput.dataset.minlength, 10)
+      && passwordLength <= parseInt(<string>elementInput.dataset.maxlength, 10);
+    const passwordScoreValid = parseInt(<string>elementInput.dataset.minscore, 10) <= result.score;
 
     feedbackContainer.querySelector(PasswordPolicyMap.requirementLengthIcon)?.classList.toggle(
       'text-success',
@@ -103,14 +107,15 @@ const watchPassword = (elementInput: HTMLInputElement, feedbackContainer: HTMLEl
 
     // Change input border color depending on the validity
     elementInput
-      .classList.remove('border-success', 'border-danger')
+      .classList.remove('border-success', 'border-danger');
     elementInput
-      .classList.add(passwordScoreValid && passwordLengthValid ? 'border-success' : 'border-danger')
+      .classList.add(passwordScoreValid && passwordLengthValid ? 'border-success' : 'border-danger');
     elementInput
-      .classList.add('form-control', 'border')
+      .classList.add('form-control', 'border');
 
     const percentage = (result.score * 20) + 20;
     const progressBar = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.progressBar);
+
     // increase and decrease progress bar
     if (progressBar) {
       progressBar.style.width = `${percentage}%`;
@@ -118,7 +123,7 @@ const watchPassword = (elementInput: HTMLInputElement, feedbackContainer: HTMLEl
       progressBar.classList.add(feedback.color);
     }
   }
-}
+};
 
 // Not testable because it manipulates SVG elements, unsupported by JSDom
 const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
@@ -131,16 +136,18 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
   if (feedbackTemplate && element && elementInput) {
     const popover = new Popover(elementInput);
     templateElement.innerHTML = feedbackTemplate.innerHTML;
-    element.append(templateElement)
+    element.append(templateElement);
     feedbackContainer = element.querySelector<HTMLElement>(PasswordPolicyMap.container);
 
     if (feedbackContainer) {
+      // eslint-disable-next-line max-len
       const passwordRequirementsLength = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementLength);
+      // eslint-disable-next-line max-len
       const passwordRequirementsScore = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementScore);
-      const passwordLengthText = passwordRequirementsLength?.querySelector<HTMLElement>('span')
-      const passwordRequirementsText = passwordRequirementsScore?.querySelector<HTMLElement>('span')
+      const passwordLengthText = passwordRequirementsLength?.querySelector<HTMLElement>('span');
+      const passwordRequirementsText = passwordRequirementsScore?.querySelector<HTMLElement>('span');
 
-      if(passwordLengthText && passwordRequirementsLength && passwordRequirementsLength.dataset.translation) {
+      if (passwordLengthText && passwordRequirementsLength && passwordRequirementsLength.dataset.translation) {
         passwordLengthText.innerText = sprintf(
           passwordRequirementsLength.dataset.translation,
           elementInput.dataset.minlength,
@@ -148,7 +155,7 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
         );
       }
 
-      if(passwordRequirementsText && passwordRequirementsScore && passwordRequirementsScore.dataset.translation) {
+      if (passwordRequirementsText && passwordRequirementsScore && passwordRequirementsScore.dataset.translation) {
         passwordRequirementsText.innerText = sprintf(
           passwordRequirementsScore.dataset.translation,
           elementInput.dataset.minlength,
@@ -156,7 +163,8 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
         );
       }
 
-      elementInput.addEventListener('keyup', (event) => watchPassword(elementInput, feedbackContainer!, popover, event))
+      // eslint-disable-next-line max-len, @typescript-eslint/no-non-null-assertion
+      elementInput.addEventListener('keyup', (event) => watchPassword(elementInput, feedbackContainer!, popover));
     }
   }
 

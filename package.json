@@ -68,7 +68,6 @@
     "sass": "^1.43.4",
     "sass-loader": "^12.1.0",
     "smarty4js": "^0.1.8",
-    "sprintf-js": "^1.1.2",
     "stylelint": "^14.5.3",
     "stylelint-config-prestashop": "^1.0.7",
     "typescript": "^4.3.3",
@@ -93,6 +92,7 @@
     "material-design-icons-iconfont": "^5.0.1",
     "nouislider": "^15.5.0",
     "swiper": "^7.4.1",
+    "sprintf-js": "^1.1.2",
     "vazirmatn": "^32.1.0",
     "wnumb": "^1.2.0"
   }

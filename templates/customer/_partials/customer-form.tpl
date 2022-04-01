@@ -66,9 +66,11 @@
         </div>
       </div>
       <script type="text/javascript" class="js-hint-password">
-       {
-       }
+        {if !empty($page['password-policy']['feedbacks'])}
+          {$page['password-policy']['feedbacks']|@json_encode nofilter}
+        {/if}
       </script>
+
       <div class="password-strength-text"></div>
       <div class="password-requirements">
         <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' d='Shop.Theme.Customeraccount'}">

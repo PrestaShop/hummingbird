@@ -34,7 +34,7 @@
         {block "form_field"}
           {if $field.type === "password"}
             <div class="field-password-policy">
-              {form_field field=$field minlength="8" maxlength="72" minscore="3"}
+              {form_field field=$field}
             </div>
           {else}
             {form_field field=$field}

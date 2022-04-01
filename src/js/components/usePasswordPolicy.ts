@@ -73,55 +73,75 @@ const getPasswordStrengthFeedback = (
 const watchPassword = (
   elementInput: HTMLInputElement,
   feedbackContainer: HTMLElement,
-  popover: Popover,
+  hints: Record<string, string>,
 ) => {
   const {prestashop} = window;
-  const hintElement = document.querySelector(PasswordPolicyMap.hint);
   const passwordValue = elementInput.value;
   const elementIcon = feedbackContainer.querySelector(PasswordPolicyMap.requirementScoreIcon);
   const result = prestashop.checkPasswordScore(passwordValue);
   const feedback = getPasswordStrengthFeedback(result.score);
   const passwordLength = passwordValue.length;
+  const popoverContent:string[] = [];
+  const previousPopover = Popover.getInstance(elementInput);
+
+  if (previousPopover) {
+    previousPopover.dispose();
+  }
 
   feedbackContainer.classList.toggle('d-none', passwordValue === '');
 
-  if (hintElement) {
-    const hint = {
-      'Straight rows of keys are easy to guess': 'Straight rows of keys are easy to guess',
-    };
-    popover.show();
-
-    const passwordLengthValid = passwordLength >= parseInt(<string>elementInput.dataset.minlength, 10)
-      && passwordLength <= parseInt(<string>elementInput.dataset.maxlength, 10);
-    const passwordScoreValid = parseInt(<string>elementInput.dataset.minscore, 10) <= result.score;
-
-    feedbackContainer.querySelector(PasswordPolicyMap.requirementLengthIcon)?.classList.toggle(
-      'text-success',
-      passwordLengthValid,
-    );
-
-    elementIcon?.classList.toggle(
-      'text-success',
-      passwordScoreValid,
-    );
-
-    // Change input border color depending on the validity
-    elementInput
-      .classList.remove('border-success', 'border-danger');
-    elementInput
-      .classList.add(passwordScoreValid && passwordLengthValid ? 'border-success' : 'border-danger');
-    elementInput
-      .classList.add('form-control', 'border');
-
-    const percentage = (result.score * 20) + 20;
-    const progressBar = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.progressBar);
-
-    // increase and decrease progress bar
-    if (progressBar) {
-      progressBar.style.width = `${percentage}%`;
-      progressBar.classList.remove('bg-success', 'bg-danger', 'bg-warning');
-      progressBar.classList.add(feedback.color);
+  if (result.feedback.warning !== '') {
+    if (result.feedback.warning in hints) {
+      popoverContent.push(hints[result.feedback.warning]);
     }
+  }
+
+  result.feedback.suggestions.forEach((suggestion: string) => {
+    if (suggestion in hints) {
+      popoverContent.push(hints[suggestion]);
+    }
+  });
+
+  const popover = new Popover(
+    elementInput,
+    {
+      html: true,
+      placement: 'top',
+      content: popoverContent.join('<br/>'),
+    },
+  );
+  popover.show();
+
+  const passwordLengthValid = passwordLength >= parseInt(<string>elementInput.dataset.minlength, 10)
+    && passwordLength <= parseInt(<string>elementInput.dataset.maxlength, 10);
+  const passwordScoreValid = parseInt(<string>elementInput.dataset.minscore, 10) <= result.score;
+
+  feedbackContainer.querySelector(PasswordPolicyMap.requirementLengthIcon)?.classList.toggle(
+    'text-success',
+    passwordLengthValid,
+  );
+
+  elementIcon?.classList.toggle(
+    'text-success',
+    passwordScoreValid,
+  );
+
+  // Change input border color depending on the validity
+  elementInput
+    .classList.remove('border-success', 'border-danger');
+  elementInput
+    .classList.add(passwordScoreValid && passwordLengthValid ? 'border-success' : 'border-danger');
+  elementInput
+    .classList.add('form-control', 'border');
+
+  const percentage = (result.score * 20) + 20;
+  const progressBar = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.progressBar);
+
+  // increase and decrease progress bar
+  if (progressBar) {
+    progressBar.style.width = `${percentage}%`;
+    progressBar.classList.remove('bg-success', 'bg-danger', 'bg-warning');
+    progressBar.classList.add(feedback.color);
   }
 };
 
@@ -134,37 +154,48 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
   let feedbackContainer: HTMLElement | null;
 
   if (feedbackTemplate && element && elementInput) {
-    const popover = new Popover(elementInput);
     templateElement.innerHTML = feedbackTemplate.innerHTML;
     element.append(templateElement);
     feedbackContainer = element.querySelector<HTMLElement>(PasswordPolicyMap.container);
 
     if (feedbackContainer) {
-      // eslint-disable-next-line max-len
-      const passwordRequirementsLength = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementLength);
-      // eslint-disable-next-line max-len
-      const passwordRequirementsScore = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementScore);
-      const passwordLengthText = passwordRequirementsLength?.querySelector<HTMLElement>('span');
-      const passwordRequirementsText = passwordRequirementsScore?.querySelector<HTMLElement>('span');
+      const hintElement = document.querySelector(PasswordPolicyMap.hint);
 
-      if (passwordLengthText && passwordRequirementsLength && passwordRequirementsLength.dataset.translation) {
-        passwordLengthText.innerText = sprintf(
-          passwordRequirementsLength.dataset.translation,
-          elementInput.dataset.minlength,
-          elementInput.dataset.maxlength,
-        );
+      if (hintElement) {
+        const hints = JSON.parse(hintElement.innerHTML);
+
+        // eslint-disable-next-line max-len
+        const passwordRequirementsLength = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementLength);
+        // eslint-disable-next-line max-len
+        const passwordRequirementsScore = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementScore);
+        const passwordLengthText = passwordRequirementsLength?.querySelector<HTMLElement>('span');
+        const passwordRequirementsText = passwordRequirementsScore?.querySelector<HTMLElement>('span');
+
+        if (passwordLengthText && passwordRequirementsLength && passwordRequirementsLength.dataset.translation) {
+          passwordLengthText.innerText = sprintf(
+            passwordRequirementsLength.dataset.translation,
+            elementInput.dataset.minlength,
+            elementInput.dataset.maxlength,
+          );
+        }
+
+        if (passwordRequirementsText && passwordRequirementsScore && passwordRequirementsScore.dataset.translation) {
+          passwordRequirementsText.innerText = sprintf(
+            passwordRequirementsScore.dataset.translation,
+            hints[<string>elementInput.dataset.minscore],
+          );
+        }
+
+        // eslint-disable-next-line max-len, @typescript-eslint/no-non-null-assertion
+        elementInput.addEventListener('keyup', () => watchPassword(elementInput, feedbackContainer!, hints));
+        elementInput.addEventListener('blur', () => {
+          const previousPopover = Popover.getInstance(elementInput);
+
+          if (previousPopover) {
+            previousPopover.dispose();
+          }
+        });
       }
-
-      if (passwordRequirementsText && passwordRequirementsScore && passwordRequirementsScore.dataset.translation) {
-        passwordRequirementsText.innerText = sprintf(
-          passwordRequirementsScore.dataset.translation,
-          elementInput.dataset.minlength,
-          elementInput.dataset.maxlength,
-        );
-      }
-
-      // eslint-disable-next-line max-len, @typescript-eslint/no-non-null-assertion
-      elementInput.addEventListener('keyup', (event) => watchPassword(elementInput, feedbackContainer!, popover));
     }
   }
 

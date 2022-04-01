@@ -72,7 +72,7 @@
         <div>
           {foreach from=$field.availableValues item="label" key="value"}
             <div class="form-check form-check-inline">
-              <input 
+              <input
                 class="form-check-input"
                 type="radio"
                 name="{$field.name}"
@@ -94,7 +94,7 @@
 
       {block name='form_field_item_checkbox'}
         <div class="form-check">
-          <input 
+          <input
             class="form-check-input"
             name="{$field.name}"
             type="checkbox"
@@ -156,9 +156,9 @@
             value=""
             pattern=".{literal}{{/literal}5,{literal}}{/literal}"
             {if $field.required}required{/if}
-            {if $minlength}data-minlength="{$minlength}"{/if}
-            {if $maxlength}data-maxlength="{$maxlength}"{/if}
-            {if $minscore}data-minscore="{$minscore}"{/if}
+            {if !empty($minlength)}data-minlength="{$minlength}"{/if}
+            {if !empty($maxlength)}data-maxlength="{$maxlength}"{/if}
+            {if !empty($minscore)}data-minscore="{$minscore}"{/if}
             data-bs-placement="top"
             data-bs-trigger="manual"
           >

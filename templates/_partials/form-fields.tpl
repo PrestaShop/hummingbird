@@ -31,7 +31,6 @@
 {else}
 
   <div class="mb-3 {if !empty($field.errors)}has-error{/if}">
-
     {if ($field.type !== 'checkbox')}
       <label class="form-label{if $field.required} required{/if}">
         {if $field.type !== 'checkbox'}

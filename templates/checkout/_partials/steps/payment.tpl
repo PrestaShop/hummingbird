@@ -114,6 +114,21 @@
     {include file='checkout/_partials/order-final-summary.tpl'}
   {/if}
 
+  {if $show_final_summary}
+    <article class="alert alert-danger mb-4 js-alert-payment-conditions" role="alert" data-alert="danger">
+      {l
+        s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
+        sprintf=[
+          '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
+          '[/1]' => '</a>',
+          '[2]' => '<a href="#conditions-to-approve" class="alert-link">',
+          '[/2]' => '</a>'
+        ]
+        d='Shop.Theme.Checkout'
+      }
+    </article>
+  {/if}
+
   <div class="payment__actions d-block d-md-flex">
     <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-delivery-step">
       <div class="material-icons">arrow_backward</div>
@@ -136,21 +151,5 @@
       </div>
     </div>
   </div>
-
-  {if $show_final_summary}
-    <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
-      {l
-        s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
-        sprintf=[
-          '[1]' => '<a href="#checkout-payment-step">',
-          '[/1]' => '</a>',
-          '[2]' => '<a href="#conditions-to-approve">',
-          '[/2]' => '</a>'
-        ]
-        d='Shop.Theme.Checkout'
-      }
-    </article>
-  {/if}
-
   {hook h='displayPaymentByBinaries'}
 {/block}

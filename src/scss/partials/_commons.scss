@@ -28,7 +28,7 @@ p {
   color: $gray-800;
 }
 
-a {
+a:not(.alert-link) {
   text-decoration: none;
   transition: 0.25s ease-out;
 

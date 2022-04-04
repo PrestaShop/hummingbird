@@ -24,8 +24,7 @@
  *}
  {$componentName = 'order-confirmation'}
 
-<div class="{$componentName}__table">
-
+<div class="{$componentName}__table{block name='order-confirmation-classes'}{/block}">
   <div class="{$componentName}__items">
   {foreach from=$products item=product}
     <div class="item row gx-3">
@@ -89,8 +88,7 @@
       </div>
       
       <div class="item__prices col-md-2 col-sm-12 col-12">
-        <div class="text-md-end">{$product.price}</div>
-        <div class="text-md-end">{$product.quantity}</div>
+        <div class="text-md-end">{$product.price} {l s='x%s' sprintf=[$product.quantity] d='Shop.Theme.Catalog'}</div>
         <div class="text-md-end">{$product.total}</div>
       </div>
 

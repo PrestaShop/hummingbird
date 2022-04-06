@@ -31,7 +31,7 @@ const {progressRing: ProgressRingMap} = selectorsMap;
 const initCheckout = () => {
   const {prestashop} = window;
   const steps = document.querySelectorAll<HTMLElement>('.js-step-item');
-  const backButtons = document.querySelectorAll<HTMLElement>('.js-back');
+  const actionButtons = document.querySelectorAll<HTMLElement>('.js-back, .js-edit-addresses, .js-edit-shipping');
   const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
   const {setProgress} = useProgressRing(progressElement);
   const termsLink = document.querySelector<HTMLLinkElement>('.js-terms a');
@@ -53,13 +53,18 @@ const initCheckout = () => {
     content.classList.add('js-current-step');
   };
 
-  backButtons.forEach((button) => {
+  actionButtons.forEach((button) => {
     const stepContent = document.querySelector<HTMLElement>(`#${button.dataset.step}`);
 
     button.addEventListener('click', (event) => {
       event.preventDefault();
+      const triggerEl = document.querySelector<HTMLButtonElement>(
+        `.js-step-item button[data-bs-target="#${button.dataset.step}"]`,
+      );
 
-      if (stepContent) {
+      if (stepContent && triggerEl) {
+        // Click on the corresponding tab
+        triggerEl.click();
         toggleStep(stepContent);
       }
     });

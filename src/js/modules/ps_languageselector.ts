@@ -38,7 +38,7 @@ const initLanguageSelector = () => {
 document.addEventListener('DOMContentLoaded', () => {
   initLanguageSelector();
 
-  prestashop.on('responsive update', () => {
+  prestashop.on('responsiveUpdate', () => {
     initLanguageSelector();
   });
 });

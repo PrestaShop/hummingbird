@@ -59,7 +59,7 @@ export function toggleMobileStyles() {
     });
   }
 
-  prestashop.emit('responsive update', {
+  prestashop.emit('responsiveUpdate', {
     mobile: prestashop.responsive.mobile,
   });
 }

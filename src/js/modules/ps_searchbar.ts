@@ -92,7 +92,7 @@ const initSearchbar = () => {
 document.addEventListener('DOMContentLoaded', () => {
   initSearchbar();
 
-  prestashop.on('responsive update', () => {
+  prestashop.on('responsiveUpdate', () => {
     initSearchbar();
   });
 });

@@ -38,7 +38,7 @@ const initCurrencySelector = () => {
 document.addEventListener('DOMContentLoaded', () => {
   initCurrencySelector();
 
-  prestashop.on('responsive update', () => {
+  prestashop.on('responsiveUpdate', () => {
     initCurrencySelector();
   });
 });

@@ -53,6 +53,20 @@ export const cart = {
   promoCode: '#promo-code',
 };
 
+export const checkout = {
+  steps: {
+    item: '.js-step-item',
+    current: '.js-current-step',
+    shownResponsiveStep: '.checkout__steps__step:not(.d-none)',
+    specificStep: (param: string | undefined) => `.checkout__steps__step[data-step="${param}"]`,
+    specificStepContent: (param: string | undefined) => `#${param}`,
+    backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
+  },
+  actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
+  termsLink: '.js-terms a',
+  checkoutModal: '#checkout-modal',
+};
+
 export const progressRing = {
   checkout: {
     element: '.progress-ring',
@@ -93,12 +107,15 @@ const selectorsMap = {
     thumbnail: '.js-thumb-container',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
   },
+  modalBody: '.modal-body',
+  pageCms: '.page-cms',
   quickview: '.js-quickview',
   facetedsearch,
   pageLoader,
   listing,
   cart,
   progressRing,
+  checkout,
 };
 
 export default selectorsMap;

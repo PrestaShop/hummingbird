@@ -23,28 +23,10 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import {Collapse} from 'bootstrap';
-import {isHTMLElement} from '@helpers/typeguards';
+/* eslint-disable max-len */
 
-export default () => {
-  const {prestashop} = window;
-  const voucherCodes = document.querySelectorAll(prestashop.themeSelectors.cart.discountCode);
+export const isHTMLElement = (element: EventTarget | null): element is HTMLElement => (element as HTMLElement).innerText !== undefined;
 
-  voucherCodes.forEach((voucher) => {
-    voucher.addEventListener('click', (event: Event) => {
-      event.stopPropagation();
-
-      if (isHTMLElement(event.currentTarget)) {
-        const code = event.currentTarget;
-        const discountInput = document.querySelector(prestashop.themeSelectors.cart.discountName);
-        const formCollapser = new Collapse(document.querySelector(prestashop.themeSelectors.cart.promoCode));
-
-        discountInput.value = code.innerText;
-        // Show promo code field
-        formCollapser.show();
-      }
-
-      return false;
-    });
-  });
+export default {
+  isHTMLElement,
 };

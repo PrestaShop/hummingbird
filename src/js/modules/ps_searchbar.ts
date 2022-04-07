@@ -27,14 +27,15 @@ import {searchProduct, Result} from '@services/search';
 import debounce from '@helpers/debounce';
 
 const {prestashop} = window;
+const {searchBar: SearchBarMap} = prestashop.themeSelectors;
 
 const initSearchbar = () => {
-  const searchCanvas = document.querySelector<HTMLElement>('.js-search-offcanvas');
-  const searchWidget = document.querySelector<HTMLElement>('.js-search-widget');
-  const searchDropdown = document.querySelector<HTMLElement>('.js-search-dropdown');
-  const searchResults = document.querySelector<HTMLElement>('.js-search-results');
-  const searchTemplate = document.querySelector<HTMLTemplateElement>('.js-search-template');
-  const searchInput = document.querySelector<HTMLInputElement>('.js-search-input');
+  const searchCanvas = document.querySelector<HTMLElement>(SearchBarMap.searchCanvas);
+  const searchWidget = document.querySelector<HTMLElement>(SearchBarMap.searchWidget);
+  const searchDropdown = document.querySelector<HTMLElement>(SearchBarMap.searchDropdown);
+  const searchResults = document.querySelector<HTMLElement>(SearchBarMap.searchResults);
+  const searchTemplate = document.querySelector<HTMLTemplateElement>(SearchBarMap.searchTemplate);
+  const searchInput = document.querySelector<HTMLInputElement>(SearchBarMap.searchInput);
   const searchUrl = searchWidget?.dataset.searchControllerUrl;
 
   searchCanvas?.addEventListener('hidden.bs.offcanvas', () => {

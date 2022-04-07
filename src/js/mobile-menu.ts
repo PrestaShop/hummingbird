@@ -23,11 +23,16 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
+import {isHTMLElement} from '@helpers/typeguards';
+
 const initMobileMenu = () => {
-  const openChildsButtons = document.querySelectorAll('.js-menu-open-child');
-  const backTitle = document.querySelector('.js-menu-back-title');
-  const backButton = document.querySelector('.js-back-button');
-  const menuCanvas = document.querySelector('.js-menu-canvas');
+  const {prestashop} = window;
+  const {mobileMenu: MobileMenuMap} = prestashop.themeSelectors;
+
+  const openChildsButtons = document.querySelectorAll(MobileMenuMap.openChildsButtons);
+  const backTitle = document.querySelector(MobileMenuMap.backTitle);
+  const backButton = document.querySelector(MobileMenuMap.backButton);
+  const menuCanvas = document.querySelector(MobileMenuMap.menuCanvas);
   const defaultBackTitle = backTitle?.innerHTML;
 
   const backToParent = () => {
@@ -36,11 +41,11 @@ const initMobileMenu = () => {
       && backButton
       && defaultBackTitle
     ) {
-      const currentMenu = document.querySelector<HTMLElement>('.menu--current');
+      const currentMenu = document.querySelector<HTMLElement>(MobileMenuMap.menuCurrent);
       const currentDepth = Number(currentMenu?.dataset.depth);
       const currentParentDepth = currentDepth === 2 ? 0 : currentDepth - 1;
       // eslint-ignore-next-line
-      const currentParent = document.querySelector<HTMLElement>(`.menu--parent[data-depth="${currentParentDepth}"]`);
+      const currentParent = document.querySelector<HTMLElement>(MobileMenuMap.specificParent(currentParentDepth));
 
       if (currentDepth === 2) {
         backButton.classList.add('d-none');
@@ -53,7 +58,7 @@ const initMobileMenu = () => {
 
       if (currentParent) {
         if (currentDepth > 3) {
-          backTitle.innerHTML = <string>currentParent.dataset.backTitle;
+          backTitle.innerHTML = currentParent.dataset.backTitle;
         } else {
           backTitle.innerHTML = defaultBackTitle;
         }
@@ -67,46 +72,52 @@ const initMobileMenu = () => {
   };
 
   menuCanvas?.addEventListener('hidden.bs.offcanvas', () => {
-    const currentMenu = <HTMLElement>document.querySelector('.menu--current');
-    let currentDepth = Number(currentMenu.dataset.depth);
+    const currentMenu = document.querySelector(MobileMenuMap.menuCurrent);
 
-    if (currentDepth !== 0) {
-      while (currentDepth >= 2) {
-        backToParent();
+    if (isHTMLElement(currentMenu)) {
+      let currentDepth = Number(currentMenu.dataset.depth);
 
-        currentDepth -= 1;
+      if (currentDepth !== 0) {
+        while (currentDepth >= 2) {
+          backToParent();
+
+          currentDepth -= 1;
+        }
       }
     }
   });
 
   openChildsButtons.forEach((button: Element): void => {
     button.addEventListener('click', () => {
-      const currentMenu = <HTMLElement>document.querySelector('.js-menu-current');
-      const currentDepth = Number(currentMenu.dataset.depth);
-      const currentButton = <HTMLElement>button;
+      const currentMenu = document.querySelector<HTMLElement>(MobileMenuMap.menuCurrent);
 
       if (currentMenu) {
-        currentMenu.classList.remove('js-menu-current');
-        currentMenu.classList.remove('menu--current');
-        currentMenu.classList.remove('menu--fromLeft');
-        currentMenu.classList.remove('menu--fromRight');
-        currentMenu.classList.add('menu--parent');
-      }
+        const currentDepth = Number(currentMenu.dataset.depth);
+        const currentButton = <HTMLElement>button;
 
-      const child = <HTMLElement>document.querySelector(`.menu[data-id="${currentButton.dataset.target}"]`);
+        if (currentMenu) {
+          currentMenu.classList.remove('js-menu-current');
+          currentMenu.classList.remove('menu--current');
+          currentMenu.classList.remove('menu--fromLeft');
+          currentMenu.classList.remove('menu--fromRight');
+          currentMenu.classList.add('menu--parent');
+        }
 
-      backButton?.classList.remove('d-none');
+        const child = document.querySelector(MobileMenuMap.specificChild(currentButton.dataset.target));
 
-      if (currentDepth >= 1 && backTitle && child.dataset.backTitle) {
-        backTitle.innerHTML = child.dataset.backTitle;
-      }
+        backButton?.classList.remove('d-none');
 
-      if (child) {
-        child.classList.add('js-menu-current');
-        child.classList.add('menu--fromRight');
-        child.classList.add('menu--current');
-        child.classList.remove('menu--child');
-        child.classList.remove('js-menu-child');
+        if (currentDepth >= 1 && backTitle && child.dataset.backTitle) {
+          backTitle.innerHTML = child.dataset.backTitle;
+        }
+
+        if (isHTMLElement(child)) {
+          child.classList.add('js-menu-current');
+          child.classList.add('menu--fromRight');
+          child.classList.add('menu--current');
+          child.classList.remove('menu--child');
+          child.classList.remove('js-menu-child');
+        }
       }
     });
   });

@@ -24,9 +24,10 @@
  */
 
 const {prestashop} = window;
+const {currencySelector: CurrencySelectorMap} = prestashop.themeSelectors;
 
 const initCurrencySelector = () => {
-  const languageSelector = document.querySelector<HTMLElement>('.js-currency-selector');
+  const languageSelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencySelector);
 
   languageSelector?.addEventListener('change', (event) => {
     const option = event.target as HTMLOptionElement;

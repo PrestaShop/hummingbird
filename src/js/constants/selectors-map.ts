@@ -53,6 +53,27 @@ export const cart = {
   promoCode: '#promo-code',
 };
 
+export const blockcart = {
+  modal: '#blockcart-modal',
+};
+
+export const currencySelector = {
+  currencySelector: '.js-currency-selector',
+};
+
+export const languageSelector = {
+  languageSelector: '.js-language-selector',
+};
+
+export const searchBar = {
+  searchCanvas: '.js-search-offcanvas',
+  searchWidget: '.js-search-widget',
+  searchDropdown: '.js-search-dropdown',
+  searchResults: '.js-search-results',
+  searchTemplate: '.js-search-template',
+  searchInput: '.js-search-input',
+};
+
 export const checkout = {
   steps: {
     item: '.js-step-item',
@@ -73,6 +94,16 @@ export const progressRing = {
     circle: '.progress-ring__circle',
     backgroundCircle: '.progress-ring__background-circle',
   },
+};
+
+export const mobileMenu = {
+  openChildsButton: '.js-menu-open-childs',
+  backTitle: '.js-menu-back-title',
+  backButton: '.js-back-button',
+  menuCanvas: '.js-menu-canvas',
+  menuCurrent: '.menu--current',
+  specificParent: (param: string | undefined) => `.menu--parent[data-depth="${param}"]`,
+  specificChild: (param: string | undefined) => `.menu[data-id="${param}"]`,
 };
 
 const selectorsMap = {
@@ -116,6 +147,11 @@ const selectorsMap = {
   cart,
   progressRing,
   checkout,
+  blockcart,
+  currencySelector,
+  languageSelector,
+  searchBar,
+  mobileMenu,
 };
 
 export default selectorsMap;

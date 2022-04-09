@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
@@ -95,6 +94,21 @@ exports.extractScss = ({mode = 'production'}) => ({
 exports.extractJs = () => ({
   module: {
     rules: [
+      {
+        test: /theme\.ts?$/,
+        exclude: /(node_modules)/,
+        resolve: {
+          fullySpecified: false,
+          extensions: ['.js', '.ts'],
+        },
+        use: {
+          loader: 'esbuild-loader',
+          options: {
+            loader: 'ts',
+            target: 'es2015',
+          },
+        },
+      },
       {
         test: /\.(js|jsx|ts|tsx)?$/,
         exclude: /(node_modules)/,

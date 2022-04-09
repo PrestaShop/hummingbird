@@ -41,11 +41,10 @@ import './modules/facetedsearch';
 
 initEmitter();
 
-window.prestashop.themeSelectors = selectorsMap;
+const {prestashop} = window;
+prestashop.themeSelectors = selectorsMap;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const {prestashop} = window;
-
   initProductBehavior();
   initQuickview();
   initCheckout();

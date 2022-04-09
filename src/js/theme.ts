@@ -22,32 +22,24 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
-// @ts-ignore
-//import $ from "expose-loader?exposes=$,jQuery!jquery";
 
 import selectorsMap from './constants/selectors-map';
 import initEmitter from './prestashop';
-
-initEmitter();
-
-window.prestashop.themeSelectors = selectorsMap;
-
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
 import initCart from './pages/cart';
 import initCheckout from './checkout';
 import useToast from './components/useToast';
-import useAlert from './components/useToast';
+import useAlert from './components/useAlert';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
-import './modules/blockcart';
 import initProductBehavior from './product';
+import './modules/blockcart';
 import './mobile-menu';
 import './modules/ps_searchbar';
 import './modules/facetedsearch';
-/* eslint-enable */
+
+initEmitter();
 
 $(() => {
   const {prestashop} = window;
@@ -59,6 +51,7 @@ $(() => {
   initCart();
   useQuantityInput();
   prestashop.on('updatedCart', () => useQuantityInput());
+  prestashop.themeSelectors = selectorsMap;
 });
 
 export const components = {

@@ -103,8 +103,5 @@ const selectorsMap = {
 
 export default selectorsMap;
 
-if (window.prestashop === undefined) {
-  window.prestashop = {};
-}
-
-window.prestashop.themeSelectors = selectorsMap;
+const {prestashop = {}} = window;
+prestashop.themeSelectors = selectorsMap;

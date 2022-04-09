@@ -102,3 +102,5 @@ const selectorsMap = {
 };
 
 export default selectorsMap;
+
+window.prestashop.themeSelectors = selectorsMap;

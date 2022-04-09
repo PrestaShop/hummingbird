@@ -34,14 +34,16 @@ import useAlert from './components/useAlert';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import initProductBehavior from './product';
-import './modules/blockcart';
 import './mobile-menu';
+import './modules/blockcart';
 import './modules/ps_searchbar';
 import './modules/facetedsearch';
 
 initEmitter();
 
-$(() => {
+window.prestashop.themeSelectors = selectorsMap;
+
+document.addEventListener('DOMContentLoaded', () => {
   const {prestashop} = window;
 
   initProductBehavior();
@@ -51,7 +53,6 @@ $(() => {
   initCart();
   useQuantityInput();
   prestashop.on('updatedCart', () => useQuantityInput());
-  prestashop.themeSelectors = selectorsMap;
 });
 
 export const components = {

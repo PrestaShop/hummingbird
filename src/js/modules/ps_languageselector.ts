@@ -23,10 +23,9 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-const {prestashop} = window;
-const {languageSelector: LanguageSelectorMap} = prestashop.themeSelectors;
-
 const initLanguageSelector = () => {
+  const {prestashop} = window;
+  const {languageSelector: LanguageSelectorMap} = prestashop.themeSelectors;
   const languageSelector = document.querySelector<HTMLElement>(LanguageSelectorMap.languageSelector);
 
   languageSelector?.addEventListener('change', (event) => {
@@ -35,13 +34,5 @@ const initLanguageSelector = () => {
     window.location.href = option.value;
   });
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-  initLanguageSelector();
-
-  prestashop.on('responsiveUpdate', () => {
-    initLanguageSelector();
-  });
-});
 
 export default initLanguageSelector;

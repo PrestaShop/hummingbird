@@ -25,11 +25,11 @@
 import {Modal} from 'bootstrap';
 import useProgressRing from '@js/components/useProgressRing';
 
-const {themeSelectors: selectorsMap} = window.prestashop;
-const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectorsMap;
-
 const initCheckout = () => {
   const {prestashop} = window;
+  const {themeSelectors: selectorsMap} = prestashop;
+  const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectorsMap;
+
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);
   const actionButtons = document.querySelectorAll<HTMLElement>(CheckoutMap.actionsButtons);
   const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);

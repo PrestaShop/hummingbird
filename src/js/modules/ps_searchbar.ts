@@ -26,10 +26,10 @@
 import {searchProduct, Result} from '@services/search';
 import debounce from '@helpers/debounce';
 
-const {prestashop} = window;
-const {searchBar: SearchBarMap} = prestashop.themeSelectors;
-
 const initSearchbar = () => {
+  const {prestashop} = window;
+  const {searchBar: SearchBarMap} = prestashop.themeSelectors;
+
   const searchCanvas = document.querySelector<HTMLElement>(SearchBarMap.searchCanvas);
   const searchWidget = document.querySelector<HTMLElement>(SearchBarMap.searchWidget);
   const searchDropdown = document.querySelector<HTMLElement>(SearchBarMap.searchDropdown);
@@ -89,13 +89,5 @@ const initSearchbar = () => {
     }, 250));
   }
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-  initSearchbar();
-
-  prestashop.on('responsiveUpdate', () => {
-    initSearchbar();
-  });
-});
 
 export default initSearchbar;

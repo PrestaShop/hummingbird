@@ -128,7 +128,6 @@ const initMobileMenu = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  initMobileMenu();
 });
 
 export default initMobileMenu;

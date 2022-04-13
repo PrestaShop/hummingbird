@@ -29,7 +29,7 @@ const initMobileMenu = () => {
   const {prestashop} = window;
   const {mobileMenu: MobileMenuMap} = prestashop.themeSelectors;
 
-  const openChildsButtons = document.querySelectorAll(MobileMenuMap.openChildsButtons);
+  const openChildsButtons = document.querySelectorAll(MobileMenuMap.openChildsButton);
   const backTitle = document.querySelector(MobileMenuMap.backTitle);
   const backButton = document.querySelector(MobileMenuMap.backButton);
   const menuCanvas = document.querySelector(MobileMenuMap.menuCanvas);
@@ -111,6 +111,7 @@ const initMobileMenu = () => {
           backTitle.innerHTML = child.dataset.backTitle;
         }
 
+        console.log(child);
         if (isHTMLElement(child)) {
           child.classList.add('js-menu-current');
           child.classList.add('menu--fromRight');

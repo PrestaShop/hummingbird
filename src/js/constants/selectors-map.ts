@@ -97,7 +97,7 @@ export const progressRing = {
 };
 
 export const mobileMenu = {
-  openChildsButton: '.js-menu-open-childs',
+  openChildsButton: '.js-menu-open-child',
   backTitle: '.js-menu-back-title',
   backButton: '.js-back-button',
   menuCanvas: '.js-menu-canvas',

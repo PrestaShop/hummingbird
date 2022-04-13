@@ -127,7 +127,4 @@ const initMobileMenu = () => {
   });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-});
-
 export default initMobileMenu;

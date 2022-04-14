@@ -39,7 +39,7 @@ import initQuickview from './quickview';
 import initCart from './pages/cart';
 import initCheckout from './checkout';
 import useToast from './components/useToast';
-import useAlert from './components/useToast';
+import useAlert from './components/useAlert';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';

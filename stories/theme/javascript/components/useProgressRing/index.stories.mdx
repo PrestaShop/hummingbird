@@ -41,7 +41,7 @@ Overall destructuring is a good practice, if you can, use it!
     name="Basic usage" 
     parameters={{ docs: { source: { code: useProgressRingContent } } }} 
     play={async ({canvasElement}) => {
-      const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
+      const progressElement = document.querySelector<HTMLElement>(window.prestashop.themeSelectors.progressRing.checkout.element);
       const {setProgress, error} = window.Theme.components.useProgressRing(progressElement);
       if (!error && setProgress) {
         setProgress(75);
@@ -55,7 +55,7 @@ Overall destructuring is a good practice, if you can, use it!
 Without a different colorscheme:
 
 ```ts
-const progressElement = document.querySelector<HTMLElement>(ProgressRingMap.checkout.element);
+const progressElement = document.querySelector<HTMLElement>(window.prestashop.themeSelectors.progressRing.checkout.element);
 const {setProgress, error} = window.Theme.components.useProgressRing(progressElement);
 
 if (!error && setProgress) {

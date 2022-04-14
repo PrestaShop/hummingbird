@@ -1,0 +1,87 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import useAlertContent from './usealert.html'
+
+<Meta title="Theme/JavaScript/Components/useAlert" />
+
+# useAlert
+
+**useAlert** is accessible through `window.Theme.components.useAlert`.
+
+## Concept
+
+The alert container is the default notifications container of the theme, you can use another one specifying the selector option.  
+
+The toast markup is generated on the fly by the javascript, based on bootstrap.
+
+## Parameters
+
+**text** (Optional): string;  
+**options** (Optional): Options;  
+
+## Options
+
+**type**:  'light' | 'dark' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'   
+**icon** (Optional): string;  
+**title** (Optional): string;  
+**dismissible** (Optional): boolean;  
+**classlist** (Optional): string;  
+**selector** (Optional): string;  
+
+## Return
+useAlert return an Object, here is the definition:
+```ts 
+interface Instance {
+  instance: Alert | null;
+  element: HTMLElement | null;
+  show: () => boolean;
+  hide: () => boolean;
+  dispose: () => boolean;
+  remove: () => boolean;
+  title: (markup?: string) => string | boolean;
+  message: (markup?: string) => string | boolean;
+}
+```
+
+### Examples (only testable inside the Canvas tab)
+Overall destructuring is a good practice, if you can, use it!
+
+Without any options:
+
+<Canvas>
+  <Story 
+    name="Basic usage" 
+    parameters={{ docs: { source: { code: useAlertContent } } }} 
+    play={async ({canvasElement}) => {
+      const btn = document.querySelector('.btn');
+      btn.addEventListener('click', () => {
+        const {show} = window.Theme.components.useAlert('Lorem ipsum sit dolor amet');
+        show();
+      });
+    }}
+  >
+    {() =>  useAlertContent}
+  </Story>
+</Canvas>  
+
+Without a different colorscheme:
+
+```js
+const {show} = window.Theme.components.useAlert('Lorem ipsum sit dolor amet', {type: 'primary'});
+show();
+```
+
+<Canvas>
+  <Story 
+    name="with primary parameter" 
+    parameters={{ docs: { source: { code: useAlertContent } } }} 
+    play={async ({canvasElement}) => {
+      const btn = document.querySelector('.btn');
+      btn.addEventListener('click', () => {
+        const {show} = window.Theme.components.useAlert('Lorem ipsum sit dolor amet', {type: 'primary'});
+        show();
+      });
+    }}
+  >
+    {() =>  useAlertContent}
+  </Story>
+</Canvas>  

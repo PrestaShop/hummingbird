@@ -111,7 +111,6 @@ const initMobileMenu = () => {
           backTitle.innerHTML = child.dataset.backTitle;
         }
 
-        console.log(child);
         if (isHTMLElement(child)) {
           child.classList.add('js-menu-current');
           child.classList.add('menu--fromRight');

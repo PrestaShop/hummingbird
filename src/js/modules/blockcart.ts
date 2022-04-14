@@ -47,7 +47,7 @@ prestashop.blockcart.showModal = (html: string) => {
   const mainElement = document.createElement('div');
   mainElement.innerHTML = html;
   // Select the template of the modal
-  const modalTemplate = document.querySelector<HTMLElement>(BlockcartMap.modal);
+  const modalTemplate = mainElement.querySelector<HTMLElement>(BlockcartMap.modal);
 
   if (modalTemplate) {
     // If the template exist, append it to the body

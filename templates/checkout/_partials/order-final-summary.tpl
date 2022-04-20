@@ -30,7 +30,7 @@
   <div class="order__summary__addresses mb-4">
     <h5 class="mb-3">
       {l s='Addresses' d='Shop.Theme.Checkout'}
-      <span class="step-edit step-to-addresses fs-6 text-gray js-edit-addresses" data-step="checkout-addresses-step"><i class="material-icons edit">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
+      <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-addresses" data-step="checkout-addresses-step"><i class="material-icons edit fs-6">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
     </h5>
 
     <div class="row">
@@ -43,7 +43,7 @@
 
               <div class="address__actions">
                 <a
-                  class="address__edit text-muted ps-0 pb-0"
+                  class="address__edit ps-0 pb-0"
                   data-link-action="edit-address"
                   href="{url entity='order' params=['id_address' => $customer.addresses[$cart.id_address_delivery]['id'], 'editAddress' => 'editAddress', 'token' => $token]}"
                 >
@@ -71,7 +71,7 @@
 
               <div class="address__actions">
                 <a
-                  class="address__edit text-muted ps-0 pb-0"
+                  class="address__edit ps-0 pb-0"
                   data-link-action="edit-address"
                   href="{url entity='order' params=['id_address' => $customer.addresses[$cart.id_address_invoice]['id'], 'editAddress' => 'editAddress', 'token' => $token]}"
                 >
@@ -95,7 +95,7 @@
   {if !$cart.is_virtual}
     <h5 class="mb-3">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
-      <span class="step-edit step-to-addresses fs-6 text-gray js-edit-shipping" data-step="checkout-delivery-step"><i class="material-icons edit">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
+      <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-shipping" data-step="checkout-delivery-step"><i class="material-icons edit fs-6">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
     </h5>
 
     <div class="bg-light rounded-3 p-3 mb-4">

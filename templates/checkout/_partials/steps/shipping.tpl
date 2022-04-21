@@ -100,30 +100,30 @@
             {/if}
 
             {if $gift.allowed}
-              <div class="form-check">
-                <label class="form-check-label" for="input_gift">
+              <div class="form-check mb-3">
+                <label class="form-check-label" for="input_gift" data-bs-toggle="collapse" data-bs-target="#gift">
                   <input class="form-check-input js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1" {if $gift.isGift}checked="checked"{/if}/>
                   {$gift.label}
                 </label>
               </div>
 
-              <div id="gift" class="collapse{if $gift.isGift} in{/if}">
-                <label for="gift_message">{l s='If you\'d like, you can add a note to the gift:' d='Shop.Theme.Checkout'}</label>
+              <div id="gift" class="collapse{if $gift.isGift} show{/if}">
+                <label for="gift_message" class="form-label fw-bold">{l s='If you\'d like, you can add a note to the gift:' d='Shop.Theme.Checkout'}</label>
                 <textarea class="form-control" rows="2" cols="120" id="gift_message" name="gift_message">{$gift.message}</textarea>
               </div>
             {/if}
           </div>
         </div>
 
-        <div class="shipping__actions">
-          <button class="btn btn-outline-primary btn-with-icon d-none d-md-inline-block me-2 js-back" data-step="checkout-addresses-step">
+        <div class="shipping__actions d-flex flex-wrap justify-content-between">
+          <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
             <div class="material-icons">arrow_backward</div>
             {l s='Back to Addresses' d='Shop.Theme.Actions'}
           </button>
 
           <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto" name="confirmDeliveryOption" value="1">
-            <div class="material-icons">arrow_forward</div>
             {l s='Continue to Payment' d='Shop.Theme.Actions'}
+            <div class="material-icons">arrow_forward</div>
           </button>
         </div>
       </form>

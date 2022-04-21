@@ -53,12 +53,57 @@ export const cart = {
   promoCode: '#promo-code',
 };
 
+export const blockcart = {
+  modal: '#blockcart-modal',
+};
+
+export const currencySelector = {
+  currencySelector: '.js-currency-selector',
+};
+
+export const languageSelector = {
+  languageSelector: '.js-language-selector',
+};
+
+export const searchBar = {
+  searchCanvas: '.js-search-offcanvas',
+  searchWidget: '.js-search-widget',
+  searchDropdown: '.js-search-dropdown',
+  searchResults: '.js-search-results',
+  searchTemplate: '.js-search-template',
+  searchInput: '.js-search-input',
+};
+
+export const checkout = {
+  steps: {
+    item: '.js-step-item',
+    current: '.js-current-step',
+    shownResponsiveStep: '.checkout__steps__step:not(.d-none)',
+    specificStep: (param: string | undefined) => `.checkout__steps__step[data-step="${param}"]`,
+    specificStepContent: (param: string | undefined) => `#${param}`,
+    backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
+  },
+  actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
+  termsLink: '.js-terms a',
+  checkoutModal: '#checkout-modal',
+};
+
 export const progressRing = {
   checkout: {
     element: '.progress-ring',
     circle: '.progress-ring__circle',
     backgroundCircle: '.progress-ring__background-circle',
   },
+};
+
+export const mobileMenu = {
+  openChildsButton: '.js-menu-open-child',
+  backTitle: '.js-menu-back-title',
+  backButton: '.js-back-button',
+  menuCanvas: '.js-menu-canvas',
+  menuCurrent: '.menu--current',
+  specificParent: (param: string | undefined) => `.menu--parent[data-depth="${param}"]`,
+  specificChild: (param: string | undefined) => `.menu[data-id="${param}"]`,
 };
 
 const selectorsMap = {
@@ -93,12 +138,20 @@ const selectorsMap = {
     thumbnail: '.js-thumb-container',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
   },
+  modalBody: '.modal-body',
+  pageCms: '.page-cms',
   quickview: '.js-quickview',
   facetedsearch,
   pageLoader,
   listing,
   cart,
   progressRing,
+  checkout,
+  blockcart,
+  currencySelector,
+  languageSelector,
+  searchBar,
+  mobileMenu,
 };
 
 export default selectorsMap;

@@ -44,6 +44,10 @@
   width: 100%;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .w-md-auto {
   @include media-breakpoint-up(md) {
     width: auto;

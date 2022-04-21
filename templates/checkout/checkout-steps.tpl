@@ -30,39 +30,71 @@
 
 {block name='checkout_steps'}
 <div class="{$componentName} bg-light py-2 {if isset($notifications) && $hasNotifications}mb-2 mb-lg-4{else}mb-3 mb-lg-5{/if} py-md-4">
-    <ul class="{$componentName}__list row mb-0 d-none d-md-flex">
-      <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-personal-information-step">
+    <ul class="{$componentName}__list nav nav-tabs border-0 row mb-0 d-none d-md-flex">
+      <li 
+        class="{$componentName}__item nav-item js-step-item text-center col-3" 
+        data-step="checkout-personal-information-step" 
+        role="presentation" 
+      >
         <span class="{$componentName}__number mb-1">
           {l s='1' d='Shop.Theme.Checkout'}
         </span> 
-        <button class="{$componentName}__text btn p-0 border-0 mb-0">
+        <button 
+          class="{$componentName}__text nav-link w-full bg-transparent btn p-0 border-0 mb-0"
+          data-bs-toggle="tab" 
+          data-bs-target="#checkout-personal-information-step"
+        >
           {l s='Personal Information' d='Shop.Theme.Checkout'}
         </button>
       </li>
 
-      <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-addresses-step">
+      <li 
+        class="{$componentName}__item nav-item js-step-item text-center col-3" 
+        data-step="checkout-addresses-step"
+        role="presentation" 
+      >
         <span class="{$componentName}__number mb-1">
           {l s='2' d='Shop.Theme.Checkout'}
         </span> 
-        <button class="{$componentName}__text btn p-0 border-0 mb-0">
+        <button 
+          class="{$componentName}__text nav-link w-full bg-transparent btn p-0 border-0 mb-0"
+          data-bs-toggle="tab" 
+          data-bs-target="#checkout-addresses-step"
+        >
           {l s='Addresses' d='Shop.Theme.Checkout'}
         </button>
       </li>
 
-      <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-delivery-step">
+      <li 
+        class="{$componentName}__item nav-item js-step-item text-center col-3" 
+        data-step="checkout-delivery-step"
+        role="presentation" 
+      >
         <span class="{$componentName}__number mb-1">
           {l s='3' d='Shop.Theme.Checkout'}
         </span> 
-        <button class="{$componentName}__text btn p-0 border-0 mb-0">
+        <button 
+          class="{$componentName}__text nav-link w-full bg-transparent btn p-0 border-0 mb-0"
+          data-bs-toggle="tab" 
+          data-bs-target="#checkout-delivery-step"
+        >
           {l s='Shipping method' d='Shop.Theme.Checkout'}
         </button>
       </li>
 
-      <li class="{$componentName}__item js-step-item text-center col-3" data-step="checkout-payment-step">
+      <li 
+        class="{$componentName}__item nav-item js-step-item text-center col-3" 
+        data-step="checkout-payment-step"
+        role="presentation" 
+      >
         <span class="{$componentName}__number mb-1">
           {l s='4' d='Shop.Theme.Checkout'}
         </span> 
-        <button class="{$componentName}__text btn p-0 border-0 mb-0">
+        <button 
+          class="{$componentName}__text nav-link w-full bg-transparent btn p-0 border-0 mb-0"
+          data-bs-toggle="tab" 
+          data-bs-target="#checkout-payment-step"
+        >
           {l s='Payment' d='Shop.Theme.Checkout'}
         </button>
       </li>

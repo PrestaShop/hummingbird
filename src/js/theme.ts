@@ -23,9 +23,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 /* eslint-disable */
-// @ts-ignore
-//import $ from "expose-loader?exposes=$,jQuery!jquery";
-
 import selectorsMap from './constants/selectors-map';
 import initEmitter from './prestashop';
 
@@ -37,16 +34,18 @@ import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
 import initCart from './pages/cart';
-import initCheckout from './checkout';
+import initCheckout from './pages/checkout';
 import useToast from './components/useToast';
 import useAlert from './components/useAlert';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
 import initProductBehavior from './product';
-import './mobile-menu';
-import './modules/ps_searchbar';
+import initMobileMenu from './mobile-menu';
+import initSearchbar from './modules/ps_searchbar';
 import './modules/facetedsearch';
+import initLanguageSelector from './modules/ps_languageselector';
+import initCurrencySelector from './modules/ps_currencyselector';
 /* eslint-enable */
 
 $(() => {
@@ -58,6 +57,17 @@ $(() => {
   initResponsiveToggler();
   initCart();
   useQuantityInput();
+  initSearchbar();
+  initLanguageSelector();
+  initCurrencySelector();
+  initMobileMenu();
+
+  prestashop.on('responsiveUpdate', () => {
+    initSearchbar();
+    initLanguageSelector();
+    initCurrencySelector();
+  });
+
   prestashop.on('updatedCart', () => useQuantityInput());
 });
 

@@ -5,7 +5,7 @@
 
   {block name='order_confirmation_header'}
     <div class="{$componentName}__header">
-      <h1 class="{$componentName}__title">
+      <h1 class="{$componentName}__title alert alert-success">
         <i class="material-icons rtl-no-flip done">&#xE876;</i>{l s='Your order is confirmed' d='Shop.Theme.Checkout'}
       </h1>
       <p class="{$componentName}__subtext">

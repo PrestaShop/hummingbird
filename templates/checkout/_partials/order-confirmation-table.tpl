@@ -24,8 +24,7 @@
  *}
  {$componentName = 'order-confirmation'}
 
-<div class="{$componentName}__table">
-
+<div class="{$componentName}__table{block name='order-confirmation-classes'}{/block}">
   <div class="{$componentName}__items">
   {foreach from=$products item=product}
     <div class="item row gx-3">
@@ -89,8 +88,7 @@
       </div>
       
       <div class="item__prices col-md-2 col-sm-12 col-12">
-        <div class="text-md-end">{$product.price}</div>
-        <div class="text-md-end">{$product.quantity}</div>
+        <div class="text-md-end">{l s='%product_price% (x%product_quantity%)' sprintf=['%product_price%' => $product.price, '%product_quantity%' => $product.quantity] d='Shop.Theme.Catalog'}</div>
         <div class="text-md-end">{$product.total}</div>
       </div>
 
@@ -115,11 +113,11 @@
     {if !$configuration.display_prices_tax_incl && $configuration.taxes_enabled}
       <div class="row">
         <div class="col-6">{$totals.total.label}&nbsp;{$labels.tax_short}</div>
-        <div class="col-6 text-end">{$totals.total.value}</td>
+        <div class="col-6 text-end">{$totals.total.value}</div>
       </div>
       <div class="row fw-bold">
         <div class="col-6">{$totals.total_including_tax.label}</div>
-        <div class="col-6 text-end">{$totals.total_including_tax.value}</td>
+        <div class="col-6 text-end">{$totals.total_including_tax.value}</div>
       </div>
     {else}
       <div class="row fw-bold">

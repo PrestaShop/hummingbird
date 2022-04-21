@@ -43,8 +43,8 @@
           type="submit"
           value="order"
        > 
-          <div class="material-icons">arrow_forward</div>
           {l s='Continue to Addresses' d='Shop.Theme.Actions'}
+          <div class="material-icons">arrow_forward</div>
         </button>
       </form>
     </div>
@@ -61,11 +61,7 @@
           aria-controls="checkout-guest-form"
           aria-selected="{if !$show_login_form}true{else}false{/if}"
         >
-          {if $guest_allowed}
-            {l s='Order as a guest' d='Shop.Theme.Checkout'}
-          {else}
-            {l s='Create an account' d='Shop.Theme.Customeraccount'}
-          {/if}
+          {l s='New customer' d='Shop.Theme.Checkout'}
         </button>
       </li>
       <li class="nav-item" role="presentation">

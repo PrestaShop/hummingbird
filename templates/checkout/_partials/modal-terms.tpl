@@ -22,28 +22,18 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{block name='step'}
-  <section  id    = "{$identifier}"
-            class = "{[
-                        'step'   => true,
-                        'tab-pane'   => true,
-                        'collapse'   => true,
-                        'step--current'        => $step_is_current,
-                        'step--reachable'      => $step_is_reachable,
-                        'step--complete'       => $step_is_complete && !$step_is_current,
-                        'js-current-step' => $step_is_current,
-                        'active' => $step_is_current
-                    ]|classnames} mb-5"
-  >
-    <div class="step__title js-step-title">
-      <h1 class="step__title-left h3">
-        {$title}
-      </h1>
-      <hr />
-    </div>
 
-    <div class="step__content">
-      {block name='step_content'}DUMMY STEP CONTENT{/block}
+<div id="checkout-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="checkout-modal" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">{l s='Loading...' d='Shop.Theme.Global'}</span>
+        </div> 
+      </div>
     </div>
-  </section>
-{/block}
+  </div>
+</div>

@@ -114,14 +114,14 @@
 
       <div class="mt-4 d-flex flex-wrap justify-content-between">
         <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-personal-information-step">
-          <div class="material-icons">arrow_backward</div>
+          <div class="material-icons rtl-flip">arrow_backward</div>
           {l s='Continue to Personal Information' d='Shop.Theme.Actions'}
         </button>
 
         {if !$form_has_continue_button}
             <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto continue" name="confirm-addresses" value="1">
               {l s='Continue to Shipping' d='Shop.Theme.Actions'}
-              <div class="material-icons">arrow_forward</div>
+              <div class="material-icons rtl-flip">arrow_forward</div>
             </button>
             <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}

@@ -28,3 +28,8 @@ body {
     transform: scaleX(-1);
   }
 }
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  transform: scaleX(-1);
+}

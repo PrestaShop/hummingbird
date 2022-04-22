@@ -38,7 +38,7 @@
 
         {block name='continue_shopping'}
           <a class="btn btn-outline-primary" href="{$urls.pages.index}">
-            <i class="material-icons">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
+            <i class="material-icons rtl-flip">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
           </a>
         {/block}
 

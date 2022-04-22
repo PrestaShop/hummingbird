@@ -22,31 +22,28 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-/* eslint-disable */
 import selectorsMap from './constants/selectors-map';
 import initEmitter from './prestashop';
-
-initEmitter();
-
-window.prestashop.themeSelectors = selectorsMap;
-
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
 import initCart from './pages/cart';
 import initCheckout from './pages/checkout';
+import initProductBehavior from './product';
+import initMobileMenu from './mobile-menu';
+import initSearchbar from './modules/ps_searchbar';
+import initLanguageSelector from './modules/ps_languageselector';
+import initCurrencySelector from './modules/ps_currencyselector';
+import initVisiblePassword from './visible-password';
 import useToast from './components/useToast';
 import useAlert from './components/useAlert';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
-import initProductBehavior from './product';
-import initMobileMenu from './mobile-menu';
-import initSearchbar from './modules/ps_searchbar';
 import './modules/facetedsearch';
-import initLanguageSelector from './modules/ps_languageselector';
-import initCurrencySelector from './modules/ps_currencyselector';
-/* eslint-enable */
+
+initEmitter();
+
+window.prestashop.themeSelectors = selectorsMap;
 
 $(() => {
   const {prestashop} = window;
@@ -61,6 +58,7 @@ $(() => {
   initLanguageSelector();
   initCurrencySelector();
   initMobileMenu();
+  initVisiblePassword();
 
   prestashop.on('responsiveUpdate', () => {
     initSearchbar();

@@ -30,7 +30,7 @@
 
   <div class="featured-products-footer text-center">
     <a class="all-product-link btn btn-outline-primary" href="{$allProductsLink}">
-      {l s='All products' d='Shop.Theme.Catalog'}<i class="material-icons">&#xE315;</i>
+      {l s='All products' d='Shop.Theme.Catalog'}<i class="material-icons rtl-flip">&#xE315;</i>
     </a>
   </div>
 </section>

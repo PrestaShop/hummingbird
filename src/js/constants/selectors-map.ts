@@ -106,6 +106,10 @@ export const mobileMenu = {
   specificChild: (param: string | undefined) => `.menu[data-id="${param}"]`,
 };
 
+export const visiblePassword = {
+  visiblePassword: '.js-visible-password',
+};
+
 const selectorsMap = {
   qtyInput: {
     default: '.js-quantity-button',
@@ -152,6 +156,7 @@ const selectorsMap = {
   languageSelector,
   searchBar,
   mobileMenu,
+  visiblePassword,
 };
 
 export default selectorsMap;

@@ -28,6 +28,7 @@
   <button
     class="btn-unstyle select-title"
     rel="nofollow"
+    data-bs-display="static"
     data-bs-toggle="dropdown"
     aria-haspopup="true"
     aria-expanded="false">

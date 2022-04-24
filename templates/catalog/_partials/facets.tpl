@@ -123,7 +123,7 @@
             <ul id="facet_{$_expand_id}" class="collapse{if !$_collapse} in{/if}">
               <li>
                 <div class="facet-dropdown dropdown">
-                  <a class="select-title" rel="nofollow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="select-title" rel="nofollow" data-bs-display="static" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {$active_found = false}
                     <span>
                       {foreach from=$facet.filters item="filter"}

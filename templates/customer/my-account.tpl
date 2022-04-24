@@ -97,7 +97,7 @@
   </div>
 
   <a class="{$componentName}__logout hidden-on-desktop" href="{$urls.actions.logout}">
-    <i class="material-icons me-2">exit_to_app</i>
+    <i class="material-icons me-2">&#xE879;</i>
     {l s='Sign out' d='Shop.Theme.Actions'}
   </a>
 {/block}

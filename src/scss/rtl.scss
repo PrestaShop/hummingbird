@@ -33,3 +33,7 @@ body {
 .carousel-control-prev-icon {
   transform: scaleX(-1);
 }
+
+.dropdown-menu-start {
+  --bs-position: end;
+}

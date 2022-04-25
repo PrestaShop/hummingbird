@@ -1,0 +1,7 @@
+$dropdown-divider-margin-y:         $spacer * 0.375;
+$dropdown-item-padding-y:           $spacer * 0.5;
+$dropdown-link-color:               $gray-800;
+$dropdown-link-hover-color:         tint-color($gray-800, 30%);
+$dropdown-link-hover-bg:            transparent;
+$dropdown-link-active-color:        $dropdown-link-hover-color;
+$dropdown-link-active-bg:           $dropdown-link-hover-bg;

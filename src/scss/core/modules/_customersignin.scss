@@ -20,8 +20,7 @@
     }
   }
 
-  button,
-  a {
+  button {
     display: flex;
     align-items: center;
     color: $gray-800;
@@ -33,6 +32,10 @@
 
     i {
       color: $gray-700;
+    }
+
+    &:hover {
+      color: $gray-800;
     }
 
     &::after {

@@ -4,7 +4,7 @@ $component-name: header;
   & &__top {
     border-bottom: 1px solid $gray-200;
 
-    a {
+    a:not(.dropdown-item) {
       color: $body-color;
 
       &:hover {

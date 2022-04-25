@@ -33,12 +33,12 @@
     {l s='All suppliers' d='Shop.Theme.Catalog'}
     <i class="material-icons float-end">arrow_drop_down</i>
   </button>
-  <div class="dropdown-menu">
+  <div class="dropdown-menu dropdown-menu-start">
     {foreach from=$suppliers item=supplier}
       <a
         rel="nofollow"
         href="{$supplier['link']}"
-        class="select-list js-search-link"
+        class="dropdown-item select-list js-search-link"
      >
         {$supplier['name']}
       </a>

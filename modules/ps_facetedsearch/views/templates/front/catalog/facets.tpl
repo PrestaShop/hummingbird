@@ -141,13 +141,13 @@
                         </span>
                         <i class="material-icons float-end">&#xE5C5;</i>
                       </a>
-                      <div class="dropdown-menu">
+                      <div class="dropdown-menu dropdown-menu-start">
                         {foreach from=$facet.filters item="filter"}
                           {if !$filter.active}
                             <a
                               rel="nofollow"
                               href="{$filter.nextEncodedFacetsURL}"
-                              class="select-list js-search-link"
+                              class="dropdown-item select-list js-search-link"
                            >
                               {$filter.label}
                               {if $filter.magnitude and $show_quantities}

@@ -65,7 +65,7 @@
           {assign var=_expand_id value=10|mt_rand:100000}
           <span class="main-menu__toggle-child js-menu-open-child" data-target="{$_expand_id}">
             <span data-target="#top_sub_menu_{$_expand_id}">
-              <i class="material-icons">chevron_right</i>
+              <i class="material-icons rtl-flip">chevron_right</i>
             </span>
           </span>
         {/if}
@@ -101,7 +101,7 @@
   <div class="offcanvas-header">
     <div class="main-menu__back-button">
       <button class="btn btn-unstyle d-none js-back-button" type="button">
-        <span class="material-icons">chevron_left</span>
+        <span class="material-icons rtl-flip">chevron_left</span>
         <span class="js-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
       </button>
     </div>

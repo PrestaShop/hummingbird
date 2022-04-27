@@ -26,12 +26,15 @@
 <div class="product-line row">
   <div id="js-product-line-alert--{$product.id_product}"></div>
   <div class="product-line__image col-4 col-sm-2">
-    {if $product.default_image}
-      <img src="{$product.default_image.bySize.cart_default.url}" class="img-fluid" alt="{$product.name|escape:'quotes'}"
-        loading="lazy">
-    {else}
-      <img src="{$urls.no_picture_image.bySize.cart_default.url}" class="img-fluid" loading="lazy" />
-    {/if}
+    <a class="product-line__title product-line__item" href="{$product.url}"
+      data-id_customization="{$product.id_customization|intval}">
+      {if $product.default_image}
+        <img src="{$product.default_image.bySize.cart_default.url}" class="img-fluid" alt="{$product.name|escape:'quotes'}"
+          loading="lazy">
+      {else}
+        <img src="{$urls.no_picture_image.bySize.cart_default.url}" class="img-fluid" loading="lazy" />
+      {/if}
+    </a>
   </div>
 
   <div class="product-line__content col-8 col-sm-4 col-md-6">

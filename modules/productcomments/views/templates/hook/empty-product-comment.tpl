@@ -22,23 +22,14 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<section id="js-active-search-filters">
-  {if $activeFilters|count}
-    <ul class="d-flex align-items-center flex-wrap mb-4">
-      {block name='active_filters_title'}
-        <li class="p-1">
-          <p class="fw-bold m-0 me-2">{l s='Active filters' d='Shop.Theme.Global'}</p>
-        </li>
-      {/block}
-      {foreach from=$activeFilters item="filter"}
-        {block name='active_filters_item'}
-          <li class="p-1">
-            <a class="text-nowrap btn rounded-pill bg-light js-search-link d-flex align-items-center" href="{$filter.nextEncodedFacetsURL}" rel="nofollow">
-              {l s='%1$s:' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel]} {$filter.label} <i class="material-icons font-reset ml-1 align-middle">&#xE14C;</i>
-            </a>
-          </li>
-        {/block}
-      {/foreach}
-    </ul>
+
+<div id="empty-product-comment" class="product-comment-list-item">
+  {if $post_allowed}
+    <button class="btn btn-primary btn-with-icon post-product-comment">
+      <i class="material-icons shopping-cart" data-icon="edit"></i>
+      {l s='Be the first to write your review' d='Modules.Productcomments.Shop'}
+    </button>
+  {else}
+    {l s='No customer reviews for the moment.' d='Modules.Productcomments.Shop'}
   {/if}
-</section>
+</div>

@@ -19,24 +19,23 @@
 {$componentName = 'search-filters'}
  
 {if $displayedFacets|count}
-  <div id="search-filters" class="{$componentName}">
+  <div id="search-filters" class="{$componentName} d-flex flex-direction-column flex-wrap w-full">
     {block name='facets_title'}
-      <p class="{$componentName}-title d-none d-sm-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
+      <p class="{$componentName}-title d-none d-md-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
     {/block}
 
     {block name='facets_clearall_button'}
       {if $activeFilters|count}
-        <div id="_desktop_search_filters_clear_all" class="d-none d-sm-block clear-all-wrapper">
-          <button data-search-url="{$clear_all_link}" class="btn btn-tertiary js-search-filters-clear-all">
-            <i class="material-icons">&#xE14C;</i>
+        <div class="clear-all-wrapper w-full order-2 order-md-1">
+          <button data-search-url="{$clear_all_link}" class="btn border rounded-pill text-gray py-1 my-2 js-search-filters-clear-all">
             {l s='Clear all' d='Shop.Theme.Actions'}
           </button>
         </div>
       {/if}
     {/block}
 
-    <div class="accordion">
-      {foreach from=$displayedFacets item="facet"}
+    <div class="accordion w-full order-1 order-md-2">
+      {foreach from=$displayedFacets item="facet" name="facets"}
         <section class="facet accordion-item">
           {assign var=_expand_id value=10|mt_rand:100000}
           {assign var=_collapse value=true}
@@ -45,15 +44,16 @@
           {/foreach}
 
           <span class="{$componentName}-subtitle facet-title">
-            <button class="accordion-button{if $_collapse} collapsed{/if}" type="button" data-bs-target="#facet_{$_expand_id}" data-bs-toggle="collapse"{if !$_collapse} aria-expanded="true"{/if}>
+            <button class="accordion-button fw-bold px-0{if $_collapse} collapsed{/if}" type="button" data-bs-target="#facet_{$_expand_id}" data-bs-toggle="collapse"{if !$_collapse} aria-expanded="true"{/if}>
               {$facet.label}
             </button>
           </span>
           <div id="facet_{$_expand_id}" class="accordion-collapse collapse{if !$_collapse} show{/if}">
             {if in_array($facet.widgetType, ['radio', 'checkbox'])}
               {block name='facet_item_other'}
-                <ul  class="accordion-body">
+                <ul  class="accordion-body px-0 mb-0 pb-1 pt-0">
                   {foreach from=$facet.filters key=filter_key item="filter"}
+                    {$isColorOrTexture = isset($filter.properties.color) || isset($filter.properties.texture)}
                     {if !$filter.displayed}
                       {continue}
                     {/if}
@@ -61,25 +61,37 @@
                     <li>
                       <div class="{$componentName}-label facet-label{if $filter.active} active {/if}">
                         {if $facet.multipleSelectionAllowed}
-                          <div class="form-check">
+                          <div class="form-check{if $isColorOrTexture} ps-0{/if}">
                             <input 
-                              class="form-check-input" 
+                              class="form-check-input{if $isColorOrTexture} d-none{/if}" 
                               id="facet_input_{$_expand_id}_{$filter_key}"
                               data-search-url="{$filter.nextEncodedFacetsURL}"
                               type="checkbox"
                               {if $filter.active }checked{/if}
-                           >
-                            <label class="form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
+                          >
+                            <label class="form-check-label align-middle" for="facet_input_{$_expand_id}_{$filter_key}">
                               {if isset($filter.properties.color)}
-                                <span class="color" style="background-color:{$filter.properties.color}"></span>
+                                <span class="color color-sm me-1 align-middle{if $filter.active } active{/if}" style="background-color:{$filter.properties.color}"></span>
+                                <span class="align-middle">
+                                  {$filter.label}
+                                  {if $filter.magnitude and $show_quantities}
+                                    ({$filter.magnitude})
+                                  {/if}
+                                </span>
                               {elseif isset($filter.properties.texture)}
-                                <span class="color texture" style="background-image:url({$filter.properties.texture})"></span>
+                                <span class="color color-sm me-1 texture align-middle{if $filter.active } active{/if}" style="background-image:url({$filter.properties.texture})"></span>
+                                <span class="align-middle">
+                                  {$filter.label}
+                                  {if $filter.magnitude and $show_quantities}
+                                    ({$filter.magnitude})
+                                  {/if}
+                                </span>
                               {else}
                                 <a
                                   href="{$filter.nextEncodedFacetsURL}"
                                   class="{$componentName}-link _gray-darker search-link js-search-link"
                                   rel="nofollow"
-                               >
+                              >
                                   {$filter.label}
                                   {if $filter.magnitude and $show_quantities}
                                     <span class="magnitude">({$filter.magnitude})</span>
@@ -97,13 +109,13 @@
                               type="radio"
                               name="filter {$facet.label}"
                               {if $filter.active }checked{/if}
-                           >
+                          >
                             <label class="form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
                               <a
                                 href="{$filter.nextEncodedFacetsURL}"
                                 class="{$componentName}-link _gray-darker search-link js-search-link"
                                 rel="nofollow"
-                             >
+                            >
                                 {$filter.label}
                                 {if $filter.magnitude and $show_quantities}
                                   <span class="magnitude">({$filter.magnitude})</span>
@@ -165,7 +177,7 @@
             {elseif $facet.widgetType == 'slider'}
               {block name='facet_item_slider'}
                 {foreach from=$facet.filters item="filter"}
-                  <div class="accordion-body faceted-filter js-faceted-filter-slider">
+                  <div class="accordion-body faceted-filter px-3 js-faceted-filter-slider">
                     <div
                       class="faceted-slider js-faceted-slider-container"
                       data-slider-min="{$facet.properties.min}"
@@ -177,23 +189,24 @@
                       data-slider-specifications="{$facet.properties.specifications|@json_encode}"
                       data-slider-encoded-url="{$filter.nextEncodedFacetsURL}"
                       data-slider-direction="{$language.is_rtl}"
-                   >
+                  >
                     </div>
                   <input 
                     type="hidden"
                     class="form-range-start js-faceted-slider js-faceted-slider-start"
                     id="slider-range_{$_expand_id}-start"
-                   >
+                  >
                   <input 
                     type="hidden"
                     class="form-range-start js-faceted-slider js-faceted-slider-end"
                     id="slider-range_{$_expand_id}-end"
-                   >
-                 </div>
+                  >
+                </div>
                 {/foreach}
               {/block}
             {/if}
           </div>
+          {if !$smarty.foreach.facets.last}<hr class="my-0">{/if}
         </section>
       {/foreach}
     </div>

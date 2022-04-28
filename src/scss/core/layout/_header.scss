@@ -6,8 +6,19 @@ $component-name: header;
   z-index: 100;
   width: 100%;
   max-width: 100vw;
+  background-color: $header-bg !important;
+
+  a{
+    color: $header-color;
+  }
 
   &__top {
+    background-color: $header-top-bg !important;
+
+    a{
+      color: $header-top-color !important;
+    }
+
     &__right {
       @extend .inline-items;
       justify-content: flex-end;

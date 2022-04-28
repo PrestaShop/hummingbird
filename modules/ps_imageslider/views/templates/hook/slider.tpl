@@ -29,7 +29,7 @@
             <div class="carousel-indicators">
                 {assign var="count" value=0}
                 {foreach from=$homeslider.slides item=slide name='homeslider'}
-                    <button type="button" data-bs-target="#homeSlider" data-bs-slide-to="{$count}" aria-label="{$slide.title}"
+                    <button type="button" data-bs-target="#homeSlider .carousel" data-bs-slide-to="{$count}" aria-label="{$slide.title}"
                         {if $smarty.foreach.homeslider.first} class="active" aria-current="true" {/if}></button>
                     {$count = $count + 1}
                 {/foreach}

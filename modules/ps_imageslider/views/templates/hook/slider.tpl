@@ -24,7 +24,7 @@
  *}
 
 {if $homeslider.slides}
-    <div id="home-slider" class="ratio ratio-homeSlider">
+    <div id="homeSlider" class="ratio ratio-homeSlider">
         <div class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {assign var="count" value=0}

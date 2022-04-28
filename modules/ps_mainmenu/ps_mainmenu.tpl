@@ -25,7 +25,7 @@
             {if $depth > 0}
           </div> {/if}
           {if $node.children|count}
-            <div class="{if $depth === 0} dropdown-menu js-sub-menu{else} collapse show{/if}" id="top_sub_menu_{$_expand_id}">
+            <div class="{if $depth === 0} menu-container js-sub-menu{else} collapse show{/if}" id="top_sub_menu_{$_expand_id}">
               {if $depth === 0}
                 <div class="container">
                 {/if}

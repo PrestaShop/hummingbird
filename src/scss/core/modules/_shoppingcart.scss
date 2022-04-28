@@ -1,6 +1,6 @@
 .blockcart {
   position: relative;
-  color: $header-top-color;
+  color: var(--header-top-color);
 
   &,
   a {
@@ -17,7 +17,7 @@
   }
 
   i {
-    color: $header-top-color;
+    color: var(--header-top-color);
   }
 
   /* When active, on desktom everything is primary */

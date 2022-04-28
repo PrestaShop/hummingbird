@@ -29,7 +29,7 @@
             <div class="carousel-indicators">
                 {assign var="count" value=0}
                 {foreach from=$homeslider.slides item=slide name='homeslider'}
-                    <button type="button" data-bs-target="#homeSlider" data-bs-slide-to="{$count}" aria-label="{$slide.title}"
+                    <button type="button" data-bs-target="#home-slider .carousel" data-bs-slide-to="{$count}" aria-label="{$slide.title}"
                         {if $smarty.foreach.homeslider.first} class="active" aria-current="true" {/if}></button>
                     {$count = $count + 1}
                 {/foreach}
@@ -53,11 +53,11 @@
                 {/foreach}
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#homeSlider .carousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#homeSlider .carousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>

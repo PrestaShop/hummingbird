@@ -103,11 +103,13 @@ $component-name: search;
 
 .header__bottom,
 .#{$component-name}__offcanvas {
-  // stylelint-disable-next-line
+  // stylelint-disable-next-line, selector-id-pattern
   #search_widget {
+    min-width: 20rem;
     overflow: visible;
 
     input {
+      height: 2.5rem;
       padding-right: 2.5rem;
       padding-left: 1.5rem;
       background: $gray-100;

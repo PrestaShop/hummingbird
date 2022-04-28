@@ -37,3 +37,10 @@ body {
 .dropdown-menu-start {
   --bs-position: end;
 }
+
+// stylelint-disable-next-line, selector-id-pattern
+#search_widget {
+  .search {
+    transform: translateX(-1rem);
+  }
+}

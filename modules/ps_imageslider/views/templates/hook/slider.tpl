@@ -38,7 +38,7 @@
                 {foreach from=$homeslider.slides item=slide name='homeslider'}
                     <li class="carousel-item{if $smarty.foreach.homeslider.first} active{/if}" role="option"
                         aria-hidden="{if $smarty.foreach.homeslider.first}false{else}true{/if}">
-                        <a class="carousel-link" href="{$slide.url}">
+                        {if !empty($slide.url)}<a class="carousel-link" href="{$slide.url}">{/if}
                             <figure class="carousel-content">
                                 <img src="{$slide.image_url}" alt="{$slide.legend|escape}" loading="lazy">
                                 {if $slide.title || $slide.description}
@@ -48,7 +48,7 @@
                                     </figcaption>
                                 {/if}
                             </figure>
-                        </a>
+                        {if !empty($slide.url)}</a>{/if}
                     </li>
                 {/foreach}
             </div>

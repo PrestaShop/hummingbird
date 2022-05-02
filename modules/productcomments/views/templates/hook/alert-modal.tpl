@@ -50,12 +50,10 @@
             {$modal_message}
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12  col-sm-12 post-comment-buttons">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="{l s='OK' d='Modules.Productcomments.Shop'}">
-              {l s='OK' d='Modules.Productcomments.Shop'}
-            </button>
-          </div>
+        <div class="modal-footer post-comment-buttons">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="{l s='OK' d='Modules.Productcomments.Shop'}">
+            {l s='OK' d='Modules.Productcomments.Shop'}
+          </button>
         </div>
       </div>
     </div>

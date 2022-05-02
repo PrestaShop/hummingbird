@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<p class="d-none d-md-block sort-by m-0 me-3"><i class="material-icons">sort</i><span class="align-middle">{l s='Sort by' d='Shop.Theme.Global'}</span></p>
+<p class="d-none d-md-block sort-by m-0 me-3"><i class="material-icons">sort</i><span class="align-middle">{l s='Sort by:' d='Shop.Theme.Global'}</span></p>
 <div class="products-sort-order flex-grow-1 flex-grow-md-0 dropdown me-2 me-md-0">
   <button
     class="btn py-2 pe-3 select-title"

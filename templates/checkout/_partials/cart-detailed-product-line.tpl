@@ -24,13 +24,17 @@
   *}
 
 <div class="product-line row">
+  <div id="js-product-line-alert--{$product.id_product}"></div>
   <div class="product-line__image col-4 col-sm-2">
-    {if $product.default_image}
-      <img src="{$product.default_image.bySize.cart_default.url}" class="img-fluid" alt="{$product.name|escape:'quotes'}"
-        loading="lazy">
-    {else}
-      <img src="{$urls.no_picture_image.bySize.cart_default.url}" class="img-fluid" loading="lazy" />
-    {/if}
+    <a class="product-line__title product-line__item" href="{$product.url}"
+      data-id_customization="{$product.id_customization|intval}">
+      {if $product.default_image}
+        <img src="{$product.default_image.bySize.cart_default.url}" class="img-fluid" alt="{$product.name|escape:'quotes'}"
+          loading="lazy">
+      {else}
+        <img src="{$urls.no_picture_image.bySize.cart_default.url}" class="img-fluid" loading="lazy" />
+      {/if}
+    </a>
   </div>
 
   <div class="product-line__content col-8 col-sm-4 col-md-6">
@@ -76,20 +80,26 @@
 
   <div class="product-line__informations col-8 col-sm-6 col-md-4">
     <div class="row">
-      <div class="quantity-button js-quantity-button col-6">
+      <div class="quantity-button js-quantity-button col-12">
         {if !empty($product.is_gift)}
           <span class="gift-quantity">{$product.quantity}</span>
         {else}
-          <input class="js-cart-line-product-quantity" data-down-url="{$product.down_quantity_url}"
-            data-up-url="{$product.up_quantity_url}" data-update-url="{$product.update_quantity_url}"
-            data-product-id="{$product.id_product}" type="number" inputmode="numeric" pattern="[0-9]*"
-            value="{$product.quantity}" name="product-quantity-spin" />
+          {include file='components/qty-input.tpl'
+            attributes=[
+              "class"=>"js-cart-line-product-quantity form-control",
+              "name"=>"product-quantity-spin",
+              "data-update-url"=>"{$product.update_quantity_url}",
+              "data-product-id"=>"{$product.id_product}",
+              "value"=>"{$product.quantity}",
+              "min"=>"{$product.minimal_quantity}"
+            ]
+          }
         {/if}
       </div>
 
-      <div class="col-6">
+      <div class="col-12">
         {if $product.has_discount}
-          <div class="product-line__discount text-end">
+          <div class="product-line__discount">
             <div class="price">
               <span class="product-line__price">
                 <strong>

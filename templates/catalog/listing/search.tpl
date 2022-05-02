@@ -9,6 +9,9 @@
 {/block}
 
 {block name="error_content"}
-  <h4>{l s='No matches were found for your search' d='Shop.Theme.Catalog'}</h4>
-  <p>{l s='Please try other keywords to describe what you are looking for.' d='Shop.Theme.Catalog'}</p>
+  <p>{l s='Search again what you are looking for.' d='Shop.Theme.Catalog'}</p>
+{/block}
+
+{block name='product_list_header'}
+  <h1 id="js-product-list-header" class="h4">{l s='No search results for "%searchString%"' sprintf=['%searchString%' => $smarty.get.s] d='Shop.Theme.Catalog'}</h1>
 {/block}

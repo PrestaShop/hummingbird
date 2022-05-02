@@ -103,18 +103,23 @@ $component-name: search;
 
 .header__bottom,
 .#{$component-name}__offcanvas {
-  // stylelint-disable-next-line
+  // stylelint-disable-next-line, selector-id-pattern
   #search_widget {
+    min-width: 20rem;
     overflow: visible;
 
+    @include media-breakpoint-down(md) {
+      min-width: inherit;
+    }
+
     input {
-      padding-right: 2.5rem;
+      height: 2.5rem;
+      padding-right: 3.5rem;
       padding-left: 1.5rem;
       background: $gray-100;
       border-radius: 100rem;
 
       @include media-breakpoint-down(md) {
-        padding-right: 4.5rem;
         font-size: 0.9rem;
       }
     }

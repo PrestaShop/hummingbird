@@ -27,7 +27,7 @@
 {block name='content'}
   <div class="cart-grid row">
     <!-- Left Block: cart product informations & shpping -->
-    <div class="cart-grid-body col-lg-8">
+    <div class="cart-grid__body col-lg-8">
       <h1 class="h4">{l s='Shopping Cart' d='Shop.Theme.Checkout'}</h1>
 
       <!-- cart products detailed -->
@@ -38,7 +38,7 @@
 
         {block name='continue_shopping'}
           <a class="btn btn-outline-primary" href="{$urls.pages.index}">
-            <i class="material-icons">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
+            <i class="material-icons rtl-flip">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
           </a>
         {/block}
 
@@ -51,9 +51,8 @@
 
 
     <!-- Right Block: cart subtotal & cart total -->
-    <div class="cart-grid-right col-lg-4">
+    <div class="cart-grid__right col-lg-4">
       <h2 class="h4">{l s='Order summary' d='Shop.Theme.Checkout'}</h2>
-
       {block name='cart_summary'}
         <div class="card cart-summary">
           {block name='hook_shopping_cart'}
@@ -69,6 +68,8 @@
           {/block}
         </div>
       {/block}
+
+      <hr />
 
       {block name='hook_reassurance'}
         {hook h='displayReassurance'}

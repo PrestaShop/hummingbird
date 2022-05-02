@@ -23,18 +23,19 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 
-import search from '@services/search';
+import {searchProduct, Result} from '@services/search';
 import debounce from '@helpers/debounce';
 
-const {prestashop} = window;
-
 const initSearchbar = () => {
-  const searchCanvas = document.querySelector<HTMLElement>('.js-search-offcanvas');
-  const searchWidget = document.querySelector<HTMLElement>('.js-search-widget');
-  const searchDropdown = document.querySelector<HTMLElement>('.js-search-dropdown');
-  const searchResults = document.querySelector<HTMLElement>('.js-search-results');
-  const searchTemplate = document.querySelector<HTMLTemplateElement>('.js-search-template');
-  const searchInput = document.querySelector<HTMLInputElement>('.js-search-input');
+  const {prestashop} = window;
+  const {searchBar: SearchBarMap} = prestashop.themeSelectors;
+
+  const searchCanvas = document.querySelector<HTMLElement>(SearchBarMap.searchCanvas);
+  const searchWidget = document.querySelector<HTMLElement>(SearchBarMap.searchWidget);
+  const searchDropdown = document.querySelector<HTMLElement>(SearchBarMap.searchDropdown);
+  const searchResults = document.querySelector<HTMLElement>(SearchBarMap.searchResults);
+  const searchTemplate = document.querySelector<HTMLTemplateElement>(SearchBarMap.searchTemplate);
+  const searchInput = document.querySelector<HTMLInputElement>(SearchBarMap.searchInput);
   const searchUrl = searchWidget?.dataset.searchControllerUrl;
 
   searchCanvas?.addEventListener('hidden.bs.offcanvas', () => {
@@ -44,13 +45,13 @@ const initSearchbar = () => {
     }
   });
 
-  if (searchInput && searchResults && searchDropdown) {
+  if (searchWidget && searchInput && searchResults && searchDropdown) {
     searchInput.addEventListener('keydown', debounce(async () => {
       if (searchUrl) {
-        const products = await search(searchUrl, searchInput.value, 10);
+        const products = await searchProduct(searchUrl, searchInput.value, 10);
 
         if (products.length > 0) {
-          products.forEach((e: Record<string, any>) => {
+          products.forEach((e: Result) => {
             const product = <HTMLElement>searchTemplate?.content.cloneNode(true);
 
             if (product) {
@@ -61,7 +62,12 @@ const initSearchbar = () => {
               if (productLink && productTitle && productImage) {
                 productLink.href = e.canonical_url;
                 productTitle.innerHTML = e.name;
-                productImage.src = e.cover.small.url;
+
+                if (!e.cover) {
+                  productImage.innerHTML = '';
+                } else {
+                  productImage.src = e.cover.small.url;
+                }
 
                 searchResults.append(product);
               }
@@ -69,6 +75,12 @@ const initSearchbar = () => {
           });
 
           searchDropdown.classList.remove('d-none');
+
+          window.addEventListener('click', (e: Event) => {
+            if (!searchWidget.contains(<Node>e.target)) {
+              searchDropdown.classList.add('d-none');
+            }
+          });
         } else {
           searchResults.innerHTML = '';
           searchDropdown.classList.add('d-none');
@@ -77,13 +89,5 @@ const initSearchbar = () => {
     }, 250));
   }
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-  initSearchbar();
-
-  prestashop.on('responsive update', () => {
-    initSearchbar();
-  });
-});
 
 export default initSearchbar;

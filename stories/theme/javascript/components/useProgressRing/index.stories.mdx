@@ -1,0 +1,64 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import useProgressRingContent from './useprogressring.html'
+
+<Meta title="Theme/JavaScript/Components/useProgressRing" />
+
+# useProgressRing
+
+**useProgressRing** is accessible through `window.Theme.components.useProgressRing`.
+
+## Concept
+
+You can use the smarty file from `components/progress-circle.tpl`.
+
+Example: `{include file="components/progress-circle.tpl" classes="text-success col-4" size=74 stroke=4 percent=50 text={l s='2 / 4' d='Shop.Theme.Checkout'}}`
+
+The progress ring use the text color for the ring color.
+
+**Size, stroke, percent** are required in order to set the default state of the ring.
+
+Initial calculation for the ring are done in smarty, so every child themes can override it and change the behavior.
+
+## Options
+
+**element**:  HTMLElement   
+
+## Return
+useProgressRing return an Object, here is the definition:
+
+```ts 
+interface ProgressRingReturn {
+  setProgress?: (perfect: number) => void
+  error?: Error
+}
+```
+
+### Examples
+Overall destructuring is a good practice, if you can, use it!
+
+<Canvas>
+  <Story 
+    name="Basic usage" 
+    parameters={{ docs: { source: { code: useProgressRingContent } } }} 
+    play={async ({canvasElement}) => {
+      const progressElement = document.querySelector<HTMLElement>(window.prestashop.themeSelectors.progressRing.checkout.element);
+      const {setProgress, error} = window.Theme.components.useProgressRing(progressElement);
+      if (!error && setProgress) {
+        setProgress(75);
+      }
+    }}
+  >
+    {() =>  useProgressRingContent}
+  </Story>
+</Canvas>  
+
+Without a different colorscheme:
+
+```ts
+const progressElement = document.querySelector<HTMLElement>(window.prestashop.themeSelectors.progressRing.checkout.element);
+const {setProgress, error} = window.Theme.components.useProgressRing(progressElement);
+
+if (!error && setProgress) {
+  setProgress(75);
+}
+```

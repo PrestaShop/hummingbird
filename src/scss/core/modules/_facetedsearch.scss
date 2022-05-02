@@ -7,6 +7,17 @@ $component-name: search-filters;
   }
 
   .noUi-horizontal {
-    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    .noUi-handle {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .facet-dropdown {
+    cursor: pointer;
   }
 }

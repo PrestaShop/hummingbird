@@ -23,14 +23,17 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
 import {Modal} from 'bootstrap';
+import {isHTMLElement} from '@helpers/typeguards';
 
 const {prestashop} = window;
 
 prestashop.blockcart = prestashop.blockcart || {};
 
 prestashop.blockcart.showModal = (html: string) => {
+  const {blockcart: BlockcartMap} = prestashop.themeSelectors;
+
   function getBlockCartModal() {
-    const blockCartModal = <HTMLElement>document.querySelector('#blockcart-modal');
+    const blockCartModal = document.querySelector<HTMLElement>(BlockcartMap.modal);
 
     return blockCartModal;
   }
@@ -43,23 +46,30 @@ prestashop.blockcart.showModal = (html: string) => {
 
   const mainElement = document.createElement('div');
   mainElement.innerHTML = html;
+  // Select the template of the modal
+  const modalTemplate = mainElement.querySelector<HTMLElement>(BlockcartMap.modal);
 
-  document.querySelector('body')?.append(<HTMLElement>mainElement.querySelector('#blockcart-modal'));
+  if (modalTemplate) {
+    // If the template exist, append it to the body
+    document.querySelector('body')?.append(modalTemplate);
+  }
 
   blockCartModal = getBlockCartModal();
 
-  const modal = new Modal(blockCartModal);
+  if (blockCartModal) {
+    const modal = new Modal(blockCartModal);
 
-  modal.show();
+    modal.show();
 
-  blockCartModal.addEventListener('hidden.bs.modal', (event: Event) => {
-    const target = <HTMLElement>event.currentTarget;
+    blockCartModal.addEventListener('hidden.bs.modal', (event: Event) => {
+      const target = event.currentTarget;
 
-    if (target) {
-      prestashop.emit('updateProduct', {
-        reason: target.dataset,
-        event,
-      });
-    }
-  });
+      if (isHTMLElement(target)) {
+        prestashop.emit('updateProduct', {
+          reason: target.dataset,
+          event,
+        });
+      }
+    });
+  }
 };

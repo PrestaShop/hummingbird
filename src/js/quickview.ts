@@ -22,8 +22,8 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-import SelectorsMap from './constants/selectors-map';
-import initQuantityInput from './qty-input';
+import useQuantityInput from './components/useQuantityInput';
+import selectorsMap from './constants/selectors-map';
 
 const {prestashop} = window;
 
@@ -41,7 +41,7 @@ export default function initQuickviews() {
           `#quickview-modal-${resp.product.id}-${resp.product.id_product_attribute}`,
         );
         productModal.modal('show');
-        initQuantityInput(SelectorsMap.qtyInput.modal);
+        useQuantityInput(selectorsMap.qtyInput.modal);
         productModal.on('hidden.bs.modal', () => {
           productModal.remove();
         });
@@ -55,9 +55,9 @@ export default function initQuickviews() {
   });
 
   $(document).ready(() => {
-    $('body').on('click', SelectorsMap.quickview, (event) => {
+    $('body').on('click', selectorsMap.quickview, (event) => {
       prestashop.emit('clickQuickView', {
-        dataset: $(event.target).closest(SelectorsMap.product.miniature).data(),
+        dataset: $(event.target).closest(selectorsMap.product.miniature).data(),
       });
       event.preventDefault();
     });

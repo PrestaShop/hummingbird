@@ -1,0 +1,50 @@
+.table-wrapper {
+  padding: 0 1rem;
+  background: lighten($gray-100, 2%);
+  border-radius: 0.5rem;
+
+  table {
+    border-color: $gray-200;
+
+    > :not(:first-child) {
+      border-top: none;
+    }
+
+    tbody {
+      th,
+      td {
+        font-weight: 400;
+        color: $body-color;
+        vertical-align: middle;
+        box-shadow: none;
+      }
+
+      tr {
+        &:last-child {
+          &,
+          td,
+          th {
+            border-bottom-width: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .order-products,
+  .order-return {
+    tfoot {
+      td {
+        border-bottom-width: 0;
+      }
+
+      tr {
+        &:first-child {
+          td {
+            border-top: 1px solid $gray-200;
+          }
+        }
+      }
+    }
+  }
+}

@@ -25,89 +25,107 @@
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
 {block name='step_content'}
-  <div id="hook-display-before-carrier">
+  <div id="delivery-options__hook">
     {$hookDisplayBeforeCarrier nofilter}
   </div>
 
-  <div class="delivery-options-list">
+  <div class="delivery-options__container">
     {if $delivery_options|count}
       <form
-        
         id="js-delivery"
         data-url-update="{url entity='order' params=['ajax' => 1, 'action' => 'selectDeliveryOption']}"
         method="post"
-     >
-        <div class="form-fields">
+        class="delivery-options__form"
+      >
+        <div class="delivery-options__container">
           {block name='delivery_options'}
-            <div class="delivery-options">
-              {foreach from=$delivery_options item=carrier key=carrier_id}
-                  <div class="delivery-option js-delivery-option">
-                    <label for="delivery_option_{$carrier.id}" class="col-xs-9 col-sm-12 delivery-option-2">
-                      <div class="row">
-                        <div class="delivery-option-left col-sm-4">
-                          <span class="custom-radio">
-                            <input type="radio" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
-                            <span></span>
+            <div class="delivery-options__list bg-light rounded-3 p-3 mb-4">
+              {foreach from=$delivery_options item=carrier key=carrier_id name=delivery_options}
+                <div class="delivery-options__item js-delivery-option">
+                  <label for="delivery_option_{$carrier.id}" class="col-12">
+                    <div class="row">
+                      <div class="delivery-option__left col-6 col-sm-4 mb-2 mb-sm-0 order-0">
+                        <div class="row align-items-center">
+                          <span class="custom-radio col-2">
+                            <input type="radio" class="form-check-input" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
+                            <i class="form-check-round"></i>
                           </span>
-                          <div class="carrier{if $carrier.logo} carrier-hasLogo{/if}">
-                            {if $carrier.logo}
-                            <div class="col-md-4 carrier-logo">
-                                <img src="{$carrier.logo}" alt="{$carrier.name}" loading="lazy" />
-                            </div>
-                            {/if}
-                            <div class="carriere-name-container{if $carrier.logo} col-md-8{/if}">
-                              <span class="h6 carrier-name">{$carrier.name}</span>
+                          <div class="carrier col-10{if $carrier.logo} carrier--hasLogo{/if}">
+                            <div class="row align-items-center">
+                              {if $carrier.logo}
+                                <div class="col-md-4 carrier__logo">
+                                    <img src="{$carrier.logo}" class="rounded" alt="{$carrier.name}" loading="lazy" />
+                                </div>
+                              {/if}
+
+                              <div class="carriere-name-container{if $carrier.logo} col-md-8{else}col{/if}">
+                                <span class="h6 carrier-name">{$carrier.name}</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="delivery-option-center col-sm-4">
-                          <span class="carrier-delay">{$carrier.delay}</span>
-                        </div>
-                        <div class="delivery-option-right col-sm-4">
-                          <span class="carrier-price">{$carrier.price}</span>
-                        </div>
+                        </div> 
                       </div>
-                    </label>
-                  </div>
-                  <div class="carrier-extra-content js-carrier-extra-content"{if $delivery_option != $carrier_id} style="display:none;"{/if}>
+                      <span class="delivery-option__center col-6 col-sm-4 order-2 order-sm-1 d-flex align-items-center">
+                        {$carrier.delay}
+                      </span>
+                      <span class="delivery-option__right col-6 col-sm-4 order-1 order-sm-2 d-flex align-items-center">
+                        {$carrier.price}
+                      </span>
+                    </div>
+                  </label>
+                  <div class="carrier__extra-content js-carrier-extra-content"{if $delivery_option != $carrier_id} style="display:none;"{/if}>
                     {$carrier.extraContent nofilter}
                   </div>
-                  <div></div>
+                  {if !$smarty.foreach.delivery_options.last}
+                    <hr />
+                  {/if}
+                </div>
               {/foreach}
             </div>
           {/block}
-          <div class="order-options">
-            <div id="delivery">
-              <label for="delivery_message">{l s='If you would like to add a comment about your order, please write it in the field below.' d='Shop.Theme.Checkout'}</label>
-              <textarea class="form-control" rows="2" cols="120" id="delivery_message" name="delivery_message">{$delivery_message}</textarea>
+
+        <div class="order-options{if $recyclablePackAllowed || $gift.allowed} mb-4{/if}">
+            <div id="delivery" class="mb-4">
+              <label for="delivery_message" class="form-label fw-bold">{l s='Write a comment about this order' d='Shop.Theme.Checkout'}</label>
+              <textarea class="form-control" rows="2" cols="120" id="delivery_message" placeholder="{l s='Write your comment...' d='Shop.Theme.Checkout'}" name="delivery_message">{$delivery_message}</textarea>
             </div>
 
             {if $recyclablePackAllowed}
-              <span class="custom-checkbox">
-                <input type="checkbox" id="input_recyclable" name="recyclable" value="1" {if $recyclable} checked {/if}>
-                <span><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
-                <label for="input_recyclable">{l s='I would like to receive my order in recycled packaging.' d='Shop.Theme.Checkout'}</label>
-              </span>
-            {/if}
-
-            {if $gift.allowed}
-              <span class="custom-checkbox">
-                <input class="js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1" {if $gift.isGift}checked="checked"{/if}>
-                <span><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
-                <label for="input_gift">{$gift.label}</label>
-              </span>
-
-              <div id="gift" class="collapse{if $gift.isGift} in{/if}">
-                <label for="gift_message">{l s='If you\'d like, you can add a note to the gift:' d='Shop.Theme.Checkout'}</label>
-                <textarea class="form-control" rows="2" cols="120" id="gift_message" name="gift_message">{$gift.message}</textarea>
+              <div class="form-check" for="input_recyclable">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" id="input_recyclable" name="recyclable" value="1" {if $recyclable} checked {/if}/>
+                  {l s='I would like to receive my order in recycled packaging.' d='Shop.Theme.Checkout'}
+                </label>
               </div>
             {/if}
 
+            {if $gift.allowed}
+              <div class="form-check mb-3">
+                <label class="form-check-label" for="input_gift" data-bs-toggle="collapse" data-bs-target="#gift">
+                  <input class="form-check-input js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1" {if $gift.isGift}checked="checked"{/if}/>
+                  {$gift.label}
+                </label>
+              </div>
+
+              <div id="gift" class="collapse{if $gift.isGift} show{/if}">
+                <label for="gift_message" class="form-label fw-bold">{l s='If you\'d like, you can add a note to the gift:' d='Shop.Theme.Checkout'}</label>
+                <textarea class="form-control" rows="2" cols="120" id="gift_message" name="gift_message">{$gift.message}</textarea>
+              </div>
+            {/if}
           </div>
         </div>
-        <button type="submit" class="continue btn btn-primary" name="confirmDeliveryOption" value="1">
-          {l s='Continue' d='Shop.Theme.Actions'}
-        </button>
+
+        <div class="shipping__actions d-flex flex-wrap justify-content-between">
+          <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
+            <div class="material-icons rtl-flip">arrow_backward</div>
+            {l s='Back to Addresses' d='Shop.Theme.Actions'}
+          </button>
+
+          <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto" name="confirmDeliveryOption" value="1">
+            {l s='Continue to Payment' d='Shop.Theme.Actions'}
+            <div class="material-icons rtl-flip">arrow_forward</div>
+          </button>
+        </div>
       </form>
     {else}
       <p class="alert alert-danger">{l s='Unfortunately, there are no carriers available for your delivery address.' d='Shop.Theme.Checkout'}</p>

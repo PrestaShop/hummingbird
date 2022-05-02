@@ -4,7 +4,7 @@ $component-name: header;
   & &__top {
     border-bottom: 1px solid $gray-200;
 
-    a {
+    a:not(.dropdown-item) {
       color: $body-color;
 
       &:hover {
@@ -57,7 +57,7 @@ $component-name: header;
           }
 
           .dropdown-menu {
-            top: calc(100% + 1px);
+            top: 100%;
             right: 0;
             left: 0;
             display: flex;

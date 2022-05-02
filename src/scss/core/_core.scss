@@ -1,5 +1,6 @@
 // Components
 @import "./components/buttons";
+@import "./components/inputs";
 @import "./components/slider";
 @import "./components/breadcrumb";
 @import "./components/product/product-miniature";
@@ -11,6 +12,9 @@
 @import "./components/search";
 @import "./components/page-loader";
 @import "./components/toast";
+@import "./components/alert";
+@import "./components/checkout-steps";
+@import "./components/progress-ring";
 
 // Modules
 @import "./modules/banner";
@@ -28,3 +32,4 @@
 // Pages
 @import "./pages/home";
 @import "./pages/product/product";
+@import "./pages/page-not-found";

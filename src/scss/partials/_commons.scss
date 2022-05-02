@@ -10,7 +10,6 @@ html {
 
 body {
   font-family: $font-family-base;
-  line-height: 1.25em;
   color: $body-color;
   direction: ltr;
   -webkit-font-smoothing: antialiased;
@@ -28,12 +27,11 @@ p {
   color: $gray-800;
 }
 
-a {
+a:not(.alert-link) {
   text-decoration: none;
   transition: 0.25s ease-out;
 
   .material-icons {
-    color: $default-icon-color;
     transition: 0.25s ease-out;
   }
 }
@@ -52,6 +50,11 @@ label .color,
   border: 1px solid $input-border-color;
   border-radius: 4px;
   transition: 0.25s ease-out;
+
+  &.color-sm {
+    width: 1rem;
+    height: 1rem;
+  }
 
   &.active,
   &:hover {

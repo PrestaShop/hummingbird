@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='cart_detailed_product'}
-  <div class="cart_overview js-cart"
+  <div class="cart-overview js-cart"
     data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}">
     <hr />
     {if $cart.products}
@@ -40,7 +40,7 @@
         {/foreach}
       </ul>
     {else}
-      <span class="no-items">{l s='There are no more items in your cart' d='Shop.Theme.Checkout'}</span>
+      <p class="mb-3">{l s='There are no more items in your cart' d='Shop.Theme.Checkout'}</p>
     {/if}
   </div>
 {/block}

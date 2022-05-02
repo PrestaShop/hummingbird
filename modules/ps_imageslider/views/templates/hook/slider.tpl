@@ -29,7 +29,7 @@
             <div class="carousel-indicators">
                 {assign var="count" value=0}
                 {foreach from=$homeslider.slides item=slide name='homeslider'}
-                    <button type="button" data-bs-target="#homeSlider" data-bs-slide-to="{$count}" aria-label="{$slide.title}"
+                    <button type="button" data-bs-target="#home-slider .carousel" data-bs-slide-to="{$count}" aria-label="{$slide.title}"
                         {if $smarty.foreach.homeslider.first} class="active" aria-current="true" {/if}></button>
                     {$count = $count + 1}
                 {/foreach}
@@ -38,7 +38,7 @@
                 {foreach from=$homeslider.slides item=slide name='homeslider'}
                     <li class="carousel-item{if $smarty.foreach.homeslider.first} active{/if}" role="option"
                         aria-hidden="{if $smarty.foreach.homeslider.first}false{else}true{/if}">
-                        <a class="carousel-link" href="{$slide.url}">
+                        {if !empty($slide.url)}<a class="carousel-link" href="{$slide.url}">{/if}
                             <figure class="carousel-content">
                                 <img src="{$slide.image_url}" alt="{$slide.legend|escape}" loading="lazy">
                                 {if $slide.title || $slide.description}
@@ -48,16 +48,16 @@
                                     </figcaption>
                                 {/if}
                             </figure>
-                        </a>
+                        {if !empty($slide.url)}</a>{/if}
                     </li>
                 {/foreach}
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#homeSlider .carousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#homeSlider .carousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>

@@ -19,6 +19,14 @@ $component-name: breadcrumb;
     @include media-breakpoint-down(md) {
       margin-bottom: 1rem;
     }
+
+    @at-root .page-order & {
+      margin-bottom: 0;
+
+      @include media-breakpoint-down(md) {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 

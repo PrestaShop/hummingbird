@@ -25,6 +25,7 @@
 
 const {prestashop} = window;
 
+// @TODO(NeOMakinG): Refactor this file, it comes from facetedsearch or classic
 export const parseSearchUrl = function (event: {target: HTMLElement}) {
   if (event.target.dataset.searchUrl !== undefined) {
     return event.target.dataset.searchUrl;
@@ -89,9 +90,7 @@ export default () => {
     event.preventDefault();
     prestashop.emit(
       'updateFacets',
-      $(event.target)
-        .closest('a')
-        .get(0).getAttribute('href'),
+      $(event.target)?.closest('a')?.get(0)?.getAttribute('href'),
     );
   });
 

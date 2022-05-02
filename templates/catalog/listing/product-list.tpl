@@ -52,9 +52,7 @@
         </div>
 
         {block name='product_list_active_filters'}
-          <div id="" class="d-none d-sm-block d-md-block">
-            {$listing.rendered_active_filters nofilter}
-          </div>
+          {$listing.rendered_active_filters nofilter}
         {/block}
 
         <div>
@@ -79,7 +77,7 @@
           {/capture}
 
           {include file='errors/not-found.tpl' errorContent=$errorContent}
-        <rdiv>
+        <div>
 
         <div id="js-product-list-bottom"></div>
       {/if}

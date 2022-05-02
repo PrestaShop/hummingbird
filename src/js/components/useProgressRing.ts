@@ -22,24 +22,41 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
+import selectorsMap from '@constants/selectors-map';
 
-export default function initQuantityInput(selector: string) {
-  $(document).ready(() => {
-    $(selector).inputSpinner({
-      decrementButton: '<i class="material-icons">expand_more</i>',
-      incrementButton: '<i class="material-icons">expand_less</i>',
-      buttonsClass: '',
-      buttonsWidth: '1.25rem',
-      /* eslint-disable */
-      template: 
-          '<div class="input-group ${groupClass}">' +
-            '<input type="text" inputmode="decimal" style="text-align: ${textAlign}" class="form-control form-control-text-input"/>' +
-            '<div class="qty-right">' +
-              '<button style="min-width: ${buttonsWidth}" class="btn btn-increment ${buttonsClass} btn-plus" type="button">${incrementButton}</button>' +
-              '<button style="min-width: ${buttonsWidth}" class="btn btn-decrement ${buttonsClass} btn-minus" type="button">${decrementButton}</button>' +
-            '</div>' +
-          '</div>'
-      /* eslint-enable */
-    });
-  });
+const {progressRing: ProgressRingMap} = selectorsMap;
+
+const PROGRESS_ERROR = 'The circle is not linked to an SVG circle';
+
+export interface ProgressRingReturn {
+  setProgress?: (perfect: number) => void
+  error?: Error
 }
+
+// Not testable because it manipulates SVG elements, unsupported by JSDom
+const useProgressRing = (element: HTMLElement | null): ProgressRingReturn => {
+  if (element) {
+    const circle = element.querySelector<SVGCircleElement>(ProgressRingMap.checkout.circle);
+
+    if (circle) {
+      const radius = circle.r.baseVal.value;
+      const circumference = radius * 2 * Math.PI;
+
+      // This function makes the progress editable after initialization
+      const setProgress = (percent: number) => {
+        const offset = circumference - (percent / 100) * circumference;
+        circle.style.strokeDashoffset = offset.toString();
+      };
+
+      return {
+        setProgress,
+      };
+    }
+  }
+
+  return {
+    error: new Error(PROGRESS_ERROR),
+  };
+};
+
+export default useProgressRing;

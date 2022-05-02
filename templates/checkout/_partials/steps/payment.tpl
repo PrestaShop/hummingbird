@@ -8,57 +8,55 @@
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
 
   {if !empty($display_transaction_updated_info)}
-  <p class="cart-payment-step-refreshed-info">
-    {l s='Transaction amount has been correctly updated' d='Shop.Theme.Checkout'}
-  </p>
+    <p class="payment__updated">
+      {l s='Transaction amount has been correctly updated' d='Shop.Theme.Checkout'}
+    </p>
   {/if}
 
   {if $is_free}
     <p>{l s='No payment needed for this order' d='Shop.Theme.Checkout'}</p>
   {/if}
-  <div class="payment-options {if $is_free}d-block d-sm-none{/if}">
+
+  <div class="payment__list{if $is_free} d-block d-sm-none{/if}">
     {foreach from=$payment_options item="module_options"}
       {foreach from=$module_options item="option"}
-        <div>
-          <div id="{$option.id}-container" class="payment-option">
-            {* This is the way an option should be selected when Javascript is enabled *}
-            <span class="custom-radio">
-              <input
-                class="ps-shown-by-js {if $option.binary} binary {/if}"
-                id="{$option.id}"
-                data-module-name="{$option.module_name}"
-                name="payment-option"
-                type="radio"
-                required
-                {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
-             >
-              <span></span>
-            </span>
-            {* This is the way an option should be selected when Javascript is disabled *}
-            <form method="GET" class="ps-hidden-by-js">
-              {if $option.id === $selected_payment_option}
-                {l s='Selected' d='Shop.Theme.Checkout'}
-              {else}
-                <button class="ps-hidden-by-js" type="submit" name="select_payment_option" value="{$option.id}">
-                  {l s='Choose' d='Shop.Theme.Actions'}
-                </button>
-              {/if}
-            </form>
+        <div id="{$option.id}-container" class="payment__option">
+          {* This is the way an option should be selected when Javascript is enabled *}
+          <label class="form-check-label mb-2">
+            <input
+              class="form-check-input ps-shown-by-js me-1{if $option.binary} binary{/if}"
+              type="radio"
+              name="payment-option"
+              data-module-name="{$option.module_name}"
+              id="{$option.id}"
+              {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
+            />
 
-            <label for="{$option.id}">
-              <span>{$option.call_to_action_text}</span>
-              {if $option.logo}
-                <img src="{$option.logo}" loading="lazy">
-              {/if}
-            </label>
+            <i class="form-check-round"></i>
 
-          </div>
+            {if $option.logo}
+              <img src="{$option.logo}" loading="lazy">
+            {/if}
+
+            {$option.call_to_action_text}
+          </label>
+
+          {* This is the way an option should be selected when Javascript is disabled *}
+          <form method="GET" class="ps-hidden-by-js">
+            {if $option.id === $selected_payment_option}
+              {l s='Selected' d='Shop.Theme.Checkout'}
+            {else}
+              <button class="ps-hidden-by-js" type="submit" name="select_payment_option" value="{$option.id}">
+                {l s='Choose' d='Shop.Theme.Actions'}
+              </button>
+            {/if}
+          </form>
         </div>
 
         {if $option.additionalInformation}
           <div
             id="{$option.id}-additional-information"
-            class="js-additional-information definition-list additional-information{if $option.id != $selected_payment_option} ps-hidden {/if}"
+            class="js-additional-information payment__definitions ps-sm-4 mt-2 additional-information{if $option.id != $selected_payment_option} ps-hidden{/if}"
          >
             {$option.additionalInformation nofilter}
           </div>
@@ -66,7 +64,7 @@
 
         <div
           id="pay-with-{$option.id}-form"
-          class="js-payment-option-form {if $option.id != $selected_payment_option} ps-hidden {/if}"
+          class="js-payment-option-form{if $option.id != $selected_payment_option} ps-hidden{/if}"
        >
           {if $option.form}
             {$option.form nofilter}
@@ -95,9 +93,8 @@
     </p>
 
     <form id="conditions-to-approve" class="js-conditions-to-approve" method="GET">
-
         {foreach from=$conditions_to_approve item="condition" key="condition_name"}
-          <div class="mb-3 form-check">
+          <div class="my-3 form-check">
             <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
               {$condition nofilter}
             </label>
@@ -110,7 +107,6 @@
             >
           </div>
         {/foreach}
-
     </form>
   {/if}
 
@@ -118,32 +114,42 @@
     {include file='checkout/_partials/order-final-summary.tpl'}
   {/if}
 
-  <div id="payment-confirmation" class="js-payment-confirmation">
-    <div class="ps-shown-by-js">
-      <button type="submit" class="btn btn-success center-block{if !$selected_payment_option} disabled{/if}">
-        {l s='Place order' d='Shop.Theme.Checkout'}
-      </button>
-      {if $show_final_summary}
-        <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
-          {l
-            s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
-            sprintf=[
-              '[1]' => '<a href="#checkout-payment-step">',
-              '[/1]' => '</a>',
-              '[2]' => '<a href="#conditions-to-approve">',
-              '[/2]' => '</a>'
-            ]
-            d='Shop.Theme.Checkout'
-          }
-        </article>
-      {/if}
-    </div>
-    <div class="ps-hidden-by-js">
-      {if $selected_payment_option and $all_conditions_approved}
-        <label for="pay-with-{$selected_payment_option}">{l s='Order with an obligation to pay' d='Shop.Theme.Checkout'}</label>
-      {/if}
+  {if $show_final_summary}
+    <article class="alert alert-danger mb-4 js-alert-payment-conditions" role="alert" data-alert="danger">
+      {l
+        s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
+        sprintf=[
+          '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
+          '[/1]' => '</a>',
+          '[2]' => '<a href="#conditions-to-approve" class="alert-link">',
+          '[/2]' => '</a>'
+        ]
+        d='Shop.Theme.Checkout'
+      }
+    </article>
+  {/if}
+
+  <div class="payment__actions d-block d-md-flex d-flex flex-wrap justify-content-between">
+    <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-delivery-step">
+      <div class="material-icons rtl-flip">arrow_backward</div>
+      {l s='Back to Shipping method' d='Shop.Theme.Actions'}
+    </button>
+
+    <div id="payment-confirmation" class="js-payment-confirmation">
+      <div class="ps-shown-by-js">
+        <div class="payment__actions">
+          <button type="submit" class="btn btn-primary btn-with-icon center-block d-block d-md-inline-block w-full w-md-auto{if !$selected_payment_option} disabled{/if}">
+            {l s='Place order' d='Shop.Theme.Checkout'}
+            <div class="material-icons rtl-flip">arrow_forward</div>
+          </button>
+        </div>
+      </div>
+      <div class="ps-hidden-by-js">
+        {if $selected_payment_option and $all_conditions_approved}
+          <label for="pay-with-{$selected_payment_option}">{l s='Order with an obligation to pay' d='Shop.Theme.Checkout'}</label>
+        {/if}
+      </div>
     </div>
   </div>
-
   {hook h='displayPaymentByBinaries'}
 {/block}

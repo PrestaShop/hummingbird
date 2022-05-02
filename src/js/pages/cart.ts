@@ -24,10 +24,7 @@
  */
 
 import {Collapse} from 'bootstrap';
-
-function isHTMLElement(element: EventTarget | null): element is HTMLElement {
-  return (element as HTMLElement).innerText !== undefined;
-}
+import {isHTMLElement} from '@helpers/typeguards';
 
 export default () => {
   const {prestashop} = window;

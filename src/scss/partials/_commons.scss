@@ -52,6 +52,11 @@ label .color,
   border-radius: 4px;
   transition: 0.25s ease-out;
 
+  &.color-sm {
+    width: 1rem;
+    height: 1rem;
+  }
+
   &.active,
   &:hover {
     border: 2px solid $primary;

@@ -23,16 +23,16 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<span class="col-sm-3 d-none d-sm-block d-md-block sort-by">{l s='Sort by:' d='Shop.Theme.Global'}</span>
-<div class="{if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12{/if} col-md-9 products-sort-order dropdown">
+<p class="d-none d-md-block sort-by m-0 me-3"><i class="material-icons">sort</i><span class="align-middle">{l s='Sort by:' d='Shop.Theme.Global'}</span></p>
+<div class="products-sort-order flex-grow-1 flex-grow-md-0 dropdown me-2 me-md-0">
   <button
-    class="btn-unstyle select-title"
+    class="btn py-2 pe-3 select-title"
     rel="nofollow"
     data-bs-toggle="dropdown"
     aria-haspopup="true"
     aria-expanded="false">
     {if $listing.sort_selected}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if}
-    <i class="material-icons">&#xE5C5;</i>
+    <i class="material-icons ms-2">expand_more</i>
   </button>
   <div class="dropdown-menu dropdown-menu-start">
     {foreach from=$listing.sort_orders item=sort_order}

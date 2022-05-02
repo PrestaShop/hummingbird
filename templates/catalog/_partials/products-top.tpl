@@ -24,7 +24,7 @@
  *}
 <div id="js-product-list-top" class="products-selection">
   <div class="products-selections-filters row">
-    <div class="col-md-6 d-none d-sm-block d-md-block total-products">
+    <div class="col-12 col-md-6 total-products order-2 order-md-1 mt-4 mt-md-0">
       {if $listing.pagination.total_items> 1}
         <p>{l s='There are %product_count% products.' d='Shop.Theme.Catalog' sprintf=['%product_count%' => $listing.pagination.total_items]}</p>
       {elseif $listing.pagination.total_items> 0}
@@ -32,28 +32,21 @@
       {/if}
     </div>
 
-    <div class="col-md-6">
-      <div class="row sort-by-row">
+    <div class="col-md-6 order-1 order-md-2">
+      <div class="d-flex align-items-center justify-content-md-end sort-by-row">
         {block name='sort_by'}
           {include file='catalog/_partials/sort-orders.tpl' sort_orders=$listing.sort_orders}
         {/block}
 
         {if !empty($listing.rendered_facets)}
-          <div class="col-sm-3 col-xs-4 d-none d-sm-block d-md-none filter-button">
-            <button id="search_filter_toggler" class="btn btn-secondary js-search-toggler">
+          <div class="col-4 d-block d-md-none filter-button">
+            <button id="search_filter_toggler" class="btn btn-outline-primary w-full js-search-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-faceted">
+            <div class="material-icons">filter_list</div>
               {l s='Filter' d='Shop.Theme.Actions'}
             </button>
           </div>
         {/if}
       </div>
     </div>
-  </div>
-
-  <div class="col-sm-12 d-none d-sm-block d-md-none text-sm-center showing">
-    {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=[
-    '%from%' => $listing.pagination.items_shown_from ,
-    '%to%' => $listing.pagination.items_shown_to,
-    '%total%' => $listing.pagination.total_items
-    ]}
   </div>
 </div>

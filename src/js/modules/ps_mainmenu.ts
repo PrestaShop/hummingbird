@@ -24,7 +24,8 @@
  */
 import {Dropdown} from 'bootstrap';
 
-const depth3PlusDropdownToggle = Array.from(document.querySelectorAll('.dropdown .dropdown-toggle[data-depth]'))
+const dropdownTogglesDepthSelector = document.querySelectorAll('.dropdown .dropdown-toggle[data-depth]');
+const thirdDepthMenuToggles = Array.from(dropdownTogglesDepthSelector)
   .filter((el:HTMLElement) => {
     const {depth} = el.dataset;
 
@@ -37,8 +38,7 @@ const depth3PlusDropdownToggle = Array.from(document.querySelectorAll('.dropdown
     }
     return false;
   });
-  
-depth3PlusDropdownToggle.forEach((el) => {
+thirdDepthMenuToggles.forEach((el) => {
   const dropdown = new Dropdown(el);
   el.parentElement?.addEventListener('mouseover', () => {
     dropdown.show();

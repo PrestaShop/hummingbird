@@ -1,11 +1,14 @@
 $component-name: header;
 
 .#{$component-name} {
+  --header-top-border-bottom: #{$header-top-border-bottom};
+  --header-bottom-border-bottom: #{$header-bottom-border-bottom};
+
   & &__top {
-    border-bottom: 1px solid $gray-200;
+    border-bottom: var(--header-top-border-bottom);
 
     a:not(.dropdown-item) {
-      color: $body-color;
+      color: var(--header-top-color);
 
       &:hover {
         &,
@@ -26,7 +29,7 @@ $component-name: header;
     padding: 0;
 
     @include media-breakpoint-up(md) {
-      border-bottom: 1px solid $gray-200;
+      border-bottom: var(--header-bottom-border-bottom);
     }
 
     .navbar-brand {

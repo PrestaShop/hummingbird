@@ -40,6 +40,7 @@ import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
 import './modules/facetedsearch';
+import './modules/ps_mainmenu';
 
 initEmitter();
 

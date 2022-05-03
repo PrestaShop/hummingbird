@@ -1,40 +1,30 @@
-{assign var=_counter value=0}
 {function name="menu" nodes=[] depth=0 parent=null}
   {if $nodes|count}
-    <ul class="{if $depth == 0}main-menu__tree{else} ms-2{/if}" {if $depth == 0}id="top-menu" {/if} data-depth="{$depth}">
+    <ul class="{if $depth == 0}main-menu__tree{/if}{if $depth == 1} row g-3{/if}{if $depth > 1} submenu{/if}"
+      {if $depth == 0}id="top-menu" {/if} data-depth="{$depth}">
       {foreach from=$nodes item=node}
-        <li class="{$node.type}{if $node.current} current {/if}{if $depth == 0} main-menu__tree__item{/if}"
+        <li
+          class="{$node.type}{if $node.current} current {/if}{if $depth == 0} main-menu__tree__item{/if}{if $depth == 1} col-4{/if}"
           id="{$node.page_identifier}">
-          {assign var=_counter value=$_counter+1}
-          {if $depth > 0} <div class="d-flex"> {/if}
-            <a class="{if $depth>= 0}main-menu__tree__link dropdown-item {/if}{if $node.children|count} dropdown-toggle{/if}"
+          {if $depth > 1 && $node.children|count} <div class="dropdown dropend"> {/if}
+            <a class="{if $depth>= 0}main-menu__tree__link {/if}{if $node.children|count} dropdown-toggle{/if}{if $depth == 1} fw-bold{/if}{if $depth > 2} dropdown-item{/if}"
               href="{$node.url}" data-depth="{$depth}" {if $node.open_in_new_window} target="_blank" {/if}>
               {$node.label}
             </a>
             {if $node.children|count}
-              {* Cannot use page identifier as we can have the same page several times *}
-              {assign var=_expand_id value=10|mt_rand:100000}
-              <span class="float-end d-none {if $depth != 0}d-sm-block{/if} flex-shrink-0">
-                <span data-bs-target="#top_sub_menu_{$_expand_id}" data-bs-toggle="collapse"
-                  class="navbar-toggler collapse-icons">
-                  <i class="material-icons add">&#xE313;</i>
-                  <i class="material-icons remove">&#xE316;</i>
-                </span>
-              </span>
-            {/if}
-            {if $depth > 0}
-          </div> {/if}
-          {if $node.children|count}
-            <div class="{if $depth === 0} menu-container js-sub-menu{else} collapse show{/if}" id="top_sub_menu_{$_expand_id}">
-              {if $depth === 0}
-                <div class="container">
-                {/if}
-                {menu nodes=$node.children depth=$node.depth parent=$node}
+              <div
+                class="{if $depth === 0}menu-container js-sub-menu{/if}{if $depth > 1 && $node.children|count}dropdown-menu{/if}">
                 {if $depth === 0}
-                </div>
-              {/if}
-            </div>
-          {/if}
+                  <div class="container">
+                  {/if}
+                  {menu nodes=$node.children depth=$node.depth parent=$node}
+                  {if $depth === 0}
+                  </div>
+                {/if}
+              </div>
+            {/if}
+            {if $depth > 1 && $node.children|count}
+          </div> {/if}
         </li>
       {/foreach}
     </ul>
@@ -54,7 +44,6 @@
       {foreach from=$nodes item=node}
         <li class="{$node.type}{if $node.current} current {/if}{if $node.children|count} menu--childrens{/if}"
           id="{$node.page_identifier}">
-          {assign var=_counter value=$_counter+1}
           <a class="{if $depth>= 0}menu__link{/if}" href="{$node.url}" data-depth="{$depth}" {if $node.open_in_new_window}
           target="_blank" {/if}>
           {$node.label}

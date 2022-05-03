@@ -43,52 +43,5 @@ $component-name: header;
         color: $white;
       }
     }
-
-    .main-menu--desktop {
-      .dropdown {
-        position: inherit;
-      }
-
-      .main-menu__tree {
-        > li {
-          > a {
-            padding: 1.5rem 1rem;
-            transition: 0.25s ease-out;
-          }
-
-          .menu-container {
-            top: 100%;
-            right: 0;
-            left: 0;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            pointer-events: none;
-            border: none;
-            border-radius: 0;
-            box-shadow: 0.25rem 0.75rem 1rem -1rem rgba($black, 0.3);
-            opacity: 0;
-            transition: 0.25s ease-out;
-            position: absolute;
-            z-index: 1000;
-            min-width: 10rem;
-            padding: 0.5rem 0;
-            margin: 0;
-            font-size: 1rem;
-            color: $gray-800;
-            text-align: left;
-            list-style: none;
-            background-color: #fff;
-          }
-
-          &:hover {
-            .menu-container {
-              pointer-events: all;
-              opacity: 1;
-            }
-          }
-        }
-      }
-    }
   }
 }

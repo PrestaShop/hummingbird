@@ -35,11 +35,11 @@ export interface ProgressRingReturn {
   error?: Error,
 }
 
-export const ProgressRingText = {
-  enum: 'enum',
-  percent: 'percent',
-  hidden: 'hidden',
-} as const;
+export enum ProgressRingText {
+  enum = 'enum',
+  percent = 'percent',
+  hidden = 'hidden'
+}
 
 export interface ProgressRingOptions {
   steps: number;

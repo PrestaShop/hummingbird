@@ -19,7 +19,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   extends: ['prestashop', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:jest/recommended'],
-  plugins: ['import',  '@typescript-eslint', 'jest'],
+  plugins: ['import', '@typescript-eslint', 'jest'],
   rules: {
     'class-methods-use-this': 0,
     'func-names': 0,
@@ -29,12 +29,12 @@ module.exports = {
         devDependencies: ['tests/**/*.js', '.webpack/**/*.js'],
       },
     ],
-    'max-len': ['error', { code: 120 }],
+    'max-len': ['error', {code: 120}],
     'no-alert': 0,
     'no-bitwise': 0,
     'no-new': 0,
     'max-classes-per-file': 0,
-    'no-param-reassign': ['error', { props: false }],
+    'no-param-reassign': ['error', {props: false}],
     'no-restricted-globals': [
       'error',
       {
@@ -42,13 +42,15 @@ module.exports = {
         message: 'Use window variable instead.',
       },
     ],
-    'prefer-destructuring': ['error', { object: true, array: false }],
+    'prefer-destructuring': ['error', {object: true, array: false}],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
   },
   settings: {
     'import/resolver': 'webpack',
   },
   env: {
-    'jest/globals': true
+    'jest/globals': true,
   },
   overrides: [
     {

@@ -24,17 +24,19 @@
  */
 import {Dropdown} from 'bootstrap';
 
-const depth3PlusDropdownToggle = Array.from(document.querySelectorAll('.dropdown .dropdown-toggle[data-depth]')).filter((el:HTMLElement) => {
-  const {depth} = el.dataset;
+const depth3PlusDropdownToggle = Array.from(document.querySelectorAll('.dropdown .dropdown-toggle[data-depth]'))
+  .filter((el:HTMLElement) => {
+    const {depth} = el.dataset;
 
-  if (depth) {
-    const depth2 = parseInt(depth);
+    if (depth) {
+      const depth2 = parseInt(depth, 10);
 
-    if (depth2 >= 2) {
-      return true;
+      if (depth2 >= 2) {
+        return true;
+      }
     }
-  }
-});
+    return false;
+  });
 depth3PlusDropdownToggle.forEach((el) => {
   const dropdown = new Dropdown(el);
   el.parentElement?.addEventListener('mouseover', () => {

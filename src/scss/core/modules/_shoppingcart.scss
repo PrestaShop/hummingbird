@@ -7,6 +7,8 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+    padding: $btn-padding-y $btn-padding-x;
+    border-radius: $btn-border-radius;
 
     @include media-breakpoint-up(md) {
       i {
@@ -14,6 +16,17 @@
       }
     }
 
+  }
+
+  &.active {
+    padding: 0;
+
+    a {
+      &:focus {
+        outline: 0;
+        box-shadow: $btn-focus-box-shadow;
+      }
+    }
   }
 
   i {

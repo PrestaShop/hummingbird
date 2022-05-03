@@ -26,11 +26,10 @@
 import selectorsMap from '@constants/selectors-map';
 
 const {progressRing: ProgressRingMap} = selectorsMap;
-
 const PROGRESS_ERROR = 'The circle is not linked to an SVG circle';
 
 export interface ProgressRingReturn {
-  setProgress?: (perfect: number) => void,
+  setProgress?: (step: number) => void,
   progressElement?: HTMLElement,
   error?: Error,
 }

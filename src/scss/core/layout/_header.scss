@@ -13,7 +13,7 @@ $component-name: header;
   max-width: 100vw;
   background-color: var(--header-bg);
 
-  a {
+  a:not(.dropdown-item) {
     color: var(--header-color);
   }
 
@@ -38,6 +38,7 @@ $component-name: header;
 
     .form-select {
       padding-right: 1.5rem;
+      background-color: var(--header-top-bg);
       background-position: right 0 center;
       border: none;
 

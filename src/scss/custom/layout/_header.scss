@@ -8,7 +8,7 @@ $component-name: header;
     border-bottom: var(--header-top-border-bottom);
 
     a:not(.dropdown-item) {
-      color: $body-color;
+      color: var(--header-top-color);
 
       &:hover {
         &,

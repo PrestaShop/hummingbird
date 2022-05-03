@@ -7,7 +7,7 @@
           class="{$node.type}{if $node.current} current {/if}{if $depth == 0} main-menu__tree__item{/if}{if $depth == 1} col-4{/if}"
           id="{$node.page_identifier}">
           {if $depth > 1 && $node.children|count} <div class="dropdown dropend"> {/if}
-            <a class="{if $depth>= 0}main-menu__tree__link {/if}{if $node.children|count} dropdown-toggle{/if}{if $depth == 1} fw-bold{/if}{if $depth > 2} dropdown-item{/if}"
+            <a class="{if $depth >= 0}main-menu__tree__link {/if}{if $node.children|count} dropdown-toggle{/if}{if $depth == 1} fw-bold{/if}{if $depth > 2} dropdown-item{/if}"
               href="{$node.url}" data-depth="{$depth}" {if $node.open_in_new_window} target="_blank" {/if}>
               {$node.label}
             </a>

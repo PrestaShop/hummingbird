@@ -22,26 +22,14 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-import { Dropdown } from 'bootstrap';
+import {Dropdown} from 'bootstrap';
+
 const initDropdownToggleMenu = () => {
-  const { prestashop } = window;
-  const { dropdownToggles: dropdownTogglesMap } = prestashop.themeSelectors;
-
+  const {prestashop} = window;
+  const {dropdownToggles: dropdownTogglesMap} = prestashop.themeSelectors;
   const dropdownToggles = document.querySelectorAll(dropdownTogglesMap.dropdownToggles);
-  const thirdDepthMenuToggles = Array.from(dropdownToggles)
-    .filter((el: HTMLElement) => {
-      const { depth } = el.dataset;
 
-      if (depth) {
-        const depth2 = parseInt(depth, 10);
-
-        if (depth2 >= 2) {
-          return true;
-        }
-      }
-      return false;
-    });
-  thirdDepthMenuToggles.forEach((el) => {
+  dropdownToggles.forEach((el) => {
     const dropdown = new Dropdown(el);
     el.parentElement?.addEventListener('mouseover', () => {
       dropdown.show();

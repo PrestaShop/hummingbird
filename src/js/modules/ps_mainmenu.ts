@@ -30,7 +30,9 @@ const initDropdownToggleMenu = () => {
   const dropdownToggles = document.querySelectorAll(dropdownTogglesMap.dropdownToggles);
 
   dropdownToggles.forEach((el) => {
-    const dropdown = new Dropdown(el);
+    const dropdown = new Dropdown(el, {
+      popperConfig: () => ({placement: 'auto-end'}),
+    });
     el.parentElement?.addEventListener('mouseover', () => {
       dropdown.show();
     });

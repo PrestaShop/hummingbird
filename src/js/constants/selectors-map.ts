@@ -94,6 +94,7 @@ export const progressRing = {
     circle: '.progress-ring__circle',
     backgroundCircle: '.progress-ring__background-circle',
   },
+  text: '.progress-ring text',
 };
 
 export const mobileMenu = {

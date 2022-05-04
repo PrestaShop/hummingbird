@@ -4,7 +4,7 @@
       {if $depth == 0}id="top-menu" {/if} data-depth="{$depth}">
       {foreach from=$nodes item=node}
         <li
-          class="{$node.type}{if $node.current} current {/if}{if $depth == 0} main-menu__tree__item{/if}{if $depth == 1} col-4{/if}"
+          class="{$node.type}{if $node.current} current {/if}{if $depth == 0} main-menu__tree__item{/if}{if $depth == 1} col-3{/if}"
           id="{$node.page_identifier}">
           {if $depth > 1 && $node.children|count} <div class="dropdown dropend"> {/if}
             <a class="{if $depth >= 0}main-menu__tree__link {/if}{if $node.children|count} dropdown-toggle{/if}{if $depth == 1} fw-bold{/if}{if $depth > 2} dropdown-item{/if}"

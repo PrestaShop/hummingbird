@@ -62,7 +62,7 @@ describe('useProgressRing', () => {
     it('should be in percent style when is selected', async () => {
       const complete = 15;
       const current = 7;
-      const percentage = Math.floor((current / complete) * 100);
+      const percentage = (current / complete) * 100;
       const {setProgress} = useProgressRing(
         ProgressRingMap.checkout.element,
         {steps: complete, text: ProgressRingText.percent},

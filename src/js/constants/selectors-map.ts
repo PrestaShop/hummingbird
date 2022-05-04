@@ -111,7 +111,7 @@ export const visiblePassword = {
 };
 
 export const dropdownToggles = {
-  dropdownToggles: '.main-menu--desktop .dropdown .dropdown-toggle[data-depth]',
+  dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
 };
 
 const selectorsMap = {

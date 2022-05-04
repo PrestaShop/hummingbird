@@ -30,72 +30,91 @@ import * as ProgressRing from '@constants/mocks/useProgressRing-data';
 import useProgressRing, {ProgressRingText} from '@js/components/useProgressRing';
 
 describe('useProgressRing', () => {
-  describe('with text template', () => {
+  describe('with valid template', () => {
     beforeAll(() => {
       resetHTMLBodyContent(ProgressRing.Template);
       window.prestashop = {};
       initEmitter();
     });
 
-    it('should display a progress ring on third step', async () => {
-      useProgressRing(ProgressRingMap.checkout.element, {steps: 4});
+    it('should display an empty text when setProgress not used', async () => {
+      const complete = 4;
+      useProgressRing(ProgressRingMap.checkout.element, {steps: complete});
       const text = document.querySelector(ProgressRingMap.text);
 
-      expect(text?.innerHTML).toBe('3 / 4');
+      expect(text?.innerHTML).toBe('');
     });
 
-    it('should be on step 4 after setProgress', async () => {
-      const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: 4});
-      expect(setProgress).toBeDefined();
+    it('should be on specefic step after setProgress', async () => {
+      const complete = 4;
+      const current = 3;
+      const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: complete});
 
-      if (!setProgress) return;
+      if (setProgress) {
+        setProgress(current);
+      }
 
-      setProgress(4);
       const text = document.querySelector(ProgressRingMap.text);
 
-      expect(text?.innerHTML).toBe('4 / 4');
+      expect(text?.innerHTML).toBe(`${current} / ${complete}`);
     });
 
-    it('should be on step 86 after setProgress', async () => {
-      const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: 100});
-      expect(setProgress).toBeDefined();
+    it('should be in percent style when is selected', async () => {
+      const complete = 15;
+      const current = 7;
+      const percentage = Math.floor((current / complete) * 100);
+      const {setProgress} = useProgressRing(
+        ProgressRingMap.checkout.element,
+        {steps: complete, text: ProgressRingText.percent},
+      );
 
-      if (!setProgress) return;
+      if (setProgress) {
+        setProgress(current);
+      }
 
-      setProgress(86);
       const text = document.querySelector(ProgressRingMap.text);
 
-      expect(text?.innerHTML).toBe('86 / 100');
+      expect(text?.innerHTML).toBe(`${percentage}%`);
     });
   });
 
-  describe('without text template', () => {
+  describe('without valid template', () => {
     beforeAll(() => {
-      resetHTMLBodyContent(ProgressRing.TemplateWithoutText);
       window.prestashop = {};
       initEmitter();
     });
 
-    it('should display a progress ring without any text', async () => {
-      useProgressRing(
-        ProgressRingMap.checkout.element,
-        {steps: 4},
-      );
+    it('should display a progress ring without any text when using setProgress', async () => {
+      resetHTMLBodyContent(ProgressRing.TemplateWithoutText);
+      const complete = 4;
+      const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: complete});
+
+      if (setProgress) {
+        setProgress(4);
+      }
+
       const text = document.querySelector(ProgressRingMap.text);
 
       expect(text?.innerHTML).toBeUndefined();
     });
 
-    it('should display a progress ring without any text when using setProgress', async () => {
-      const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: 4});
+    it('should return undefiend setProgress when the circle is not in the tempalte', async () => {
+      resetHTMLBodyContent(ProgressRing.TemplateWithoutCircle);
+      const complete = 4;
+      const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: complete});
 
-      if (!setProgress) return;
+      expect(setProgress).toBeUndefined();
+    });
+  });
 
-      setProgress(4);
+  describe('without template', () => {
+    it('should return an error message', async () => {
+      resetHTMLBodyContent('');
+      const complete = 4;
+      const {error} = useProgressRing(ProgressRingMap.checkout.element, {steps: complete});
 
-      const text = document.querySelector(ProgressRingMap.text);
-
-      expect(text?.innerHTML).toBeUndefined();
+      expect(error).toBeDefined();
     });
   });
 });
+

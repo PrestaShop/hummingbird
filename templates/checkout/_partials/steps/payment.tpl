@@ -135,10 +135,10 @@
       {l s='Back to Shipping method' d='Shop.Theme.Actions'}
     </button>
 
-    <div id="payment-confirmation" class="js-payment-confirmation">
+    <div id="payment-confirmation" class="w-full w-md-auto js-payment-confirmation">
       <div class="ps-shown-by-js">
         <div class="payment__actions">
-          <button type="submit" class="btn btn-primary btn-with-icon center-block d-block d-md-inline-block w-full w-md-auto{if !$selected_payment_option} disabled{/if}">
+          <button type="submit" class="btn btn-primary btn-with-icon w-full{if !$selected_payment_option} disabled{/if}">
             {l s='Place order' d='Shop.Theme.Checkout'}
             <div class="material-icons rtl-flip">arrow_forward</div>
           </button>

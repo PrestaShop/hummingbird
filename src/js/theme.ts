@@ -40,7 +40,7 @@ import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
 import './modules/facetedsearch';
-import './modules/ps_mainmenu';
+import initDropdownToggleMenu from './modules/ps_mainmenu';
 
 initEmitter();
 
@@ -60,6 +60,7 @@ $(() => {
   initCurrencySelector();
   initMobileMenu();
   initVisiblePassword();
+  initDropdownToggleMenu();
 
   prestashop.on('responsiveUpdate', () => {
     initSearchbar();

@@ -22,28 +22,34 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  */
-import {Dropdown} from 'bootstrap';
+import { Dropdown } from 'bootstrap';
+const initDropdownToggleMenu = () => {
+  const { prestashop } = window;
+  const { dropdownToggles: dropdownTogglesMap } = prestashop.themeSelectors;
 
-const dropdownTogglesDepthSelector = document.querySelectorAll('.dropdown .dropdown-toggle[data-depth]');
-const thirdDepthMenuToggles = Array.from(dropdownTogglesDepthSelector)
-  .filter((el:HTMLElement) => {
-    const {depth} = el.dataset;
+  const dropdownToggles = document.querySelectorAll(dropdownTogglesMap.dropdownToggles);
+  const thirdDepthMenuToggles = Array.from(dropdownToggles)
+    .filter((el: HTMLElement) => {
+      const { depth } = el.dataset;
 
-    if (depth) {
-      const depth2 = parseInt(depth, 10);
+      if (depth) {
+        const depth2 = parseInt(depth, 10);
 
-      if (depth2 >= 2) {
-        return true;
+        if (depth2 >= 2) {
+          return true;
+        }
       }
-    }
-    return false;
+      return false;
+    });
+  thirdDepthMenuToggles.forEach((el) => {
+    const dropdown = new Dropdown(el);
+    el.parentElement?.addEventListener('mouseover', () => {
+      dropdown.show();
+    });
+    el.parentElement?.addEventListener('mouseout', () => {
+      dropdown.hide();
+    });
   });
-thirdDepthMenuToggles.forEach((el) => {
-  const dropdown = new Dropdown(el);
-  el.parentElement?.addEventListener('mouseover', () => {
-    dropdown.show();
-  });
-  el.parentElement?.addEventListener('mouseout', () => {
-    dropdown.hide();
-  });
-});
+};
+
+export default initDropdownToggleMenu;

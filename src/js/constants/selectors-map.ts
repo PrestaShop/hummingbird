@@ -111,6 +111,10 @@ export const visiblePassword = {
   visiblePassword: '.js-visible-password',
 };
 
+export const dropdownToggles = {
+  dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
+};
+
 const selectorsMap = {
   qtyInput: {
     default: '.js-quantity-button',
@@ -158,6 +162,7 @@ const selectorsMap = {
   searchBar,
   mobileMenu,
   visiblePassword,
+  dropdownToggles,
 };
 
 export default selectorsMap;

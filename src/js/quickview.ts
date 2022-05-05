@@ -45,6 +45,7 @@ export default function initQuickviews() {
         productModal.on('hidden.bs.modal', () => {
           productModal.remove();
         });
+        prestashop.emit('quickviewOpened');
       })
       .fail((resp) => {
         prestashop.emit('handleError', {

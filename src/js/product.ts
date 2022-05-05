@@ -55,4 +55,8 @@ export default () => {
   prestashop.on('updatedProduct', () => {
     initProductSlide();
   });
+
+  prestashop.on('quickviewOpened', () => {
+    initProductSlide();
+  });
 };

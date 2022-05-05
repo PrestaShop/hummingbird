@@ -25,18 +25,18 @@
 <div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
    <div class="modal-content">
-     <div class="modal-header">
+     <div class="modal-header border-bottom-0">
        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
      </div>
      <div class="modal-body page-product">
       <div class="row">
-        <div class="col-sm-6 d-none d-sm-block">
+        <div class="col-sm-6">
           {block name='product_cover_thumbnails'}
             {include file='catalog/_partials/product-cover-thumbnails.tpl'}
           {/block}
         </div>
         <div class="col-sm-6">
-          <h1 class="h1">{$product.name}</h1>
+          <p class="h3">{$product.name}</p>
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}
           {/block}
@@ -66,8 +66,13 @@
       </div>
      </div>
      <div class="modal-footer">
-        <div class="product-additional-info js-product-additional-info">
-          {hook h='displayProductAdditionalInfo' product=$product}
+        <div class="product-additional-info row align-items-center js-product-additional-info">
+          <div class="col-6">
+            {hook h='displayProductAdditionalInfo' product=$product}
+          </div>
+          <div class="col-6 text-end">
+            <a href="{$product.url}" class="d-inline-flex align-items-center">{l s='All details' d='Shop.Theme.Catalog'} <div class="material-icons">chevron_right</div></a>
+          </div>
         </div>
     </div>
    </div>

@@ -26,8 +26,7 @@
   <div class="product__prices js-product-prices">
 
     {block name='product_price'}
-      <div class="prices__wrapper">
-
+      <div class="prices__wrapper d-flex align-items-center mb-1">
         <div class="product__current-price">
           {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='product_sheet'}{/capture}
           {if '' !== $smarty.capture.custom_price}

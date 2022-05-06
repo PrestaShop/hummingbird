@@ -1,13 +1,11 @@
 /* stylelint-disable */
 @import "~bourbon/core/bourbon";
 
-@import "partials/_variables"; // Here we import Bootstrap also
+@import "abstract";
+@import "vendors";
 
 @import "~bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css";
-@import "partials/_mixins";
-@import "partials/_fonts";
-@import "partials/_commons";
-@import "partials/_helpers";
+@import "partials";
 
 // Core
 @import "core/_core";

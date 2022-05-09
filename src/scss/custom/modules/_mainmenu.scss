@@ -21,7 +21,6 @@
         display: none;
         padding: 0.725rem 0;
         background-color: #fff;
-        @include box-shadow-light();
 
         &.focusing,
         &:focus-within {

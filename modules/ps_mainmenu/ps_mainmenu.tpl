@@ -27,7 +27,7 @@
           </a>
           {if $node.children|count}
             {if $depth !== 1}
-              <div class="{if $depth === 0}menu-container js-sub-menu{/if}{if $depth > 1 && $node.children|count}dropdown-menu{/if}">
+              <div class="{if $depth === 0}menu-container shadow-sm js-sub-menu{/if}{if $depth > 1 && $node.children|count}dropdown-menu{/if}">
             {/if}
               {if $depth === 0}
                 <div class="container">

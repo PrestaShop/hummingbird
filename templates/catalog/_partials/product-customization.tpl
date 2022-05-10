@@ -33,8 +33,8 @@
                       </div>
                       {if $field.is_customized}
                         <div class="ms-3">
-                          <img src="{$field.image.small.url}" class="img-fluid rounded" loading="lazy"><br>
-                          <small><a class="remove-image" href="{$field.remove_image_url}" rel="nofollow">{l s='Remove Image' d='Shop.Theme.Actions'}</a></small>
+                          <img src="{$field.image.small.url}" class="img-fluid rounded mb-1" loading="lazy">
+                          <small><a class="d-block remove-image" href="{$field.remove_image_url}" rel="nofollow">{l s='Remove Image' d='Shop.Theme.Actions'}</a></small>
                         </div>
                       {/if}
                     </div>

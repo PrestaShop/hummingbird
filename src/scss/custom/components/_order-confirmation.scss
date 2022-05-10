@@ -1,33 +1,7 @@
 $component-name: order-confirmation;
 
+
 .#{$component-name} {
-  &__title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-
-    i {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      margin-right: 1rem;
-      font-size: 1.5rem;
-      color: $white;
-      background-color: darken($success, 10%);
-      border-radius: 100%;
-    }
-  }
-
-  &__subtext {
-    margin-bottom: 2rem;
-    font-size: 1rem;
-    color: $gray-800;
-  }
-
   &__details {
     .order-details {
       margin-bottom: 0;

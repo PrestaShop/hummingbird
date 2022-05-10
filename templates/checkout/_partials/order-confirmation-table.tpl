@@ -89,7 +89,7 @@
   </div>
   <hr>
 
-  <div class="{$componentName}__totals">
+  <div class="{$componentName}__totals fw-bold">
     {if !$configuration.display_prices_tax_incl && $configuration.taxes_enabled}
       <div class="row">
         <div class="col-6">{$totals.total.label}&nbsp;{$labels.tax_short}</div>

@@ -25,19 +25,6 @@
       }
     }
 
-    .thumbnails__container {
-      .thumbnail {
-        img {
-          border: 2px solid transparent;
-          border-radius: 8px;
-        }
-
-        &.active img {
-          border: 2px solid $primary;
-        }
-      }
-    }
-
     &__description-short {
       margin-bottom: 1.5rem;
     }
@@ -49,12 +36,6 @@
 
     &__prices {
       font-size: 1.25rem;
-    }
-
-    .prices__wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 0.5rem;
     }
 
     &__current-price {
@@ -109,6 +90,21 @@
 
     &-pack__item {
       border: 1px $gray-200 solid;
+    }
+  }
+}
+
+
+// Needs to be outside of the .page-product scope because it can be inside a modal
+.thumbnails__container {
+  .thumbnail {
+    img {
+      border: 2px solid transparent;
+      border-radius: 8px;
+    }
+
+    &.active img {
+      border: 2px solid $primary;
     }
   }
 }

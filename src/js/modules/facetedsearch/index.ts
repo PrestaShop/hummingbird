@@ -9,10 +9,11 @@ import initFacets from './update';
 import filterHandler from './filter-handler';
 
 const {prestashop} = window;
+const {Theme} = window;
 
 const initSliders = () => {
-  document.querySelectorAll(prestashop.themeSelectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
-    const container = <target>filter.querySelector(prestashop.themeSelectors.facetedsearch.rangeContainer);
+  document.querySelectorAll(Theme.selectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
+    const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
     const options = JSON.parse(<string>container.dataset.sliderSpecifications);
     const signPosition = options.positivePattern.indexOf('¤') === 0 ? 'prefix' : 'suffix';
     // const sliderType = container.dataset.sliderSpecifications ? 'price' : 'weight';
@@ -80,7 +81,7 @@ const initSliders = () => {
 };
 
 const toggleLoader = (toggle: boolean) => {
-  const loader = document.querySelector(prestashop.themeSelectors.pageLoader);
+  const loader = document.querySelector(Theme.selectors.pageLoader);
 
   if (loader) {
     loader.classList.toggle('d-none', toggle);

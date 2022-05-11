@@ -4,8 +4,8 @@
  */
 
 const initCurrencySelector = () => {
-  const {prestashop} = window;
-  const {currencySelector: CurrencySelectorMap} = prestashop.themeSelectors;
+  const {Theme} = window;
+  const {currencySelector: CurrencySelectorMap} = Theme.selectors;
   const languageSelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencySelector);
 
   languageSelector?.addEventListener('change', (event) => {

@@ -6,8 +6,8 @@
 import {isHTMLElement} from '@helpers/typeguards';
 
 const initMobileMenu = () => {
-  const {prestashop} = window;
-  const {mobileMenu: MobileMenuMap} = prestashop.themeSelectors;
+  const {Theme} = window;
+  const {mobileMenu: MobileMenuMap} = Theme.selectors;
 
   const openChildsButtons = document.querySelectorAll(MobileMenuMap.openChildsButton);
   const backTitle = document.querySelector(MobileMenuMap.backTitle);

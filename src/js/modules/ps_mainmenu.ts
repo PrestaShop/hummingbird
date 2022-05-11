@@ -12,8 +12,8 @@ const ARROW_LEFT_KEY = 'ArrowLeft';
 const ARROW_RIGHT_KEY = 'ArrowRight';
 
 const initDesktopMenu = () => {
-  const {prestashop} = window;
-  const {desktopMenu: desktopMenuMap} = prestashop.themeSelectors;
+  const {Theme} = window;
+  const {desktopMenu: desktopMenuMap} = Theme.selectors;
 
   /**
    * Handle Mouse and Keyboard events for Submenus.

@@ -1,5 +1,6 @@
 interface Window { 
   prestashop: any;
+  Theme: any;
   $: JQueryStatic;
   jQuery: JQueryStatic;
 }

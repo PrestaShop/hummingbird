@@ -4,8 +4,8 @@
  */
 
 const initLanguageSelector = () => {
-  const {prestashop} = window;
-  const {languageSelector: LanguageSelectorMap} = prestashop.themeSelectors;
+  const {Theme} = window;
+  const {languageSelector: LanguageSelectorMap} = Theme.selectors;
   const languageSelector = document.querySelector<HTMLElement>(LanguageSelectorMap.languageSelector);
 
   languageSelector?.addEventListener('change', (event) => {

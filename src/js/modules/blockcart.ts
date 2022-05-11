@@ -6,11 +6,12 @@ import {Modal} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
 
 const {prestashop} = window;
+const {Theme} = window;
 
 prestashop.blockcart = prestashop.blockcart || {};
 
 prestashop.blockcart.showModal = (html: string) => {
-  const {blockcart: BlockcartMap} = prestashop.themeSelectors;
+  const {blockcart: BlockcartMap} = Theme.selectors;
 
   function getBlockCartModal() {
     const blockCartModal = document.querySelector<HTMLElement>(BlockcartMap.modal);

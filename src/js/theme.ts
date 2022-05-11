@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import selectorsMap from './constants/selectors-map';
+import selectors from './constants/selectors-map';
 import initEmitter from './prestashop';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
@@ -23,8 +23,6 @@ import './modules/facetedsearch';
 import initDesktopMenu from './modules/ps_mainmenu';
 
 initEmitter();
-
-window.prestashop.themeSelectors = selectorsMap;
 
 $(() => {
   const {prestashop} = window;
@@ -63,4 +61,5 @@ export default {
   initResponsiveToggler,
   initQuickview,
   initProductBehavior,
+  selectors,
 };

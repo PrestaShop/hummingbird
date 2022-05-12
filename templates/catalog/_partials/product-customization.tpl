@@ -14,8 +14,8 @@
               <div class="product-customization__item card border-1 mb-2 mb-sm-3">
                 <div class="card-header bg-transparent fw-bold border-1">{$field.label}</div>
                 <div class="card-body px-2 px-sm-3">
-                  {if $field.type === 'text'}
-                    <div class="row row-cols-1">
+                  <div class="row row-cols-1">
+                    {if $field.type === 'text'}
                       <div>
                         <textarea placeholder="{l s='Your message here' d='Shop.Forms.Help'}" class="form-control product-message" maxlength="250" {if $field.required} required {/if} name="{$field.input_name}"></textarea>
                       </div>
@@ -25,20 +25,20 @@
                           <p class="mb-0">{$field.text}</p>
                         </div>
                       {/if}
-                    </div>
-                  {elseif $field.type === 'image'}
-                    <div class="d-flex align-items-center">
-                      <div class="flex-fill">
+                    {elseif $field.type === 'image'}
+                      <div>
                         <input class="form-control file-input js-file-input" {if $field.required} required {/if} type="file" name="{$field.input_name}">
                       </div>
                       {if $field.is_customized}
-                        <div class="ms-2 ms-sm-3">
-                          <img src="{$field.image.small.url}" class="img-fluid rounded-3 mb-1" loading="lazy">
-                          <small><a class="d-block remove-image" href="{$field.remove_image_url}" rel="nofollow">{l s='Remove Image' d='Shop.Theme.Actions'}</a></small>
+                        <div class="mt-3">
+                          <div class="d-flex align-items-end">
+                            <img src="{$field.image.small.url}" class="img-fluid rounded-3" loading="lazy">
+                            <a class="d-block ms-2" href="{$field.remove_image_url}" rel="nofollow">{l s='Remove Image' d='Shop.Theme.Actions'}</a>
+                          </div>
                         </div>
                       {/if}
-                    </div>
-                  {/if}
+                    {/if}
+                  </div>
                 </div>
                 <div class="card-footer bg-transparent border-1">
                   <div class="d-flex">

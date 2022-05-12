@@ -91,18 +91,6 @@
     &-pack__item {
       border: 1px $gray-200 solid;
     }
-
-    .product-customization {
-      &__item {
-        .remove-image {
-          white-space: nowrap;
-
-          @include media-breakpoint-down(sm) {
-            white-space: normal;
-          }
-        }
-      }
-    }
   }
 }
 

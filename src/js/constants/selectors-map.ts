@@ -91,8 +91,9 @@ export const visiblePassword = {
   visiblePassword: '.js-visible-password',
 };
 
-export const dropdownToggles = {
+export const desktopMenu = {
   dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
+  dropdownItemAnchor: (depth: number) => `.js-menu-desktop a[data-depth="${depth}"]`,
 };
 
 const selectorsMap = {
@@ -142,7 +143,7 @@ const selectorsMap = {
   searchBar,
   mobileMenu,
   visiblePassword,
-  dropdownToggles,
+  desktopMenu,
 };
 
 export default selectorsMap;

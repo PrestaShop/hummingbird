@@ -20,7 +20,7 @@ import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
 import './modules/facetedsearch';
-import initDropdownToggleMenu from './modules/ps_mainmenu';
+import initDesktopMenu from './modules/ps_mainmenu';
 
 initEmitter();
 
@@ -40,12 +40,13 @@ $(() => {
   initCurrencySelector();
   initMobileMenu();
   initVisiblePassword();
-  initDropdownToggleMenu();
+  initDesktopMenu();
 
   prestashop.on('responsiveUpdate', () => {
     initSearchbar();
     initLanguageSelector();
     initCurrencySelector();
+    initDesktopMenu();
   });
 
   prestashop.on('updatedCart', () => useQuantityInput());

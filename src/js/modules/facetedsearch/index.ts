@@ -8,11 +8,11 @@ import wNumb from 'wnumb';
 import initFacets from './update';
 import filterHandler from './filter-handler';
 
-const {prestashop} = window;
-
 const initSliders = () => {
-  document.querySelectorAll(prestashop.themeSelectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
-    const container = <target>filter.querySelector(prestashop.themeSelectors.facetedsearch.rangeContainer);
+  const {Theme} = window;
+
+  document.querySelectorAll(Theme.selectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
+    const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
     const options = JSON.parse(<string>container.dataset.sliderSpecifications);
     const signPosition = options.positivePattern.indexOf('¤') === 0 ? 'prefix' : 'suffix';
     // const sliderType = container.dataset.sliderSpecifications ? 'price' : 'weight';
@@ -80,7 +80,8 @@ const initSliders = () => {
 };
 
 const toggleLoader = (toggle: boolean) => {
-  const loader = document.querySelector(prestashop.themeSelectors.pageLoader);
+  const {Theme} = window;
+  const loader = document.querySelector(Theme.selectors.pageLoader);
 
   if (loader) {
     loader.classList.toggle('d-none', toggle);
@@ -88,6 +89,7 @@ const toggleLoader = (toggle: boolean) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  const {prestashop} = window;
   initFacets();
   prestashop.on('updateProductList', () => {
     toggleLoader(true);

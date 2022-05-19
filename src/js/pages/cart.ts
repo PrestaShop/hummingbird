@@ -7,8 +7,8 @@ import {Collapse} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
 
 export default () => {
-  const {prestashop} = window;
-  const voucherCodes = document.querySelectorAll(prestashop.themeSelectors.cart.discountCode);
+  const {Theme} = window;
+  const voucherCodes = document.querySelectorAll(Theme.selectors.cart.discountCode);
 
   voucherCodes.forEach((voucher) => {
     voucher.addEventListener('click', (event: Event) => {
@@ -16,8 +16,8 @@ export default () => {
 
       if (isHTMLElement(event.currentTarget)) {
         const code = event.currentTarget;
-        const discountInput = document.querySelector(prestashop.themeSelectors.cart.discountName);
-        const formCollapser = new Collapse(document.querySelector(prestashop.themeSelectors.cart.promoCode));
+        const discountInput = document.querySelector(Theme.selectors.cart.discountName);
+        const formCollapser = new Collapse(document.querySelector(Theme.selectors.cart.promoCode));
 
         discountInput.value = code.innerText;
         // Show promo code field

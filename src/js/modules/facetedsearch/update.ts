@@ -3,8 +3,6 @@
  * file that was distributed with this source code.
  */
 
-const {prestashop} = window;
-
 // @TODO(NeOMakinG): Refactor this file, it comes from facetedsearch or classic
 export const parseSearchUrl = function (event: {target: HTMLElement}) {
   if (event.target.dataset.searchUrl !== undefined) {
@@ -19,40 +17,45 @@ export const parseSearchUrl = function (event: {target: HTMLElement}) {
 };
 
 export function updateProductListDOM(data: Record<string, never>) {
-  $(prestashop.themeSelectors.listing.searchFilters).replaceWith(
+  const {Theme} = window;
+
+  $(Theme.selectors.listing.searchFilters).replaceWith(
     data.rendered_facets,
   );
-  $(prestashop.themeSelectors.listing.activeSearchFilters).replaceWith(
+  $(Theme.selectors.listing.activeSearchFilters).replaceWith(
     data.rendered_active_filters,
   );
-  $(prestashop.themeSelectors.listing.listTop).replaceWith(
+  $(Theme.selectors.listing.listTop).replaceWith(
     data.rendered_products_top,
   );
 
   const renderedProducts = $(data.rendered_products);
-  const productSelectors = $(prestashop.themeSelectors.listing.product, renderedProducts);
-  const firstProductClasses = $(prestashop.themeSelectors.listing.product).first().attr('class');
+  const productSelectors = $(Theme.selectors.listing.product, renderedProducts);
+  const firstProductClasses = $(Theme.selectors.listing.product).first().attr('class');
 
   if (productSelectors.length > 0 && firstProductClasses) {
     productSelectors.removeClass().addClass(firstProductClasses);
   }
 
-  $(prestashop.themeSelectors.listing.list).replaceWith(renderedProducts);
+  $(Theme.selectors.listing.list).replaceWith(renderedProducts);
 
-  $(prestashop.themeSelectors.listing.listBottom).replaceWith(
+  $(Theme.selectors.listing.listBottom).replaceWith(
     data.rendered_products_bottom,
   );
   if (data.rendered_products_header) {
-    $(prestashop.themeSelectors.listing.listHeader).replaceWith(
+    $(Theme.selectors.listing.listHeader).replaceWith(
       data.rendered_products_header,
     );
   }
 }
 
 export default () => {
+  const {prestashop} = window;
+  const {Theme} = window;
+
   $('body').on(
     'change',
-    `${prestashop.themeSelectors.listing.searchFilters} input[data-search-url]`,
+    `${Theme.selectors.listing.searchFilters} input[data-search-url]`,
     (event) => {
       prestashop.emit('updateFacets', parseSearchUrl(event));
     },
@@ -60,13 +63,13 @@ export default () => {
 
   $('body').on(
     'click',
-    prestashop.themeSelectors.listing.searchFiltersClearAll,
+    Theme.selectors.listing.searchFiltersClearAll,
     (event) => {
       prestashop.emit('updateFacets', parseSearchUrl(event));
     },
   );
 
-  $('body').on('click', prestashop.themeSelectors.listing.searchLink, (event) => {
+  $('body').on('click', Theme.selectors.listing.searchLink, (event) => {
     event.preventDefault();
     prestashop.emit(
       'updateFacets',
@@ -74,7 +77,7 @@ export default () => {
     );
   });
 
-  if ($(prestashop.themeSelectors.listing.list).length) {
+  if ($(Theme.selectors.listing.list).length) {
     window.addEventListener('popstate', (e) => {
       const {state} = e;
       window.location.href = state && state.current_url ? state.current_url : history;
@@ -83,7 +86,7 @@ export default () => {
 
   $('body').on(
     'change',
-    `${prestashop.themeSelectors.listing.searchFilters} select`,
+    `${Theme.selectors.listing.searchFilters} select`,
     (event) => {
       const form = $(event.target).closest('form');
       prestashop.emit('updateFacets', `?${form.serialize()}`);

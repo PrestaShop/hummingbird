@@ -4,8 +4,8 @@
  */
 
 const initVisiblePassword = () => {
-  const {prestashop} = window;
-  const {visiblePassword: visiblePasswordMap} = prestashop.themeSelectors;
+  const {Theme} = window;
+  const {visiblePassword: visiblePasswordMap} = Theme.selectors;
   const visiblePasswordList = document.querySelectorAll(visiblePasswordMap.visiblePassword) as NodeListOf<HTMLElement>;
 
   if (visiblePasswordList.length > 0) {

@@ -7,8 +7,8 @@ import useProgressRing from '@js/components/useProgressRing';
 
 const initCheckout = () => {
   const {prestashop} = window;
-  const {themeSelectors: selectorsMap} = prestashop;
-  const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectorsMap;
+  const {Theme: {selectors}} = window;
+  const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectors;
 
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);
   const actionButtons = document.querySelectorAll<HTMLElement>(CheckoutMap.actionsButtons);
@@ -120,8 +120,8 @@ const initCheckout = () => {
             const content = await response.text();
             const contentElement = document.createElement('div');
             contentElement.innerHTML = content;
-            const modalBody = termsModalElement.querySelector(selectorsMap.modalBody);
-            const sanitizedContent = contentElement.querySelector(selectorsMap.pageCms);
+            const modalBody = termsModalElement.querySelector(selectors.modalBody);
+            const sanitizedContent = contentElement.querySelector(selectors.pageCms);
 
             if (sanitizedContent && modalBody) {
               modalBody.innerHTML = sanitizedContent.innerHTML;

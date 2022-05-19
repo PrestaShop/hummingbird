@@ -7,8 +7,8 @@ import {searchProduct, Result} from '@services/search';
 import debounce from '@helpers/debounce';
 
 const initSearchbar = () => {
-  const {prestashop} = window;
-  const {searchBar: SearchBarMap} = prestashop.themeSelectors;
+  const {Theme} = window;
+  const {searchBar: SearchBarMap} = Theme.selectors;
 
   const searchCanvas = document.querySelector<HTMLElement>(SearchBarMap.searchCanvas);
   const searchWidget = document.querySelector<HTMLElement>(SearchBarMap.searchWidget);

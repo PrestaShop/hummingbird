@@ -3,9 +3,6 @@
  * file that was distributed with this source code.
  */
 
-const {prestashop} = window;
-const {Theme} = window;
-
 // @TODO(NeOMakinG): Refactor this file, it comes from facetedsearch or classic
 export const parseSearchUrl = function (event: {target: HTMLElement}) {
   if (event.target.dataset.searchUrl !== undefined) {
@@ -20,6 +17,8 @@ export const parseSearchUrl = function (event: {target: HTMLElement}) {
 };
 
 export function updateProductListDOM(data: Record<string, never>) {
+  const {Theme} = window;
+
   $(Theme.selectors.listing.searchFilters).replaceWith(
     data.rendered_facets,
   );
@@ -51,6 +50,9 @@ export function updateProductListDOM(data: Record<string, never>) {
 }
 
 export default () => {
+  const {prestashop} = window;
+  const {Theme} = window;
+
   $('body').on(
     'change',
     `${Theme.selectors.listing.searchFilters} input[data-search-url]`,

@@ -8,10 +8,9 @@ import wNumb from 'wnumb';
 import initFacets from './update';
 import filterHandler from './filter-handler';
 
-const {prestashop} = window;
-const {Theme} = window;
-
 const initSliders = () => {
+  const {Theme} = window;
+
   document.querySelectorAll(Theme.selectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
     const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
     const options = JSON.parse(<string>container.dataset.sliderSpecifications);
@@ -81,6 +80,7 @@ const initSliders = () => {
 };
 
 const toggleLoader = (toggle: boolean) => {
+  const {Theme} = window;
   const loader = document.querySelector(Theme.selectors.pageLoader);
 
   if (loader) {
@@ -89,6 +89,7 @@ const toggleLoader = (toggle: boolean) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  const {prestashop} = window;
   initFacets();
   prestashop.on('updateProductList', () => {
     toggleLoader(true);

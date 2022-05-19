@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import selectors from './constants/selectors-map';
+import themeSelectors from './constants/selectors-map';
 import initEmitter from './prestashop';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
@@ -57,9 +57,10 @@ export const components = {
   useQuantityInput,
 };
 
+export const selectors = themeSelectors;
+
 export default {
   initResponsiveToggler,
   initQuickview,
   initProductBehavior,
-  selectors,
 };

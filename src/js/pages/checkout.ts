@@ -7,8 +7,7 @@ import useProgressRing from '@js/components/useProgressRing';
 
 const initCheckout = () => {
   const {prestashop} = window;
-  const {Theme} = window;
-  const {selectors} = Theme;
+  const {Theme: {selectors}} = window;
   const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectors;
 
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);

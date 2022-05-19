@@ -39,7 +39,7 @@
             </div>
           {/foreach}
         {else}
-          <div class="carousel-item">
+          <div class="carousel-item active">
             <img src="{$urls.no_picture_image.bySize.large_default.url}" loading="lazy">
           </div>
         {/if}

@@ -4,7 +4,7 @@
  */
 
 import initEmitter from '@js/prestashop';
-import selectorsMap from '@constants/selectors-map';
+import {quantityInput as quantityInputMap} from '@constants/selectors-map';
 import resetHTMLBodyContent from '@helpers/resetBody';
 import * as Quantify from '@constants/mocks/useQuantityInput-data';
 import useQuantityInput from './useQuantityInput';
@@ -15,15 +15,15 @@ describe('useQuantityInput', () => {
       resetHTMLBodyContent(Quantify.ProductLineTemplate);
       window.prestashop = {};
       initEmitter();
-      useQuantityInput(selectorsMap.qtyInput.default, Quantify.delay);
+      useQuantityInput(quantityInputMap.default, Quantify.delay);
     });
 
     it('should display error with NOK response', async () => {
       const mockedIncrementFetch = mockedResponse(false);
-      const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
+      const incrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.increment);
       incrementButton.click();
       await debounceTimeout();
-      const productLineAlert = getHTMLElement<HTMLDivElement>(selectorsMap.qtyInput.alert(Quantify.ProductId));
+      const productLineAlert = getHTMLElement<HTMLDivElement>(quantityInputMap.alert(Quantify.AlertId));
       mockedIncrementFetch.mockReset();
 
       expect(productLineAlert.innerHTML).not.toBe('');
@@ -39,7 +39,7 @@ describe('useQuantityInput', () => {
       resetQtyInputValueInDOM(qtyInput, qtyMin, qtyValue);
 
       const mockedIncrementFetch = mockedResponse(true, false, incrementExpectedValue);
-      const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
+      const incrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.increment);
 
       for (let i = 0; i < spamClicks; i += 1) {
         incrementButton.click();
@@ -50,7 +50,7 @@ describe('useQuantityInput', () => {
       mockedIncrementFetch.mockReset();
 
       const mockedDecrementFetch = mockedResponse(true, false, decrementExpectedValue);
-      const decrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
+      const decrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.decrement);
       decrementButton.click();
       await debounceTimeout();
       const decreasedValue = qtyInput.value;
@@ -67,7 +67,7 @@ describe('useQuantityInput', () => {
       resetQtyInputValueInDOM(qtyInput, qtyMin, qtyValue);
 
       const mockedDecrementFetch = mockedResponse(true, true, qtyMin);
-      const decrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
+      const decrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.decrement);
       decrementButton.click();
       await debounceTimeout();
       const decreasedValue = qtyInput.value;
@@ -81,11 +81,11 @@ describe('useQuantityInput', () => {
       qtyInput.dispatchEvent(new Event('keyup'));
       qtyInput.value = '1';
 
-      const decrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
-      const cancelIcon = getHTMLElement<HTMLElement>(selectorsMap.qtyInput.confirm, decrementButton);
+      const decrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.decrement);
+      const cancelIcon = getHTMLElement<HTMLElement>(quantityInputMap.confirm, decrementButton);
 
-      const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
-      const submitIcon = getHTMLElement<HTMLElement>(selectorsMap.qtyInput.confirm, incrementButton);
+      const incrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.increment);
+      const submitIcon = getHTMLElement<HTMLElement>(quantityInputMap.confirm, incrementButton);
 
       expect(cancelIcon.classList.toString()).toEqual(expect.not.stringContaining('d-none'));
       expect(submitIcon.classList.toString()).toEqual(expect.not.stringContaining('d-none'));
@@ -95,10 +95,10 @@ describe('useQuantityInput', () => {
       const qtyInput = getHTMLElement<HTMLInputElement>('input');
       qtyInput.dispatchEvent(new Event('keyup'));
 
-      const decrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
+      const decrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.decrement);
       decrementButton.click();
       await debounceTimeout();
-      const cancelIcon = getHTMLElement<HTMLElement>(selectorsMap.qtyInput.confirm, decrementButton);
+      const cancelIcon = getHTMLElement<HTMLElement>(quantityInputMap.confirm, decrementButton);
 
       expect(cancelIcon.classList.toString()).toEqual(expect.stringContaining('d-none'));
     });
@@ -112,7 +112,7 @@ describe('useQuantityInput', () => {
       qtyInput.dispatchEvent(new Event('keyup'));
 
       const mockedIncrementFetch = mockedResponse(true, false, confirmedExpectedValue);
-      const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
+      const incrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.increment);
       incrementButton.click();
       await debounceTimeout();
       const increasedValue = qtyInput.value;
@@ -125,7 +125,7 @@ describe('useQuantityInput', () => {
       const qtyInput = getHTMLElement<HTMLInputElement>('input');
       qtyInput.value = 'dummy';
 
-      const decrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
+      const decrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.decrement);
       decrementButton.click();
       await debounceTimeout();
 
@@ -139,7 +139,7 @@ describe('useQuantityInput', () => {
       resetHTMLBodyContent(Quantify.ProductTemplate);
       window.prestashop = {};
       initEmitter();
-      useQuantityInput(selectorsMap.qtyInput.modal, Quantify.delay);
+      useQuantityInput(quantityInputMap.modal, Quantify.delay);
     });
 
     it('should update value on increment/decrement without POST request', () => {
@@ -150,11 +150,11 @@ describe('useQuantityInput', () => {
       const decrementExpectedValue = '1';
       resetQtyInputValueInDOM(qtyInput, qtyMin, qtyValue);
 
-      const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
+      const incrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.increment);
       incrementButton.click();
       const increasedValue = qtyInput.value;
 
-      const decrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
+      const decrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.decrement);
       decrementButton.click();
       const decreasedValue = qtyInput.value;
 

@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import useQuantityInput from './components/useQuantityInput';
+
 import selectorsMap from './constants/selectors-map';
 
 const {prestashop} = window;
@@ -21,7 +21,7 @@ export default function initQuickviews() {
           `#quickview-modal-${resp.product.id}-${resp.product.id_product_attribute}`,
         );
         productModal.modal('show');
-        useQuantityInput(selectorsMap.qtyInput.modal);
+
         productModal.on('hidden.bs.modal', () => {
           productModal.remove();
         });

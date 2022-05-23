@@ -20,32 +20,30 @@
     <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-md-down">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h4 class="modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
         </div>
         <div class="modal-body">
-          <div class="container-fluid">
-            {foreach from=$product.customizations item="customization"}
-              <div class="row row-cols-1">
-                {foreach from=$customization.fields item="field"}
-                <div class="d-flex flex-column mb-3">
-                  <span class="mb-1 text-dark">{$field.label}</span>
-                  {if $field.type == 'text'}
-                    <p class="mb-0">
-                      {if (int)$field.id_module}
-                        {$field.text nofilter}
-                      {else}
-                        {$field.text}
-                      {/if}
-                    </p>
-                  {elseif $field.type == 'image'}
-                    <img class="align-self-start rounded-3" src="{$field.image.small.url}">
-                  {/if}
-                </div>
-                {/foreach}
+          {foreach from=$product.customizations item="customization"}
+            {foreach from=$customization.fields item="field"}
+              <div class="{$componentName}__line{if !$field@last} mb-3{/if}">
+                <p class="mb-1 text-dark">{$field.label}</p>
+                {if $field.type == 'text'}
+                  <p class="mb-0">
+                    {if $field.id_module|intval}
+                      {$field.text nofilter}
+                    {else}
+                      {$field.text}
+                    {/if}
+                  </p>
+                {elseif $field.type == 'image'}
+                  <a href="{$field.image.large.url}">
+                    <img class="rounded-3" src="{$field.image.small.url}">
+                  </a>
+                {/if}
               </div>
             {/foreach}
-          </div>
+          {/foreach}
         </div>
       </div>
     </div>

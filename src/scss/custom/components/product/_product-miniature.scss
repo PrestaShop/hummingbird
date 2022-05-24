@@ -65,6 +65,10 @@ $component-name: product-miniature;
     padding: 0.5rem;
     background-color: $white;
     transition: 0.25s ease-out;
+
+    @media (hover: none) and (pointer: coarse) {
+      display: none;
+    }
   }
 
   & &__quickview_button {
@@ -80,6 +84,27 @@ $component-name: product-miniature;
     .material-icons {
       margin-right: 0.25rem;
       font-size: 1.25rem;
+    }
+  }
+
+  & &__quickview_touch {
+    position: absolute;
+    right: 0.635rem;
+    bottom: 0.635rem;
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0.125rem -0.125rem 0.25rem 0 rgba(0, 0, 0, 0.2);
+
+    @media (hover: none) and (pointer: coarse) {
+      display: flex;
     }
   }
 

@@ -31,6 +31,12 @@
                 class="{$componentName}__image card-img-top"
               />
             {/if}
+
+            {block name='quick_view_touch'}
+              <button class="{$componentName}__quickview_touch btn js-quickview" data-link-action="quickview">
+                  <i class="material-icons">&#xE417;</i>
+              </button>
+            {/block}
           </div>
         {/block}
       </a>
@@ -40,7 +46,7 @@
           {block name='quick_view'}
             <div class="{$componentName}__quickview">
               <button class="{$componentName}__quickview_button btn btn-link js-quickview btn-with-icon" data-link-action="quickview">
-                <i class="material-icons search">remove_red_eye</i> {l s='Quick view' d='Shop.Theme.Actions'}
+                <i class="material-icons">&#xE417;</i> {l s='Quick view' d='Shop.Theme.Actions'}
               </button>
             </div>
           {/block}

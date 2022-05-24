@@ -96,17 +96,18 @@ export const desktopMenu = {
   dropdownItemAnchor: (depth: number) => `.js-menu-desktop a[data-depth="${depth}"]`,
 };
 
+export const quantityInput = {
+  default: '.js-quantity-button',
+  modal: '.modal-dialog .js-quantity-button',
+  increment: '.js-increment-button',
+  decrement: '.js-decrement-button',
+  confirm: '.confirmation',
+  icon: '.material-icons',
+  spinner: '.spinner-border',
+  alert: (param: string): string => `#js-product-line-alert--${param}`,
+};
+
 const selectorsMap = {
-  qtyInput: {
-    default: '.js-quantity-button',
-    modal: '.modal-dialog .js-quantity-button',
-    increment: '.js-increment-button',
-    decrement: '.js-decrement-button',
-    confirm: '.confirmation',
-    icon: '.material-icons',
-    spinner: '.spinner-border',
-    alert: (id: number): string => `#js-product-line-alert--${id}`,
-  },
   alert: {
     selector: '#notifications .container',
     alert: '.alert',
@@ -144,6 +145,7 @@ const selectorsMap = {
   mobileMenu,
   visiblePassword,
   desktopMenu,
+  quantityInput,
 };
 
 export default selectorsMap;

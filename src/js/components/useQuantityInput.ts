@@ -4,12 +4,12 @@
  */
 
 import * as Quantity from '@constants/useQuantityInput-data';
-import selectorsMap from '@constants/selectors-map';
+import {quantityInput as quantityInputMap} from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
 import useToast from './useToast';
 
-const useQuantityInput = (selector = selectorsMap.qtyInput.default, delay = Quantity.delay) => {
+const useQuantityInput = (selector = quantityInputMap.default, delay = Quantity.delay) => {
   const qtyInputNodeList = document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
 
   if (qtyInputNodeList.length > 0) {
@@ -17,25 +17,26 @@ const useQuantityInput = (selector = selectorsMap.qtyInput.default, delay = Quan
       const qtyInput = qtyInputWrapper.querySelector<HTMLInputElement>('input');
 
       if (qtyInput) {
-        const incrementButton = qtyInputWrapper.querySelector<HTMLButtonElement>(selectorsMap.qtyInput.increment);
-        const decrementButton = qtyInputWrapper.querySelector<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
+        const incrementButton = qtyInputWrapper.querySelector<HTMLButtonElement>(quantityInputMap.increment);
+        const decrementButton = qtyInputWrapper.querySelector<HTMLButtonElement>(quantityInputMap.decrement);
 
         if (incrementButton && decrementButton) {
           const qtyInputGroup: Quantity.InputGroup = {qtyInput, incrementButton, decrementButton};
           // The changeQuantity() will be called immediatly and change the input value
           incrementButton.addEventListener('click', () => changeQuantity(qtyInput, 1));
           decrementButton.addEventListener('click', () => changeQuantity(qtyInput, -1));
-          // The updateQuantity() will be called after timeout and send the update request with current input value
-          incrementButton.addEventListener('click', debounce(async () => {
-            updateQuantity(qtyInputGroup, 1);
-          }, delay));
-          decrementButton.addEventListener('click', debounce(async () => {
-            updateQuantity(qtyInputGroup, -1);
-          }, delay));
 
-          // If the input element has update URL (e.g. Cart)
-          // then convert the buttons when user changed the value manually
+          // The updateQuantity() will be called after timeout and send the update request with current input value
           if (qtyInput.hasAttribute('data-update-url')) {
+            incrementButton.addEventListener('click', debounce(async () => {
+              updateQuantity(qtyInputGroup, 1);
+            }, delay));
+            decrementButton.addEventListener('click', debounce(async () => {
+              updateQuantity(qtyInputGroup, -1);
+            }, delay));
+
+            // If the input element has update URL (e.g. Cart)
+            // then convert the buttons when user changed the value manually
             qtyInput.addEventListener('keyup', () => {
               showConfirmationButtons(qtyInputGroup);
             });
@@ -52,9 +53,15 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number) => {
   // If the confirmation buttons displayed then skip changing the input value
   if (mode !== 'confirmation') {
     const currentValue = Number(qtyInput.value);
+    const baseValue = qtyInput.getAttribute('value');
     const min = (qtyInput.dataset.updateUrl === undefined) ? Number(qtyInput.getAttribute('min')) : 0;
-    const newValue = Math.max(currentValue + change, min);
-    qtyInput.value = String(newValue);
+
+    if (Number.isNaN(currentValue) === false) {
+      const newValue = Math.max(currentValue + change, min);
+      qtyInput.value = String(newValue);
+    } else {
+      qtyInput.value = baseValue ?? String(min);
+    }
   }
 };
 
@@ -78,11 +85,9 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
       if (requestUrl !== undefined) {
         const targetButton = getTargetButton(qtyInputGroup, change);
         const targetButtonIcon = targetButton.querySelector<HTMLElement>('i:not(.d-none)');
-        const targetButtonSpinner = targetButton.querySelector<HTMLElement>(selectorsMap.qtyInput.spinner);
+        const targetButtonSpinner = targetButton.querySelector<HTMLElement>(quantityInputMap.spinner);
 
         toggleButtonSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
-
-        const {productId} = qtyInput.dataset;
 
         try {
           const response = await sendUpdateCartRequest(requestUrl, quantity);
@@ -92,7 +97,7 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
 
             if (data.hasError) {
               const errors = data.errors as Array<string>;
-              const productAlertSelector = resetAlertContainer(Number(productId));
+              const productAlertSelector = resetAlertContainer(qtyInput);
 
               if (errors && productAlertSelector) {
                 errors.forEach((error: string) => {
@@ -125,7 +130,7 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
 
           if (errorData.status !== undefined) {
             const errorMsg = `${errorData.statusText}: ${errorData.url}`;
-            const productAlertSelector = resetAlertContainer(Number(productId));
+            const productAlertSelector = resetAlertContainer(qtyInput);
             useAlert(errorMsg, {type: 'danger', selector: productAlertSelector}).show();
 
             prestashop.emit('handleError', {
@@ -139,8 +144,7 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
         }
       }
     } else {
-      // The input value is not a correct number so revert to the value in the DOM
-      qtyInput.value = String(baseValue);
+      // The input value is not a correct number
       showSpinButtons(qtyInputGroup);
     }
   }
@@ -152,9 +156,11 @@ const getTargetButton = (qtyInputGroup: Quantity.InputGroup, change: number) => 
   return (change > 0) ? incrementButton : decrementButton;
 };
 
-const resetAlertContainer = (productId: number) => {
-  if (productId) {
-    const productAlertSelector = selectorsMap.qtyInput.alert(productId);
+const resetAlertContainer = (qtyInput: HTMLInputElement) => {
+  const {alertId} = qtyInput.dataset;
+
+  if (alertId) {
+    const productAlertSelector = quantityInputMap.alert(alertId);
     const productAlertContainer = document.querySelector<HTMLDivElement>(productAlertSelector);
 
     if (productAlertContainer) {
@@ -226,5 +232,12 @@ const sendUpdateCartRequest = async (updateUrl: string, quantity: number) => {
 
   return response;
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const {prestashop} = window;
+
+  prestashop.on('updatedCart', () => useQuantityInput());
+  prestashop.on('quickviewOpened', () => useQuantityInput(quantityInputMap.modal));
+});
 
 export default useQuantityInput;

@@ -16,12 +16,16 @@ export default () => {
 
       if (isHTMLElement(event.currentTarget)) {
         const code = event.currentTarget;
-        const discountInput = document.querySelector(Theme.selectors.cart.discountName);
-        const formCollapser = new Collapse(document.querySelector(Theme.selectors.cart.promoCode));
+        const discountInput = document.querySelector<HTMLInputElement>(Theme.selectors.cart.discountName);
+        const promoCode = document.querySelector(Theme.selectors.cart.promoCode);
 
-        discountInput.value = code.innerText;
-        // Show promo code field
-        formCollapser.show();
+        if (promoCode && discountInput) {
+          const formCollapser = new Collapse(promoCode);
+
+          discountInput.value = code.innerText;
+          // Show promo code field
+          formCollapser.show();
+        }
       }
 
       return false;

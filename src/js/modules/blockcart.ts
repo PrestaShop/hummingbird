@@ -11,6 +11,7 @@ prestashop.blockcart = prestashop.blockcart || {};
 
 prestashop.blockcart.showModal = (html: string) => {
   const {Theme} = window;
+  const {events} = Theme;
   const {blockcart: BlockcartMap} = Theme.selectors;
 
   function getBlockCartModal() {
@@ -46,7 +47,7 @@ prestashop.blockcart.showModal = (html: string) => {
       const target = event.currentTarget;
 
       if (isHTMLElement(target)) {
-        prestashop.emit('updateProduct', {
+        prestashop.emit(events.updateProduct, {
           reason: target.dataset,
           event,
         });

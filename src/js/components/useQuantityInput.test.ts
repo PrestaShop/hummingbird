@@ -7,6 +7,7 @@ import initEmitter from '@js/prestashop';
 import {quantityInput as quantityInputMap} from '@constants/selectors-map';
 import resetHTMLBodyContent from '@helpers/resetBody';
 import * as Quantify from '@constants/mocks/useQuantityInput-data';
+import EVENTS from '@js/constants/events-map';
 import useQuantityInput from './useQuantityInput';
 
 describe('useQuantityInput', () => {
@@ -14,6 +15,10 @@ describe('useQuantityInput', () => {
     beforeAll(() => {
       resetHTMLBodyContent(Quantify.ProductLineTemplate);
       window.prestashop = {};
+      window.Theme = {
+        ...window.Theme,
+        events: EVENTS,
+      };
       initEmitter();
       useQuantityInput(quantityInputMap.default, Quantify.delay);
     });

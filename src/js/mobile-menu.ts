@@ -38,7 +38,7 @@ const initMobileMenu = () => {
 
       if (currentParent) {
         if (currentDepth > 3) {
-          backTitle.innerHTML = currentParent.dataset.backTitle;
+          backTitle.innerHTML = currentParent.dataset.backTitle ?? '';
         } else {
           backTitle.innerHTML = defaultBackTitle;
         }
@@ -83,11 +83,11 @@ const initMobileMenu = () => {
           currentMenu.classList.add('menu--parent');
         }
 
-        const child = document.querySelector(MobileMenuMap.specificChild(currentButton.dataset.target));
+        const child = document.querySelector<HTMLElement>(MobileMenuMap.specificChild(currentButton.dataset.target));
 
         backButton?.classList.remove('d-none');
 
-        if (currentDepth >= 1 && backTitle && child.dataset.backTitle) {
+        if (currentDepth >= 1 && backTitle && child?.dataset.backTitle) {
           backTitle.innerHTML = child.dataset.backTitle;
         }
 

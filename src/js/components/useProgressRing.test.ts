@@ -7,7 +7,7 @@ import initEmitter from '@js/prestashop';
 import {progressRing as ProgressRingMap} from '@constants/selectors-map';
 import resetHTMLBodyContent from '@helpers/resetBody';
 import * as ProgressRing from '@constants/mocks/useProgressRing-data';
-import useProgressRing, {ProgressRingText} from '@js/components/useProgressRing';
+import useProgressRing from '@js/components/useProgressRing';
 
 describe('useProgressRing', () => {
   describe('with valid template', () => {
@@ -25,7 +25,7 @@ describe('useProgressRing', () => {
       expect(text?.innerHTML).toBe('');
     });
 
-    it('should be on specefic step after setProgress', async () => {
+    it('should be on specific step after setProgress', async () => {
       const complete = 4;
       const current = 3;
       const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: complete});
@@ -45,7 +45,7 @@ describe('useProgressRing', () => {
       const percentage = (current / complete) * 100;
       const {setProgress} = useProgressRing(
         ProgressRingMap.checkout.element,
-        {steps: complete, text: ProgressRingText.percent},
+        {steps: complete, text: Theme.ProgressRing.Text.percent},
       );
 
       if (setProgress) {

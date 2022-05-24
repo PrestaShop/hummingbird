@@ -8,11 +8,11 @@ import * as Alerter from '@constants/useAlert-data';
 export const TestMarkupMessage = 'My <b>test</b> message.';
 export const TestMarkupTitle = 'My <b>test</b> title.';
 export const TestIconCodepoint = '\ue420';
-export const TestTypeOption: Alerter.Options = {type: 'primary'};
-export const TestClassListOption: Alerter.Options = {type: 'warning', classlist: 'text-warning bg-dark border-1'};
-export const TestDismissOption: Alerter.Options = {type: 'danger', dismissible: false};
-export const TestHeaderOption: Alerter.Options = {type: 'success', title: TestMarkupTitle, dismissible: true};
-export const TestIconOption: Alerter.Options = {type: 'info', icon: TestIconCodepoint};
+export const TestTypeOption: Theme.Alert.Options = {type: 'primary'};
+export const TestClassListOption: Theme.Alert.Options = {type: 'warning', classlist: 'text-warning bg-dark border-1'};
+export const TestDismissOption: Theme.Alert.Options = {type: 'danger', dismissible: false};
+export const TestHeaderOption: Theme.Alert.Options = {type: 'success', title: TestMarkupTitle, dismissible: true};
+export const TestIconOption: Theme.Alert.Options = {type: 'info', icon: TestIconCodepoint};
 
 export const ExpectedTypeClassList = Alerter.Theme[TestTypeOption.type];
 
@@ -25,7 +25,7 @@ export const LandingContainer = `
     <div class="${LandingContainerClass}"></div>
   </div>
 `;
-export const TestSelectorOption: Alerter.Options = {type: 'info', selector: LandingSelector};
+export const TestSelectorOption: Theme.Alert.Options = {type: 'info', selector: LandingSelector};
 
 export const NotificationsContainer = `
   <div id="notifications">

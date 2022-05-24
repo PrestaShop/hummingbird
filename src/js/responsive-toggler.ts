@@ -17,7 +17,7 @@ if (prestashop) {
 export function toggleMobileStyles() {
   // TODO: Find a better way to manage this with JSDom for tests
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  const {prestashop} = window;
+  const {prestashop, Theme: {events}} = window;
 
   if (prestashop.responsive.mobile) {
     Array.prototype.forEach.call(document.querySelectorAll("*[id^='_desktop_']"), (el: HTMLElement): void => {
@@ -39,7 +39,7 @@ export function toggleMobileStyles() {
     });
   }
 
-  prestashop.emit('responsiveUpdate', {
+  prestashop.emit(events.responsiveUpdate, {
     mobile: prestashop.responsive.mobile,
   });
 }

@@ -7,8 +7,8 @@ import {Alert} from 'bootstrap';
 import selectorsMap from '@constants/selectors-map';
 import * as Alerter from '@constants/useAlert-data';
 
-const useAlert = (message: string, options?: Alerter.Options): Alerter.Instance => {
-  let alertObject: Alerter.Instance = {
+const useAlert: Theme.Alert.Function = (message: string, options?: Theme.Alert.Options): Theme.Alert.Instance => {
+  let alertObject: Theme.Alert.Instance = {
     // An instance of Bootstrap's Alert, will be used to show, hide and dispose the alert
     instance: null,
     // In case someone wants to access the alert's element afterwhile
@@ -89,7 +89,7 @@ const useAlert = (message: string, options?: Alerter.Options): Alerter.Instance 
   return alertObject;
 };
 
-const cloneAlertElement = (options?: Alerter.Options): HTMLElement | null => {
+const cloneAlertElement = (options?: Theme.Alert.Options): HTMLElement | null => {
   const alertOptions = {...Alerter.Default, ...options};
   // If selector sent then append alert inside it
   // Otherwise use the notifications container

@@ -6,7 +6,7 @@
 import SelectorsMap from './constants/selectors-map';
 
 export default () => {
-  const {prestashop} = window;
+  const {prestashop, Theme: {events}} = window;
 
   const initProductSlide = () => {
     const imagesCarousel = document.querySelector(SelectorsMap.product.carousel);
@@ -32,11 +32,11 @@ export default () => {
 
   initProductSlide();
 
-  prestashop.on('updatedProduct', () => {
+  prestashop.on(events.updatedProduct, () => {
     initProductSlide();
   });
 
-  prestashop.on('quickviewOpened', () => {
+  prestashop.on(events.quickviewOpened, () => {
     initProductSlide();
   });
 };

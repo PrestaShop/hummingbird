@@ -5,8 +5,6 @@
 
 export const delay = 250;
 
-export interface InputGroup {
-  qtyInput: HTMLInputElement;
-  incrementButton: HTMLButtonElement;
-  decrementButton: HTMLButtonElement;
-}
+export default {
+  delay,
+};

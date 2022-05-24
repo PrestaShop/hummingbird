@@ -52,12 +52,13 @@ export function updateProductListDOM(data: Record<string, never>) {
 export default () => {
   const {prestashop} = window;
   const {Theme} = window;
+  const {events} = Theme;
 
   $('body').on(
     'change',
     `${Theme.selectors.listing.searchFilters} input[data-search-url]`,
     (event) => {
-      prestashop.emit('updateFacets', parseSearchUrl(event));
+      prestashop.emit(events.updateFacets, parseSearchUrl(event));
     },
   );
 
@@ -65,14 +66,14 @@ export default () => {
     'click',
     Theme.selectors.listing.searchFiltersClearAll,
     (event) => {
-      prestashop.emit('updateFacets', parseSearchUrl(event));
+      prestashop.emit(events.updateFacets, parseSearchUrl(event));
     },
   );
 
   $('body').on('click', Theme.selectors.listing.searchLink, (event) => {
     event.preventDefault();
     prestashop.emit(
-      'updateFacets',
+      events.updateFacets,
       $(event.target)?.closest('a')?.get(0)?.getAttribute('href'),
     );
   });
@@ -89,11 +90,11 @@ export default () => {
     `${Theme.selectors.listing.searchFilters} select`,
     (event) => {
       const form = $(event.target).closest('form');
-      prestashop.emit('updateFacets', `?${form.serialize()}`);
+      prestashop.emit(events.updateFacets, `?${form.serialize()}`);
     },
   );
 
-  prestashop.on('updateProductList', (data: Record<string, never>) => {
+  prestashop.on(events.updateProductList, (data: Record<string, never>) => {
     updateProductListDOM(data);
     window.scrollTo(0, 0);
   });

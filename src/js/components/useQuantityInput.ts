@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  */
 
-import * as Quantity from '@constants/useQuantityInput-data';
+import Quantity from '@constants/useQuantityInput-data';
 import {quantityInput as quantityInputMap} from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
@@ -21,7 +21,7 @@ const useQuantityInput = (selector = quantityInputMap.default, delay = Quantity.
         const decrementButton = qtyInputWrapper.querySelector<HTMLButtonElement>(quantityInputMap.decrement);
 
         if (incrementButton && decrementButton) {
-          const qtyInputGroup: Quantity.InputGroup = {qtyInput, incrementButton, decrementButton};
+          const qtyInputGroup: Theme.QuantityInput.InputGroup = {qtyInput, incrementButton, decrementButton};
           // The changeQuantity() will be called immediatly and change the input value
           incrementButton.addEventListener('click', () => changeQuantity(qtyInput, 1));
           decrementButton.addEventListener('click', () => changeQuantity(qtyInput, -1));
@@ -65,8 +65,8 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number) => {
   }
 };
 
-const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number) => {
-  const {prestashop} = window;
+const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, change: number) => {
+  const {prestashop, Theme: {events}} = window;
   const {qtyInput} = qtyInputGroup;
   const {mode} = qtyInput.dataset;
 
@@ -110,7 +110,7 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
               if (errors) {
                 useToast(errors, {type: 'warning', autohide: false}).show();
               }
-              prestashop.emit('updateCart', {
+              prestashop.emit(events.updateCart, {
                 reason: qtyInput.dataset,
                 resp: data,
               });
@@ -133,7 +133,7 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
             const productAlertSelector = resetAlertContainer(qtyInput);
             useAlert(errorMsg, {type: 'danger', selector: productAlertSelector}).show();
 
-            prestashop.emit('handleError', {
+            prestashop.emit(events.handleError, {
               eventType: 'updateProductInCart',
               resp: errorData,
             });
@@ -150,7 +150,7 @@ const updateQuantity = async (qtyInputGroup: Quantity.InputGroup, change: number
   }
 };
 
-const getTargetButton = (qtyInputGroup: Quantity.InputGroup, change: number) => {
+const getTargetButton = (qtyInputGroup: Theme.QuantityInput.InputGroup, change: number) => {
   const {incrementButton, decrementButton} = qtyInputGroup;
 
   return (change > 0) ? incrementButton : decrementButton;
@@ -177,7 +177,7 @@ const toggleButtonSpinner = (button: HTMLButtonElement, icon: HTMLElement | null
   spinner?.classList.toggle('d-none');
 };
 
-const showSpinButtons = (qtyInputGroup: Quantity.InputGroup) => {
+const showSpinButtons = (qtyInputGroup: Theme.QuantityInput.InputGroup) => {
   const {qtyInput, incrementButton, decrementButton} = qtyInputGroup;
   const {mode} = qtyInput.dataset;
 
@@ -194,7 +194,7 @@ const showSpinButtons = (qtyInputGroup: Quantity.InputGroup) => {
   }
 };
 
-const showConfirmationButtons = (qtyInputGroup: Quantity.InputGroup) => {
+const showConfirmationButtons = (qtyInputGroup: Theme.QuantityInput.InputGroup) => {
   const {qtyInput, incrementButton, decrementButton} = qtyInputGroup;
   const {mode} = qtyInput.dataset;
 
@@ -234,10 +234,10 @@ const sendUpdateCartRequest = async (updateUrl: string, quantity: number) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const {prestashop} = window;
+  const {prestashop, Theme: {events}} = window;
 
-  prestashop.on('updatedCart', () => useQuantityInput());
-  prestashop.on('quickviewOpened', () => useQuantityInput(quantityInputMap.modal));
+  prestashop.on(events.updatedCart, () => useQuantityInput());
+  prestashop.on(events.quickviewOpened, () => useQuantityInput(quantityInputMap.modal));
 });
 
 export default useQuantityInput;

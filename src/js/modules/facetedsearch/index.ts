@@ -89,16 +89,16 @@ const toggleLoader = (toggle: boolean) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const {prestashop} = window;
+  const {prestashop, Theme: {events}} = window;
   initFacets();
-  prestashop.on('updateProductList', () => {
+  prestashop.on(events.updateProductList, () => {
     toggleLoader(true);
     initSliders();
   });
 
   initSliders();
 
-  prestashop.on('updateFacets', () => {
+  prestashop.on(events.updateFacets, () => {
     toggleLoader(false);
   });
 });

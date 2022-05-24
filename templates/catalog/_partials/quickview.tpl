@@ -5,7 +5,7 @@
 <div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
    <div class="modal-content">
-     <div class="modal-header border-bottom-0">
+     <div class="modal-header">
        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
      </div>
      <div class="modal-body page-product">
@@ -22,6 +22,11 @@
           {/block}
           {block name='product_description_short'}
             <div id="product-description-short">{$product.description_short nofilter}</div>
+          {/block}
+          {block name='product_customization'}
+            {if $product.is_customizable && count($product.customizations.fields)}
+              {include file="catalog/_partials/product-customization.tpl" customizations=$product.customizations}
+            {/if}
           {/block}
           {block name='product_buy'}
             <div class="product-actions js-product-actions">
@@ -45,12 +50,12 @@
         </div>
       </div>
      </div>
-     <div class="modal-footer">
-        <div class="product-additional-info row align-items-center js-product-additional-info">
-          <div class="col-6">
+     <div class="modal-footer border-1">
+        <div class="product-additional-info js-product-additional-info d-flex flex-wrap align-items-center justify-content-between w-100">
+          <div class="product-additional-info--start">
             {hook h='displayProductAdditionalInfo' product=$product}
           </div>
-          <div class="col-6 text-end">
+          <div class="product-additional-info--end">
             <a href="{$product.url}" class="d-inline-flex align-items-center">{l s='All details' d='Shop.Theme.Catalog'} <div class="material-icons">chevron_right</div></a>
           </div>
         </div>

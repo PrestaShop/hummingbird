@@ -17,7 +17,7 @@
     tabindex="-1"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-md-down">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</h4>

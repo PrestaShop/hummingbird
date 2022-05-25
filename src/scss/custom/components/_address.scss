@@ -36,3 +36,8 @@ $component-name: address;
     color: $danger;
   }
 }
+
+.#{$component-name}-form {
+  background-color: lighten($gray-100, 2%);
+  padding: 1rem;
+}

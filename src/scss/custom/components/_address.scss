@@ -38,6 +38,6 @@ $component-name: address;
 }
 
 .#{$component-name}-form {
-  background-color: lighten($gray-100, 2%);
   padding: 1rem;
+  background-color: lighten($gray-100, 2%);
 }

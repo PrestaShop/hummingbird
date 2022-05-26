@@ -13,11 +13,7 @@
 {/block}
 
 {block name='product_list_header'}
-  {if $listing.products|count}
-    <h1 id="js-product-list-header" class="h4">
-      {l s='Search results for "%searchString%"' sprintf=['%searchString%' => $smarty.get.s] d='Shop.Theme.Catalog'}</h1>
-  {else}
-    <h1 id="js-product-list-header" class="h4">
-      {l s='No search results for "%searchString%"' sprintf=['%searchString%' => $smarty.get.s] d='Shop.Theme.Catalog'}</h1>
-  {/if}
+  <h1 id="js-product-list-header" class="h4">
+    {if $listing.products|count}{l s='Search results for' d='Shop.Theme.Catalog'}{else}{l s='No search results for' d='Shop.Theme.Catalog'}{/if} {$smarty.get.s}
+  </h1>
 {/block}

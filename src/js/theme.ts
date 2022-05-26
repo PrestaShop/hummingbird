@@ -3,6 +3,7 @@
  * file that was distributed with this source code.
  */
 import themeSelectors from './constants/selectors-map';
+import EVENTS from './constants/events-map';
 import initEmitter from './prestashop';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
@@ -25,7 +26,7 @@ import initDesktopMenu from './modules/ps_mainmenu';
 initEmitter();
 
 $(() => {
-  const {prestashop} = window;
+  const {prestashop, Theme: {events}} = window;
 
   initProductBehavior();
   initQuickview();
@@ -40,7 +41,7 @@ $(() => {
   initVisiblePassword();
   initDesktopMenu();
 
-  prestashop.on('responsiveUpdate', () => {
+  prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();
     initLanguageSelector();
     initCurrencySelector();
@@ -56,6 +57,8 @@ export const components = {
 };
 
 export const selectors = themeSelectors;
+
+export const events = EVENTS;
 
 export default {
   initResponsiveToggler,

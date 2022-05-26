@@ -6,9 +6,9 @@
 import * as Toaster from '@constants/useToast-data';
 
 export const TestMarkupMessage = 'My <b>test</b> message.';
-export const TestTypeOption: Toaster.Options = {type: 'success'};
-export const TestClassListOption: Toaster.Options = {type: 'warning', classlist: 'text-warning bg-dark border-1'};
-export const TestAutoHideOption: Toaster.Options = {type: 'danger', autohide: false};
+export const TestTypeOption: Theme.Toast.Options = {type: 'success'};
+export const TestClassListOption: Theme.Toast.Options = {type: 'warning', classlist: 'text-warning bg-dark border-1'};
+export const TestAutoHideOption: Theme.Toast.Options = {type: 'danger', autohide: false};
 
 export const ExpectedTypeClassList = Toaster.Theme[TestTypeOption.type];
 
@@ -23,7 +23,7 @@ export const OverrideTemplate = `
     <div class="toast-body"></div>
   </div>
 `;
-export const TestTemplateOption: Toaster.Options = {type: 'info', template: OverrideTemplate};
+export const TestTemplateOption: Theme.Toast.Options = {type: 'info', template: OverrideTemplate};
 
 export const WithoutContainer = '';
 export const WithContainerWithoutTemplate = `

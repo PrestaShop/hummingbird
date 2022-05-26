@@ -3,8 +3,6 @@
  * file that was distributed with this source code.
  */
 
-import {Alert} from 'bootstrap';
-
 export const Theme = {
   light: 'alert-light',
   dark: 'alert-dark',
@@ -36,27 +34,7 @@ export const Template = `
   </div>
 `;
 
-export const Default: Options = {
+export const Default: Theme.Alert.Options = {
   type: 'info',
   dismissible: true,
 };
-
-export interface Options {
-  type: keyof typeof Theme;
-  icon?: string;
-  title?: string;
-  dismissible?: boolean;
-  classlist?: string;
-  selector?: string;
-}
-
-export interface Instance {
-  instance: Alert | null;
-  element: HTMLElement | null;
-  show: () => boolean;
-  hide: () => boolean;
-  dispose: () => boolean;
-  remove: () => boolean;
-  title: (markup?: string) => string | boolean;
-  message: (markup?: string) => string | boolean;
-}

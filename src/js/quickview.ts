@@ -5,10 +5,10 @@
 
 import selectorsMap from './constants/selectors-map';
 
-const {prestashop} = window;
-
 export default function initQuickviews() {
-  prestashop.on('clickQuickView', (elm: HTMLElement) => {
+  const {prestashop, Theme: {events}} = window;
+
+  prestashop.on(events.clickQuickview, (elm: HTMLElement) => {
     const data = {
       action: 'quickview',
       id_product: elm.dataset.idProduct,
@@ -25,10 +25,10 @@ export default function initQuickviews() {
         productModal.on('hidden.bs.modal', () => {
           productModal.remove();
         });
-        prestashop.emit('quickviewOpened');
+        prestashop.emit(events.quickviewOpened);
       })
       .fail((resp) => {
-        prestashop.emit('handleError', {
+        prestashop.emit(events.handleError, {
           eventType: 'clickQuickView',
           resp,
         });
@@ -37,7 +37,7 @@ export default function initQuickviews() {
 
   $(document).ready(() => {
     $('body').on('click', selectorsMap.quickview, (event) => {
-      prestashop.emit('clickQuickView', {
+      prestashop.emit(events.clickQuickview, {
         dataset: $(event.target).closest(selectorsMap.product.miniature).data(),
       });
       event.preventDefault();

@@ -7,7 +7,7 @@ import useProgressRing from '@js/components/useProgressRing';
 
 const initCheckout = () => {
   const {prestashop} = window;
-  const {Theme: {selectors}} = window;
+  const {Theme: {selectors, events}} = window;
   const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectors;
 
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);
@@ -129,7 +129,7 @@ const initCheckout = () => {
               termsModal.show();
             }
           } catch (e) {
-            prestashop.emit('handleError', {eventType: 'clickOnTermsLink', error: e});
+            prestashop.emit(events.handleError, {eventType: 'clickOnTermsLink', error: e});
           }
         })();
       }

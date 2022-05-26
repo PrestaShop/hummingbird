@@ -65,7 +65,9 @@ const initDesktopMenu = () => {
         menuContainerElement?.classList.add('focusing');
 
         // Focus on first link with Arrow Down or last link with Arrow Up inside the menu container
-        const menuContainerLinks = menuContainerElement?.querySelectorAll(desktopMenuMap.dropdownItemAnchor(1));
+        const menuContainerLinks = menuContainerElement?.querySelectorAll<HTMLElement>(
+          desktopMenuMap.dropdownItemAnchor(1),
+        );
 
         if (menuContainerLinks && menuContainerLinks.length) {
           const targetIndex = (event.key === ARROW_DOWN_KEY) ? 0 : menuContainerLinks.length - 1;

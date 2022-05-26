@@ -4,9 +4,9 @@
  */
 import {API} from 'nouislider';
 
-const {prestashop} = window;
-
 export default function (values: Array<string | number>, slider: API) {
+  const {prestashop, Theme: {events}} = window;
+
   const label = slider.target.dataset.sliderLabel;
   const unit = slider.target.dataset.sliderUnit;
   const encodedUrl = window.location.href;
@@ -29,5 +29,5 @@ export default function (values: Array<string | number>, slider: API) {
     newUrl = `${splittedUrl[0]}?q=${label}-${unit}-${values[0]}-${values[1]}`;
   }
 
-  prestashop.emit('updateFacets', newUrl);
+  prestashop.emit(events.updateFacets, newUrl);
 }

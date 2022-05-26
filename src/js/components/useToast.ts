@@ -7,8 +7,8 @@ import {Toast} from 'bootstrap';
 import selectorsMap from '@constants/selectors-map';
 import * as Toaster from '@constants/useToast-data';
 
-const useToast = (message: string, options?: Toaster.Options): Toaster.Instance => {
-  let toastObject: Toaster.Instance = {
+const useToast = (message: string, options?: Theme.Toast.Options): Theme.Toast.Instance => {
+  let toastObject: Theme.Toast.Instance = {
     // An instance of Bootstrap's Toast, will be used to show, hide and dispose the toast
     instance: null,
     // In case someone wants to access the toast's element afterwhile
@@ -201,7 +201,7 @@ const insertToastMessage = (toastElement: HTMLElement, message: string): void =>
 };
 
 // Depending on the toast type, we need different classes (success, warning, error...)
-const addToastClassList = (toastElement: HTMLElement, options: Toaster.Options): void => {
+const addToastClassList = (toastElement: HTMLElement, options: Theme.Toast.Options): void => {
   let bsClassList: string = Toaster.Theme[options.type];
   const customClassList = options.classlist;
 

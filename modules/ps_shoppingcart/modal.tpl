@@ -27,7 +27,7 @@
                   <img
                     src="{$urls.no_picture_image.bySize.medium_default.url}"
                     loading="lazy"
-                    class="product-image"
+                    class="img-fluid product-image"
                   />
                 {/if}
               </div>

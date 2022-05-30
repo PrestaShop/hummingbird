@@ -22,6 +22,7 @@ import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
 import './modules/facetedsearch';
 import initDesktopMenu from './modules/ps_mainmenu';
+import initFormValidation from './form-validation';
 
 initEmitter();
 
@@ -40,6 +41,7 @@ $(() => {
   initMobileMenu();
   initVisiblePassword();
   initDesktopMenu();
+  initFormValidation();
 
   prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();

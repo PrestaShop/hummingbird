@@ -35,7 +35,7 @@
         {include file='catalog/_partials/product-cover-thumbnails.tpl'}
       {/block}
     </div>
-    
+
     <div class="product__col col-lg-6 col-xl-5">
       {block name='product_header'}
         <h1 class="h4 product__name">{block name='page_title'}{$product.name}{/block}</h1>
@@ -82,6 +82,10 @@
 
             {block name='product_additional_info'}
               {include file='catalog/_partials/product-additional-info.tpl'}
+            {/block}
+
+            {block name='product_out_of_stock'}
+              {hook h='actionProductOutOfStock' product=$product}
             {/block}
 
             {* Input to refresh product HTML removed, block kept for compatibility with themes *}
@@ -171,7 +175,7 @@
           </div>
       {/block}
     </div>{* /col *}
-  </div>{* /row *} 
+  </div>{* /row *}
   {* END OF SECOND PART *}
 
   {block name='product_accessories'}

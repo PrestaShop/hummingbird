@@ -60,6 +60,10 @@
   {include file="_partials/stylesheets.tpl" stylesheets=$stylesheets}
 {/block}
 
+{block name='variables'}
+  {include file="_partials/variables.tpl"}
+{/block}
+
 {block name='javascript_head'}
   {include file="_partials/javascript.tpl" javascript=$javascript.head vars=$js_custom_vars}
 {/block}

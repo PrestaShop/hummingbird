@@ -6,9 +6,9 @@
 const initCurrencySelector = () => {
   const {Theme} = window;
   const {currencySelector: CurrencySelectorMap} = Theme.selectors;
-  const languageSelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencySelector);
+  const currencySelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencySelector);
 
-  languageSelector?.addEventListener('change', (event) => {
+  currencySelector?.addEventListener('change', (event) => {
     const option = event.target as HTMLOptionElement;
 
     window.location.href = option.value;

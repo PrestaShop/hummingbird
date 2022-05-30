@@ -5,6 +5,8 @@
 
 import SelectorsMap from './constants/selectors-map';
 
+type ProductSlideEvent = Event & {to: number};
+
 export default () => {
   const {prestashop, Theme: {events}} = window;
 
@@ -16,7 +18,7 @@ export default () => {
     }
   };
 
-  function onProductSlide(event: Event & {to: number}): void {
+  function onProductSlide(event: ProductSlideEvent): void {
     const thumbnails = document.querySelectorAll(SelectorsMap.product.thumbnail);
 
     thumbnails.forEach((e: Element) => {

@@ -4,7 +4,7 @@
  */
 
 import Quantity from '@constants/useQuantityInput-data';
-import {quantityInput as quantityInputMap} from '@constants/selectors-map';
+import {qtyInput as quantityInputMap} from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
 import useToast from './useToast';
@@ -82,15 +82,9 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number, keyboard = f
 
   if (mode !== 'confirmation' || keyboard) {
     const currentValue = Number(qtyInput.value);
-    const baseValue = qtyInput.getAttribute('value');
     const min = (qtyInput.dataset.updateUrl === undefined) ? Number(qtyInput.getAttribute('min')) : 0;
-
-    if (Number.isNaN(currentValue) === false) {
-      const newValue = Math.max(currentValue + change, min);
-      qtyInput.value = String(newValue);
-    } else {
-      qtyInput.value = baseValue ?? String(min);
-    }
+    const newValue = Math.max(currentValue + change, min);
+    qtyInput.value = String(newValue);
   }
 };
 
@@ -118,6 +112,8 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
 
         toggleButtonSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
 
+        const {productId} = qtyInput.dataset;
+
         try {
           const response = await sendUpdateCartRequest(requestUrl, quantity);
 
@@ -126,7 +122,7 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
 
             if (data.hasError) {
               const errors = data.errors as Array<string>;
-              const productAlertSelector = resetAlertContainer(qtyInput);
+              const productAlertSelector = resetAlertContainer(Number(productId));
 
               if (errors && productAlertSelector) {
                 errors.forEach((error: string) => {
@@ -159,7 +155,7 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
 
           if (errorData.status !== undefined) {
             const errorMsg = `${errorData.statusText}: ${errorData.url}`;
-            const productAlertSelector = resetAlertContainer(qtyInput);
+            const productAlertSelector = resetAlertContainer(Number(productId));
             useAlert(errorMsg, {type: 'danger', selector: productAlertSelector}).show();
 
             prestashop.emit(events.handleError, {
@@ -173,7 +169,8 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
         }
       }
     } else {
-      // The input value is not a correct number
+      // The input value is not a correct number so revert to the value in the DOM
+      qtyInput.value = String(baseValue);
       showSpinButtons(qtyInputGroup);
     }
   }
@@ -185,11 +182,9 @@ const getTargetButton = (qtyInputGroup: Theme.QuantityInput.InputGroup, change: 
   return (change > 0) ? incrementButton : decrementButton;
 };
 
-const resetAlertContainer = (qtyInput: HTMLInputElement) => {
-  const {alertId} = qtyInput.dataset;
-
-  if (alertId) {
-    const productAlertSelector = quantityInputMap.alert(alertId);
+const resetAlertContainer = (productId: number) => {
+  if (productId) {
+    const productAlertSelector = quantityInputMap.alert(productId);
     const productAlertContainer = document.querySelector<HTMLDivElement>(productAlertSelector);
 
     if (productAlertContainer) {
@@ -234,11 +229,11 @@ const showConfirmationButtons = (qtyInputGroup: Theme.QuantityInput.InputGroup) 
 };
 
 const toggleButtonIcon = (incrementButton: HTMLButtonElement, decrementButton: HTMLButtonElement) => {
-  const incrementButtonIcons = incrementButton.querySelectorAll('i') as NodeListOf<HTMLElement>;
+  const incrementButtonIcons = incrementButton.querySelectorAll<HTMLElement>('i');
   incrementButtonIcons.forEach((icon: HTMLElement) => {
     icon.classList.toggle('d-none');
   });
-  const decrementButtonIcons = decrementButton.querySelectorAll('i') as NodeListOf<HTMLElement>;
+  const decrementButtonIcons = decrementButton.querySelectorAll<HTMLElement>('i');
   decrementButtonIcons.forEach((icon: HTMLElement) => {
     icon.classList.toggle('d-none');
   });

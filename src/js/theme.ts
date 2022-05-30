@@ -49,6 +49,8 @@ $(() => {
     initCurrencySelector();
     initDesktopMenu();
   });
+
+  prestashop.on('updatedCart', () => useQuantityInput());
 });
 
 export const components = {
@@ -63,7 +65,16 @@ export const selectors = themeSelectors;
 export const events = EVENTS;
 
 export default {
-  initResponsiveToggler,
-  initQuickview,
   initProductBehavior,
+  initQuickview,
+  initCheckout,
+  initResponsiveToggler,
+  initCart,
+  useQuantityInput,
+  initSearchbar,
+  initLanguageSelector,
+  initCurrencySelector,
+  initMobileMenu,
+  initVisiblePassword,
+  initDesktopMenu,
 };

@@ -24,8 +24,7 @@
   *}
 
 <div class="product-line row">
-  {assign var=product_line_alert_id value=10|mt_rand:100000}
-  <div id="js-product-line-alert--{$product_line_alert_id}"></div>
+  <div id="js-product-line-alert--{$product.id_product}"></div>
   <div class="product-line__image col-4 col-sm-2">
     <a class="product-line__title product-line__item" href="{$product.url}"
       data-id_customization="{$product.id_customization|intval}">
@@ -43,10 +42,6 @@
       data-id_customization="{$product.id_customization|intval}">
       {$product.name}
     </a>
-
-    {if is_array($product.customizations) && $product.customizations|count}
-      {include file="catalog/_partials/product-customization-modal.tpl" product=$product}
-    {/if}
 
     {foreach from=$product.attributes key="attribute" item="value"}
       <div class="product-line__info product-line__item {$attribute|lower}">
@@ -95,7 +90,6 @@
               "name"=>"product-quantity-spin",
               "data-update-url"=>"{$product.update_quantity_url}",
               "data-product-id"=>"{$product.id_product}",
-              "data-alert-id"=>"{$product_line_alert_id}",
               "value"=>"{$product.quantity}",
               "min"=>"{$product.minimal_quantity}"
             ]

@@ -8,6 +8,7 @@
     flex-wrap: nowrap;
     align-items: center;
     padding: $btn-padding-y $btn-padding-x;
+    padding-right: 0;
     border-radius: $btn-border-radius;
 
     @include media-breakpoint-up(md) {

@@ -8,7 +8,7 @@
     {include file='_partials/form-errors.tpl' errors=$errors['']}
   {/block}
 
-  <form id="login-form" class="needs-validation" action="{block name='login_form_actionurl'}{$action}{/block}" method="post" novalidate>
+  <form id="login-form" class="form-validation" action="{block name='login_form_actionurl'}{$action}{/block}" method="post" novalidate>
 
     {block name='login_form_fields'}
       {foreach from=$formFields item="field"}

@@ -8,7 +8,7 @@
 
     {block name="address_form_url"}
     <form
-      class="needs-validation"
+      class="form-validation"
       method="POST"
       action="{url entity='address' params=['id_address' => $id_address]}"
       data-id-address="{$id_address}"

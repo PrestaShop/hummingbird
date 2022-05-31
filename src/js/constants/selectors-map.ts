@@ -108,7 +108,7 @@ export const quantityInput = {
 };
 
 export const formValidation = {
-  default: '.needs-validation',
+  default: '.form-validation',
 };
 
 const selectorsMap = {

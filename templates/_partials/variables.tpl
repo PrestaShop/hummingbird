@@ -19,9 +19,9 @@
     --bs-gray-800: #363a41;
     --bs-gray-900: #232323;
 
-    --bs-text-muted: $gray-600;
+    --bs-text-muted: var(--bs-gray-600);
 
-    --bs-body-color: $gray-800;
+    --bs-body-color: var(--bs-gray-800);
 
     --bs-toast-border-width: 0;
     --bs-carousel-transition-duration: 0.25s;

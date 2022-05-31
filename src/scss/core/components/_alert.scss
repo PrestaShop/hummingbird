@@ -2,4 +2,12 @@
   &.fade:not(.show) {
     @extend .visually-hidden;
   }
+
+  p,
+  ul,
+  ol {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 }

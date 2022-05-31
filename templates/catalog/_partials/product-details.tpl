@@ -1,11 +1,11 @@
 
-<div 
+<div
   class="info js-product-details accordion-item"
   id="product-details"
   data-product="{$product.embedded_attributes|json_encode}"
 >
   <h5 class="info__title accordion-header" id="product-details-heading">
-    <button class="accordion-button {if $product.description}collapsed{/if}" type="button" data-bs-toggle="collapse" data-bs-target="#product-details-collapse" aria-expanded="{if $product.description}false{else}true{/if}" 
+    <button class="accordion-button {if $product.description}collapsed{/if}" type="button" data-bs-toggle="collapse" data-bs-target="#product-details-collapse" aria-expanded="{if $product.description}false{else}true{/if}"
       aria-controls="product-details-collapse">
       {l s='Product Details' d='Shop.Theme.Catalog'}
     </button>
@@ -69,17 +69,6 @@
           {/if}
         {/block}
 
-        {block name='product_out_of_stock'}
-          <li class="detail">
-            <div class="detail__left">
-              <span class="detail__title">{l s='Out of stock' d='Shop.Theme.Catalog'}</span>
-            </div>
-            <div class="detail__right">
-              {hook h='actionProductOutOfStock' product=$product}
-            </div>
-          </li>
-        {/block}
-
         {* if product have specific references, a table will be added to product details section *}
         {block name='product_condition'}
           {if $product.condition}
@@ -116,7 +105,7 @@
     {if $product.grouped_features}
       <div class="info accordion-item" id="product-features">
         <h5 class="info__title accordion-header" id="product-features-heading">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-features-collapse" aria-expanded="false" 
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-features-collapse" aria-expanded="false"
             aria-controls="product-features-collapse">
             {l s='Data sheet' d='Shop.Theme.Catalog'}
           </button>

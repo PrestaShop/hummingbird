@@ -107,6 +107,10 @@ export const quantityInput = {
   alert: (param: string): string => `#js-product-line-alert--${param}`,
 };
 
+export const formValidation = {
+  default: '.form-validation',
+};
+
 const selectorsMap = {
   alert: {
     selector: '#notifications .container',
@@ -146,6 +150,7 @@ const selectorsMap = {
   visiblePassword,
   desktopMenu,
   quantityInput,
+  formValidation,
 };
 
 export default selectorsMap;

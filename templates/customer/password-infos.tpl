@@ -11,22 +11,21 @@
 {/block}
 
 {block name='page_content'}
-  <ul class="ps-alert-success">
-    {foreach $successes as $success}
-      <li class="item">
-        <i>
-          <svg viewBox="0 0 24 24">
-            <path fill="#fff" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
-          </svg>
-        </i>
-        <p>{$success}</p>
-      </li>
-    {/foreach}
-  </ul>
+  {if count($successes)}
+    <div class="alert alert-success" role="alert">
+      <ul>
+        {foreach $successes as $success}
+          <li>{$success}</li>
+        {/foreach}
+      </ul>
+    </div>
+  {/if}
 {/block}
 
 {block name='page_footer'}
-  <ul>
-    <li><a href="{$urls.pages.authentication}">{l s='Back to Login' d='Shop.Theme.Actions'}</a></li>
-  </ul>
+  <hr>
+  <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-link btn-sm">
+    <i class="material-icons">&#xE5CB;</i>
+    <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
+  </a>
 {/block}

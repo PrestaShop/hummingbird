@@ -4,7 +4,6 @@
  *}
 {$componentName = 'subcategories'}
 
-{dump($subcategories)}
 {if !empty($subcategories)}
   {if (isset($display_subcategories) && $display_subcategories eq 1) || !isset($display_subcategories) }
     <div id="subcategories" class="{$componentName} row gx-3">

@@ -6,13 +6,14 @@
 import initEmitter from '@js/prestashop';
 import {progressRing as ProgressRingMap} from '@constants/selectors-map';
 import resetHTMLBodyContent from '@helpers/resetBody';
-import * as ProgressRing from '@constants/mocks/useProgressRing-data';
+import * as ProgressRingMockData from '@constants/mocks/useProgressRing-data';
+import * as ProgressRingData from '@constants/useProgressRing-data';
 import useProgressRing from '@js/components/useProgressRing';
 
 describe('useProgressRing', () => {
   describe('with valid template', () => {
     beforeAll(() => {
-      resetHTMLBodyContent(ProgressRing.Template);
+      resetHTMLBodyContent(ProgressRingMockData.Template);
       window.prestashop = {};
       initEmitter();
     });
@@ -45,7 +46,7 @@ describe('useProgressRing', () => {
       const percentage = (current / complete) * 100;
       const {setProgress} = useProgressRing(
         ProgressRingMap.checkout.element,
-        {steps: complete, text: Theme.ProgressRing.Text.percent},
+        {steps: complete, text: ProgressRingData.Text.percent},
       );
 
       if (setProgress) {
@@ -65,7 +66,7 @@ describe('useProgressRing', () => {
     });
 
     it('should display a progress ring without any text when using setProgress', async () => {
-      resetHTMLBodyContent(ProgressRing.TemplateWithoutText);
+      resetHTMLBodyContent(ProgressRingMockData.TemplateWithoutText);
       const complete = 4;
       const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: complete});
 
@@ -79,7 +80,7 @@ describe('useProgressRing', () => {
     });
 
     it('should return undefiend setProgress when the circle is not in the tempalte', async () => {
-      resetHTMLBodyContent(ProgressRing.TemplateWithoutCircle);
+      resetHTMLBodyContent(ProgressRingMockData.TemplateWithoutCircle);
       const complete = 4;
       const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: complete});
 

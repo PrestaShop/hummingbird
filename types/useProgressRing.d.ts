@@ -11,15 +11,11 @@ declare namespace Theme {
       error?: Error,
     }
 
-    const enum Text {
-      enum = 'enum',
-      percent = 'percent',
-      hidden = 'hidden'
-    }
+    type TextType = 'enum' | 'percent' | 'hidden';
 
     interface Options {
       steps: number;
-      text?: Text;
+      text?: TextType;
     }
 
     type Function = (selector: string, options?: Options) => Return

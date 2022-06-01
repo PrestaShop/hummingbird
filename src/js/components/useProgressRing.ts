@@ -4,6 +4,7 @@
  */
 
 import selectorsMap from '@constants/selectors-map';
+import * as ProgressRingData from '@constants/useProgressRing-data';
 
 const {progressRing: ProgressRingMap} = selectorsMap;
 const PROGRESS_ERROR = 'The circle is not linked to an SVG circle';
@@ -26,8 +27,8 @@ export const useProgressRing = (selector: string, options: Theme.ProgressRing.Op
         circle.style.strokeDashoffset = offset.toString();
         circle.dataset.percent = String(percent);
 
-        if (progressText && options.text !== Theme.ProgressRing.Text.hidden) {
-          const text = (options.text === undefined || options.text === Theme.ProgressRing.Text.enum)
+        if (progressText && options.text !== ProgressRingData.Text.hidden) {
+          const text = (options.text === undefined || options.text === ProgressRingData.Text.enum)
             ? `${Math.min(step, options.steps)} / ${options.steps}` : `${percent}%`;
           progressText.innerHTML = text;
         }

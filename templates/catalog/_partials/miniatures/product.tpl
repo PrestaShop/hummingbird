@@ -15,7 +15,7 @@
             {if $product.cover}
               <img
                 src="{$product.cover.bySize.home_default.url}"
-                alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
                 loading="lazy"
                 data-full-size-image-url="{$product.cover.large.url}"
                 width="250"
@@ -53,7 +53,7 @@
 
           <div class="{$componentName}__infos__top">
             {block name='product_name'}
-              <a href="{$product.url}"><p class="{$componentName}__title">{$product.name|truncate:30:'...'}</p></a>
+              <a href="{$product.url}"><p class="{$componentName}__title">{$product.name}</p></a>
             {/block}
           </div>
 

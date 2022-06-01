@@ -11,13 +11,7 @@
 {block name='content'}
 
     {block name='product_list_header'}
-      <h1 id="js-product-list-header" class="h4">{$listing.label}</h1>
-    {/block}
-
-    {block name='subcategory_list'}
-      {if isset($subcategories) && $subcategories|@count> 0}
-        {include file='catalog/_partials/subcategories.tpl' subcategories=$subcategories}
-      {/if}
+      <h1 id="js-product-list-header" class="h1 mb-4">{$listing.label}</h1>
     {/block}
     
     {hook h="displayHeaderCategory"}
@@ -62,6 +56,8 @@
         <div id="js-product-list-bottom"></div>
       {/if}
     </section>
+
+    {block name='product_list_footer'}{/block}
 
     {hook h="displayFooterCategory"}
 

@@ -15,17 +15,17 @@
     {block name='pagination_page_list'}
       <nav aria-label="{l s='Products pagination' d='Shop.Theme.Catalog'}">
         {if $pagination.should_be_displayed}
-          <ul class="{$componentName}-list pagination">
+          <ul class="pagination">
             {foreach from=$pagination.pages item="page"}
-              <li class="{$componentName}-list-item page-item{if $page.current} active{/if}"{if $page.current}aria-current="page"{/if}>
-                {if $page.type === 'spacer'}
-                  <span class="spacer">&hellip;</span>
-                {else}
-                  <a
-                    rel="{if $page.type === 'previous'}prev{elseif $page.type === 'next'}next{else}nofollow{/if}"
+              {if $page.type === 'spacer'}
+                <li class="page-item disabled">
+                  <span class="page-link">&hellip;</span>
+                </li>
+              {else}
+                <li class="page-item{if $page.current} active{/if}" {if $page.current}aria-current="page" {/if}>
+                  <a rel="{if $page.type === 'previous'}prev{elseif $page.type === 'next'}next{else}nofollow{/if}"
                     href="{$page.url}"
-                    class="page-link {if $page.type === 'previous'}previous {elseif $page.type === 'next'}next {/if}{['disabled' => !$page.clickable, 'js-search-link' => true]|classnames}"
-                 >
+                    class="page-link {if $page.type === 'previous'}previous {elseif $page.type === 'next'}next {/if}{['disabled' => !$page.clickable, 'js-search-link' => true]|classnames}">
                     {if $page.type === 'previous'}
                       <i class="material-icons rtl-flip">&#xE314;</i>{l s='Previous' d='Shop.Theme.Actions'}
                     {elseif $page.type === 'next'}
@@ -34,8 +34,8 @@
                       {$page.page}
                     {/if}
                   </a>
-                {/if}
-              </li>
+                </li>
+              {/if}
             {/foreach}
           </ul>
         {/if}

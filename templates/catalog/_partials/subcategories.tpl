@@ -15,7 +15,7 @@
                 <img class="img-fluid" src="{$subcategory.image.large.url}" alt="{$subcategory.name|escape:'html':'UTF-8'}" loading="lazy" width="{$subcategory.image.large.width}" height="{$subcategory.image.large.height}" />
               {/if}
             </div>
-            <p class="subcategory__name">{$subcategory.name|truncate:25:'...'|escape:'html':'UTF-8'}</p>
+            <p class="subcategory__name">{$subcategory.name|escape:'html':'UTF-8'}</p>
           </a>
         </div>
       {/foreach}

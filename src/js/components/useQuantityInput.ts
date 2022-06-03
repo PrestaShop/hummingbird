@@ -62,10 +62,6 @@ const useQuantityInput = (selector = quantityInputMap.default, delay = Quantity.
               showSpinButtons(qtyInputGroup);
             }
           });
-
-          qtyInput.addEventListener('focusout', () => {
-            showSpinButtons(qtyInputGroup);
-          });
         }
       }
     }

@@ -81,9 +81,9 @@ describe('useQuantityInput', () => {
       expect(decreasedValue).toEqual(qtyMin);
     });
 
-    it('should display confirmation buttons on keyup', () => {
+    it('should display confirmation buttons on keydown', () => {
       const qtyInput = getHTMLElement<HTMLInputElement>('input');
-      qtyInput.dispatchEvent(new Event('keyup'));
+      qtyInput.dispatchEvent(new Event('keydown'));
       qtyInput.value = '1';
 
       const decrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.decrement);
@@ -98,7 +98,7 @@ describe('useQuantityInput', () => {
 
     it('should hide confirmation buttons on decrement', async () => {
       const qtyInput = getHTMLElement<HTMLInputElement>('input');
-      qtyInput.dispatchEvent(new Event('keyup'));
+      qtyInput.dispatchEvent(new Event('keydown'));
 
       const decrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.decrement);
       decrementButton.click();
@@ -114,7 +114,7 @@ describe('useQuantityInput', () => {
       const qtyValue = '1';
       const confirmedExpectedValue = '5';
       resetQtyInputValueInDOM(qtyInput, qtyMin, qtyValue);
-      qtyInput.dispatchEvent(new Event('keyup'));
+      qtyInput.dispatchEvent(new Event('keydown'));
 
       const mockedIncrementFetch = mockedResponse(true, false, confirmedExpectedValue);
       const incrementButton = getHTMLElement<HTMLButtonElement>(quantityInputMap.increment);

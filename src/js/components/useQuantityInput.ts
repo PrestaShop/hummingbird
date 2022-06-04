@@ -15,9 +15,7 @@ const ARROW_UP_KEY = 'ArrowUp';
 const ARROW_DOWN_KEY = 'ArrowDown';
 
 const useQuantityInput: Theme.QuantityInput.Function = (
-    selector = quantityInputMap.default,
-    delay = Quantity.delay
-  ) => {
+  selector = quantityInputMap.default, delay = Quantity.delay) => {
   const qtyInputNodeList = document.querySelectorAll<HTMLElement>(selector);
 
   qtyInputNodeList.forEach((qtyInputWrapper: HTMLElement) => {

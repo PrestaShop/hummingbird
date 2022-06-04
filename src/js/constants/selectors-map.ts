@@ -27,6 +27,7 @@ export const listing = {
 };
 
 export const cart = {
+  overview: '.cart-overview',
   discountCode: '.js-discount .js-code',
   discountName: '[name=discount_name]',
   displayPromo: '.display-promo',

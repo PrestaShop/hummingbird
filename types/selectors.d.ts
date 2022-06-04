@@ -27,6 +27,7 @@ declare type listing = {
 };
 
 declare type cart = {
+  overview: string,
   discountCode: string,
   discountName: string,
   displayPromo: string,

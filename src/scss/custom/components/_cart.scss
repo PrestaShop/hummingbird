@@ -1,6 +1,12 @@
 $component-name: cart;
 
 .#{$component-name} {
+  &-overview {
+    &:focus-visible {
+      outline: 0;
+    }
+  }
+
   &-summary {
     padding: 1rem;
 

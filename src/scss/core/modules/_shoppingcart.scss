@@ -144,12 +144,12 @@ $component-name: blockcart;
       img {
         border-radius: 8px;
 
-        @include media-breakpoint-down(lg) {
+        @include media-breakpoint-down(sm) {
           margin-bottom: 1rem;
         }
       }
 
-      @include media-breakpoint-down(lg) {
+      @include media-breakpoint-down(md) {
         padding-bottom: 1rem;
         margin-bottom: 1rem;
         border-bottom: 1px dotted rgba($black, 0.2);

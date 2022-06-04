@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col-md-7 blockcart-modal__product">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-sm-4 col-md-5">
                 <img
                   {if $product.default_image}
                     src="{$product.default_image.medium.url}"
@@ -31,7 +31,7 @@
                   class="img-fluid product-image"
                 />
               </div>
-              <div class="col-md-7">
+              <div class="col-sm-8 col-md-7">
                 <h6 class="h6 product-name">{$product.name}</h6>
                 <p class="product-price">{$product.price}</p>
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
@@ -62,8 +62,8 @@
                 </div>
                 {if $cart.subtotals.shipping.value}
                   <div class="blockcart-modal__total product-shipping">
-                  <span class="label">{l s='Shipping:' d='Shop.Theme.Checkout'}</span>
-                  <span class="value">{$cart.subtotals.shipping.value} {hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</span>
+                    <span class="label">{l s='Shipping:' d='Shop.Theme.Checkout'}</span>
+                    <span class="value">{$cart.subtotals.shipping.value} {hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</span>
                   </div>
                 {/if}
               </div>

@@ -4,7 +4,9 @@
  *}
 {block name='cart_detailed_product'}
   <div class="cart-overview js-cart"
-    data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}">
+    data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}"
+    tabindex="-1"
+  >
     <hr />
     {if $cart.products}
       <ul class="cart__items">

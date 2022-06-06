@@ -11,6 +11,6 @@
       decrementButton: HTMLButtonElement;
     }
 
-    type Function = (selector: string, delay?: number) => void
+    type Function = (selector?: string, delay?: number) => void
   }
 }

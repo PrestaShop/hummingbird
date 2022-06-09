@@ -1,0 +1,48 @@
+.block-social {
+  text-align: right;
+
+  & ul {
+    display: inline-flex;
+    margin: 0;
+
+    @media (max-width: 767px) {
+      flex-flow: wrap
+    }
+
+    & li {
+      display: inline-block;
+      width: 3.5rem;
+      height: 2.5rem;
+      margin: 1rem;
+      cursor: pointer;
+      background-color: $primary;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 100rem;
+
+      @media (max-width: 767px) {
+        width: 2.5rem;
+        height: 2rem;
+        margin-right: 1.3rem;
+        margin-bottom: 1.3rem;
+        background-size: contain
+      }
+
+      &:hover {
+        background-color: #24b9d7
+      }
+
+      & a {
+        display: block;
+        height: 100%;
+        overflow: hidden;
+        text-indent: 100%;
+        white-space: nowrap;
+
+        &:hover {
+          color: transparent
+        }
+      }
+    }
+  }
+}

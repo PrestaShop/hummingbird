@@ -1,13 +1,13 @@
 @mixin button-icon($button:btn) {
-  $fs: 1.5rem;
-  $px: 0.25rem;
+  $fs: $default-button-icon-size;
+  $px: $default-button-icon-padding;
 
   @if $button == sm {
-    $fs: 1rem;
-    $px: 0.125rem;
+    $fs: $small-button-icon-size;
+    $px: $small-button-icon-padding;
   } @else if $button == lg {
-    $fs: 2rem;
-    $px: 0.375rem;
+    $fs: $large-button-icon-size;
+    $px: $large-button-icon-padding;
   }
 
   .material-icons {

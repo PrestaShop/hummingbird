@@ -46,7 +46,8 @@
           {block name='quick_view'}
             <div class="{$componentName}__quickview">
               <button class="{$componentName}__quickview_button btn btn-link js-quickview btn-with-icon" data-link-action="quickview">
-                <i class="material-icons">&#xE417;</i> {l s='Quick view' d='Shop.Theme.Actions'}
+                <i class="material-icons icon-start">&#xE417;</i>
+                {l s='Quick view' d='Shop.Theme.Actions'}
               </button>
             </div>
           {/block}

@@ -49,7 +49,10 @@
           <p class="alert alert-danger js-address-error" name="alert-delivery" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
         {/if}
 
-        <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon w-full w-md-auto mb-3"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
+        <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon w-full w-md-auto mb-3">
+          <i class="material-icons icon-start">&#xE145;</i>
+          {l s='Add new address' d='Shop.Theme.Actions'}
+        </a>
 
         {if $use_same_address && !$cart.is_virtual}
           <a data-link-action="different-invoice-address" href="{$use_different_address_url}" class="d-block">
@@ -87,21 +90,24 @@
             <p class="alert alert-danger js-address-error" name="alert-invoice" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
           {/if}
 
-          <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon w-full w-md-auto"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
+          <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon w-full w-md-auto">
+            <i class="material-icons icon-start">&#xE145;</i>
+            {l s='Add new address' d='Shop.Theme.Actions'}
+          </a>
         {/if}
 
       {/if}
 
       <div class="mt-4 d-flex flex-wrap justify-content-between">
         <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-personal-information-step">
-          <div class="material-icons rtl-flip">arrow_backward</div>
+          <i class="material-icons icon-start rtl-flip">arrow_backward</i>
           {l s='Back to Personal Information' d='Shop.Theme.Actions'}
         </button>
 
         {if !$form_has_continue_button}
             <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto continue" name="confirm-addresses" value="1">
               {l s='Continue to Shipping' d='Shop.Theme.Actions'}
-              <div class="material-icons rtl-flip">arrow_forward</div>
+              <div class="material-icons icon-end rtl-flip">arrow_forward</div>
             </button>
             <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}

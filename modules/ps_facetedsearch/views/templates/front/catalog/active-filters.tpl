@@ -14,7 +14,7 @@
         {block name='active_filters_item'}
           <li class="p-1">
             <a class="text-nowrap btn rounded-pill bg-light js-search-link d-flex align-items-center" href="{$filter.nextEncodedFacetsURL}" rel="nofollow">
-              {l s='%1$s:' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel]} {$filter.label} <i class="material-icons font-reset ml-1 align-middle">&#xE14C;</i>
+              {l s='%1$s:' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel]} {$filter.label} <i class="material-icons font-reset ms-1 align-middle">&#xE14C;</i>
             </a>
           </li>
         {/block}

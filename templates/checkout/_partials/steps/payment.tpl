@@ -131,7 +131,7 @@
 
   <div class="payment__actions d-block d-md-flex d-flex flex-wrap justify-content-between">
     <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-delivery-step">
-      <div class="material-icons rtl-flip">arrow_backward</div>
+      <div class="material-icons icon-start rtl-flip">arrow_backward</div>
       {l s='Back to Shipping method' d='Shop.Theme.Actions'}
     </button>
 
@@ -140,7 +140,7 @@
         <div class="payment__actions">
           <button type="submit" class="btn btn-primary btn-with-icon w-full{if !$selected_payment_option} disabled{/if}">
             {l s='Place order' d='Shop.Theme.Checkout'}
-            <div class="material-icons rtl-flip">arrow_forward</div>
+            <div class="material-icons icon-end rtl-flip">arrow_forward</div>
           </button>
         </div>
       </div>

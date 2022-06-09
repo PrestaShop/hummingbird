@@ -33,7 +33,7 @@
     <div id="product-comments-list-pagination"></div>
     {if $post_allowed && $nb_comments != 0}
       <button class="btn btn-primary btn-with-icon post-product-comment">
-        <i class="material-icons" data-icon="edit"></i>
+        <i class="material-icons icon-start" data-icon="edit"></i>
         {l s='Write your review' d='Modules.Productcomments.Shop'}
       </button>
     {/if}

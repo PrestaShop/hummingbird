@@ -1,0 +1,43 @@
+@mixin button-icon($button:btn) {
+  $fs: 1.5rem;
+  $px: 0.25rem;
+
+  @if $button == sm {
+    $fs: 1rem;
+    $px: 0.125rem;
+  } @else if $button == lg {
+    $fs: 2rem;
+    $px: 0.375rem;
+  }
+
+  .material-icons {
+    box-sizing: content-box;
+    font-size: $fs;
+
+    &.icon-start {
+      padding-right: $px;
+    }
+
+    &.icon-end {
+      padding-left: $px;
+    }
+  }
+
+  @at-root .lang-rtl & {
+    .material-icons {
+      &.icon-start {
+        &.rtl-flip {
+          padding-right: 0;
+          padding-left: $px;
+        }
+      }
+
+      &.icon-end {
+        &.rtl-flip {
+          padding-right: $px;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}

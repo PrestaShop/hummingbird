@@ -25,11 +25,13 @@
                 <li class="page-item{if $page.current} active{/if}" {if $page.current}aria-current="page" {/if}>
                   <a rel="{if $page.type === 'previous'}prev{elseif $page.type === 'next'}next{else}nofollow{/if}"
                     href="{$page.url}"
-                    class="page-link {if $page.type === 'previous'}previous {elseif $page.type === 'next'}next {/if}{['disabled' => !$page.clickable, 'js-search-link' => true]|classnames}">
+                    class="page-link btn-with-icon {if $page.type === 'previous'}previous {elseif $page.type === 'next'}next {/if}{['disabled' => !$page.clickable, 'js-search-link' => true]|classnames}">
                     {if $page.type === 'previous'}
-                      <i class="material-icons rtl-flip">&#xE314;</i>{l s='Previous' d='Shop.Theme.Actions'}
+                      <i class="material-icons icon-start rtl-flip">&#xE314;</i>
+                      {l s='Previous' d='Shop.Theme.Actions'}
                     {elseif $page.type === 'next'}
-                      {l s='Next' d='Shop.Theme.Actions'}<i class="material-icons rtl-flip">&#xE315;</i>
+                      {l s='Next' d='Shop.Theme.Actions'}
+                      <i class="material-icons icon-end rtl-flip">&#xE315;</i>
                     {else}
                       {$page.page}
                     {/if}

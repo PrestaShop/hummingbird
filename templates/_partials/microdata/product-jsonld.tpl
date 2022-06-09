@@ -35,14 +35,33 @@
     "brand": {
       "@type": "Thing",
       "name": "{if $product_manufacturer->name}{$product_manufacturer->name|escape:'html':'UTF-8'}{else}{$shop.name}{/if}"
-    }
+    },{/if}
+    {if !empty($product.productComments.comments)}
+      "review": [
+        {foreach from=$product.productComments.comments item=comment}
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "{$comment.grade}",
+              "datePublished": "{$comment.date_add}"
+            },
+            "name": "{$comment.title}",
+            "author": {
+              "@type": "Person",
+              "name": "{$comment.customer_name}"
+            },
+            "reviewBody": "{$comment.content}"
+          }
+        {/foreach}
+      ],
     {/if}
     {if $hasAggregateRating},
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "{$ratingValue|round:1|escape:'html':'UTF-8'}",
-      "reviewCount": "{$ratingReviewCount|escape:'html':'UTF-8'}"
-    }
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{$ratingValue|round:1|escape:'html':'UTF-8'}",
+        "reviewCount": "{$ratingReviewCount|escape:'html':'UTF-8'}"
+      }
     {/if}
     {if $hasWeight},
     "weight": {

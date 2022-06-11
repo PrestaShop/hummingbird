@@ -1,16 +1,27 @@
 .btn-with-icon {
   display: inline-flex;
+  gap: $default-button-icon-gap;
   align-items: center;
   justify-content: center;
 
-  @include button-icon();
+  .material-icons {
+    font-size: $default-button-icon-size;
+  }
 
   &.btn-sm {
-    @include button-icon(sm);
+    gap: $small-button-icon-gap;
+
+    .material-icons {
+      font-size: $small-button-icon-size;
+    }
   }
 
   &.btn-lg {
-    @include button-icon(lg);
+    gap: $large-button-icon-gap;
+
+    .material-icons {
+      font-size: $large-button-icon-size;
+    }
   }
 }
 

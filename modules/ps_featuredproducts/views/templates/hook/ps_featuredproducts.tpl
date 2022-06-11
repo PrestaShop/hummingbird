@@ -11,7 +11,7 @@
   <div class="featured-products-footer text-center">
     <a class="all-product-link btn btn-outline-primary btn-with-icon" href="{$allProductsLink}">
       {l s='All products' d='Shop.Theme.Catalog'}
-      <i class="material-icons icon-end rtl-flip">&#xE315;</i>
+      <i class="material-icons rtl-flip">&#xE315;</i>
     </a>
   </div>
 </section>

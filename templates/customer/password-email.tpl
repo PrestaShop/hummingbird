@@ -39,7 +39,7 @@
 {block name='page_footer'}
   <hr>
   <a id="back-to-login" href="{$urls.pages.my_account}" class="btn btn-unstyle btn-with-icon">
-    <i class="material-icons icon-start rtl-flip">&#xE5CB;</i>
+    <i class="material-icons rtl-flip">&#xE5CB;</i>
     <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
   </a>
 {/block}

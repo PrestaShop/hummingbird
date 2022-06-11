@@ -8,7 +8,7 @@
     {if $customer.is_logged}
       <div class="dropdown">
         <button class="dropdown-toggle btn btn-link btn-with-icon" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="material-icons icon-start">&#xE7FD;</i>
+          <i class="material-icons">&#xE7FD;</i>
           <span class="user-info__name">{$customerName|truncate:22:"..":true}</span>
         </button>
 

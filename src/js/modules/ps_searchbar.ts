@@ -31,6 +31,7 @@ const initSearchbar = () => {
         const products = await searchProduct(searchUrl, searchInput.value, 10);
 
         if (products.length > 0) {
+          searchResults.innerHTML = '';
           products.forEach((e: Result) => {
             const product = <HTMLElement>searchTemplate?.content.cloneNode(true);
 

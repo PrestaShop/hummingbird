@@ -6,11 +6,12 @@
 const initVisiblePassword = () => {
   const {Theme} = window;
   const {visiblePassword: visiblePasswordMap} = Theme.selectors;
-  const visiblePasswordList = document.querySelectorAll(visiblePasswordMap.visiblePassword) as NodeListOf<HTMLElement>;
+  const visiblePasswordList = document.querySelectorAll<HTMLElement>(visiblePasswordMap.visiblePassword);
 
   if (visiblePasswordList.length > 0) {
     visiblePasswordList.forEach((visiblePasswordInput: HTMLInputElement) => {
       const visiblePasswordBtn = visiblePasswordInput?.nextElementSibling;
+
       visiblePasswordBtn?.addEventListener('click', () => {
         const visiblePasswordIcon = visiblePasswordBtn.firstElementChild;
         let type = visiblePasswordInput.getAttribute('type');

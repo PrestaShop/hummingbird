@@ -32,8 +32,7 @@ const initMobileMenu = () => {
       }
 
       if (currentMenu) {
-        currentMenu.classList.remove('js-menu-current');
-        currentMenu.classList.remove('menu--current');
+        currentMenu.classList.remove('js-menu-current', 'menu--current');
       }
 
       if (currentParent) {
@@ -43,9 +42,7 @@ const initMobileMenu = () => {
           backTitle.innerHTML = defaultBackTitle;
         }
 
-        currentParent.classList.add('js-menu-current');
-        currentParent.classList.add('menu--fromLeft');
-        currentParent.classList.add('menu--current');
+        currentParent.classList.add('js-menu-current', 'menu--fromLeft', 'menu--current');
         currentParent.classList.remove('menu--parent');
       }
     }
@@ -76,10 +73,7 @@ const initMobileMenu = () => {
         const currentButton = <HTMLElement>button;
 
         if (currentMenu) {
-          currentMenu.classList.remove('js-menu-current');
-          currentMenu.classList.remove('menu--current');
-          currentMenu.classList.remove('menu--fromLeft');
-          currentMenu.classList.remove('menu--fromRight');
+          currentMenu.classList.remove('js-menu-current', 'menu--current', 'menu--fromLeft', 'menu--fromRight');
           currentMenu.classList.add('menu--parent');
         }
 
@@ -92,11 +86,8 @@ const initMobileMenu = () => {
         }
 
         if (isHTMLElement(child)) {
-          child.classList.add('js-menu-current');
-          child.classList.add('menu--fromRight');
-          child.classList.add('menu--current');
-          child.classList.remove('menu--child');
-          child.classList.remove('js-menu-child');
+          child.classList.add('js-menu-current', 'menu--fromRight', 'menu--current');
+          child.classList.remove('js-menu-child', 'menu--child');
         }
       }
     });

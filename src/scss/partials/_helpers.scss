@@ -18,15 +18,17 @@ $container-max-width in $container-max-widths {
     .container--limited-#{$breakpoint} {
       max-width: $container-max-width;
     }
+
+    .w-#{$breakpoint}-auto {
+      width: auto;
+    }
+
+    .w-#{$breakpoint}-100 {
+      width: 100%;
+    }
   }
 }
 
 .text-gray {
   color: $gray-700;
-}
-
-.w-md-auto {
-  @include media-breakpoint-up(md) {
-    width: auto;
-  }
 }

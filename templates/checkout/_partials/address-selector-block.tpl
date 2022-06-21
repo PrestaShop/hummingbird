@@ -26,7 +26,7 @@
                 {if $interactive}
                   <div class="address__actions">
                     <a
-                      class="address__edit text-muted ps-0"
+                      class="address__edit ps-0"
                       data-link-action="edit-address"
                       href="{url entity='order' params=['id_address' => $address.id, 'editAddress' => $type, 'token' => $token]}"
                     >

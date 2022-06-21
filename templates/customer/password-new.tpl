@@ -71,8 +71,8 @@
 
 {block name='page_footer'}
   <hr>
-  <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-link btn-sm">
-    <i class="material-icons">&#xE5CB;</i>
+  <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-unstyle btn-with-icon">
+    <i class="material-icons rtl-flip">&#xE5CB;</i>
     <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
   </a>
 {/block}

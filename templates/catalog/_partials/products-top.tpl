@@ -20,8 +20,8 @@
 
         {if !empty($listing.rendered_facets)}
           <div class="col-4 d-block d-md-none filter-button">
-            <button id="search_filter_toggler" class="btn btn-outline-primary w-full js-search-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-faceted">
-            <div class="material-icons">filter_list</div>
+            <button id="search_filter_toggler" class="btn btn-outline-primary btn-with-icon w-full js-search-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-faceted">
+              <i class="material-icons">filter_list</i>
               {l s='Filter' d='Shop.Theme.Actions'}
             </button>
           </div>

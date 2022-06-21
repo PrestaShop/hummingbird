@@ -96,12 +96,12 @@
         </div>
 
         <div class="shipping__actions d-flex flex-wrap justify-content-between">
-          <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
+          <button class="btn btn-outline-primary btn-with-icon w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
             <div class="material-icons rtl-flip">arrow_backward</div>
             {l s='Back to Addresses' d='Shop.Theme.Actions'}
           </button>
 
-          <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto" name="confirmDeliveryOption" value="1">
+          <button type="submit" class="btn btn-primary btn-with-icon w-full w-md-auto" name="confirmDeliveryOption" value="1">
             {l s='Continue to Payment' d='Shop.Theme.Actions'}
             <div class="material-icons rtl-flip">arrow_forward</div>
           </button>

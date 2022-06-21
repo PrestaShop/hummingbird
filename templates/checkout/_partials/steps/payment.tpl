@@ -130,7 +130,7 @@
   {/if}
 
   <div class="payment__actions d-block d-md-flex d-flex flex-wrap justify-content-between">
-    <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-delivery-step">
+    <button class="btn btn-outline-primary btn-with-icon w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-delivery-step">
       <div class="material-icons rtl-flip">arrow_backward</div>
       {l s='Back to Shipping method' d='Shop.Theme.Actions'}
     </button>

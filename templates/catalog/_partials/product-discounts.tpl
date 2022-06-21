@@ -7,7 +7,7 @@
     <p class="h6 product__discounts__title">{l s='Volume discounts' d='Shop.Theme.Catalog'}</p>
     {block name='product_discount_table'}
       <div class="table-wrapper p-2 px-3">
-        <table class="product__discounts__table w-full">
+        <table class="product__discounts__table w-100">
           <thead>
           <tr>
             <th>{l s='Quantity' d='Shop.Theme.Catalog'}</th>

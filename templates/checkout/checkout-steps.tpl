@@ -20,7 +20,7 @@
           {l s='1' d='Shop.Theme.Checkout'}
         </span> 
         <button 
-          class="{$componentName}__text nav-link w-full bg-transparent btn p-0 border-0 mb-0"
+          class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
           data-bs-toggle="tab" 
           data-bs-target="#checkout-personal-information-step"
         >
@@ -37,7 +37,7 @@
           {l s='2' d='Shop.Theme.Checkout'}
         </span> 
         <button 
-          class="{$componentName}__text nav-link w-full bg-transparent btn p-0 border-0 mb-0"
+          class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
           data-bs-toggle="tab" 
           data-bs-target="#checkout-addresses-step"
         >
@@ -54,7 +54,7 @@
           {l s='3' d='Shop.Theme.Checkout'}
         </span> 
         <button 
-          class="{$componentName}__text nav-link w-full bg-transparent btn p-0 border-0 mb-0"
+          class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
           data-bs-toggle="tab" 
           data-bs-target="#checkout-delivery-step"
         >
@@ -71,7 +71,7 @@
           {l s='4' d='Shop.Theme.Checkout'}
         </span> 
         <button 
-          class="{$componentName}__text nav-link w-full bg-transparent btn p-0 border-0 mb-0"
+          class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
           data-bs-toggle="tab" 
           data-bs-target="#checkout-payment-step"
         >

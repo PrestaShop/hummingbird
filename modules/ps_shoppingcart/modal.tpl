@@ -97,11 +97,11 @@
       </div>
       <div class="modal-footer border-1">
         <div class="cart-footer-actions d-flex flex-wrap align-items-center justify-content-between w-100">
-          <button type="button" class="btn btn-outline-primary btn-with-icon w-md-auto w-full mb-md-0 mb-3" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-outline-primary btn-with-icon w-md-auto w-100 mb-md-0 mb-3" data-bs-dismiss="modal">
             <i class="material-icons rtl-flip">&#xE5CB;</i>
             {l s='Continue shopping' d='Shop.Theme.Actions'}
           </button>
-          <a href="{$cart_url}" class="btn btn-primary w-md-auto w-full">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
+          <a href="{$cart_url}" class="btn btn-primary w-md-auto w-100">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
         </div>    
         <div class="cart-footer-extra d-flex flex-wrap w-100 m-0">
           {hook h='displayCartModalFooter' product=$product}

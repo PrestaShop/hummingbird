@@ -21,6 +21,12 @@
       "@type": "AggregateRating",
       "ratingValue": "{$ratings.avg|round:1|escape:'html':'UTF-8'}",
       "reviewCount": "{$nbComments|escape:'html':'UTF-8'}"
+    }
+    {else if !empty($product.productComments.averageRating) && !empty($product.productComments.nbComments)}
+      "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{$product.productComments.averageRating|round:1|escape:'html':'UTF-8'}",
+      "reviewCount": "{$product.productComments.nbComments|escape:'html':'UTF-8'}"
     },{/if}
     {if isset($product.weight) && ($product.weight != 0)}
       "weight": {

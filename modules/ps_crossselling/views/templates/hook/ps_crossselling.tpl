@@ -4,6 +4,6 @@
  *}
 
 <section class="featured-products mt-3">
-  <h2>{l s='Customers who bought this product also bought:' d='Shop.Theme.Catalog'}</h2>
-  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row"}
+  {include file="components/section-title.tpl" title={l s='Customers who bought this product also bought:' d='Shop.Theme.Catalog'}}
+  {include file="catalog/_partials/productlist.tpl" products=$products productClass="col-6 col-lg-4 col-xl-3"}
 </section>

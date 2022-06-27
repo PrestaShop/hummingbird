@@ -9,5 +9,5 @@
     {include file="components/section-title.tpl" title={l s='%s other products in the same category' sprintf=[$products|@count] d='Shop.Theme.Catalog'}}
   {/if}
 
-  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-6 col-lg-4 col-xl-3"}
+  {include file="catalog/_partials/productlist.tpl" products=$products productClass="col-6 col-lg-4 col-xl-3"}
 </section>

@@ -1,18 +1,9 @@
 .block-social {
-  background-color: $primary;
-
   span {
     font-size: 0;
   }
 
   a {
-    display: block;
-    width: 1.5em;
-    height: 1.5em;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 1.5em;
-
     &:hover {
       opacity: 0.6;
     }

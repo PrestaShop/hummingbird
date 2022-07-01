@@ -44,6 +44,9 @@ module.exports = {
     ],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'import/no-unresolved': 0,
+    'import/extensions': ['off', 'never'],
+    'no-use-before-define': 0,
     'class-methods-use-this': 0,
     'func-names': 0,
     'import/no-extraneous-dependencies': [

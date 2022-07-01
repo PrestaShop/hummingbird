@@ -18,9 +18,32 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser',
   },
-  extends: ['prestashop', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:jest/recommended'],
+  extends: ['airbnb-base', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:jest/recommended'],
   plugins: ['import', '@typescript-eslint', 'jest'],
   rules: {
+    indent: ['error', 2, {SwitchCase: 1}],
+    'function-paren-newline': ['off', 'never'],
+    'object-curly-spacing': ['error', 'never'],
+    'padding-line-between-statements': [
+      'error',
+      {
+        blankLine: 'always',
+        prev: ['for', 'switch', 'var', 'let', 'const'],
+        next: 'return',
+      },
+      {
+        blankLine: 'always',
+        prev: ['for', 'switch'],
+        next: ['var', 'let', 'const'],
+      },
+      {
+        blankLine: 'always',
+        prev: ['var', 'let', 'const'],
+        next: ['switch', 'for', 'if'],
+      },
+    ],
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
     'class-methods-use-this': 0,
     'func-names': 0,
     'import/no-extraneous-dependencies': [

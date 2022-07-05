@@ -19,11 +19,11 @@
     }
 
     .w-#{$breakpoint}-auto {
-      width: auto;
+      width: auto!important;
     }
 
     .w-#{$breakpoint}-100 {
-      width: 100%;
+      width: 100%!important;
     }
   }
 }

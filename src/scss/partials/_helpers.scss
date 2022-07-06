@@ -19,11 +19,13 @@
     }
 
     .w-#{$breakpoint}-auto {
-      width: auto;
+      // stylelint-disable-next-line declaration-no-important
+      width: auto !important;
     }
 
     .w-#{$breakpoint}-100 {
-      width: 100%;
+      // stylelint-disable-next-line declaration-no-important
+      width: 100% !important;
     }
   }
 }

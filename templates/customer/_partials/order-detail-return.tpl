@@ -135,65 +135,86 @@
       </table>
     </div>
 
-    <div class="order-items d-block d-sm-block d-md-none box">
+    <div class="order__items table-wrapper d-block d-sm-block d-md-none box">
       {foreach from=$order.products item=product}
-        <div class="order-item">
+        <div class="order__item">
           <div class="row">
-            <div class="checkbox">
-              {if !$product.customizations}
-                <span id="_mobile_product_line_{$product.id_order_detail}"></span>
-              {else}
-                {foreach $product.customizations  as $customization}
-                  <span
-                    id="_mobile_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}"></span>
-                {/foreach}
-              {/if}
+            <div class="order__item__header col-12 row">
+              <div class="col-2 order__item__checkbox checkbox">
+                {if !$product.customizations}
+                  <span id="_mobile_product_line_{$product.id_order_detail}"></span>
+                {else}
+                  {foreach $product.customizations  as $customization}
+                    <span
+                      id="_mobile_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}"></span>
+                  {/foreach}
+                {/if}
+              </div>
+              <div class="col-4">
+                {if $product.cover}
+                  <img src="{$product.cover.bySize.small_default.url}"
+                    alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                    loading="lazy" data-full-size-image-url="{$product.cover.large.url}" width="64" height="64"
+                    class="order-products__image card-img-top w-auto" />
+                {else}
+                  <img src="{$urls.no_picture_image.bySize.small_default.url}" loading="lazy" width="64" height="64"
+                    class="order-products__image card-img-top w-auto" />
+                {/if}
+              </div>
+
+              <div class="col-6">
+                <p class="order__item__name fw-bold">{$product.name}</p>
+                {if $product.product_reference}
+                  <div class="order__item__ref">{l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}</div>
+                {/if}
+                {if $product.customizations}
+                  {foreach $product.customizations as $customization}
+                    <div class="customization">
+                      <a href="#" data-bs-toggle="modal"
+                        data-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
+                    </div>
+                    <div id="_mobile_product_customization_modal_wrapper_{$customization.id_customization}">
+                    </div>
+                  {/foreach}
+                {/if}
+              </div>
             </div>
-            <div class="content">
-              <div class="row">
-                <div class="col-sm-5 desc">
-                  <div class="name">{$product.name}</div>
-                  {if $product.product_reference}
-                    <div class="ref">{l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}</div>
-                  {/if}
+            <div class="col-12 order__item__qty">
+              <div class="order__item__line row">
+                <span class="order__item__label col">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
+                <span class="order__item__value col text-end">
                   {if $product.customizations}
                     {foreach $product.customizations as $customization}
-                      <div class="customization">
-                        <a href="#" data-bs-toggle="modal"
-                          data-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
-                      </div>
-                      <div id="_mobile_product_customization_modal_wrapper_{$customization.id_customization}">
-                      </div>
+                      {$customization.quantity}
+                      <div class="mt-2" id="_mobile_return_qty_{$product.id_order_detail}_{$customization.id_customization}"></div>
                     {/foreach}
+                  {else}
+                    {$product.quantity}
+                    {if $product.quantity> $product.qty_returned}
+                      <div id="_mobile_return_qty_{$product.id_order_detail}"></div>
+                    {/if}
                   {/if}
+                </span>
+              </div>
+              {if $product.qty_returned > 0}
+                <div class="order__item__line row">
+                  <span class="order__item__label col">{l s='Returned' d='Shop.Theme.Customeraccount'}</span>
+                  <span class="order__item__value col text-end">
+                    {$product.qty_returned}
+                  </span>
                 </div>
-                <div class="col-sm-7 qty">
-                  <div class="row">
-                    <div class="col-xs-4 text-sm-start text-xs-start">
-                      {$product.price}
-                    </div>
-                    <div class="col-xs-4">
-                      {if $product.customizations}
-                        {foreach $product.customizations as $customization}
-                          <div class="q">{l s='Quantity' d='Shop.Theme.Catalog'}: {$customization.quantity}</div>
-                          <div class="s" id="_mobile_return_qty_{$product.id_order_detail}_{$customization.id_customization}">
-                          </div>
-                        {/foreach}
-                      {else}
-                        <div class="q">{l s='Quantity' d='Shop.Theme.Catalog'}: {$product.quantity}</div>
-                        {if $product.quantity> $product.qty_returned}
-                          <div class="s" id="_mobile_return_qty_{$product.id_order_detail}"></div>
-                        {/if}
-                      {/if}
-                      {if $product.qty_returned> 0}
-                        <div>{l s='Returned' d='Shop.Theme.Customeraccount'}: {$product.qty_returned}</div>
-                      {/if}
-                    </div>
-                    <div class="col-xs-4 text-xs-end">
-                      {$product.total}
-                    </div>
-                  </div>
-                </div>
+              {/if}
+              <div class="order__item__line row">
+                <span class="order__item__label col">{l s='Unit price' d='Shop.Theme.Catalog'}</span>
+                <span class="order__item__value col text-end">
+                  {$product.price}
+                </span>
+              </div>
+              <div class="order__item__line row">
+                <span class="order__item__label col">{l s='Total price' d='Shop.Theme.Catalog'}</span>
+                <span class="order__item__value col text-end">
+                  {$product.total}
+                </span>
               </div>
             </div>
           </div>
@@ -214,7 +235,7 @@
         <div class="col-xs-4 text-xs-end">{$order.totals.total.value}</div>
       </div>
     </div>
-
+    <hr>
     <div class="box">
       <header>
         <h3>{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h3>

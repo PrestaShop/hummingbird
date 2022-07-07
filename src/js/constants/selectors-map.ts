@@ -138,6 +138,7 @@ const selectorsMap = {
   modalBody: '.modal-body',
   pageCms: '.page-cms',
   quickview: '.js-quickview',
+  quickviewModal: '.quickview',
   facetedsearch,
   pageLoader,
   listing,

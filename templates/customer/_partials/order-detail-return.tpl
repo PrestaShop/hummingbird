@@ -191,7 +191,7 @@
                   {else}
                     {$product.quantity}
                     {if $product.quantity> $product.qty_returned}
-                      <div id="_mobile_return_qty_{$product.id_order_detail}"></div>
+                      <div class="mt-2" id="_mobile_return_qty_{$product.id_order_detail}"></div>
                     {/if}
                   {/if}
                 </span>

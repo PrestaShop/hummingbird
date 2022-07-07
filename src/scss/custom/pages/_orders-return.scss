@@ -2,10 +2,6 @@
   padding: 0.5rem;
 
   .order-return {
-    padding: 0 1rem;
-    background: lighten($gray-100, 2%);
-    border-radius: 0.5rem;
-
     &__label {
       font-weight: 600;
     }
@@ -23,10 +19,6 @@
 
       &:not(:last-child) {
         border-bottom: 1px solid $gray-200;
-      }
-
-      &.order__actions {
-        justify-content: flex-end;
       }
     }
   }

@@ -44,7 +44,7 @@
     </div>
     <div class="order-returns row d-block d-xl-none">
       {foreach from=$ordersReturn item=return}
-        <div class="order-return col col-lg-6">
+        <div class="order-return table-wrapper col col-lg-6">
           <div class="order-return__reference">
             <p class="order-return__label">{l s='Order' d='Shop.Theme.Customeraccount'}</p> 
             <p class="order-return__value">

@@ -15,18 +15,18 @@ $component-name: category-tree;
   margin-bottom: 2rem;
   border-bottom: var(--#{$component-name}-border-bottom);
 
-  &-child {
+  &__child {
     padding: 0;
     border: none;
   }
 
-  & &-title {
+  &__title {
     padding: 0;
     margin-bottom: var(--#{$component-name}-title-spacing);
     font-size: var(--#{$component-name}-title-size);
     border: none;
 
-    &-link {
+    &__link {
       display: block;
       font-weight: 600;
       line-height: 2rem;
@@ -34,13 +34,25 @@ $component-name: category-tree;
     }
   }
 
-  & &-item {
-    &-link {
+  &__item {
+    &__link {
       display: block;
       padding: var(--#{$component-name}-subtitle-spacing) 0;
       font-size: var(--#{$component-name}-subtitle-size);
       font-weight: 600;
       color: var(--#{$component-name}-subtitle-color);
+    }
+
+    &__header {
+      &--parent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > div {
+          padding: 0;
+        }
+      }
     }
   }
 }

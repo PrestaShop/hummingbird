@@ -8,38 +8,20 @@
 {function name="categories" nodes=[] depth=0}
   {strip}
     {if $nodes|count}
-      <ul class="{$componentName}-list">
+      <ul class="{$componentName}__list" data-depth="{$depth}">
         {foreach from=$nodes item=node name="categories"}
-          <li class="{$componentName}-item" data-depth="{$depth}">
-            {if $depth===0}
+          <li class="{$componentName}__item">
+            <div class="{$componentName}__item__header{if $node.children} {$componentName}__item__header--parent{/if}">
+              <a class="{$componentName}__item__link" href="{$node.link}">{$node.name}</a>
               {if $node.children}
-                <div class="d-flex align-items-center justify-content-space-between">
+                <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#exCollapsingNavbar{$node.id}"></div>
               {/if}
-              <a class="{$componentName}-item-link" href="{$node.link}">{$node.name}</a>
-              {if $node.children}
-                  <div class="accordion-button px-0 collapsed" data-bs-toggle="collapse" data-bs-target="#exCollapsingNavbar{$node.id}">
-                  </div>
-                </div>
-                <div class="collapse py-2" id="exCollapsingNavbar{$node.id}">
-                  {categories nodes=$node.children depth=$depth+1}
-                </div>
-              {else}
-              {/if}
-            {else}
-              {if $node.children}
-                <div class="d-flex align-items-center justify-content-space-between">
-              {/if}
-              <a class="{$componentName}-child-link" href="{$node.link}">{$node.name}</a>
-              {if $node.children}
-                  <div class="accordion-button px-0 collapsed" data-bs-toggle="collapse" data-bs-target="#exCollapsingNavbar{$node.id}">
-                  </div>
-                </div>
-                <div class="collapse pt-1 pb-2" id="exCollapsingNavbar{$node.id}">
-                  {categories nodes=$node.children depth=$depth+1}
-                </div>
-              {/if}
+            </div>
+            {if $node.children}
+              <div class="collapse" id="exCollapsingNavbar{$node.id}">
+                {categories nodes=$node.children depth=$depth+1}
+              </div>
             {/if}
-            {if !$smarty.foreach.categories.last}<hr class="my-0">{/if}
           </li>
         {/foreach}
       </ul>
@@ -48,10 +30,10 @@
 {/function}
 
 <div class="{$componentName}">
-  <ul class="{$componentName}-list list-group">
-    <li class="{$componentName}-title list-group-item"><a class="{$componentName}-title-link" href="{$categories.link nofilter}">{$categories.name}</a></li>
+  <ul class="{$componentName}__list list-group">
+    <li class="{$componentName}__title list-group-item"><a class="{$componentName}__title__link" href="{$categories.link nofilter}">{$categories.name}</a></li>
     {if !empty($categories.children)}
-      <li class="{$componentName}-child list-group-item">{categories nodes=$categories.children}</li>
+      <li class="{$componentName}__child list-group-item">{categories nodes=$categories.children}</li>
     {/if}
   </ul>
 </div>

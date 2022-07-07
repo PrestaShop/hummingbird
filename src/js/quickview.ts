@@ -42,5 +42,8 @@ export default function initQuickviews() {
       });
       event.preventDefault();
     });
+    prestashop.on('updateCart', () => {
+      $(selectorsMap.quickviewModal).modal('hide');
+    });
   });
 }

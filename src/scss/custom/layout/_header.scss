@@ -32,10 +32,6 @@ $component-name: header;
       border-bottom: var(--header-bottom-border-bottom);
     }
 
-    .navbar-brand {
-      padding: 0;
-    }
-
     .nav-link {
       &:active,
       &.active {

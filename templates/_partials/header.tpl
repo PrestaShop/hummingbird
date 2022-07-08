@@ -51,11 +51,9 @@
   <div class="{$headerBottomName}">
     <div class="container {$headerBottomName}__container">
       <div id="_desktop_logo" class="logo logo-desktop order-1 order-xl-0">
-        {if $page.page_name == 'index'}<h1>{/if}
-        <a class="navbar-brand" href="{$urls.pages.index}">
+        <a class="navbar-brand d-block" href="{$urls.pages.index}">
           <img class="logo img-fluid" src="{$shop.logo_details.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo_details.width}" height="{$shop.logo_details.height}">
         </a>
-        {if $page.page_name == 'index'}</h1>{/if}
       </div>
 
       {hook h='displayTop'}

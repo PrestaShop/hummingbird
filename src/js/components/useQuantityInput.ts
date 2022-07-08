@@ -81,10 +81,11 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number, keyboard = f
   const {mode} = qtyInput.dataset;
 
   if (mode !== 'confirmation' || keyboard) {
+    const baseValue = Number(qtyInput.getAttribute('value'));
     const currentValue = Number(qtyInput.value);
     const min = (qtyInput.dataset.updateUrl === undefined) ? Number(qtyInput.getAttribute('min')) : 0;
     const newValue = Math.max(currentValue + change, min);
-    qtyInput.value = String(newValue);
+    qtyInput.value = String(!isNaN(newValue) ? newValue : baseValue);
   }
 };
 

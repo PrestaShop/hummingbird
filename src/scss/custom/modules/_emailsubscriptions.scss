@@ -22,6 +22,12 @@ $email-input-border-color: $input-border-color !default;
       display: flex;
       align-items: center;
 
+      @include media-breakpoint-down(sm) {
+        flex-direction: column;
+        row-gap: 0.5rem;
+        align-items: start;
+      }
+
       input[type="email"] {
         padding: 0.5rem 1.25rem;
         margin-right: 0.5rem;

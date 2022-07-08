@@ -66,7 +66,7 @@
       </div>
     {else}
       <a href="{$urls.pages.my_account}" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}" class="btn" rel="nofollow" role="button">
-        <i class="material-icons me-2">&#xE7FD;</i>
+        <i class="material-icons">&#xE7FD;</i>
         <span class="d-none d-md-inline">{l s='Sign in' d='Shop.Theme.Actions'}</span>
       </a>
     {/if}

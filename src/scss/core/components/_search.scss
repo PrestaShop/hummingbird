@@ -54,7 +54,7 @@ $component-name: search;
     color: $gray-700;
 
     @include media-breakpoint-down(md) {
-      padding: 0.5rem 0.3rem;
+      padding: 0.5rem 0.375rem;
     }
   }
 

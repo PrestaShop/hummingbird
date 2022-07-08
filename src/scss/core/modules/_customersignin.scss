@@ -22,7 +22,12 @@
 
   a {
     display: flex;
+    gap: 0.25rem;
     align-items: center;
+
+    @include media-breakpoint-down(md) {
+      padding: 0.5rem 0.375rem;
+    }
   }
 
   button {
@@ -32,7 +37,7 @@
     text-decoration: none;
 
     @include media-breakpoint-down(md) {
-      padding: 0.5rem 0.3rem;
+      padding: 0.5rem 0.375rem;
     }
 
     &::after {

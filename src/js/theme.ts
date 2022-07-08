@@ -49,8 +49,6 @@ $(() => {
     initCurrencySelector();
     initDesktopMenu();
   });
-
-  prestashop.on('updatedCart', () => useQuantityInput());
 });
 
 export const components = {

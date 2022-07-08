@@ -17,9 +17,9 @@
                 src="{$product.cover.bySize.home_default.url}"
                 alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
                 loading="lazy"
-                data-full-size-image-url="{$product.cover.large.url}"
-                width="{$product.cover.large.width}"
-                height="{$product.cover.large.height}"
+                data-full-size-image-url="{$product.cover.home_default.url}"
+                width="{$product.cover.home_default.width}"
+                height="{$product.cover.home_default.height}"
                 class="{$componentName}__image card-img-top"
               />
             {else}

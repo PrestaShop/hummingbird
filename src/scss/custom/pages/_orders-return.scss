@@ -1,0 +1,25 @@
+.order-returns {
+  padding: 0.5rem;
+
+  .order-return {
+    &__label {
+      font-weight: 600;
+    }
+
+    &__label,
+    &__value {
+      margin-bottom: 0;
+    }
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $gray-200;
+      }
+    }
+  }
+}

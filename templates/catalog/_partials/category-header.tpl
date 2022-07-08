@@ -11,13 +11,18 @@
             {/if}
             {if !empty($category.image.large.url)}
               <div class="category-cover mb-4">
-                <img src="{$category.image.large.url}" alt="{if !empty($category.image.legend)}{$category.image.legend}{else}{$category.name}{/if}" loading="lazy" width="141" height="180">
+                <img src="{$category.image.large.url}" 
+                  alt="{if !empty($category.image.legend)}{$category.image.legend}{else}{$category.name}{/if}" 
+                  loading="lazy" 
+                  width="{$category.image.large.width}" 
+                  height="{$category.image.large.height}">
               </div>
             {/if}
         </div>
     {/if}
+    {if isset($subcategories) && $subcategories|@count> 0}
+      {include file='catalog/_partials/subcategories.tpl' subcategories=$subcategories}
+    {/if}
 </div>
 
-{if isset($subcategories) && $subcategories|@count> 0}
-  {include file='catalog/_partials/subcategories.tpl' subcategories=$subcategories}
-{/if}
+

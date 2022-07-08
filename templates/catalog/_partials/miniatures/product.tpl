@@ -17,17 +17,17 @@
                 src="{$product.cover.bySize.home_default.url}"
                 alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
                 loading="lazy"
-                data-full-size-image-url="{$product.cover.large.url}"
-                width="250"
-                height="250"
+                data-full-size-image-url="{$product.cover.home_default.url}"
+                width="{$product.cover.home_default.width}"
+                height="{$product.cover.home_default.height}"
                 class="{$componentName}__image card-img-top"
               />
             {else}
               <img
                 src="{$urls.no_picture_image.bySize.home_default.url}"
                 loading="lazy"
-                width="250"
-                height="250"
+                width="{$urls.no_picture_image.bySize.home_default.width}"
+                height="{$urls.no_picture_image.bySize.home_default.height}"
                 class="{$componentName}__image card-img-top"
               />
             {/if}
@@ -99,6 +99,7 @@
                 {/if}
               {/block}
             </div>
+
           </div>
         </div>
       {/block}

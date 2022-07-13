@@ -9,7 +9,7 @@
     <div id="subcategories" class="{$componentName} row gx-3">
       {foreach from=$subcategories item=subcategory}
         <div class="subcategory__wrapper col-6 col-lg-4 col-xl-3"> 
-          <a class="subcategory" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}" title="{$subcategory.name|escape:'html':'UTF-8'}">
+          <a class="subcategory" href="{$subcategory.url}" title="{$subcategory.name|escape:'html':'UTF-8'}">
             <div class="subcategory__image">
               {if !empty($subcategory.image.large.url)}
                 <img class="img-fluid" src="{$subcategory.image.large.url}" alt="{$subcategory.name|escape:'html':'UTF-8'}" loading="lazy" width="{$subcategory.image.large.width}" height="{$subcategory.image.large.height}" />

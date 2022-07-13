@@ -8,7 +8,7 @@
   {if (isset($display_subcategories) && $display_subcategories eq 1) || !isset($display_subcategories) }
     <div id="subcategories" class="{$componentName} row gx-3">
       {foreach from=$subcategories item=subcategory}
-        <div class="subcategory__wrapper col-6 col-lg-4 col-xl-3"> 
+        <div class="subcategory__wrapper col-12 col-sm-6 col-lg-4 col-xl-3"> 
           <a class="subcategory" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}" title="{$subcategory.name|escape:'html':'UTF-8'}">
             <div class="subcategory__image">
               {if !empty($subcategory.image.large.url)}

@@ -28,7 +28,7 @@ describe('useQuantityInput', () => {
       const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
       incrementButton.click();
       await debounceTimeout();
-      const productLineAlert = getHTMLElement<HTMLDivElement>(selectorsMap.qtyInput.alert(Quantify.ProductId));
+      const productLineAlert = getHTMLElement<HTMLDivElement>(selectorsMap.qtyInput.alert(Quantify.AlertId));
       mockedIncrementFetch.mockReset();
 
       expect(productLineAlert.innerHTML).not.toBe('');

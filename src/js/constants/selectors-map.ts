@@ -105,7 +105,7 @@ export const qtyInput = {
   confirm: '.confirmation',
   icon: '.material-icons',
   spinner: '.spinner-border',
-  alert: (id: number): string => `#js-product-line-alert--${id}`,
+  alert: (param: string): string => `#js-product-line-alert--${param}`,
 };
 
 export const formValidation = {

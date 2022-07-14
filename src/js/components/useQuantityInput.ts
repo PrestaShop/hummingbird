@@ -77,6 +77,8 @@ const useQuantityInput: Theme.QuantityInput.Function = (
   });
 };
 
+const isValidInputNum = (inputNum: number) => !Number.isNaN(inputNum) && Number.isInteger(inputNum);
+
 const changeQuantity = (qtyInput: HTMLInputElement, change: number, keyboard = false) => {
   const {mode} = qtyInput.dataset;
 
@@ -85,7 +87,7 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number, keyboard = f
     const currentValue = Number(qtyInput.value);
     const min = (qtyInput.dataset.updateUrl === undefined) ? Number(qtyInput.getAttribute('min')) : 0;
     const newValue = Math.max(currentValue + change, min);
-    qtyInput.value = String(!isNaN(newValue) ? newValue : baseValue);
+    qtyInput.value = String(isValidInputNum(newValue) ? newValue : baseValue);
   }
 };
 
@@ -103,7 +105,7 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
     const baseValue = Number(qtyInput.getAttribute('value'));
     const quantity = targetValue - baseValue;
 
-    if (Number.isNaN(targetValue) === false && quantity !== 0) {
+    if (isValidInputNum(targetValue) && quantity !== 0) {
       const requestUrl = qtyInput.dataset.updateUrl;
 
       if (requestUrl !== undefined) {

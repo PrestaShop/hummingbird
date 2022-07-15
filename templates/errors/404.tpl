@@ -6,13 +6,28 @@
 
 {block name="breadcrumb"}{/block}
 
-{block name='page_title'}
-  {$page.title}
+{block name="container_class"}container container--limited-md text-center{/block}
+
+{block name='page_header_container'}
+  {block name='page_title'}
+    <div class="page-header mb-2">
+      <h1 class="display-1">{l s='404' d='Shop.Theme.Catalog'}</h1>
+    </div>
+  {/block}
 {/block}
 
 {capture assign="errorContent"}
-  <h4>{l s='No products available yet' d='Shop.Theme.Catalog'}</h4>
-  <p>{l s='Stay tuned! More products will be shown here as they are added.' d='Shop.Theme.Catalog'}</p>
+  <h4>{$page.title}</h4>
+  <p>
+    {l
+      s='If this is a recurring problem, please [1]contact us[/1]'
+      d='Shop.Theme.Catalog'
+      sprintf=[
+        '[1]' => "<a href='{$urls.pages.contact}' class='alert-link'>",
+        '[/1]' => "</a>"
+      ]
+    }
+  </p>
 {/capture}
 
 {block name='page_content_container'}

@@ -6,15 +6,15 @@
   {block name='page_content'}
     {block name="error_content"}
       {if isset($errorContent)}
-        {$errorContent nofilter}
+          {$errorContent nofilter}
       {else}
-        <h4>{l s='This page could not be found' d='Shop.Theme.Global'}</h4>
-        <p>{l s='Try to search our catalog, you may find what you are looking for!' d='Shop.Theme.Global'}</p>
+        <h4>{l s='The page you are looking for is no longer available' d='Shop.Theme.Catalog'}</h4>
+        <p>{l s='It can not be reached anymore. Can we still attract you into our shop?' d='Shop.Theme.Catalog'}</p>
+        <a class="btn btn-outline-primary btn-with-icon mt-3" href="{$urls.pages.index}">
+          {l s='Go shopping' d='Shop.Theme.Catalog'}
+          <i class="material-icons rtl-flip">&#xE315;</i>
+        </a>
       {/if}
-    {/block}
-
-    {block name='search'}
-      {hook h='displaySearch'}
     {/block}
 
     {block name='hook_not_found'}

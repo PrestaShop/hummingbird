@@ -5,7 +5,7 @@
 <section class="best-sellers-products mt-3">
     <div class="container">
         {include file="components/section-title.tpl" title={l s="Best Sellers" d="Shop.Theme.Catalog"}}
-        {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-6 col-lg-4 col-xl-3"}
+        {include file="catalog/_partials/productlist.tpl" products=$products productClass="col-6 col-lg-4 col-xl-3"}
         <div class="best-sellers-products-footer text-center">
             <a class="all-product-link btn btn-outline-primary" href="{$allBestSellers}">
                 {l s='All best sellers' d='Shop.Theme.Catalog'}<i class="material-icons rtl-flip">&#xE315;</i>

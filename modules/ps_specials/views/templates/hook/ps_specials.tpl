@@ -6,7 +6,7 @@
 <section class="sale-products mt-3">
     <div class="container">
         {include file="components/section-title.tpl" title={l s="On sale" d="Shop.Theme.Catalog"}}
-        {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-6 col-lg-4 col-xl-3"}
+        {include file="catalog/_partials/productlist.tpl" products=$products productClass="col-6 col-lg-4 col-xl-3"}
         <div class="sale-products-footer text-center">
             <a class="all-product-link btn btn-outline-primary" href="{$allSpecialProductsLink}">
                 {l s='All sale products' d='Shop.Theme.Catalog'}<i class="material-icons rtl-flip">&#xE315;</i>

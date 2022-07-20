@@ -4,7 +4,7 @@
  *}
 <div id="js-product-list-top" class="products-selection">
   <div class="products-selections-filters row">
-    <div class="col-12 col-lg-6 total-products order-2 order-lg-1 mt-4 mt-lg-0">
+    <div class="col-lg-6 total-products order-2 order-lg-1 mt-4 mt-lg-0">
       {if $listing.pagination.total_items> 1}
         <p>{l s='There are %product_count% products.' d='Shop.Theme.Catalog' sprintf=['%product_count%' => $listing.pagination.total_items]}</p>
       {elseif $listing.pagination.total_items> 0}

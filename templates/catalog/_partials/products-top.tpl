@@ -4,7 +4,7 @@
  *}
 <div id="js-product-list-top" class="products-selection">
   <div class="products-selections-filters row">
-    <div class="col-12 col-md-6 total-products order-2 order-md-1 mt-4 mt-md-0">
+    <div class="col-12 col-md-12 col-lg-6 total-products order-2 order-lg-1 mt-4 mt-lg-0">
       {if $listing.pagination.total_items> 1}
         <p>{l s='There are %product_count% products.' d='Shop.Theme.Catalog' sprintf=['%product_count%' => $listing.pagination.total_items]}</p>
       {elseif $listing.pagination.total_items> 0}
@@ -12,7 +12,7 @@
       {/if}
     </div>
 
-    <div class="col-md-6 order-1 order-md-2">
+    <div class="col-md-12 col-lg-6 order-1 order-lg-2">
       <div class="d-flex align-items-center justify-content-md-end sort-by-row">
         {block name='sort_by'}
           {include file='catalog/_partials/sort-orders.tpl' sort_orders=$listing.sort_orders}

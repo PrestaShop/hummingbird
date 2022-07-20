@@ -1,0 +1,9 @@
+$component-name: quickview;
+
+.#{$component-name} {
+  .modal-dialog {
+    @include media-breakpoint-only(md) {
+      max-width: 750px;
+    }
+  }
+}

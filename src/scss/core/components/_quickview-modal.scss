@@ -5,5 +5,9 @@ $component-name: quickview;
     @include media-breakpoint-only(md) {
       max-width: 750px;
     }
+    @include media-breakpoint-only(sm) {
+      max-width: 100%;
+      margin: 1.75rem;
+    }
   }
 }

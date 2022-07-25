@@ -5,8 +5,8 @@
 
 {$componentName = 'email-subscription'}
 
-<div class="{$componentName} py-4">
-  <div class="container">
+<div class="{$componentName} px-0 py-4">
+  <div class="container px-1">
     <div class="{$componentName}__content row">
       <div class="{$componentName}__content__left col-md-5">
         <p class="{$componentName}__label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>

@@ -29,7 +29,7 @@
 
         <div class="search__mobile hide-on-desktop">
           <button class="search__mobile__toggler btn d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
-            <span class="material-icons">search</span>  
+            <span class="material-icons">search</span>
           </button>
 
           <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top" data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
@@ -51,9 +51,9 @@
   <div class="{$headerBottomName}">
     <div class="container {$headerBottomName}__container">
       <div id="_desktop_logo" class="logo logo-desktop order-1 order-xl-0">
-        {if $page.page_name == 'index'}<h1>{/if}
+        {if $page.page_name == 'index'}<h1 class="m-0 d-inline-flex">{/if}
         <a class="navbar-brand" href="{$urls.pages.index}">
-          <img class="logo img-fluid" src="{$shop.logo_details.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo_details.width}" height="{$shop.logo_details.height}">
+          <img class="logo" src="{$shop.logo_details.src}" alt="{$shop.name}" loading="lazy" width="{$shop.logo_details.width}" height="{$shop.logo_details.height}">
         </a>
         {if $page.page_name == 'index'}</h1>{/if}
       </div>

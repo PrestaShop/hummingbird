@@ -135,6 +135,11 @@ const selectorsMap = {
     thumbnail: '.js-thumb-container',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
   },
+  order: {
+    returnForm: '.js-order-return-form',
+    returnFormMainCheckbox: '.js-order-return-form table thead input[type=checkbox]',
+    returnFormItemCheckbox: '.js-order-return-form table tbody input[type=checkbox]',
+  },
   modalBody: '.modal-body',
   pageCms: '.page-cms',
   quickview: '.js-quickview',

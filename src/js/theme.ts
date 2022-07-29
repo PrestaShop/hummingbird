@@ -9,6 +9,7 @@ import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
 import initCart from './pages/cart';
 import initCheckout from './pages/checkout';
+import initCustomer from './pages/customer';
 import initProductBehavior from './product';
 import initMobileMenu from './mobile-menu';
 import initSearchbar from './modules/ps_searchbar';
@@ -32,6 +33,7 @@ $(() => {
   initProductBehavior();
   initQuickview();
   initCheckout();
+  initCustomer();
   initResponsiveToggler();
   initCart();
   useQuantityInput();

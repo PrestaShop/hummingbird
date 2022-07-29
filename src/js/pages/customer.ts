@@ -3,9 +3,9 @@
  * file that was distributed with this source code.
  */
 
- import SelectorsMap from '@constants/selectors-map';
+import SelectorsMap from '@constants/selectors-map';
 
- const initCustomer = () => {  
+const initCustomer = () => {  
   // order details -- return table main checkbox functionality
   const returnTableMainCheckbox = document.querySelector(SelectorsMap.order.returnFormMainCheckbox) as HTMLInputElement;
   const returnTableItemCheckbox = document.querySelectorAll(SelectorsMap.order.returnFormItemCheckbox);
@@ -19,6 +19,6 @@
       }
     });
   });
- }
+}
 
- export default initCustomer;
+export default initCustomer;

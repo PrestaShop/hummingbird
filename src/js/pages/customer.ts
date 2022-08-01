@@ -5,12 +5,12 @@
 
 import SelectorsMap from '@constants/selectors-map';
 
-const initCustomer = () => {  
+const initCustomer = () => {
   const returnTableMainCheckbox = document.querySelector(SelectorsMap.order.returnFormMainCheckbox) as HTMLInputElement;
   const returnTableItemCheckbox = document.querySelectorAll(SelectorsMap.order.returnFormItemCheckbox);
   returnTableMainCheckbox?.addEventListener('click', () => {
     const checked: boolean = returnTableMainCheckbox?.checked;
-    returnTableItemCheckbox.forEach((checkbox: HTMLInputElement)  => {
+    returnTableItemCheckbox.forEach((checkbox: HTMLInputElement) => {
       if (checked === true) {
         checkbox.checked = true;
       } else {

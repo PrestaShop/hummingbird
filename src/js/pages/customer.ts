@@ -6,10 +6,10 @@
 import SelectorsMap from '@constants/selectors-map';
 
 const initCustomer = () => {
-  const returnTableMainCheckbox = document.querySelector<HTMLInputElement>
-  (SelectorsMap.order.returnFormMainCheckbox);
+  const returnTableMainCheckbox = document.querySelector<HTMLInputElement>(SelectorsMap.order.returnFormMainCheckbox);
   const returnTableItemCheckbox = document.querySelectorAll(SelectorsMap.order.returnFormItemCheckbox);
-    if (returnTableMainCheckbox) {
+
+  if (returnTableMainCheckbox) {
     returnTableMainCheckbox?.addEventListener('click', () => {
       const checked: boolean = returnTableMainCheckbox?.checked;
       returnTableItemCheckbox.forEach((checkbox: HTMLInputElement) => {
@@ -20,7 +20,7 @@ const initCustomer = () => {
         }
       });
     });
-  };
+  }
 };
 
 export default initCustomer;

@@ -23,6 +23,13 @@ $component-name: header;
         margin-right: 0.25rem;
       }
     }
+
+    .navbar-brand {
+      .logo {
+        width: auto;
+        max-height: 2rem;
+      }
+    }
   }
 
   & &__bottom {
@@ -33,7 +40,10 @@ $component-name: header;
     }
 
     .navbar-brand {
-      padding: 0;
+      .logo {
+        width: auto;
+        max-height: 4rem;
+      }
     }
 
     .nav-link {

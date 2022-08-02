@@ -77,6 +77,8 @@ const useQuantityInput: Theme.QuantityInput.Function = (
   });
 };
 
+const isValidInputNum = (inputNum: number) => !Number.isNaN(inputNum) && Number.isInteger(inputNum);
+
 const changeQuantity = (qtyInput: HTMLInputElement, change: number, keyboard = false) => {
   const {mode} = qtyInput.dataset;
 
@@ -85,7 +87,7 @@ const changeQuantity = (qtyInput: HTMLInputElement, change: number, keyboard = f
     const currentValue = Number(qtyInput.value);
     const min = (qtyInput.dataset.updateUrl === undefined) ? Number(qtyInput.getAttribute('min')) : 0;
     const newValue = Math.max(currentValue + change, min);
-    qtyInput.value = String(!isNaN(newValue) ? newValue : baseValue);
+    qtyInput.value = String(isValidInputNum(newValue) ? newValue : baseValue);
   }
 };
 
@@ -103,7 +105,7 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
     const baseValue = Number(qtyInput.getAttribute('value'));
     const quantity = targetValue - baseValue;
 
-    if (Number.isNaN(targetValue) === false && quantity !== 0) {
+    if (isValidInputNum(targetValue) && quantity !== 0) {
       const requestUrl = qtyInput.dataset.updateUrl;
 
       if (requestUrl !== undefined) {
@@ -113,8 +115,6 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
 
         toggleButtonSpinner(targetButton, targetButtonIcon, targetButtonSpinner);
 
-        const {productId} = qtyInput.dataset;
-
         try {
           const response = await sendUpdateCartRequest(requestUrl, quantity);
 
@@ -123,7 +123,7 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
 
             if (data.hasError) {
               const errors = data.errors as Array<string>;
-              const productAlertSelector = resetAlertContainer(Number(productId));
+              const productAlertSelector = resetAlertContainer(qtyInput);
 
               if (errors && productAlertSelector) {
                 errors.forEach((error: string) => {
@@ -156,7 +156,7 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
 
           if (errorData.status !== undefined) {
             const errorMsg = `${errorData.statusText}: ${errorData.url}`;
-            const productAlertSelector = resetAlertContainer(Number(productId));
+            const productAlertSelector = resetAlertContainer(qtyInput);
             useAlert(errorMsg, {type: 'danger', selector: productAlertSelector}).show();
 
             prestashop.emit(events.handleError, {
@@ -170,8 +170,7 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
         }
       }
     } else {
-      // The input value is not a correct number so revert to the value in the DOM
-      qtyInput.value = String(baseValue);
+      // The input value is not a correct number
       showSpinButtons(qtyInputGroup);
     }
   }
@@ -183,9 +182,11 @@ const getTargetButton = (qtyInputGroup: Theme.QuantityInput.InputGroup, change: 
   return (change > 0) ? incrementButton : decrementButton;
 };
 
-const resetAlertContainer = (productId: number) => {
-  if (productId) {
-    const productAlertSelector = quantityInputMap.alert(productId);
+const resetAlertContainer = (qtyInput: HTMLInputElement) => {
+  const {alertId} = qtyInput.dataset;
+
+  if (alertId) {
+    const productAlertSelector = quantityInputMap.alert(alertId);
     const productAlertContainer = document.querySelector<HTMLDivElement>(productAlertSelector);
 
     if (productAlertContainer) {

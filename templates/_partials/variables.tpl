@@ -5,7 +5,7 @@
 
  <style>
   :root {ldelim}
-    --bs-primary: red;
+    --bs-primary: #16181c;
     --bs-secondary: #f39d72;
     --bs-success: #21834d;
     --bs-warning: #ff9a52;

@@ -24,6 +24,19 @@ const entriesArray = {
   theme_rtl: ['scss'],
   error_rtl: ['scss'],
   rtl: ['scss'],
+  'modules/blockreassurance': ['scss'],
+  'modules/contactform': ['scss'],
+  'modules/contactinfo': ['scss'],
+  'modules/customersignin': ['scss'],
+  'modules/customtext': ['scss'],
+  'modules/emailsubscription': ['scss'],
+  'modules/facetedsearch': ['scss'],
+  'modules/featuredproduct': ['scss'],
+  'modules/imageslider': ['scss'],
+  'modules/mainmenu': ['scss'],
+  'modules/shoppingcart': ['scss'],
+  'modules/social-follow': ['scss'],
+  'modules/social-sharing': ['scss'],
 };
 
 exports.webpackVars = {
@@ -65,6 +78,6 @@ exports.webpackVars = {
     library: {
       name: 'Theme',
       type: 'window',
-    }
+    },
   }),
 };

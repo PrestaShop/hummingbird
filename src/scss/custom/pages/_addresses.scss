@@ -23,8 +23,8 @@
       width: 4rem;
       height: 4rem;
       font-size: 2rem;
-      color: $primary;
-      background: $gray-400;
+      color: var(--bs-primary);
+      background: var(--bs-gray-400);
       border-radius: 50%;
       transition: 0.25s ease-out;
 

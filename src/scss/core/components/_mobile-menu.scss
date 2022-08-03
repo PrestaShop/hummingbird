@@ -30,7 +30,7 @@ $component-name: main-menu;
 
       li:not(.h5),
       a {
-        color: $gray-700;
+        color: var(--bs-gray-700);
       }
 
       a {
@@ -72,7 +72,7 @@ $component-name: main-menu;
   &__title {
     padding: 0 0.5rem;
     font-size: 1.25rem;
-    color: $gray-800;
+    color: var(--bs-gray-800);
   }
 
   &__offcanvas {
@@ -104,7 +104,7 @@ $component-name: main-menu;
     }
 
     i {
-      color: $gray-700;
+      color: var(--bs-gray-700);
     }
   }
 

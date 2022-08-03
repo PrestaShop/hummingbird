@@ -4,7 +4,7 @@ $component-name: sitemap;
   ul a {
     display: block;
     padding: 0.2rem 0;
-    color: $gray-800;
+    color: var(--bs-gray-800);
   }
 
   h2 {
@@ -15,7 +15,7 @@ $component-name: sitemap;
     margin-left: 1rem;
 
     a {
-      color: $gray-700;
+      color: var(--bs-gray-700);
     }
   }
 }

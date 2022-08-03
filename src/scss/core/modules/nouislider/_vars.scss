@@ -1,19 +1,19 @@
 // Slider target
 $nouislider-target-border-width: 0;
-$nouislider-target-border-color: $gray-300;
+$nouislider-target-border-color: var(--bs-gray-300);
 $nouislider-target-border-radius: $border-radius;
-$nouislider-target-background-color: $gray-200;
+$nouislider-target-background-color: var(--bs-gray-200);
 $nouislider-target-shadow: null;
 
 // Slider handle basic styles
 $nouislider-handle-border-radius: 50%;
-$nouislider-handle-border-color: $gray-800;
+$nouislider-handle-border-color: var(--bs-gray-800);
 $nouislider-handle-border-width: 1px;
-$nouislider-handle-background-color: $white;
+$nouislider-handle-background-color: var(--bs-white);
 $nouislider-handle-shadow: null;
 // Slider handle active styles
 $nouislider-handle-active-shadow: null;
-$nouislider-handle-active-background-color: $primary;
+$nouislider-handle-active-background-color: var(--bs-primary);
 
 // Slider bar horizontal
 $nouislider-horizontal-height: 4px;
@@ -26,9 +26,9 @@ $nouislider-vertical-handler-width: 24px;
 $nouislider-vertical-handler-height: 24px;
 
 // Slider connect
-$nouislider-connects-background-color: $gray-700;
+$nouislider-connects-background-color: var(--bs-gray-700);
 $nouislider-connects-border-radius: $border-radius;
-$nouislider-connects-disabled-background-color: $gray-200;
+$nouislider-connects-disabled-background-color: var(--bs-gray-200);
 
 // Slider pips
 $nouislider-pips-color: #999;

@@ -4,8 +4,8 @@
  *}
 
  <style>
-  :root {
-    --bs-primary: #16181c;
+  :root {ldelim}
+    --bs-primary: red;
     --bs-secondary: #f39d72;
     --bs-success: #21834d;
     --bs-warning: #ff9a52;
@@ -25,5 +25,5 @@
 
     --bs-toast-border-width: 0;
     --bs-carousel-transition-duration: 0.25s;
-  }
+  {rdelim}
  </style>

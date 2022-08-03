@@ -9,14 +9,14 @@ $component-name: address;
     font-style: normal;
     font-weight: 500;
     line-height: 1.5rem;
-    color: $gray-800;
+    color: var(--bs-gray-800);
   }
 
   &__alias {
     margin-bottom: 1rem;
     font-weight: 600;
     line-height: 1.5rem;
-    color: $gray-800;
+    color: var(--bs-gray-800);
   }
 
   .card-footer {
@@ -28,11 +28,11 @@ $component-name: address;
   &__delete {
     display: inline-block;
     padding: 1rem 0.5rem;
-    color: $gray-800;
+    color: var(--bs-gray-800);
     text-decoration: underline;
   }
 
   &__delete {
-    color: $danger;
+    color: var(--bs-danger);
   }
 }

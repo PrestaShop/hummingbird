@@ -1,12 +1,12 @@
 $component-name: footer;
 $footer-background-color: #16181c !default;
-$footer-heading-color: $white !default;
+$footer-heading-color: var(--bs-white) !default;
 $footer-text-color: $body-color !default;
 
 .#{$component-name} {
   --footer-background-color: #{$footer-background-color};
   --footer-text-color: #{$footer-text-color};
-  --footer-hover-color: #{$white};
+  --footer-hover-color: var(--bs-white);
   --footer-heading-color: #{$footer-heading-color};
 
   & &__main {
@@ -26,7 +26,7 @@ $footer-text-color: $body-color !default;
   .copyright {
     &,
     a {
-      color: $white;
+      color: var(--bs-white);
     }
   }
 

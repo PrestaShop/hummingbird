@@ -4,7 +4,7 @@
   border-radius: 0.5rem;
 
   table {
-    border-color: $gray-200;
+    border-color: var(--bs-gray-200);
 
     > :not(:first-child) {
       border-top: none;

@@ -22,7 +22,7 @@ $component-name: subcategories;
     margin-bottom: 0;
     margin-left: 1rem;
     font-size: 1rem;
-    color: $gray-800;
+    color: var(--bs-gray-800);
   }
 
   @include media-breakpoint-down(md) {

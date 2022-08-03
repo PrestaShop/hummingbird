@@ -20,7 +20,7 @@ $component-name: step;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    background: $gray-100;
+    background: var(--bs-gray-100);
     border-radius: $border-radius;
 
     dd,
@@ -30,7 +30,7 @@ $component-name: step;
       margin: 0;
 
       &:not(:last-of-type) {
-        border-bottom: 1px solid $gray-300;
+        border-bottom: 1px solid var(--bs-gray-300);
       }
     }
 

@@ -12,13 +12,3 @@ $slider-text-spacing: 1rem;
 $slider-description-size: 1rem;
 
 $slider-img-height: 100%;
-
-.carousel {
-  --slider-img-height: #{$slider-img-height};
-  --slider-title-weight: #{$slider-title-weight};
-  --slider-subtitle-weight: #{$slider-subtitle-weight};
-  --slider-text-color: #{$slider-text-color};
-  --slider-control-bg: #{$slider-control-bg};
-  --slider-control-height: #{$carousel-control-height};
-  --slider-control-radius: #{$slider-control-radius};
-}

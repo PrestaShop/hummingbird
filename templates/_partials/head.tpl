@@ -68,8 +68,4 @@
   {$HOOK_HEADER nofilter}
 {/block}
 
-{block name='variables'}
-  {include file="_partials/variables.tpl"}
-{/block}
-
 {block name='hook_extra'}{/block}

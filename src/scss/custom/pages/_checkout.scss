@@ -21,7 +21,7 @@ $component-name: step;
     justify-content: space-between;
     padding: 1rem;
     background: var(--bs-gray-100);
-    border-radius: $border-radius;
+    border-radius: var(--bs-border-radius-sm);
 
     dd,
     dt {

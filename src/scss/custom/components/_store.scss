@@ -28,7 +28,7 @@ $component-name: store;
 
   img {
     margin-bottom: 1.5rem;
-    border-radius: $border-radius;
+    border-radius: var(--bs-border-radius-sm);
   }
 
   address {

@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: $font-family-base;
-  color: $body-color;
+  color: var(--bs-body-color);
   direction: ltr;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

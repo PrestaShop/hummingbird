@@ -1,7 +1,7 @@
 $component-name: footer;
 $footer-background-color: #16181c !default;
 $footer-heading-color: var(--bs-white) !default;
-$footer-text-color: $body-color !default;
+$footer-text-color: var(--bs-body-color) !default;
 
 .#{$component-name} {
   --footer-background-color: #{$footer-background-color};

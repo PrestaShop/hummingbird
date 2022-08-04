@@ -13,7 +13,7 @@ $component-name: customer-link;
       font-weight: 600;
       color: var(--bs-gray-800);
       background: var(--bs-gray-100);
-      border-radius: $border-radius;
+      border-radius: var(--bs-border-radius-sm);
       transition: 0.25s ease-out;
 
       &:hover {

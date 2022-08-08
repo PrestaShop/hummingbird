@@ -20,6 +20,10 @@ const {
 
 const entriesArray = {
   theme: ['scss', 'ts'],
+  checkout: ['scss'],
+  listing: ['scss'],
+  product: ['scss'],
+  category: ['scss'],
   error: ['scss'],
   theme_rtl: ['scss'],
   error_rtl: ['scss'],

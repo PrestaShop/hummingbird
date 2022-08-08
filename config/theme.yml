@@ -32,15 +32,98 @@ assets:
 
   # The following lines are showing how to load assets in your page
   # Uncomment and change value to start loading css or js files
-#  css:
-#    all:
-#      - id: custom-lib-style
-#        path: assets/css/custom-lib.css
-#    product:
-#      - id: product-style
-#        path: assets/css/product.css
-#        media: all
-#        priority: 200
+  css:
+    all:
+      - id: mainmenu-style 
+        path: assets/css/modules/mainmenu.css
+      - id: emailsubscription-style
+        path: assets/css/modules/emailsubscription.css
+      - id: blockcart-style
+        path: assets/css/modules/shoppingcart.css
+      - id: customersignin-style
+        path: assets/css/modules/customersignin.css
+      - id: socialfollow-style
+        path: assets/css/modules/social-follow.css
+      - id: socialsharing-style
+        path: assets/css/modules/social-sharing.css
+      - id: featuredproduct-style
+        path: assets/css/modules/featuredproduct.css
+    product:
+      - id: product-style
+        path: assets/css/product.css
+        media: all
+      - id: listing-style
+        path: assets/css/listing.css
+        media: all
+      - id: blockreassurance-style
+        path: assets/css/blockreassurance.css
+        media: all
+    checkout:
+      - id: checkout-style
+        path: assets/css/checkout.css
+        media: all
+    order-confirmation:
+      - id: checkout-style
+        path: assets/css/checkout.css
+        media: all
+    cart:
+      - id: checkout-style
+        path: assets/css/checkout.css
+        media: all
+      - id: blockreassurance-style
+        path: assets/css/blockreassurance.css
+        media: all
+    category:
+      - id: category-style
+        path: assets/css/category.css
+      - id: listing-style
+        path: assets/css/listing.css
+        media: all
+      - id: facetedsearch-style
+        path: assets/css/modules/facetedsearch.css
+    contact:
+      - id: contactform-style
+        path: assets/css/modules/contactform.css
+      - id: contactinfo-style
+        path: assets/css/modules/contactinfo.css
+    prices-drop:
+      - id: listing-style
+        path: assets/css/listing.css
+        media: all
+      - id: facetedsearch-style
+        path: assets/css/modules/facetedsearch.css
+    new-products:
+      - id: listing-style
+        path: assets/css/listing.css
+        media: all
+      - id: facetedsearch-style
+        path: assets/css/modules/facetedsearch.css
+    best-sales:
+      - id: listing-style
+        path: assets/css/listing.css
+        media: all
+      - id: facetedsearch-style
+        path: assets/css/modules/facetedsearch.css
+    manufacturer:
+      - id: listing-style
+        path: assets/css/listing.css
+        media: all
+      - id: facetedsearch-style
+        path: assets/css/modules/facetedsearch.css
+    search:
+      - id: listing-style
+        path: assets/css/listing.css
+        media: all
+      - id: facetedsearch-style
+        path: assets/css/modules/facetedsearch.css
+    index:
+      - id: listing-style
+        path: assets/css/listing.css
+        media: all
+      - id: imageslider-style
+        path: assets/css/modules/imageslider.css
+      - id: customtext-style
+        path: assets/css/modules/customtext.css
 #  js:
 #    cart:
 #      - id: cat-extra-lib

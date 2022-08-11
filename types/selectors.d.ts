@@ -105,7 +105,7 @@ declare type quantityInput = {
   confirm: string,
   icon: string,
   spinner: string,
-  alert: (param: string) => string,
+  alert: (param: number) => string,
 };
 
 declare type formValidation = {
@@ -150,6 +150,6 @@ type SelectorsMap = {
   mobileMenu: mobileMenu,
   visiblePassword: visiblePassword,
   desktopMenu: desktopMenu,
-  quantityInput: quantityInput,
+  qtyInput: quantityInput,
   formValidation: formValidation,
 };

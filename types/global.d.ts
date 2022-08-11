@@ -2,6 +2,8 @@ declare namespace Theme {
   type ThemeType = {
     events: EVENTS;
     selectors: SelectorsMap;
+    default: any;
+    components: any;
   }
 
   type Components = {

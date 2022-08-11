@@ -1,4 +1,4 @@
-const { merge } = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const path = require('path');
 const {
   extractScss, extractJs, extractImages, extractFonts, externals, expose,
@@ -27,7 +27,7 @@ exports.commonConfig = ({
     },
     externals(),
     expose(),
-    extractScss({ mode }),
+    extractScss({mode}),
     extractJs(),
     extractImages(),
     extractFonts(),

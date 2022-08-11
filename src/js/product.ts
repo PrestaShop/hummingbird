@@ -7,7 +7,7 @@ import SelectorsMap from './constants/selectors-map';
 
 type ProductSlideEvent = Event & {to: number};
 
-export default () => {
+const initProductBehavior = () => {
   const {prestashop, Theme: {events}} = window;
 
   const initProductSlide = () => {
@@ -41,4 +41,13 @@ export default () => {
   prestashop.on(events.quickviewOpened, () => {
     initProductSlide();
   });
+};
+
+$(() => {
+  initProductBehavior();
+});
+
+window.Theme.default = {
+  ...window.Theme.default,
+  initProductBehavior,
 };

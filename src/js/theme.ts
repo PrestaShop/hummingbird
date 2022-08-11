@@ -7,21 +7,14 @@ import EVENTS from './constants/events-map';
 import initEmitter from './prestashop';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
-import initCart from './pages/cart';
-import initCheckout from './pages/checkout';
 import initCustomer from './pages/customer';
-import initProductBehavior from './product';
 import initMobileMenu from './mobile-menu';
 import initSearchbar from './modules/ps_searchbar';
-import initLanguageSelector from './modules/ps_languageselector';
-import initCurrencySelector from './modules/ps_currencyselector';
 import initVisiblePassword from './visible-password';
 import useToast from './components/useToast';
 import useAlert from './components/useAlert';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
-import './modules/blockcart';
-import './modules/facetedsearch';
 import initDesktopMenu from './modules/ps_mainmenu';
 import initFormValidation from './form-validation';
 
@@ -30,16 +23,11 @@ initEmitter();
 $(() => {
   const {prestashop, Theme: {events}} = window;
 
-  initProductBehavior();
   initQuickview();
-  initCheckout();
   initCustomer();
   initResponsiveToggler();
-  initCart();
   useQuantityInput();
   initSearchbar();
-  initLanguageSelector();
-  initCurrencySelector();
   initMobileMenu();
   initVisiblePassword();
   initDesktopMenu();
@@ -47,8 +35,6 @@ $(() => {
 
   prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();
-    initLanguageSelector();
-    initCurrencySelector();
     initDesktopMenu();
   });
 });
@@ -64,17 +50,17 @@ export const selectors = themeSelectors;
 
 export const events = EVENTS;
 
-export default {
-  initProductBehavior,
-  initQuickview,
-  initCheckout,
-  initResponsiveToggler,
-  initCart,
-  useQuantityInput,
-  initSearchbar,
-  initLanguageSelector,
-  initCurrencySelector,
-  initMobileMenu,
-  initVisiblePassword,
-  initDesktopMenu,
+window.Theme = {
+  default: {
+    initQuickview,
+    initResponsiveToggler,
+    useQuantityInput,
+    initSearchbar,
+    initMobileMenu,
+    initVisiblePassword,
+    initDesktopMenu,
+  },
+  events,
+  components,
+  selectors,
 };

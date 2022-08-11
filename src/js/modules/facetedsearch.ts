@@ -5,8 +5,8 @@
 
 import noUiSlider, {target, API} from 'nouislider';
 import wNumb from 'wnumb';
-import initFacets from './update';
-import filterHandler from './filter-handler';
+import initFacets from './facetedsearch/update';
+import filterHandler from './facetedsearch/filter-handler';
 
 const initSliders = () => {
   const {Theme} = window;

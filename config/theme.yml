@@ -50,7 +50,7 @@ assets:
         path: assets/css/modules/featuredproduct.css
     product:
       - id: product-style
-        path: assets/css/product.css
+        path: assets/css/product-page.css
         media: all
       - id: listing-style
         path: assets/css/listing.css
@@ -124,10 +124,41 @@ assets:
         path: assets/css/modules/imageslider.css
       - id: customtext-style
         path: assets/css/modules/customtext.css
-#  js:
-#    cart:
-#      - id: cat-extra-lib
-#        path: assets/js/cart-lib.js
+  js:
+    all:
+      - id: currencyselector-lib
+        path: assets/js/ps_currencyselector.js
+      - id: languageselector-lib
+        path: assets/js/ps_languageselector.js
+    cart:
+      - id: cart-lib
+        path: assets/js/cart.js
+    product:
+      - id: product-lib
+        path: assets/js/product.js
+    category:
+      - id: facetedsearch-lib
+        path: assets/js/modules/facetedsearch.js
+    prices-drop:
+      - id: facetedsearch-lib
+        path: assets/js/modules/facetedsearch.js
+    checkout:
+      - id: cart-lib
+        path: assets/js/cart.js
+      - id: checkout-lib
+        path: assets/js/checkout.js
+    manufacturer:
+      - id: facetedsearch-lib
+        path: assets/js/modules/facetedsearch.js
+    new-products:
+      - id: facetedsearch-lib
+        path: assets/js/modules/facetedsearch.js
+    best-sales:
+      - id: facetedsearch-lib
+        path: assets/js/modules/facetedsearch.js
+    search:
+      - id: facetedsearch-lib
+        path: assets/js/modules/facetedsearch.js
 
 
 global_settings:

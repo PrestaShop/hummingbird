@@ -15,4 +15,17 @@ const initLanguageSelector = () => {
   });
 };
 
-export default initLanguageSelector;
+$(() => {
+  const {prestashop, Theme: {events}} = window;
+
+  initLanguageSelector();
+
+  prestashop.on(events.responsiveUpdate, () => {
+    initLanguageSelector();
+  });
+});
+
+window.Theme.default = {
+  ...window.Theme.default,
+  initLanguageSelector,
+};

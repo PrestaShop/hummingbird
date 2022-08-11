@@ -20,9 +20,11 @@ const {
 
 const entriesArray = {
   theme: ['scss', 'ts'],
-  checkout: ['scss'],
+  checkout: ['scss', 'ts'],
+  product: ['ts'],
+  'product-page': ['scss'],
   listing: ['scss'],
-  product: ['scss'],
+  cart: ['ts'],
   category: ['scss'],
   error: ['scss'],
   theme_rtl: ['scss'],
@@ -34,13 +36,15 @@ const entriesArray = {
   'modules/customersignin': ['scss'],
   'modules/customtext': ['scss'],
   'modules/emailsubscription': ['scss'],
-  'modules/facetedsearch': ['scss'],
+  'modules/facetedsearch': ['scss', 'ts'],
   'modules/featuredproduct': ['scss'],
   'modules/imageslider': ['scss'],
   'modules/mainmenu': ['scss'],
   'modules/shoppingcart': ['scss'],
   'modules/social-follow': ['scss'],
   'modules/social-sharing': ['scss'],
+  'modules/ps_currencyselector': ['ts'],
+  'modules/ps_languageselector': ['ts'],
 };
 
 exports.webpackVars = {
@@ -79,9 +83,5 @@ exports.webpackVars = {
     path: path.resolve(themeDev, '../assets'),
     publicPath: mode === 'production' ? '../' : `${serverAddress === 'localhost' ? siteURL : `${siteURL}:${port}`}${publicPath}`,
     pathinfo: false,
-    library: {
-      name: 'Theme',
-      type: 'window',
-    },
   }),
 };

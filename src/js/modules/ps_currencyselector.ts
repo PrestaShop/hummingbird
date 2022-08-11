@@ -15,4 +15,17 @@ const initCurrencySelector = () => {
   });
 };
 
-export default initCurrencySelector;
+$(() => {
+  const {prestashop, Theme: {events}} = window;
+
+  initCurrencySelector();
+
+  prestashop.on(events.responsiveUpdate, () => {
+    initCurrencySelector();
+  });
+});
+
+window.Theme.default = {
+  ...window.Theme.default,
+  initCurrencySelector,
+};

@@ -62,6 +62,10 @@ assets:
       - id: checkout-style
         path: assets/css/checkout.css
         media: all
+    order:
+      - id: checkout-style
+        path: assets/css/checkout.css
+        media: all
     order-confirmation:
       - id: checkout-style
         path: assets/css/checkout.css

@@ -37,38 +37,69 @@
           }
         </p>
         <p>{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</p>
-        <table class="table table-striped table-bordered">
-          <thead class="thead-default">
-            <tr>
-              <th>{l s='Product' d='Shop.Theme.Catalog'}</th>
-              <th>{l s='Quantity' d='Shop.Theme.Checkout'}</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div class="table-wrapper">
+          <table class="table d-none d-sm-table d-md-table">
+            <thead class="thead-default">
+              <tr>
+                <th>{l s='Product' d='Shop.Theme.Catalog'}</th>
+                <th>{l s='Quantity' d='Shop.Theme.Checkout'}</th>
+              </tr>
+            </thead>
+            <tbody>
+            {foreach from=$products item=product}
+              <tr>
+                <td>
+                  <strong>{$product.product_name}</strong>
+                  {if $product.product_reference}
+                    <br />
+                    {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
+                  {/if}
+                  {if $product.customizations}
+                    {foreach from=$product.customizations item="customization"}
+                      <div class="customization">
+                        <a href="#" data-bs-toggle="modal" class="text-decoration-underline"
+                        data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
+                      </div>
+                      {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
+                    {/foreach}
+                  {/if}
+                </td>
+                <td>
+                  {$product.product_quantity}
+                </td>
+              </tr>
+            {/foreach}
+            </tbody>
+          </table>
+        </div>
+        <div class="d-block d-sm-block d-md-none">
           {foreach from=$products item=product}
-            <tr>
-              <td>
-                <strong>{$product.product_name}</strong>
-                {if $product.product_reference}
-                  <br />
-                  {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
-                {/if}
-                {if $product.customizations}
-                  {foreach from=$product.customizations item="customization"}
-                    <div class="customization">
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
-                    </div>
-                    {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
-                  {/foreach}
-                {/if}
-              </td>
-              <td>
-                {$product.product_quantity}
-              </td>
-            </tr>
+            <div class="table-wrapper py-2 my-2">
+              <ul class="m-0">
+                <li class="row">
+                  <p class="col fw-bold">{l s='Product' d='Shop.Theme.Catalog'}</p>
+                  <p class="col-8 text-end">{$product.product_name}</p>
+                </li>
+                <li class="row">
+                  <p class="col fw-bold">{l s='Quantity' d='Shop.Theme.Checkout'}</p>
+                  <p class="col-8 text-end">{$product.product_quantity}</p>
+                </li>
+                <li>
+                  {if $product.customizations}
+                    {foreach $product.customizations as $customization}
+                      <div class="customization text-end">
+                        <a href="#" data-bs-toggle="modal" class="text-decoration-underline"
+                          data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
+                      </div>
+                      <div id="_mobile_product_customization_modal_wrapper_{$customization.id_customization}">
+                      </div>
+                    {/foreach}
+                  {/if}
+                </li>
+              </ul>
+            </div>
           {/foreach}
-          </tbody>
-        </table>
+        </div>
       </div>
     </div>
   {/block}

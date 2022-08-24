@@ -20,23 +20,8 @@
           </strong>
         </p>
         <p>{l s='We have logged your return request.' d='Shop.Theme.Customeraccount'}</p>
-        <p>{l
-          s='Your package must be returned to us within %number% days of receiving your order.'
-          d='Shop.Theme.Customeraccount'
-          sprintf=['%number%' => $configuration.number_of_days_for_return]}</p>
-        <p>
-          {* [1][/1] is for a HTML tag. *}
-          {l
-            s='The current status of your merchandise return is: [1] %status% [/1]'
-            d='Shop.Theme.Customeraccount'
-            sprintf=[
-              '[1]' => '<strong>',
-              '[/1]' => '</strong>',
-              '%status%' => $return.state_name
-            ]
-          }
-        </p>
-        <p>{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</p>
+        <hr>
+        <h3>{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</h3>
         <div class="table-wrapper">
           <table class="table d-none d-sm-table d-md-table">
             <thead class="thead-default">
@@ -80,9 +65,15 @@
                   <p class="col fw-bold">{l s='Product' d='Shop.Theme.Catalog'}</p>
                   <p class="col-8 text-end">{$product.product_name}</p>
                 </li>
+                {if $product.product_reference}
+                  <li class="row">
+                    <p class="col fw-bold">{l s='Reference' d='Shop.Theme.Catalog'}</p>
+                    <p class="col text-end">{$product.product_reference}</p>
+                  </li>
+                {/if}
                 <li class="row">
                   <p class="col fw-bold">{l s='Quantity' d='Shop.Theme.Checkout'}</p>
-                  <p class="col-8 text-end">{$product.product_quantity}</p>
+                  <p class="col text-end">{$product.product_quantity}</p>
                 </li>
                 <li>
                   {if $product.customizations}
@@ -100,11 +91,29 @@
             </div>
           {/foreach}
         </div>
+        <hr>
+        <p>{l
+          s='Your package must be returned to us within %number% days of receiving your order.'
+          d='Shop.Theme.Customeraccount'
+          sprintf=['%number%' => $configuration.number_of_days_for_return]}</p>
+        <p class="mb-0">
+          {* [1][/1] is for a HTML tag. *}
+          {l
+            s='The current status of your merchandise return is: [1] %status% [/1]'
+            d='Shop.Theme.Customeraccount'
+            sprintf=[
+              '[1]' => '<strong>',
+              '[/1]' => '</strong>',
+              '%status%' => $return.state_name
+            ]
+          }
+        </p>
       </div>
     </div>
   {/block}
 
   {if $return.state == 2}
+    <hr>
     <section class="card">
       <div class="card-block">
         <h3 class="card-title h3">{l s='Reminder' d='Shop.Theme.Customeraccount'}</h3>

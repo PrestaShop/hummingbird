@@ -83,6 +83,12 @@ global_settings:
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch
+      displayContactLeftColumn:
+        - ps_contactinfo
+      displayContactRightColumn:
+        - ps_contactinfo
+      displayContactContent:
+        - ps_contactinfo
       displaySearch:
         - ps_searchbar
       displayProductAdditionalInfo:

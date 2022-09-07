@@ -2,12 +2,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div class="product__add-to-cart js-product-add-to-cart">
+<div class="product__add-to-cart product-add-to-cart js-product-add-to-cart">
   {if !$configuration.is_catalog}
 
     <div class="mb-3">
       {block name='product_availability'}
-        <span id="product__availability" class="product__availability js-product-availability d-flex align-items-center">
+        <span id="product-availability" class="product__availability js-product-availability d-flex align-items-center">
           {if $product.show_availability && $product.availability_message}
             {if $product.availability == 'available'}
               <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i>
@@ -50,7 +50,7 @@
           }
         </div>
 
-        <div class="product-actions__button col">
+        <div class="product-actions__button add col">
           <button
             class="btn btn-primary btn-with-icon add-to-cart"
             data-button-action="add-to-cart"
@@ -69,7 +69,7 @@
     {/block}
 
     {block name='product_minimal_quantity'}
-      <p class="product__minimal-quantity js-product-minimal-quantity d-flex align-items-center mt-3 mt-md-0">
+      <p class="product__minimal-quantity product-minimal-quantity js-product-minimal-quantity d-flex align-items-center mt-3 mt-md-0">
         {if $product.minimal_quantity> 1}
           <i class="material-icons me-2">&#xE88F;</i>
           {l

@@ -47,7 +47,7 @@
   </nav>
 {/block}
 
-{block name='header_top'}
+{block name='header_bottom'}
   <div class="{$headerBottomName}">
     <div class="container {$headerBottomName}__container">
       <div id="_desktop_logo" class="logo logo-desktop order-1 order-xl-0">

@@ -151,50 +151,57 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
   const elementInput = element?.querySelector<HTMLInputElement>('input');
   const templateElement = document.createElement('div');
   const feedbackTemplate = document.querySelector<HTMLTemplateElement>(PasswordPolicyMap.template);
-  let feedbackContainer: HTMLElement | null;
 
   if (feedbackTemplate && element && elementInput) {
     templateElement.innerHTML = feedbackTemplate.innerHTML;
     element.append(templateElement);
-    feedbackContainer = element.querySelector<HTMLElement>(PasswordPolicyMap.container);
+    const feedbackContainer = element.querySelector<HTMLElement>(PasswordPolicyMap.container);
 
     if (feedbackContainer) {
       const hintElement = document.querySelector(PasswordPolicyMap.hint);
 
       if (hintElement) {
-        const hints = JSON.parse(hintElement.innerHTML);
-
-        // eslint-disable-next-line max-len
-        const passwordRequirementsLength = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementLength);
-        // eslint-disable-next-line max-len
-        const passwordRequirementsScore = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementScore);
-        const passwordLengthText = passwordRequirementsLength?.querySelector<HTMLElement>('span');
-        const passwordRequirementsText = passwordRequirementsScore?.querySelector<HTMLElement>('span');
-
-        if (passwordLengthText && passwordRequirementsLength && passwordRequirementsLength.dataset.translation) {
-          passwordLengthText.innerText = sprintf(
-            passwordRequirementsLength.dataset.translation,
-            elementInput.dataset.minlength,
-            elementInput.dataset.maxlength,
-          );
-        }
-
-        if (passwordRequirementsText && passwordRequirementsScore && passwordRequirementsScore.dataset.translation) {
-          passwordRequirementsText.innerText = sprintf(
-            passwordRequirementsScore.dataset.translation,
-            hints[<string>elementInput.dataset.minscore],
-          );
-        }
-
-        // eslint-disable-next-line max-len, @typescript-eslint/no-non-null-assertion
-        elementInput.addEventListener('keyup', () => watchPassword(elementInput, feedbackContainer!, hints));
-        elementInput.addEventListener('blur', () => {
-          const previousPopover = Popover.getInstance(elementInput);
-
-          if (previousPopover) {
-            previousPopover.dispose();
+        const hints = ((content) => {
+          try {
+            return JSON.parse(content);
+          } catch (error) {
+            return false;
           }
-        });
+        })(hintElement.innerHTML);
+
+        if (hints) {
+          // eslint-disable-next-line max-len
+          const passwordRequirementsLength = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementLength);
+          // eslint-disable-next-line max-len
+          const passwordRequirementsScore = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.requirementScore);
+          const passwordLengthText = passwordRequirementsLength?.querySelector<HTMLElement>('span');
+          const passwordRequirementsText = passwordRequirementsScore?.querySelector<HTMLElement>('span');
+
+          if (passwordLengthText && passwordRequirementsLength && passwordRequirementsLength.dataset.translation) {
+            passwordLengthText.innerText = sprintf(
+              passwordRequirementsLength.dataset.translation,
+              elementInput.dataset.minlength,
+              elementInput.dataset.maxlength,
+            );
+          }
+
+          if (passwordRequirementsText && passwordRequirementsScore && passwordRequirementsScore.dataset.translation) {
+            passwordRequirementsText.innerText = sprintf(
+              passwordRequirementsScore.dataset.translation,
+              hints[<string>elementInput.dataset.minscore],
+            );
+          }
+
+          // eslint-disable-next-line max-len, @typescript-eslint/no-non-null-assertion
+          elementInput.addEventListener('keyup', () => watchPassword(elementInput, feedbackContainer, hints));
+          elementInput.addEventListener('blur', () => {
+            const previousPopover = Popover.getInstance(elementInput);
+
+            if (previousPopover) {
+              previousPopover.dispose();
+            }
+          });
+        }
       }
     }
   }

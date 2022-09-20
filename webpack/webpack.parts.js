@@ -160,10 +160,19 @@ exports.extractFonts = () => ({
 });
 
 exports.cleanDistFolders = () => ({
-  output: {
-    clean: true,
-  },
-});
+  plugins: [
+    new CleanWebpackPlugin({
+      dry: false,
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+      cleanOnceBeforeBuildPatterns: [
+        path.join(__dirname, '../../assets/js/**'),
+        path.join(__dirname, '../../assets/css/**'),
+        path.join(__dirname, '../../assets/img-dist/**'),
+        path.join(__dirname, '../../assets/fonts/**')
+      ],
+    }),
+  ]
+})
 
 exports.externals = () => ({
   externals: {

@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -160,10 +161,19 @@ exports.extractFonts = () => ({
 });
 
 exports.cleanDistFolders = () => ({
-  output: {
-    clean: true,
-  },
-});
+  plugins: [
+    new CleanWebpackPlugin({
+      dry: false,
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+      cleanOnceBeforeBuildPatterns: [
+        path.join(__dirname, '../../assets/js/**'),
+        path.join(__dirname, '../../assets/css/**'),
+        path.join(__dirname, '../../assets/img-dist/**'),
+        path.join(__dirname, '../../assets/fonts/**')
+      ],
+    }),
+  ]
+})
 
 exports.externals = () => ({
   externals: {

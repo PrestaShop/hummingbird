@@ -1,6 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -123,17 +122,12 @@ exports.extractImages = () => ({
     rules: [
       {
         test: /\.(png|jpg|gif|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'img-dist/',
-              publicPath: '../img-dist/',
-              name: '[contenthash].[ext]',
-            },
-          },
-        ],
-        type: 'javascript/auto',
+        type: 'asset/resource',
+        generator: {
+          outputPath: 'img-dist/',
+          publicPath: '../img-dist/',
+          filename: '[contenthash].[ext]',
+        },
       },
     ],
   },
@@ -144,17 +138,12 @@ exports.extractFonts = () => ({
     rules: [
       {
         test: /\.(woff|woff2|ttf|eot|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'fonts/',
-              publicPath: '../fonts/',
-              name: '[contenthash].[ext]',
-            },
-          },
-        ],
-        type: 'javascript/auto',
+        type: 'asset/resource',
+        generator: {
+          outputPath: 'fonts/',
+          publicPath: '../fonts/',
+          filename: '[contenthash].[ext]',
+        },
       },
     ],
   },
@@ -169,11 +158,11 @@ exports.cleanDistFolders = () => ({
         path.join(__dirname, '../../assets/js/**'),
         path.join(__dirname, '../../assets/css/**'),
         path.join(__dirname, '../../assets/img-dist/**'),
-        path.join(__dirname, '../../assets/fonts/**')
+        path.join(__dirname, '../../assets/fonts/**'),
       ],
     }),
-  ]
-})
+  ],
+});
 
 exports.externals = () => ({
   externals: {

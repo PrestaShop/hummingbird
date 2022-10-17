@@ -12,21 +12,12 @@
             {$product.default_image.bySize.home_default.sources.webp} 250w" 
             type="image/webp"> -->
 
-          <source 
-            srcset="
-              {$product.default_image.bySize.default_80.sources.jpg} 80w,
-              {$product.default_image.bySize.default_160.sources.jpg} 2x
-            "
-            type="image/jpeg"
-            media="(max-width: 600px)"
-          />
-
           <img
             class="img-fluid rounded"
             srcset="
               {$product.default_image.default_80.sources.jpg} 80w,
-              {$product.default_image.bySize.default_160.sources.jpg} 2x"
-            src="{$product.default_image.bySize.default_200.sources.jpg}" 
+              {$product.default_image.bySize.default_160.sources.jpg} 160w"
+            src="{$product.default_image.bySize.default_80.sources.jpg}" 
             loading="lazy"
             alt="{$product.name}"
             title="{$product.name}"

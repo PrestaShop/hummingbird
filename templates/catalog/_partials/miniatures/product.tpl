@@ -19,20 +19,14 @@
                   {$product.cover.bySize.home_default.sources.webp} 250w" 
                   type="image/webp"> -->
 
-                <source 
-                  srcset="
-                    {$product.cover.bySize.default_120.sources.jpg} 250w,
-                    {$product.cover.bySize.default_200.sources.jpg} 2x
-                  "
-                  type="image/jpeg"
-                  media="(max-width: 600px)"
-                />
-
                 <img
                   class="{$componentName}__image card-img-top"
                   srcset="
-                    {$product.cover.bySize.default_320.sources.jpg} 250w,
-                    {$product.cover.bySize.default_720.sources.jpg} 2x"
+                    {$product.cover.bySize.default_120.sources.jpg} 120w,
+                    {$product.cover.bySize.default_200.sources.jpg} 200w,
+                    {$product.cover.bySize.default_320.sources.jpg} 320w,
+                    {$product.cover.bySize.default_720.sources.jpg} 720w"
+                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
                   src="{$product.cover.bySize.default_720.sources.jpg}" 
                   loading="lazy"
                   alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"

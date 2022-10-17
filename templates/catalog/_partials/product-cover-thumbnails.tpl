@@ -31,21 +31,14 @@
                   {$image.bySize.home_default.sources.webp} 250w" 
                   type="image/webp"> -->
 
-                <source 
-                  srcset="
-                    {$image.bySize.default_320.sources.jpg} 320w,
-                    {$image.bySize.default_720.sources.jpg} 2x
-                  "
-                  type="image/jpeg"
-                  media="(max-width: 600px)"
-                />
-
                 <img
                   class="img-fluid"
                   srcset="
+                    {$image.bySize.default_320.sources.jpg} 320w,
                     {$image.bySize.default_720.sources.jpg} 720w,
-                    {$image.bySize.default_1440.sources.jpg} 2x"
-                  src="{$image.bySize.default_1440.sources.jpg}" 
+                    {$image.bySize.default_1440.sources.jpg} 1440w"
+                  sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                  src="{$image.bySize.default_720.sources.jpg}" 
                   loading="lazy"
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
                   title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
@@ -76,21 +69,12 @@
                   {$image.bySize.home_default.sources.webp} 250w" 
                   type="image/webp"> -->
 
-                <source 
-                  srcset="
-                    {$image.bySize.default_100.sources.jpg} 100w,
-                    {$image.bySize.default_200.sources.jpg} 2x
-                  "
-                  type="image/jpeg"
-                  media="(max-width: 600px)"
-                />
-
                 <img
                   class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
                   srcset="
                     {$image.bySize.default_100.sources.jpg} 100w,
-                    {$image.bySize.default_200.sources.jpg} 2x"
-                  src="{$image.bySize.default_200.sources.jpg}" 
+                    {$image.bySize.default_200.sources.jpg} 200w"
+                  src="{$image.bySize.default_100.sources.jpg}" 
                   loading="lazy"
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
                   title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"

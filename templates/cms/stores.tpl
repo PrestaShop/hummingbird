@@ -26,7 +26,7 @@
                     class="img-fluid rounded"
                     srcset="
                       {$store.image.bySize.default_200.sources.jpg} 200w,
-                      {$store.image.bySize.default_400.sources.jpg} 2x"
+                      {$store.image.bySize.default_400.sources.jpg} 400w"
                     src="{$store.image.bySize.default_200.sources.jpg}" 
                     loading="lazy"
                     {if !empty($store.image.legend)}

@@ -16,7 +16,7 @@
             class="img-fluid rounded"
             srcset="
               {$product.default_image.default_80.sources.jpg} 80w,
-              {$product.default_image.bySize.default_160.sources.jpg} 160w"
+              {$product.default_image.bySize.default_160.sources.jpg} 2x"
             src="{$product.default_image.bySize.default_80.sources.jpg}" 
             loading="lazy"
             alt="{$product.name}"

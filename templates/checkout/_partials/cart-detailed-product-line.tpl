@@ -20,7 +20,7 @@
             class="img-fluid"
             srcset="
               {$product.default_image.bySize.default_120.sources.jpg} 120w,
-              {$product.default_image.bySize.default_200.sources.jpg} 200w"
+              {$product.default_image.bySize.default_200.sources.jpg} 2x"
             src="{$product.default_image.bySize.default_120.sources.jpg}" 
             loading="lazy"
             alt="{$product.name|escape:'quotes'}"

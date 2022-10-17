@@ -73,7 +73,7 @@
                   class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
                   srcset="
                     {$image.bySize.default_100.sources.jpg} 100w,
-                    {$image.bySize.default_200.sources.jpg} 200w"
+                    {$image.bySize.default_200.sources.jpg} 2x"
                   src="{$image.bySize.default_100.sources.jpg}" 
                   loading="lazy"
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"

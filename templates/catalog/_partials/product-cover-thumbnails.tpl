@@ -25,16 +25,32 @@
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
-              <img
-                class="img-fluid"
-                src="{$image.bySize.large_default.url}"
-                {if !empty($image.legend)}
-                  alt="{$image.legend}"
-                  title="{$image.legend}"
-                {else}
-                  alt="{$product.name}"
-                {/if}
-                loading="lazy">
+              <picture>
+                <!-- <source 
+                  srcset="
+                  {$image.bySize.home_default.sources.webp} 250w" 
+                  type="image/webp"> -->
+
+                <source 
+                  srcset="
+                    {$image.bySize.default_320.sources.jpg} 320w,
+                    {$image.bySize.default_720.sources.jpg} 2x
+                  "
+                  type="image/jpeg"
+                  media="(max-width: 600px)"
+                />
+
+                <img
+                  class="img-fluid"
+                  srcset="
+                    {$image.bySize.default_720.sources.jpg} 720w,
+                    {$image.bySize.default_1440.sources.jpg} 2x"
+                  src="{$image.bySize.default_1440.sources.jpg}" 
+                  loading="lazy"
+                  alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
+                  title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
+                  data-full-size-image-url="{$image.bySize.home_default.url}"
+              </picture>
             </div>
           {/foreach}
         {/block}
@@ -54,19 +70,32 @@
               {/if}
               aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
           >
-              <img
-                class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
-                data-image-medium-src="{$image.bySize.medium_default.url}"
-                data-image-large-src="{$image.bySize.large_default.url}"
-                src="{$image.bySize.home_default.url}"
-                {if !empty($image.legend)}
-                  alt="{$image.legend}"
-                  title="{$image.legend}"
-                {else}
-                  alt="{$product.name}"
-                {/if}
-                loading="lazy"
-            >
+              <picture>
+                <!-- <source 
+                  srcset="
+                  {$image.bySize.home_default.sources.webp} 250w" 
+                  type="image/webp"> -->
+
+                <source 
+                  srcset="
+                    {$image.bySize.default_100.sources.jpg} 100w,
+                    {$image.bySize.default_200.sources.jpg} 2x
+                  "
+                  type="image/jpeg"
+                  media="(max-width: 600px)"
+                />
+
+                <img
+                  class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
+                  srcset="
+                    {$image.bySize.default_100.sources.jpg} 100w,
+                    {$image.bySize.default_200.sources.jpg} 2x"
+                  src="{$image.bySize.default_200.sources.jpg}" 
+                  loading="lazy"
+                  alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
+                  title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
+                  data-full-size-image-url="{$image.bySize.home_default.url}"
+              </picture>
             </li>
           {/foreach}
         </ul>

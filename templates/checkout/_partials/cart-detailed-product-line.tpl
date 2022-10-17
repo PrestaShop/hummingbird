@@ -10,8 +10,31 @@
     <a class="product-line__title product-line__item" href="{$product.url}"
       data-id_customization="{$product.id_customization|intval}">
       {if $product.default_image}
-        <img src="{$product.default_image.bySize.cart_default.url}" class="img-fluid" alt="{$product.name|escape:'quotes'}"
-          loading="lazy">
+        <picture>
+          <!-- <source 
+            srcset="
+            {$product.default_image.bySize.home_default.sources.webp} 250w" 
+            type="image/webp"> -->
+
+          <source 
+            srcset="
+              {$product.default_image.bySize.default_120.sources.jpg} 120w,
+              {$product.default_image.bySize.default_200.sources.jpg} 2x
+            "
+            type="image/jpeg"
+            media="(max-width: 600px)"
+          />
+
+          <img
+            class="img-fluid"
+            srcset="
+              {$product.default_image.bySize.default_120.sources.jpg} 120w,
+              {$product.default_image.bySize.default_200.sources.jpg} 2x"
+            src="{$product.default_image.bySize.default_200.sources.jpg}" 
+            loading="lazy"
+            alt="{$product.name|escape:'quotes'}"
+            title="{$product.name|escape:'quotes'}"
+        </picture>
       {else}
         <img src="{$urls.no_picture_image.bySize.cart_default.url}" class="img-fluid" loading="lazy" />
       {/if}

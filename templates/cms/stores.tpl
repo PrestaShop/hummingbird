@@ -16,18 +16,26 @@
           <div class="card-body">
             <div class="row">
               <div class="col-xl-6 store__picture">
-                <img
-                  src="{$store.image.bySize.stores_default.url}"
-                  width="{$store.image.bySize.stores_default.width}"
-                  height="{$store.image.bySize.stores_default.height}"
-                  class="img-fluid"
-                  {if !empty($store.image.legend)}
-                    alt="{$store.image.legend}"
-                    title="{$store.image.legend}"
-                  {else}
-                    alt="{$store.name}"
-                  {/if}
-              >
+                <picture>
+                  <!-- <source 
+                    srcset="
+                    {$store.image.bySize.home_default.sources.webp} 250w" 
+                    type="image/webp"> -->
+
+                  <img
+                    class="img-fluid rounded"
+                    srcset="
+                      {$store.image.bySize.default_200.sources.jpg} 200w,
+                      {$store.image.bySize.default_400.sources.jpg} 2x"
+                    src="{$store.image.bySize.default_200.sources.jpg}" 
+                    loading="lazy"
+                    {if !empty($store.image.legend)}
+                      alt="{$store.image.legend}"
+                      title="{$store.image.legend}"
+                    {else}
+                      alt="{$store.name}"
+                    {/if}
+                </picture>
               </div>
               <div class="col-xl-6 store__description d-none d-md-block">
                 <h2 class="h6 store__name">{$store.name}</h2>

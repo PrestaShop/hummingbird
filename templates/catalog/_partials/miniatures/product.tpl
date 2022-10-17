@@ -13,21 +13,38 @@
         {block name='product_miniature_image'}
           <div class="{$componentName}__image-container thumbnail-container">
             {if $product.cover}
-              <img
-                src="{$product.cover.bySize.home_default.url}"
-                alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
-                loading="lazy"
-                data-full-size-image-url="{$product.cover.bySize.home_default.url}"
-                width="{$product.cover.bySize.home_default.width}"
-                height="{$product.cover.bySize.home_default.height}"
-                class="{$componentName}__image card-img-top"
-              />
+              <picture>
+                <!-- <source 
+                  srcset="
+                  {$product.cover.bySize.home_default.sources.webp} 250w" 
+                  type="image/webp"> -->
+
+                <source 
+                  srcset="
+                    {$product.cover.bySize.default_120.sources.jpg} 250w,
+                    {$product.cover.bySize.default_200.sources.jpg} 2x
+                  "
+                  type="image/jpeg"
+                  media="(max-width: 600px)"
+                />
+
+                <img
+                  class="{$componentName}__image card-img-top"
+                  srcset="
+                    {$product.cover.bySize.default_320.sources.jpg} 250w,
+                    {$product.cover.bySize.default_720.sources.jpg} 2x"
+                  src="{$product.cover.bySize.default_720.sources.jpg}" 
+                  loading="lazy"
+                  alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                  title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                  data-full-size-image-url="{$product.cover.bySize.home_default.url}"
+              </picture>
             {else}
               <img
-                src="{$urls.no_picture_image.bySize.home_default.url}"
+                src="{$urls.no_picture_image.bySize.default_320.url}"
                 loading="lazy"
-                width="{$urls.no_picture_image.bySize.home_default.width}"
-                height="{$urls.no_picture_image.bySize.home_default.height}"
+                width="{$urls.no_picture_image.bySize.default_320.width}"
+                height="{$urls.no_picture_image.bySize.default_320.height}"
                 class="{$componentName}__image card-img-top"
               />
             {/if}

@@ -7,17 +7,29 @@
     <a href="{$product.url}" title="{$product.name}">
       {if $product.default_image}
         <picture>
-          <!-- <source 
-            srcset="
-            {$product.default_image.bySize.home_default.sources.webp} 250w" 
-            type="image/webp"> -->
+          {if isset($product.default_image.bySize.default_80.sources.avif)}
+            <source 
+              srcset="
+                {$product.default_image.bySize.default_80.sources.avif} 80w,
+                {$product.default_image.bySize.default_160.sources.avif} 2x"
+              type="image/avif"
+            >
+          {/if}
+
+          {if isset($product.default_image.bySize.default_80.sources.webp)}
+            <source 
+              srcset="
+                {$product.default_image.bySize.default_80.sources.webp} 80w,
+                {$product.default_image.bySize.default_160.sources.webp} 2x"
+              type="image/webp"
+            >
+          {/if}
 
           <img
             class="img-fluid rounded"
             srcset="
-              {$product.default_image.default_80.sources.jpg} 80w,
-              {$product.default_image.bySize.default_160.sources.jpg} 2x"
-            src="{$product.default_image.bySize.default_80.sources.jpg}" 
+              {$product.default_image.bySize.default_80.url} 80w,
+              {$product.default_image.bySize.default_160.url} 2x"
             loading="lazy"
             alt="{$product.name}"
             title="{$product.name}"

@@ -14,18 +14,37 @@
           <div class="{$componentName}__image-container thumbnail-container">
             {if $product.cover}
               <picture>
-                <!-- <source 
-                  srcset="
-                  {$product.cover.bySize.home_default.sources.webp} 250w" 
-                  type="image/webp"> -->
+                {if isset($product.cover.bySize.default_320.sources.avif)}
+                  <source 
+                    srcset="
+                      {$product.cover.bySize.default_120.sources.avif} 120w,
+                      {$product.cover.bySize.default_200.sources.avif} 200w,
+                      {$product.cover.bySize.default_320.sources.avif} 320w,
+                      {$product.cover.bySize.default_720.sources.avif} 720w"
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    type="image/avif"
+                  >
+                {/if}
+
+                {if isset($product.cover.bySize.default_320.sources.webp)}
+                  <source 
+                    srcset="
+                      {$product.cover.bySize.default_120.sources.webp} 120w,
+                      {$product.cover.bySize.default_200.sources.webp} 200w,
+                      {$product.cover.bySize.default_320.sources.webp} 320w,
+                      {$product.cover.bySize.default_720.sources.webp} 720w"
+                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
+                    type="image/webp"
+                  >
+                {/if}
 
                 <img
                   class="{$componentName}__image card-img-top"
                   srcset="
-                    {$product.cover.bySize.default_120.sources.jpg} 120w,
-                    {$product.cover.bySize.default_200.sources.jpg} 200w,
-                    {$product.cover.bySize.default_320.sources.jpg} 320w,
-                    {$product.cover.bySize.default_720.sources.jpg} 720w"
+                    {$product.cover.bySize.default_120.url} 120w,
+                    {$product.cover.bySize.default_200.url} 200w,
+                    {$product.cover.bySize.default_320.url} 320w,
+                    {$product.cover.bySize.default_720.url} 720w"
                   sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
                   src="{$product.cover.bySize.default_720.sources.jpg}" 
                   loading="lazy"

@@ -17,17 +17,29 @@
             <div class="row">
               <div class="col-xl-6 store__picture">
                 <picture>
-                  <!-- <source 
-                    srcset="
-                    {$store.image.bySize.home_default.sources.webp} 250w" 
-                    type="image/webp"> -->
+                  {if isset($store.image.bySize.default_200.sources.avif)}
+                    <source 
+                      srcset="
+                        {$store.image.bySize.default_200.sources.avif} 200w,
+                        {$store.image.bySize.default_400.sources.avif} 2x"
+                      type="image/avif"
+                    >
+                  {/if}
+
+                  {if isset($store.image.bySize.default_200.sources.webp)}
+                    <source 
+                      srcset="
+                        {$store.image.bySize.default_200.sources.webp} 200w,
+                        {$store.image.bySize.default_400.sources.webp} 2x"
+                      type="image/webp"
+                    >
+                  {/if}
 
                   <img
                     class="img-fluid rounded"
                     srcset="
-                      {$store.image.bySize.default_200.sources.jpg} 200w,
-                      {$store.image.bySize.default_400.sources.jpg} 2x"
-                    src="{$store.image.bySize.default_200.sources.jpg}" 
+                      {$store.image.bySize.default_200.url} 200w,
+                      {$store.image.bySize.default_400.url} 2x"
                     loading="lazy"
                     {if !empty($store.image.legend)}
                       alt="{$store.image.legend}"

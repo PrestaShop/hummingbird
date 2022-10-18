@@ -11,17 +11,29 @@
       data-id_customization="{$product.id_customization|intval}">
       {if $product.default_image}
         <picture>
-          <!-- <source 
-            srcset="
-            {$product.default_image.bySize.home_default.sources.webp} 250w" 
-            type="image/webp"> -->
+          {if isset($product.default_image.bySize.default_120.sources.avif)}
+            <source 
+              srcset="
+                {$product.default_image.bySize.default_120.sources.avif} 120w,
+                {$product.default_image.bySize.default_200.sources.avif} 2x"
+              type="image/avif"
+            >
+          {/if}
+
+          {if isset($product.default_image.bySize.default_120.sources.webp)}
+            <source 
+              srcset="
+                {$product.default_image.bySize.default_120.sources.webp} 120w,
+                {$product.default_image.bySize.default_200.sources.webp} 2x"
+              type="image/webp"
+            >
+          {/if}
 
           <img
             class="img-fluid"
             srcset="
-              {$product.default_image.bySize.default_120.sources.jpg} 120w,
-              {$product.default_image.bySize.default_200.sources.jpg} 2x"
-            src="{$product.default_image.bySize.default_120.sources.jpg}" 
+              {$product.default_image.bySize.default_120.url} 120w,
+              {$product.default_image.bySize.default_200.url} 2x"
             loading="lazy"
             alt="{$product.name|escape:'quotes'}"
             title="{$product.name|escape:'quotes'}"

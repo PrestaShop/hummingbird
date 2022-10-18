@@ -13,7 +13,7 @@
         {block name='product_miniature_image'}
           <div class="{$componentName}__image-container thumbnail-container">
             {if $product.cover}
-              <picture>
+              
                 {if isset($product.cover.bySize.default_320.sources.avif)}
                   <source 
                     srcset="
@@ -47,6 +47,8 @@
                     {$product.cover.bySize.default_720.url} 720w"
                   sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
                   src="{$product.cover.bySize.default_720.sources.jpg}" 
+                  width="{$product.cover.bySize.default_720.width}"
+                  height="{$product.cover.bySize.default_720.height}"
                   loading="lazy"
                   alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
                   title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
@@ -86,6 +88,8 @@
                     {$urls.no_picture_image.bySize.default_320.url} 320w,
                     {$urls.no_picture_image.bySize.default_720.url} 720w"
                   sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
+                  width="{$urls.no_picture_image.bySize.default_720.width}"
+                  height="{$urls.no_picture_image.bySize.default_720.height}"
                   src="{$urls.no_picture_image.bySize.default_720.sources.jpg}" 
                   loading="lazy"
                   alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"

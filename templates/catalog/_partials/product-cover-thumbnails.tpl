@@ -56,6 +56,8 @@
                     {$image.bySize.default_1440.url} 1440w"
                   sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
                   src="{$image.bySize.default_720.sources.jpg}" 
+                  width="{$image.bySize.default_720.width}"
+                  height="{$image.bySize.default_720.height}"
                   loading="lazy"
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
                   title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
@@ -104,6 +106,8 @@
                   srcset="
                     {$image.bySize.default_120.url} 120w,
                     {$image.bySize.default_200.url} 2x"
+                  width="{$image.bySize.default_120.width}"
+                  height="{$image.bySize.default_120.height}"
                   loading="lazy"
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
                   title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"

@@ -41,6 +41,8 @@
                       {$store.image.bySize.default_200.url} 200w,
                       {$store.image.bySize.default_400.url} 2x"
                     loading="lazy"
+                    width="{$store.image.bySize.default_200.width}"
+                    height="{$store.image.bySize.default_200.height}"
                     {if !empty($store.image.legend)}
                       alt="{$store.image.legend}"
                       title="{$store.image.legend}"

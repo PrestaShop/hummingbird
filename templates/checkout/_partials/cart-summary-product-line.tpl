@@ -30,6 +30,8 @@
             srcset="
               {$product.default_image.bySize.default_80.url} 80w,
               {$product.default_image.bySize.default_160.url} 2x"
+            width="{$product.default_image.bySize.default_80.width}"
+            height="{$product.default_image.bySize.default_80.height}"
             loading="lazy"
             alt="{$product.name}"
             title="{$product.name}"
@@ -59,6 +61,8 @@
             srcset="
               {$urls.no_picture_image.bySize.default_80.url} 80w,
               {$urls.no_picture_image.bySize.default_160.url} 2x"
+            width="{$urls.no_picture_image.bySize.default_80.width}"
+            height="{$urls.no_picture_image.bySize.default_80.height}"
             loading="lazy"
           >
         </picture>

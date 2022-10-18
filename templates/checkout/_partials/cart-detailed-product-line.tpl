@@ -39,7 +39,33 @@
             title="{$product.name|escape:'quotes'}"
         </picture>
       {else}
-        <img src="{$urls.no_picture_image.bySize.cart_default.url}" class="img-fluid" loading="lazy" />
+        <picture>
+          {if isset($urls.no_picture_image.bySize.default_120.sources.avif)}
+            <source 
+              srcset="
+                {$urls.no_picture_image.bySize.default_120.sources.avif} 120w,
+                {$urls.no_picture_image.bySize.default_200.sources.avif} 2x"
+              type="image/avif"
+            >
+          {/if}
+
+          {if isset($urls.no_picture_image.bySize.default_120.sources.webp)}
+            <source 
+              srcset="
+                {$urls.no_picture_image.bySize.default_120.sources.webp} 120w,
+                {$urls.no_picture_image.bySize.default_200.sources.webp} 2x"
+              type="image/webp"
+            >
+          {/if}
+
+          <img
+            class="img-fluid"
+            srcset="
+              {$urls.no_picture_image.bySize.default_120.url} 120w,
+              {$urls.no_picture_image.bySize.default_200.url} 200w"
+            loading="lazy"
+          >
+        </picture>
       {/if}
     </a>
   </div>

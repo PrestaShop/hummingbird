@@ -53,13 +53,45 @@
                   data-full-size-image-url="{$product.cover.bySize.home_default.url}"
               </picture>
             {else}
-              <img
-                src="{$urls.no_picture_image.bySize.default_320.url}"
-                loading="lazy"
-                width="{$urls.no_picture_image.bySize.default_320.width}"
-                height="{$urls.no_picture_image.bySize.default_320.height}"
-                class="{$componentName}__image card-img-top"
-              />
+              <picture>
+                {if isset($urls.no_picture_image.bySize.default_320.sources.avif)}
+                  <source 
+                    srcset="
+                      {$urls.no_picture_image.bySize.default_120.sources.avif} 120w,
+                      {$urls.no_picture_image.bySize.default_200.sources.avif} 200w,
+                      {$urls.no_picture_image.bySize.default_320.sources.avif} 320w,
+                      {$urls.no_picture_image.bySize.default_720.sources.avif} 720w"
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    type="image/avif"
+                  >
+                {/if}
+
+                {if isset($urls.no_picture_image.bySize.default_320.sources.webp)}
+                  <source 
+                    srcset="
+                      {$urls.no_picture_image.bySize.default_120.sources.webp} 120w,
+                      {$urls.no_picture_image.bySize.default_200.sources.webp} 200w,
+                      {$urls.no_picture_image.bySize.default_320.sources.webp} 320w,
+                      {$urls.no_picture_image.bySize.default_720.sources.webp} 720w"
+                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
+                    type="image/webp"
+                  >
+                {/if}
+
+                <img
+                  class="{$componentName}__image card-img-top"
+                  srcset="
+                    {$urls.no_picture_image.bySize.default_120.url} 120w,
+                    {$urls.no_picture_image.bySize.default_200.url} 200w,
+                    {$urls.no_picture_image.bySize.default_320.url} 320w,
+                    {$urls.no_picture_image.bySize.default_720.url} 720w"
+                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
+                  src="{$urls.no_picture_image.bySize.default_720.sources.jpg}" 
+                  loading="lazy"
+                  alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                  title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                  data-full-size-image-url="{$product.cover.bySize.home_default.url}"
+              </picture>
             {/if}
 
             {block name='quick_view_touch'}

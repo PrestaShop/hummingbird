@@ -35,7 +35,33 @@
             title="{$product.name}"
         </picture>
       {else}
-        <img src="{$urls.no_picture_image.bySize.small_default.url}" class="img-fluid" loading="lazy" />
+        <picture>
+          {if isset($urls.no_picture_image.bySize.default_80.sources.avif)}
+            <source 
+              srcset="
+                {$urls.no_picture_image.bySize.default_80.sources.avif} 80w,
+                {$urls.no_picture_image.bySize.default_160.sources.avif} 2x"
+              type="image/avif"
+            >
+          {/if}
+
+          {if isset($urls.no_picture_image.bySize.default_80.sources.webp)}
+            <source 
+              srcset="
+                {$urls.no_picture_image.bySize.default_80.sources.webp} 80w,
+                {$urls.no_picture_image.bySize.default_160.sources.webp} 2x"
+              type="image/webp"
+            >
+          {/if}
+
+          <img
+            class="img-fluid"
+            srcset="
+              {$urls.no_picture_image.bySize.default_80.url} 80w,
+              {$urls.no_picture_image.bySize.default_160.url} 2x"
+            loading="lazy"
+          >
+        </picture>
       {/if}
     </a>
   </div>

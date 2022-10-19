@@ -55,12 +55,21 @@
                     {$image.bySize.product_main.url} 720w,
                     {$image.bySize.product_main_2x.url} 1440w"
                   sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+<<<<<<< HEAD
                   src="{$image.bySize.product_main.url}" 
                   width="{$image.bySize.product_main.width}"
                   height="{$image.bySize.product_main.height}"
                   loading="{if $smarty.foreach.productImages.first}eager{else}lazy{/if}"
                   alt="{$image.legend}"
                   title="{$image.legend}"
+=======
+                  src="{$image.bySize.default_720.sources.jpg}" 
+                  width="{$image.bySize.default_720.width}"
+                  height="{$image.bySize.default_720.height}"
+                  loading="eager"
+                  alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
+                  title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
+>>>>>>> c5027e0 (Review feedbacks)
                   data-full-size-image-url="{$image.bySize.home_default.url}"
                 >
               </picture>

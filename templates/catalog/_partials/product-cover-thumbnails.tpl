@@ -58,7 +58,7 @@
                   src="{$image.bySize.default_720.sources.jpg}" 
                   width="{$image.bySize.default_720.width}"
                   height="{$image.bySize.default_720.height}"
-                  loading="lazy"
+                  loading="eager"
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
                   title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
                   data-full-size-image-url="{$image.bySize.home_default.url}"
@@ -86,16 +86,16 @@
                 {if isset($image.bySize.default_120.sources.avif)}
                   <source 
                     srcset="
-                      {$image.bySize.default_120.sources.avif} 120w,
-                      {$image.bySize.default_200.sources.avif} 2x"
-                    type="image/avif"
+                      {$image.bySize.default_120.sources.avif},
+                      {$image.bySize.default_200.sources.avif} 2x",
+                  type="image/avif"
                   >
                 {/if}
 
                 {if isset($image.bySize.default_120.sources.webp)}
                   <source 
                     srcset="
-                      {$image.bySize.default_120.sources.webp} 120w,
+                      {$image.bySize.default_120.sources.webp},
                       {$image.bySize.default_200.sources.webp} 2x"
                     type="image/webp"
                   >
@@ -104,7 +104,7 @@
                 <img
                   class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
                   srcset="
-                    {$image.bySize.default_120.url} 120w,
+                    {$image.bySize.default_120.url},
                     {$image.bySize.default_200.url} 2x"
                   width="{$image.bySize.default_120.width}"
                   height="{$image.bySize.default_120.height}"
@@ -121,12 +121,44 @@
 
     {hook h='displayAfterProductThumbs' product=$product}
   {else}
-      <img 
-        class="img-fluid" 
-        src="{$urls.no_picture_image.bySize.large_default.url}" 
-        width="{$urls.no_picture_image.bySize.large_default.width}"
-        height="{$urls.no_picture_image.bySize.large_default.height}"
+    <picture>
+      {if isset($urls.no_picture_image.bySize.default_320.sources.avif)}
+        <source 
+          srcset="
+            {$urls.no_picture_image.bySize.default_320.sources.avif} 320w,
+            {$urls.no_picture_image.bySize.default_720.sources.avif} 720w,
+            {$urls.no_picture_image.bySize.default_1440.sources.avif} 1440w"
+          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+          type="image/avif"
+        >
+      {/if}
+
+      {if isset($urls.no_picture_image.bySize.default_320.sources.webp)}
+        <source 
+          srcset="
+            {$urls.no_picture_image.bySize.default_320.sources.webp} 320w,
+            {$urls.no_picture_image.bySize.default_720.sources.webp} 720w,
+            {$urls.no_picture_image.bySize.default_1440.sources.webp} 1440w"
+          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+          type="image/webp"
+        >
+      {/if}
+
+      <img
+        class="img-fluid"
+        srcset="
+          {$urls.no_picture_image.bySize.default_320.url} 320w,
+          {$urls.no_picture_image.bySize.default_720.url} 720w,
+          {$urls.no_picture_image.bySize.default_1440.url} 1440w"
+        sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+        width="{$urls.no_picture_image.bySize.default_120.width}"
+        height="{$urls.no_picture_image.bySize.default_120.height}"
+        src="{$urls.no_picture_image.bySize.default_320.sources.jpg}" 
         loading="lazy"
+        alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+        title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+        data-full-size-image-url="{$product.cover.bySize.home_default.url}"
       >
+    </picture>
   {/if}
 </div>

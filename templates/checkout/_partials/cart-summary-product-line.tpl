@@ -10,7 +10,7 @@
           {if isset($product.default_image.bySize.default_80.sources.avif)}
             <source 
               srcset="
-                {$product.default_image.bySize.default_80.sources.avif} 80w,
+                {$product.default_image.bySize.default_80.sources.avif},
                 {$product.default_image.bySize.default_160.sources.avif} 2x"
               type="image/avif"
             >
@@ -19,7 +19,7 @@
           {if isset($product.default_image.bySize.default_80.sources.webp)}
             <source 
               srcset="
-                {$product.default_image.bySize.default_80.sources.webp} 80w,
+                {$product.default_image.bySize.default_80.sources.webp},
                 {$product.default_image.bySize.default_160.sources.webp} 2x"
               type="image/webp"
             >
@@ -28,7 +28,7 @@
           <img
             class="img-fluid rounded"
             srcset="
-              {$product.default_image.bySize.default_80.url} 80w,
+              {$product.default_image.bySize.default_80.url},
               {$product.default_image.bySize.default_160.url} 2x"
             width="{$product.default_image.bySize.default_80.width}"
             height="{$product.default_image.bySize.default_80.height}"
@@ -41,7 +41,7 @@
           {if isset($urls.no_picture_image.bySize.default_80.sources.avif)}
             <source 
               srcset="
-                {$urls.no_picture_image.bySize.default_80.sources.avif} 80w,
+                {$urls.no_picture_image.bySize.default_80.sources.avif},
                 {$urls.no_picture_image.bySize.default_160.sources.avif} 2x"
               type="image/avif"
             >
@@ -50,7 +50,7 @@
           {if isset($urls.no_picture_image.bySize.default_80.sources.webp)}
             <source 
               srcset="
-                {$urls.no_picture_image.bySize.default_80.sources.webp} 80w,
+                {$urls.no_picture_image.bySize.default_80.sources.webp},
                 {$urls.no_picture_image.bySize.default_160.sources.webp} 2x"
               type="image/webp"
             >
@@ -59,7 +59,7 @@
           <img
             class="img-fluid"
             srcset="
-              {$urls.no_picture_image.bySize.default_80.url} 80w,
+              {$urls.no_picture_image.bySize.default_80.url},
               {$urls.no_picture_image.bySize.default_160.url} 2x"
             width="{$urls.no_picture_image.bySize.default_80.width}"
             height="{$urls.no_picture_image.bySize.default_80.height}"

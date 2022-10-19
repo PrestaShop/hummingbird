@@ -20,7 +20,7 @@
                   {if isset($store.image.bySize.default_200.sources.avif)}
                     <source 
                       srcset="
-                        {$store.image.bySize.default_200.sources.avif} 200w,
+                        {$store.image.bySize.default_200.sources.avif},
                         {$store.image.bySize.default_400.sources.avif} 2x"
                       type="image/avif"
                     >
@@ -29,7 +29,7 @@
                   {if isset($store.image.bySize.default_200.sources.webp)}
                     <source 
                       srcset="
-                        {$store.image.bySize.default_200.sources.webp} 200w,
+                        {$store.image.bySize.default_200.sources.webp},
                         {$store.image.bySize.default_400.sources.webp} 2x"
                       type="image/webp"
                     >
@@ -38,7 +38,7 @@
                   <img
                     class="img-fluid rounded"
                     srcset="
-                      {$store.image.bySize.default_200.url} 200w,
+                      {$store.image.bySize.default_200.url},
                       {$store.image.bySize.default_400.url} 2x"
                     loading="lazy"
                     width="{$store.image.bySize.default_200.width}"

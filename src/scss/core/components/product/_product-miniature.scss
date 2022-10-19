@@ -1,6 +1,9 @@
 $component-name: product-miniature;
 
 .#{$component-name} {
+  .card {
+    height: 100%;
+  }
   & &__infos {
     position: relative;
     z-index: 90;

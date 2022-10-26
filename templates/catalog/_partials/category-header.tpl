@@ -24,5 +24,3 @@
       {include file='catalog/_partials/subcategories.tpl' subcategories=$subcategories}
     {/if}
 </div>
-
-

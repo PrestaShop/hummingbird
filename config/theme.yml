@@ -169,7 +169,7 @@ global_settings:
       scope: [products]
     default_1000:
       width: 1000
-      height: 1000
+      height: 200
       scope: [categories]
     default_1440:
       width: 1440
@@ -177,7 +177,7 @@ global_settings:
       scope: [products]
     default_2000:
       width: 2000
-      height: 2000
+      height: 400
       scope: [categories]
 
 

@@ -1,26 +1,6 @@
 {**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *}
 {block name='order_products_table'}
   <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post">
@@ -63,42 +43,10 @@
                 {foreach from=$product.customizations item="customization"}
                   <div class="customization">
                     <a href="#" data-bs-toggle="modal"
-                      data-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
+                      data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
                   </div>
                   <div id="_desktop_product_customization_modal_wrapper_{$customization.id_customization}">
-                    <div class="modal fade customization-modal"
-                      id="product-customizations-modal-{$customization.id_customization}" tabindex="-1" role="dialog"
-                      aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                              aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
-                            <h4 class="modal-title">{l s='Product customization' d='Shop.Theme.Catalog'}</h4>
-                          </div>
-                          <div class="modal-body">
-                            {foreach from=$customization.fields item="field"}
-                              <div class="product-customization-line row">
-                                <div class="col-sm-3 col-xs-4 label">
-                                  {$field.label}
-                                </div>
-                                <div class="col-sm-9 col-xs-8 value">
-                                  {if $field.type == 'text'}
-                                    {if (int)$field.id_module}
-                                      {$field.text nofilter}
-                                    {else}
-                                      {$field.text}
-                                    {/if}
-                                  {elseif $field.type == 'image'}
-                                    <img src="{$field.image.small.url}" loading="lazy">
-                                  {/if}
-                                </div>
-                              </div>
-                            {/foreach}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
                   </div>
                 {/foreach}
               {/if}
@@ -155,65 +103,86 @@
       </table>
     </div>
 
-    <div class="order-items d-block d-sm-block d-md-none box">
+    <div class="order__items table-wrapper d-block d-sm-block d-md-none box">
       {foreach from=$order.products item=product}
-        <div class="order-item">
+        <div class="order__item">
           <div class="row">
-            <div class="checkbox">
-              {if !$product.customizations}
-                <span id="_mobile_product_line_{$product.id_order_detail}"></span>
-              {else}
-                {foreach $product.customizations  as $customization}
-                  <span
-                    id="_mobile_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}"></span>
-                {/foreach}
-              {/if}
+            <div class="order__item__header col-12 row">
+              <div class="col-2 order__item__checkbox checkbox">
+                {if !$product.customizations}
+                  <span id="_mobile_product_line_{$product.id_order_detail}"></span>
+                {else}
+                  {foreach $product.customizations  as $customization}
+                    <span
+                      id="_mobile_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}"></span>
+                  {/foreach}
+                {/if}
+              </div>
+              <div class="col-4">
+                {if $product.cover}
+                  <img src="{$product.cover.bySize.small_default.url}"
+                    alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                    loading="lazy" data-full-size-image-url="{$product.cover.large.url}" width="64" height="64"
+                    class="order-products__image card-img-top w-auto" />
+                {else}
+                  <img src="{$urls.no_picture_image.bySize.small_default.url}" loading="lazy" width="64" height="64"
+                    class="order-products__image card-img-top w-auto" />
+                {/if}
+              </div>
+
+              <div class="col-6">
+                <p class="order__item__name fw-bold">{$product.name}</p>
+                {if $product.product_reference}
+                  <div class="order__item__ref">{l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}</div>
+                {/if}
+                {if $product.customizations}
+                  {foreach $product.customizations as $customization}
+                    <div class="customization">
+                      <a href="#" data-bs-toggle="modal"
+                        data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
+                    </div>
+                    <div id="_mobile_product_customization_modal_wrapper_{$customization.id_customization}">
+                    </div>
+                  {/foreach}
+                {/if}
+              </div>
             </div>
-            <div class="content">
-              <div class="row">
-                <div class="col-sm-5 desc">
-                  <div class="name">{$product.name}</div>
-                  {if $product.product_reference}
-                    <div class="ref">{l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}</div>
-                  {/if}
+            <div class="col-12 order__item__qty">
+              <div class="order__item__line row">
+                <span class="order__item__label col">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
+                <span class="order__item__value col text-end">
                   {if $product.customizations}
                     {foreach $product.customizations as $customization}
-                      <div class="customization">
-                        <a href="#" data-bs-toggle="modal"
-                          data-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
-                      </div>
-                      <div id="_mobile_product_customization_modal_wrapper_{$customization.id_customization}">
-                      </div>
+                      {$customization.quantity}
+                      <div class="mt-2" id="_mobile_return_qty_{$product.id_order_detail}_{$customization.id_customization}"></div>
                     {/foreach}
+                  {else}
+                    {$product.quantity}
+                    {if $product.quantity> $product.qty_returned}
+                      <div class="mt-2" id="_mobile_return_qty_{$product.id_order_detail}"></div>
+                    {/if}
                   {/if}
+                </span>
+              </div>
+              {if $product.qty_returned > 0}
+                <div class="order__item__line row">
+                  <span class="order__item__label col">{l s='Returned' d='Shop.Theme.Customeraccount'}</span>
+                  <span class="order__item__value col text-end">
+                    {$product.qty_returned}
+                  </span>
                 </div>
-                <div class="col-sm-7 qty">
-                  <div class="row">
-                    <div class="col-xs-4 text-sm-start text-xs-start">
-                      {$product.price}
-                    </div>
-                    <div class="col-xs-4">
-                      {if $product.customizations}
-                        {foreach $product.customizations as $customization}
-                          <div class="q">{l s='Quantity' d='Shop.Theme.Catalog'}: {$customization.quantity}</div>
-                          <div class="s" id="_mobile_return_qty_{$product.id_order_detail}_{$customization.id_customization}">
-                          </div>
-                        {/foreach}
-                      {else}
-                        <div class="q">{l s='Quantity' d='Shop.Theme.Catalog'}: {$product.quantity}</div>
-                        {if $product.quantity> $product.qty_returned}
-                          <div class="s" id="_mobile_return_qty_{$product.id_order_detail}"></div>
-                        {/if}
-                      {/if}
-                      {if $product.qty_returned> 0}
-                        <div>{l s='Returned' d='Shop.Theme.Customeraccount'}: {$product.qty_returned}</div>
-                      {/if}
-                    </div>
-                    <div class="col-xs-4 text-xs-end">
-                      {$product.total}
-                    </div>
-                  </div>
-                </div>
+              {/if}
+              <div class="order__item__line row">
+                <span class="order__item__label col">{l s='Unit price' d='Shop.Theme.Catalog'}</span>
+                <span class="order__item__value col text-end">
+                  {$product.price}
+                </span>
+              </div>
+              <div class="order__item__line row">
+                <span class="order__item__label col">{l s='Total price' d='Shop.Theme.Catalog'}</span>
+                <span class="order__item__value col text-end">
+                  {$product.total}
+                </span>
               </div>
             </div>
           </div>
@@ -234,7 +203,7 @@
         <div class="col-xs-4 text-xs-end">{$order.totals.total.value}</div>
       </div>
     </div>
-
+    <hr>
     <div class="box">
       <header>
         <h3>{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h3>

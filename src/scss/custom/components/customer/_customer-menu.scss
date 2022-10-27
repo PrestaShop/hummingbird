@@ -14,7 +14,7 @@ $component-name: account-menu;
 
     &:hover,
     &.active {
-      background: #f5f9ff;
+      background: lighten($gray-100, 1%);
 
       .link-item {
         &,
@@ -50,6 +50,6 @@ $component-name: account-menu;
 
   &__back {
     display: block;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
   }
 }

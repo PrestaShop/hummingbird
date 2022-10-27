@@ -11,5 +11,7 @@
 }
 
 hr {
-  color: $gray-500;
+  &:not(.alert-divider) {
+    color: $gray-500;
+  }
 }

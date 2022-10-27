@@ -1,3 +1,4 @@
+import EVENTS from '@js/constants/events-map';
 import initResponsiveToggler from './responsive-toggler';
 import initEmitter from './prestashop';
 import {
@@ -12,6 +13,11 @@ beforeAll(() => {
 
   window.prestashop = {
     responsive: {},
+  };
+
+  window.Theme = {
+    ...window.Theme,
+    events: EVENTS,
   };
 
   initEmitter();

@@ -1,8 +1,27 @@
 .btn-with-icon {
-  i {
-    margin-right: 0.5rem;
-    color: currentcolor;
-    transition: none;
+  display: inline-flex;
+  gap: $default-button-icon-gap;
+  align-items: center;
+  justify-content: center;
+
+  .material-icons {
+    font-size: $default-button-icon-size;
+  }
+
+  &.btn-sm {
+    gap: $small-button-icon-gap;
+
+    .material-icons {
+      font-size: $small-button-icon-size;
+    }
+  }
+
+  &.btn-lg {
+    gap: $large-button-icon-gap;
+
+    .material-icons {
+      font-size: $large-button-icon-size;
+    }
   }
 }
 

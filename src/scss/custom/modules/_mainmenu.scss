@@ -1,0 +1,49 @@
+.main-menu--desktop {
+  .main-menu__tree {
+    > li {
+      > a {
+        padding: 1.5rem 1rem;
+        outline-offset: -0.5rem;
+      }
+
+      &:hover {
+        .menu-container {
+          display: block;
+        }
+      }
+
+      .menu-container {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: $zindex-offcanvas;
+        display: none;
+        padding: 0.725rem 0;
+        background-color: #fff;
+
+        &.focusing,
+        &:focus-within {
+          display: block;
+        }
+
+        a {
+          &[data-depth="1"],
+          &[data-depth="2"] {
+            overflow-wrap: break-word;
+            white-space: normal;
+          }
+
+          &[data-depth="1"] {
+            font-weight: 600;
+            color: $dropdown-link-color;
+
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

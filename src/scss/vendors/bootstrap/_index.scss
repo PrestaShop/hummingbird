@@ -1,27 +1,3 @@
-@import "variables/bootstrap/variable-overrides";
-
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/utilities";
-
-@import "variables/bootstrap/fonts";
-@import "variables/prestashop/colors";
-@import "variables/bootstrap/buttons";
-@import "variables/bootstrap/border-radius";
-@import "variables/bootstrap/badges";
-@import "variables/bootstrap/card";
-@import "variables/bootstrap/breadcrumb";
-@import "variables/bootstrap/carousel";
-@import "variables/bootstrap/inputs";
-@import "variables/bootstrap/nav";
-@import "variables/bootstrap/forms";
-@import "variables/bootstrap/accordion";
-@import "variables/bootstrap/headings";
-@import "variables/bootstrap/dropdown";
-@import "variables/bootstrap/modal";
-@import "variables/prestashop/carousel";
-
 // Import bootstrap partials
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";

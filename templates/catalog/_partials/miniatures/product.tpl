@@ -1,26 +1,6 @@
 {**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *}
 {$componentName = 'product-miniature'}
 
@@ -35,22 +15,28 @@
             {if $product.cover}
               <img
                 src="{$product.cover.bySize.home_default.url}"
-                alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
                 loading="lazy"
-                data-full-size-image-url="{$product.cover.large.url}"
-                width="250"
-                height="250"
+                data-full-size-image-url="{$product.cover.bySize.home_default.url}"
+                width="{$product.cover.bySize.home_default.width}"
+                height="{$product.cover.bySize.home_default.height}"
                 class="{$componentName}__image card-img-top"
               />
             {else}
               <img
                 src="{$urls.no_picture_image.bySize.home_default.url}"
                 loading="lazy"
-                width="250"
-                height="250"
+                width="{$urls.no_picture_image.bySize.home_default.width}"
+                height="{$urls.no_picture_image.bySize.home_default.height}"
                 class="{$componentName}__image card-img-top"
               />
             {/if}
+
+            {block name='quick_view_touch'}
+              <button class="{$componentName}__quickview_touch btn js-quickview" data-link-action="quickview">
+                  <i class="material-icons">&#xE417;</i>
+              </button>
+            {/block}
           </div>
         {/block}
       </a>
@@ -60,14 +46,15 @@
           {block name='quick_view'}
             <div class="{$componentName}__quickview">
               <button class="{$componentName}__quickview_button btn btn-link js-quickview btn-with-icon" data-link-action="quickview">
-                <i class="material-icons search">remove_red_eye</i> {l s='Quick view' d='Shop.Theme.Actions'}
+                <i class="material-icons">&#xE417;</i>
+                {l s='Quick view' d='Shop.Theme.Actions'}
               </button>
             </div>
           {/block}
 
           <div class="{$componentName}__infos__top">
             {block name='product_name'}
-              <a href="{$product.url}"><p class="{$componentName}__title">{$product.name|truncate:30:'...'}</p></a>
+              <a href="{$product.url}"><p class="{$componentName}__title">{$product.name}</p></a>
             {/block}
           </div>
 
@@ -112,6 +99,7 @@
                 {/if}
               {/block}
             </div>
+
           </div>
         </div>
       {/block}

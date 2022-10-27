@@ -36,7 +36,7 @@
   {else}
     <div class="mt-4 d-flex flex-wrap justify-content-between align-items-center">
       {if $customer.addresses|count> 0}
-        <a class="js-cancel-address cancel-address" href="{url entity='order' params=['cancelAddress' => {$type}]}">{l s='Cancel' d='Shop.Theme.Actions'}</a>
+        <a class="js-cancel-address cancel-address btn btn-outline-primary" href="{url entity='order' params=['cancelAddress' => {$type}]}">{l s='Cancel' d='Shop.Theme.Actions'}</a>
       {/if}
       <button type="submit" class="continue btn btn-primary" name="confirm-addresses" value="1">
           {l s='Continue' d='Shop.Theme.Actions'}

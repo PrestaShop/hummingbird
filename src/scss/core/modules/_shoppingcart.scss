@@ -1,12 +1,17 @@
-.blockcart {
+$component-name: blockcart;
+
+.#{$component-name} {
   position: relative;
-  color: $gray-800;
+  color: var(--header-top-color);
 
   &,
   a {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+    padding: $btn-padding-y $btn-padding-x;
+    padding-right: 0;
+    border-radius: $btn-border-radius;
 
     @include media-breakpoint-up(md) {
       i {
@@ -16,8 +21,19 @@
 
   }
 
+  &.active {
+    padding: 0;
+
+    a {
+      &:focus {
+        outline: 0;
+        box-shadow: $btn-focus-box-shadow;
+      }
+    }
+  }
+
   i {
-    color: $gray-700;
+    color: var(--header-top-color);
   }
 
   /* When active, on desktom everything is primary */
@@ -35,7 +51,7 @@
 
   a {
     @include media-breakpoint-down(md) {
-      padding: 0.5rem 0.4rem;
+      padding: 0.5rem 0.375rem;
     }
   }
 
@@ -65,13 +81,78 @@
 
   &:not(.active) {
     @include media-breakpoint-down(md) {
-      padding: 0.5rem 0.4rem;
+      padding: 0.5rem 0.375rem;
     }
 
     @include media-breakpoint-down(md) {
       .cart-products-count {
         color: $gray-800;
         background: $gray-100;
+      }
+    }
+  }
+
+  &-modal {
+    .modal-dialog {
+      @include media-breakpoint-up(sm) {
+        max-width: 550px;
+      }
+
+      @include media-breakpoint-up(md) {
+        max-width: 750px;
+      }
+
+      @include media-breakpoint-up(lg) {
+        max-width: 850px;
+      }
+    }
+
+    .modal-title {
+      display: inline-flex;
+      align-items: stretch;
+      font-size: calc(1rem + 0.1vw);
+
+      i {
+        font-size: 1.25rem;
+        line-height: 1.25;
+        color: inherit;
+      }
+
+      @include media-breakpoint-up(xl) {
+        font-size: 1.25rem;
+
+        i {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    &__total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    &__summery {
+      .product-total,
+      .product-tax {
+        font-weight: 700;
+      }
+    }
+
+    &__product {
+      img {
+        border-radius: 8px;
+
+        @include media-breakpoint-down(sm) {
+          margin-bottom: 1rem;
+        }
+      }
+
+      @include media-breakpoint-down(md) {
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px dotted rgba($black, 0.2);
       }
     }
   }

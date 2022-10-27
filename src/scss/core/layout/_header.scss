@@ -1,13 +1,29 @@
 $component-name: header;
 
 .#{$component-name} {
+  --header-bg: #{$header-bg};
+  --header-top-bg: #{$header-top-bg};
+  --header-color: #{$header-color};
+  --header-top-color: #{$header-top-color};
+
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
   max-width: 100vw;
+  background-color: var(--header-bg);
+
+  a:not(.dropdown-item) {
+    color: var(--header-color);
+  }
 
   &__top {
+    background-color: var(--header-top-bg);
+
+    a {
+      color: var(--header-top-color);
+    }
+
     &__right {
       @extend .inline-items;
       justify-content: flex-end;
@@ -22,7 +38,8 @@ $component-name: header;
 
     .form-select {
       padding-right: 1.5rem;
-      background-position: right 0 center;
+      background-color: var(--header-top-bg);
+      background-position: right 0.12rem center;
       border: none;
 
       option {

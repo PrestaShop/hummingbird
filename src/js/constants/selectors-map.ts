@@ -1,26 +1,6 @@
 /**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 export const facetedsearch = {
@@ -47,6 +27,7 @@ export const listing = {
 };
 
 export const cart = {
+  overview: '.cart-overview',
   discountCode: '.js-discount .js-code',
   discountName: '[name=discount_name]',
   displayPromo: '.display-promo',
@@ -94,6 +75,7 @@ export const progressRing = {
     circle: '.progress-ring__circle',
     backgroundCircle: '.progress-ring__background-circle',
   },
+  text: '.progress-ring text',
 };
 
 export const mobileMenu = {
@@ -110,17 +92,28 @@ export const visiblePassword = {
   visiblePassword: '.js-visible-password',
 };
 
+export const desktopMenu = {
+  dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
+  dropdownItemAnchor: (depth: number) => `.js-menu-desktop a[data-depth="${depth}"]`,
+};
+
+export const qtyInput = {
+  default: '.js-quantity-button',
+  modal: '.modal-dialog .js-quantity-button',
+  increment: '.js-increment-button',
+  decrement: '.js-decrement-button',
+  confirm: '.confirmation',
+  icon: '.material-icons',
+  spinner: '.spinner-border',
+  alert: (id: number): string => `#js-product-line-alert--${id}`,
+};
+
+export const formValidation = {
+  default: '.form-validation',
+};
+
 const selectorsMap = {
-  qtyInput: {
-    default: '.js-quantity-button',
-    modal: '.modal-dialog .js-quantity-button',
-    increment: '.js-increment-button',
-    decrement: '.js-decrement-button',
-    confirm: '.confirmation',
-    icon: '.material-icons',
-    spinner: '.spinner-border',
-    alert: (id: number): string => `#js-product-line-alert--${id}`,
-  },
+  qtyInput,
   alert: {
     selector: '#notifications .container',
     alert: '.alert',
@@ -142,9 +135,15 @@ const selectorsMap = {
     thumbnail: '.js-thumb-container',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
   },
+  order: {
+    returnForm: '.js-order-return-form',
+    returnFormMainCheckbox: '.js-order-return-form table thead input[type=checkbox]',
+    returnFormItemCheckbox: '.js-order-return-form table tbody input[type=checkbox]',
+  },
   modalBody: '.modal-body',
   pageCms: '.page-cms',
   quickview: '.js-quickview',
+  quickviewModal: '.quickview',
   facetedsearch,
   pageLoader,
   listing,
@@ -157,6 +156,8 @@ const selectorsMap = {
   searchBar,
   mobileMenu,
   visiblePassword,
+  desktopMenu,
+  formValidation,
 };
 
 export default selectorsMap;

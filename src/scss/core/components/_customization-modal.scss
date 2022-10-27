@@ -1,0 +1,9 @@
+$component-name: product-customization-modal;
+
+.#{$component-name} {
+  &__line {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+}

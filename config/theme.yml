@@ -4,7 +4,7 @@ version: 0.1.0
 author:
   name: "PrestaShop Team"
   email: "pub@prestashop.com"
-  url: "https://www.prestashop.com"
+  url: "https://www.prestashop-project.org/"
 
 meta:
   compatibility:
@@ -67,9 +67,11 @@ global_settings:
         - ps_searchbar
       displayHome:
         - ps_imageslider
+        - ps_customtext
         - ps_featuredproducts
         - ps_banner
-        - ps_customtext
+        - ps_newproducts
+        - ps_bestsellers
       displayFooterBefore:
         - ps_emailsubscription
         - ps_socialfollow
@@ -77,6 +79,7 @@ global_settings:
         - ps_linklist
         - ps_customeraccountlinks
         - ps_contactinfo
+        - ~
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch

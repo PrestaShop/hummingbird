@@ -21,12 +21,6 @@ ul {
   list-style: none;
 }
 
-p {
-  font-size: 0.9375rem;
-  font-weight: 400;
-  color: $gray-800;
-}
-
 a:not(.alert-link) {
   text-decoration: none;
   transition: 0.25s ease-out;

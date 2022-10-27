@@ -1,32 +1,13 @@
 /**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 import initEmitter from '@js/prestashop';
 import selectorsMap from '@constants/selectors-map';
 import resetHTMLBodyContent from '@helpers/resetBody';
 import * as Quantify from '@constants/mocks/useQuantityInput-data';
+import EVENTS from '@js/constants/events-map';
 import useQuantityInput from './useQuantityInput';
 
 describe('useQuantityInput', () => {
@@ -34,6 +15,10 @@ describe('useQuantityInput', () => {
     beforeAll(() => {
       resetHTMLBodyContent(Quantify.ProductLineTemplate);
       window.prestashop = {};
+      window.Theme = {
+        ...window.Theme,
+        events: EVENTS,
+      };
       initEmitter();
       useQuantityInput(selectorsMap.qtyInput.default, Quantify.delay);
     });
@@ -98,8 +83,8 @@ describe('useQuantityInput', () => {
 
     it('should display confirmation buttons on keyup', () => {
       const qtyInput = getHTMLElement<HTMLInputElement>('input');
-      qtyInput.dispatchEvent(new Event('keyup'));
       qtyInput.value = '1';
+      qtyInput.dispatchEvent(new Event('keyup'));
 
       const decrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
       const cancelIcon = getHTMLElement<HTMLElement>(selectorsMap.qtyInput.confirm, decrementButton);
@@ -113,7 +98,7 @@ describe('useQuantityInput', () => {
 
     it('should hide confirmation buttons on decrement', async () => {
       const qtyInput = getHTMLElement<HTMLInputElement>('input');
-      qtyInput.dispatchEvent(new Event('keyup'));
+      qtyInput.dispatchEvent(new Event('keydown'));
 
       const decrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.decrement);
       decrementButton.click();
@@ -129,7 +114,7 @@ describe('useQuantityInput', () => {
       const qtyValue = '1';
       const confirmedExpectedValue = '5';
       resetQtyInputValueInDOM(qtyInput, qtyMin, qtyValue);
-      qtyInput.dispatchEvent(new Event('keyup'));
+      qtyInput.dispatchEvent(new Event('keydown'));
 
       const mockedIncrementFetch = mockedResponse(true, false, confirmedExpectedValue);
       const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);

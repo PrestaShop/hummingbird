@@ -1,26 +1,6 @@
 {**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *}
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
@@ -69,7 +49,10 @@
           <p class="alert alert-danger js-address-error" name="alert-delivery" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
         {/if}
 
-        <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon w-full w-md-auto mb-3"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
+        <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3">
+          <i class="material-icons">&#xE145;</i>
+          {l s='Add new address' d='Shop.Theme.Actions'}
+        </a>
 
         {if $use_same_address && !$cart.is_virtual}
           <a data-link-action="different-invoice-address" href="{$use_different_address_url}" class="d-block">
@@ -107,19 +90,22 @@
             <p class="alert alert-danger js-address-error" name="alert-invoice" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
           {/if}
 
-          <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon w-full w-md-auto"><i class="material-icons">&#xE145;</i>{l s='Add new address' d='Shop.Theme.Actions'}</a>
+          <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon w-100 w-md-auto">
+            <i class="material-icons">&#xE145;</i>
+            {l s='Add new address' d='Shop.Theme.Actions'}
+          </a>
         {/if}
 
       {/if}
 
       <div class="mt-4 d-flex flex-wrap justify-content-between">
-        <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-personal-information-step">
-          <div class="material-icons rtl-flip">arrow_backward</div>
+        <button class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-personal-information-step">
+          <i class="material-icons rtl-flip">arrow_backward</i>
           {l s='Back to Personal Information' d='Shop.Theme.Actions'}
         </button>
 
         {if !$form_has_continue_button}
-            <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto continue" name="confirm-addresses" value="1">
+            <button type="submit" class="btn btn-primary btn-with-icon w-100 w-md-auto continue" name="confirm-addresses" value="1">
               {l s='Continue to Shipping' d='Shop.Theme.Actions'}
               <div class="material-icons rtl-flip">arrow_forward</div>
             </button>

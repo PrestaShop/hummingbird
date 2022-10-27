@@ -1,35 +1,11 @@
 // Components
-@import "./components/buttons";
-@import "./components/inputs";
-@import "./components/slider";
-@import "./components/breadcrumb";
-@import "./components/product/product-miniature";
-@import "./components/product/product-flags";
-@import "./components/pagination";
-@import "./components/rich-text";
-@import "./components/qty-input";
-@import "./components/mobile-menu";
-@import "./components/search";
-@import "./components/page-loader";
-@import "./components/toast";
-@import "./components/alert";
-@import "./components/checkout-steps";
-@import "./components/progress-ring";
+@import "components";
 
 // Modules
-@import "./modules/banner";
-@import "./modules/featuredproducts";
-@import "./modules/customtext";
-@import "./modules/facetedsearch";
-@import "./modules/shoppingcart";
-@import "./modules/customersignin";
-@import "./modules/nouislider";
+@import "modules";
 
 // Layout
-@import "./layout/header";
-@import "./layout/footer";
+@import "layout";
 
 // Pages
-@import "./pages/home";
-@import "./pages/product/product";
-@import "./pages/page-not-found";
+@import "pages";

@@ -1,13 +1,5 @@
-.page-not-found {
-  // stylelint-disable-next-line selector-id-pattern
-  #search_widget {
-    float: inherit;
-    max-width: 30rem;
-  }
-}
-
-.page-pagenotfound {
-  .wrapper__content {
+#pagenotfound {
+  .wrapper {
     padding-top: 3rem;
   }
 }

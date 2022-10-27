@@ -1,26 +1,6 @@
 {**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *}
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
@@ -116,12 +96,12 @@
         </div>
 
         <div class="shipping__actions d-flex flex-wrap justify-content-between">
-          <button class="btn btn-outline-primary btn-with-icon d-block d-md-inline-block me-2 w-full w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
+          <button class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
             <div class="material-icons rtl-flip">arrow_backward</div>
             {l s='Back to Addresses' d='Shop.Theme.Actions'}
           </button>
 
-          <button type="submit" class="btn btn-primary btn-with-icon d-block d-md-inline-block w-full w-md-auto" name="confirmDeliveryOption" value="1">
+          <button type="submit" class="btn btn-primary btn-with-icon w-100 w-md-auto" name="confirmDeliveryOption" value="1">
             {l s='Continue to Payment' d='Shop.Theme.Actions'}
             <div class="material-icons rtl-flip">arrow_forward</div>
           </button>

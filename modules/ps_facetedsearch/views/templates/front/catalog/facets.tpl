@@ -19,14 +19,14 @@
 {$componentName = 'search-filters'}
  
 {if $displayedFacets|count}
-  <div id="search-filters" class="{$componentName} d-flex flex-direction-column flex-wrap w-full">
+  <div id="search-filters" class="{$componentName} d-flex flex-direction-column flex-wrap w-100">
     {block name='facets_title'}
       <p class="{$componentName}-title d-none d-md-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
     {/block}
 
     {block name='facets_clearall_button'}
       {if $activeFilters|count}
-        <div class="clear-all-wrapper w-full order-2 order-md-1">
+        <div class="clear-all-wrapper w-100 order-2 order-md-1">
           <button data-search-url="{$clear_all_link}" class="btn border rounded-pill text-gray py-1 my-2 js-search-filters-clear-all">
             {l s='Clear all' d='Shop.Theme.Actions'}
           </button>
@@ -34,7 +34,7 @@
       {/if}
     {/block}
 
-    <div class="accordion w-full order-1 order-md-2">
+    <div class="accordion w-100 order-1 order-md-2">
       {foreach from=$displayedFacets item="facet" name="facets"}
         <section class="facet accordion-item">
           {assign var=_expand_id value=10|mt_rand:100000}

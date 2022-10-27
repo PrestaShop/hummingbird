@@ -1,47 +1,32 @@
 {**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *}
 <div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
    <div class="modal-content">
      <div class="modal-header">
        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
      </div>
      <div class="modal-body page-product">
       <div class="row">
-        <div class="col-sm-6 d-none d-sm-block">
+        <div class="col-sm-6">
           {block name='product_cover_thumbnails'}
             {include file='catalog/_partials/product-cover-thumbnails.tpl'}
           {/block}
         </div>
         <div class="col-sm-6">
-          <h1 class="h1">{$product.name}</h1>
+          <p class="h3">{$product.name}</p>
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}
           {/block}
           {block name='product_description_short'}
             <div id="product-description-short">{$product.description_short nofilter}</div>
+          {/block}
+          {block name='product_customization'}
+            {if $product.is_customizable && count($product.customizations.fields)}
+              {include file="catalog/_partials/product-customization.tpl" customizations=$product.customizations}
+            {/if}
           {/block}
           {block name='product_buy'}
             <div class="product-actions js-product-actions">
@@ -65,9 +50,14 @@
         </div>
       </div>
      </div>
-     <div class="modal-footer">
-        <div class="product-additional-info js-product-additional-info">
-          {hook h='displayProductAdditionalInfo' product=$product}
+     <div class="modal-footer border-1">
+        <div class="product-additional-info js-product-additional-info d-flex flex-wrap align-items-center justify-content-between w-100">
+          <div class="product-additional-info--start">
+            {hook h='displayProductAdditionalInfo' product=$product}
+          </div>
+          <div class="product-additional-info--end">
+            <a href="{$product.url}" class="d-inline-flex align-items-center">{l s='All details' d='Shop.Theme.Catalog'} <div class="material-icons">chevron_right</div></a>
+          </div>
         </div>
     </div>
    </div>

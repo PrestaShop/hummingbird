@@ -1,26 +1,6 @@
 /**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 import noUiSlider, {target, API} from 'nouislider';
@@ -28,11 +8,11 @@ import wNumb from 'wnumb';
 import initFacets from './update';
 import filterHandler from './filter-handler';
 
-const {prestashop} = window;
-
 const initSliders = () => {
-  document.querySelectorAll(prestashop.themeSelectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
-    const container = <target>filter.querySelector(prestashop.themeSelectors.facetedsearch.rangeContainer);
+  const {Theme} = window;
+
+  document.querySelectorAll(Theme.selectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
+    const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
     const options = JSON.parse(<string>container.dataset.sliderSpecifications);
     const signPosition = options.positivePattern.indexOf('¤') === 0 ? 'prefix' : 'suffix';
     // const sliderType = container.dataset.sliderSpecifications ? 'price' : 'weight';
@@ -100,7 +80,8 @@ const initSliders = () => {
 };
 
 const toggleLoader = (toggle: boolean) => {
-  const loader = document.querySelector(prestashop.themeSelectors.pageLoader);
+  const {Theme} = window;
+  const loader = document.querySelector(Theme.selectors.pageLoader);
 
   if (loader) {
     loader.classList.toggle('d-none', toggle);
@@ -108,15 +89,16 @@ const toggleLoader = (toggle: boolean) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  const {prestashop, Theme: {events}} = window;
   initFacets();
-  prestashop.on('updateProductList', () => {
+  prestashop.on(events.updateProductList, () => {
     toggleLoader(true);
     initSliders();
   });
 
   initSliders();
 
-  prestashop.on('updateFacets', () => {
+  prestashop.on(events.updateFacets, () => {
     toggleLoader(false);
   });
 });

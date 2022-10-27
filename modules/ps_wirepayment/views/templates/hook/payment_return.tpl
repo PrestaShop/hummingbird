@@ -1,79 +1,74 @@
 {**
- * 2007-2020 PrestaShop and Contributors
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2020 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- * International Registered Trademark & Property of PrestaShop SA
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *}
 
-<div class="card card-body bg-light mb-3 order-confirmation__payment">
-  <h2 class="h4">{l s='Payment information' d='Shop.Theme.Checkout'}</h2>
-  {if $status == 'ok'}
-    <p>
-      {l s='You have chosen payment by bank transfer.' d='Modules.Cashondelivery.Shop'}<br/>
-      {l s='Please send us a bank transfer with following details:' d='Modules.Wirepayment.Shop'}
-    </p>
+<div class="card border-1 mb-3">
+  <div class="card-body">
+    <h4 class="h4">{l s='Payment information' d='Shop.Theme.Checkout'}</h4>
+    <h6 class="card-subtitle mb-3 text-muted">{l s='Pay by Bank Wire' d='Modules.Wirepayment.Shop'}</h6>
+    {if $status === 'ok'}
+      <p>
+        {l s='You have chosen payment by bank transfer.' d='Modules.Wirepayment.Shop'}<br/>
+        {l s='Please send us a bank transfer with following details:' d='Modules.Wirepayment.Shop'}
+      </p>
 
-    <div class="row mt-2">
-      <div class="col-md-6 fw-bold mb-2 mb-md-0">
-        {l s='Amount' d='Modules.Wirepayment.Shop'}
+      <div class="row mt-2">
+        <div class="col-md-6 fw-bold mb-2 mb-md-0">
+          {l s='Amount' d='Modules.Wirepayment.Shop'}
+        </div>
+        <div class="col-md-6">
+          {$total}
+        </div>
       </div>
-      <div class="col-md-6">
-        {$total}
+      <hr/>
+      <div class="row">
+        <div class="col-md-6 fw-bold mb-2 mb-md-0">
+          {l s='Name of account owner' d='Modules.Wirepayment.Shop'}
+        </div>
+        <div class="col-md-6">
+          {$bankwireOwner}
+        </div>
       </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-6 fw-bold mb-2 mb-md-0">
+          {l s='Please include these details' d='Modules.Wirepayment.Shop'}
+        </div>
+        <div class="col-md-6">
+          {$bankwireDetails nofilter}
+        </div>
+      </div>
+      <hr/>
+      <div class="row mb-4">
+        <div class="col-md-6 fw-bold mb-2 mb-md-0">
+          {l s='Bank name' d='Modules.Wirepayment.Shop'}
+        </div>
+        <div class="col-md-6">
+        {$bankwireAddress nofilter}
+        </div>
+      </div>
+      <hr>
+      <p class="mb-0">
+        {l s='Please specify your order reference %s in the bankwire description.' sprintf=[$reference] d='Modules.Wirepayment.Shop'}<br/>
+        {l s='We\'ve also sent you this information by e-mail.' d='Modules.Wirepayment.Shop'}<br/>
+        {l s='Your order will be sent as soon as we receive payment.' d='Modules.Wirepayment.Shop'}
+      </p>
+    {else}
+      <div class="alert alert-warning mt-3 mb-0" role="alert">
+        {l
+          s='We noticed a problem with your order. If you think this is an error, feel free to contact our [1]expert customer support team[/1].'
+          d='Modules.Wirepayment.Shop' sprintf=['[1]' => "<a class='alert-link' href='{$contact_url}'>", '[/1]' => '</a>']
+        }
+      </div>
+    {/if}
+  </div>
+  {if $status === 'ok'}
+    <div class="card-footer p-3 border-1">
+      {l
+        s='If you have questions, comments or concerns, please contact our [1]expert customer support team[/1].' 
+        d='Modules.Wirepayment.Shop' sprintf=['[1]' => "<a class='alert-link' href='{$contact_url}'>", '[/1]' => '</a>']
+      }
     </div>
-    <hr/>
-    <div class="row">
-      <div class="col-md-6 fw-bold mb-2 mb-md-0">
-        {l s='Name of account owner' d='Modules.Wirepayment.Shop'}
-      </div>
-      <div class="col-md-6">
-        {$bankwireOwner}
-      </div>
-    </div>
-    <hr/>
-    <div class="row">
-      <div class="col-md-6 fw-bold mb-2 mb-md-0">
-        {l s='Please include these details' d='Modules.Wirepayment.Shop'}
-      </div>
-      <div class="col-md-6">
-        {$bankwireDetails nofilter}
-      </div>
-    </div>
-    <hr/>
-    <div class="row mb-4">
-      <div class="col-md-6 fw-bold mb-2 mb-md-0">
-        {l s='Bank name' d='Modules.Wirepayment.Shop'}
-      </div>
-      <div class="col-md-6">
-      {$bankwireAddress nofilter}
-      </div>
-    </div>
-
-    <p>
-      {l s='Please specify your order reference %s in the bankwire description.' sprintf=[$reference] d='Modules.Wirepayment.Shop'}<br/>
-      {l s='We\'ve also sent you this information by e-mail.' d='Modules.Wirepayment.Shop'}<br/>
-      {l s='Your order will be sent as soon as we receive payment.' d='Modules.Wirepayment.Shop'}
-    </p>
-
-    <p class="mb-0">
-      {l s='If you have questions, comments or concerns, please contact our [1]expert customer support team[/1].' 
-      d='Modules.Wirepayment.Shop' sprintf=['[1]' => "<a href='{$contact_url}'>", '[/1]' => '</a>']}
-    </p>
-  {else}
-    <p class="warning mb-0">
-      {l s='We noticed a problem with your order. If you think this is an error, feel free to contact our [1]expert customer support team[/1].' d='Modules.Wirepayment.Shop' sprintf=['[1]' => "<a href='{$contact_url}'>", '[/1]' => '</a>']}
-    </p>
   {/if}
 </div>

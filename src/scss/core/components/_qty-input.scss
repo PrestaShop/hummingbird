@@ -1,13 +1,13 @@
 .quantity-button {
   input {
     max-width: 4.5rem;
-    height: 2.5rem;
+    height: 2.375rem;
     padding: 0.375rem 0.5rem;
     text-align: center;
   }
 
   button {
-    width: 2.5rem;
+    width: 2.375rem;
     padding: 0;
     border: 1px solid $input-border-color;
 
@@ -36,7 +36,7 @@
     }
 
     .material-icons {
-      font-size: 1.125rem;
+      font-size: 1.25rem;
       pointer-events: none;
     }
 

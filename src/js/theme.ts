@@ -1,33 +1,15 @@
 /**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
-import selectorsMap from './constants/selectors-map';
+import themeSelectors from './constants/selectors-map';
+import EVENTS from './constants/events-map';
 import initEmitter from './prestashop';
 import initResponsiveToggler from './responsive-toggler';
 import initQuickview from './quickview';
 import initCart from './pages/cart';
 import initCheckout from './pages/checkout';
+import initCustomer from './pages/customer';
 import initProductBehavior from './product';
 import initMobileMenu from './mobile-menu';
 import initSearchbar from './modules/ps_searchbar';
@@ -40,17 +22,18 @@ import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
 import './modules/blockcart';
 import './modules/facetedsearch';
+import initDesktopMenu from './modules/ps_mainmenu';
+import initFormValidation from './form-validation';
 
 initEmitter();
 
-window.prestashop.themeSelectors = selectorsMap;
-
 $(() => {
-  const {prestashop} = window;
+  const {prestashop, Theme: {events}} = window;
 
   initProductBehavior();
   initQuickview();
   initCheckout();
+  initCustomer();
   initResponsiveToggler();
   initCart();
   useQuantityInput();
@@ -59,14 +42,15 @@ $(() => {
   initCurrencySelector();
   initMobileMenu();
   initVisiblePassword();
+  initDesktopMenu();
+  initFormValidation();
 
-  prestashop.on('responsiveUpdate', () => {
+  prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();
     initLanguageSelector();
     initCurrencySelector();
+    initDesktopMenu();
   });
-
-  prestashop.on('updatedCart', () => useQuantityInput());
 });
 
 export const components = {
@@ -76,8 +60,21 @@ export const components = {
   useQuantityInput,
 };
 
+export const selectors = themeSelectors;
+
+export const events = EVENTS;
+
 export default {
-  initResponsiveToggler,
-  initQuickview,
   initProductBehavior,
+  initQuickview,
+  initCheckout,
+  initResponsiveToggler,
+  initCart,
+  useQuantityInput,
+  initSearchbar,
+  initLanguageSelector,
+  initCurrencySelector,
+  initMobileMenu,
+  initVisiblePassword,
+  initDesktopMenu,
 };

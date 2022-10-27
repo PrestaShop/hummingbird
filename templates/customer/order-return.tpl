@@ -1,26 +1,6 @@
 {**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *}
 {extends file='customer/page.tpl'}
 
@@ -40,11 +20,83 @@
           </strong>
         </p>
         <p>{l s='We have logged your return request.' d='Shop.Theme.Customeraccount'}</p>
+        <hr>
+        <h3>{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</h3>
+        <div class="table-wrapper">
+          <table class="table d-none d-sm-table d-md-table">
+            <thead class="thead-default">
+              <tr>
+                <th>{l s='Product' d='Shop.Theme.Catalog'}</th>
+                <th>{l s='Quantity' d='Shop.Theme.Checkout'}</th>
+              </tr>
+            </thead>
+            <tbody>
+            {foreach from=$products item=product}
+              <tr>
+                <td>
+                  <strong>{$product.product_name}</strong>
+                  {if $product.product_reference}
+                    <br />
+                    {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
+                  {/if}
+                  {if $product.customizations}
+                    {foreach from=$product.customizations item="customization"}
+                      <div class="customization">
+                        <a href="#" data-bs-toggle="modal" class="text-decoration-underline"
+                        data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
+                      </div>
+                      {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
+                    {/foreach}
+                  {/if}
+                </td>
+                <td>
+                  {$product.product_quantity}
+                </td>
+              </tr>
+            {/foreach}
+            </tbody>
+          </table>
+        </div>
+        <div class="d-block d-sm-block d-md-none">
+          {foreach from=$products item=product}
+            <div class="table-wrapper py-2 my-2">
+              <ul class="m-0">
+                <li class="row">
+                  <p class="col fw-bold">{l s='Product' d='Shop.Theme.Catalog'}</p>
+                  <p class="col-8 text-end">{$product.product_name}</p>
+                </li>
+                {if $product.product_reference}
+                  <li class="row">
+                    <p class="col fw-bold">{l s='Reference' d='Shop.Theme.Catalog'}</p>
+                    <p class="col text-end">{$product.product_reference}</p>
+                  </li>
+                {/if}
+                <li class="row">
+                  <p class="col fw-bold">{l s='Quantity' d='Shop.Theme.Checkout'}</p>
+                  <p class="col text-end">{$product.product_quantity}</p>
+                </li>
+                <li>
+                  {if $product.customizations}
+                    {foreach $product.customizations as $customization}
+                      <div class="customization text-end">
+                        <a href="#" data-bs-toggle="modal" class="text-decoration-underline"
+                          data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
+                      </div>
+                      <div id="_mobile_product_customization_modal_wrapper_{$customization.id_customization}">
+                      </div>
+                    {/foreach}
+                  {/if}
+                </li>
+              </ul>
+            </div>
+          {/foreach}
+        </div>
+        <hr>
         <p>{l
           s='Your package must be returned to us within %number% days of receiving your order.'
           d='Shop.Theme.Customeraccount'
           sprintf=['%number%' => $configuration.number_of_days_for_return]}</p>
-        <p>
+        <p class="mb-0">
           {* [1][/1] is for a HTML tag. *}
           {l
             s='The current status of your merchandise return is: [1] %status% [/1]'
@@ -56,73 +108,12 @@
             ]
           }
         </p>
-        <p>{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</p>
-        <table class="table table-striped table-bordered">
-          <thead class="thead-default">
-            <tr>
-              <th>{l s='Product' d='Shop.Theme.Catalog'}</th>
-              <th>{l s='Quantity' d='Shop.Theme.Checkout'}</th>
-            </tr>
-          </thead>
-          <tbody>
-          {foreach from=$products item=product}
-            <tr>
-              <td>
-                <strong>{$product.product_name}</strong>
-                {if $product.product_reference}
-                  <br />
-                  {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
-                {/if}
-                {if $product.customizations}
-                  {foreach from=$product.customizations item="customization"}
-                    <div class="customization">
-                      <a href="#" data-bs-toggle="modal" data-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
-                    </div>
-                    <div class="modal fade customization-modal" id="product-customizations-modal-{$customization.id_customization}" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
-                            <h4 class="modal-title">{l s='Product customization' d='Shop.Theme.Catalog'}</h4>
-                          </div>
-                          <div class="modal-body">
-                            {foreach from=$customization.fields item="field"}
-                              <div class="product-customization-line row">
-                                <div class="col-sm-3 col-xs-4 label">
-                                  {$field.label}
-                                </div>
-                                <div class="col-sm-9 col-xs-8 value">
-                                  {if $field.type == 'text'}
-                                    {if (int)$field.id_module}
-                                      {$field.text nofilter}
-                                    {else}
-                                      {$field.text}
-                                    {/if}
-                                  {elseif $field.type == 'image'}
-                                    <img src="{$field.image.small.url}" loading="lazy">
-                                  {/if}
-                                </div>
-                              </div>
-                            {/foreach}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  {/foreach}
-                {/if}
-              </td>
-              <td>
-                {$product.product_quantity}
-              </td>
-            </tr>
-          {/foreach}
-          </tbody>
-        </table>
       </div>
     </div>
   {/block}
 
   {if $return.state == 2}
+    <hr>
     <section class="card">
       <div class="card-block">
         <h3 class="card-title h3">{l s='Reminder' d='Shop.Theme.Customeraccount'}</h3>

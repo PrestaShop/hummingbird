@@ -17,20 +17,20 @@
             <div class="row">
               <div class="col-xl-6 store__picture">
                 <picture>
-                  {if isset($store.image.bySize.default_200.sources.avif)}
+                  {if isset($store.image.bySize.square_sm.sources.avif)}
                     <source 
                       srcset="
-                        {$store.image.bySize.default_200.sources.avif},
-                        {$store.image.bySize.default_400.sources.avif} 2x"
+                        {$store.image.bySize.square_sm.sources.avif},
+                        {$store.image.bySize.square_xl.sources.avif} 2x"
                       type="image/avif"
                     >
                   {/if}
 
-                  {if isset($store.image.bySize.default_200.sources.webp)}
+                  {if isset($store.image.bySize.square_sm.sources.webp)}
                     <source 
                       srcset="
-                        {$store.image.bySize.default_200.sources.webp},
-                        {$store.image.bySize.default_400.sources.webp} 2x"
+                        {$store.image.bySize.square_sm.sources.webp},
+                        {$store.image.bySize.square_xl.sources.webp} 2x"
                       type="image/webp"
                     >
                   {/if}
@@ -38,11 +38,11 @@
                   <img
                     class="img-fluid rounded"
                     srcset="
-                      {$store.image.bySize.default_200.url},
-                      {$store.image.bySize.default_400.url} 2x"
+                      {$store.image.bySize.square_sm.url},
+                      {$store.image.bySize.square_xl.url} 2x"
                     loading="lazy"
-                    width="{$store.image.bySize.default_200.width}"
-                    height="{$store.image.bySize.default_200.height}"
+                    width="{$store.image.bySize.square_sm.width}"
+                    height="{$store.image.bySize.square_sm.height}"
                     {if !empty($store.image.legend)}
                       alt="{$store.image.legend}"
                       title="{$store.image.legend}"

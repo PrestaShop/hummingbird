@@ -26,23 +26,23 @@
           {foreach from=$product.images item=image key=key}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
               <picture>
-                {if isset($image.bySize.default_320.sources.avif)}
+                {if isset($image.bySize.square_md.sources.avif)}
                   <source 
                     srcset="
-                      {$image.bySize.default_320.sources.avif} 320w,
-                      {$image.bySize.default_720.sources.avif} 720w,
-                      {$image.bySize.default_1440.sources.avif} 1440w"
+                      {$image.bySize.square_md.sources.avif} 320w,
+                      {$image.bySize.product_main.sources.avif} 720w,
+                      {$image.bySize.product_main_2x.sources.avif} 1440w"
                     sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
                     type="image/avif"
                   >
                 {/if}
 
-                {if isset($image.bySize.default_320.sources.webp)}
+                {if isset($image.bySize.square_md.sources.webp)}
                   <source 
                     srcset="
-                      {$image.bySize.default_320.sources.webp} 320w,
-                      {$image.bySize.default_720.sources.webp} 720w,
-                      {$image.bySize.default_1440.sources.webp} 1440w"
+                      {$image.bySize.square_md.sources.webp} 320w,
+                      {$image.bySize.product_main.sources.webp} 720w,
+                      {$image.bySize.product_main_2x.sources.webp} 1440w"
                     sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
                     type="image/webp"
                   >
@@ -51,13 +51,13 @@
                 <img
                   class="img-fluid"
                   srcset="
-                    {$image.bySize.default_320.url} 320w,
-                    {$image.bySize.default_720.url} 720w,
-                    {$image.bySize.default_1440.url} 1440w"
+                    {$image.bySize.square_md.url} 320w,
+                    {$image.bySize.product_main.url} 720w,
+                    {$image.bySize.product_main_2x.url} 1440w"
                   sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
-                  src="{$image.bySize.default_720.sources.jpg}" 
-                  width="{$image.bySize.default_720.width}"
-                  height="{$image.bySize.default_720.height}"
+                  src="{$image.bySize.product_main.sources.jpg}" 
+                  width="{$image.bySize.product_main.width}"
+                  height="{$image.bySize.product_main.height}"
                   loading="eager"
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
                   title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
@@ -83,20 +83,20 @@
               aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
           >
               <picture>
-                {if isset($image.bySize.default_120.sources.avif)}
+                {if isset($image.bySize.square_xs.sources.avif)}
                   <source 
                     srcset="
-                      {$image.bySize.default_120.sources.avif},
-                      {$image.bySize.default_200.sources.avif} 2x",
+                      {$image.bySize.square_xs.sources.avif},
+                      {$image.bySize.square_sm.sources.avif} 2x",
                   type="image/avif"
                   >
                 {/if}
 
-                {if isset($image.bySize.default_120.sources.webp)}
+                {if isset($image.bySize.square_xs.sources.webp)}
                   <source 
                     srcset="
-                      {$image.bySize.default_120.sources.webp},
-                      {$image.bySize.default_200.sources.webp} 2x"
+                      {$image.bySize.square_xs.sources.webp},
+                      {$image.bySize.square_sm.sources.webp} 2x"
                     type="image/webp"
                   >
                 {/if}
@@ -104,10 +104,10 @@
                 <img
                   class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
                   srcset="
-                    {$image.bySize.default_120.url},
-                    {$image.bySize.default_200.url} 2x"
-                  width="{$image.bySize.default_120.width}"
-                  height="{$image.bySize.default_120.height}"
+                    {$image.bySize.square_xs.url},
+                    {$image.bySize.square_sm.url} 2x"
+                  width="{$image.bySize.square_xs.width}"
+                  height="{$image.bySize.square_xs.height}"
                   loading="lazy"
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
                   title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
@@ -122,23 +122,23 @@
     {hook h='displayAfterProductThumbs' product=$product}
   {else}
     <picture>
-      {if isset($urls.no_picture_image.bySize.default_320.sources.avif)}
+      {if isset($urls.no_picture_image.bySize.square_md.sources.avif)}
         <source 
           srcset="
-            {$urls.no_picture_image.bySize.default_320.sources.avif} 320w,
-            {$urls.no_picture_image.bySize.default_720.sources.avif} 720w,
-            {$urls.no_picture_image.bySize.default_1440.sources.avif} 1440w"
+            {$urls.no_picture_image.bySize.square_md.sources.avif} 320w,
+            {$urls.no_picture_image.bySize.product_main.sources.avif} 720w,
+            {$urls.no_picture_image.bySize.product_main_2x.sources.avif} 1440w"
           sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
           type="image/avif"
         >
       {/if}
 
-      {if isset($urls.no_picture_image.bySize.default_320.sources.webp)}
+      {if isset($urls.no_picture_image.bySize.square_md.sources.webp)}
         <source 
           srcset="
-            {$urls.no_picture_image.bySize.default_320.sources.webp} 320w,
-            {$urls.no_picture_image.bySize.default_720.sources.webp} 720w,
-            {$urls.no_picture_image.bySize.default_1440.sources.webp} 1440w"
+            {$urls.no_picture_image.bySize.square_md.sources.webp} 320w,
+            {$urls.no_picture_image.bySize.product_main.sources.webp} 720w,
+            {$urls.no_picture_image.bySize.product_main_2x.sources.webp} 1440w"
           sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
           type="image/webp"
         >
@@ -147,13 +147,13 @@
       <img
         class="img-fluid"
         srcset="
-          {$urls.no_picture_image.bySize.default_320.url} 320w,
-          {$urls.no_picture_image.bySize.default_720.url} 720w,
-          {$urls.no_picture_image.bySize.default_1440.url} 1440w"
+          {$urls.no_picture_image.bySize.square_md.url} 320w,
+          {$urls.no_picture_image.bySize.product_main.url} 720w,
+          {$urls.no_picture_image.bySize.product_main_2x.url} 1440w"
         sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
-        width="{$urls.no_picture_image.bySize.default_120.width}"
-        height="{$urls.no_picture_image.bySize.default_120.height}"
-        src="{$urls.no_picture_image.bySize.default_320.sources.jpg}" 
+        width="{$urls.no_picture_image.bySize.square_xs.width}"
+        height="{$urls.no_picture_image.bySize.square_xs.height}"
+        src="{$urls.no_picture_image.bySize.square_md.sources.jpg}" 
         loading="lazy"
         alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
         title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"

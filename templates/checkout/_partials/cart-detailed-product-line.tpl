@@ -11,20 +11,20 @@
       data-id_customization="{$product.id_customization|intval}">
       {if $product.default_image}
         <picture>
-          {if isset($product.default_image.bySize.default_120.sources.avif)}
+          {if isset($product.default_image.bySize.square_xs.sources.avif)}
             <source 
               srcset="
-                {$product.default_image.bySize.default_120.sources.avif},
-                {$product.default_image.bySize.default_200.sources.avif} 2x"
+                {$product.default_image.bySize.square_xs.sources.avif},
+                {$product.default_image.bySize.square_sm.sources.avif} 2x"
               type="image/avif"
             >
           {/if}
 
-          {if isset($product.default_image.bySize.default_120.sources.webp)}
+          {if isset($product.default_image.bySize.square_xs.sources.webp)}
             <source 
               srcset="
-                {$product.default_image.bySize.default_120.sources.webp},
-                {$product.default_image.bySize.default_200.sources.webp} 2x"
+                {$product.default_image.bySize.square_xs.sources.webp},
+                {$product.default_image.bySize.square_sm.sources.webp} 2x"
               type="image/webp"
             >
           {/if}
@@ -32,30 +32,30 @@
           <img
             class="img-fluid"
             srcset="
-              {$product.default_image.bySize.default_120.url},
-              {$product.default_image.bySize.default_200.url} 2x"
-            width="{$product.default_image.bySize.default_120.width}"
-            height="{$product.default_image.bySize.default_120.height}"
+              {$product.default_image.bySize.square_xs.url},
+              {$product.default_image.bySize.square_sm.url} 2x"
+            width="{$product.default_image.bySize.square_xs.width}"
+            height="{$product.default_image.bySize.square_xs.height}"
             loading="lazy"
             alt="{$product.name|escape:'quotes'}"
             title="{$product.name|escape:'quotes'}"
         </picture>
       {else}
         <picture>
-          {if isset($urls.no_picture_image.bySize.default_120.sources.avif)}
+          {if isset($urls.no_picture_image.bySize.square_xs.sources.avif)}
             <source 
               srcset="
-                {$urls.no_picture_image.bySize.default_120.sources.avif},
-                {$urls.no_picture_image.bySize.default_200.sources.avif} 2x"
+                {$urls.no_picture_image.bySize.square_xs.sources.avif},
+                {$urls.no_picture_image.bySize.square_sm.sources.avif} 2x"
               type="image/avif"
             >
           {/if}
 
-          {if isset($urls.no_picture_image.bySize.default_120.sources.webp)}
+          {if isset($urls.no_picture_image.bySize.square_xs.sources.webp)}
             <source 
               srcset="
-                {$urls.no_picture_image.bySize.default_120.sources.webp},
-                {$urls.no_picture_image.bySize.default_200.sources.webp} 2x"
+                {$urls.no_picture_image.bySize.square_xs.sources.webp},
+                {$urls.no_picture_image.bySize.square_sm.sources.webp} 2x"
               type="image/webp"
             >
           {/if}
@@ -63,10 +63,10 @@
           <img
             class="img-fluid"
             srcset="
-              {$urls.no_picture_image.bySize.default_120.url},
-              {$urls.no_picture_image.bySize.default_200.url} 2x"
-            width="{$urls.no_picture_image.bySize.default_120.width}"
-            height="{$urls.no_picture_image.bySize.default_120.height}"
+              {$urls.no_picture_image.bySize.square_xs.url},
+              {$urls.no_picture_image.bySize.square_sm.url} 2x"
+            width="{$urls.no_picture_image.bySize.square_xs.width}"
+            height="{$urls.no_picture_image.bySize.square_xs.height}"
             loading="lazy"
           >
         </picture>

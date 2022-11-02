@@ -62,6 +62,7 @@
                   alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
                   title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
                   data-full-size-image-url="{$image.bySize.home_default.url}"
+                >
               </picture>
             </div>
           {/foreach}

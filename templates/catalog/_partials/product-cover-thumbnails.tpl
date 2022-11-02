@@ -55,7 +55,7 @@
                     {$image.bySize.product_main.url} 720w,
                     {$image.bySize.product_main_2x.url} 1440w"
                   sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
-                  src="{$image.bySize.product_main.sources.jpg}" 
+                  src="{$image.bySize.product_main.url}" 
                   width="{$image.bySize.product_main.width}"
                   height="{$image.bySize.product_main.height}"
                   loading="eager"
@@ -154,7 +154,7 @@
         sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
         width="{$urls.no_picture_image.bySize.default_xs.width}"
         height="{$urls.no_picture_image.bySize.default_xs.height}"
-        src="{$urls.no_picture_image.bySize.default_md.sources.jpg}" 
+        src="{$urls.no_picture_image.bySize.default_md.url}" 
         loading="lazy"
         alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
         title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"

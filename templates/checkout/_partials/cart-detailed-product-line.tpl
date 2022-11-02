@@ -39,6 +39,7 @@
             loading="lazy"
             alt="{$product.name|escape:'quotes'}"
             title="{$product.name|escape:'quotes'}"
+          >
         </picture>
       {else}
         <picture>

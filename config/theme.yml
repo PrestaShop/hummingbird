@@ -135,23 +135,23 @@ global_settings:
       width: 170
       height: 115
       scope: [stores]
-    square_xs:
+    default_xs:
       width: 120
       height: 120
       scope: [products, manufacturers, suppliers, categories]
-    square_s:
+    default_s:
       width: 160
       height: 160
       scope: [categories, products]
-    square_sm:
+    default_m:
       width: 200
       height: 200
       scope: [stores, manufacturers, suppliers, products]
-    square_md:
+    default_md:
       width: 320
       height: 320
       scope: [categories, products]
-    square_xl:
+    default_xl:
       width: 400
       height: 400
       scope: [stores, products]

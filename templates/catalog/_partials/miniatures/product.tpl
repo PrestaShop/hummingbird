@@ -14,24 +14,24 @@
           <div class="{$componentName}__image-container thumbnail-container">
             {if $product.cover}
               <picture>
-                {if isset($product.cover.bySize.square_md.sources.avif)}
+                {if isset($product.cover.bySize.default_md.sources.avif)}
                   <source 
                     srcset="
-                      {$product.cover.bySize.square_xs.sources.avif} 120w,
-                      {$product.cover.bySize.square_sm.sources.avif} 200w,
-                      {$product.cover.bySize.square_md.sources.avif} 320w,
+                      {$product.cover.bySize.default_xs.sources.avif} 120w,
+                      {$product.cover.bySize.default_m.sources.avif} 200w,
+                      {$product.cover.bySize.default_md.sources.avif} 320w,
                       {$product.cover.bySize.product_main.sources.avif} 720w"
                     sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
                     type="image/avif"
                   >
                 {/if}
 
-                {if isset($product.cover.bySize.square_md.sources.webp)}
+                {if isset($product.cover.bySize.default_md.sources.webp)}
                   <source 
                     srcset="
-                      {$product.cover.bySize.square_xs.sources.webp} 120w,
-                      {$product.cover.bySize.square_sm.sources.webp} 200w,
-                      {$product.cover.bySize.square_md.sources.webp} 320w,
+                      {$product.cover.bySize.default_xs.sources.webp} 120w,
+                      {$product.cover.bySize.default_m.sources.webp} 200w,
+                      {$product.cover.bySize.default_md.sources.webp} 320w,
                       {$product.cover.bySize.product_main.sources.webp} 720w"
                     sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
                     type="image/webp"
@@ -41,14 +41,14 @@
                 <img
                   class="{$componentName}__image card-img-top"
                   srcset="
-                    {$product.cover.bySize.square_xs.url} 120w,
-                    {$product.cover.bySize.square_sm.url} 200w,
-                    {$product.cover.bySize.square_md.url} 320w,
+                    {$product.cover.bySize.default_xs.url} 120w,
+                    {$product.cover.bySize.default_m.url} 200w,
+                    {$product.cover.bySize.default_md.url} 320w,
                     {$product.cover.bySize.product_main.url} 720w"
                   sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
-                  src="{$product.cover.bySize.square_md.sources.jpg}" 
-                  width="{$product.cover.bySize.square_md.width}"
-                  height="{$product.cover.bySize.square_md.height}"
+                  src="{$product.cover.bySize.default_md.sources.jpg}" 
+                  width="{$product.cover.bySize.default_md.width}"
+                  height="{$product.cover.bySize.default_md.height}"
                   loading="lazy"
                   alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
                   title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
@@ -57,24 +57,24 @@
               </picture>
             {else}
               <picture>
-                {if isset($urls.no_picture_image.bySize.square_md.sources.avif)}
+                {if isset($urls.no_picture_image.bySize.default_md.sources.avif)}
                   <source 
                     srcset="
-                      {$urls.no_picture_image.bySize.square_xs.sources.avif} 120w,
-                      {$urls.no_picture_image.bySize.square_sm.sources.avif} 200w,
-                      {$urls.no_picture_image.bySize.square_md.sources.avif} 320w,
+                      {$urls.no_picture_image.bySize.default_xs.sources.avif} 120w,
+                      {$urls.no_picture_image.bySize.default_m.sources.avif} 200w,
+                      {$urls.no_picture_image.bySize.default_md.sources.avif} 320w,
                       {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
                     sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
                     type="image/avif"
                   >
                 {/if}
 
-                {if isset($urls.no_picture_image.bySize.square_md.sources.webp)}
+                {if isset($urls.no_picture_image.bySize.default_md.sources.webp)}
                   <source 
                     srcset="
-                      {$urls.no_picture_image.bySize.square_xs.sources.webp} 120w,
-                      {$urls.no_picture_image.bySize.square_sm.sources.webp} 200w,
-                      {$urls.no_picture_image.bySize.square_md.sources.webp} 320w,
+                      {$urls.no_picture_image.bySize.default_xs.sources.webp} 120w,
+                      {$urls.no_picture_image.bySize.default_m.sources.webp} 200w,
+                      {$urls.no_picture_image.bySize.default_md.sources.webp} 320w,
                       {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
                     sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
                     type="image/webp"
@@ -84,14 +84,14 @@
                 <img
                   class="{$componentName}__image card-img-top"
                   srcset="
-                    {$urls.no_picture_image.bySize.square_xs.url} 120w,
-                    {$urls.no_picture_image.bySize.square_sm.url} 200w,
-                    {$urls.no_picture_image.bySize.square_md.url} 320w,
+                    {$urls.no_picture_image.bySize.default_xs.url} 120w,
+                    {$urls.no_picture_image.bySize.default_m.url} 200w,
+                    {$urls.no_picture_image.bySize.default_md.url} 320w,
                     {$urls.no_picture_image.bySize.product_main.url} 720w"
                   sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
-                  width="{$urls.no_picture_image.bySize.square_md.width}"
-                  height="{$urls.no_picture_image.bySize.square_md.height}"
-                  src="{$urls.no_picture_image.bySize.square_md.sources.jpg}" 
+                  width="{$urls.no_picture_image.bySize.default_md.width}"
+                  height="{$urls.no_picture_image.bySize.default_md.height}"
+                  src="{$urls.no_picture_image.bySize.default_md.sources.jpg}" 
                   loading="lazy"
                   alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
                   title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"

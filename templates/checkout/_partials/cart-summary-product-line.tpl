@@ -35,6 +35,7 @@
             loading="lazy"
             alt="{$product.name}"
             title="{$product.name}"
+          >
         </picture>
       {else}
         <picture>

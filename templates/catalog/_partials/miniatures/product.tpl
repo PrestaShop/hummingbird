@@ -21,7 +21,7 @@
                       {$product.cover.bySize.default_m.sources.avif} 200w,
                       {$product.cover.bySize.default_md.sources.avif} 320w,
                       {$product.cover.bySize.product_main.sources.avif} 720w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 50vw" 
                     type="image/avif"
                   >
                 {/if}
@@ -33,7 +33,7 @@
                       {$product.cover.bySize.default_m.sources.webp} 200w,
                       {$product.cover.bySize.default_md.sources.webp} 320w,
                       {$product.cover.bySize.product_main.sources.webp} 720w"
-                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
+                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw" 
                     type="image/webp"
                   >
                 {/if}
@@ -45,7 +45,7 @@
                     {$product.cover.bySize.default_m.url} 200w,
                     {$product.cover.bySize.default_md.url} 320w,
                     {$product.cover.bySize.product_main.url} 720w"
-                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
+                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw" 
                   src="{$product.cover.bySize.default_md.url}" 
                   width="{$product.cover.bySize.default_md.width}"
                   height="{$product.cover.bySize.default_md.height}"
@@ -64,7 +64,7 @@
                       {$urls.no_picture_image.bySize.default_m.sources.avif} 200w,
                       {$urls.no_picture_image.bySize.default_md.sources.avif} 320w,
                       {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 50vw" 
                     type="image/avif"
                   >
                 {/if}
@@ -76,7 +76,7 @@
                       {$urls.no_picture_image.bySize.default_m.sources.webp} 200w,
                       {$urls.no_picture_image.bySize.default_md.sources.webp} 320w,
                       {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
-                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
+                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw" 
                     type="image/webp"
                   >
                 {/if}
@@ -88,13 +88,13 @@
                     {$urls.no_picture_image.bySize.default_m.url} 200w,
                     {$urls.no_picture_image.bySize.default_md.url} 320w,
                     {$urls.no_picture_image.bySize.product_main.url} 720w"
-                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 100vw" 
+                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw" 
                   width="{$urls.no_picture_image.bySize.default_md.width}"
                   height="{$urls.no_picture_image.bySize.default_md.height}"
                   src="{$urls.no_picture_image.bySize.default_md.url}" 
                   loading="lazy"
-                  alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
-                  title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                  alt="{l s='No image available' d='Shop.Theme.Catalog'}"
+                  title="{l s='No image available' d='Shop.Theme.Catalog'}"
                   data-full-size-image-url="{$product.cover.bySize.home_default.url}"
                 >
               </picture>

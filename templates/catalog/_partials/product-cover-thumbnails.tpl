@@ -152,13 +152,12 @@
           {$urls.no_picture_image.bySize.product_main.url} 720w,
           {$urls.no_picture_image.bySize.product_main_2x.url} 1440w"
         sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
-        width="{$urls.no_picture_image.bySize.default_xs.width}"
-        height="{$urls.no_picture_image.bySize.default_xs.height}"
+        width="{$urls.no_picture_image.bySize.product_main.width}"
+        height="{$urls.no_picture_image.bySize.product_main.height}"
         src="{$urls.no_picture_image.bySize.default_md.url}" 
         loading="lazy"
         alt="{l s='No image available' d='Shop.Theme.Catalog'}"
         title="{l s='No image available' d='Shop.Theme.Catalog'}"
-        data-full-size-image-url="{$product.cover.bySize.home_default.url}"
       >
     </picture>
   {/if}

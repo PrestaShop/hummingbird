@@ -9,17 +9,17 @@
 {if $layout === 'layouts/layout-left-column.tpl'}
   {block name="left_column"}
     <div id="left-column" class="wrapper__left-column col-md-4 col-lg-3">
-      {widget name="ps_contactinfo" hook='displayLeftColumn'}
+      {hook h='displayContactLeftColumn'}
     </div>
   {/block}
 {else if $layout === 'layouts/layout-right-column.tpl'}
   {block name="right_column"}
     <div id="right-column" class="wrapper__right-column col-md-4 col-lg-3">
-      {widget name="ps_contactinfo" hook='displayRightColumn'}
+      {hook h='displayContactRightColumn'}
     </div>
   {/block}
 {/if}
 
 {block name='page_content'}
-  {widget name="contactform"}
+  {hook h='displayContactContent'}
 {/block}

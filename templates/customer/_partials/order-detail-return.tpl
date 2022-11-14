@@ -120,13 +120,67 @@
               </div>
               <div class="col-4">
                 {if $product.cover}
-                  <img src="{$product.cover.bySize.small_default.url}"
-                    alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
-                    loading="lazy" data-full-size-image-url="{$product.cover.large.url}" width="64" height="64"
-                    class="order-products__image card-img-top w-auto" />
+                  <picture>
+                    {if isset($product.cover.bySize.default_xs.sources.avif)}
+                      <source 
+                        srcset="
+                          {$product.cover.bySize.default_xs.sources.avif},
+                          {$product.cover.bySize.default_m.sources.avif} 2x",
+                      type="image/avif"
+                      >
+                    {/if}
+
+                    {if isset($product.cover.bySize.default_xs.sources.webp)}
+                      <source 
+                        srcset="
+                          {$product.cover.bySize.default_xs.sources.webp},
+                          {$product.cover.bySize.default_m.sources.webp} 2x"
+                        type="image/webp"
+                      >
+                    {/if}
+
+                    <img
+                      class="order-products__image card-img-top w-auto"
+                      srcset="
+                        {$product.cover.bySize.default_xs.url},
+                        {$product.cover.bySize.default_m.url} 2x"
+                      width="{$product.cover.bySize.default_xs.width}"
+                      height="{$product.cover.bySize.default_xs.height}"
+                      loading="lazy"
+                      alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                      title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                    >
+                  </picture>
                 {else}
-                  <img src="{$urls.no_picture_image.bySize.small_default.url}" loading="lazy" width="64" height="64"
-                    class="order-products__image card-img-top w-auto" />
+                  <picture>
+                    {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+                      <source 
+                        srcset="
+                          {$urls.no_picture_image.bySize.default_xs.sources.avif},
+                          {$urls.no_picture_image.bySize.default_m.sources.avif} 2x"
+                        type="image/avif"
+                      >
+                    {/if}
+
+                    {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+                      <source 
+                        srcset="
+                          {$urls.no_picture_image.bySize.default_xs.sources.webp},
+                          {$urls.no_picture_image.bySize.default_m.sources.webp} 2x"
+                        type="image/webp"
+                      >
+                    {/if}
+
+                    <img
+                      class="order-products__image card-img-top w-auto"
+                      srcset="
+                        {$urls.no_picture_image.bySize.default_xs.url},
+                        {$urls.no_picture_image.bySize.default_m.url} 2x"
+                      width="{$urls.no_picture_image.bySize.default_xs.width}"
+                      height="{$urls.no_picture_image.bySize.default_xs.height}"
+                      loading="lazy"
+                    >
+                  </picture>
                 {/if}
               </div>
 

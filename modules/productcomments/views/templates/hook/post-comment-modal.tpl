@@ -29,10 +29,71 @@
 
                 {block name='product_cover'}
                   <div class="product-cover">
-                    {if $product.cover}
-                      <img class="js-qv-product-cover rounded" src="{$product.cover.bySize.medium_default.url}" alt="{$product.cover.legend}" title="{$product.cover.legend}" style="width:100%;" itemprop="image">
+                    {if !empty($product.cover)}
+                      <picture>
+                        {if isset($product.cover.bySize.default_xs.sources.avif)}
+                          <source 
+                            srcset="
+                              {$product.cover.bySize.default_xs.sources.avif},
+                              {$product.cover.bySize.default_m.sources.avif} 2x"
+                            type="image/avif"
+                          >
+                        {/if}
+
+                        {if isset($product.cover.bySize.default_xs.sources.webp)}
+                          <source 
+                            srcset="
+                              {$product.cover.bySize.default_xs.sources.webp},
+                              {$product.cover.bySize.default_m.sources.webp} 2x"
+                            type="image/webp"
+                          >
+                        {/if}
+
+                        <img
+                          class="js-qv-product-cover rounded"
+                          srcset="
+                            {$product.cover.bySize.default_xs.url},
+                            {$product.cover.bySize.default_m.url} 2x"
+                          loading="lazy"
+                          width="{$product.cover.bySize.default_xs.width}"
+                          height="{$product.cover.bySize.default_xs.height}"
+                          {if !empty($product.cover.legend)}
+                            alt="{$product.cover.legend}"
+                            title="{$product.cover.legend}"
+                          {else}
+                            alt="{$product.name}"
+                          {/if}
+                      </picture>
                     {else}
-                      <img src="{$urls.no_picture_image.bySize.large_default.url nofilter}" style="width:100%;" class="rounded">
+                      <picture>
+                        {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+                          <source 
+                            srcset="
+                              {$urls.no_picture_image.bySize.default_xs.sources.avif},
+                              {$urls.no_picture_image.bySize.default_m.sources.avif} 2x"
+                            type="image/avif"
+                          >
+                        {/if}
+
+                        {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+                          <source 
+                            srcset="
+                              {$urls.no_picture_image.bySize.default_xs.sources.webp},
+                              {$urls.no_picture_image.bySize.default_m.sources.webp} 2x"
+                            type="image/webp"
+                          >
+                        {/if}
+
+                        <img
+                          class="rounded"
+                          srcset="
+                            {$urls.no_picture_image.bySize.default_xs.url},
+                            {$urls.no_picture_image.bySize.default_m.url} 2x"
+                          width="{$urls.no_picture_image.bySize.default_xs.width}"
+                          height="{$urls.no_picture_image.bySize.default_xs.height}"
+                          loading="lazy"
+                        >
+                      </picture>
                     {/if}
                   </div>
                 {/block}

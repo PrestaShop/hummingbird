@@ -1,5 +1,6 @@
 .thumbnails__container {
-  margin-top: 1rem;
+  max-height: 38.125rem;
+  overflow-y: scroll;
 
   .thumbnail {
     &:not(:last-child) {

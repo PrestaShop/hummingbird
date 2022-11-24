@@ -6,32 +6,21 @@
 const initVisiblePassword = () => {
   const {Theme} = window;
   const {visiblePassword: visiblePasswordMap} = Theme.selectors;
-  const visiblePasswordList = document.querySelectorAll<HTMLElement>(visiblePasswordMap.visiblePassword);
+  const visiblePasswordList = document.querySelectorAll(visiblePasswordMap.visiblePassword);
 
-  if (visiblePasswordList.length > 0) {
-    visiblePasswordList.forEach((visiblePasswordInput: HTMLInputElement) => {
-      const visiblePasswordBtn = visiblePasswordInput?.nextElementSibling;
+  visiblePasswordList.forEach((visiblePasswordInput: HTMLInputElement) => {
+    const visiblePasswordBtn = visiblePasswordInput?.nextElementSibling;
 
-      visiblePasswordBtn?.addEventListener('click', () => {
-        const visiblePasswordIcon = visiblePasswordBtn.firstElementChild;
-        let type = visiblePasswordInput.getAttribute('type');
-        let typeIcon = 'visibility';
+    visiblePasswordBtn?.addEventListener('click', () => {
+      const newType = visiblePasswordInput.getAttribute('type') === 'text' ? 'password' : 'text';
+      visiblePasswordInput.setAttribute('type', newType);
 
-        if (type === 'password') {
-          type = 'text';
-          typeIcon = 'visibility_off';
-        } else {
-          type = 'password';
-        }
-
-        visiblePasswordInput.setAttribute('type', type);
-
-        if (visiblePasswordIcon) {
-          visiblePasswordIcon.innerHTML = typeIcon;
-        }
-      });
+      const visiblePasswordIcon = visiblePasswordBtn.firstElementChild;
+      if (visiblePasswordIcon) {
+        visiblePasswordIcon.innerHTML = newType === 'text' ? 'visibility_off' : 'visibility';
+      }
     });
-  }
+  });
 };
 
 export default initVisiblePassword;

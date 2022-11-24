@@ -16,6 +16,7 @@ const initVisiblePassword = () => {
       input.setAttribute('type', newType);
 
       const icon = button.firstElementChild;
+
       if (icon) {
         icon.innerHTML = newType === 'text' ? 'visibility_off' : 'visibility';
       }

@@ -8,16 +8,16 @@ const initVisiblePassword = () => {
   const {visiblePassword: visiblePasswordMap} = Theme.selectors;
   const visiblePasswordList = document.querySelectorAll(visiblePasswordMap.visiblePassword);
 
-  visiblePasswordList.forEach((visiblePasswordInput: HTMLInputElement) => {
-    const visiblePasswordBtn = visiblePasswordInput?.nextElementSibling;
+  visiblePasswordList.forEach((input: HTMLInputElement) => {
+    const button = input?.nextElementSibling;
 
-    visiblePasswordBtn?.addEventListener('click', () => {
-      const newType = visiblePasswordInput.getAttribute('type') === 'text' ? 'password' : 'text';
-      visiblePasswordInput.setAttribute('type', newType);
+    button?.addEventListener('click', () => {
+      const newType = input.getAttribute('type') === 'text' ? 'password' : 'text';
+      input.setAttribute('type', newType);
 
-      const visiblePasswordIcon = visiblePasswordBtn.firstElementChild;
-      if (visiblePasswordIcon) {
-        visiblePasswordIcon.innerHTML = newType === 'text' ? 'visibility_off' : 'visibility';
+      const icon = button.firstElementChild;
+      if (icon) {
+        icon.innerHTML = newType === 'text' ? 'visibility_off' : 'visibility';
       }
     });
   });

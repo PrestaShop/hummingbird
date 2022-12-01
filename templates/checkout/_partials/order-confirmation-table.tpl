@@ -27,12 +27,7 @@
         {/if}
 
         {if is_array($product.customizations) && $product.customizations|count}
-          {foreach from=$product.customizations item="customization"}
-            <div class="customizations">
-              <a href="#" data-bs-toggle="modal" data-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
-            </div>
-            {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
-          {/foreach}
+          {include file="catalog/_partials/product-customization-modal.tpl" product=$product}
         {/if}
         
         {hook h='displayProductPriceBlock' product=$product type="unit_price"}

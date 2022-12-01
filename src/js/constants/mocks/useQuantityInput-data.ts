@@ -4,11 +4,12 @@
  */
 
 export const delay = 5;
-export const ProductId = 1;
+export const ProductId = '1';
+export const AlertId = '99999';
 
 export const ProductLineTemplate = `
   <div class="product-line">
-    <div id="js-product-line-alert--${ProductId}"></div>
+    <div id="js-product-line-alert--${AlertId}"></div>
     <div class="product-line__informations">
       <div class="row">
         <div class="quantity-button js-quantity-button">
@@ -21,6 +22,7 @@ export const ProductLineTemplate = `
             <input
               data-update-url="#"
               data-product-id="${ProductId}"
+              data-alert-id="${AlertId}"
               value="1"
               min="1"
               type="text"

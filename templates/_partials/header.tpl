@@ -53,9 +53,7 @@
       <div id="_desktop_logo" class="logo logo-desktop order-1 order-xl-0">
         {if $shop.logo_details}
           {if $page.page_name == 'index'}<h1>{/if}
-          <a class="navbar-brand" href="{$urls.pages.index}">
             {renderLogo}
-          </a>
           {if $page.page_name == 'index'}</h1>{/if}
         {/if}
       </div>

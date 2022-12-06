@@ -28,7 +28,7 @@ describe('useQuantityInput', () => {
       const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
       incrementButton.click();
       await debounceTimeout();
-      const productLineAlert = getHTMLElement<HTMLDivElement>(selectorsMap.qtyInput.alert(Quantify.ProductId));
+      const productLineAlert = getHTMLElement<HTMLDivElement>(selectorsMap.qtyInput.alert(Quantify.AlertId));
       mockedIncrementFetch.mockReset();
 
       expect(productLineAlert.innerHTML).not.toBe('');
@@ -79,6 +79,19 @@ describe('useQuantityInput', () => {
       mockedDecrementFetch.mockReset();
 
       expect(decreasedValue).toEqual(qtyMin);
+    });
+
+    it('should revert the value if is not an integer number', async () => {
+      const qtyInput = getHTMLElement<HTMLInputElement>('input');
+      const baseValue = qtyInput.value;
+      qtyInput.value = '1.1';
+      qtyInput.dispatchEvent(new Event('keyup'));
+
+      const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
+      incrementButton.click();
+      await debounceTimeout();
+
+      expect(qtyInput.value).toEqual(baseValue);
     });
 
     it('should display confirmation buttons on keyup', () => {

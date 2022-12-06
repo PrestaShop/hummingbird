@@ -55,6 +55,12 @@ global_settings:
      - ps_linklist
   hooks:
     modules_to_hook:
+      displayAdminCustomers:
+        - blockwishlist
+      displayCustomerAccount:
+        - blockwishlist
+      displayMyAccountBlock:
+        - blockwishlist
       displayNav1:
         - ps_contactinfo
       displayNav2:
@@ -83,6 +89,12 @@ global_settings:
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch
+      displayContactLeftColumn:
+        - ps_contactinfo
+      displayContactRightColumn:
+        - ps_contactinfo
+      displayContactContent:
+        - contactform
       displaySearch:
         - ps_searchbar
       displayProductAdditionalInfo:
@@ -91,6 +103,8 @@ global_settings:
         - ps_featuredproducts
       displayCrossSellingShoppingCart:
         - ps_featuredproducts
+      displayProductActions:
+        - blockwishlist
 
   image_types:
     cart_default:

@@ -75,6 +75,12 @@
 
     {hook h='displayAfterProductThumbs' product=$product}
   {else}
-      <img class="img-fluid" src="{$urls.no_picture_image.bySize.large_default.url}" loading="lazy">
+      <img 
+        class="img-fluid" 
+        src="{$urls.no_picture_image.bySize.large_default.url}" 
+        width="{$urls.no_picture_image.bySize.large_default.width}"
+        height="{$urls.no_picture_image.bySize.large_default.height}"
+        loading="lazy"
+      >
   {/if}
 </div>

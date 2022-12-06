@@ -4,6 +4,9 @@ This is a PrestaShop's theme we are working on. Please, if you work on this them
 
 [Read more](https://build.prestashop.com/news/new-theme-announce/) about this theme on the blog.
 
+![image](https://user-images.githubusercontent.com/16455155/199937084-3d2eab3f-dc3e-488f-8b87-e8d4565219b3.png)
+
+
 ## How to build assets
 
 Same as the PrestaShop project, you need at least **NodeJS 14.x** and **NPM 7** in order to build the project.

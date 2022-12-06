@@ -6,21 +6,13 @@
 import SelectorsMap from '@constants/selectors-map';
 
 const initCustomer = () => {
-  const returnTableMainCheckbox = document.querySelector<HTMLInputElement>(SelectorsMap.order.returnFormMainCheckbox);
-  const returnTableItemCheckbox = document.querySelectorAll(SelectorsMap.order.returnFormItemCheckbox);
-
-  if (returnTableMainCheckbox) {
-    returnTableMainCheckbox?.addEventListener('click', () => {
-      const checked: boolean = returnTableMainCheckbox?.checked;
-      returnTableItemCheckbox.forEach((checkbox: HTMLInputElement) => {
-        if (checked === true) {
-          checkbox.checked = true;
-        } else {
-          checkbox.checked = false;
-        }
-      });
-    });
-  }
+  const {returnFormMainCheckbox, returnFormItemCheckbox} = SelectorsMap.order;
+  const returnTableMainCheckbox = document.querySelector<HTMLInputElement>(returnFormMainCheckbox);
+  returnTableMainCheckbox?.addEventListener('click', () => {
+    const checked = !!returnTableMainCheckbox?.checked;
+    const itemCheckbox = document.querySelectorAll<HTMLInputElement>(returnFormItemCheckbox);
+    itemCheckbox.forEach((checkbox) => { checkbox.checked = checked; });
+  });
 };
 
 export default initCustomer;

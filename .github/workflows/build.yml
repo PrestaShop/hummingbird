@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: Remove dependencies
-        run: rm node_modules/ .github/ -rf
+        run: rm node_modules/ .github/ .git/ -rf
         
       - name: Create & Upload artifact
         uses: actions/upload-artifact@v1

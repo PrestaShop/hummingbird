@@ -8,10 +8,12 @@
     "@type": "Organization",
     "name" : "{$shop.name}",
     "url" : "{$urls.pages.index}",
-    "logo": {
-      "@type": "ImageObject",
-      "url":"{$shop.logo_details.src}"
-    }
+    {if $shop.logo_details}
+      "logo": {
+        "@type": "ImageObject",
+        "url":"{$shop.logo_details.src}"
+      }
+    {/if}
   }
 </script>
 
@@ -54,14 +56,14 @@
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-          {foreach from=$breadcrumb.links item=path name=breadcrumb}
-            {
-              "@type": "ListItem",
-              "position": {$smarty.foreach.breadcrumb.iteration},
-              "name": "{$path.title}",
-              "item": "{$path.url}"
-              }{if !$smarty.foreach.breadcrumb.last},{/if}
-            {/foreach}]
-          }
+        {foreach from=$breadcrumb.links item=path name=breadcrumb}
+          {
+            "@type": "ListItem",
+            "position": {$smarty.foreach.breadcrumb.iteration},
+            "name": "{$path.title}",
+            "item": "{$path.url}"
+            }{if !$smarty.foreach.breadcrumb.last},{/if}
+          {/foreach}]
+        }
   </script>
 {/if}

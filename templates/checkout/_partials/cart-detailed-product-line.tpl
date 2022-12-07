@@ -14,13 +14,8 @@
           {if isset($product.default_image.bySize.default_xs.sources.avif)}
             <source 
               srcset="
-<<<<<<< HEAD
                 {$product.default_image.bySize.default_xs.sources.avif},
                 {$product.default_image.bySize.default_m.sources.avif} 2x"
-=======
-                {$product.default_image.bySize.default_120.sources.avif},
-                {$product.default_image.bySize.default_200.sources.avif} 2x"
->>>>>>> c5027e0 (Review feedbacks)
               type="image/avif"
             >
           {/if}
@@ -28,13 +23,8 @@
           {if isset($product.default_image.bySize.default_xs.sources.webp)}
             <source 
               srcset="
-<<<<<<< HEAD
                 {$product.default_image.bySize.default_xs.sources.webp},
                 {$product.default_image.bySize.default_m.sources.webp} 2x"
-=======
-                {$product.default_image.bySize.default_120.sources.webp},
-                {$product.default_image.bySize.default_200.sources.webp} 2x"
->>>>>>> c5027e0 (Review feedbacks)
               type="image/webp"
             >
           {/if}
@@ -42,17 +32,10 @@
           <img
             class="img-fluid"
             srcset="
-<<<<<<< HEAD
               {$product.default_image.bySize.default_xs.url},
               {$product.default_image.bySize.default_m.url} 2x"
             width="{$product.default_image.bySize.default_xs.width}"
             height="{$product.default_image.bySize.default_xs.height}"
-=======
-              {$product.default_image.bySize.default_120.url},
-              {$product.default_image.bySize.default_200.url} 2x"
-            width="{$product.default_image.bySize.default_120.width}"
-            height="{$product.default_image.bySize.default_120.height}"
->>>>>>> c5027e0 (Review feedbacks)
             loading="lazy"
             alt="{$product.name|escape:'quotes'}"
             title="{$product.name|escape:'quotes'}"

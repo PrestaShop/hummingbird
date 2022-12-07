@@ -135,6 +135,43 @@ global_settings:
       width: 170
       height: 115
       scope: [stores]
+    default_xs:
+      width: 120
+      height: 120
+      scope: [products, manufacturers, suppliers, categories]
+    default_s:
+      width: 160
+      height: 160
+      scope: [categories, products]
+    default_m:
+      width: 200
+      height: 200
+      scope: [stores, manufacturers, suppliers, products]
+    default_md:
+      width: 320
+      height: 320
+      scope: [categories, products]
+    default_xl:
+      width: 400
+      height: 400
+      scope: [stores, products]
+    product_main:
+      width: 720
+      height: 720
+      scope: [products]
+    category_cover:
+      width: 1000
+      height: 200
+      scope: [categories]
+    product_main_2x:
+      width: 1440
+      height: 1440
+      scope: [products]
+    category_cover_2x:
+      width: 2000
+      height: 400
+      scope: [categories]
+
 
 theme_settings:
   rtl_generation: false

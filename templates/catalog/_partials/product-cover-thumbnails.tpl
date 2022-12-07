@@ -23,18 +23,47 @@
         {/if}
 
         {block name='product_cover'}
-          {foreach from=$product.images item=image key=key}
+          {foreach from=$product.images item=image key=key name=productImages}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
-              <img
-                class="img-fluid"
-                src="{$image.bySize.large_default.url}"
-                {if !empty($image.legend)}
+              <picture>
+                {if isset($image.bySize.default_md.sources.avif)}
+                  <source 
+                    srcset="
+                      {$image.bySize.default_md.sources.avif} 320w,
+                      {$image.bySize.product_main.sources.avif} 720w,
+                      {$image.bySize.product_main_2x.sources.avif} 1440w"
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    type="image/avif"
+                  >
+                {/if}
+
+                {if isset($image.bySize.default_md.sources.webp)}
+                  <source 
+                    srcset="
+                      {$image.bySize.default_md.sources.webp} 320w,
+                      {$image.bySize.product_main.sources.webp} 720w,
+                      {$image.bySize.product_main_2x.sources.webp} 1440w"
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    type="image/webp"
+                  >
+                {/if}
+
+                <img
+                  class="img-fluid"
+                  srcset="
+                    {$image.bySize.default_md.url} 320w,
+                    {$image.bySize.product_main.url} 720w,
+                    {$image.bySize.product_main_2x.url} 1440w"
+                  sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                  src="{$image.bySize.product_main.url}" 
+                  width="{$image.bySize.product_main.width}"
+                  height="{$image.bySize.product_main.height}"
+                  loading="{if $smarty.foreach.productImages.first}eager{else}lazy{/if}"
                   alt="{$image.legend}"
                   title="{$image.legend}"
-                {else}
-                  alt="{$product.name}"
-                {/if}
-                loading="lazy">
+                  data-full-size-image-url="{$image.bySize.home_default.url}"
+                >
+              </picture>
             </div>
           {/foreach}
         {/block}
@@ -54,19 +83,37 @@
               {/if}
               aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
           >
-              <img
-                class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
-                data-image-medium-src="{$image.bySize.medium_default.url}"
-                data-image-large-src="{$image.bySize.large_default.url}"
-                src="{$image.bySize.home_default.url}"
-                {if !empty($image.legend)}
-                  alt="{$image.legend}"
-                  title="{$image.legend}"
-                {else}
-                  alt="{$product.name}"
+              <picture>
+                {if isset($image.bySize.default_xs.sources.avif)}
+                  <source 
+                    srcset="
+                      {$image.bySize.default_xs.sources.avif},
+                      {$image.bySize.default_m.sources.avif} 2x",
+                  type="image/avif"
+                  >
                 {/if}
-                loading="lazy"
-            >
+
+                {if isset($image.bySize.default_xs.sources.webp)}
+                  <source 
+                    srcset="
+                      {$image.bySize.default_xs.sources.webp},
+                      {$image.bySize.default_m.sources.webp} 2x"
+                    type="image/webp"
+                  >
+                {/if}
+
+                <img
+                  class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
+                  srcset="
+                    {$image.bySize.default_xs.url},
+                    {$image.bySize.default_m.url} 2x"
+                  width="{$image.bySize.default_xs.width}"
+                  height="{$image.bySize.default_xs.height}"
+                  loading="lazy"
+                  alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
+                  title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
+                >
+              </picture>
             </li>
           {/foreach}
         </ul>
@@ -75,12 +122,43 @@
 
     {hook h='displayAfterProductThumbs' product=$product}
   {else}
-      <img 
-        class="img-fluid" 
-        src="{$urls.no_picture_image.bySize.large_default.url}" 
-        width="{$urls.no_picture_image.bySize.large_default.width}"
-        height="{$urls.no_picture_image.bySize.large_default.height}"
+    <picture>
+      {if isset($urls.no_picture_image.bySize.default_md.sources.avif)}
+        <source 
+          srcset="
+            {$urls.no_picture_image.bySize.default_md.sources.avif} 320w,
+            {$urls.no_picture_image.bySize.product_main.sources.avif} 720w,
+            {$urls.no_picture_image.bySize.product_main_2x.sources.avif} 1440w"
+          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+          type="image/avif"
+        >
+      {/if}
+
+      {if isset($urls.no_picture_image.bySize.default_md.sources.webp)}
+        <source 
+          srcset="
+            {$urls.no_picture_image.bySize.default_md.sources.webp} 320w,
+            {$urls.no_picture_image.bySize.product_main.sources.webp} 720w,
+            {$urls.no_picture_image.bySize.product_main_2x.sources.webp} 1440w"
+          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+          type="image/webp"
+        >
+      {/if}
+
+      <img
+        class="img-fluid"
+        srcset="
+          {$urls.no_picture_image.bySize.default_md.url} 320w,
+          {$urls.no_picture_image.bySize.product_main.url} 720w,
+          {$urls.no_picture_image.bySize.product_main_2x.url} 1440w"
+        sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+        width="{$urls.no_picture_image.bySize.product_main.width}"
+        height="{$urls.no_picture_image.bySize.product_main.height}"
+        src="{$urls.no_picture_image.bySize.default_md.url}" 
         loading="lazy"
+        alt="{l s='No image available' d='Shop.Theme.Catalog'}"
+        title="{l s='No image available' d='Shop.Theme.Catalog'}"
       >
+    </picture>
   {/if}
 </div>

@@ -57,12 +57,8 @@
                           loading="lazy"
                           width="{$product.cover.bySize.default_xs.width}"
                           height="{$product.cover.bySize.default_xs.height}"
-                          {if !empty($product.cover.legend)}
-                            alt="{$product.cover.legend}"
-                            title="{$product.cover.legend}"
-                          {else}
-                            alt="{$product.name}"
-                          {/if}
+                          alt="{$product.cover.legend}"
+                          title="{$product.cover.legend}"
                       </picture>
                     {else}
                       <picture>

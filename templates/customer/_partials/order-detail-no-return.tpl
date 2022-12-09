@@ -24,7 +24,7 @@
                     srcset="
                       {$product.cover.bySize.default_xs.sources.avif},
                       {$product.cover.bySize.default_m.sources.avif} 2x",
-                  type="image/avif"
+                    type="image/avif"
                   >
                 {/if}
 
@@ -45,8 +45,8 @@
                   width="{$product.cover.bySize.default_xs.width}"
                   height="{$product.cover.bySize.default_xs.height}"
                   loading="lazy"
-                  alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
-                  title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                  alt="{$product.cover.legend}"
+                  title="{$product.cover.legend}"
                 >
               </picture>
             {else}
@@ -145,7 +145,7 @@
             <div class="col-4">
               {if $product.cover}
                 <img src="{$product.cover.bySize.small_default.url}"
-                  alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
+                  alt="{$product.cover.legend}"
                   loading="lazy" data-full-size-image-url="{$product.cover.large.url}" width="64" height="64"
                   class="order-products__image card-img-top w-auto" />
               {else}

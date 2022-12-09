@@ -34,12 +34,8 @@
               loading="lazy"
               width="{$product.default_image.bySize.default_xs.width}"
               height="{$product.default_image.bySize.default_xs.height}"
-              {if !empty($product.default_image.legend)}
-                alt="{$product.default_image.legend}"
-                title="{$product.default_image.legend}"
-              {else}
-                alt="{$product.name}"
-              {/if}
+              alt="{$product.default_image.legend}"
+              title="{$product.default_image.legend}"
           </picture>
         {else}
           <picture>

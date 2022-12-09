@@ -13,12 +13,8 @@
               class="js-modal-product-cover product-cover-modal"
               width="{$product.default_image.bySize.large_default.width}"
               src="{$product.default_image.bySize.large_default.url}"
-              {if !empty($product.default_image.legend)}
-                alt="{$product.default_image.legend}"
-                title="{$product.default_image.legend}"
-              {else}
-                alt="{$product.name}"
-              {/if}
+              alt="{$product.default_image.legend}"
+              title="{$product.default_image.legend}"
               height="{$product.default_image.bySize.large_default.height}"
            >
           {else}
@@ -40,12 +36,8 @@
                       data-image-large-src="{$image.large.url}"
                       class="thumb js-modal-thumb"
                       src="{$image.medium.url}"
-                      {if !empty($image.legend)}
-                        alt="{$image.legend}"
-                        title="{$image.legend}"
-                      {else}
-                        alt="{$product.name}"
-                      {/if}
+                      alt="{$image.legend}"
+                      title="{$image.legend}"
                       width="{$image.medium.width}"
                       height="148"
                    >

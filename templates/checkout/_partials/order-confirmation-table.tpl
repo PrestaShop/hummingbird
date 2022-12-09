@@ -11,9 +11,66 @@
 
       <div class="item__image col-lg-1 col-md-2 col-sm-2 col-3 mb-2 mb-md-0">
           {if !empty($product.default_image)}
-            <img src="{$product.default_image.medium.url}" loading="lazy" class="img-fluid" />
+            <picture>
+              {if isset($product.default_image.bySize.default_xs.sources.avif)}
+                <source 
+                  srcset="
+                    {$product.default_image.bySize.default_xs.sources.avif},
+                    {$product.default_image.bySize.default_m.sources.avif} 2x"
+                  type="image/avif"
+                >
+              {/if}
+
+              {if isset($product.default_image.bySize.default_xs.sources.webp)}
+                <source 
+                  srcset="
+                    {$product.default_image.bySize.default_xs.sources.webp},
+                    {$product.default_image.bySize.default_m.sources.webp} 2x"
+                  type="image/webp"
+                >
+              {/if}
+
+              <img
+                class="img-fluid"
+                srcset="
+                  {$product.default_image.bySize.default_xs.url},
+                  {$product.default_image.bySize.default_m.url} 2x"
+                loading="lazy"
+                width="{$product.default_image.bySize.default_xs.width}"
+                height="{$product.default_image.bySize.default_xs.height}"
+                alt="{$product.default_image.legend}"
+                title="{$product.default_image.legend}"
+            </picture>
           {else}
-            <img src="{$urls.no_picture_image.bySize.medium_default.url}" loading="lazy" class="img-fluid" />
+            <picture>
+              {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+                <source 
+                  srcset="
+                    {$urls.no_picture_image.bySize.default_xs.sources.avif},
+                    {$urls.no_picture_image.bySize.default_m.sources.avif} 2x"
+                  type="image/avif"
+                >
+              {/if}
+
+              {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+                <source 
+                  srcset="
+                    {$urls.no_picture_image.bySize.default_xs.sources.webp},
+                    {$urls.no_picture_image.bySize.default_m.sources.webp} 2x"
+                  type="image/webp"
+                >
+              {/if}
+
+              <img
+                class="img-fluid"
+                srcset="
+                  {$urls.no_picture_image.bySize.default_xs.url},
+                  {$urls.no_picture_image.bySize.default_m.url} 2x"
+                width="{$urls.no_picture_image.bySize.default_xs.width}"
+                height="{$urls.no_picture_image.bySize.default_xs.height}"
+                loading="lazy"
+              >
+            </picture>
           {/if}
       </div>
 

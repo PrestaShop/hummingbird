@@ -110,8 +110,8 @@
                   width="{$image.bySize.default_xs.width}"
                   height="{$image.bySize.default_xs.height}"
                   loading="lazy"
-                  alt="{if !empty($image)}{$image.legend}{else}{$product.name}{/if}"
-                  title="{if !empty($image.legend)}{$image.legend}{else}{$product.name}{/if}"
+                  alt="{$image.legend}"
+                  title="{$image.legend}"
                 >
               </picture>
             </li>

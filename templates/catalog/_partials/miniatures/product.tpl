@@ -50,8 +50,8 @@
                   width="{$product.cover.bySize.default_md.width}"
                   height="{$product.cover.bySize.default_md.height}"
                   loading="lazy"
-                  alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
-                  title="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name}{/if}"
+                  alt="{$product.cover.legend}"
+                  title="{$product.cover.legend}"
                   data-full-size-image-url="{$product.cover.bySize.home_default.url}"
                 >
               </picture>

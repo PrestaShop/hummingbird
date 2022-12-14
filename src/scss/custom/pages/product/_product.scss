@@ -31,7 +31,7 @@
 
     &__tax-label {
       margin-bottom: 1.5rem;
-      color: $gray-700;
+      color: var(--bs-gray-700);
     }
 
     &__prices {
@@ -44,7 +44,7 @@
 
     &__discount {
       margin-left: 0.5rem;
-      color: $gray-700;
+      color: var(--bs-gray-700);
     }
 
     &__price-regular {

@@ -1,6 +1,6 @@
 @use "sass:color";
 
-$default-icon-color: $primary !default;
+$default-icon-color: var(--bs-primary) !default;
 
 
 body,
@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: $font-family-base;
-  color: $body-color;
+  color: var(--bs-body-color);
   direction: ltr;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -61,9 +61,9 @@ label .color,
 }
 
 .bright {
-  color: $gray-100;
+  color: var(--bs-gray-100);
 }
 
 .dark {
-  color: $gray-800;
+  color: var(--bs-gray-800);
 }

@@ -13,7 +13,7 @@ $component-name: header;
       &:hover {
         &,
         i {
-          color: $primary;
+          color: var(--bs-primary);
         }
       }
     }
@@ -39,11 +39,11 @@ $component-name: header;
     .nav-link {
       &:active,
       &.active {
-        color: $white;
+        color: var(--bs-white);
       }
 
       &:active:hover {
-        color: $white;
+        color: var(--bs-white);
       }
     }
   }

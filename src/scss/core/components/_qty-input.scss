@@ -13,13 +13,13 @@
 
     &.increment {
       .confirmation {
-        color: $success;
+        color: var(--bs-success);
       }
     }
 
     &.decrement {
       .confirmation {
-        color: $danger;
+        color: var(--bs-danger);
       }
     }
 

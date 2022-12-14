@@ -13,7 +13,7 @@ $component-name: product-miniature;
     &__top,
     &__bottom {
       padding: 0.25rem 0.5rem;
-      background-color: $white;
+      background-color: var(--bs-white);
     }
 
     &__top {

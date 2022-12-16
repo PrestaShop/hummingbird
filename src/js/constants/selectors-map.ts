@@ -145,6 +145,7 @@ const selectorsMap = {
     carousel: '.js-product-carousel',
     miniature: '.js-product-miniature',
     thumbnail: '.js-thumb-container',
+    thumbnailsContainer: '.js-thumbnails-container',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
   },
   order: {

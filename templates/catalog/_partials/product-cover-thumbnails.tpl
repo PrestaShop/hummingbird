@@ -6,11 +6,11 @@
 <div class="product__images js-images-container row">
   {if $product.images|@count > 0}
     {block name='product_images'}
-      <div class="thumbnails__container col col-md-2"
+      <div class="thumbnails__container row mt-4 mt-md-0 flex-nowrap flex-md-wrap js-thumbnails-container px-3 col-12 col-md-2 order-2 order-md-1"
         <ul class="thumbnails__list row g-2">
           {foreach from=$product.images item=image key=key}
             <li
-              class="thumbnail js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
+              class="thumbnail p-md-0 col-4 col-sm-3 col-md-12 js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
               data-bs-target="#product-images"
               data-bs-slide-to="{$key}"
               {if $image.id_image == $product.default_image.id_image}
@@ -57,7 +57,7 @@
 
     {hook h='displayAfterProductThumbs' product=$product}
 
-    <div id="product-images" class="carousel slide js-product-carousel col col-md-10"
+    <div id="product-images" class="carousel slide js-product-carousel col-12 col-md-10 order-1 order-md-2"
       data-bs-ride="carousel" data-bs-interval="5000">
 
       <div class="carousel-inner">

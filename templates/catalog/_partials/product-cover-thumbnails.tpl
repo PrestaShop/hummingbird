@@ -10,7 +10,7 @@
         <ul class="thumbnails__list row g-2">
           {foreach from=$product.images item=image key=key}
             <li
-              class="thumbnail js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if} col-3 col-md-2"
+              class="thumbnail js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
               data-bs-target="#product-images"
               data-bs-slide-to="{$key}"
               {if $image.id_image == $product.default_image.id_image}
@@ -58,7 +58,7 @@
     {hook h='displayAfterProductThumbs' product=$product}
 
     <div id="product-images" class="carousel slide js-product-carousel col col-md-10"
-      data-bs-ride="carousel" data-bs-interval="false">
+      data-bs-ride="carousel" data-bs-interval="5000">
 
       <div class="carousel-inner">
         {include file='catalog/_partials/product-flags.tpl'}

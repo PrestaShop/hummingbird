@@ -3,6 +3,8 @@
   overflow-y: scroll;
 
   .thumbnail {
+    list-style-type: none;
+
     &:not(:last-child) {
       margin-bottom: 0.75rem;
     }

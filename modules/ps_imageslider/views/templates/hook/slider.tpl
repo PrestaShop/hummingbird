@@ -20,7 +20,7 @@
             aria-hidden="{if $smarty.foreach.homeslider.first}false{else}true{/if}">
             {if !empty($slide.url)}<a class="carousel-link" href="{$slide.url}">{/if}
               <figure class="carousel-content">
-                <img src="{$slide.image_url}" alt="{$slide.legend|escape}" loading="lazy" width="1110" height="340">
+                <img src="{$slide.image_url}" alt="{$slide.legend|escape}" loading="lazy" {$slide.size|replace: '"':''}>
                 {if $slide.title || $slide.description}
                   <figcaption class="carousel-caption caption">
                     <h2 class="display-1 text-uppercase">{$slide.title}</h2>
@@ -35,11 +35,11 @@
 
       <button class="carousel-control-prev" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">{l s='Previous' d='Shop.Theme.Actions'}</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">{l s='Next' d='Shop.Theme.Actions'}</span>
       </button>
     </div>
   </div>

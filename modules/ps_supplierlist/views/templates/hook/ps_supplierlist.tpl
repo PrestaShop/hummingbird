@@ -7,7 +7,7 @@
 <div id="search_filters_suppliers">
   <section class="facet {$componentName}">
     {if $display_link_supplier}
-      <a href="{$page_link}" class="{$componentName}-title" title="{l s='Suppliers' d='Shop.Theme.Catalog'}">
+      <a href="{$page_link}" class="{$componentName}-title d-block mb-3" title="{l s='Suppliers' d='Shop.Theme.Catalog'}">
         {l s='Suppliers' d='Shop.Theme.Catalog'}
       </a>
     {else}

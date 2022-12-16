@@ -6,7 +6,7 @@
 
 {block name='content'}
   {block name='brand_header'}
-    <h1>{l s='Brands' d='Shop.Theme.Catalog'}</h1>
+    <h1 class="h1 mb-4">{l s='Brands' d='Shop.Theme.Catalog'}</h1>
   {/block}
 
   {block name='brand_miniature'}

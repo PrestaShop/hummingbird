@@ -1,0 +1,30 @@
+$component-name: search-filters-modules;
+
+.#{$component-name} {
+  margin: 2rem 0 0;
+  padding: 1rem 0 0;
+  border-top: var(--category-tree-border-bottom);
+  @include media-breakpoint-down(sm) {
+    margin: 0 0 2rem;
+    padding: 0 0 1rem;
+    border-top: 0;
+    border-bottom: var(--category-tree-border-bottom);
+  }
+
+  &-title {
+    font-size: var(--category-tree-title-size);
+    font-weight: 600;
+    color: var(--category-tree-title-color);
+  }
+  &__list {
+    margin-bottom: 0;
+  }
+  &__item {
+    &__link {
+      display: block;
+      font-weight: 600;
+      line-height: 2rem;
+      color: var(--category-tree-title-color);
+    }
+  }
+}

@@ -2,15 +2,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
+{$componentName = 'search-filters-modules'}
 
 <div id="search_filters_suppliers">
-  <section class="facet">
+  <section class="facet {$componentName}">
     {if $display_link_supplier}
-      <a href="{$page_link}" class="h6 text-uppercase facet-label" title="{l s='Suppliers' d='Shop.Theme.Catalog'}">
+      <a href="{$page_link}" class="{$componentName}-title" title="{l s='Suppliers' d='Shop.Theme.Catalog'}">
         {l s='Suppliers' d='Shop.Theme.Catalog'}
       </a>
     {else}
-      <p class="h6 text-uppercase facet-label">
+      <p class="{$componentName}-title">
         {l s='Suppliers' d='Shop.Theme.Catalog'}
       </p>
     {/if}

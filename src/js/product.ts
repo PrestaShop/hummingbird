@@ -20,7 +20,7 @@ export default () => {
 
   function onProductSlide(event: ProductSlideEvent): void {
     const thumbnails = document.querySelectorAll(SelectorsMap.product.thumbnail);
-    const thumbnailsContainer = document.querySelector(SelectorsMap.product.thumbnailsContainer);
+    const thumbContainer = document.querySelector(SelectorsMap.product.thumbContainer);
 
     thumbnails.forEach((e: Element) => {
       e.classList.remove('active');
@@ -31,8 +31,8 @@ export default () => {
     if (activeThumb) {
       const activeThumbRect = activeThumb.getBoundingClientRect();
 
-      if (thumbnailsContainer) {
-        const thumbContainerRect = thumbnailsContainer.getBoundingClientRect();
+      if (thumbContainer) {
+        const thumbContainerRect = thumbContainer.getBoundingClientRect();
         const safetyZone = 20;
 
         if (
@@ -40,9 +40,9 @@ export default () => {
           || thumbContainerRect.top + safetyZone > activeThumbRect.bottom)
           && !prestashop.responsive.mobile
         ) {
-          thumbnailsContainer.scroll({
-            left: thumbnailsContainer.scrollLeft + activeThumbRect.left - thumbContainerRect.left,
-            top: thumbnailsContainer.scrollTop + activeThumbRect.top - thumbContainerRect.top,
+          thumbContainer.scroll({
+            left: thumbContainer.scrollLeft + activeThumbRect.left - thumbContainerRect.left,
+            top: thumbContainer.scrollTop + activeThumbRect.top - thumbContainerRect.top,
             behavior: 'smooth',
           });
         }
@@ -52,9 +52,9 @@ export default () => {
           || thumbContainerRect.left + safetyZone > activeThumbRect.left)
           && prestashop.responsive.mobile
         ) {
-          thumbnailsContainer.scroll({
-            left: thumbnailsContainer.scrollLeft + activeThumbRect.left - thumbContainerRect.left,
-            top: thumbnailsContainer.scrollTop + activeThumbRect.top - thumbContainerRect.top,
+          thumbContainer.scroll({
+            left: thumbContainer.scrollLeft + activeThumbRect.left - thumbContainerRect.left,
+            top: thumbContainer.scrollTop + activeThumbRect.top - thumbContainerRect.top,
             behavior: 'smooth',
           });
         }

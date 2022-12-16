@@ -59,6 +59,7 @@
                           height="{$product.cover.bySize.default_xs.height}"
                           alt="{$product.cover.legend}"
                           title="{$product.cover.legend}"
+                        >
                       </picture>
                     {else}
                       <picture>

@@ -26,40 +26,40 @@ export default () => {
       e.classList.remove('active');
     });
 
-    const activeThumbnail = document.querySelector(SelectorsMap.product.activeThumbail(event.to));
+    const activeThumb = document.querySelector(SelectorsMap.product.activeThumbail(event.to));
 
-    if (activeThumbnail) {
-      const activeThumbailRect = activeThumbnail.getBoundingClientRect();
+    if (activeThumb) {
+      const activeThumbRect = activeThumb.getBoundingClientRect();
 
       if (thumbnailsContainer) {
-        const thumbnailsContainerRect = thumbnailsContainer.getBoundingClientRect();
+        const thumbContainerRect = thumbnailsContainer.getBoundingClientRect();
         const safetyZone = 20;
 
         if (
-          (thumbnailsContainerRect.bottom - safetyZone < activeThumbailRect.top
-          || thumbnailsContainerRect.top + safetyZone > activeThumbailRect.bottom)
+          (thumbContainerRect.bottom - safetyZone < activeThumbRect.top
+          || thumbContainerRect.top + safetyZone > activeThumbRect.bottom)
           && !prestashop.responsive.mobile
         ) {
           thumbnailsContainer.scroll({
-            left: thumbnailsContainer.scrollLeft + activeThumbailRect.left - thumbnailsContainerRect.left,
-            top: thumbnailsContainer.scrollTop + activeThumbailRect.top - thumbnailsContainerRect.top,
+            left: thumbnailsContainer.scrollLeft + activeThumbRect.left - thumbContainerRect.left,
+            top: thumbnailsContainer.scrollTop + activeThumbRect.top - thumbContainerRect.top,
             behavior: 'smooth',
           });
         }
 
         if (
-          (thumbnailsContainerRect.right - safetyZone < activeThumbailRect.right
-          || thumbnailsContainerRect.left + safetyZone > activeThumbailRect.left)
+          (thumbContainerRect.right - safetyZone < activeThumbRect.right
+          || thumbContainerRect.left + safetyZone > activeThumbRect.left)
           && prestashop.responsive.mobile
         ) {
           thumbnailsContainer.scroll({
-            left: thumbnailsContainer.scrollLeft + activeThumbailRect.left - thumbnailsContainerRect.left,
-            top: thumbnailsContainer.scrollTop + activeThumbailRect.top - thumbnailsContainerRect.top,
+            left: thumbnailsContainer.scrollLeft + activeThumbRect.left - thumbContainerRect.left,
+            top: thumbnailsContainer.scrollTop + activeThumbRect.top - thumbContainerRect.top,
             behavior: 'smooth',
           });
         }
       }
-      activeThumbnail.classList.add('active');
+      activeThumb.classList.add('active');
     }
   }
 

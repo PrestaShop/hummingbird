@@ -5,7 +5,7 @@
 {$componentName = 'search-filters-modules'}
 
 <div id="search_filters_brands">
-  <section class="facet {$componentName}">
+  <section class="{$componentName} facet">
     {if $display_link_brand}
       <a href="{$page_link}" class="{$componentName}-title d-block mb-3" title="{l s='brands' d='shop.theme.catalog'}">
         {l s='Brands' d='Shop.Theme.Catalog'}

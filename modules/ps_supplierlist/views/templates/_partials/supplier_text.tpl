@@ -7,7 +7,7 @@
 <ul class="{$componentName}__list">
   {foreach from=$suppliers item=supplier name=supplier_list}
     {if $smarty.foreach.supplier_list.iteration <= $text_list_nb}
-      <li class="facet-label {$componentName}__item">
+      <li class="{$componentName}__item facet-label">
         <a class="{$componentName}__item__link" href="{$supplier['link']}" title="{$supplier['name']}">
           {$supplier['name']}
         </a>

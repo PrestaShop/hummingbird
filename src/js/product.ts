@@ -20,41 +20,41 @@ export default () => {
 
   function onProductSlide(event: ProductSlideEvent): void {
     const thumbnails = document.querySelectorAll(SelectorsMap.product.thumbnail);
-    const thumbContainer = document.querySelector(SelectorsMap.product.thumbContainer);
+    const thumbsContainer = document.querySelector(SelectorsMap.product.thumbsContainer);
 
     thumbnails.forEach((e: Element) => {
       e.classList.remove('active');
     });
 
-    const activeThumb = document.querySelector(SelectorsMap.product.activeThumbail(event.to));
+    const activeThumb = document.querySelector(SelectorsMap.product.activeThumbnail(event.to));
 
     if (activeThumb) {
       const activeThumbRect = activeThumb.getBoundingClientRect();
 
-      if (thumbContainer) {
-        const thumbContainerRect = thumbContainer.getBoundingClientRect();
+      if (thumbsContainer) {
+        const thumbsContainerRect = thumbsContainer.getBoundingClientRect();
         const safetyZone = 20;
 
         if (
-          (thumbContainerRect.bottom - safetyZone < activeThumbRect.top
-          || thumbContainerRect.top + safetyZone > activeThumbRect.bottom)
+          (thumbsContainerRect.bottom - safetyZone < activeThumbRect.top
+          || thumbsContainerRect.top + safetyZone > activeThumbRect.bottom)
           && !prestashop.responsive.mobile
         ) {
-          thumbContainer.scroll({
-            left: thumbContainer.scrollLeft + activeThumbRect.left - thumbContainerRect.left,
-            top: thumbContainer.scrollTop + activeThumbRect.top - thumbContainerRect.top,
+          thumbsContainer.scroll({
+            left: thumbsContainer.scrollLeft + activeThumbRect.left - thumbsContainerRect.left,
+            top: thumbsContainer.scrollTop + activeThumbRect.top - thumbsContainerRect.top,
             behavior: 'smooth',
           });
         }
 
         if (
-          (thumbContainerRect.right - safetyZone < activeThumbRect.right
-          || thumbContainerRect.left + safetyZone > activeThumbRect.left)
+          (thumbsContainerRect.right - safetyZone < activeThumbRect.right
+          || thumbsContainerRect.left + safetyZone > activeThumbRect.left)
           && prestashop.responsive.mobile
         ) {
-          thumbContainer.scroll({
-            left: thumbContainer.scrollLeft + activeThumbRect.left - thumbContainerRect.left,
-            top: thumbContainer.scrollTop + activeThumbRect.top - thumbContainerRect.top,
+          thumbsContainer.scroll({
+            left: thumbsContainer.scrollLeft + activeThumbRect.left - thumbsContainerRect.left,
+            top: thumbsContainer.scrollTop + activeThumbRect.top - thumbsContainerRect.top,
             behavior: 'smooth',
           });
         }

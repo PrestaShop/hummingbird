@@ -132,7 +132,7 @@ type SelectorsMap = {
     carousel: string,
     miniature: string,
     thumbnail: string,
-    activeThumbail: (id: number) => string,
+    activeThumbnail: (id: number) => string,
   },
   modalBody: string,
   pageCms: string,

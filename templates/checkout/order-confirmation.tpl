@@ -38,6 +38,10 @@
     {$HOOK_ORDER_CONFIRMATION nofilter}
   {/block}
 
+  {block name='hook_order_confirmation_1'}
+    {hook h='displayOrderConfirmation1'}
+  {/block}
+
   {block name='order_details'}
     <div class="{$componentName}__details card bg-light border-1 mb-3">
       <div class="card-body">
@@ -71,10 +75,6 @@
       </div>
     {/block}
   {/if}
-
-  {block name='hook_order_confirmation_1'}
-    {hook h='displayOrderConfirmation1'}
-  {/block}
 
   {block name='hook_order_confirmation_2'}
     {hook h='displayOrderConfirmation2'}

@@ -38,6 +38,13 @@
             font-weight: 600;
             color: $dropdown-link-color;
 
+            &:hover {
+              &,
+              i {
+                color: var(--bs-primary);
+              }
+            }
+
             &::after {
               display: none;
             }

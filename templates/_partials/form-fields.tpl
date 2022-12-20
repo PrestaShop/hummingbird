@@ -57,7 +57,6 @@
                 name="{$field.name}"
                 id="{$field.name}_{$value}"
                 value="{$value}"
-                checked
                 {if $field.required}required{/if}
                 {if $value eq $field.value} checked {/if}
               >

@@ -15,6 +15,13 @@ $component-name: header;
 
   a:not(.dropdown-item) {
     color: var(--header-color);
+
+    &:hover {
+      &,
+      i {
+        color: var(--bs-primary);
+      }
+    }
   }
 
   &__top {

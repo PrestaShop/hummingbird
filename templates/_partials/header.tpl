@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 {$headerTopName = 'header__top'}
-{$headerBottomName = 'header__bottom'}
+{$headerBottomName = 'header-bottom'}
 
 {block name='header_banner'}
   <div class="header__banner">
@@ -22,14 +22,25 @@
           {hook h='displayNav2'}
         </div>
       </div>
+    </div>
+  </nav>
+{/block}
 
-      <div class="{$headerTopName}-mobile hidden-on-desktop">
-        <div id="_mobile_menu"></div>
-        <div id="_mobile_logo" class="logo logo-mobile"></div>
+{block name='header_bottom'}
+  <div class="{$headerBottomName}">
+    <div class="container-md {$headerBottomName}__container">
+      <div class="row align-items-center mx-n1 {$headerBottomName}__row">
+        <div class="col-auto logo px-1 order-xl-1 me-lg-0 me-auto">
+          {if $shop.logo_details}
+            {if $page.page_name == 'index'}<h1 class="mb-0">{/if}
+              {renderLogo}
+            {if $page.page_name == 'index'}</h1>{/if}
+          {/if}
+        </div>
 
-        <div class="search__mobile hide-on-desktop">
+        <div class="search__mobile hidden-on-desktop col-auto px-1">
           <button class="search__mobile__toggler btn d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
-            <span class="material-icons">search</span>  
+            <span class="material-icons">search</span>
           </button>
 
           <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top" data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
@@ -40,25 +51,11 @@
           </div>
         </div>
 
-        <div id="_mobile_user_info"></div>
-        <div id="_mobile_cart"></div>
-      </div>
-    </div>
-  </nav>
-{/block}
+        {hook h='displayTop'}
 
-{block name='header_bottom'}
-  <div class="{$headerBottomName}">
-    <div class="container {$headerBottomName}__container">
-      <div id="_desktop_logo" class="logo logo-desktop order-1 order-xl-0">
-        {if $shop.logo_details}
-          {if $page.page_name == 'index'}<h1>{/if}
-            {renderLogo}
-          {if $page.page_name == 'index'}</h1>{/if}
-        {/if}
+        <div id="_mobile_user_info" class="hidden-on-desktop col-auto px-1"></div>
+        <div id="_mobile_cart" class="hidden-on-desktop col-auto px-1"></div>
       </div>
-
-      {hook h='displayTop'}
     </div>
   </div>
   {hook h='displayNavFullWidth'}

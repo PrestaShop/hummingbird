@@ -58,45 +58,18 @@ $component-name: header;
       padding: 0.25rem 0;
     }
 
-    &-mobile {
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: center;
-      justify-content: space-between;
-
-      .logo-mobile {
-        flex-shrink: 1;
-        margin-right: auto;
-      }
-    }
-
     @include media-breakpoint-down(sm) {
       .container {
         padding: 0;
       }
     }
   }
+}
 
-  &__bottom {
-    &__container {
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: center;
-      justify-content: space-between;
-
-      @include media-breakpoint-up(md) {
-        min-height: 4rem;
-      }
-
-      .logo {
-        h1 {
-          margin-bottom: 0;
-        }
-
-        a {
-          display: block;
-        }
-      }
+.header-bottom {
+  &__row {
+    @include media-breakpoint-up(md) {
+      min-height: 4rem;
     }
   }
 }

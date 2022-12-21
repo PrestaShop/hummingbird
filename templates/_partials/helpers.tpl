@@ -4,7 +4,7 @@
  *}
 
 {function renderLogo}
-  <a class="navbar-brand" href="{$urls.pages.index}">
+  <a class="navbar-brand d-block" href="{$urls.pages.index}">
     <img
       class="logo img-fluid"
       src="{$shop.logo_details.src}"

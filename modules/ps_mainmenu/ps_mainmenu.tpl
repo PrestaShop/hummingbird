@@ -13,7 +13,7 @@
         {if $depth > 1 && $node.children|count}
           <div class="dropdown dropend">
         {/if}
-          <a 
+          <a
             class="main-menu__tree__link{if $node.children|count} dropdown-toggle{/if}{if $depth > 0} dropdown-item{/if}"
             href="{$node.url}"
             data-depth="{$depth}"
@@ -63,11 +63,11 @@
           <li class="main-menu__title h5">{$parent.label}</li>
         {/if}
         {foreach from=$nodes item=node}
-          <li 
+          <li
             class="{$node.type}{if $node.current} current{/if}{if $node.children|count} menu--childrens{/if}"
             id="{$node.page_identifier}"
           >
-            <a 
+            <a
               class="{if $depth>= 0}menu__link{/if}"
               href="{$node.url}"
               data-depth="{$depth}"
@@ -94,23 +94,23 @@
       </ul>
     </nav>
     {foreach from=$children item=child}
-      {mobileMenu 
-        nodes=$child.children 
-        depth=$child.children[0].depth 
-        parent=$child backTitle=$child.parent.label 
+      {mobileMenu
+        nodes=$child.children
+        depth=$child.children[0].depth
+        parent=$child backTitle=$child.parent.label
         expandId=$child.expandId
       }
     {/foreach}
   {/if}
 {/function}
 
-<div id="_desktop_menu" class="main-menu main-menu--desktop order-0 order-xl-1">
+<div class="main-menu col-xl col-auto px-1">
   <div class="d-none d-xl-block position-static js-menu-desktop">
     {desktopMenu nodes=$menu.children}
   </div>
   <button
-    class="main-menu__toggler btn btn-unstyle d-xl-none me-2" 
-    type="button" 
+    class="main-menu__toggler btn btn-unstyle d-xl-none"
+    type="button"
     data-bs-toggle="offcanvas"
     data-bs-target="#mobileMenu"
     aria-controls="mobileMenu"
@@ -120,8 +120,8 @@
 </div>
 
 <div
-  class="main-menu__offcanvas offcanvas offcanvas-start js-menu-canvas" 
-  tabindex="-1" 
+  class="main-menu__offcanvas offcanvas offcanvas-start js-menu-canvas"
+  tabindex="-1"
   id="mobileMenu"
   aria-labelledby="mobileMenuLabel"
 >

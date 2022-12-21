@@ -5,5 +5,5 @@
 {extends file='catalog/brands.tpl'}
 
 {block name='brand_header'}
-  <h1 class="h1 mb-4">{l s='Suppliers' d='Shop.Theme.Catalog'}</h1>
+  {include file="components/page-title-section.tpl" title={l s='Suppliers' d='Shop.Theme.Catalog'}}
 {/block}

@@ -92,6 +92,22 @@
       border: 1px $gray-200 solid;
     }
   }
+
+  @include media-breakpoint-down(md) {
+    .carousel-control-next {
+      right: 1rem;
+    }
+
+    .carousel-control-prev {
+      left: 1rem;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
 }
 
 // Needs to be outside of the .page-product scope because it can be inside a modal

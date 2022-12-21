@@ -6,7 +6,7 @@
 <div class="product__images js-images-container">
   {if $product.images|@count > 0}
     <div id="product-images" class="carousel slide js-product-carousel"
-      data-bs-ride="carousel" data-bs-interval="false">
+      data-bs-ride="carousel">
 
       <div class="carousel-inner">
         {include file='catalog/_partials/product-flags.tpl'}

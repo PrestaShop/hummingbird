@@ -10,9 +10,9 @@
 
 {else}
 
-  <div class="mb-3 {if !empty($field.errors)}has-error{/if}">
+  <div class="mb-3{if !empty($field.errors)} has-error{/if}">
     {if ($field.type !== 'checkbox')}
-      <label class="form-label{if $field.required} required{/if}">
+      <label class="form-label{if $field.required} required{/if}" for="{$field.name}">
         {if $field.type !== 'checkbox'}
           {$field.label}
         {/if}
@@ -59,7 +59,7 @@
                 value="{$value}"
                 {if $field.required}required{/if}
                 {if $value eq $field.value} checked {/if}
-              >
+              />
               <label class="form-check-label" for="{$field.name}_{$value}">
                 {$label}
               </label>
@@ -80,7 +80,7 @@
             id="{$field.name}"
             value="1" {if $field.value}checked="checked"{/if}
             {if $field.required}required{/if}
-          >
+          />
           <label class="form-check-label" for="{$field.name}">
             {$field.label nofilter}
           </label>
@@ -90,7 +90,7 @@
     {elseif $field.type === 'date'}
 
       {block name='form_field_item_date'}
-        <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
+        <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if} />
         {if isset($field.availableValues.comment)}
           <span class="form-text">
             {$field.availableValues.comment}
@@ -128,6 +128,7 @@
           <input
             class="form-control js-child-focus js-visible-password"
             name="{$field.name}"
+            id="{$field.name}"
             type="password"
             {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
             value=""
@@ -138,7 +139,7 @@
             {if isset($configuration.password_policy.minimum_score)}data-minscore="{$configuration.password_policy.minimum_score}"{/if}
             data-bs-placement="top"
             data-bs-trigger="manual"
-          >
+          />
 
           <button
             class="btn btn-primary"
@@ -158,14 +159,15 @@
         <input
           class="form-control"
           name="{$field.name}"
+          id="{$field.name}"
           type="{$field.type}"
           value="{$field.value}"
           {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
           {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
           {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
-          {if $field.required}required{/if}
           aria-label="{$field.name}"
-        >
+          {if $field.required}required{/if}
+        />
         {if isset($field.availableValues.comment)}
           <span class="form-text">
             {$field.availableValues.comment}
@@ -179,13 +181,12 @@
       {include file='_partials/form-errors.tpl' errors=$field.errors}
     {/block}
 
-    <div class="form-text">
-      {block name='form_field_comment'}
-        {if (!$field.required && !in_array($field.type, ['radio-buttons', 'checkbox']))}
-         {l s='Optional' d='Shop.Forms.Labels'}
-        {/if}
-      {/block}
-    </div>
+    {block name='form_field_comment'}
+      {if (!$field.required && !in_array($field.type, ['radio-buttons', 'checkbox']))}
+        <div class="form-text">
+          {l s='Optional' d='Shop.Forms.Labels'}
+        </div>
+      {/if}
+    {/block}
   </div>
-
 {/if}

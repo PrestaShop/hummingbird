@@ -59,7 +59,7 @@
                 value="{$value}"
                 {if $field.required}required{/if}
                 {if $value eq $field.value} checked {/if}
-              />
+              >
               <label class="form-check-label" for="{$field.name}_{$value}">
                 {$label}
               </label>
@@ -80,7 +80,7 @@
             id="{$field.name}"
             value="1" {if $field.value}checked="checked"{/if}
             {if $field.required}required{/if}
-          />
+          >
           <label class="form-check-label" for="{$field.name}">
             {$field.label nofilter}
           </label>
@@ -90,7 +90,7 @@
     {elseif $field.type === 'date'}
 
       {block name='form_field_item_date'}
-        <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if} />
+        <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
         {if isset($field.availableValues.comment)}
           <span class="form-text">
             {$field.availableValues.comment}
@@ -139,7 +139,7 @@
             {if isset($configuration.password_policy.minimum_score)}data-minscore="{$configuration.password_policy.minimum_score}"{/if}
             data-bs-placement="top"
             data-bs-trigger="manual"
-          />
+          >
 
           <button
             class="btn btn-primary"
@@ -167,7 +167,7 @@
           {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
           aria-label="{$field.name}"
           {if $field.required}required{/if}
-        />
+        >
         {if isset($field.availableValues.comment)}
           <span class="form-text">
             {$field.availableValues.comment}

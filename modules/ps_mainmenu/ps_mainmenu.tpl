@@ -104,7 +104,7 @@
   {/if}
 {/function}
 
-<div class="main-menu col-xl col-auto px-1">
+<div class="main-menu col-xl col-auto">
   <div class="d-none d-xl-block position-static js-menu-desktop">
     {desktopMenu nodes=$menu.children}
   </div>

@@ -4,12 +4,12 @@ $component-name: header-block;
   position: relative;
 
   &__action-btn {
-    color: var(--header-top-color);
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
+    padding: 0.5rem 0.25rem;
+    color: var(--header-top-color);
     border-radius: $btn-border-radius;
-    padding: .5rem .25rem;
 
     &:hover,
     &:focus {
@@ -29,30 +29,30 @@ $component-name: header-block;
   }
 
   &__badge {
+    position: absolute;
+    top: 0.2em;
+    right: 0;
     display: inline-block;
-    text-align: center;
+    min-width: 1.8em;
+    height: 1.8em;
     padding: 0 0.2em;
     font-size: 0.6rem;
     font-weight: 600;
     line-height: 1.8;
-    height: 1.8em;
-    min-width: 1.8em;
-    border-radius: 50rem;
     color: var(--bs-white);
+    text-align: center;
     background: var(--bs-primary);
-    position: absolute;
-    top: 0.2em;
-    right: 0;
+    border-radius: 50rem;
 
     @include media-breakpoint-up(md) {
-      background: var(--bs-gray-100);
-      color: inherit;
-      font-size: inherit;
       position: static;
-      margin-left: 0.4em;
-      line-height: 1.6;
-      height: 1.6em;
       min-width: 1.6em;
+      height: 1.6em;
+      margin-left: 0.4em;
+      font-size: inherit;
+      line-height: 1.6;
+      color: inherit;
+      background: var(--bs-gray-100);
     }
   }
 

@@ -108,15 +108,19 @@
   <div class="d-none d-xl-block position-static js-menu-desktop">
     {desktopMenu nodes=$menu.children}
   </div>
-  <button
-    class="main-menu__toggler btn btn-unstyle d-xl-none"
-    type="button"
-    data-bs-toggle="offcanvas"
-    data-bs-target="#mobileMenu"
-    aria-controls="mobileMenu"
-  >
-    <i class="material-icons">menu</i>
-  </button>
+
+  <div class="header-block d-xl-none">
+    <a
+      class="header-block__action-btn"
+      href="#"
+      role="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#mobileMenu"
+      aria-controls="mobileMenu"
+    >
+      <span class="material-icons header-block__icon">menu</span>
+    </a>
+  </div>
 </div>
 
 <div

@@ -3,15 +3,21 @@
  * file that was distributed with this source code.
  *}
 <div id="_desktop_cart">
-  <div class="blockcart cart-preview {if $cart.products_count> 0}active{else}inactive{/if}" data-refresh-url="{$refresh_url}">
+  <div class="header-block blockcart cart-preview {if $cart.products_count> 0}header-block--active{else}inactive{/if}" data-refresh-url="{$refresh_url}">
     {if $cart.products_count> 0}
-      <a rel="nofollow" href="{$cart_url}">
+      <a class="header-block__action-btn" rel="nofollow" href="{$cart_url}">
+    {else}
+      <span class="header-block__action-btn">
     {/if}
-      <i class="material-icons shopping-cart">shopping_cart</i>
-      <span class="hidden-on-mobile">{l s='Cart' d='Shop.Theme.Checkout'}</span>
-      <span class="cart-products-count">{$cart.products_count}</span>
+
+    <i class="material-icons header-block__icon">shopping_cart</i>
+    <span class="hidden-on-mobile header-block__title">{l s='Cart' d='Shop.Theme.Checkout'}</span>
+    <span class="header-block__badge">{$cart.products_count}</span>
+
     {if $cart.products_count> 0}
       </a>
+    {else}
+      </span>
     {/if}
   </div>
 </div>

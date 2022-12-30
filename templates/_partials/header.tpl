@@ -29,8 +29,8 @@
 {block name='header_bottom'}
   <div class="{$headerBottomName}">
     <div class="container-md {$headerBottomName}__container">
-      <div class="row align-items-center mx-n1 {$headerBottomName}__row">
-        <div class="col-auto logo px-1 order-xl-1 me-lg-0 me-auto">
+      <div class="row align-items-center gx-2 {$headerBottomName}__row">
+        <div class="col-auto logo order-xl-1 me-lg-0 me-auto">
           {if $shop.logo_details}
             {if $page.page_name == 'index'}<h1 class="mb-0">{/if}
               {renderLogo}
@@ -38,10 +38,13 @@
           {/if}
         </div>
 
-        <div class="search__mobile hidden-on-desktop col-auto px-1">
-          <button class="search__mobile__toggler btn d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
-            <span class="material-icons">search</span>
-          </button>
+        <div class="search__mobile hidden-on-desktop col-auto">
+
+          <div class="header-block">
+            <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
+              <span class="material-icons header-block__icon">search</span>
+            </a>
+          </div>
 
           <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top" data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header">
@@ -53,8 +56,27 @@
 
         {hook h='displayTop'}
 
-        <div id="_mobile_user_info" class="hidden-on-desktop col-auto px-1"></div>
-        <div id="_mobile_cart" class="hidden-on-desktop col-auto px-1"></div>
+        <div id="_mobile_user_info" class="hidden-on-desktop col-auto">
+          {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
+          <div class="header-block">
+            <span class="header-block__action-btn">
+              <i class="material-icons header-block__icon">&#xE7FD;</i>
+              <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
+            </span>
+          </div>
+          {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
+        </div>
+
+        <div id="_mobile_cart" class="hidden-on-desktop col-auto">
+          {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
+          <div class="header-block">
+            <span class="header-block__action-btn">
+              <i class="material-icons header-block__icon">shopping_cart</i>
+              <span class="header-block__badge">{$cart.products_count}</span>
+            </span>
+          </div>
+          {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
+        </div>
       </div>
     </div>
   </div>

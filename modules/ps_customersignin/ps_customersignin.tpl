@@ -6,10 +6,16 @@
 <div id="_desktop_user_info">
   <div class="user-info">
     {if $customer.is_logged}
-      <div class="dropdown">
-        <button class="dropdown-toggle btn btn-link btn-with-icon" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="material-icons">&#xE7FD;</i>
-          <span class="user-info__name">{$customerName|truncate:22:"..":true}</span>
+      <div class="dropdown header-block">
+        <button
+          class="dropdown-toggle header-block__action-btn"
+          type="button"
+          id="userMenuButton"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+          <i class="material-icons header-block__icon">&#xE7FD;</i>
+          <span class="header-block__title">{$customerName|truncate:22:"..":true}</span>
         </button>
 
         <div class="dropdown-menu dropdown-menu-start" aria-labelledby="userMenuButton">
@@ -65,16 +71,17 @@
         </div>
       </div>
     {else}
-      <a 
-        href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
-        title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
-        class="btn"
-        rel="nofollow"
-        role="button"
-      >
-        <i class="material-icons">&#xE7FD;</i>
-        <span class="d-none d-md-inline">{l s='Sign in' d='Shop.Theme.Actions'}</span>
-      </a>
+      <div class="header-block">
+        <a
+          href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
+          title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
+          class="header-block__action-btn"
+          rel="nofollow"
+          role="button">
+          <i class="material-icons header-block__icon">&#xE7FD;</i>
+          <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
+        </a>
+      </div>
     {/if}
   </div>
 </div>

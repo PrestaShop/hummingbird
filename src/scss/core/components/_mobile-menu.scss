@@ -95,19 +95,6 @@ $component-name: main-menu;
     margin-bottom: 0;
   }
 
-  &__toggler {
-    display: flex;
-    padding: 1rem;
-
-    @include media-breakpoint-down(md) {
-      padding: 0.75rem;
-    }
-
-    i {
-      color: var(--bs-gray-700);
-    }
-  }
-
   &__back-button .btn {
     display: flex;
     align-items: center;

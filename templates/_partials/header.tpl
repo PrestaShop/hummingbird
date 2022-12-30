@@ -14,7 +14,7 @@
 {block name='header_nav'}
   <nav class="{$headerTopName}">
     <div class="container-md">
-      <div class="{$headerTopName}-desktop hidden-on-mobile row">
+      <div class="{$headerTopName}-desktop d-none d-md-flex row">
         <div class="{$headerTopName}__left col-md-5">
           {hook h='displayNav1'}
         </div>
@@ -38,7 +38,7 @@
           {/if}
         </div>
 
-        <div class="search__mobile hidden-on-desktop col-auto">
+        <div class="search__mobile d-md-none col-auto">
 
           <div class="header-block">
             <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
@@ -56,7 +56,7 @@
 
         {hook h='displayTop'}
 
-        <div id="_mobile_user_info" class="hidden-on-desktop col-auto">
+        <div id="_mobile_user_info" class="d-md-none col-auto">
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
             <span class="header-block__action-btn">
@@ -67,7 +67,7 @@
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
         </div>
 
-        <div id="_mobile_cart" class="hidden-on-desktop col-auto">
+        <div id="_mobile_cart" class="d-md-none col-auto">
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
             <span class="header-block__action-btn">

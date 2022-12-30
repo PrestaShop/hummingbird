@@ -4,13 +4,13 @@
  *}
 
 <div id="block-myaccount-infos" class="footer__block col-md-6 col-lg-3">
-  <p class="footer__block__title hidden-on-mobile">
+  <p class="footer__block__title d-none d-md-flex">
     <a href="{$urls.pages.my_account}" rel="nofollow">
       {l s='Your account' d='Shop.Theme.Customeraccount'}
     </a>
   </p>
 
-  <div class="footer__block__toggle hidden-on-desktop collapsed" data-bs-target="#footer_account_list" data-bs-toggle="collapse" aria-expanded="false">
+  <div class="footer__block__toggle d-md-none collapsed" data-bs-target="#footer_account_list" data-bs-toggle="collapse" aria-expanded="false">
     <span class="footer__block__title">{l s='Your account' d='Shop.Theme.Customeraccount'}</span>
     <i class="material-icons">arrow_drop_down</i>
   </div>

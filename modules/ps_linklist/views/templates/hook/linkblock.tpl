@@ -5,9 +5,9 @@
 {foreach $linkBlocks as $linkBlock}
   <div class="footer__block col-md-6 col-lg-3">
 
-    <p class="footer__block__title hidden-on-mobile">{$linkBlock.title}</p>
+    <p class="footer__block__title d-none d-md-flex">{$linkBlock.title}</p>
 
-    <div class="footer__block__toggle hidden-on-desktop collapsed" aria-expanded="false" data-bs-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
+    <div class="footer__block__toggle d-md-none collapsed" aria-expanded="false" data-bs-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
       <span class="footer__block__title">{$linkBlock.title}</span>
       <i class="material-icons">arrow_drop_down</i>
     </div>

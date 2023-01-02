@@ -13,9 +13,7 @@
               <p class="fw-bold mb-0">{$message.name}</p>
               <p class="fs-6 mb-0">{$message.message_date}</p>
             </div>
-            <div class="col-sm-8">
-              {$message.message nofilter}
-            </div>
+            <div class="col-sm-8">{$message.message nofilter}</div>
           </div> 
         </div>
       {/foreach}

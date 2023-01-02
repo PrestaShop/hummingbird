@@ -12,7 +12,7 @@
 
   <div class="mb-3{if !empty($field.errors)} has-error{/if}">
     {if ($field.type !== 'checkbox')}
-      <label class="form-label{if $field.required} required{/if}" for="{$field.name}">
+      <label class="form-label{if $field.required} required{/if}" for="field-{$field.name}">
         {if $field.type !== 'checkbox'}
           {$field.label}
         {/if}
@@ -55,12 +55,12 @@
                 class="form-check-input"
                 type="radio"
                 name="{$field.name}"
-                id="{$field.name}_{$value}"
+                id="field-{$field.name}_{$value}"
                 value="{$value}"
                 {if $field.required}required{/if}
                 {if $value eq $field.value} checked {/if}
               >
-              <label class="form-check-label" for="{$field.name}_{$value}">
+              <label class="form-check-label" for="field-{$field.name}_{$value}">
                 {$label}
               </label>
             </div>
@@ -77,11 +77,11 @@
             name="{$field.name}"
             type="checkbox"
             value="1"
-            id="{$field.name}"
+            id="field-{$field.name}"
             value="1" {if $field.value}checked="checked"{/if}
             {if $field.required}required{/if}
           >
-          <label class="form-check-label" for="{$field.name}">
+          <label class="form-check-label" for="field-{$field.name}">
             {$field.label nofilter}
           </label>
         </div>
@@ -128,7 +128,7 @@
           <input
             class="form-control js-child-focus js-visible-password"
             name="{$field.name}"
-            id="{$field.name}"
+            id="field-{$field.name}"
             type="password"
             {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
             value=""
@@ -159,7 +159,7 @@
         <input
           class="form-control"
           name="{$field.name}"
-          id="{$field.name}"
+          id="field-{$field.name}"
           type="{$field.type}"
           value="{$field.value}"
           {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}

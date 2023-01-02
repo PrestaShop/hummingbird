@@ -182,7 +182,10 @@
                     marginHelper="mb-0"
                   }
                 </div>
-                <button data-button-action="add-to-cart" class="btn btn-primary ms-3"><i class="material-icons">&#xe854;</i></button>
+                <button data-button-action="add-to-cart" class="btn btn-primary ms-3">
+                  <i class="material-icons">&#xe854;</i>
+                  <span class="visually-hidden">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
+                </button>
               </form>
             {/if}
           </div>

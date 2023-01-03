@@ -168,14 +168,14 @@
               {/block}
             </div>
 
-            {if $product.add_to_cart_url}
+            {if $product.add_to_cart_url && !$product.is_customizable && !$product.attributes|@count}
               <form action="{$urls.pages.cart}" method="post" class="d-flex align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
                 <input type="hidden" name="token" value="{$static_token}" />
                 <div class="quantity-button js-quantity-button">
                   {include file='components/qty-input.tpl'
                     attributes=[
-                      "id"=>"quantity_wanted",
+                      "id"=>"quantity_wanted_{$product.id_product}",
                       "value"=>"1",
                       "min"=>"{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
                     ]

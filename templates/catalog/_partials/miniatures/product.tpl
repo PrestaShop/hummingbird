@@ -167,6 +167,11 @@
                 {/if}
               {/block}
             </div>
+            {if $product.attributes|@count}
+              <a href="{$product.url}" class="btn btn-outline-primary mt-3">
+                {l s='Choose variant' d='Shop.Theme.Actions'}
+              </a>
+            {/if}
 
             {if $product.add_to_cart_url && !$product.is_customizable && !$product.attributes|@count}
               <form action="{$urls.pages.cart}" method="post" class="d-flex align-items-center mt-3">

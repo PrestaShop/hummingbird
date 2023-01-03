@@ -1,0 +1,24 @@
+$component-name: header-bottom;
+
+.#{$component-name} {
+  --header-top-border-bottom: #{$header-top-border-bottom};
+  --header-bottom-border-bottom: #{$header-bottom-border-bottom};
+
+  padding: 0;
+  border-bottom: var(--header-bottom-border-bottom);
+
+  .navbar-brand {
+    padding: 0;
+  }
+
+  .nav-link {
+    &:active,
+    &.active {
+      color: var(--bs-white);
+    }
+
+    &:active:hover {
+      color: var(--bs-white);
+    }
+  }
+}

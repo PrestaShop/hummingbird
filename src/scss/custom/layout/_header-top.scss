@@ -1,0 +1,27 @@
+$component-name: header-top;
+
+.#{$component-name} {
+  --header-top-border-bottom: #{$header-top-border-bottom};
+  --header-bottom-border-bottom: #{$header-bottom-border-bottom};
+
+  @include media-breakpoint-up(md) {
+    border-bottom: var(--header-top-border-bottom);
+  }
+
+  a:not(.dropdown-item) {
+    color: var(--header-top-color);
+
+    &:hover {
+      &,
+      i {
+        color: var(--bs-primary);
+      }
+    }
+  }
+
+  &__right {
+    > *:not(:last-child) {
+      margin-right: 0.25rem;
+    }
+  }
+}

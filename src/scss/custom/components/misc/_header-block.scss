@@ -4,10 +4,13 @@ $component-name: header-block;
   position: relative;
 
   &__action-btn {
+    --header-block-spacing-x: #{$header-block-spacing-x};
+    --header-block-spacing-y: #{$header-block-spacing-y};
+
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
-    padding: 0.75rem 0.25rem;
+    padding: var(--header-block-spacing-y) var(--header-block-spacing-x);
     color: var(--header-top-color);
     border-radius: $btn-border-radius;
 
@@ -17,9 +20,9 @@ $component-name: header-block;
     }
 
     @include media-breakpoint-up(md) {
-      padding: $btn-padding-y $btn-padding-x;
+      --header-block-spacing-x: #{$header-block-spacing-lg-x};
+      --header-block-spacing-y: #{$header-block-spacing-lg-y};
     }
-
   }
 
   &__icon {

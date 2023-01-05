@@ -1,6 +1,6 @@
 # Hummingbird theme
 
-This is a PrestaShop's theme we are working on. Please, if you work on this theme, use the `1.7.8.x` branch of PrestaShop to make sure this theme is compatible with the latest `1.7` version.
+This is a PrestaShop's theme we are working on. Please, if you work on this theme, use the `8.0.x` branch of PrestaShop to make sure this theme is compatible with the latest `8.x` version.
 
 [Read more](https://build.prestashop.com/news/new-theme-announce/) about this theme on the blog.
 

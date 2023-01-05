@@ -167,13 +167,14 @@
                 {/if}
               {/block}
             </div>
+
             {if $product.attributes|@count}
               <a href="{$product.url}" class="btn btn-outline-primary mt-3">
-                {l s='Choose variant' d='Shop.Theme.Actions'}
+                {l s='See details' d='Shop.Theme.Actions'}
               </a>
             {/if}
 
-            {if $product.add_to_cart_url && !$product.is_customizable && !$product.attributes|@count}
+            {if $product.add_to_cart_url && !$product.attributes|@count}
               <form action="{$urls.pages.cart}" method="post" class="d-flex align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
                 <input type="hidden" name="token" value="{$static_token}" />

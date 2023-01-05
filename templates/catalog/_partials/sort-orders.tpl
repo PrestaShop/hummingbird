@@ -11,7 +11,7 @@
     data-bs-toggle="dropdown"
     aria-haspopup="true"
     aria-expanded="false">
-    {if $listing.sort_selected}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if}
+    {if $listing.sort_selected}{$listing.sort_selected}{else}{l s='Choose' d='Shop.Theme.Actions'}{/if}
     <i class="material-icons ms-2">expand_more</i>
   </button>
   <div class="dropdown-menu dropdown-menu-start">
@@ -20,7 +20,7 @@
         rel="nofollow"
         href="{$sort_order.url}"
         class="dropdown-item select-list {['current' => $sort_order.current, 'js-search-link' => true]|classnames}"
-     >
+      >
         {$sort_order.label}
       </a>
     {/foreach}

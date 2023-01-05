@@ -96,9 +96,11 @@
       {/if}
     </div>
 
-    <div class="cart-summary__product__basic">
-      <span class="cart-summary__product__regular text-decoration-line-through">{$product.regular_price}</span>
-    </div>
+    {if $product.has_discount}
+      <div class="cart-summary__product__basic">
+        <span class="cart-summary__product__regular text-decoration-line-through">{$product.regular_price}</span>
+      </div>
+    {/if}
 
     {hook h='displayProductPriceBlock' product=$product type="unit_price"}
   </div>

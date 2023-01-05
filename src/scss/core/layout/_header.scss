@@ -13,8 +13,15 @@ $component-name: header;
   max-width: 100vw;
   background-color: var(--header-bg);
 
-  a:not(.dropdown-item) {
+  a:not(.dropdown-item):not(.btn) {
     color: var(--header-color);
+
+    &:hover {
+      &,
+      i {
+        color: var(--bs-primary);
+      }
+    }
   }
 
   &__top {

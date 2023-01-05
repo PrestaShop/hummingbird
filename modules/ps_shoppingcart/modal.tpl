@@ -58,18 +58,18 @@
               <div class="mb-3">
                 <div class="blockcart-modal__total product-subtotal">
                   <span class="label">{l s='Subtotal:' d='Shop.Theme.Checkout'}</span>
-                  <span class="value">{$cart.subtotals.products.value}</span>
+                  <span class="subtotals value">{$cart.subtotals.products.value}</span>
                 </div>
                 {if $cart.subtotals.shipping.value}
                   <div class="blockcart-modal__total product-shipping">
                     <span class="label">{l s='Shipping:' d='Shop.Theme.Checkout'}</span>
-                    <span class="value">{$cart.subtotals.shipping.value} {hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</span>
+                    <span class="shipping value">{$cart.subtotals.shipping.value} {hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</span>
                   </div>
                 {/if}
               </div>
               {if !$configuration.display_prices_tax_incl && $configuration.taxes_enabled}
                 <div class="blockcart-modal__total product-total">
-                  <span class="label">{$cart.totals.total.label}&nbsp;{$cart.labels.tax_short}</span>
+                  <span class="label">{$cart.totals.total.label}{if $configuration.display_taxes_label}&nbsp;{$cart.labels.tax_short}{/if}</span>
                   <span class="value">{$cart.totals.total.value}</span>
                 </div>
                 <div class="blockcart-modal__total product-total">
@@ -78,7 +78,7 @@
                 </div>
               {else}
                 <div class="blockcart-modal__total product-total">
-                  <span class="label">{$cart.totals.total.label}&nbsp;{if $configuration.taxes_enabled}{$cart.labels.tax_short}{/if}</span>
+                  <span class="label">{$cart.totals.total.label}&nbsp;{if $configuration.taxes_enabled && $configuration.display_taxes_label}{$cart.labels.tax_short}{/if}</span>
                   <span class="value">{$cart.totals.total.value}</span>
                 </div>
               {/if}

@@ -2,15 +2,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
+{$componentName = 'search-filters-modules'}
 
 <div id="search_filters_brands">
-  <section class="facet">
+  <section class="{$componentName} facet">
     {if $display_link_brand}
-      <a href="{$page_link}" class="h6 text-uppercase facet-label" title="{l s='brands' d='shop.theme.catalog'}">
+      <a href="{$page_link}" class="{$componentName}-title d-block mb-3" title="{l s='brands' d='shop.theme.catalog'}">
         {l s='Brands' d='Shop.Theme.Catalog'}
       </a>
     {else}
-      <p class="h6 text-uppercase facet-label">
+      <p class="{$componentName}-title">
         {l s='Brands' d='Shop.Theme.Catalog'}
       </p>
     {/if}
@@ -19,7 +20,7 @@
       {if $brands}
         {include file="module:ps_brandlist/views/templates/_partials/$brand_display_type.tpl" brands=$brands}
       {else}
-        <p>{l s='No brand' d='Shop.Theme.Catalog'}</p>
+        <p class="mb-0">{l s='No brand' d='Shop.Theme.Catalog'}</p>
       {/if}
     </div>
   </section>

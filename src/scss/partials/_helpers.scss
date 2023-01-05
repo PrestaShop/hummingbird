@@ -1,12 +1,3 @@
-.hidden-on-desktop {
-  @extend .d-md-none;
-}
-
-.hidden-on-mobile {
-  @extend .d-none;
-  @extend .d-md-flex;
-}
-
 .inline-items {
   display: flex;
   flex-wrap: nowrap;

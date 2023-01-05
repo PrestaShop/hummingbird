@@ -56,14 +56,6 @@ $component-name: search;
     }
   }
 
-  &__mobile__toggler {
-    color: var(--bs-gray-700);
-
-    @include media-breakpoint-down(md) {
-      padding: 0.5rem 0.375rem;
-    }
-  }
-
   &__container {
     width: calc(100% - 0.5rem);
   }

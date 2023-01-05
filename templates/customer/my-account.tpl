@@ -76,7 +76,7 @@
     {/block}
   </div>
 
-  <a class="{$componentName}__logout hidden-on-desktop" href="{$urls.actions.logout}">
+  <a class="{$componentName}__logout d-md-none" href="{$urls.actions.logout}">
     <i class="material-icons me-2">exit_to_app</i>
     {l s='Sign out' d='Shop.Theme.Actions'}
   </a>

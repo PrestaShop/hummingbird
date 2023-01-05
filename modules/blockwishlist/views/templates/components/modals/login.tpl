@@ -44,7 +44,6 @@
           </button>
 
           <a
-            type="button"
             class="btn btn-primary"
             :href="prestashop.urls.pages.authentication"
           >

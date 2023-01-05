@@ -43,7 +43,7 @@
               v-model="value"
               id="input2"
               placeholder="Share link"
-            />
+            >
           </div>
         </div>
         <div class="modal-footer">

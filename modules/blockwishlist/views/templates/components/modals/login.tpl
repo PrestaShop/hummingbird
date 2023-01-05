@@ -60,5 +60,5 @@
       :class="{in: !isHidden}"
     {/literal}
   >
- </div>
+  </div>
 </div>

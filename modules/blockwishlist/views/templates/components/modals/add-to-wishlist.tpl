@@ -19,9 +19,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header px-3">
-          <h5 class="modal-title">
-            {l s='Add to wishlist' d='Modules.Blockwishlist.Shop'}
-          </h5>
+          <h5 class="modal-title">{l s='Add to wishlist' d='Modules.Blockwishlist.Shop'}</h5>
           <button
             type="button"
             class="btn-close"

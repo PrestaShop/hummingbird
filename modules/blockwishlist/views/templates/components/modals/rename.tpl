@@ -42,7 +42,7 @@
               class="form-control form-control-lg"
               v-model="value"
               id="input2"
-            />
+            >
           </div>
         </div>
         <div class="modal-footer">

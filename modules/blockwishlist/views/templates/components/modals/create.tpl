@@ -44,7 +44,7 @@
               v-model="value"
               id="input2"
               :placeholder="placeholder"
-            />
+            >
           </div>
         </div>
         <div class="modal-footer">

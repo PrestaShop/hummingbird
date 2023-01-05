@@ -3,15 +3,15 @@
  * file that was distributed with this source code.
  *}
 
- <div
- class="wishlist-create"
- data-url="{$url}"
- data-title="{l s='Create wishlist' d='Modules.Blockwishlist.Shop'}"
- data-label="{l s='Wishlist name' d='Modules.Blockwishlist.Shop'}"
- data-placeholder="{l s='Add name' d='Modules.Blockwishlist.Shop'}"
- data-cancel-text="{l s='Cancel' d='Modules.Blockwishlist.Shop'}"
- data-create-text="{l s='Create wishlist' d='Modules.Blockwishlist.Shop'}"
- data-length-text="{l s='List title is too short' d='Modules.Blockwishlist.Shop'}"
+<div
+  class="wishlist-create"
+  data-url="{$url}"
+  data-title="{l s='Create wishlist' d='Modules.Blockwishlist.Shop'}"
+  data-label="{l s='Wishlist name' d='Modules.Blockwishlist.Shop'}"
+  data-placeholder="{l s='Add name' d='Modules.Blockwishlist.Shop'}"
+  data-cancel-text="{l s='Cancel' d='Modules.Blockwishlist.Shop'}"
+  data-create-text="{l s='Create wishlist' d='Modules.Blockwishlist.Shop'}"
+  data-length-text="{l s='List title is too short' d='Modules.Blockwishlist.Shop'}"
 >
   <div
     class="wishlist-modal modal fade"

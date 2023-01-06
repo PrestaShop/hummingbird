@@ -23,9 +23,6 @@
   "author": "PrestaShop",
   "license": "AFL-3.0",
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-typescript": "^7.16.7",
     "@storybook/addon-a11y": "^6.4.19",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
@@ -40,7 +37,6 @@
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "autoprefixer": "^10.4.11",
-    "babel-loader": "^8.2.3",
     "bootstrap-touchspin": "^4.3.0",
     "bourbon": "^7.0.0",
     "clean-webpack-plugin": "^4.0.0",
@@ -91,7 +87,6 @@
     "jquery.browser": "^0.1.0",
     "material-design-icons-iconfont": "^6.7.0",
     "nouislider": "^15.5.0",
-    "swiper": "^7.4.1",
     "vazirmatn": "^32.102.0",
     "sprintf-js": "^1.1.2",
     "wnumb": "^1.2.0"

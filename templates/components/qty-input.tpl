@@ -18,7 +18,7 @@
   {assign var="append" value=["button"=>"increment", "icon"=>$increment_icon, "confirm_icon"=>$submit_icon]}
 {/if}
 
-<div class="input-group flex-nowrap mb-3">
+<div class="input-group flex-nowrap{if isset($marginHelper)} {$marginHelper}{else} mb-3{/if}">
   <button class="btn {$prepend.button} js-{$prepend.button}-button" type="button">
     <i class="material-icons">&#x{$prepend.icon};</i>
     <i class="material-icons confirmation d-none">&#x{$prepend.confirm_icon};</i>

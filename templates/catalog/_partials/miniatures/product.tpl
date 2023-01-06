@@ -168,12 +168,6 @@
               {/block}
             </div>
 
-            {if !$product.add_to_cart_url}
-              <a href="{$product.url}" class="btn btn-outline-primary mt-3">
-                {l s='See details' d='Shop.Theme.Actions'}
-              </a>
-            {/if}
-
             {if $product.add_to_cart_url}
               <form action="{$urls.pages.cart}" method="post" class="d-flex align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
@@ -193,6 +187,10 @@
                   <span class="visually-hidden">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
                 </button>
               </form>
+            {else}
+              <a href="{$product.url}" class="btn btn-outline-primary mt-3">
+                {l s='See details' d='Shop.Theme.Actions'}
+              </a>
             {/if}
           </div>
         </div>

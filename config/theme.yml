@@ -85,7 +85,7 @@ global_settings:
         - ps_linklist
         - ps_customeraccountlinks
         - ps_contactinfo
-        - ~
+        - blockwishlist
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch

@@ -4,7 +4,7 @@
   border-radius: 0.5rem;
 
   table {
-    border-color: $gray-200;
+    border-color: var(--bs-gray-200);
 
     > :not(:first-child) {
       border-top: none;
@@ -14,7 +14,7 @@
       th,
       td {
         font-weight: 400;
-        color: $body-color;
+        color: var(--bs-body-color);
         vertical-align: middle;
         box-shadow: none;
       }

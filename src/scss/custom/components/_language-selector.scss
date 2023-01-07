@@ -1,20 +1,7 @@
 $component-name: language-selector;
 
-.#{$component-name} {
-  display: flex;
-  align-items: center;
-
-  > span {
-    margin-right: 0.5rem;
-  }
-
-  i.expand-more {
-    color: $default-icon-color;
-  }
-
-  @include media-breakpoint-down(md) {
-    &__wrapper {
-      margin-bottom: 1rem;
-    }
+.#{$component-name}__wrapper {
+  select {
+    cursor: pointer;
   }
 }

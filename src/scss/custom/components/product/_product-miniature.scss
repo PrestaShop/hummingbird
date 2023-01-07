@@ -50,7 +50,7 @@ $component-name: product-miniature;
   }
 
   & &__regular-price {
-    color: $gray-700;
+    color: var(--bs-gray-700);
   }
 
   & &__price {
@@ -63,7 +63,7 @@ $component-name: product-miniature;
     z-index: -1;
     width: 100%;
     padding: 0.5rem;
-    background-color: $white;
+    background-color: var(--bs-white);
     transition: 0.25s ease-out;
 
     @media (hover: none) and (pointer: coarse) {

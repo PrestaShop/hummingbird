@@ -16,18 +16,40 @@
           <div class="card-body">
             <div class="row">
               <div class="col-xl-6 store__picture">
-                <img
-                  src="{$store.image.bySize.stores_default.url}"
-                  width="{$store.image.bySize.stores_default.width}"
-                  height="{$store.image.bySize.stores_default.height}"
-                  class="img-fluid"
-                  {if !empty($store.image.legend)}
-                    alt="{$store.image.legend}"
-                    title="{$store.image.legend}"
-                  {else}
-                    alt="{$store.name}"
+                <picture>
+                  {if isset($store.image.bySize.default_m.sources.avif)}
+                    <source 
+                      srcset="
+                        {$store.image.bySize.default_m.sources.avif},
+                        {$store.image.bySize.default_xl.sources.avif} 2x"
+                      type="image/avif"
+                    >
                   {/if}
-              >
+
+                  {if isset($store.image.bySize.default_m.sources.webp)}
+                    <source 
+                      srcset="
+                        {$store.image.bySize.default_m.sources.webp},
+                        {$store.image.bySize.default_xl.sources.webp} 2x"
+                      type="image/webp"
+                    >
+                  {/if}
+
+                  <img
+                    class="img-fluid rounded"
+                    srcset="
+                      {$store.image.bySize.default_m.url},
+                      {$store.image.bySize.default_xl.url} 2x"
+                    loading="lazy"
+                    width="{$store.image.bySize.default_m.width}"
+                    height="{$store.image.bySize.default_m.height}"
+                    {if !empty($store.image.legend)}
+                      alt="{$store.image.legend}"
+                      title="{$store.image.legend}"
+                    {else}
+                      alt="{$store.name}"
+                    {/if}
+                </picture>
               </div>
               <div class="col-xl-6 store__description d-none d-md-block">
                 <h2 class="h6 store__name">{$store.name}</h2>

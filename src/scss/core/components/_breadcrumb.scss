@@ -5,7 +5,7 @@ $component-name: breadcrumb;
   font-size: 0.875rem;
 
   a {
-    color: $gray-800;
+    color: var(--bs-gray-800);
   }
 
   &[data-depth="1"] {
@@ -14,7 +14,7 @@ $component-name: breadcrumb;
 
   &__wrapper {
     margin-bottom: 2rem;
-    background: #f6f6f6;
+    background: var(--bs-gray-100);
 
     @include media-breakpoint-down(md) {
       margin-bottom: 1rem;

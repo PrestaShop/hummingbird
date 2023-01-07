@@ -6,20 +6,67 @@
   <article class="product-pack__item rounded mb-2 p-2">
     <a href="{$product.url}" title="{$product.name}" class="row align-items-center">
       <div class="product-pack__image col-2">
-        {if !empty($product.default_image.medium)}
-          <img
-            src="{$product.default_image.medium.url}"
-            {if !empty($product.default_image.legend)}
+        {if !empty($product.default_image)}
+          <picture>
+            {if isset($product.default_image.bySize.default_xs.sources.avif)}
+              <source 
+                srcset="
+                  {$product.default_image.bySize.default_xs.sources.avif},
+                  {$product.default_image.bySize.default_m.sources.avif} 2x"
+                type="image/avif"
+              >
+            {/if}
+
+            {if isset($product.default_image.bySize.default_xs.sources.webp)}
+              <source 
+                srcset="
+                  {$product.default_image.bySize.default_xs.sources.webp},
+                  {$product.default_image.bySize.default_m.sources.webp} 2x"
+                type="image/webp"
+              >
+            {/if}
+
+            <img
+              class="img-fluid rounded"
+              srcset="
+                {$product.default_image.bySize.default_xs.url},
+                {$product.default_image.bySize.default_m.url} 2x"
+              loading="lazy"
+              width="{$product.default_image.bySize.default_xs.width}"
+              height="{$product.default_image.bySize.default_xs.height}"
               alt="{$product.default_image.legend}"
               title="{$product.default_image.legend}"
-            {else}
-              alt="{$product.name}"
-            {/if}
-            loading="lazy"
-            class="img-fluid rounded"
-          >
+          </picture>
         {else}
-          <img src="{$urls.no_picture_image.bySize.medium_default.url}" loading="lazy" class="img-fluid rounded" />
+          <picture>
+            {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+              <source 
+                srcset="
+                  {$urls.no_picture_image.bySize.default_xs.sources.avif},
+                  {$urls.no_picture_image.bySize.default_m.sources.avif} 2x"
+                type="image/avif"
+              >
+            {/if}
+
+            {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+              <source 
+                srcset="
+                  {$urls.no_picture_image.bySize.default_xs.sources.webp},
+                  {$urls.no_picture_image.bySize.default_m.sources.webp} 2x"
+                type="image/webp"
+              >
+            {/if}
+
+            <img
+              class="img-fluid rounded"
+              srcset="
+                {$urls.no_picture_image.bySize.default_xs.url},
+                {$urls.no_picture_image.bySize.default_m.url} 2x"
+              width="{$urls.no_picture_image.bySize.default_xs.width}"
+              height="{$urls.no_picture_image.bySize.default_xs.height}"
+              loading="lazy"
+            >
+          </picture>
         {/if}
       </div>
 

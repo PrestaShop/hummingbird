@@ -6,9 +6,67 @@
   <div class="cart-summary__product__image col-md-2">
     <a href="{$product.url}" title="{$product.name}">
       {if $product.default_image}
-        <img src="{$product.default_image.small.url}" alt="{$product.name}" class="img-fluid rounded" loading="lazy">
+        <picture>
+          {if isset($product.default_image.bySize.default_xs.sources.avif)}
+            <source 
+              srcset="
+                {$product.default_image.bySize.default_xs.sources.avif},
+                {$product.default_image.bySize.default_s.sources.avif} 2x"
+              type="image/avif"
+            >
+          {/if}
+
+          {if isset($product.default_image.bySize.default_xs.sources.webp)}
+            <source 
+              srcset="
+                {$product.default_image.bySize.default_xs.sources.webp},
+                {$product.default_image.bySize.default_s.sources.webp} 2x"
+              type="image/webp"
+            >
+          {/if}
+
+          <img
+            class="img-fluid rounded"
+            srcset="
+              {$product.default_image.bySize.default_xs.url},
+              {$product.default_image.bySize.default_s.url} 2x"
+            width="{$product.default_image.bySize.default_xs.width}"
+            height="{$product.default_image.bySize.default_xs.height}"
+            loading="lazy"
+            alt="{$product.name}"
+            title="{$product.name}"
+          >
+        </picture>
       {else}
-        <img src="{$urls.no_picture_image.bySize.small_default.url}" class="img-fluid" loading="lazy" />
+        <picture>
+          {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+            <source 
+              srcset="
+                {$urls.no_picture_image.bySize.default_xs.sources.avif},
+                {$urls.no_picture_image.bySize.default_s.sources.avif} 2x"
+              type="image/avif"
+            >
+          {/if}
+
+          {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+            <source 
+              srcset="
+                {$urls.no_picture_image.bySize.default_xs.sources.webp},
+                {$urls.no_picture_image.bySize.default_s.sources.webp} 2x"
+              type="image/webp"
+            >
+          {/if}
+
+          <img
+            class="img-fluid"
+            srcset="
+              {$urls.no_picture_image.bySize.default_xs.url},
+              {$urls.no_picture_image.bySize.default_s.url} 2x"
+            width="{$urls.no_picture_image.bySize.default_xs.width}"
+            height="{$urls.no_picture_image.bySize.default_xs.height}"
+            loading="lazy"
+          >
+        </picture>
       {/if}
     </a>
   </div>
@@ -38,9 +96,11 @@
       {/if}
     </div>
 
-    <div class="cart-summary__product__basic">
-      <span class="cart-summary__product__regular text-decoration-line-through">{$product.regular_price}</span>
-    </div>
+    {if $product.has_discount}
+      <div class="cart-summary__product__basic">
+        <span class="cart-summary__product__regular text-decoration-line-through">{$product.regular_price}</span>
+      </div>
+    {/if}
 
     {hook h='displayProductPriceBlock' product=$product type="unit_price"}
   </div>

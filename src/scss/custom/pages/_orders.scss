@@ -5,7 +5,7 @@
     a {
       display: inline-block;
       padding: 0.5rem;
-      color: $body-color;
+      color: var(--bs-body-color);
 
       &::after {
         display: block;

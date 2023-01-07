@@ -1,0 +1,73 @@
+$component-name: header-block;
+
+.#{$component-name} {
+  position: relative;
+
+  &__action-btn {
+    --header-block-spacing-x: #{$header-block-spacing-x};
+    --header-block-spacing-y: #{$header-block-spacing-y};
+
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: var(--header-block-spacing-y) var(--header-block-spacing-x);
+    color: var(--header-top-color);
+    border-radius: $btn-border-radius;
+
+    &:hover,
+    &:focus {
+      color: var(--header-top-color);
+    }
+
+    @include media-breakpoint-up(md) {
+      --header-block-spacing-x: #{$header-block-spacing-lg-x};
+      --header-block-spacing-y: #{$header-block-spacing-lg-y};
+    }
+  }
+
+  &__icon {
+    @include media-breakpoint-up(md) {
+      margin-right: 0.2em;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0.4em;
+    right: 0;
+    display: inline-block;
+    min-width: 1.8em;
+    height: 1.8em;
+    padding: 0 0.2em;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 1.8;
+    color: var(--bs-white);
+    text-align: center;
+    background: var(--bs-primary);
+    border-radius: 50rem;
+
+    @include media-breakpoint-up(md) {
+      position: static;
+      min-width: 1.6em;
+      height: 1.6em;
+      margin-left: 0.4em;
+      font-size: inherit;
+      line-height: 1.6;
+      color: inherit;
+      background: var(--bs-gray-100);
+    }
+  }
+
+  /* When active, on desktop everything is primary */
+  &--active {
+    @include media-breakpoint-up(lg) {
+      .#{$component-name} {
+        &,
+        &__icon {
+          color: var(--bs-primary);
+        }
+      }
+    }
+  }
+}

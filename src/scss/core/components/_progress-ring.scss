@@ -6,7 +6,7 @@
   }
 
   &__background-circle {
-    stroke: $gray-200;
+    stroke: var(--bs-gray-200);
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
   }

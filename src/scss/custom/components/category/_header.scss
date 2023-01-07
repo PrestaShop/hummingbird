@@ -7,6 +7,6 @@ $component-name: block-category;
 
   #category-description {
     font-size: 1rem;
-    color: $gray-800;
+    color: var(--bs-gray-800);
   }
 }

@@ -4,17 +4,17 @@
  *}
 {block name='order_messages_table'}
   {if $order.messages}
-    <div class="box messages">
-      <h3>{l s='Messages' d='Shop.Theme.Customeraccount'}</h3>
+    <div class="customer__messages mb-3">
+      <h3 class="mb-3">{l s='Messages' d='Shop.Theme.Customeraccount'}</h3>
       {foreach from=$order.messages item=message}
-        <div class="message row">
-          <div class="col-sm-4">
-            {$message.name}<br />
-            {$message.message_date}
-          </div>
-          <div class="col-sm-8">
-            {$message.message nofilter}
-          </div>
+        <div class="customer__message border rounded p-3 my-2">
+          <div class="customer__message__content row">
+            <div class="col-sm-4 mb-2 mb-sm-0">
+              <p class="fw-bold mb-0">{$message.name}</p>
+              <p class="fs-6 mb-0">{$message.message_date}</p>
+            </div>
+            <div class="col-sm-8">{$message.message nofilter}</div>
+          </div> 
         </div>
       {/foreach}
     </div>

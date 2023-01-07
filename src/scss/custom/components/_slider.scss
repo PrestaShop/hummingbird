@@ -41,12 +41,12 @@ $component-name: carousel;
     button {
       width: 10px;
       height: 10px;
-      background-color: $white;
+      background-color: var(--bs-white);
       border: 0;
       border-radius: 1000rem;
 
       &.active {
-        background-color: $primary;
+        background-color: var(--bs-primary);
       }
     }
   }

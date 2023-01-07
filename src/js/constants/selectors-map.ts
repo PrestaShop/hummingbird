@@ -112,6 +112,18 @@ export const formValidation = {
   default: '.form-validation',
 };
 
+export const passwordPolicy = {
+  template: '#password-feedback',
+  hint: '.js-hint-password',
+  container: '.password-strength-feedback',
+  strengthText: '.password-strength-text',
+  requirementScore: '.password-requirements-score',
+  requirementLength: '.password-requirements-length',
+  requirementScoreIcon: '.password-requirements-score i',
+  requirementLengthIcon: '.password-requirements-length i',
+  progressBar: '.progress-bar',
+};
+
 const selectorsMap = {
   qtyInput,
   alert: {
@@ -158,6 +170,7 @@ const selectorsMap = {
   visiblePassword,
   desktopMenu,
   formValidation,
+  passwordPolicy,
 };
 
 export default selectorsMap;

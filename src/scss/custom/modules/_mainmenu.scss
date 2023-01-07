@@ -1,5 +1,11 @@
-.main-menu--desktop {
-  .main-menu__tree {
+.main-menu {
+  order: -1;
+
+  @include media-breakpoint-up(xl) {
+    order: 1;
+  }
+
+  &__tree {
     > li {
       > a {
         padding: 1.5rem 1rem;
@@ -38,6 +44,13 @@
             font-weight: 600;
             color: $dropdown-link-color;
 
+            &:hover {
+              &,
+              i {
+                color: var(--bs-primary);
+              }
+            }
+
             &::after {
               display: none;
             }
@@ -47,3 +60,4 @@
     }
   }
 }
+

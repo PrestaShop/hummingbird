@@ -6,7 +6,7 @@
 
 {block name='content'}
   {block name='brand_header'}
-    <h1>{l s='Brands' d='Shop.Theme.Catalog'}</h1>
+    {include file="components/page-title-section.tpl" title={l s='Brands' d='Shop.Theme.Catalog'}}
   {/block}
 
   {block name='brand_miniature'}

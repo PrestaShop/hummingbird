@@ -19,18 +19,18 @@ $component-name: account-menu;
       .link-item {
         &,
         i {
-          color: $primary;
+          color: var(--bs-primary);
         }
       }
     }
 
     &.#{$component-name}--signout {
       .link-item {
-        color: $danger;
+        color: var(--bs-danger);
 
         &,
         i {
-          color: $danger;
+          color: var(--bs-danger);
         }
       }
     }
@@ -40,7 +40,7 @@ $component-name: account-menu;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    color: $gray-800;
+    color: var(--bs-gray-800);
     transition: all 0.25s ease-out;
 
     i {

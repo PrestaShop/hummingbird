@@ -3,6 +3,8 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FontPreloadPlugin = require('webpack-font-preload-plugin');
 
 exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
   allowedHosts: [serverAddress],
@@ -126,7 +128,7 @@ exports.extractImages = () => ({
         generator: {
           outputPath: 'img-dist/',
           publicPath: '../img-dist/',
-          filename: '[contenthash].[ext]',
+          filename: '[contenthash][ext]',
         },
       },
     ],
@@ -142,7 +144,7 @@ exports.extractFonts = () => ({
         generator: {
           outputPath: 'fonts/',
           publicPath: '../fonts/',
-          filename: '[contenthash].[ext]',
+          filename: '[name]-[contenthash][ext]',
         },
       },
     ],
@@ -168,6 +170,24 @@ exports.externals = () => ({
   externals: {
     prestashop: 'prestashop',
   },
+});
+
+exports.preloadFonts = () => ({
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'preload.html',
+      templateContent: '{{{preloadLinks}}}',
+      inject: false,
+    }),
+    new FontPreloadPlugin({
+      index: 'preload.html',
+      extensions: ['woff2'],
+      filter: /(materialicons)/i,
+      replaceCallback: ({ indexSource, linksAsString }) => {
+        return indexSource.replace('{{{preloadLinks}}}', linksAsString);
+      },
+    }),
+  ]
 });
 
 exports.expose = () => ({

@@ -3,6 +3,8 @@
  * file that was distributed with this source code.
  */
 
+import useQuantityInput from '@js/components/useQuantityInput';
+
 // @TODO(NeOMakinG): Refactor this file, it comes from facetedsearch or classic
 export const parseSearchUrl = function (event: {target: HTMLElement}) {
   if (event.target.dataset.searchUrl !== undefined) {
@@ -96,6 +98,7 @@ export default () => {
 
   prestashop.on(events.updateProductList, (data: Record<string, never>) => {
     updateProductListDOM(data);
+    useQuantityInput();
     window.scrollTo(0, 0);
   });
 };

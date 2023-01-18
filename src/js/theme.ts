@@ -16,6 +16,7 @@ import initSearchbar from './modules/ps_searchbar';
 import initLanguageSelector from './modules/ps_languageselector';
 import initCurrencySelector from './modules/ps_currencyselector';
 import initVisiblePassword from './visible-password';
+import initErrorHandler from './errors';
 import useToast from './components/useToast';
 import useAlert from './components/useAlert';
 import usePasswordPolicy from './components/usePasswordPolicy';
@@ -51,6 +52,7 @@ $(() => {
   initVisiblePassword();
   initDesktopMenu();
   initFormValidation();
+  initErrorHandler();
   usePasswordPolicy('.field-password-policy');
 
   prestashop.on(events.responsiveUpdate, () => {

@@ -23,6 +23,23 @@
         overflow: hidden;
         border-radius: 8px;
       }
+
+      &__modal-opener {
+        position: absolute;
+        right: 0.635rem;
+        bottom: 0.635rem;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        min-width: 2.5rem;
+        height: 2.5rem;
+        background-color: #fff;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0.125rem -0.125rem 0.25rem 0 rgb(0 0 0 / 20%);
+      }
     }
 
     &__description-short {

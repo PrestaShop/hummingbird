@@ -8,6 +8,7 @@ $component-name: carousel;
   & &-item {
     align-items: center;
     justify-content: center;
+    height: 100%;
 
     img {
       width: 100%;
@@ -94,5 +95,4 @@ $component-name: carousel;
   & &-control-next {
     right: 3rem;
   }
-
 }

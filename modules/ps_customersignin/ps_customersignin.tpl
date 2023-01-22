@@ -7,16 +7,17 @@
   <div class="user-info">
     {if $customer.is_logged}
       <div class="dropdown header-block">
-        <button
+        <a
+          href="#"
           class="dropdown-toggle header-block__action-btn"
-          type="button"
+          role="button"
           id="userMenuButton"
           data-bs-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false">
           <i class="material-icons header-block__icon">&#xE7FD;</i>
-          <span class="header-block__title">{$customerName|truncate:22:"..":true}</span>
-        </button>
+          <span class="header-block__title d-lg-inline d-none">{$customerName|truncate:22:"..":true}</span>
+        </a>
 
         <div class="dropdown-menu dropdown-menu-start" aria-labelledby="userMenuButton">
           <a class="dropdown-item" href="{$urls.pages.my_account}">

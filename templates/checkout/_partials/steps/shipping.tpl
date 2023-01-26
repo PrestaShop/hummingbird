@@ -34,7 +34,7 @@
                             <div class="row align-items-center">
                               {if $carrier.logo}
                                 <div class="col-md-4 carrier__logo">
-                                    <img src="{$carrier.logo}" class="rounded" alt="{$carrier.name}" loading="lazy" />
+                                    <img src="{$carrier.logo}" class="rounded img-fluid" alt="{$carrier.name}" loading="lazy" />
                                 </div>
                               {/if}
 

@@ -34,7 +34,7 @@ $(() => {
 
   // @TODO: Fix this on core.js side inside a major version of PrestaShop instead of minor
   // For reference: https://github.com/PrestaShop/hummingbird/pull/418#discussion_r1061938669
-  document.querySelectorAll<HTMLInputElement>('[name="token"]').forEach((el) => {
+  document.querySelectorAll<HTMLInputElement>('#add_to_card_hp [name="token"]').forEach((el) => {
     el.value = prestashop.static_token;
   });
 

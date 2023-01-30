@@ -10,7 +10,7 @@
 
 {block name='checkout_steps'}
 <div class="{$componentName} bg-light py-2 {if isset($notifications) && $hasNotifications}mb-2 mb-lg-4{else}mb-3 mb-lg-5{/if} py-md-4">
-    <ul class="{$componentName}__list nav nav-tabs border-0 row mb-0 d-none d-md-flex">
+    <ul class="{$componentName}__list nav nav-tabs border-0 row mb-0 d-none d-md-flex" role="tablist">
       <li 
         class="{$componentName}__item nav-item js-step-item text-center col-3" 
         data-step="checkout-personal-information-step" 
@@ -23,6 +23,7 @@
           class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
           data-bs-toggle="tab" 
           data-bs-target="#checkout-personal-information-step"
+          role="tab"
         >
           {l s='Personal Information' d='Shop.Theme.Checkout'}
         </button>
@@ -40,6 +41,7 @@
           class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
           data-bs-toggle="tab" 
           data-bs-target="#checkout-addresses-step"
+          role="tab"
         >
           {l s='Addresses' d='Shop.Theme.Checkout'}
         </button>
@@ -57,6 +59,7 @@
           class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
           data-bs-toggle="tab" 
           data-bs-target="#checkout-delivery-step"
+          role="tab"
         >
           {l s='Shipping method' d='Shop.Theme.Checkout'}
         </button>
@@ -74,6 +77,7 @@
           class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
           data-bs-toggle="tab" 
           data-bs-target="#checkout-payment-step"
+          role="tab"
         >
           {l s='Payment' d='Shop.Theme.Checkout'}
         </button>

@@ -98,4 +98,12 @@ $component-name: checkout__steps;
   &__mobile {
     width: 100%;
   }
+
+  /* Do not assign any styles to active tab */
+  .nav-tabs .checkout__steps--success .nav-link.active {
+    color: var(--bs-success);
+  }
+  .nav-tabs .checkout__steps--current .nav-link.active {
+    color: var(--bs-gray-900);
+  }
 }

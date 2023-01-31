@@ -17,6 +17,7 @@ const initCheckout = () => {
   const termsModalElement = document.querySelector<HTMLLinkElement>(CheckoutMap.checkoutModal);
 
   // Only UI things, the real toggle is handled by Bootstrap Tabs
+  // A thing we handle manually is the .active class on the toggling buttons
   const toggleStep = (content: HTMLElement, step?: HTMLElement) => {
     const currentContent = document.querySelector(CheckoutMap.steps.current);
     currentContent?.classList.remove('step--current', 'js-current-step');
@@ -51,18 +52,28 @@ const initCheckout = () => {
     });
   });
 
+  // Initial step settings
   steps.forEach((step, index) => {
+
+    // Get step content
     const stepContent = document.querySelector<HTMLElement>(
       CheckoutMap.steps.specificStepContent(step.dataset.step),
     );
 
+    // Get step selector button (toggler)
+    const stepButton = step.querySelector<HTMLButtonElement>('button');
+
     if (stepContent) {
+
+      // If step is finished, we mark it green
       if (stepContent.classList.contains('step--complete')) {
         step.classList.add('checkout__steps--success');
       }
 
+      // Current step will get an active property
       if (stepContent.classList.contains('step--current')) {
         step.classList.add('checkout__steps--current');
+        stepButton?.classList.add('active');
         const responsiveStep = document.querySelector<HTMLElement>(
           CheckoutMap.steps.specificStep(step.dataset.step),
         );
@@ -74,14 +85,16 @@ const initCheckout = () => {
         if (setProgress) {
           setProgress(index + 1);
         }
+      } else {
+        stepButton?.classList.remove('active');
       }
 
+      // If the step can be navigated
       if (stepContent.classList.contains('step--reachable')) {
-        const button = step.querySelector<HTMLButtonElement>('button');
 
-        button?.classList.add('btn-link');
+        stepButton?.classList.add('btn-link');
 
-        button?.addEventListener('click', () => {
+        stepButton?.addEventListener('click', () => {
           if (setProgress) {
             setProgress(index + 1);
           }
@@ -90,12 +103,13 @@ const initCheckout = () => {
         });
       }
 
+      // If the step is not finished yet, we disable the navigator
       if (stepContent.classList.contains('step--unreachable')) {
         const button = step.querySelector<HTMLButtonElement>('button');
 
-        button?.setAttribute('disabled', 'true');
+        stepButton?.setAttribute('disabled', 'true');
 
-        button?.addEventListener('click', () => {
+        stepButton?.addEventListener('click', () => {
           toggleStep(stepContent, step);
         });
       }

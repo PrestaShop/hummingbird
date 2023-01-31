@@ -103,6 +103,7 @@ $component-name: checkout__steps;
   .nav-tabs .checkout__steps--success .nav-link.active {
     color: var(--bs-success);
   }
+
   .nav-tabs .checkout__steps--current .nav-link.active {
     color: var(--bs-gray-900);
   }

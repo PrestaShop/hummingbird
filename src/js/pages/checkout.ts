@@ -54,7 +54,6 @@ const initCheckout = () => {
 
   // Initial step settings
   steps.forEach((step, index) => {
-
     // Get step content
     const stepContent = document.querySelector<HTMLElement>(
       CheckoutMap.steps.specificStepContent(step.dataset.step),
@@ -64,7 +63,6 @@ const initCheckout = () => {
     const stepButton = step.querySelector<HTMLButtonElement>('button');
 
     if (stepContent) {
-
       // If step is finished, we mark it green
       if (stepContent.classList.contains('step--complete')) {
         step.classList.add('checkout__steps--success');
@@ -91,7 +89,6 @@ const initCheckout = () => {
 
       // If the step can be navigated
       if (stepContent.classList.contains('step--reachable')) {
-
         stepButton?.classList.add('btn-link');
 
         stepButton?.addEventListener('click', () => {
@@ -105,10 +102,7 @@ const initCheckout = () => {
 
       // If the step is not finished yet, we disable the navigator
       if (stepContent.classList.contains('step--unreachable')) {
-        const button = step.querySelector<HTMLButtonElement>('button');
-
         stepButton?.setAttribute('disabled', 'true');
-
         stepButton?.addEventListener('click', () => {
           toggleStep(stepContent, step);
         });

@@ -20,12 +20,12 @@
   <div class="container">
     <div class="row">
 
-      <div class="cart-grid-body tab-content col-lg-7 order-1 order-lg-0">
+      <div class="cart-grid-body tab-content col-lg-7">
         {block name='checkout_process'}
           {render file='checkout/checkout-process.tpl' ui=$checkout_process}
         {/block}
       </div>
-      <div class="cart-grid-right col-lg-5 order-0 order-lg-1">
+      <div class="cart-grid-right col-lg-5">
         <div class="accordion">
           <div class="accordion-item bg-transparent">
             <button class="accordion-button collapsed px-0 mb-3 d-flex d-lg-none bg-transparent" type="button" data-bs-target="#js-checkout-summary" data-bs-toggle="collapse" aria-expanded="false">

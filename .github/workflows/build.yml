@@ -28,7 +28,28 @@ jobs:
         run: npm run build
 
       - name: Remove unuseful data
-        run: rm node_modules/ .github/ .git/ -rf
+        run: |
+          rm .git/ -rf
+          rm .github/ -rf
+          rm .storybook/ -rf
+          rm node_modules/ -rf
+          rm src/ -rf
+          rm stories/ -rf
+          rm types/ -rf
+          rm webpack/ -rf
+          rm .editorconfig
+          rm .eslintignore
+          rm .eslintrc.js
+          rm .gitignore
+          rm .stylelintignore
+          rm .stylelintrc
+          rm babel.config.js
+          rm jest.config.js
+          rm package-lock.json
+          rm package.json
+          rm postcss.config.js
+          rm tsconfig.json
+          rm webpack.config.js
         
       - name: Create & Upload artifact
         uses: actions/upload-artifact@v1

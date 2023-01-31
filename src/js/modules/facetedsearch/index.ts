@@ -16,15 +16,16 @@ const initSliders = () => {
     const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
 
     // Init basic slider data
-    var unitPosition = 'suffix';
-    var unitSymbol = container.dataset.sliderUnit;
-    var decimals = 2;
-    var decimalSeparator = '.';
-    var thousandsSeparator = '';
+    let unitPosition = 'suffix';
+    let unitSymbol = container.dataset.sliderUnit;
+    let decimalCount = 2;
+    let decimalSeparator = '.';
+    let thousandsSeparator = '';
 
     // Specify further if there are more options, currently used for price slider,
     // which is the only one providing price specifications.
     const options = JSON.parse(<string>container.dataset.sliderSpecifications);
+
     if (options !== null) {
       // Sign position
       if (options.positivePattern !== undefined && options.positivePattern.indexOf('¤') === 0) {
@@ -44,7 +45,7 @@ const initSliders = () => {
 
       // Decimals
       if (options.minFractionDigits !== undefined) {
-        decimals = options.minFractionDigits;
+        decimalCount = options.minFractionDigits;
       }
     }
 
@@ -62,7 +63,7 @@ const initSliders = () => {
     const tooltipsFormat = wNumb({
       mark: decimalSeparator,
       thousand: thousandsSeparator,
-      decimals: decimals,
+      decimals: decimalCount,
       [unitPosition]: unitPosition === 'prefix' ? unitSymbol : ` ${unitSymbol}`,
     });
 

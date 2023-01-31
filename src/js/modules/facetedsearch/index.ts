@@ -11,38 +11,59 @@ import filterHandler from './filter-handler';
 const initSliders = () => {
   const {Theme} = window;
 
+  // Get all slider configurations found in the DOM
   document.querySelectorAll(Theme.selectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
     const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
+
+    // Init basic slider data
+    var unitPosition = 'suffix';
+    var unitSymbol = container.dataset.sliderUnit;
+    var decimals = 2;
+    var decimalSeparator = '.';
+    var thousandsSeparator = '';
+
+    // Specify further if there are more options, currently used for price slider,
+    // which is the only one providing price specifications.
     const options = JSON.parse(<string>container.dataset.sliderSpecifications);
-    const signPosition = options.positivePattern.indexOf('¤') === 0 ? 'prefix' : 'suffix';
-    // const sliderType = container.dataset.sliderSpecifications ? 'price' : 'weight';
-    const sliderDirection = container.dataset.sliderDirection === '1' ? 'rtl' : 'ltr';
+    if (options !== null) {
+      // Sign position
+      if (options.positivePattern !== undefined && options.positivePattern.indexOf('¤') === 0) {
+        unitPosition = 'prefix';
+      }
+
+      // Unit
+      if (options.currencySymbol !== undefined) {
+        unitSymbol = options.currencySymbol;
+      }
+
+      // Separators
+      if (options.numberSymbols !== undefined) {
+        decimalSeparator = options.numberSymbols[0];
+        thousandsSeparator = options.numberSymbols[1];
+      }
+
+      // Decimals
+      if (options.minFractionDigits !== undefined) {
+        decimals = options.minFractionDigits;
+      }
+    }
+
+    // Minimum and maximum values
     const min = parseInt(<string>container.dataset.sliderMin, 10);
     const max = parseInt(<string>container.dataset.sliderMax, 10);
+
+    // const sliderType = container.dataset.sliderSpecifications ? 'price' : 'weight';
+    const sliderDirection = container.dataset.sliderDirection === '1' ? 'rtl' : 'ltr';
+
     // let format;
     let initiatedSlider: API;
 
-    // Not used for the moment
-    /* if (sliderType === 'price') {
-      format = wNumb({
-        mark: ',',
-        thousand: ' ',
-        decimals: 0,
-        [signPosition]:
-          signPosition === 'prefix' ? options.currencySymbol : ` ${options.currencySymbol}`,
-      });
-    } else if (sliderType === 'weight') {
-      format = wNumb({
-        mark: ',',
-        thousand: ' ',
-        decimals: 0,
-      });
-    } */
-
+    // Initialize tooltip format
     const tooltipsFormat = wNumb({
-      decimals: 2,
-      [signPosition]:
-        signPosition === 'prefix' ? options.currencySymbol : ` ${options.currencySymbol}`,
+      mark: decimalSeparator,
+      thousand: thousandsSeparator,
+      decimals: decimals,
+      [unitPosition]: unitPosition === 'prefix' ? unitSymbol : ` ${unitSymbol}`,
     });
 
     const sliderValues = JSON.parse(<string>container.dataset.sliderValues);

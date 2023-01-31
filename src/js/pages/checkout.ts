@@ -29,7 +29,7 @@ const initCheckout = () => {
       responsiveStep?.classList.remove('d-none');
     }
 
-    content.classList.add('js-current-step');
+    content.classList.add('js-current-step', 'step--current');
   };
 
   actionButtons.forEach((button) => {

@@ -62,7 +62,8 @@ $component-name: search;
 
   &-widgets {
     position: relative;
-    overflow: visible;
+    // stylelint-disable-next-line
+    overflow: visible !important;
 
     @include media-breakpoint-down(md) {
       max-width: inherit;

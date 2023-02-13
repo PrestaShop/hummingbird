@@ -86,7 +86,7 @@
               <div class="row align-items-center">
                 {if $selected_delivery_option.logo}
                   <div class="col-md-4 carrier__logo">
-                      <img src="{$selected_delivery_option.logo}" class="rounded" alt="{$selected_delivery_option.name}" loading="lazy" />
+                      <img src="{$selected_delivery_option.logo}" class="rounded img-fluid" alt="{$selected_delivery_option.name}" loading="lazy" />
                   </div>
                 {/if}
 

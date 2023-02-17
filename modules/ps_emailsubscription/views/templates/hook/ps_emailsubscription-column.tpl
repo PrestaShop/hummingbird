@@ -5,7 +5,7 @@
 
 <div class="block_newsletter" id="blockEmailSubscription_{$hookName}">
   <form action="{$urls.current_url}#blockEmailSubscription_{$hookName}" method="post">
-    <p id="block-newsletter-label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
+    <p id="block-newsletter-label-{$hookName}">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
     <div class="mb-1">
       <input
         class="btn btn-primary float-end"
@@ -19,7 +19,7 @@
           type="email"
           value="{$value}"
           placeholder="{l s='Your email address' d='Shop.Forms.Labels'}"
-          aria-labelledby="block-newsletter-label"
+          aria-labelledby="block-newsletter-label-{$hookName}"
           required
         >
       </div>

@@ -1,6 +1,6 @@
 {
   "name": "prestashop-hummingbird-dev-tools",
-  "version": "1.0.0",
+  "version": "0.1.5",
   "description": "Tools to help while developing the Hummingbird theme",
   "engines": {
     "node": ">= 14"

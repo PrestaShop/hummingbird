@@ -7,9 +7,9 @@ const initCurrencySelector = () => {
   const {Theme} = window;
   const {currencySelector: CurrencySelectorMap} = Theme.selectors;
   const currencySelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencySelector);
-  const currencyMobileSelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencyMobileSelector)
+  const currencyMobileSelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencyMobileSelector);
 
-  if(!currencySelector) {
+  if (!currencySelector) {
     currencyMobileSelector?.remove();
   }
 

@@ -7,6 +7,11 @@ const initCurrencySelector = () => {
   const {Theme} = window;
   const {currencySelector: CurrencySelectorMap} = Theme.selectors;
   const currencySelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencySelector);
+  const currencyMobileSelector = document.querySelector<HTMLElement>(CurrencySelectorMap.currencyMobileSelector)
+
+  if(!currencySelector) {
+    currencyMobileSelector?.remove();
+  }
 
   currencySelector?.addEventListener('change', (event) => {
     const option = event.target as HTMLOptionElement;

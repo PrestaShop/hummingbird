@@ -40,6 +40,7 @@ export const blockcart = {
 
 export const currencySelector = {
   currencySelector: '.js-currency-selector',
+  currencyMobileSelector: '#_mobile_currency_selector',
 };
 
 export const languageSelector = {

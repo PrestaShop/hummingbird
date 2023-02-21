@@ -40,6 +40,7 @@ declare type blockcart = {
 
 declare type currencySelector = {
   currencySelector: string,
+  currencyMobileSelector: string,
 };
 
 declare type languageSelector = {

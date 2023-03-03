@@ -9,7 +9,7 @@
   <div class="container px-1">
     <div class="{$componentName}__content row">
       <div class="{$componentName}__content__left col-md-5">
-        <p class="{$componentName}__label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
+        <p id="block-newsletter-label-{$hookName}" class="{$componentName}__label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
       </div>
 
       <div class="{$componentName}__content__right col-md-7">
@@ -21,7 +21,7 @@
               class="form-control"
               value="{$value}"
               placeholder="{l s='Your email address' d='Shop.Forms.Labels'}"
-              aria-labelledby="block-newsletter-label"
+              aria-labelledby="block-newsletter-label-{$hookName}"
               required
            >
 

@@ -14,6 +14,14 @@
 
 {block name='product_list_header'}
   <h1 id="js-product-list-header" class="h4">
-    {if $listing.products|count}{l s='Search results for' d='Shop.Theme.Catalog'}{else}{l s='No search results for' d='Shop.Theme.Catalog'}{/if} "{$smarty.get.s}"
+    {if empty($smarty.get.s)}
+      {l s='Nothing to search for' d='Shop.Theme.Catalog'}
+    {else}
+      {if $listing.products|count}
+        {l s='Search results for' d='Shop.Theme.Catalog'}
+      {else}
+        {l s='No search results for' d='Shop.Theme.Catalog'}
+      {/if} "{$smarty.get.s}"
+    {/if}
   </h1>
 {/block}

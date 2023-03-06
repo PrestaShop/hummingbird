@@ -3,31 +3,62 @@
  * file that was distributed with this source code.
  */
 import {API} from 'nouislider';
+import getQueryParameters from './urlparser';
 
 export default function (values: Array<string | number>, slider: API) {
   const {prestashop, Theme: {events}} = window;
 
-  const label = slider.target.dataset.sliderLabel;
-  const unit = slider.target.dataset.sliderUnit;
-  const encodedUrl = window.location.href;
-  const splittedUrl = encodedUrl.split('?');
-  let newUrl: string;
+  // Prepare query parameters
+  // eslint-disable-next-line
+  let queryParams = <any> [];
 
-  const searchParams = new URLSearchParams(splittedUrl[1]);
-  const params = searchParams.get('q');
+  // Get next encoded URL
+  const nextEncodedFacetsURL = <string> slider.target.dataset.sliderEncodedUrl;
 
-  if (params) {
-    let groups = params.split('/');
+  // Split it to URL and parameters part
+  const urlsSplitted = nextEncodedFacetsURL.split('?');
 
-    if (label) {
-      groups = groups.filter((e) => e.replace(label, '') === e);
-      groups.push(`${label}-${unit}-${values[0]}-${values[1]}`);
-    }
-
-    newUrl = `${splittedUrl[0]}?q=${groups.join('/')}`;
-  } else {
-    newUrl = `${splittedUrl[0]}?q=${label}-${unit}-${values[0]}-${values[1]}`;
+  // Retrieve parameters if exists
+  if (urlsSplitted !== undefined && urlsSplitted.length > 1) {
+    queryParams = getQueryParameters(urlsSplitted[1]);
   }
+
+  // Check if q param is present, add it if missing
+  let found = false;
+  // eslint-disable-next-line
+  queryParams.forEach((query: any) => {
+    if (query.name === 'q') {
+      found = true;
+    }
+  });
+
+  if (!found) {
+    queryParams.push({name: 'q', value: ''});
+  }
+
+  // Update query parameter
+  // eslint-disable-next-line
+  queryParams.forEach((query: any) => {
+    if (query.name === 'q') {
+      // eslint-disable-next-line
+      query.value += [
+        query.value.length > 0 ? '/' : '',
+        slider.target.dataset.sliderLabel,
+        '-',
+        slider.target.dataset.sliderUnit,
+        '-',
+        values[0],
+        '-',
+        values[1],
+      ].join('');
+    }
+  });
+
+  const newUrl = [
+    urlsSplitted[0],
+    '?',
+    $.param(queryParams),
+  ].join('');
 
   prestashop.emit(events.updateFacets, newUrl);
 }

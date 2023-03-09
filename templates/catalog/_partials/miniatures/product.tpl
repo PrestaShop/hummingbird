@@ -168,7 +168,7 @@
               {/block}
             </div>
 
-            {if $product.add_to_cart_url}
+            {if $product.add_to_cart_url && !$configuration.is_catalog}
               <form action="{$urls.pages.cart}" method="post" class="d-flex align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
                 <input type="hidden" name="token" value="{$static_token}" />

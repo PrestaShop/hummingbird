@@ -12,7 +12,7 @@
     <div class="alert alert-success" role="alert">
       <h4 class="alert-heading">{l s='Your order is confirmed' d='Shop.Theme.Checkout'}</h4>
       <p class="mb-0">
-        {l s='An email has been sent to your mail address %email%.' d='Shop.Theme.Checkout' sprintf=['%email%' => $order_customer.email]}
+        {l s='An email has been sent to your mail address %email%.' d='Shop.Theme.Checkout' sprintf=['%email%' => $customer.email]}
       </p>
       {if $order.details.invoice_url}
         <hr class="alert-divider"/>
@@ -68,7 +68,7 @@
     </div>
   {/block}
 
-  {if !$registered_customer_exists}
+  {if $customer.is_guest}
     {block name='account_transformation_form'}
       <div class="card card-body bg-light mb-3 {$componentName}__account-transformation">
         {include file='customer/_partials/account-transformation-form.tpl'}

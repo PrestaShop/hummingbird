@@ -10,24 +10,12 @@
 
 {block name='page_content'}
   <div class="row sitemap">
+    {foreach $sitemapUrls as $group}
       <div class="col-md-6 col-lg-3">
-        <h2 class="h3">{$our_offers}</h2>
-        {include file='cms/_partials/sitemap-nested-list.tpl' links=$links.offers}
+        <h2 class="h3">{$group.name}</h2>
+        {include file='cms/_partials/sitemap-nested-list.tpl' links=$group.links}
         <hr class="d-block d-md-none" />
       </div>
-      <div class="col-md-6 col-lg-3">
-        <h2 class="h3">{$categories}</h2>
-        {include file='cms/_partials/sitemap-nested-list.tpl' links=$links.categories}
-        <hr class="d-block d-md-none" />
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <h2 class="h3">{$your_account}</h2>
-        {include file='cms/_partials/sitemap-nested-list.tpl' links=$links.user_account}
-        <hr class="d-block d-md-none" />
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <h2 class="h3">{$pages}</h2>
-        {include file='cms/_partials/sitemap-nested-list.tpl' links=$links.pages}
-      </div>
+    {/foreach}
   </div>
 {/block}

@@ -9,7 +9,7 @@
             {if $category.description}
               <div id="category-description" class="rich-text mb-4">{$category.description nofilter}</div>
             {/if}
-            {if !empty($category.image}
+            {if !empty($category.image)}
               <div class="category-cover mb-4">
                 <img src="{$category.image.large.url}" 
                   alt="{if !empty($category.image.legend)}{$category.image.legend}{else}{$category.name}{/if}" 

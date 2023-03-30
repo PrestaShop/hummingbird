@@ -13,4 +13,4 @@ jobs:
           node-version: '14.x'
 
       - name: Build and check types
-        run: touch ./webpack/.env && npm install && npm run build
+        run: touch ./webpack/.env && npm ci && npm run build

@@ -1,6 +1,6 @@
 
 name: Build ZIP File
-on: 
+on:
   pull_request:
   push:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
           node-version: 14
 
       - name: Install dependencies
-        run: npm i
+        run: npm ci
 
       - name: Copy Webpack config
         run: cp ./webpack/.env-example ./webpack/.env
@@ -50,7 +50,7 @@ jobs:
           rm postcss.config.js
           rm tsconfig.json
           rm webpack.config.js
-        
+
       - name: Create & Upload artifact
         uses: actions/upload-artifact@v1
         with:
@@ -65,17 +65,17 @@ jobs:
             uses: actions/download-artifact@v1
             with:
                 name: ${{ github.event.repository.name }}
-          
+
           - id: release_info
             uses: toolmantim/release-drafter@v5
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
           - name: Prepare for Release
             run: |
                 cd ${{ github.event.repository.name }}
                 zip -r ${{ github.event.repository.name }}.zip ${{ github.event.repository.name }}
-          
+
           - name: Clean existing assets
             shell: bash
             run: |
@@ -87,7 +87,7 @@ jobs:
                 done
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
           - name: Publish to GitHub Release
             uses: actions/upload-release-asset@v1.0.1
             env:

@@ -13,7 +13,7 @@ Same as the PrestaShop project, you need at least **NodeJS 14.x** and **NPM 7** 
 
 First you need to install every node module:
 
-`npm i`
+`npm ci`
 
 then create a `.env` file inside the *webpack* folder by copying `webpack/.env-example` and complete it with your environment's informations. Please use a free tcp port.
 
@@ -39,6 +39,6 @@ When develop is merged into master, the Storybook is delivered almost instantly 
 
 ## License
 
-This theme is released under the [Academic Free License 3.0][AFL-3.0] 
+This theme is released under the [Academic Free License 3.0][AFL-3.0]
 
 [AFL-3.0]: https://opensource.org/licenses/AFL-3.0

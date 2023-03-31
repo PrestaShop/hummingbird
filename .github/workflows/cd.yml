@@ -12,19 +12,19 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [14]
+        node: [16]
 
     steps:
       - name: Checkout
         uses: actions/checkout@master
 
       - name: Setup node env
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: npm i
+        run: npm ci
 
       - name: Generate
         run: npm run build-storybook

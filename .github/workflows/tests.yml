@@ -6,10 +6,10 @@ jobs:
     name: Run unit tests
     strategy:
       matrix:
-        js: [ '14' ]
+        js: [ '16' ]
     steps:
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.js }}
 

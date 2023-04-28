@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  */
 
-const handleCartAction = (event: Event) => {
+const handleCartAction = (event: Event): void => {
   event.stopPropagation();
   event.preventDefault();
 
@@ -14,13 +14,13 @@ const handleCartAction = (event: Event) => {
   sendCartRefreshRequest(target);
 };
 
-const sendCartRefreshRequest = (target: HTMLElement) => {
+const sendCartRefreshRequest = (target: HTMLElement): void => {
   const {prestashop, Theme: {events}} = window;
   const {dataset} = target;
 
   const targetUrl = target.getAttribute('href');
 
-  if (!targetUrl) {
+  if (targetUrl === null) {
     return;
   }
 

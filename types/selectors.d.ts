@@ -32,6 +32,8 @@ declare type cart = {
   discountName: string,
   displayPromo: string,
   promoCode: string,
+  deleteLinkAction: string,
+  container: string,
 };
 
 declare type blockcart = {

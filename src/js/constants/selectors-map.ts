@@ -27,11 +27,13 @@ export const listing = {
 };
 
 export const cart = {
+  container: '.cart-container',
   overview: '.cart-overview',
   discountCode: '.js-discount .js-code',
   discountName: '[name=discount_name]',
   displayPromo: '.display-promo',
   promoCode: '#promo-code',
+  deleteLinkAction: 'delete-from-cart',
 };
 
 export const blockcart = {

@@ -53,7 +53,7 @@
                       </span>
                     </div>
                   </label>
-                  <div class="carrier__extra-content js-carrier-extra-content"{if $delivery_option != $carrier_id} style="display:none;"{/if}>
+                  <div class="carrier__extra-content {if $delivery_option == $carrier_id}carrier__extra-content--show{/if} js-carrier-extra-content">
                     {$carrier.extraContent nofilter}
                   </div>
                   {if !$smarty.foreach.delivery_options.last}

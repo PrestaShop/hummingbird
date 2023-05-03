@@ -143,6 +143,28 @@ const initCheckout = () => {
       }
     }
   });
+
+  // Prestashop event triggers after selecting different carrier
+  prestashop.on(events.updatedDeliveryForm, (params: Theme.DeliveryOptionForm.DeliveryOptionItem): void => {
+    if (typeof params.deliveryOption === 'undefined' || Object.keys(params.deliveryOption).length === 0) {
+      return;
+    }
+
+    // Hide all extra content in delivery step
+    const extraContentElements = document.querySelectorAll(CheckoutMap.carrierExtraContent);
+    extraContentElements.forEach((content: HTMLElement) => {
+      content.classList.remove(CheckoutMap.carrierExtraContentShow); // Remove show class
+      content.style.maxHeight = '0';
+    });
+    const extraContentElementToShow = params.deliveryOption[0]
+      ?.querySelector(CheckoutMap.carrierExtraContent) as HTMLElement;
+
+    // Show selected delivery method extra content
+    if (extraContentElementToShow != null) {
+      extraContentElementToShow.classList.add(CheckoutMap.carrierExtraContentShow); // Add show class
+      extraContentElementToShow.style.maxHeight = `${extraContentElementToShow.scrollHeight}px`;
+    }
+  });
 };
 
 export default initCheckout;

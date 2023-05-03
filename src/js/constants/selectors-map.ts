@@ -64,9 +64,11 @@ export const checkout = {
     specificStepContent: (param: string | undefined) => `#${param}`,
     backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
   },
-  actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
+  actionsButtons: '.js-back, .js-edit-addressses, .js-edit-shipping',
   termsLink: '.js-terms a',
   checkoutModal: '#checkout-modal',
+  carrierExtraContent: '.js-carrier-extra-content',
+  carrierExtraContentShow: '.carrier__extra-content--show',
 };
 
 export const progressRing = {

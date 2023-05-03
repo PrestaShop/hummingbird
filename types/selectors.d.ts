@@ -67,6 +67,8 @@ declare type checkout = {
   actionsButtons: string,
   termsLink: string,
   checkoutModal: string,
+  carrierExtraContent: string,
+  carrierExtraContentShow: string,
 };
 
 declare type progressRing = {

@@ -1,8 +1,9 @@
 .carrier__extra-content {
-  max-height: 0px;
-  transition: max-height 0.5s ease-in-out;
+  max-height: 0;
   overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
 }
+
 .carrier__extra-content--show {
   max-height: fit-content;
 }

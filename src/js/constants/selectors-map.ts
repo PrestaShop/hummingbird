@@ -7,6 +7,7 @@ export const facetedsearch = {
   range: '.js-faceted-slider',
   rangeContainer: '.js-faceted-slider-container',
   filterSlider: '.js-faceted-filter-slider',
+  offCanvasFaceted: '#offcanvas-faceted',
 };
 
 export const pageLoader = '.js-page-loader';

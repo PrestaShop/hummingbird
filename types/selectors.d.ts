@@ -7,6 +7,7 @@ declare type facetedsearch = {
   range: string,
   rangeContainer: string,
   filterSlider: string,
+  offCanvasFaceted: string,
 };
 
 declare type pageLoader = string;

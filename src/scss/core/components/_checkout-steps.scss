@@ -108,3 +108,8 @@ $component-name: checkout__steps;
     color: var(--bs-gray-900);
   }
 }
+
+.carrier__extra-content-wrapper {
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}

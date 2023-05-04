@@ -67,8 +67,9 @@ export const checkout = {
   actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
   termsLink: '.js-terms a',
   checkoutModal: '#checkout-modal',
-  carrierExtraContent: '.js-carrier-extra-content',
-  carrierExtraContentShow: '.carrier__extra-content--show',
+  carrierExtraContentWrapper: '.carrier__extra-content-wrapper',
+  carrierExtraContent: '.carrier__extra-content',
+  carrierExtraContentActive: '.carrier__extra-content-wrapper--active',
 };
 
 export const progressRing = {

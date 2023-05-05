@@ -2,6 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+import {qtyInput} from "@constants/selectors-map";
 
 declare type facetedsearch = {
   range: string,
@@ -153,6 +154,6 @@ type SelectorsMap = {
   mobileMenu: mobileMenu,
   visiblePassword: visiblePassword,
   desktopMenu: desktopMenu,
-  quantityInput: quantityInput,
+  qtyInput: quantityInput,
   formValidation: formValidation,
 };

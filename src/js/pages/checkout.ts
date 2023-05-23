@@ -143,6 +143,48 @@ const initCheckout = () => {
       }
     }
   });
+
+  // Prestashop event triggers after selecting different carrier
+  prestashop.on(events.updatedDeliveryForm, (params: Theme.DeliveryOptionForm.DeliveryOptionItem): void => {
+    if (typeof params.deliveryOption === 'undefined' || Object.keys(params.deliveryOption).length === 0) {
+      return;
+    }
+
+    // Hide all extra content in delivery step
+    const extraContentElements = document.querySelectorAll(CheckoutMap.carrierExtraContentWrapper);
+    extraContentElements.forEach((content: HTMLElement) => {
+      content.style.maxHeight = '0';
+    });
+    const extraContentElementToShow = params.deliveryOption[0]
+      ?.querySelector(CheckoutMap.carrierExtraContentWrapper) as HTMLElement;
+
+    // Show selected delivery method extra content
+    if (extraContentElementToShow != null) {
+      const content = extraContentElementToShow.querySelector(CheckoutMap.carrierExtraContent);
+
+      if (content != null) {
+        extraContentElementToShow.style.maxHeight = `${content.clientHeight}px`;
+      }
+    }
+  });
+
+  const setMaxHeightToActiveCarrierExtraContent = () => {
+    const activeExtraContent = document.querySelector(`${CheckoutMap.carrierExtraContentActive}`) as HTMLElement;
+    const content = activeExtraContent.querySelector(CheckoutMap.carrierExtraContent) as HTMLElement;
+
+    if (activeExtraContent != null && content != null) {
+      activeExtraContent.style.maxHeight = `${content.clientHeight}px`;
+    }
+  };
+
+  // Initiate active carrier extra content height
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(() => { setMaxHeightToActiveCarrierExtraContent(); }, 1);
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      setMaxHeightToActiveCarrierExtraContent();
+    });
+  }
 };
 
 export default initCheckout;

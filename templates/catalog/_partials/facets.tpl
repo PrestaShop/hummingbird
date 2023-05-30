@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 {if $facets|count}
-  <div id="searc-filters" class="js-search-filters">
+  <div id="search-filters" class="js-search-filters">
     {block name='facets_title'}
       <p class="text-uppercase h6 d-none d-sm-block d-md-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
     {/block}

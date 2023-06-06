@@ -134,17 +134,36 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
               const errors = data.errors as string;
 
               if (errors) {
-                useToast(errors, {type: 'warning', autohide: false}).show();
+                useToast(errors, {type: 'danger', autohide: false}).show();
               }
-              prestashop.emit(events.updateCart, {
-                reason: qtyInput.dataset,
-                resp: data,
-              });
             }
+
+            // we check if the quantity is more than wanted and if oosp is disabled
+            // to recall with the correct number we can have
+            if (data.cart?.products?.length > 0) {
+              const productData = data.cart.products.find(
+                (product: Record<string, unknown>) => data.id_product === Number(product.id_product)
+                      && data.id_product_attribute === Number(product.id_product_attribute));
+
+              if (productData) {
+                if (productData.availability === 'unavailable'
+                    && productData.allow_oosp === 0
+                    && Number(productData.quantity_wanted) > Number(productData.stock_quantity)) {
+                  const diff = Number(productData.stock_quantity) - Number(productData.quantity_wanted);
+                  await sendUpdateCartRequest(productData.update_quantity_url as string, diff);
+                }
+              }
+            }
+
+            prestashop.emit(events.updateCart, {
+              reason: qtyInput.dataset,
+              resp: data,
+            });
             // Change the input value based on returned quantity
             qtyInput.value = data.quantity;
             // If user used the confirmation mode, need to update input value in the DOM
             qtyInput.setAttribute('value', data.quantity);
+
           } else {
             // Something went wrong so call the catch block
             throw response;

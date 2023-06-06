@@ -159,11 +159,11 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
               reason: qtyInput.dataset,
               resp: data,
             });
+
             // Change the input value based on returned quantity
             qtyInput.value = data.quantity;
             // If user used the confirmation mode, need to update input value in the DOM
             qtyInput.setAttribute('value', data.quantity);
-
           } else {
             // Something went wrong so call the catch block
             throw response;

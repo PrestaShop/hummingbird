@@ -170,9 +170,14 @@ const initCheckout = () => {
 
   const setMaxHeightToActiveCarrierExtraContent = () => {
     const activeExtraContent = document.querySelector(`${CheckoutMap.carrierExtraContentActive}`) as HTMLElement;
+
+    if (activeExtraContent === null) {
+      return;
+    }
+
     const content = activeExtraContent.querySelector(CheckoutMap.carrierExtraContent) as HTMLElement;
 
-    if (activeExtraContent != null && content != null) {
+    if (content != null) {
       activeExtraContent.style.maxHeight = `${content.clientHeight}px`;
     }
   };

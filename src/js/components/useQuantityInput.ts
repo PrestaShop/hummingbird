@@ -145,13 +145,13 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
                 (product: Record<string, unknown>) => data.id_product === Number(product.id_product)
                       && data.id_product_attribute === Number(product.id_product_attribute));
 
-              if (productData) {
-                if (productData.availability === 'unavailable'
-                    && productData.allow_oosp === 0
-                    && Number(productData.quantity_wanted) > Number(productData.stock_quantity)) {
-                  const diff = Number(productData.stock_quantity) - Number(productData.quantity_wanted);
-                  await sendUpdateCartRequest(productData.update_quantity_url as string, diff);
-                }
+              if (productData
+                  && productData.availability === 'unavailable'
+                  && productData.allow_oosp === 0
+                  && Number(productData.quantity_wanted) > Number(productData.stock_quantity)
+              ) {
+                const diff = Number(productData.stock_quantity) - Number(productData.quantity_wanted);
+                await sendUpdateCartRequest(productData.update_quantity_url as string, diff);
               }
             }
 

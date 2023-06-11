@@ -14,7 +14,7 @@
   <div class="{$componentName} row g-3">
     <a class="{$componentName}__link col-md-6 col-lg-4" id="identity-link" href="{$urls.pages.identity}">
       <span class="link-item">
-        <i class="material-icons">&#xE853;</i>
+        <i class="material-icons" aria-hidden="true">&#xE853;</i>
         {l s='Information' d='Shop.Theme.Customeraccount'}
       </span>
     </a>
@@ -22,14 +22,14 @@
     {if $customer.addresses|count}
       <a class="{$componentName}__link col-md-6 col-lg-4" id="addresses-link" href="{$urls.pages.addresses}">
         <span class="link-item">
-          <i class="material-icons">&#xE56A;</i>
+          <i class="material-icons" aria-hidden="true">&#xE56A;</i>
           {l s='Addresses' d='Shop.Theme.Customeraccount'}
         </span>
       </a>
     {else}
       <a class="{$componentName}__link col-md-6 col-lg-4" id="address-link" href="{$urls.pages.address}">
         <span class="link-item">
-          <i class="material-icons">&#xE567;</i>
+          <i class="material-icons" aria-hidden="true">&#xE567;</i>
           {l s='Add first address' d='Shop.Theme.Customeraccount'}
         </span>
       </a>
@@ -38,7 +38,7 @@
     {if !$configuration.is_catalog}
       <a class="{$componentName}__link col-md-6 col-lg-4" id="history-link" href="{$urls.pages.history}">
         <span class="link-item">
-          <i class="material-icons">&#xE916;</i>
+          <i class="material-icons" aria-hidden="true">&#xE916;</i>
           {l s='Order history and details' d='Shop.Theme.Customeraccount'}
         </span>
       </a>
@@ -47,7 +47,7 @@
     {if !$configuration.is_catalog}
       <a class="{$componentName}__link col-md-6 col-lg-4" id="order-slips-link" href="{$urls.pages.order_slip}">
         <span class="link-item">
-          <i class="material-icons">&#xE8B0;</i>
+          <i class="material-icons" aria-hidden="true">&#xE8B0;</i>
           {l s='Credit slips' d='Shop.Theme.Customeraccount'}
         </span>
       </a>
@@ -56,7 +56,7 @@
     {if $configuration.voucher_enabled && !$configuration.is_catalog}
       <a class="{$componentName}__link col-md-6 col-lg-4" id="discounts-link" href="{$urls.pages.discount}">
         <span class="link-item">
-          <i class="material-icons">&#xE54E;</i>
+          <i class="material-icons" aria-hidden="true">&#xE54E;</i>
           {l s='Vouchers' d='Shop.Theme.Customeraccount'}
         </span>
       </a>
@@ -65,7 +65,7 @@
     {if $configuration.return_enabled && !$configuration.is_catalog}
       <a class="{$componentName}__link col-md-6 col-lg-4" id="returns-link" href="{$urls.pages.order_follow}">
         <span class="link-item">
-          <i class="material-icons">&#xE860;</i>
+          <i class="material-icons" aria-hidden="true">&#xE860;</i>
           {l s='Merchandise returns' d='Shop.Theme.Customeraccount'}
         </span>
       </a>
@@ -77,7 +77,7 @@
   </div>
 
   <a class="{$componentName}__logout d-md-none" href="{$urls.actions.logout}">
-    <i class="material-icons me-2">exit_to_app</i>
+    <i class="material-icons me-2" aria-hidden="true">exit_to_app</i>
     {l s='Sign out' d='Shop.Theme.Actions'}
   </a>
 {/block}

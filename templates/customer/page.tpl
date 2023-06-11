@@ -19,7 +19,7 @@
         {/block}
         {block name='account_link'}
           <a class="btn btn-unstyle d-md-none account-menu__back" href="{$urls.pages.my_account}">
-            <i class="material-icons">&#xE5CB;</i> {l s='Back to your account' d='Shop.Theme.Customeraccount'}
+            <i class="material-icons" aria-hidden="true">&#xE5CB;</i> {l s='Back to your account' d='Shop.Theme.Customeraccount'}
           </a>
         {/block}
       {/block}

@@ -114,7 +114,7 @@
           {block name='quick_view'}
             <div class="{$componentName}__quickview">
               <button class="{$componentName}__quickview_button btn btn-link js-quickview btn-with-icon" data-link-action="quickview">
-                <i class="material-icons">&#xE417;</i>
+                <i class="material-icons" aria-hidden="true">&#xE417;</i>
                 {l s='Quick view' d='Shop.Theme.Actions'}
               </button>
             </div>
@@ -183,7 +183,7 @@
                   }
                 </div>
                 <button data-button-action="add-to-cart" class="btn btn-primary ms-3">
-                  <i class="material-icons">&#xe854;</i>
+                  <i class="material-icons" aria-hidden="true">&#xe854;</i>
                   <span class="visually-hidden">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
                 </button>
               </form>

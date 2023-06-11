@@ -26,8 +26,8 @@
   <div class="mb-4">
     <h2 class="fs-5">{l s='Access to my data' mod='psgdpr'}</h2>
     <p>{l s='At any time, you have the right to retrieve the data you have provided to our site. Click on "Get my data" to automatically download a copy of your personal data on a pdf or csv file.' mod='psgdpr'}</p>
-    <a id="exportDataToCsv" class="btn btn-outline-primary d-block d-sm-inline-block mx-0 mb-2 mb-sm-0" target="_blank" href="{$psgdpr_csv_controller|escape:'htmlall':'UTF-8'}"><i class="material-icons">download</i> {l s='GET MY DATA TO CSV' mod='psgdpr'}</a>
-    <a id="exportDataToPdf" class="btn btn-outline-primary d-block d-sm-inline-block mx-0 mx-sm-2" target="_blank" href="{$psgdpr_pdf_controller|escape:'htmlall':'UTF-8'}"><i class="material-icons">download</i> {l s='GET MY DATA TO PDF' mod='psgdpr'}</a>
+    <a id="exportDataToCsv" class="btn btn-outline-primary d-block d-sm-inline-block mx-0 mb-2 mb-sm-0" target="_blank" href="{$psgdpr_csv_controller|escape:'htmlall':'UTF-8'}"><i class="material-icons" aria-hidden="true">download</i> {l s='GET MY DATA TO CSV' mod='psgdpr'}</a>
+    <a id="exportDataToPdf" class="btn btn-outline-primary d-block d-sm-inline-block mx-0 mx-sm-2" target="_blank" href="{$psgdpr_pdf_controller|escape:'htmlall':'UTF-8'}"><i class="material-icons" aria-hidden="true">download</i> {l s='GET MY DATA TO PDF' mod='psgdpr'}</a>
   </div>
 
   <h2 class="fs-5">{l s='Rectification & Erasure requests' mod='psgdpr'}</h2>

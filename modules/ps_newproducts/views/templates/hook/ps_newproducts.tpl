@@ -9,7 +9,7 @@
         {include file="catalog/_partials/productlist.tpl" products=$products productClass="col-6 col-lg-4 col-xl-3"}
         <div class="new-products-footer text-center">
             <a class="all-product-link btn btn-outline-primary" href="{$allNewProductsLink}">
-                {l s='All new products' d='Shop.Theme.Catalog'}<i class="material-icons rtl-flip">&#xE315;</i>
+                {l s='All new products' d='Shop.Theme.Catalog'}<i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
             </a>
         </div>
     </div>

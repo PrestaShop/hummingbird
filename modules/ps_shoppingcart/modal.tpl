@@ -8,7 +8,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">
-          <i class="material-icons me-1">&#xE5CA;</i>
+          <i class="material-icons me-1" aria-hidden="true">&#xE5CA;</i>
           {l s='Product successfully added to your shopping cart' d='Shop.Theme.Checkout'}
         </h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
@@ -98,7 +98,7 @@
       <div class="modal-footer border-1">
         <div class="cart-footer-actions d-flex flex-wrap align-items-center justify-content-between w-100">
           <button type="button" class="btn btn-outline-primary btn-with-icon w-md-auto w-100 mb-md-0 mb-3" data-bs-dismiss="modal">
-            <i class="material-icons rtl-flip">&#xE5CB;</i>
+            <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
             {l s='Continue shopping' d='Shop.Theme.Actions'}
           </button>
           <a href="{$cart_url}" class="btn btn-primary w-md-auto w-100">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>

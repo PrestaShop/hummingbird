@@ -55,7 +55,7 @@
                 <h2 class="h6 store__name">{$store.name}</h2>
                 <address class="store__address">{$store.address.formatted nofilter}</address>
                 {if $store.note || $store.phone || $store.fax || $store.email}
-                  <a data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}"><strong>{l s='About and Contact' d='Shop.Theme.Global'}</strong><i class="material-icons">&#xE409;</i></a>
+                  <a data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}"><strong>{l s='About and Contact' d='Shop.Theme.Global'}</strong><i class="material-icons" aria-hidden="true">&#xE409;</i></a>
                 {/if}
                 <hr>
                 <table class="store__opening-times">
@@ -78,7 +78,7 @@
                   <h2 class="h6 store__name">{$store.name}</h2>
                   <address class="store__address">{$store.address.formatted nofilter}</address>
                   {if $store.note || $store.phone || $store.fax || $store.email}
-                    <a data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}"><strong>{l s='About and Contact' d='Shop.Theme.Global'}</strong><i class="material-icons">&#xE409;</i></a>
+                    <a data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}"><strong>{l s='About and Contact' d='Shop.Theme.Global'}</strong><i class="material-icons" aria-hidden="true">&#xE409;</i></a>
                   {/if}
                   <hr>
                   <button class="store__toggle accordion-button collapsed pb-2 px-0" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}">{l s='View schedules' d='Shop.Theme.Global'}</button>
@@ -107,13 +107,13 @@
               {/if}
               <ul class="store__contacts">
                 {if $store.phone}
-                  <li><i class="material-icons">&#xE0B0;</i>{$store.phone}</li>
+                  <li><i class="material-icons" aria-hidden="true">&#xE0B0;</i>{$store.phone}</li>
                 {/if}
                 {if $store.fax}
-                  <li><i class="material-icons">&#xE8AD;</i>{$store.fax}</li>
+                  <li><i class="material-icons" aria-hidden="true">&#xE8AD;</i>{$store.fax}</li>
                 {/if}
                 {if $store.email}
-                  <li><i class="material-icons">&#xE0BE;</i>{$store.email}</li>
+                  <li><i class="material-icons" aria-hidden="true">&#xE0BE;</i>{$store.email}</li>
                 {/if}
               </ul>
             </div>

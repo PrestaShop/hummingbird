@@ -60,7 +60,7 @@
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
             <span class="header-block__action-btn">
-              <i class="material-icons header-block__icon">&#xE7FD;</i>
+              <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
               <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
             </span>
           </div>
@@ -71,7 +71,7 @@
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
             <span class="header-block__action-btn">
-              <i class="material-icons header-block__icon">shopping_cart</i>
+              <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
               <span class="header-block__badge">{$cart.products_count}</span>
             </span>
           </div>

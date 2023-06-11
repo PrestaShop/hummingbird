@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 
-<p class="d-none d-md-block sort-by m-0 me-3"><i class="material-icons">sort</i><span class="align-middle">{l s='Sort by:' d='Shop.Theme.Global'}</span></p>
+<p class="d-none d-md-block sort-by m-0 me-3"><i class="material-icons" aria-hidden="true">sort</i><span class="align-middle">{l s='Sort by:' d='Shop.Theme.Global'}</span></p>
 <div class="products-sort-order flex-grow-1 flex-grow-md-0 dropdown me-2 me-md-0">
   <button
     class="btn py-2 pe-3 select-title"

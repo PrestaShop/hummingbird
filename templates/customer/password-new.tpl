@@ -32,14 +32,14 @@
       <div class="mb-3">
         <label class="form-label">{l s='New password' d='Shop.Forms.Labels'}</label>
         <div class="input-group password-field js-parent-focus">
-            <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="passwd" value="">
-            <button
-              class="btn btn-primary"
-              type="button"
-              data-action="show-password"
-              data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
-              data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
-            >
+          <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="passwd" value="">
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-action="show-password"
+            data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
+            data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
+          >
             <i class="material-icons">visibility</i>
           </button>
         </div>
@@ -48,13 +48,13 @@
         <label class="form-label">{l s='Confirmation' d='Shop.Forms.Labels'}</label>
         <div class="input-group password-field js-parent-focus">
         <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="confirmation" value="">
-            <button
-              class="btn btn-primary"
-              type="button"
-              data-action="show-password"
-              data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
-              data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
-            >
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-action="show-password"
+            data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
+            data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
+          >
             <i class="material-icons">visibility</i>
           </button>
         </div>
@@ -72,7 +72,7 @@
 {block name='page_footer'}
   <hr>
   <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-unstyle btn-with-icon">
-    <i class="material-icons rtl-flip">&#xE5CB;</i>
+    <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
     <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
   </a>
 {/block}

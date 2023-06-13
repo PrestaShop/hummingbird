@@ -10,7 +10,7 @@
   <div class="order__summary__addresses mb-4">
     <h5 class="mb-3">
       {l s='Addresses' d='Shop.Theme.Checkout'}
-      <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-addresses" data-step="checkout-addresses-step"><i class="material-icons edit fs-6">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
+      <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-addresses" data-step="checkout-addresses-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
     </h5>
 
     <div class="row">
@@ -75,7 +75,7 @@
   {if !$cart.is_virtual}
     <h5 class="mb-3">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
-      <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-shipping" data-step="checkout-delivery-step"><i class="material-icons edit fs-6">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
+      <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-shipping" data-step="checkout-delivery-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
     </h5>
 
     <div class="bg-light rounded-3 p-3 mb-4">

@@ -11,7 +11,7 @@
       <span>
         {l s='Show details' d='Shop.Theme.Actions'}
       </span>
-      <i class="material-icons">expand_more</i>
+      <i class="material-icons" aria-hidden="true">expand_more</i>
     </a>
   </p>
 

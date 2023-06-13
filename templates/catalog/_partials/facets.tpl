@@ -12,7 +12,7 @@
       {if $activeFilters|count}
         <div id="_desktop_search_filters_clear_all" class="d-none d-sm-block d-md-block clear-all-wrapper">
           <button data-search-url="{$clear_all_link}" class="btn btn-tertiary js-search-filters-clear-all">
-            <i class="material-icons">&#xE14C;</i>
+            <i class="material-icons" aria-hidden="true">&#xE14C;</i>
             {l s='Clear all' d='Shop.Theme.Actions'}
           </button>
         </div>

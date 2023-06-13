@@ -37,8 +37,10 @@
             class="btn btn-primary"
             type="button"
             data-action="show-password"
-            data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
-            data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
+            data-text-show="{l s='Show Password' d='Shop.Theme.Actions'}"
+            data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
+            aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
+            aria-expanded="false"
           >
             <i class="material-icons">visibility</i>
           </button>
@@ -52,8 +54,10 @@
             class="btn btn-primary"
             type="button"
             data-action="show-password"
-            data-text-show="{l s='Show' d='Shop.Theme.Actions'}"
-            data-text-hide="{l s='Hide' d='Shop.Theme.Actions'}"
+            data-text-show="{l s='Show Password' d='Shop.Theme.Actions'}"
+            data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
+            aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
+            aria-expanded="false"
           >
             <i class="material-icons">visibility</i>
           </button>

@@ -21,8 +21,7 @@ const initVisiblePassword = () => {
       if (icon) {
         icon.innerHTML = newType === 'text' ? 'visibility_off' : 'visibility';
 
-        const textShow = button.dataset.textShow;
-        const textHide = button.dataset.textHide;
+        const { textHide, textShow } = button.dataset;
 
         if (textShow && textHide) {
           button.setAttribute('aria-label', newType === 'text' ? textHide : textShow);

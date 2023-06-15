@@ -21,7 +21,7 @@
       <a class="addresses__new-address" href="{$urls.pages.address}" data-link-action="add-address">
         <span class="new-address__text">{l s='Add new address' d='Shop.Theme.Actions'}</span>
         <div class="new-address__icon">
-          <i class="material-icons">&#xE145;</i>
+          <i class="material-icons" aria-hidden="true">&#xE145;</i>
         </div>
       </a>
     </div>

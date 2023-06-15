@@ -119,7 +119,7 @@
                         {l s='(no filter)' d='Shop.Theme.Global'}
                       {/if}
                     </span>
-                    <i class="material-icons">&#xE5C5;</i>
+                    <i class="material-icons" aria-hidden="true">&#xE5C5;</i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-start">
                     {foreach from=$facet.filters item="filter"}

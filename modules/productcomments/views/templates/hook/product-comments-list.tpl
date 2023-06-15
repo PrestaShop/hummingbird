@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-md-12 col-sm-12" id="product-comments-list-header">
     <div class="comments-nb">
-      <i class="material-icons" data-icon="chat"></i>
+      <i class="material-icons" data-icon="chat" aria-hidden="true"></i>
       {l s='Comments' d='Modules.Productcomments.Shop'} ({$nb_comments})
     </div>
     {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade}
@@ -33,7 +33,7 @@
     <div id="product-comments-list-pagination"></div>
     {if $post_allowed && $nb_comments != 0}
       <button class="btn btn-primary btn-with-icon post-product-comment">
-        <i class="material-icons" data-icon="edit"></i>
+        <i class="material-icons" data-icon="edit" aria-hidden="true"></i>
         {l s='Write your review' d='Modules.Productcomments.Shop'}
       </button>
     {/if}

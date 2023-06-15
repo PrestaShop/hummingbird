@@ -56,7 +56,7 @@
             {hook h='displayProductAdditionalInfo' product=$product}
           </div>
           <div class="product-additional-info--end">
-            <a href="{$product.url}" class="d-inline-flex align-items-center">{l s='All details' d='Shop.Theme.Catalog'} <div class="material-icons">chevron_right</div></a>
+            <a href="{$product.url}" class="d-inline-flex align-items-center">{l s='All details' d='Shop.Theme.Catalog'} <div class="material-icons" aria-hidden="true">chevron_right</div></a>
           </div>
         </div>
     </div>

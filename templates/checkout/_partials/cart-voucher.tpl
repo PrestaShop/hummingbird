@@ -16,7 +16,7 @@
                 <div class="d-flex align-items-center justify-content-end col">
                   <span class="fw-bold">{$voucher.reduction_formatted}</span>
                     {if isset($voucher.code) && $voucher.code !== ''}
-                      <a href="{$voucher.delete_url}" class="ms-2" data-link-action="remove-voucher"><i class="material-icons">&#xE872;</i></a>
+                      <a href="{$voucher.delete_url}" class="ms-2" data-link-action="remove-voucher"><i class="material-icons" aria-label="{l s='Remove Voucher' d='Shop.Theme.Checkout'}">&#xE872;</i></a>
                     {/if}
                 </div>
               </li>

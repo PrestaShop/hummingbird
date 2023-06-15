@@ -50,7 +50,7 @@
         {/if}
 
         <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3">
-          <i class="material-icons">&#xE145;</i>
+          <i class="material-icons" aria-hidden="true">&#xE145;</i>
           {l s='Add new address' d='Shop.Theme.Actions'}
         </a>
 
@@ -91,7 +91,7 @@
           {/if}
 
           <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon w-100 w-md-auto">
-            <i class="material-icons">&#xE145;</i>
+            <i class="material-icons" aria-hidden="true">&#xE145;</i>
             {l s='Add new address' d='Shop.Theme.Actions'}
           </a>
         {/if}

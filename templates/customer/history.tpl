@@ -42,7 +42,7 @@
               </td>
               <td class="text-sm-center d-none d-lg-table-cell">
                 {if $order.details.invoice_url}
-                  <a href="{$order.details.invoice_url}"><i class="material-icons" aria-label="{l s='Show Invoice' d='Shop.Theme.Checkout'}">>&#xE415;</i></a>
+                  <a href="{$order.details.invoice_url}"><i class="material-icons" aria-label="{l s='Open Invoice' d='Shop.Theme.Actions'}">&#xE415;</i></a>
                 {else}
                   -
                 {/if}
@@ -102,7 +102,7 @@
             <p class="order__label">{l s='Invoice' d='Shop.Theme.Checkout'}</p> 
             <p class="order__value">
               {if $order.details.invoice_url}
-                <a href="{$order.details.invoice_url}"><i class="material-icons" aria-label="{l s='Show Invoice' d='Shop.Theme.Checkout'}">&#xE415;</i></a>
+                <a href="{$order.details.invoice_url}"><i class="material-icons" aria-label="{l s='Open Invoice' d='Shop.Theme.Actions'}">&#xE415;</i></a>
               {else}
                 -
               {/if}

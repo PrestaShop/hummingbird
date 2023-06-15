@@ -6,7 +6,7 @@
 
 {block name='continue_shopping' append}
   <a class="btn btn-outline-primary btn-with-icon" href="{$urls.pages.index}">
-    <i class="material-icons rtl-flip">chevron_left</i>
+    <i class="material-icons rtl-flip" aria-hidden="true">chevron_left</i>
     {l s='Continue shopping' d='Shop.Theme.Actions'}
   </a>
 {/block}

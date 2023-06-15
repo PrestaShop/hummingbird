@@ -5,6 +5,7 @@
 
 import {Collapse} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
+import handleCartAction from '../components/UseHandleCartAction';
 
 export default () => {
   const {Theme} = window;
@@ -31,4 +32,16 @@ export default () => {
       return false;
     });
   });
+
+  const cartContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.container);
+
+  if (cartContainer) {
+    cartContainer.addEventListener('click', (event: Event) => {
+      const eventTarget = event.target as HTMLElement;
+
+      if (eventTarget.dataset.linkAction === Theme.selectors.cart.deleteLinkAction) {
+        handleCartAction(event);
+      }
+    });
+  }
 };

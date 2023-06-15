@@ -24,7 +24,7 @@ There are few things to do before you are ready to contribute.
 
 First you need to install every node module:
 
-`npm i`
+`npm ci`
 
 then create a `.env` file inside the *webpack* folder by copying `webpack/.env-example` and complete it with your environment's informations. Please use a free tcp port.
 
@@ -35,7 +35,7 @@ then build assets:
 ### Good practices
 
 - Follow the BEM convention
-- Be careful about creating SCSS files in the right folder, refer to the [documentation](https://build.prestashop.com/hummingbird/) for further informations. 
+- Be careful about creating SCSS files in the right folder, refer to the [documentation](https://build.prestashop.com/hummingbird/) for further informations.
 - When you want to submit a PR, please make sure that you ran both linters using `npm run lint-fix && npm run scss-fix` and fixed every lint issues.
 - If your PR is a work in progress, make sure that you use the Github draft mode.
 - Fill the PR template as much as possible, it's important to speed the process of testing, reviewing...

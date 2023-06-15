@@ -77,7 +77,7 @@
   </div>
 
   <a class="{$componentName}__logout d-md-none" href="{$urls.actions.logout}">
-    <i class="material-icons me-2">exit_to_app</i>
+    <i class="material-icons me-2" aria-hidden="true">exit_to_app</i>
     {l s='Sign out' d='Shop.Theme.Actions'}
   </a>
 {/block}

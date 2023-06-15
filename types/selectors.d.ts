@@ -2,11 +2,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+import {qtyInput} from "@constants/selectors-map";
 
 declare type facetedsearch = {
   range: string,
   rangeContainer: string,
   filterSlider: string,
+  offCanvasFaceted: string,
 };
 
 declare type pageLoader = string;
@@ -32,6 +34,8 @@ declare type cart = {
   discountName: string,
   displayPromo: string,
   promoCode: string,
+  deleteLinkAction: string,
+  container: string,
 };
 
 declare type blockcart = {
@@ -67,6 +71,9 @@ declare type checkout = {
   actionsButtons: string,
   termsLink: string,
   checkoutModal: string,
+  carrierExtraContentWrapper: string,
+  carrierExtraContent: string,
+  carrierExtraContentActive: string,
 };
 
 declare type progressRing = {
@@ -150,6 +157,6 @@ type SelectorsMap = {
   mobileMenu: mobileMenu,
   visiblePassword: visiblePassword,
   desktopMenu: desktopMenu,
-  quantityInput: quantityInput,
+  qtyInput: quantityInput,
   formValidation: formValidation,
 };

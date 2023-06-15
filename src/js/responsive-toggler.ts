@@ -3,6 +3,9 @@
  * file that was distributed with this source code.
  */
 import swapElements from '@helpers/swapElements';
+import {facetedsearch} from '@constants/selectors-map';
+import {initSliders} from '@js/modules/facetedsearch';
+import {Offcanvas} from 'bootstrap';
 
 const {prestashop} = window;
 
@@ -28,8 +31,11 @@ export function toggleMobileStyles() {
         swapElements(source, target);
       }
     });
+
+    // we have to init again sliders because we reconstruct the dom
+    initSliders();
   } else {
-    Array.prototype.forEach.call(document.querySelectorAll("*[id^='_mobile_']"), (el) => {
+    Array.prototype.forEach.call(document.querySelectorAll("*[id^='_mobile_']"), async (el) => {
       const source = document.querySelector(`#${el.id}`);
       const target = document.querySelector(`#${el.id.replace('_mobile_', '_desktop_')}`);
 
@@ -37,6 +43,16 @@ export function toggleMobileStyles() {
         swapElements(source, target);
       }
     });
+
+    // we close the old mobile interface
+    const offCanvasFacetedElement = document.querySelector(facetedsearch.offCanvasFaceted) as HTMLElement;
+
+    if (offCanvasFacetedElement != null) {
+      Offcanvas.getInstance(offCanvasFacetedElement)?.hide();
+    }
+
+    // we have to init again sliders because we reconstruct the dom
+    initSliders();
   }
 
   prestashop.emit(events.responsiveUpdate, {

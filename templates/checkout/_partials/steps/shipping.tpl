@@ -53,8 +53,10 @@
                       </span>
                     </div>
                   </label>
-                  <div class="carrier__extra-content js-carrier-extra-content"{if $delivery_option != $carrier_id} style="display:none;"{/if}>
-                    {$carrier.extraContent nofilter}
+                  <div class="carrier__extra-content-wrapper {if $delivery_option == $carrier_id} carrier__extra-content-wrapper--active {/if} js-carrier-extra-content" {if $delivery_option !== $carrier_id}style="max-height:0px"{/if}>
+                    <div class="carrier__extra-content">
+                      {$carrier.extraContent nofilter}
+                    </div>
                   </div>
                   {if !$smarty.foreach.delivery_options.last}
                     <hr />
@@ -97,13 +99,13 @@
 
         <div class="shipping__actions d-flex flex-wrap justify-content-between">
           <button class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
-            <div class="material-icons rtl-flip">arrow_backward</div>
+            <div class="material-icons rtl-flip" aria-hidden="true">arrow_backward</div>
             {l s='Back to Addresses' d='Shop.Theme.Actions'}
           </button>
 
           <button type="submit" class="btn btn-primary btn-with-icon w-100 w-md-auto" name="confirmDeliveryOption" value="1">
             {l s='Continue to Payment' d='Shop.Theme.Actions'}
-            <div class="material-icons rtl-flip">arrow_forward</div>
+            <div class="material-icons rtl-flip" aria-hidden="true">arrow_forward</div>
           </button>
         </div>
       </form>

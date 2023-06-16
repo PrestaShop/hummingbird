@@ -27,7 +27,7 @@
     <section class="form-fields">
       <div class="mb-3">
         <label class="form-label required">{l s='Email address' d='Shop.Forms.Labels'}</label>
-        <input type="email" name="email" id="email" value="{if isset($smarty.post.email)}{$smarty.post.email|stripslashes}{/if}" class="form-control" required>
+        <input type="email" name="email" id="email" value="{if isset($smarty.post.email)}{stripslashes($smarty.post.email)}{/if}" class="form-control" required>
       </div>
       <button id="send-reset-link" class="form-control-submit btn btn-primary" name="submit" type="submit">
         {l s='Send reset link' d='Shop.Theme.Actions'}

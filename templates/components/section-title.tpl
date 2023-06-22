@@ -5,5 +5,5 @@
 {$componentName = 'section-title'}
 
 {block name='section_title'}
-  <h2 class="{$componentName}">{$title}</h2>
+  <h2 class="second-title {$componentName}">{$title}</h2>
 {/block}

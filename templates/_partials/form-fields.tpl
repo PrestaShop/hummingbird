@@ -82,7 +82,7 @@
             {if $field.required}required{/if}
           >
           <label class="form-check-label" for="field-{$field.name}">
-            {$field.label nofilter}
+            {$field.label|unescape:"html" nofilter}
           </label>
         </div>
       {/block}

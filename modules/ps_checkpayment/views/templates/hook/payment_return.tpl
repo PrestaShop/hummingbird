@@ -5,8 +5,8 @@
 
 <div class="card border-1 mb-3">
   <div class="card-body">
-    <h4 class="h4">{l s='Payment information' d='Shop.Theme.Checkout'}</h4>
-    <h6 class="card-subtitle mb-3 text-muted">{l s='Pay by Check' d='Modules.Checkpayment.Shop'}</h6>
+    <p class="fourth-title">{l s='Payment information' d='Shop.Theme.Checkout'}</p>
+    <p class="fw-bold card-subtitle mb-3 text-muted">{l s='Pay by Check' d='Modules.Checkpayment.Shop'}</p>
     {if $status === 'ok'}
       <p>
           {l s='You have chosen payment by check.' d='Modules.Checkpayment.Shop'}<br/>

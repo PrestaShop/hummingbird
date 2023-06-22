@@ -20,7 +20,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header px-3">
-          <h5 class="modal-title">{l s='Sign in' d='Modules.Blockwishlist.Shop'}</h5>
+          <p class="fifth-title modal-title">{l s='Sign in' d='Modules.Blockwishlist.Shop'}</p>
           <button
             type="button"
             class="btn-close"

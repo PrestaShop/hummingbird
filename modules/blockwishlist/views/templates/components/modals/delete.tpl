@@ -30,7 +30,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header px-3">
-          <h5 class="modal-title">((modalTitle))</h5>
+          <p class="fifth-title modal-title">((modalTitle))</p>
           <button
             type="button"
             class="btn-close"

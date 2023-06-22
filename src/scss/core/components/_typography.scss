@@ -1,0 +1,21 @@
+// SCSS rules for typography
+
+// Titles
+.first-title{
+  @extend .h1;
+}
+.second-title{
+  @extend .h2;
+}
+.third-title{
+  @extend .h3;
+}
+.fourth-title{
+  @extend .h4;
+}
+.fifth-title{
+  @extend .h5;
+}
+.sixth-title{
+  @extend .h6;
+}

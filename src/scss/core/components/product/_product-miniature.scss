@@ -9,6 +9,9 @@ $component-name: product-miniature;
     position: relative;
     z-index: 90;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
     &__top,
     &__bottom {
@@ -18,10 +21,12 @@ $component-name: product-miniature;
 
     &__top {
       padding-top: 0.5rem;
+      height: 100%;
     }
 
     &__bottom {
       margin-bottom: 1rem;
+      margin-top: auto;
     }
   }
 

@@ -17,7 +17,7 @@
     {if !$notifications || $notifications.nw_error}
       <section class="form-fields">
 
-        <h1 class="h2 mb-4">{l s='Contact us' d='Shop.Theme.Global'}</h1>
+        <h1 class="second-title mb-4">{l s='Contact us' d='Shop.Theme.Global'}</h1>
 
         <div class="mb-3">
           <label class="form-label">{l s='Subject' d='Shop.Forms.Labels'}</label>

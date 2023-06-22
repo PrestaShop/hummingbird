@@ -1,21 +1,72 @@
 // SCSS rules for typography
 
+:root {
+  // First title
+  --first-title-font-family: $font-family-base;
+  --first-title-font-size: calc(#{$font-size-base} * 2.5);
+  --first-title-font-style: normal;
+  --first-title-font-weight: 600;
+  // Second title
+  --second-title-font-family: $font-family-base;
+  --second-title-font-size: calc(#{$font-size-base} * 2);
+  --second-title-font-style: normal;
+  --second-title-font-weight: 600;
+  // Third title
+  --third-title-font-family: $font-family-base;
+  --third-title-font-size: calc(#{$font-size-base} * 1.75);
+  --third-title-font-style: normal;
+  --third-title-font-weight: 600;
+  // Fourth title
+  --fourth-title-font-family: $font-family-base;
+  --fourth-title-font-size: calc(#{$font-size-base} * 1.5);
+  --fourth-title-font-style: normal;
+  --fourth-title-font-weight: 600;
+  // Fifth title
+  --fifth-title-font-family: $font-family-base;
+  --fifth-title-font-size: calc(#{$font-size-base} * 1.25);
+  --fifth-title-font-style: normal;
+  --fifth-title-font-weight: 600;
+  // Sixth title
+  --sixth-title-font-family: $font-family-base;
+  --sixth-title-font-size: calc(#{$font-size-base} * 1);
+  --sixth-title-font-style: normal;
+  --sixth-title-font-weight: 600;
+}
+
 // Titles
 .first-title{
-  @extend .h1;
+  font-family: var(--first-title-font-family);
+  font-size: var(--first-title-font-size);
+  font-weight: var(--first-title-font-weight);
+  font-style: var(--first-title-font-style);
 }
 .second-title{
-  @extend .h2;
+  font-family: var(--second-title-font-family);
+  font-size: var(--second-title-font-size);
+  font-weight: var(--second-title-font-weight);
+  font-style: var(--second-title-font-style);
 }
 .third-title{
-  @extend .h3;
+  font-family: var(--third-title-font-family);
+  font-size: var(--third-title-font-size);
+  font-weight: var(--third-title-font-weight);
+  font-style: var(--third-title-font-style);
 }
 .fourth-title{
-  @extend .h4;
+  font-family: var(--fourth-title-font-family);
+  font-size: var(--fourth-title-font-size);
+  font-weight: var(--fourth-title-font-weight);
+  font-style: var(--fourth-title-font-style);
 }
 .fifth-title{
-  @extend .h5;
+  font-family: var(--fifth-title-font-family);
+  font-size: var(--fifth-title-font-size);
+  font-weight: var(--fifth-title-font-weight);
+  font-style: var(--fifth-title-font-style);
 }
 .sixth-title{
-  @extend .h6;
+  font-family: var(--sixth-title-font-family);
+  font-size: var(--sixth-title-font-size);
+  font-weight: var(--sixth-title-font-weight);
+  font-style: var(--sixth-title-font-style);
 }

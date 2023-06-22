@@ -11,7 +11,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="h4 mb-0">{l s='Write your review' d='Modules.Productcomments.Shop'}</p>
+        <p class="fourth-title mb-0">{l s='Write your review' d='Modules.Productcomments.Shop'}</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -97,7 +97,7 @@
               {/if}
             </div>
             <div class="col-sm-4">
-              <h3>{$product.name}</h3>
+              <p class="third-title">{$product.name}</p>
               {block name='product_description_short'}
                 <div itemprop="description">{$product.description_short nofilter}</div>
               {/block}

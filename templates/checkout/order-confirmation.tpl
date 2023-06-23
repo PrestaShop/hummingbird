@@ -45,7 +45,7 @@
   {block name='order_details'}
     <div class="{$componentName}__details card bg-light border-1 mb-3">
       <div class="card-body">
-        <h2 class="h4">{l s='Order details' d='Shop.Theme.Checkout'}</h2>
+        <h2 class="fourth-title">{l s='Order details' d='Shop.Theme.Checkout'}</h2>
         <ul class="order-details">
           <li>{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
           <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>

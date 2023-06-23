@@ -18,9 +18,9 @@
             role = "tabpanel"
   >
     <div class="step__title js-step-title">
-      <h1 class="step__title-left h3">
+      <p class="step__title-left third-title">
         {$title}
-      </h1>
+      </p>
       <hr />
     </div>
 

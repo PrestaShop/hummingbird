@@ -4,7 +4,7 @@
  *}
 <section id="js-active-search-filters" class="{if $activeFilters|count}active_filters{else}hide{/if}">
   {block name='active_filters_title'}
-    <h1 class="h6 {if $activeFilters|count}active-filter-title{else}d-block d-sm-none{/if}">{l s='Active filters' d='Shop.Theme.Global'}</h1>
+    <h1 class="sixth-title {if $activeFilters|count}active-filter-title{else}d-block d-sm-none{/if}">{l s='Active filters' d='Shop.Theme.Global'}</h1>
   {/block}
 
   {if $activeFilters|count}

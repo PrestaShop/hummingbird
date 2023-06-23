@@ -14,7 +14,7 @@
      >
     </a>
 
-    <h1 class="h4">
+    <h1 class="fourth-title">
       <a href="{$category.url}">{$category.name}</a>
     </h1>
 

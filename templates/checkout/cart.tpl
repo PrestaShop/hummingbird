@@ -8,7 +8,7 @@
   <div class="cart-grid row">
     <!-- Left Block: cart product informations & shpping -->
     <div class="cart-grid__body col-lg-8">
-      <h1 class="h4">{l s='Shopping Cart' d='Shop.Theme.Checkout'}</h1>
+      <h1 class="fourth-title">{l s='Shopping Cart' d='Shop.Theme.Checkout'}</h1>
 
       <!-- cart products detailed -->
       <div class="cart-container mb-3">

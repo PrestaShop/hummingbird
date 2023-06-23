@@ -13,7 +13,7 @@
 {/block}
 
 {block name='product_list_header'}
-  <h1 id="js-product-list-header" class="h4">
+  <h1 id="js-product-list-header" class="fourth-title">
     {if empty($smarty.get.s)}
       {l s='Nothing to search for' d='Shop.Theme.Catalog'}
     {else}

@@ -11,7 +11,7 @@
 {block name='content'}
 
     {block name='product_list_header'}
-      <h1 id="js-product-list-header" class="h1 mb-4">{$listing.label}</h1>
+      <h1 id="js-product-list-header" class="second-title mb-4">{$listing.label}</h1>
     {/block}
     
     {hook h="displayHeaderCategory"}

@@ -27,6 +27,11 @@ $component-name: product-miniature;
     &__bottom {
       margin-bottom: 1rem;
       margin-top: auto;
+      @media (max-width: 767px) {
+        .quantity-button input {
+          max-width: unset;
+        }
+      }
     }
   }
 

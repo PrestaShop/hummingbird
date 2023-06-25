@@ -5,8 +5,11 @@
 
 <div class="product__images js-images-container">
   {if $product.images|@count > 0}
-    <div id="product-images" class="carousel slide js-product-carousel"
-      data-bs-ride="carousel">
+    <div
+      id="product-images"
+      class="carousel slide js-product-carousel"
+      data-bs-ride="carousel"
+      >
 
       <div class="carousel-inner">
         {include file='catalog/_partials/product-flags.tpl'}
@@ -24,7 +27,10 @@
 
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
-            <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
+            <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}"
+              data-bs-target="#product-images-modal"
+              data-bs-slide-to="{$key}"
+              >
               <picture>
                 {if isset($image.bySize.default_md.sources.avif)}
                   <source 
@@ -64,6 +70,9 @@
                   data-full-size-image-url="{$image.bySize.home_default.url}"
                 >
               </picture>
+              <div class="product__images__modal-opener" data-bs-toggle="modal" data-bs-target="#product-modal">
+                <i class="material-icons zoom-in">search</i>
+              </div>
             </div>
           {/foreach}
         {/block}

@@ -45,51 +45,67 @@
 }
 
 // Titles
+.first-title,
+.second-title,
+.third-title,
+.fourth-title,
+.fifth-title,
+.sixth-title{
+  &.modal-title{
+    margin-bottom: 0;
+  }
+}
+
 .first-title{
+  margin-bottom: var(--title-margin-bottom);
   font-family: var(--first-title-font-family);
   font-size: var(--first-title-font-size);
-  font-weight: var(--first-title-font-weight);
   font-style: var(--first-title-font-style);
-  margin-bottom: var(--title-margin-bottom);
+  font-weight: var(--first-title-font-weight);
   line-height: var(--title-line-height);
 }
+
 .second-title{
+  margin-bottom: var(--title-margin-bottom);
   font-family: var(--second-title-font-family);
   font-size: var(--second-title-font-size);
-  font-weight: var(--second-title-font-weight);
   font-style: var(--second-title-font-style);
-  margin-bottom: var(--title-margin-bottom);
+  font-weight: var(--second-title-font-weight);
   line-height: var(--title-line-height);
 }
+
 .third-title{
+  margin-bottom: var(--title-margin-bottom);
   font-family: var(--third-title-font-family);
   font-size: var(--third-title-font-size);
-  font-weight: var(--third-title-font-weight);
   font-style: var(--third-title-font-style);
-  margin-bottom: var(--title-margin-bottom);
+  font-weight: var(--third-title-font-weight);
   line-height: var(--title-line-height);
 }
+
 .fourth-title{
+  margin-bottom: var(--title-margin-bottom);
   font-family: var(--fourth-title-font-family);
   font-size: var(--fourth-title-font-size);
-  font-weight: var(--fourth-title-font-weight);
   font-style: var(--fourth-title-font-style);
-  margin-bottom: var(--title-margin-bottom);
+  font-weight: var(--fourth-title-font-weight);
   line-height: var(--title-line-height);
 }
+
 .fifth-title{
+  margin-bottom: var(--title-margin-bottom);
   font-family: var(--fifth-title-font-family);
   font-size: var(--fifth-title-font-size);
-  font-weight: var(--fifth-title-font-weight);
   font-style: var(--fifth-title-font-style);
-  margin-bottom: var(--title-margin-bottom);
+  font-weight: var(--fifth-title-font-weight);
   line-height: var(--title-line-height);
 }
+
 .sixth-title{
+  margin-bottom: var(--title-margin-bottom);
   font-family: var(--sixth-title-font-family);
   font-size: var(--sixth-title-font-size);
-  font-weight: var(--sixth-title-font-weight);
   font-style: var(--sixth-title-font-style);
-  margin-bottom: var(--title-margin-bottom);
+  font-weight: var(--sixth-title-font-weight);
   line-height: var(--title-line-height);
 }

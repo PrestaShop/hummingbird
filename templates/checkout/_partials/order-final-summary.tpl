@@ -8,10 +8,10 @@
   <p class="fourth-title mb-4">{l s='Please check your order before payment' d='Shop.Theme.Checkout'}</p>
 
   <div class="order__summary__addresses mb-4">
-    <h5 class="mb-3">
+    <p class="fifth-title mb-3">
       {l s='Addresses' d='Shop.Theme.Checkout'}
       <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-addresses" data-step="checkout-addresses-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
-    </h5>
+    </p>
 
     <div class="row">
       <div class="col-12 col-sm-6 mb-2">
@@ -73,10 +73,10 @@
   </div>
 
   {if !$cart.is_virtual}
-    <h5 class="mb-3">
+    <p class="fifth-title mb-3">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
       <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-shipping" data-step="checkout-delivery-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
-    </h5>
+    </p>
 
     <div class="bg-light rounded-3 p-3 mb-4">
       <div class="delivery-options__item js-delivery-option">
@@ -108,9 +108,9 @@
   {/if}
 
   {block name='order_confirmation_table'}
-    <h5 class="mb-3">
+    <p class="fifth-title mb-3">
       {l s='Order items' d='Shop.Theme.Checkout'}
-    </h5>
+    </p>
 
     <div class="order__payment__confirmation mb-4">
       {include file='checkout/_partials/order-final-summary-table.tpl'

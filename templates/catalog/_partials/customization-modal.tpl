@@ -2,9 +2,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">
+        <p class="fifth-title modal-title" id="myModalLabel">
           {l s='Product customization' d='Shop.Theme.Catalog'}
-        </h4>
+        </p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
       </div>
       <div class="modal-body">

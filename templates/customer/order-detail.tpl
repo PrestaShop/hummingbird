@@ -100,7 +100,7 @@
         <div class="col-sm-6 mb-4">
           <article id="delivery-address" class="address card">
             <div class="card-body">
-              <h4 class="address__alias card-title">
+              <h4 class="address__alias fourth-title card-title">
                 {l s='Delivery address: %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.delivery.alias]}
               </h4>
               <address class="address__content">{$order.addresses.delivery.formatted nofilter}</address>
@@ -112,7 +112,7 @@
       <div class="col-sm-6">
         <article id="invoice-address" class="address card">
           <div class="card-body">
-            <h4 class="address__alias card-title">
+            <h4 class="address__alias fourth-title card-title">
               {l s='Invoice address: %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.invoice.alias]}
             </h4>
             <address class="address__content">{$order.addresses.invoice.formatted nofilter}</address>

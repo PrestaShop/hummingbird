@@ -5,7 +5,7 @@
 
 <hr />
 <section id="order-summary-content" class="order__summary">
-  <h4 class="mb-4">{l s='Please check your order before payment' d='Shop.Theme.Checkout'}</h4>
+  <p class="fourth-title mb-4">{l s='Please check your order before payment' d='Shop.Theme.Checkout'}</p>
 
   <div class="order__summary__addresses mb-4">
     <h5 class="mb-3">

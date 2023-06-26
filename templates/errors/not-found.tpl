@@ -8,7 +8,7 @@
       {if isset($errorContent)}
           {$errorContent nofilter}
       {else}
-        <h4>{l s='The page you are looking for is no longer available' d='Shop.Theme.Catalog'}</h4>
+        <h1 class="fourth-title">{l s='The page you are looking for is no longer available' d='Shop.Theme.Catalog'}</h1>
         <p>{l s='It can not be reached anymore. Can we still attract you into our shop?' d='Shop.Theme.Catalog'}</p>
         <a class="btn btn-outline-primary btn-with-icon mt-3" href="{$urls.pages.index}">
           {l s='Go shopping' d='Shop.Theme.Catalog'}

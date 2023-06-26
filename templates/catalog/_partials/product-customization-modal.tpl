@@ -17,7 +17,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</h4>
+          <p class="fifth-title modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</p>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
         </div>
         <div class="modal-body">
@@ -62,10 +62,10 @@
   <div class="{$componentName}__popup">
     {foreach from=$image_modals item="image_modal"}
       <div class="modal fade" id="{$image_modal['id']}" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down mw-100">
+        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">{$image_modal['title']}</h4>
+              <p class="fifth-title modal-title">{$image_modal['title']}</p>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
             </div>
             <div class="modal-body">

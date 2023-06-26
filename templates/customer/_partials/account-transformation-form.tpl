@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
  {block name='account_transformation_form'}
-  <h4>{l s='Save time on your next order, sign up now' d='Shop.Theme.Checkout'}</h4>
+  <p class="fourth-title">{l s='Save time on your next order, sign up now' d='Shop.Theme.Checkout'}</p>
   <ul>
     <li> - {l s='Personalized and secure access' d='Shop.Theme.Customeraccount'}</li>
     <li> - {l s='Fast and easy checkout' d='Shop.Theme.Customeraccount'}</li>

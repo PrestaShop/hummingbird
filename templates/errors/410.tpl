@@ -17,7 +17,7 @@
 {/block}
 
 {capture assign="errorContent"}
-  <h4>{$page.title}</h4>
+  <h1 class="fourth-title">{$page.title}</h1>
   <p>
     {l
       s='If this is a recurring problem, please [1]contact us[/1]'

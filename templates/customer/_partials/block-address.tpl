@@ -5,7 +5,7 @@
 {block name='address_block_item'}
   <article id="address-{$address.id}" class="address card" data-id-address="{$address.id}">
     <div class="card-body">
-      <h4 class="address__alias card-title">{$address.alias}</h4>
+      <p class="address__alias fourth-title card-title">{$address.alias}</p>
       <address class="address__content">{$address.formatted nofilter}</address>
       {* Display the extra field values added in an address from using hook 'additionalCustomerAddressFields' *}
       {hook h='displayAdditionalCustomerAddressFields' address=$address}

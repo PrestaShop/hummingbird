@@ -21,7 +21,7 @@
         </p>
         <p>{l s='We have logged your return request.' d='Shop.Theme.Customeraccount'}</p>
         <hr>
-        <h3>{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</h3>
+        <h2 class="third-title">{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</h2>
         <div class="table-wrapper">
           <table class="table d-none d-sm-table d-md-table">
             <thead class="thead-default">
@@ -116,7 +116,7 @@
     <hr>
     <section class="card">
       <div class="card-block">
-        <h3 class="card-title h3">{l s='Reminder' d='Shop.Theme.Customeraccount'}</h3>
+        <h3 class="card-title third-title">{l s='Reminder' d='Shop.Theme.Customeraccount'}</h3>
         <p class="card-text">
           {l
             s='All merchandise must be returned in its original packaging and in its original state.'

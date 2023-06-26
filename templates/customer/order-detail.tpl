@@ -58,7 +58,7 @@
 
   {block name='order_history'}
     <section id="order-history" class="box">
-      <h3>{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h3>
+      <h2 class="third-title">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
       <div class="table-wrapper overflow-auto">
         <table class="table">
           <thead class="thead-default">
@@ -94,7 +94,7 @@
   <hr>
 
   {block name='addresses'}
-    <h3>{l s='Addresses' d='Shop.Theme.Customeraccount'}</h3>
+    <h3 class="third-title">{l s='Addresses' d='Shop.Theme.Customeraccount'}</h3>
     <div class="addresses row">
       {if $order.addresses.delivery}
         <div class="col-sm-6 mb-4">
@@ -127,7 +127,7 @@
   {$HOOK_DISPLAYORDERDETAIL nofilter}
 
   <div class="order__detail__products">
-    <h3>{l s='Products' d='Shop.Theme.Customeraccount'}</h3>
+    <h3 class="third-title">{l s='Products' d='Shop.Theme.Customeraccount'}</h3>
 
     {block name='order_detail'}
       {if $order.details.is_returnable}
@@ -142,7 +142,7 @@
 
   {block name='order_carriers'}
     {if $order.shipping}
-      <h3>{l s='Tracking' d='Shop.Theme.Customeraccount'}</h3>
+      <h3 class="third-title">{l s='Tracking' d='Shop.Theme.Customeraccount'}</h3>
       <div class="table-wrapper">
         <table class="table d-none d-sm-table d-md-table">
           <thead class="thead-default">

@@ -16,7 +16,7 @@
           {/block}
         </div>
         <div class="col-sm-6">
-          <p class="h3">{$product.name}</p>
+          <p class="third-title">{$product.name}</p>
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}
           {/block}

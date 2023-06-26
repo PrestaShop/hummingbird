@@ -260,7 +260,7 @@
     <hr>
     <div class="box">
       <header>
-        <h3>{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h3>
+        <h3 class="third-title">{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h3>
         <p>
           {l s='If you wish to return one or more products, please mark the corresponding boxes and provide an explanation for the return. When complete, click the button below.' d='Shop.Theme.Customeraccount'}
         </p>

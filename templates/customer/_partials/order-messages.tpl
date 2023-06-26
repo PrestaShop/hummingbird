@@ -5,7 +5,7 @@
 {block name='order_messages_table'}
   {if $order.messages}
     <div class="customer__messages mb-3">
-      <h3 class="mb-3">{l s='Messages' d='Shop.Theme.Customeraccount'}</h3>
+      <h3 class="third-title">{l s='Messages' d='Shop.Theme.Customeraccount'}</h3>
       {foreach from=$order.messages item=message}
         <div class="customer__message border rounded p-3 my-2">
           <div class="customer__message__content row">
@@ -25,7 +25,7 @@
   <section class="order-message-form box">
     <form action="{$urls.pages.order_detail}" method="post">
       <header>
-        <h3>{l s='Add a message' d='Shop.Theme.Customeraccount'}</h3>
+        <h3 class="third-title">{l s='Add a message' d='Shop.Theme.Customeraccount'}</h3>
         <p>
           {l s='If you would like to add a comment about your order, please write it in the field below.' d='Shop.Theme.Customeraccount'}
         </p>

@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
  <section class="product-pack">
-  <p class="h6">{l s='This pack contains' d='Shop.Theme.Catalog'}</p>
+  <p class="sixth-title">{l s='This pack contains' d='Shop.Theme.Catalog'}</p>
 
   {foreach from=$packItems item="product_pack"}
     {block name='product_miniature'}

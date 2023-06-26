@@ -39,7 +39,7 @@
                               {/if}
 
                               <div class="carriere-name-container{if $carrier.logo} col-md-8{else}col{/if}">
-                                <span class="h6 carrier-name">{$carrier.name}</span>
+                                <span class="sixth-title carrier-name">{$carrier.name}</span>
                               </div>
                             </div>
                           </div>

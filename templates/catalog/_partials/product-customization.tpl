@@ -21,7 +21,7 @@
                       </div>
                       {if $field.text !== ''}
                         <div class="mt-3">
-                          <h6 class="product-customization__message">{l s='Your customization:' d='Shop.Theme.Catalog'}</h6>
+                          <p class="sixth-title product-customization__message">{l s='Your customization:' d='Shop.Theme.Catalog'}</p>
                           <p class="mb-0">{$field.text}</p>
                         </div>
                       {/if}

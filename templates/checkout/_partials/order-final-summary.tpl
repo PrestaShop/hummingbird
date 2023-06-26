@@ -18,7 +18,7 @@
         <div class="address card">
           <div class="card-body">
             <div class="address__content col-10">
-              <h6 class="address__alias card-title">{l s='Your Delivery Address' d='Shop.Theme.Checkout'}</h6>
+              <p class="address__alias sixth-title card-title">{l s='Your Delivery Address' d='Shop.Theme.Checkout'}</p>
               <address class="address__content">{$customer.addresses[$cart.id_address_delivery]['formatted'] nofilter}</address>
 
               <div class="address__actions">
@@ -46,7 +46,7 @@
         <div class="address card">
           <div class="card-body">
             <div class="address__content col-10">
-              <h6 class="address__alias card-title">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</h6>
+              <p class="address__alias sixth-title card-title">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
               <address class="address__content">{$customer.addresses[$cart.id_address_delivery]['formatted'] nofilter}</address>
 
               <div class="address__actions">
@@ -91,7 +91,7 @@
                 {/if}
 
                 <div class="carriere-name-container{if $selected_delivery_option.logo} col-md-8{else}col{/if}">
-                  <span class="h6 carrier-name">{$selected_delivery_option.name}</span>
+                  <span class="sixth-title carrier-name">{$selected_delivery_option.name}</span>
                 </div>
               </div>
             </div>

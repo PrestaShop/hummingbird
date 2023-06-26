@@ -18,9 +18,18 @@
             role = "tabpanel"
   >
     <div class="step__title js-step-title">
-      <p class="step__title-left third-title">
+      {if isset($step_is_current) && $step_is_current}
+        <h1 class="step__title-left third-title">
+      {else}
+        <p class="step__title-left third-title">
+      {/if}
         {$title}
-      </p>
+      {if isset($step_is_current) && $step_is_current}
+        </h1>
+      {else}
+        </p>
+      {/if}
+      
       <hr />
     </div>
 

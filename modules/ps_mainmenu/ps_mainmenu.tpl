@@ -60,7 +60,7 @@
     >
       <ul class="menu__list">
         {if $depth >= 1}
-          <li class="main-menu__title fifth-title">{$parent.label}</li>
+          <li class="main-menu__title h5">{$parent.label}</li>
         {/if}
         {foreach from=$nodes item=node}
           <li

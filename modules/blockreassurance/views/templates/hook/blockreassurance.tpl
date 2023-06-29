@@ -9,7 +9,7 @@
         <li>
           <div class="block-reassurance-item">
             <img src="{$element.image}" alt="{$element.text}" loading="lazy">
-            <span class="sixth-title">{$element.text}</span>
+            <span class="h6">{$element.text}</span>
           </div>
         </li>
       {/foreach}

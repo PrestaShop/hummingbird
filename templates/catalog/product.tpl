@@ -38,7 +38,7 @@
 
     <div class="product__col col-lg-6 col-xl-5">
       {block name='product_header'}
-        <h1 class="fourth-title product__name">{block name='page_title'}{$product.name}{/block}</h1>
+        <h1 class="h4 product__name">{block name='page_title'}{$product.name}{/block}</h1>
       {/block}
 
       {block name='product_prices'}
@@ -143,7 +143,7 @@
                     <div class="product__attachments accordion-body">
                       {foreach from=$product.attachments item=attachment}
                         <div class="attachment">
-                          <p class="fifth-title"><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></p>
+                          <p class="h5"><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></p>
                           <p>{$attachment.description}</p>
                           <a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
                             {l s='Download' d='Shop.Theme.Actions'} ({$attachment.file_size_formatted})

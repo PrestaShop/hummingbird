@@ -10,7 +10,7 @@
 
   {block name='order_confirmation_header'}
     <div class="alert alert-success" role="alert">
-      <h1 class="fourth-title alert-heading">{l s='Your order is confirmed' d='Shop.Theme.Checkout'}</h1>
+      <h1 class="h4 alert-heading">{l s='Your order is confirmed' d='Shop.Theme.Checkout'}</h1>
       <p class="mb-0">
         {l s='An email has been sent to your mail address %email%.' d='Shop.Theme.Checkout' sprintf=['%email%' => $order_customer.email]}
       </p>
@@ -45,7 +45,7 @@
   {block name='order_details'}
     <div class="{$componentName}__details card bg-light border-1 mb-3">
       <div class="card-body">
-        <h2 class="fourth-title">{l s='Order details' d='Shop.Theme.Checkout'}</h2>
+        <h2 class="h4">{l s='Order details' d='Shop.Theme.Checkout'}</h2>
         <ul class="order-details">
           <li>{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
           <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>

@@ -9,7 +9,7 @@
 {/block}
 
 {block name='page_content'}
-  <p class="sixth-title">{l s='Here is a list of pending merchandise returns' d='Shop.Theme.Customeraccount'}</p>
+  <p class="h6">{l s='Here is a list of pending merchandise returns' d='Shop.Theme.Customeraccount'}</p>
 
   {if $ordersReturn && count($ordersReturn)}
     <div class="table-wrapper">

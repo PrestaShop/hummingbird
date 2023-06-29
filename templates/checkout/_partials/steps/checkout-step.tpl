@@ -19,9 +19,9 @@
   >
     <div class="step__title js-step-title">
       {if isset($step_is_current) && $step_is_current}
-        <h1 class="step__title-left third-title">
+        <h1 class="step__title-left h3">
       {else}
-        <p class="step__title-left third-title">
+        <p class="step__title-left h3">
       {/if}
         {$title}
       {if isset($step_is_current) && $step_is_current}

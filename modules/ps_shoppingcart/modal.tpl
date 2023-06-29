@@ -7,7 +7,7 @@
   <div class="modal-dialog modal-lg modal-fullscreen-sm-down" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="fourth-title modal-title mb-0" id="myModalLabel">
+        <p class="h4 modal-title mb-0" id="myModalLabel">
           <i class="material-icons me-1" aria-hidden="true">&#xE5CA;</i>
           {l s='Product successfully added to your shopping cart' d='Shop.Theme.Checkout'}
         </p>
@@ -32,7 +32,7 @@
                 />
               </div>
               <div class="col-sm-8 col-md-7">
-                <p class="sixth-title product-name">{$product.name}</p>
+                <p class="h6 product-name">{$product.name}</p>
                 <p class="product-price">{$product.price}</p>
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
                 {foreach from=$product.attributes item="property_value" key="property"}

@@ -13,7 +13,7 @@
   <div class="row sitemap">
     {foreach $sitemapUrls as $group}
       <div class="col-md-6 col-lg-3">
-        <h2 class="third-title">
+        <h2 class="h3">
           {$group.name}
         </h2>
 

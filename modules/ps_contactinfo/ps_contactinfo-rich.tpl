@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 <div class="contact__details">
-  <p class="second-title contact__title">{l s='Store information' d='Shop.Theme.Global'}</p>
+  <p class="h2 contact__title">{l s='Store information' d='Shop.Theme.Global'}</p>
   <div class="contact__item">
     <i class="material-icons" aria-hidden="true">&#xE55F;</i>
     <div class="contact__info">{$contact_infos.address.formatted nofilter}</div>

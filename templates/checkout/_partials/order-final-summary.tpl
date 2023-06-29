@@ -5,10 +5,10 @@
 
 <hr />
 <section id="order-summary-content" class="order__summary">
-  <p class="fourth-title mb-4">{l s='Please check your order before payment' d='Shop.Theme.Checkout'}</p>
+  <p class="h4 mb-4">{l s='Please check your order before payment' d='Shop.Theme.Checkout'}</p>
 
   <div class="order__summary__addresses mb-4">
-    <p class="fifth-title mb-3">
+    <p class="h5 mb-3">
       {l s='Addresses' d='Shop.Theme.Checkout'}
       <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-addresses" data-step="checkout-addresses-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
     </p>
@@ -18,7 +18,7 @@
         <div class="address card">
           <div class="card-body">
             <div class="address__content col-10">
-              <p class="address__alias sixth-title card-title">{l s='Your Delivery Address' d='Shop.Theme.Checkout'}</p>
+              <p class="address__alias h6 card-title">{l s='Your Delivery Address' d='Shop.Theme.Checkout'}</p>
               <address class="address__content">{$customer.addresses[$cart.id_address_delivery]['formatted'] nofilter}</address>
 
               <div class="address__actions">
@@ -46,7 +46,7 @@
         <div class="address card">
           <div class="card-body">
             <div class="address__content col-10">
-              <p class="address__alias sixth-title card-title">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
+              <p class="address__alias h6 card-title">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
               <address class="address__content">{$customer.addresses[$cart.id_address_delivery]['formatted'] nofilter}</address>
 
               <div class="address__actions">
@@ -73,7 +73,7 @@
   </div>
 
   {if !$cart.is_virtual}
-    <p class="fifth-title mb-3">
+    <p class="h5 mb-3">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
       <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-shipping" data-step="checkout-delivery-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
     </p>
@@ -91,7 +91,7 @@
                 {/if}
 
                 <div class="carriere-name-container{if $selected_delivery_option.logo} col-md-8{else}col{/if}">
-                  <span class="sixth-title carrier-name">{$selected_delivery_option.name}</span>
+                  <span class="h6 carrier-name">{$selected_delivery_option.name}</span>
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@
   {/if}
 
   {block name='order_confirmation_table'}
-    <p class="fifth-title mb-3">
+    <p class="h5 mb-3">
       {l s='Order items' d='Shop.Theme.Checkout'}
     </p>
 

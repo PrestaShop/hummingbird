@@ -17,7 +17,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
       <div class="modal-content">
         <div class="modal-header">
-          <p class="fifth-title modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</p>
+          <p class="h5 modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</p>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
         </div>
         <div class="modal-body">
@@ -65,7 +65,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
           <div class="modal-content">
             <div class="modal-header">
-              <p class="fifth-title modal-title">{$image_modal['title']}</p>
+              <p class="h5 modal-title">{$image_modal['title']}</p>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
             </div>
             <div class="modal-body">

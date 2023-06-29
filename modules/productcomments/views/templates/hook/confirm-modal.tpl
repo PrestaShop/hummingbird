@@ -27,7 +27,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="second-title">
+        <p class="h2">
           <i class="material-icons {$icon}" data-icon="{$icon}"></i>
           {$modal_title}
         </p>

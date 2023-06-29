@@ -9,7 +9,7 @@
 {/block}
 
 {block name='page_content'}
-  <p class="sixth-title">{l s='Credit slips you have received after canceled orders.' d='Shop.Theme.Customeraccount'}</p>
+  <p class="h6">{l s='Credit slips you have received after canceled orders.' d='Shop.Theme.Customeraccount'}</p>
 
   {if $credit_slips}
     <div class="table-wrapper">

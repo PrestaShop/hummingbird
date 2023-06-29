@@ -6,7 +6,7 @@
 
 {block name='order-items-table-head'}
   <div id="order-items">
-    <p class="card-title third-title">
+    <p class="card-title h3">
       {if $products_count == 1}
         {l s='%product_count% item in your cart' sprintf=['%product_count%' => $products_count] d='Shop.Theme.Checkout'}
       {else}

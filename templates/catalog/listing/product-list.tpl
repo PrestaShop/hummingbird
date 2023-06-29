@@ -11,7 +11,7 @@
 {block name='content'}
 
     {block name='product_list_header'}
-      <h1 id="js-product-list-header" class="second-title mb-4">{$listing.label}</h1>
+      <h1 id="js-product-list-header" class="h2 mb-4">{$listing.label}</h1>
     {/block}
     
     {hook h="displayHeaderCategory"}
@@ -40,7 +40,7 @@
 
         <div id="js-product-list">
           {capture assign="errorContent"}
-            <p class="fourth-title">{l s='No products available yet' d='Shop.Theme.Catalog'}</p>
+            <p class="h4">{l s='No products available yet' d='Shop.Theme.Catalog'}</p>
             <p>{l s='Stay tuned! More products will be shown here as they are added.' d='Shop.Theme.Catalog'}</p>
           {/capture}
 

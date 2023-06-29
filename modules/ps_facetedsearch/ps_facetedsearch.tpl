@@ -12,7 +12,7 @@
 
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-faceted" aria-labelledby="faceted-offcanvas-label">
     <div class="offcanvas-header">
-      <p class="fifth-title offcanvas-title" id="faceted-offcanvas-label">{l s='Filter By' d='Shop.Theme.Actions'}</p>
+      <p class="h5 offcanvas-title" id="faceted-offcanvas-label">{l s='Filter By' d='Shop.Theme.Actions'}</p>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">

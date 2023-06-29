@@ -5,7 +5,7 @@
 {block name='step'}
   <section class="step step--unreachable d-none" id="{$identifier}">
     <div class="step__title js-step-title">
-      <p class="step__title-left third-title">
+      <p class="step__title-left h3">
         {$title}
       </p>
     </div>

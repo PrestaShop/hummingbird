@@ -20,7 +20,7 @@
           {/if}
         </p>
       {else}
-        <p class="fourth-title">{l s='Shipping Address' d='Shop.Theme.Checkout'}</p>
+        <p class="h4">{l s='Shipping Address' d='Shop.Theme.Checkout'}</p>
       {/if}
 
       {if $show_delivery_address_form}
@@ -62,7 +62,7 @@
       {/if}
 
       {if !$use_same_address}
-        <p class="fourth-title mt-4">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
+        <p class="h4 mt-4">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
 
         {if $show_invoice_address_form}
           <div id="invoice-address">

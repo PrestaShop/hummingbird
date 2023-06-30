@@ -97,7 +97,7 @@
               {/if}
             </div>
             <div class="col-sm-4">
-              <h3>{$product.name}</h3>
+              <p class="h3">{$product.name}</p>
               {block name='product_description_short'}
                 <div itemprop="description">{$product.description_short nofilter}</div>
               {/block}

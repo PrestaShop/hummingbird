@@ -11,13 +11,13 @@
 {block name='page_header_container'}
   {block name='page_title'}
     <div class="page-header mb-2">
-      <h1 class="display-1">{l s='404' d='Shop.Theme.Catalog'}</h1>
+      <p class="display-1">{l s='404' d='Shop.Theme.Catalog'}</p>
     </div>
   {/block}
 {/block}
 
 {capture assign="errorContent"}
-  <h4>{$page.title}</h4>
+  <h1 class="h4">{$page.title}</h1>
   <p>
     {l
       s='If this is a recurring problem, please [1]contact us[/1]'

@@ -4,20 +4,16 @@
  *}
 
 {foreach $linkBlocks as $linkBlock}
-  <div class="footer__block col-md-6 col-lg-3">
+  <div class="left-block">
 
-    <p class="footer__block__title d-none d-md-flex">{$linkBlock.title}</p>
+    <p class="left-block__title">{$linkBlock.title}</p>
 
-    <div class="footer__block__toggle d-md-none collapsed" data-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
-      <span class="footer__block__title">{$linkBlock.title}</span>
-      <i class="material-icons" aria-hidden="true">arrow_drop_down</i>
-    </div>
-    <ul id="footer_sub_menu_{$linkBlock.id}" class="footer__block__content footer__block__content-list collapse">
+    <ul id="left-block__{$linkBlock.id}" class="left-block__content left-block__content--list">
       {foreach $linkBlock.links as $link}
         <li>
           <a
               id="{$link.id}-{$linkBlock.id}"
-              class="{$link.class}"
+              class="left-block__link {$link.class}"
               href="{$link.url}"
               title="{$link.description}"
               {if !empty($link.target)} target="{$link.target}" {/if}

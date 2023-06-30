@@ -54,7 +54,7 @@
               </div>
 
               <div class="col-xl-6 store__description d-none d-md-block">
-                <h2 class="h6 store__name">
+                <h2 class="h5 store__name">
                   {$store.name}
                 </h2>
 
@@ -93,7 +93,7 @@
 
               <div class="store__description accordion d-block d-md-none">
                 <div class="accordion-item">
-                  <h2 class="h6 store__name">
+                  <h2 class="h5 store__name">
                     {$store.name}
                   </h2>
 

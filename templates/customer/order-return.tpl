@@ -21,7 +21,7 @@
         </p>
         <p>{l s='We have logged your return request.' d='Shop.Theme.Customeraccount'}</p>
         <hr>
-        <h3>{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</h3>
+        <h2 class="h3">{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</h2>
         <div class="table-wrapper">
           <table class="table d-none d-sm-table d-md-table">
             <thead class="thead-default">

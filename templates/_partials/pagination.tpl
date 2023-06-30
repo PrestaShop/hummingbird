@@ -5,13 +5,13 @@
 {$componentName = 'pagination'}
 
 <nav class="{$componentName}-container row">
-  <div class="{$componentName}-number col-md-4">
+  <div class="{$componentName}-number text-center text-lg-start col-lg-4">
     {block name='pagination_summary'}
       {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=['%from%' => $pagination.items_shown_from ,'%to%' => $pagination.items_shown_to, '%total%' => $pagination.total_items]}
     {/block}
   </div>
 
-  <div class="{$componentName}-list-container col-md-6 offset-md-2 pr-0">
+  <div class="{$componentName}-list-container d-flex justify-content-center justify-content-lg-end col-lg-8">
     {block name='pagination_page_list'}
       <nav aria-label="{l s='Products pagination' d='Shop.Theme.Catalog'}">
         {if $pagination.should_be_displayed}
@@ -44,5 +44,4 @@
       </nav>
     {/block}
   </div>
-
 </nav>

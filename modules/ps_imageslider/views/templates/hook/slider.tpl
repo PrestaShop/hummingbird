@@ -20,7 +20,7 @@
             aria-hidden="{if $smarty.foreach.homeslider.first}false{else}true{/if}">
             {if !empty($slide.url)}<a class="carousel-link" href="{$slide.url}">{/if}
               <figure class="carousel-content">
-                <img src="{$slide.image_url}" alt="{$slide.legend|escape}" loading="lazy" {$slide.size|replace: '"':''}>
+                <img src="{$slide.image_url}" alt="{$slide.legend|escape}" {if $slide@iteration == 1}loading="eager"{else}loading="lazy"{/if} {$slide.size|replace: '"':''}>
                 {if $slide.title || $slide.description}
                   <figcaption class="carousel-caption caption">
                     <h2 class="display-1 text-uppercase">{$slide.title}</h2>

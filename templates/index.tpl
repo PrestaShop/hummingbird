@@ -4,6 +4,8 @@
  *}
 {extends file=$layout}
 
+{block name='breadcrumb'}{/block}
+
 {block name="content_columns"}
   {block name="left_column"}{/block}
 

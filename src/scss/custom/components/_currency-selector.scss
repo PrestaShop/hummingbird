@@ -14,3 +14,11 @@ $component-name: currency-selector;
     }
   }
 }
+
+/* stylelint-disable */
+#_mobile_currency_selector {
+  &:empty {
+    display: none;
+  }
+}
+/* stylelint-enable */

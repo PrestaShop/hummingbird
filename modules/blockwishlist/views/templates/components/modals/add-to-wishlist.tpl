@@ -19,7 +19,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header px-3">
-          <h5 class="modal-title">{l s='Add to wishlist' d='Modules.Blockwishlist.Shop'}</h5>
+          <p class="h5 modal-title">{l s='Add to wishlist' d='Modules.Blockwishlist.Shop'}</p>
           <button
             type="button"
             class="btn-close"
@@ -45,7 +45,7 @@
 
         <div class="modal-footer">
           <a @click="openNewWishlistModal" class="wishlist-add-to-new text-primary">
-            <i class="material-icons text-primary">add_circle_outline</i> {$newWishlistCTA}
+            <i class="material-icons text-primary" aria-hidden="true">add_circle_outline</i> {$newWishlistCTA}
           </a>
         </div>
       </div>

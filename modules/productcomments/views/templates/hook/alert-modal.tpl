@@ -19,10 +19,10 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>
+        <p class="h2">
           <i class="material-icons {$icon}" data-icon="{$icon}"></i>
           {$modal_title}
-        </h2>
+        </p>
       </div>
       <div class="modal-body">
         <div class="row">

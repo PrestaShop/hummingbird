@@ -8,7 +8,8 @@ import wNumb from 'wnumb';
 import initFacets from './update';
 import filterHandler from './filter-handler';
 
-const initSliders = () => {
+// eslint-disable-next-line import/prefer-default-export
+export const initSliders = () => {
   const {Theme} = window;
 
   // Get all slider configurations found in the DOM
@@ -70,6 +71,12 @@ const initSliders = () => {
     const sliderValues = JSON.parse(<string>container.dataset.sliderValues);
 
     if (!container.noUiSlider) {
+      // if we initiate slider with noUiBase he create another one we have to delete it before.
+      const noUiBase = container.querySelector('.noUi-base');
+
+      if (noUiBase) {
+        noUiBase.remove();
+      }
       initiatedSlider = noUiSlider.create(container, {
         start: sliderValues ?? [min, max],
         tooltips: [tooltipsFormat, tooltipsFormat],

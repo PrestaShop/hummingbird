@@ -8,9 +8,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
+          node-version: 16
 
       - name: Build and check types
-        run: touch ./webpack/.env && npm install && npm run build
+        run: touch ./webpack/.env && npm ci && npm run build

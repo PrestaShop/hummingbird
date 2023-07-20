@@ -16,7 +16,7 @@
                 <div class="d-flex align-items-center justify-content-end col">
                   <span class="fw-bold">{$voucher.reduction_formatted}</span>
                     {if isset($voucher.code) && $voucher.code !== ''}
-                      <a href="{$voucher.delete_url}" class="ms-2" data-link-action="remove-voucher"><i class="material-icons">&#xE872;</i></a>
+                      <a href="{$voucher.delete_url}" class="ms-2" data-link-action="remove-voucher"><i class="material-icons" title="{l s='Remove Voucher' d='Shop.Theme.Checkout'}">&#xE872;</i></a>
                     {/if}
                 </div>
               </li>
@@ -46,7 +46,7 @@
 
               {block name='cart_voucher_notifications'}
                 <div class="alert alert-danger js-error mt-2" role="alert" style="display: none;">
-                  <i class="material-icons">&#xE001;</i><span class="ml-1 js-error-text"></span>
+                  <i class="material-icons" aria-hidden="true">&#xE001;</i><span class="ml-1 js-error-text"></span>
                 </div>
               {/block}
             </div>

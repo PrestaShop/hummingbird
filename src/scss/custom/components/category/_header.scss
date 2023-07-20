@@ -1,10 +1,6 @@
 $component-name: block-category;
 
 .#{$component-name} {
-  h1 {
-    font-size: 2rem;
-  }
-
   #category-description {
     font-size: 1rem;
     color: var(--bs-gray-800);

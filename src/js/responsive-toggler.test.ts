@@ -1,9 +1,11 @@
 import EVENTS from '@js/constants/events-map';
+import selectorsMap from '@constants/selectors-map';
 import initResponsiveToggler from './responsive-toggler';
 import initEmitter from './prestashop';
 import {
   desktopElement, mobileElement, mobileElementId, contentValue, desktopElementId,
 } from './constants/mocks/swapElements-data';
+import ThemeType = Theme.ThemeType;
 
 beforeAll(() => {
   document.body.innerHTML = `
@@ -18,6 +20,7 @@ beforeAll(() => {
   window.Theme = {
     ...window.Theme,
     events: EVENTS,
+    selectors: selectorsMap,
   };
 
   initEmitter();

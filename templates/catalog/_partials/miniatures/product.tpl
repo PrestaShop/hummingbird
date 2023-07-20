@@ -15,25 +15,25 @@
             {if $product.cover}
               <picture>
                 {if isset($product.cover.bySize.default_md.sources.avif)}
-                  <source 
+                  <source
                     srcset="
                       {$product.cover.bySize.default_xs.sources.avif} 120w,
                       {$product.cover.bySize.default_m.sources.avif} 200w,
                       {$product.cover.bySize.default_md.sources.avif} 320w,
                       {$product.cover.bySize.product_main.sources.avif} 720w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 50vw" 
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 50vw"
                     type="image/avif"
                   >
                 {/if}
 
                 {if isset($product.cover.bySize.default_md.sources.webp)}
-                  <source 
+                  <source
                     srcset="
                       {$product.cover.bySize.default_xs.sources.webp} 120w,
                       {$product.cover.bySize.default_m.sources.webp} 200w,
                       {$product.cover.bySize.default_md.sources.webp} 320w,
                       {$product.cover.bySize.product_main.sources.webp} 720w"
-                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw" 
+                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw"
                     type="image/webp"
                   >
                 {/if}
@@ -45,8 +45,8 @@
                     {$product.cover.bySize.default_m.url} 200w,
                     {$product.cover.bySize.default_md.url} 320w,
                     {$product.cover.bySize.product_main.url} 720w"
-                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw" 
-                  src="{$product.cover.bySize.default_md.url}" 
+                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw"
+                  src="{$product.cover.bySize.default_md.url}"
                   width="{$product.cover.bySize.default_md.width}"
                   height="{$product.cover.bySize.default_md.height}"
                   loading="lazy"
@@ -58,25 +58,25 @@
             {else}
               <picture>
                 {if isset($urls.no_picture_image.bySize.default_md.sources.avif)}
-                  <source 
+                  <source
                     srcset="
                       {$urls.no_picture_image.bySize.default_xs.sources.avif} 120w,
                       {$urls.no_picture_image.bySize.default_m.sources.avif} 200w,
                       {$urls.no_picture_image.bySize.default_md.sources.avif} 320w,
                       {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 50vw" 
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 50vw"
                     type="image/avif"
                   >
                 {/if}
 
                 {if isset($urls.no_picture_image.bySize.default_md.sources.webp)}
-                  <source 
+                  <source
                     srcset="
                       {$urls.no_picture_image.bySize.default_xs.sources.webp} 120w,
                       {$urls.no_picture_image.bySize.default_m.sources.webp} 200w,
                       {$urls.no_picture_image.bySize.default_md.sources.webp} 320w,
                       {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
-                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw" 
+                    sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw"
                     type="image/webp"
                   >
                 {/if}
@@ -88,10 +88,10 @@
                     {$urls.no_picture_image.bySize.default_m.url} 200w,
                     {$urls.no_picture_image.bySize.default_md.url} 320w,
                     {$urls.no_picture_image.bySize.product_main.url} 720w"
-                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw" 
+                  sizes="(min-width: 1300px) 320px, (min-width: 768px) 120px, 50vw"
                   width="{$urls.no_picture_image.bySize.default_md.width}"
                   height="{$urls.no_picture_image.bySize.default_md.height}"
-                  src="{$urls.no_picture_image.bySize.default_md.url}" 
+                  src="{$urls.no_picture_image.bySize.default_md.url}"
                   loading="lazy"
                   alt="{l s='No image available' d='Shop.Theme.Catalog'}"
                   title="{l s='No image available' d='Shop.Theme.Catalog'}"
@@ -114,7 +114,7 @@
           {block name='quick_view'}
             <div class="{$componentName}__quickview">
               <button class="{$componentName}__quickview_button btn btn-link js-quickview btn-with-icon" data-link-action="quickview">
-                <i class="material-icons">&#xE417;</i>
+                <i class="material-icons" aria-hidden="true">&#xE417;</i>
                 {l s='Quick view' d='Shop.Theme.Actions'}
               </button>
             </div>
@@ -169,10 +169,10 @@
             </div>
 
             {if $product.add_to_cart_url}
-              <form action="{$urls.pages.cart}" method="post" class="d-flex align-items-center mt-3">
+              <form action="{$urls.pages.cart}" method="post" class="d-flex flex-wrap flex-md-nowrap gap-3 align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
                 <input type="hidden" name="token" value="{$static_token}" />
-                <div class="quantity-button js-quantity-button">
+                <div class="quantity-button js-quantity-button w-100 w-sm-auto">
                   {include file='components/qty-input.tpl'
                     attributes=[
                       "id"=>"quantity_wanted_{$product.id_product}",
@@ -182,8 +182,8 @@
                     marginHelper="mb-0"
                   }
                 </div>
-                <button data-button-action="add-to-cart" class="btn btn-primary ms-3">
-                  <i class="material-icons">&#xe854;</i>
+                <button data-button-action="add-to-cart" class="btn btn-primary flex-grow-1 flex-md-grow-0">
+                  <i class="material-icons" aria-hidden="true">&#xe854;</i>
                   <span class="visually-hidden">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
                 </button>
               </form>

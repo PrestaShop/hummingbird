@@ -3,7 +3,9 @@
     color: var(--bs-primary);
   }
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:focus-visible {
     i {
       color: var(--bs-white);
     }

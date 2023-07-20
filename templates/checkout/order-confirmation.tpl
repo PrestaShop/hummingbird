@@ -10,7 +10,7 @@
 
   {block name='order_confirmation_header'}
     <div class="alert alert-success" role="alert">
-      <h4 class="alert-heading">{l s='Your order is confirmed' d='Shop.Theme.Checkout'}</h4>
+      <h1 class="h4 alert-heading">{l s='Your order is confirmed' d='Shop.Theme.Checkout'}</h1>
       <p class="mb-0">
         {l s='An email has been sent to your mail address %email%.' d='Shop.Theme.Checkout' sprintf=['%email%' => $order_customer.email]}
       </p>

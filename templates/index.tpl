@@ -4,6 +4,8 @@
  *}
 {extends file=$layout}
 
+{block name='breadcrumb'}{/block}
+
 {block name="content_columns"}
   {block name="left_column"}{/block}
 
@@ -15,7 +17,7 @@
           {block name='page_header_container'}
             {block name='page_title' hide}
               <header class="page-header">
-                <h1>{$smarty.block.child}</h1>
+                <h1 class="h1">{$smarty.block.child}</h1>
               </header>
             {/block}
           {/block}

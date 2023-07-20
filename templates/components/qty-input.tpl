@@ -20,7 +20,7 @@
 
 <div class="input-group flex-nowrap{if isset($marginHelper)} {$marginHelper}{else} mb-3{/if}">
   <button class="btn {$prepend.button} js-{$prepend.button}-button" type="button">
-    <i class="material-icons">&#x{$prepend.icon};</i>
+    <i class="material-icons" aria-hidden="true">&#x{$prepend.icon};</i>
     <i class="material-icons confirmation d-none">&#x{$prepend.confirm_icon};</i>
     <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
   </button>
@@ -40,7 +40,7 @@
     {* End of default attributes *}
   />
   <button class="btn {$append.button} js-{$append.button}-button" type="button">
-    <i class="material-icons">&#x{$append.icon};</i>
+    <i class="material-icons" aria-hidden="true">&#x{$append.icon};</i>
     <i class="material-icons confirmation d-none">&#x{$append.confirm_icon};</i>
     <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
   </button>

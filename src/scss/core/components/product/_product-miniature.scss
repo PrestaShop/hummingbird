@@ -8,6 +8,9 @@ $component-name: product-miniature;
   & &__infos {
     position: relative;
     z-index: 90;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     padding: 0;
 
     &__top,
@@ -17,11 +20,18 @@ $component-name: product-miniature;
     }
 
     &__top {
+      height: 100%;
       padding-top: 0.5rem;
     }
 
     &__bottom {
+      margin-top: auto;
       margin-bottom: 1rem;
+      @media (max-width: 767px) {
+        .quantity-button input {
+          max-width: unset;
+        }
+      }
     }
   }
 

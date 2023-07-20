@@ -9,7 +9,7 @@
 {/block}
 
 {block name='page_content'}
-  <h6>{l s='Credit slips you have received after canceled orders.' d='Shop.Theme.Customeraccount'}</h6>
+  <p class="h6">{l s='Credit slips you have received after canceled orders.' d='Shop.Theme.Customeraccount'}</p>
 
   {if $credit_slips}
     <div class="table-wrapper">
@@ -29,7 +29,7 @@
               <td scope="row">{$slip.credit_slip_number}</td>
               <td>{$slip.credit_slip_date}</td>
               <td class="text-sm-center">
-                <a href="{$slip.url}"><i class="material-icons">&#xE415;</i></a>
+                <a href="{$slip.url}"><i class="material-icons" aria-hidden="true">&#xE415;</i></a>
               </td>
             </tr>
           {/foreach}

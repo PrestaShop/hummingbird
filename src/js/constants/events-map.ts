@@ -14,4 +14,5 @@ export default {
   updateProduct: 'updateProduct',
   updatedProduct: 'updatedProduct',
   updateFacets: 'updateFacets',
+  updatedDeliveryForm: 'updatedDeliveryForm',
 };

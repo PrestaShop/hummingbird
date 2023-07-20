@@ -20,7 +20,7 @@
           {/if}
         </p>
       {else}
-        <h2 class="h4">{l s='Shipping Address' d='Shop.Theme.Checkout'}</h2>
+        <p class="h4">{l s='Shipping Address' d='Shop.Theme.Checkout'}</p>
       {/if}
 
       {if $show_delivery_address_form}
@@ -50,7 +50,7 @@
         {/if}
 
         <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3">
-          <i class="material-icons">&#xE145;</i>
+          <i class="material-icons" aria-hidden="true">&#xE145;</i>
           {l s='Add new address' d='Shop.Theme.Actions'}
         </a>
 
@@ -62,7 +62,7 @@
       {/if}
 
       {if !$use_same_address}
-        <h2 class="h4 mt-4">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</h2>
+        <p class="h4 mt-4">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
 
         {if $show_invoice_address_form}
           <div id="invoice-address">
@@ -91,7 +91,7 @@
           {/if}
 
           <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon w-100 w-md-auto">
-            <i class="material-icons">&#xE145;</i>
+            <i class="material-icons" aria-hidden="true">&#xE145;</i>
             {l s='Add new address' d='Shop.Theme.Actions'}
           </a>
         {/if}
@@ -100,14 +100,14 @@
 
       <div class="mt-4 d-flex flex-wrap justify-content-between">
         <button class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-personal-information-step">
-          <i class="material-icons rtl-flip">arrow_backward</i>
+          <i class="material-icons rtl-flip" aria-hidden="true">arrow_backward</i>
           {l s='Back to Personal Information' d='Shop.Theme.Actions'}
         </button>
 
         {if !$form_has_continue_button}
             <button type="submit" class="btn btn-primary btn-with-icon w-100 w-md-auto continue" name="confirm-addresses" value="1">
               {l s='Continue to Shipping' d='Shop.Theme.Actions'}
-              <div class="material-icons rtl-flip">arrow_forward</div>
+              <div class="material-icons rtl-flip" aria-hidden="true">arrow_forward</div>
             </button>
             <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}

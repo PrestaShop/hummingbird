@@ -19,7 +19,7 @@
               <i class="form-check-round"></i>
             </span>
             <div class="address__content col-10">
-              <h4 class="address__alias card-title">{$address.alias}</h4>
+              <p class="address__alias h4 card-title">{$address.alias}</p>
               <address class="address__content">{$address.formatted nofilter}</address>
 
               {block name='address_block_item_actions'}

@@ -74,7 +74,7 @@
                   {foreach $store.business_hours as $day}
                     <tr>
                       <th>
-                        {$day.day|truncate:4:'.'}
+                        {$day.day}
                       </th>
 
                       <td>

@@ -33,10 +33,10 @@
             />
             
             <span class="d-flex flex-wrap gap-1 align-items-center flex-grow-1">	
-							{$option.call_to_action_text}
               {if $option.logo}
-                <img class="flex-shrink-0" src="{$option.logo}" loading="lazy">
+                <img class="flex-shrink-0 me-2" src="{$option.logo}" loading="lazy">
               {/if}
+							{$option.call_to_action_text}
 						</span>
           </label>
 

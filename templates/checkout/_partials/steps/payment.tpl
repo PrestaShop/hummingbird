@@ -22,23 +22,22 @@
       {foreach from=$module_options item="option"}
         <div id="{$option.id}-container" class="payment__option">
           {* This is the way an option should be selected when Javascript is enabled *}
-          <label class="form-check-label mb-2">
+          <label class="form-check-label mb-3 d-flex align-items-center">
             <input
-              class="form-check-input ps-shown-by-js me-1{if $option.binary} binary{/if}"
+              class="form-check-input ps-shown-by-js flex-shrink-0 my-0 me-2{if $option.binary} binary{/if}"
               type="radio"
               name="payment-option"
               data-module-name="{$option.module_name}"
               id="{$option.id}"
               {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
             />
-
-            <i class="form-check-round"></i>
-
-            {if $option.logo}
-              <img src="{$option.logo}" loading="lazy">
-            {/if}
-
-            {$option.call_to_action_text}
+            
+            <span class="d-flex flex-wrap gap-1 align-items-center flex-grow-1">	
+              {if $option.logo}
+                <img class="flex-shrink-0 me-2" src="{$option.logo}" loading="lazy">
+              {/if}
+							{$option.call_to_action_text}
+						</span>
           </label>
 
           {* This is the way an option should be selected when Javascript is disabled *}

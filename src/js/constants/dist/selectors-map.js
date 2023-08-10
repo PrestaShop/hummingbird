@@ -2,17 +2,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-export const facetedsearch = {
+exports.__esModule = true;
+exports.passwordPolicy = exports.formValidation = exports.qtyInput = exports.desktopMenu = exports.visiblePassword = exports.mobileMenu = exports.progressRing = exports.checkout = exports.searchBar = exports.languageSelector = exports.currencySelector = exports.blockcart = exports.cart = exports.listing = exports.pageLoader = exports.facetedsearch = void 0;
+exports.facetedsearch = {
   range: '.js-faceted-slider',
   rangeContainer: '.js-faceted-slider-container',
   filterSlider: '.js-faceted-filter-slider',
   offCanvasFaceted: '#offcanvas-faceted',
 };
-
-export const pageLoader = '.js-page-loader';
-
-export const listing = {
+exports.pageLoader = '.js-page-loader';
+exports.listing = {
   searchFilterToggler: '#search_filter_toggler, .js-search-toggler',
   searchFiltersWrapper: '#search_filters_wrapper',
   searchFilterControls: '#search_filter_controls',
@@ -26,8 +25,7 @@ export const listing = {
   searchFiltersClearAll: '.js-search-filters-clear-all',
   searchLink: '.js-search-link',
 };
-
-export const cart = {
+exports.cart = {
   container: '.cart-container',
   overview: '.cart-overview',
   discountCode: '.js-discount .js-code',
@@ -36,20 +34,16 @@ export const cart = {
   promoCode: '#promo-code',
   deleteLinkAction: 'delete-from-cart',
 };
-
-export const blockcart = {
+exports.blockcart = {
   modal: '#blockcart-modal',
 };
-
-export const currencySelector = {
+exports.currencySelector = {
   currencySelector: '.js-currency-selector',
 };
-
-export const languageSelector = {
+exports.languageSelector = {
   languageSelector: '.js-language-selector',
 };
-
-export const searchBar = {
+exports.searchBar = {
   searchCanvas: '.js-search-offcanvas',
   searchWidget: '.js-search-widget',
   searchDropdown: '.js-search-dropdown',
@@ -57,15 +51,14 @@ export const searchBar = {
   searchTemplate: '.js-search-template',
   searchInput: '.js-search-input',
 };
-
-export const checkout = {
+exports.checkout = {
   steps: {
     item: '.js-step-item',
     current: '.js-current-step',
     shownResponsiveStep: '.checkout__steps__step:not(.d-none)',
-    specificStep: (param: string | undefined) => `.checkout__steps__step[data-step="${param}"]`,
-    specificStepContent: (param: string | undefined) => `#${param}`,
-    backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
+    specificStep(param) { return `.checkout__steps__step[data-step="${param}"]`; },
+    specificStepContent(param) { return `#${param}`; },
+    backButton(param) { return `.js-step-item button[data-bs-target="#${param}"]`; },
   },
   actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
   termsLink: '.js-terms a',
@@ -74,8 +67,7 @@ export const checkout = {
   carrierExtraContent: '.carrier__extra-content',
   carrierExtraContentActive: '.carrier__extra-content-wrapper--active',
 };
-
-export const progressRing = {
+exports.progressRing = {
   checkout: {
     element: '.progress-ring',
     circle: '.progress-ring__circle',
@@ -83,27 +75,23 @@ export const progressRing = {
   },
   text: '.progress-ring text',
 };
-
-export const mobileMenu = {
+exports.mobileMenu = {
   openChildsButton: '.js-menu-open-child',
   backTitle: '.js-menu-back-title',
   backButton: '.js-back-button',
   menuCanvas: '.js-menu-canvas',
   menuCurrent: '.menu--current',
-  specificParent: (param: string | undefined) => `.menu--parent[data-depth="${param}"]`,
-  specificChild: (param: string | undefined) => `.menu[data-id="${param}"]`,
+  specificParent(param) { return `.menu--parent[data-depth="${param}"]`; },
+  specificChild(param) { return `.menu[data-id="${param}"]`; },
 };
-
-export const visiblePassword = {
+exports.visiblePassword = {
   visiblePassword: '.js-visible-password',
 };
-
-export const desktopMenu = {
+exports.desktopMenu = {
   dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
-  dropdownItemAnchor: (depth: number) => `.js-menu-desktop a[data-depth="${depth}"]`,
+  dropdownItemAnchor(depth) { return `.js-menu-desktop a[data-depth="${depth}"]`; },
 };
-
-export const qtyInput = {
+exports.qtyInput = {
   default: '.js-quantity-button',
   productCartList: '.cart__items .js-quantity-button',
   modal: '.modal-dialog .js-quantity-button',
@@ -112,14 +100,12 @@ export const qtyInput = {
   confirm: '.confirmation',
   icon: '.material-icons',
   spinner: '.spinner-border',
-  alert: (param: string): string => `#js-product-line-alert--${param}`,
+  alert(param) { return `#js-product-line-alert--${param}`; },
 };
-
-export const formValidation = {
+exports.formValidation = {
   default: '.form-validation',
 };
-
-export const passwordPolicy = {
+exports.passwordPolicy = {
   template: '#password-feedback',
   hint: '.js-hint-password',
   container: '.password-strength-feedback',
@@ -130,9 +116,8 @@ export const passwordPolicy = {
   requirementLengthIcon: '.password-requirements-length i',
   progressBar: '.progress-bar',
 };
-
 const selectorsMap = {
-  qtyInput,
+  qtyInput: exports.qtyInput,
   alert: {
     selector: '#notifications .container',
     alert: '.alert',
@@ -152,7 +137,7 @@ const selectorsMap = {
     carousel: '.js-product-carousel',
     miniature: '.js-product-miniature',
     thumbnail: '.js-thumb-container',
-    activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
+    activeThumbail(id) { return `.js-thumb-container:nth-child(${id + 1})`; },
   },
   order: {
     returnForm: '.js-order-return-form',
@@ -163,21 +148,20 @@ const selectorsMap = {
   pageCms: '.page-cms',
   quickview: '.js-quickview',
   quickviewModal: '.quickview',
-  facetedsearch,
-  pageLoader,
-  listing,
-  cart,
-  progressRing,
-  checkout,
-  blockcart,
-  currencySelector,
-  languageSelector,
-  searchBar,
-  mobileMenu,
-  visiblePassword,
-  desktopMenu,
-  formValidation,
-  passwordPolicy,
+  facetedsearch: exports.facetedsearch,
+  pageLoader: exports.pageLoader,
+  listing: exports.listing,
+  cart: exports.cart,
+  progressRing: exports.progressRing,
+  checkout: exports.checkout,
+  blockcart: exports.blockcart,
+  currencySelector: exports.currencySelector,
+  languageSelector: exports.languageSelector,
+  searchBar: exports.searchBar,
+  mobileMenu: exports.mobileMenu,
+  visiblePassword: exports.visiblePassword,
+  desktopMenu: exports.desktopMenu,
+  formValidation: exports.formValidation,
+  passwordPolicy: exports.passwordPolicy,
 };
-
-export default selectorsMap;
+exports.default = selectorsMap;

@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const {prestashop, Theme: {events, selectors}} = window;
 
   prestashop.on(events.updatedCart, () => {
-    useQuantityInput();
+    useQuantityInput(quantityInputMap.productCartList);
 
     const {cart: cartMap} = selectors;
     const cartOverview = document.querySelector<HTMLElement>(cartMap.overview);

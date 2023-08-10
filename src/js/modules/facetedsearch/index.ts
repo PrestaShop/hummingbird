@@ -15,6 +15,7 @@ export const initSliders = () => {
   // Get all slider configurations found in the DOM
   document.querySelectorAll(Theme.selectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
     const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
+    const facetedValues = document.querySelector('.js-faceted-values') as HTMLElement;
 
     // Init basic slider data
     let unitPosition = 'suffix';
@@ -88,8 +89,19 @@ export const initSliders = () => {
         },
       });
 
+      // Remove tooltips:
+      initiatedSlider.removeTooltips();
+
       initiatedSlider.on('set', (values, handle, unencoded, tap, positions, instance) => {
         filterHandler(values, instance);
+      });
+
+      initiatedSlider.on('update', (values) => {
+        const formattedValues: string[] = values.map((value) => (
+          unitPosition === 'suffix' ? `${value}${unitSymbol}` : `${unitSymbol}${value}`),
+        );
+
+        facetedValues.innerHTML = formattedValues.join(' - ');
       });
     } else {
       container.noUiSlider.updateOptions({
@@ -101,8 +113,19 @@ export const initSliders = () => {
         },
       }, true);
 
+      // Remove tooltips:
+      container.noUiSlider.removeTooltips();
+
       container.noUiSlider.on('set', (values, handle, unencoded, tap, positions, instance) => {
         filterHandler(values, instance);
+      });
+
+      container.noUiSlider.on('update', (values) => {
+        const formattedValues: string[] = values.map((value) => (
+          unitPosition === 'suffix' ? `${value}${unitSymbol}` : `${unitSymbol}${value}`),
+        );
+
+        facetedValues.innerHTML = formattedValues.join(' - ');
       });
     }
   });

@@ -36,7 +36,6 @@ export default () => {
   });
 
   if (cartContainer) {
-    console.log(cartContainer);
     cartContainer.addEventListener('click', (event: Event) => {
       const eventTarget = event.target as HTMLElement;
 

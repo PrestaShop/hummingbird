@@ -6,7 +6,6 @@
 import {Collapse} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
 import handleCartAction from '../components/UseHandleCartAction';
-import { qtyInput } from '@constants/selectors-map';
 
 export default () => {
   const {Theme} = window;
@@ -47,7 +46,7 @@ export default () => {
         if (eventTarget.classList.contains('js-increment-button')) {
           if (targetValue.dataset.mode === 'confirmation' && Number(targetValue.value) < 1) {
             if (removeButton) {
-             removeButton.click();
+              removeButton.click();
             }
           }
         }

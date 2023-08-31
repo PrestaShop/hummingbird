@@ -6,32 +6,12 @@
 import {Collapse} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
 import handleCartAction from '../components/UseHandleCartAction';
+import { qtyInput } from '@constants/selectors-map';
 
 export default () => {
   const {Theme} = window;
   const voucherCodes = document.querySelectorAll(Theme.selectors.cart.discountCode);
   const cartContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.container);
-
-  if (cartContainer) {
-    cartContainer.addEventListener('click', (event: Event) => {
-      const eventTarget = event.target as HTMLElement;
-
-      if (eventTarget.classList.contains('js-decrement-button')) {
-        const targetItem = eventTarget.closest('.cart__item');
-        const targetValue = targetItem?.querySelector('.js-cart-line-product-quantity') as HTMLElement | null;
-
-        if (targetValue && targetValue.getAttribute('value') === '1' && targetValue.getAttribute('min') === '1') {
-          if (targetItem) {
-            const removeButton = targetItem.querySelector('.remove-from-cart') as HTMLElement | null;
-
-            if (removeButton) {
-              removeButton.click();
-            }
-          }
-        }
-      }
-    });
-  }
 
   voucherCodes.forEach((voucher) => {
     voucher.addEventListener('click', (event: Event) => {
@@ -56,8 +36,31 @@ export default () => {
   });
 
   if (cartContainer) {
+    console.log(cartContainer);
     cartContainer.addEventListener('click', (event: Event) => {
       const eventTarget = event.target as HTMLElement;
+
+      const targetItem = eventTarget.closest('.cart__item');
+      const targetValue = targetItem?.querySelector('.js-cart-line-product-quantity') as HTMLInputElement | null;
+      const removeButton = targetItem?.querySelector('.remove-from-cart') as HTMLElement | null;
+
+      if (targetValue) {
+        if (eventTarget.classList.contains('js-increment-button')) {
+          if (targetValue.dataset.mode === 'confirmation' && Number(targetValue.value) < 1) {
+            if (removeButton) {
+             removeButton.click();
+            }
+          }
+        }
+
+        if (eventTarget.classList.contains('js-decrement-button')) {
+          if (targetValue.getAttribute('value') === '1' && targetValue.getAttribute('min') === '1') {
+            if (removeButton) {
+              removeButton.click();
+            }
+          }
+        }
+      }
 
       if (eventTarget.dataset.linkAction === Theme.selectors.cart.deleteLinkAction) {
         handleCartAction(event);

@@ -29,7 +29,7 @@
 {block name='header_bottom'}
   <div class="{$headerBottomName}">
     <div class="container-md {$headerBottomName}__container">
-      <div class="row align-items-center gx-2 {$headerBottomName}__row">
+      <div class="row gx-2 {$headerBottomName}__row">
         <div class="col-auto logo order-xl-1 ms-lg-0 ms-2 me-lg-0 me-auto">
           {if $shop.logo_details}
             {if $page.page_name == 'index'}<h1 class="{$headerBottomName}__h1 mb-0">{/if}

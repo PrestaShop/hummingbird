@@ -4,7 +4,7 @@
  */
 
 import Quantity from '@constants/useQuantityInput-data';
-import {qtyInput as quantityInputMap} from '@constants/selectors-map';
+import {qtyInput as quantityInputMap, cart as cartSelectorMap} from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
 import useToast from './useToast';
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const {prestashop, Theme: {events, selectors}} = window;
 
   prestashop.on(events.updatedCart, () => {
-    useQuantityInput();
+    useQuantityInput(cartSelectorMap.productQuantity);
 
     const {cart: cartMap} = selectors;
     const cartOverview = document.querySelector<HTMLElement>(cartMap.overview);

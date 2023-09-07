@@ -35,6 +35,7 @@ export const cart = {
   displayPromo: '.display-promo',
   promoCode: '#promo-code',
   deleteLinkAction: 'delete-from-cart',
+  productQuantity: '.cart__items .js-quantity-button',
 };
 
 export const blockcart = {

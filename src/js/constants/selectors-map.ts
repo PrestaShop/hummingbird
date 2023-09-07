@@ -35,6 +35,7 @@ export const cart = {
   displayPromo: '.display-promo',
   promoCode: '#promo-code',
   deleteLinkAction: 'delete-from-cart',
+  productQuantity: '.cart__items .js-quantity-button',
 };
 
 export const blockcart = {
@@ -105,7 +106,6 @@ export const desktopMenu = {
 
 export const qtyInput = {
   default: '.js-quantity-button',
-  productCartList: '.cart__items .js-quantity-button',
   modal: '.modal-dialog .js-quantity-button',
   increment: '.js-increment-button',
   decrement: '.js-decrement-button',

@@ -176,8 +176,8 @@
                   {include file='components/qty-input.tpl'
                     attributes=[
                       "id"=>"quantity_wanted_{$product.id_product}",
-                      "value"=>"1",
-                      "min"=>"{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
+                      "value"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}",
+                      "min"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}"
                     ]
                     marginHelper="mb-0"
                   }

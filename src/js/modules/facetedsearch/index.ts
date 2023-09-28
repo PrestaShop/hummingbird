@@ -15,7 +15,6 @@ export const initSliders = () => {
   // Get all slider configurations found in the DOM
   document.querySelectorAll(Theme.selectors.facetedsearch.filterSlider).forEach((filter: HTMLElement) => {
     const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
-    const facetedValues = document.querySelector('.js-faceted-values') as HTMLElement;
 
     // Init basic slider data
     let unitPosition = 'suffix';
@@ -101,7 +100,9 @@ export const initSliders = () => {
           unitPosition === 'suffix' ? `${value}${unitSymbol}` : `${unitSymbol}${value}`),
         );
 
-        facetedValues.innerHTML = formattedValues.join(' - ');
+        const parentFacet = initiatedSlider.target.closest(Theme.selectors.facetedsearch.filterSlider) as HTMLElement;
+        const showValues = parentFacet.querySelector(Theme.selectors.facetedsearch.rangeValues) as HTMLElement;
+        showValues.innerHTML = formattedValues.join(' - ');
       });
     } else {
       container.noUiSlider.updateOptions({
@@ -125,7 +126,9 @@ export const initSliders = () => {
           unitPosition === 'suffix' ? `${value}${unitSymbol}` : `${unitSymbol}${value}`),
         );
 
-        facetedValues.innerHTML = formattedValues.join(' - ');
+        const parentFacet = initiatedSlider.target.closest(Theme.selectors.facetedsearch.filterSlider) as HTMLElement;
+        const showValues = parentFacet.querySelector(Theme.selectors.facetedsearch.rangeValues) as HTMLElement;
+        showValues.innerHTML = formattedValues.join(' - ');
       });
     }
   });

@@ -40,3 +40,16 @@
   /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
 }
+
+/**
+  * Generic svg-icon class that sets basic styles to make icons act like a icon font, but with the benefits of an svg.
+ */
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  display: inline-block;
+  font-size: 24px; // To match the Material Icons font-size POC only
+  overflow: hidden;
+  vertical-align: middle;
+}

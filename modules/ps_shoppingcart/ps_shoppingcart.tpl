@@ -10,7 +10,28 @@
       <span class="header-block__action-btn">
     {/if}
 
-    <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
+    {*
+      OLD ICON
+      <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
+    *}
+
+    {renderThemeIcon
+      iconName="cart"
+      extraAttributes=[
+        "aria-hidden" => "true",
+        "class" => "header-block__icon"
+      ]
+    }
+
+    {renderThemeIconSvg
+      iconName="cart"
+      extraAttributes=[
+        "aria-hidden" => "true",
+        "viewBox" => "0 -960 960 960",
+        "class" => "header-block__icon"
+      ]
+    }
+
     <span class="d-none d-md-flex header-block__title">{l s='Cart' d='Shop.Theme.Checkout'}</span>
     <span class="header-block__badge">{$cart.products_count}</span>
 

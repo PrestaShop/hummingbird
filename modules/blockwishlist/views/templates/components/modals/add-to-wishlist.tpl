@@ -44,9 +44,9 @@
         </div>
 
         <div class="modal-footer">
-          <a @click="openNewWishlistModal" class="wishlist-add-to-new text-primary">
+          <div role="button" @click="openNewWishlistModal" class="wishlist-add-to-new text-primary">
             <i class="material-icons text-primary" aria-hidden="true">add_circle_outline</i> {$newWishlistCTA}
-          </a>
+          </div>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@
     </a>
   </p>
 
-  <div class="footer__block__toggle d-md-none collapsed" data-bs-target="#footer_account_list" data-bs-toggle="collapse" aria-expanded="false">
+  <div role="button" class="footer__block__toggle d-md-none collapsed" data-bs-target="#footer_account_list" data-bs-toggle="collapse" aria-expanded="false">
     <span class="footer__block__title">{l s='Your account' d='Shop.Theme.Customeraccount'}</span>
     <i class="material-icons" aria-hidden="true">arrow_drop_down</i>
   </div>

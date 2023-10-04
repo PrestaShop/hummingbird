@@ -3,6 +3,8 @@
 This is a PrestaShop's theme we are working on. Please, if you work on this theme, use the `8.0.x` branch of PrestaShop to make sure this theme is compatible with the latest `8.x` version.
 
 [Read more](https://build.prestashop.com/news/new-theme-announce/) about this theme on the blog.
+[Demo: https://hb.herf.pl/](https://hb.herf.pl/
+) provided by @pawelkierklo 
 
 ![image](https://user-images.githubusercontent.com/16455155/199937084-3d2eab3f-dc3e-488f-8b87-e8d4565219b3.png)
 

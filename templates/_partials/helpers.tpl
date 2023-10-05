@@ -56,14 +56,26 @@
       >
         {$iconsMap[$iconName]}
       </span>
-
-
     {/if}
 {/function}
 
+{assign
+  var=iconsMapSvg
+  value=[
+    "cart" => [
+      "name" => "shopping_cart",
+      "viewbox" => "0 -960 960 960"
+    ]
+  ]
+  scope="global"
+}
+
+
 {** DIFFERENT NAME ONLY FOR POC TO DISPLAY POSIBILITES **}
 {function renderThemeIconSvg iconName="" extraAttributes=[]}
-  {if $iconName && !empty($iconsMap[$iconName])}
+  {if $iconName && !empty($iconsMapSvg[$iconName])}
+    {$icon = $iconsMapSvg[$iconName]}
+
     <svg
       class="svg-icon {if !empty($extraAttributes['class'])}{$extraAttributes['class']}{/if}"
       {foreach $extraAttributes as $key => $value}
@@ -71,8 +83,58 @@
           {$key}="{$value}"
         {/if}
       {/foreach}
+      {if !empty($icon.viewbox)}
+        viewBox="{$icon.viewbox}"
+      {/if}
     >
-      <use xlink:href="#{$iconsMap[$iconName]}"></use>
+      <use xlink:href="#{$icon.name}"></use>
+    </svg>
+  {/if}
+{/function}
+
+{assign
+  var=externalSvgFileUrl
+  value="`$urls.theme_assets`resources/icons-sprite.svg"
+  scope="global"
+}
+
+{*
+  External svg file can be preloaded just like fonts
+  but be aware if you are using cdn you won't be able to use it
+  due to security reasons
+  You should find better way to build this url forexample inside module
+*}
+
+<link rel="preload" as="image" href="{$externalSvgFileUrl}" />
+
+{assign
+  var=iconsMapSvgExternal
+  value=[
+    "cart" => [
+      "name" => "shopping_cart",
+      "viewbox" => "0 -960 960 960"
+    ]
+  ]
+  scope="global"
+}
+
+{** DIFFERENT NAME ONLY FOR POC TO DISPLAY POSIBILITES **}
+{function renderThemeIconSvgExternal iconName="" extraAttributes=[]}
+  {if $iconName && !empty($iconsMapSvgExternal[$iconName])}
+    {$icon = $iconsMapSvgExternal[$iconName]}
+
+    <svg
+      class="svg-icon {if !empty($extraAttributes['class'])}{$extraAttributes['class']}{/if}"
+      {foreach $extraAttributes as $key => $value}
+          {if $key != 'class' && $value}
+              {$key}="{$value}"
+          {/if}
+      {/foreach}
+      {if !empty($icon.viewbox)}
+        viewBox="{$icon.viewbox}"
+      {/if}
+    >
+      <use xlink:href="{$externalSvgFileUrl}#{$icon.name}"></use>
     </svg>
   {/if}
 {/function}

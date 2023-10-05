@@ -27,7 +27,14 @@
       iconName="cart"
       extraAttributes=[
         "aria-hidden" => "true",
-        "viewBox" => "0 -960 960 960",
+        "class" => "header-block__icon"
+      ]
+    }
+
+    {renderThemeIconSvgExternal
+      iconName="cart"
+      extraAttributes=[
+        "aria-hidden" => "true",
         "class" => "header-block__icon"
       ]
     }

@@ -135,6 +135,10 @@
               </div>
             {/block}
 
+            {block name='product_reviews'}
+              {hook h='displayProductListReviews' product=$product}
+            {/block}
+
             <div class="{$componentName}__prices">
               {block name='product_price'}
                 {if $product.show_price}

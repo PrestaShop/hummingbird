@@ -99,6 +99,7 @@ export default () => {
   prestashop.on(events.updateProductList, (data: Record<string, never>) => {
     updateProductListDOM(data);
     useQuantityInput();
-    window.scrollTo(0, 0);
+    // list was updated, scroll back up to to start of the list
+    document.getElementById('products')?.scrollIntoView(true);
   });
 };

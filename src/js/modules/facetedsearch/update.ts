@@ -85,13 +85,12 @@ export default () => {
    */
   $('body').on('click', Theme.selectors.listing.pagerLink, (event) => {
     event.preventDefault();
-    document.getElementById('js-product-list-top')?.scrollIntoView({block: "start", behavior: "auto"});
+    document.getElementById('js-product-list-top')?.scrollIntoView({block: 'start', behavior: 'auto'});
     prestashop.emit(
       events.updateFacets,
       $(event.target)?.closest('a')?.get(0)?.getAttribute('href'),
     );
   });
-
 
   if ($(Theme.selectors.listing.list).length) {
     window.addEventListener('popstate', (e) => {

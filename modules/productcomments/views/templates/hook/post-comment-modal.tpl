@@ -17,7 +17,7 @@
       <div class="modal-body">
         <form id="post-product-comment-form" action="{$post_comment_url nofilter}" method="POST">
           <div class="row">
-            <div class="col-sm-2">
+            <div class="col-5 col-sm-2 mb-4">
               {if isset($product) && $product}
                 {block name='product_flags'}
                   <ul class="product-flags">
@@ -50,7 +50,7 @@
                         {/if}
 
                         <img
-                          class="js-qv-product-cover rounded"
+                          class="js-qv-product-cover rounded img-fluid"
                           srcset="
                             {$product.cover.bySize.default_xs.url},
                             {$product.cover.bySize.default_m.url} 2x"
@@ -82,7 +82,7 @@
                         {/if}
 
                         <img
-                          class="rounded"
+                          class="rounded img-fluid"
                           srcset="
                             {$urls.no_picture_image.bySize.default_xs.url},
                             {$urls.no_picture_image.bySize.default_m.url} 2x"
@@ -96,17 +96,17 @@
                 {/block}
               {/if}
             </div>
-            <div class="col-sm-4">
-              <p class="h3">{$product.name}</p>
+            <div class="col-7 col-sm-5">
+              <p class="h5">{$product.name}</p>
               {block name='product_description_short'}
                 <div itemprop="description">{$product.description_short nofilter}</div>
               {/block}
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-5">
               {if $criterions|@count > 0}
                 <ul id="criterions_list">
                   {foreach from=$criterions item='criterion'}
-                    <li>
+                    <li class="mb-2">
                       <div class="criterion-rating">
                         <label>{$criterion.name|escape:'html':'UTF-8'}:</label>
                         <div

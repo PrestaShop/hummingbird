@@ -5,13 +5,13 @@
 {$componentName = 'product-miniature'}
 
 {block name='product_miniature_item'}
-  <article class="{$componentName} js-{$componentName}{if !empty($productClasses)} {$productClasses}{/if}" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
+  <article class="{$componentName} js-{$componentName} thumbnail-container {if !empty($productClasses)} {$productClasses}{/if}" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
     <div class="card">
       <a href="{$product.url}" class="{$componentName}__link">
         {include file='catalog/_partials/product-flags.tpl'}
 
         {block name='product_miniature_image'}
-          <div class="{$componentName}__image-container thumbnail-container">
+          <div class="{$componentName}__image-container">
             {if $product.cover}
               <picture>
                 {if isset($product.cover.bySize.default_md.sources.avif)}

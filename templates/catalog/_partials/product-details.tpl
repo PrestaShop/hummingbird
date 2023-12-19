@@ -13,7 +13,7 @@
   <div id="product-details-collapse" class="info__content accordion-collapse collapse {if !$product.description}show{/if}" data-bs-parent="#product-details-heading" aria-labelledby="product-details-heading">
     <div class="accordion-body">
       <ul class="product__details">
-        {block name='product_reference'}
+        {block name='product_manufacturer'}
           {if isset($product_manufacturer->id)}
             <li class="detail">
               <div class="detail__left">
@@ -29,17 +29,19 @@
                 {/if}
               </div>
             </li>
+          {/if}
+        {/block}
 
-            {if isset($product.reference_to_display) && $product.reference_to_display neq ''}
-              <li class="detail">
-                <div class="detail__left">
-                  <span class="detail__title">{l s='Reference' d='Shop.Theme.Catalog'}</span>
-                </div>
-                <div class="detail__right">
-                  <span>{$product.reference_to_display}</span>
-                </div>
-              </li>
-            {/if}
+        {block name='product_reference'}
+          {if isset($product.reference_to_display) && $product.reference_to_display neq ''}
+            <li class="detail">
+              <div class="detail__left">
+                <span class="detail__title">{l s='Reference' d='Shop.Theme.Catalog'}</span>
+              </div>
+              <div class="detail__right">
+                <span>{$product.reference_to_display}</span>
+              </div>
+            </li>
           {/if}
         {/block}
 

@@ -16,7 +16,22 @@ const initSearchbar = () => {
   const searchResults = document.querySelector<HTMLElement>(SearchBarMap.searchResults);
   const searchTemplate = document.querySelector<HTMLTemplateElement>(SearchBarMap.searchTemplate);
   const searchInput = document.querySelector<HTMLInputElement>(SearchBarMap.searchInput);
+  const searchIcon = document.querySelector<HTMLElement>(SearchBarMap.searchIcon);
   const searchUrl = searchWidget?.dataset.searchControllerUrl;
+
+  // focus on the input field when clicking on the widget area
+  // helps to have a larger "area" for touch devices
+  searchWidget?.addEventListener('click', () => {
+    searchInput?.focus();
+  });
+
+  // if input has text then submit search when clicking on the icon
+  // usability for people without "enter" key
+  searchIcon?.addEventListener('click', () => {
+    if(searchInput?.value) {
+      searchInput?.form?.submit();
+    }
+  });
 
   searchCanvas?.addEventListener('hidden.bs.offcanvas', () => {
     if (searchDropdown) {

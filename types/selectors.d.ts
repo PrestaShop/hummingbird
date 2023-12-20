@@ -57,6 +57,7 @@ declare type searchBar = {
   searchResults: string,
   searchTemplate: string,
   searchInput: string,
+  searchIcon: string,
 };
 
 declare type checkout = {

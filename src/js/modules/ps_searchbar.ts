@@ -28,7 +28,7 @@ const initSearchbar = () => {
   // if input has text then submit search when clicking on the icon
   // usability for people without "enter" key
   searchIcon?.addEventListener('click', () => {
-    if(searchInput?.value) {
+    if (searchInput?.value) {
       searchInput?.form?.submit();
     }
   });

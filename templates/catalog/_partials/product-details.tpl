@@ -33,7 +33,7 @@
         {/block}
 
         {block name='product_reference'}
-          {if isset($product.reference_to_display) && $product.reference_to_display neq ''}
+          {if !empty($product.reference_to_display)}
             <li class="detail">
               <div class="detail__left">
                 <span class="detail__title">{l s='Reference' d='Shop.Theme.Catalog'}</span>

@@ -59,6 +59,7 @@ global_settings:
         - blockwishlist
       displayCustomerAccount:
         - blockwishlist
+        - psgdpr
       displayMyAccountBlock:
         - blockwishlist
       displayNav1:

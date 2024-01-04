@@ -1,0 +1,103 @@
+// Global styles
+.product-quickview-review,
+.product-list-reviews,
+.comments-note {
+  .grade-stars {
+    display: flex;
+    align-items: stretch;
+    height: 28px;
+
+    &.small-stars{
+      height: 20px;
+    }
+
+    .star-content {
+      margin: 0;
+    }
+  }
+
+  .comments-nb,
+  .comments-number,
+  .average-grade {
+    align-self: center;
+    margin-left: 0.25rem;
+  }
+}
+
+// Average grade
+.comments-note {
+  display: flex;
+  align-items: center;
+}
+
+// Specific product miniature styles
+.product-miniature {
+  &:not(.reviews-loaded) {
+    .product-list-reviews {
+      min-height: 2.5rem;
+    }
+  }
+
+  .product-list-reviews {
+    position: initial;
+    inset: auto;
+    justify-content: start;
+    padding: 0.5rem 0 1rem;
+
+    .comments-nb {
+      margin: 0;
+    }
+  }
+}
+
+// Specific product quickview styles
+.product-quickview-review {
+  position: initial;
+  inset: auto;
+  align-items: center;
+  justify-content: start;
+  padding: 0.5rem 0 1.5rem;
+}
+
+// Specific product page styles
+.page-product {
+  #product-comments-list-header {
+    padding: 1rem 0;
+
+    .comments-nb {
+      padding: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+
+  // Add comment modal
+  #post-product-comment-modal {
+
+    .h3 {
+      font-size: inherit;
+    }
+
+    .product-cover {
+      width: auto;
+      height: auto;
+
+      img {
+        width: auto;
+        height: auto;
+      }
+    }
+  }
+
+  // Comments list
+  #product-comments-list {
+    .product-comment-list-item {
+      margin: 0 0 1.5rem;
+      border-bottom: 1px solid var(--bs-gray-200);
+
+      .comment-infos {
+        padding-right: 1.5rem;
+      }
+    }
+  }
+}

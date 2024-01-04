@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 
-<div id="empty-product-comment" class="product-comment-list-item">
+<div id="empty-product-comment" class="product-comment-list-item py-3">
   {if $post_allowed}
     <button class="btn btn-primary btn-with-icon post-product-comment">
       <i class="material-icons" aria-hidden="true">&#xE3C9;</i>

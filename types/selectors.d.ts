@@ -26,6 +26,7 @@ declare type listing = {
   listHeader: string,
   searchFiltersClearAll: string,
   searchLink: string,
+  pagerLink: string,
 };
 
 declare type cart = {

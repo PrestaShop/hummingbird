@@ -26,6 +26,7 @@ export const listing = {
   listHeader: '#js-product-list-header',
   searchFiltersClearAll: '.js-search-filters-clear-all',
   searchLink: '.js-search-link',
+  pagerLink: '.js-pager-link',
 };
 
 export const cart = {

@@ -27,8 +27,7 @@
             @click="toggleModal"
             data-dismiss="modal"
             aria-label="Close"
-          >
-          </button>
+          ></button>
         </div>
         <div class="modal-body">
           <p class="modal-text">{l s='You need to be logged in to save products in your wishlist.' d='Modules.Blockwishlist.Shop'}</p>
@@ -39,16 +38,12 @@
             class="modal-cancel btn btn-secondary"
             data-dismiss="modal"
             @click="toggleModal"
-          >
-            ((cancelText))
-          </button>
+          >((cancelText))</button>
 
           <a
             class="btn btn-primary"
             :href="prestashop.urls.pages.authentication"
-          >
-            ((loginText))
-          </a>
+          >((loginText))</a>
         </div>
       </div>
     </div>
@@ -59,6 +54,5 @@
     {literal}
       :class="{in: !isHidden}"
     {/literal}
-  >
-  </div>
+  ></div>
 </div>

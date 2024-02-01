@@ -31,8 +31,7 @@
             @click="toggleModal"
             data-dismiss="modal"
             aria-label="Close"
-          >
-          </button>
+          ></button>
         </div>
         <div class="modal-body">
           <div class="form-group form-group-lg">
@@ -51,26 +50,21 @@
             class="modal-cancel btn btn-secondary"
             data-dismiss="modal"
             @click="toggleModal"
-          >
-            ((cancelText))
-          </button>
+          >((cancelText))</button>
           <button
             type="button"
             class="btn btn-primary"
             @click="renameWishlist"
-          >
-            ((renameText))
-          </button>
+          >((renameText))</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div 
+  <div
     class="modal-backdrop fade"
     {literal}
       :class="{in: !isHidden}"
     {/literal}
-  >
-  </div>
+  ></div>
 </div>

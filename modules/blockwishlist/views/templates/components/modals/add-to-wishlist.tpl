@@ -26,8 +26,7 @@
             @click="toggleModal"
             data-dismiss="modal"
             aria-label="{l s='Close' d='Modules.Blockwishlist.Shop'}"
-          >
-          </button>
+          ></button>
         </div>
 
         <div class="modal-body">
@@ -39,8 +38,7 @@
             url="{$url}"
             add-url="{$addUrl}"
             empty-text="{l s='No list found.' d='Modules.Blockwishlist.Shop'}"
-          >
-          </choose-list>
+          ></choose-list>
         </div>
 
         <div class="modal-footer">
@@ -52,11 +50,10 @@
     </div>
   </div>
 
-  <div 
+  <div
     class="modal-backdrop fade"
     {literal}
       :class="{in: !isHidden}"
     {/literal}
-  >
-  </div>
+  ></div>
 </div>

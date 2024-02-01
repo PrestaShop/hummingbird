@@ -10,9 +10,7 @@
 >
   <div
     class="wishlist-modal modal fade"
-    {literal}
-      :class="{show: !isHidden}"
-    {/literal}
+    :class="{ldelim}show: !isHidden{rdelim}"
     tabindex="-1"
     role="dialog"
     aria-modal="true"
@@ -51,8 +49,6 @@
 
   <div
     class="modal-backdrop fade"
-    {literal}
-      :class="{in: !isHidden}"
-    {/literal}
+    :class="{ldelim}show: !isHidden{rdelim}"
   ></div>
 </div>

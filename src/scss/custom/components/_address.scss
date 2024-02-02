@@ -2,6 +2,7 @@ $component-name: address;
 
 .#{$component-name} {
   background: lighten($gray-100, 2%);
+  border: 1px solid $gray-200;
 
   &__content {
     margin: 0;

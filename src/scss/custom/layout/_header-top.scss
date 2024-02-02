@@ -28,13 +28,13 @@ $component-name: header-top;
 
 .skip-link {
   &__wrapper {
-      @include visually-hidden-focusable;
+    @include visually-hidden-focusable;
   }
 
   &__btn {
-      position: absolute;
-      top: 1em;
-      left: 1em;
-      z-index: 200;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    z-index: 200;
   }
 }

@@ -18,6 +18,14 @@
       {hook h='displayAfterBodyOpeningTag'}
     {/block}
 
+    {block name='skip_link'}
+      <div class="skip-link__wrapper">
+        <a href="#wrapper" class="btn btn-primary skip-link__btn">
+          {l s='Skip to content' d='Shop.Theme.Actions'}
+        </a>
+      </div>
+    {/block}
+
     {block name='product_activation'}
       {include file='catalog/_partials/product-activation.tpl'}
     {/block}

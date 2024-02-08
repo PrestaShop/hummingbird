@@ -32,7 +32,7 @@
       <div class="mb-3">
         <label class="form-label">{l s='New password' d='Shop.Forms.Labels'}</label>
         <div class="input-group password-field js-parent-focus">
-          <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="passwd" value="">
+          <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="passwd" value="" autocomplete="new-password">
           <button
             class="btn btn-primary"
             type="button"
@@ -49,7 +49,7 @@
       <div class="mb-3">
         <label class="form-label">{l s='Confirmation' d='Shop.Forms.Labels'}</label>
         <div class="input-group password-field js-parent-focus">
-        <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="confirmation" value="">
+        <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="confirmation" value="" autocomplete="new-password">
           <button
             class="btn btn-primary"
             type="button"

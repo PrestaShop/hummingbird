@@ -25,10 +25,10 @@
 
 <div class="card card-body text-center js-mailalert mb-3 mt-3 bg-light" data-url="{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'add']}">
     {if isset($email) AND $email}
-        <p>{l s="Interested in this product? Drop us an email and we will let you know when it's available for order." d='Modules.Emailalerts.Shop'}</p>
+        <p>{l s='Interested in this product? Drop us an email and we will let you know when it\'s available for order.' d='Modules.Emailalerts.Shop'}</p>
         <input class="form-control" type="email" placeholder="{l s='your@email.com' d='Modules.Emailalerts.Shop'}"/>
     {else}
-        <p>{l s="Interested in this product? Click below and we will let you know when it's available for order." d='Modules.Emailalerts.Shop'}</p>
+        <p>{l s='Interested in this product? Click below and we will let you know when it\'s available for order.' d='Modules.Emailalerts.Shop'}</p>
     {/if}
 
     {if !empty($id_module)}

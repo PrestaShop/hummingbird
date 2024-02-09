@@ -23,7 +23,8 @@
                 </li>
               {else}
                 <li class="page-item{if $page.current} active{/if}" {if $page.current}aria-current="page" {/if}>
-                  <a rel="{if $page.type === 'previous'}prev{elseif $page.type === 'next'}next{else}nofollow{/if}"
+                  <a
+                    rel="{if $page.type === 'previous'}prev{elseif $page.type === 'next'}next{else}nofollow{/if}"
                     href="{$page.url}"
                     class="page-link btn-with-icon {if $page.type === 'previous'}previous {elseif $page.type === 'next'}next {/if}{['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}"
                   >

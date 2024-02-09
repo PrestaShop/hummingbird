@@ -11,8 +11,14 @@
     rel="nofollow"
     data-bs-toggle="dropdown"
     aria-haspopup="true"
-    aria-expanded="false">
-    {if $listing.sort_selected}{$listing.sort_selected}{else}{l s='Choose' d='Shop.Theme.Actions'}{/if}
+    aria-expanded="false"
+  >
+    {if $listing.sort_selected}
+      {$listing.sort_selected}
+    {else}
+      {l s='Choose' d='Shop.Theme.Actions'}
+    {/if}
+
     <i class="material-icons ms-2">expand_more</i>
   </button>
 

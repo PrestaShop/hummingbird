@@ -19,7 +19,12 @@
                   <div class="row row-cols-1">
                     {if $field.type === 'text'}
                       <div>
-                        <textarea placeholder="{l s='Your message here' d='Shop.Forms.Help'}" class="form-control product-message" maxlength="250" {if $field.required} required {/if} name="{$field.input_name}"></textarea>
+                        <textarea
+                          placeholder="{l s='Your message here' d='Shop.Forms.Help'}"
+                          class="form-control product-message"
+                          maxlength="250"
+                          {if $field.required}required{/if}
+                          name="{$field.input_name}"></textarea>
                       </div>
 
                       {if $field.text !== ''}
@@ -30,7 +35,7 @@
                       {/if}
                     {elseif $field.type === 'image'}
                       <div>
-                        <input class="form-control file-input js-file-input" {if $field.required} required {/if} type="file" name="{$field.input_name}">
+                        <input class="form-control file-input js-file-input" {if $field.required}required{/if} type="file" name="{$field.input_name}">
                       </div>
 
                       {if $field.is_customized}

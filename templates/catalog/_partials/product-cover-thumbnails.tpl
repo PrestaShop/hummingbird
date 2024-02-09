@@ -27,7 +27,8 @@
 
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
-            <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}"
+            <div
+              class="carousel-item {if $image.id_image == $product.default_image.id_image}active{/if}"
               data-bs-target="#product-images-modal"
               data-bs-slide-to="{$key}"
             >
@@ -99,7 +100,7 @@
                     srcset="
                       {$image.bySize.default_xs.sources.avif},
                       {$image.bySize.default_m.sources.avif} 2x",
-                  type="image/avif"
+                    type="image/avif"
                   >
                 {/if}
 

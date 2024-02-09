@@ -43,16 +43,17 @@
                   {assign var=image_modal_id value="{$componentName}_image--{mt_rand()}"}
 
                   <a href="#{$image_modal_id}" data-bs-toggle="modal" data-bs-dismiss="modal" >
-                    <img class="rounded-3" src="{$field.image.small.url}">
+                    <img src="{$field.image.small.url}" alt="" class="rounded-3">
                   </a>
 
-                  {append var='image_modals'
+                  {append
+                    var='image_modals'
                     value=[
-                      "id"=>$image_modal_id,
-                      "title"=>$field.label,
-                      "image_url"=>$field.image.large.url,
-                      "image_info"=>getimagesize($field.image.large.url),
-                      "back_id"=>$customization_modal_id
+                      'id' => $image_modal_id,
+                      'title' => $field.label,
+                      'image_url' => $field.image.large.url,
+                      'image_info' => getimagesize($field.image.large.url),
+                      'back_id' => $customization_modal_id
                     ]
                   }
                 {/if}
@@ -86,7 +87,9 @@
                   <span class="text-muted ms-2">({$image_modal['image_info']['mime']})</span>
                 </div>
 
-                <button type="button" class="btn btn-primary"
+                <button
+                  type="button"
+                  class="btn btn-primary"
                   data-bs-target="#{$image_modal['back_id']}"
                   data-bs-toggle="modal"
                   data-bs-dismiss="modal"

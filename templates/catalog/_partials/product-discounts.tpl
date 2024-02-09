@@ -19,7 +19,11 @@
 
           <tbody>
             {foreach from=$product.quantity_discounts item='quantity_discount' name='quantity_discounts'}
-              <tr data-discount-type="{$quantity_discount.reduction_type}" data-discount="{$quantity_discount.real_value}" data-discount-quantity="{$quantity_discount.quantity}">
+              <tr
+                data-discount-type="{$quantity_discount.reduction_type}"
+                data-discount="{$quantity_discount.real_value}"
+                data-discount-quantity="{$quantity_discount.quantity}"
+              >
                 <td class="text-center">{$quantity_discount.quantity}</td>
                 <td class="text-center">{$quantity_discount.discount}</td>
                 <td class="text-center">{$quantity_discount.save}</td>

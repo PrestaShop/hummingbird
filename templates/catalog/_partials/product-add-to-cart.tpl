@@ -42,11 +42,12 @@
     {block name='product_quantity'}
       <div class="row g-2">
         <div class="product-actions__quantity quantity-button js-quantity-button col-md-auto">
-          {include file='components/qty-input.tpl'
+          {include
+            file='components/qty-input.tpl'
             attributes=[
-              "id"=>"quantity_wanted",
-              "value"=>"{if $product.quantity_wanted}{$product.quantity_wanted}{else}1{/if}",
-              "min"=>"{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
+              'id' => 'quantity_wanted',
+              'value' => "{if $product.quantity_wanted}{$product.quantity_wanted}{else}1{/if}",
+              'min' => "{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
             ]
           }
         </div>

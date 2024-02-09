@@ -2,16 +2,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{if $field.type == 'hidden'}
-
+{if $field.type === 'hidden'}
   {block name='form_field_item_hidden'}
     <input type="hidden" name="{$field.name}" value="{$field.value}">
   {/block}
-
 {else}
-
   <div class="mb-3{if !empty($field.errors)} has-error{/if}">
-    {if ($field.type !== 'checkbox')}
+    {if $field.type !== 'checkbox'}
       <label class="form-label{if $field.required} required{/if}" for="field-{$field.name}">
         {if $field.type !== 'checkbox'}
           {$field.label}

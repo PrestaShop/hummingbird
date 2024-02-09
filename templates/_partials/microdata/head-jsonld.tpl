@@ -6,12 +6,12 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name" : "{$shop.name}",
-    "url" : "{$urls.pages.index}",
+    "name": "{$shop.name}",
+    "url": "{$urls.pages.index}",
     {if $shop.logo_details}
       "logo": {
         "@type": "ImageObject",
-        "url":"{$shop.logo_details.src}"
+        "url": "{$shop.logo_details.src}"
       }
     {/if}
   }
@@ -23,11 +23,11 @@
     "@type": "WebPage",
     "isPartOf": {
       "@type": "WebSite",
-      "url":  "{$urls.pages.index}",
+      "url": "{$urls.pages.index}",
       "name": "{$shop.name}"
     },
     "name": "{$page.meta.title}",
-    "url":  "{$urls.current_url}"
+    "url": "{$urls.current_url}"
   }
 </script>
 
@@ -36,7 +36,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url" : "{$urls.pages.index}",
+      "url": "{$urls.pages.index}",
       "image": {
         "@type": "ImageObject",
         "url":"{$shop.logo_details.src}"
@@ -62,8 +62,9 @@
             "position": {$smarty.foreach.breadcrumb.iteration},
             "name": "{$path.title}",
             "item": "{$path.url}"
-            }{if !$smarty.foreach.breadcrumb.last},{/if}
-          {/foreach}]
-        }
+          }{if !$smarty.foreach.breadcrumb.last},{/if}
+        {/foreach}
+      ]
+    }
   </script>
 {/if}

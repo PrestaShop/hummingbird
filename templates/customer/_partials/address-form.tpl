@@ -2,11 +2,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{block name="address_form"}
+{block name='address_form'}
   <div class="js-address-form">
     {include file='_partials/form-errors.tpl' errors=$errors['']}
 
-    {block name="address_form_url"}
+    {block name='address_form_url'}
     <form
       class="form-validation"
       method="POST"
@@ -17,7 +17,7 @@
     >
     {/block}
 
-      {block name="address_form_fields"}
+      {block name='address_form_fields'}
         <section class="form-fields">
           {block name='form_fields'}
             {foreach from=$formFields item="field"}
@@ -29,7 +29,7 @@
         </section>
       {/block}
 
-      {block name="address_form_footer"}
+      {block name='address_form_footer'}
       <footer class="form-footer">
         <input type="hidden" name="submitAddress" value="1">
         {block name='form_buttons'}

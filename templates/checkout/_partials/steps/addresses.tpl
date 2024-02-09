@@ -10,7 +10,7 @@
       method="POST"
       action="{url entity='order' params=['id_address' => $id_address]}"
       data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm', 'id_address' => $id_address]}"
-   >
+    >
       {if $use_same_address}
         <p>
           {if $cart.is_virtual}
@@ -109,6 +109,7 @@
               {l s='Continue to Shipping' d='Shop.Theme.Actions'}
               <div class="material-icons rtl-flip" aria-hidden="true">arrow_forward</div>
             </button>
+
             <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}
       </div>

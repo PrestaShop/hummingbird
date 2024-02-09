@@ -4,9 +4,9 @@
  *}
 {extends file='page.tpl'}
 
-{block name="breadcrumb"}{/block}
+{block name='breadcrumb'}{/block}
 
-{block name="container_class"}container container--limited-md text-center{/block}
+{block name='container_class'}container container--limited-md text-center{/block}
 
 {block name='page_header_container'}
   {block name='page_title'}

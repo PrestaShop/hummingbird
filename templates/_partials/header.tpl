@@ -18,6 +18,7 @@
         <div class="{$headerTopName}__left col-md-5">
           {hook h='displayNav1'}
         </div>
+
         <div class="{$headerTopName}__right col-md-7">
           {hook h='displayNav2'}
         </div>
@@ -39,7 +40,6 @@
         </div>
 
         <div class="search__mobile d-md-none col-auto">
-
           <div class="header-block">
             <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
               <span class="material-icons header-block__icon">search</span>
@@ -80,5 +80,6 @@
       </div>
     </div>
   </div>
+
   {hook h='displayNavFullWidth'}
 {/block}

@@ -9,8 +9,7 @@
       id="product-images"
       class="carousel slide js-product-carousel"
       data-bs-ride="carousel"
-      >
-
+    >
       <div class="carousel-inner">
         {include file='catalog/_partials/product-flags.tpl'}
 
@@ -19,6 +18,7 @@
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
+
           <button class="carousel-control-next" type="button" data-bs-target="#product-images" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
@@ -30,7 +30,7 @@
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}"
               data-bs-target="#product-images-modal"
               data-bs-slide-to="{$key}"
-              >
+            >
               <picture>
                 {if isset($image.bySize.default_md.sources.avif)}
                   <source 
@@ -70,6 +70,7 @@
                   data-full-size-image-url="{$image.bySize.home_default.url}"
                 >
               </picture>
+
               <div class="product__images__modal-opener" data-bs-toggle="modal" data-bs-target="#product-modal">
                 <i class="material-icons zoom-in">search</i>
               </div>
@@ -91,7 +92,7 @@
                 aria-current="true"
               {/if}
               aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
-          >
+            >
               <picture>
                 {if isset($image.bySize.default_xs.sources.avif)}
                   <source 

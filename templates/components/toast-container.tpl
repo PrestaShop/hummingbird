@@ -5,5 +5,5 @@
 {$componentName = 'toast-container'}
 
 <div class="{$componentName} position-fixed top-0 end-0 p-3" id="js-{$componentName}">
-    {include file='components/toast.tpl'}
+  {include file='components/toast.tpl'}
 </div>

@@ -4,7 +4,8 @@
  *}
 <section class="viewed-products mt-3">
   <div class="container">
-    {include file="components/section-title.tpl" title={l s="Viewed products" d="Shop.Theme.Catalog"}}
-    {include file="catalog/_partials/productlist.tpl" products=$products productClass="col-6 col-lg-4 col-xl-3"}
+    {include file='components/section-title.tpl' title={l s='Viewed products' d='Shop.Theme.Catalog'}}
+
+    {include file='catalog/_partials/productlist.tpl' products=$products productClass='col-6 col-lg-4 col-xl-3'}
   </div>
 </section>

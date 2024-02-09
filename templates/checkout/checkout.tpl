@@ -11,7 +11,7 @@
 {/block}
 
 {block name='content_columns'}
-  {include file="checkout/checkout-navigation.tpl"}
+  {include file='checkout/checkout-navigation.tpl'}
 
   {block name='checkout_notifications'}
     {include file='_partials/notifications.tpl'}

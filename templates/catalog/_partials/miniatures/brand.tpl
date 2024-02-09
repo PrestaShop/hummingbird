@@ -14,6 +14,7 @@
       <p>
         <a class="brand__link" href="{$brand.url}">{$brand.name}</a>
       </p>
+
       {$brand.text nofilter}
     </div>
 

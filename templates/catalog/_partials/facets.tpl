@@ -48,7 +48,7 @@
         {if $facet.widgetType !== 'dropdown'}
           {block name='facet_item_other'}
             <ul id="facet_{$_expand_id}" class="collapse{if !$_collapse} in{/if}">
-              {foreach from=$facet.filters key=filter_key item="filter"}
+              {foreach from=$facet.filters key=filter_key item='filter'}
                 {if !$filter.displayed}
                   {continue}
                 {/if}
@@ -64,11 +64,13 @@
                           {if $filter.active }checked{/if}
                        >
                         {if isset($filter.properties.texture)}
-                          <span class="color texture" style="background-image:url({$filter.properties.texture})"></span>
+                          <span class="color texture" style="background-image: url({$filter.properties.texture});"></span>
                         {elseif isset($filter.properties.color)}
-                          <span class="color" style="background-color:{$filter.properties.color}"></span>
+                          <span class="color" style="background-color: {$filter.properties.color};"></span>
                         {else}
-                          <span {if !$js_enabled} class="ps-shown-by-js" {/if}><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
+                          <span {if !$js_enabled}class="ps-shown-by-js"{/if}>
+                            <i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i>
+                          </span>
                         {/if}
                       </span>
                     {else}
@@ -80,7 +82,7 @@
                           name="filter {$facet.label}"
                           {if $filter.active }checked{/if}
                        >
-                        <span {if !$js_enabled} class="ps-shown-by-js" {/if}></span>
+                        <span {if !$js_enabled}class="ps-shown-by-js"{/if}></span>
                       </span>
                     {/if}
 
@@ -90,6 +92,7 @@
                       rel="nofollow"
                     >
                       {$filter.label}
+
                       {if $filter.magnitude}
                         <span class="magnitude">({$filter.magnitude})</span>
                       {/if}

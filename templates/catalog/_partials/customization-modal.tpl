@@ -1,4 +1,10 @@
-<div id="product-customizations-modal-{$customization.id_customization}" class="modal fade product-customization-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div
+  id="product-customizations-modal-{$customization.id_customization}"
+  class="modal fade product-customization-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

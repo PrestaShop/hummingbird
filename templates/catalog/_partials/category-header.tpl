@@ -13,12 +13,14 @@
 
       {if !empty($category.image.large.url)}
         <div class="category-cover mb-4">
-          <img src="{$category.image.large.url}" 
-                alt="{if !empty($category.image.legend)}{$category.image.legend}{else}{$category.name}{/if}" 
-                fetchpriority="high" 
-                class="img-fluid"
-                width="{$category.image.large.width}" 
-                height="{$category.image.large.height}">
+          <img
+            src="{$category.image.large.url}"
+            alt="{if !empty($category.image.legend)}{$category.image.legend}{else}{$category.name}{/if}"
+            fetchpriority="high"
+            class="img-fluid"
+            width="{$category.image.large.width}"
+            height="{$category.image.large.height}"
+          >
         </div>
       {/if}
     </div>

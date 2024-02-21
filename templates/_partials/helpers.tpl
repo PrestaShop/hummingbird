@@ -15,10 +15,10 @@
   </a>
 {/function}
 
-{function renderThemeIcon iconName="" ariaHidden="true" ariaLabel="" extraAttributes=[]}
-  {if isset($iconsMap) && $iconName && !empty($iconsMap[$iconName])}
+{function renderThemeIcon iconGoup="material-icons" iconName="" ariaHidden="true" ariaLabel="" extraAttributes=[]}
+  {if isset($iconsMap) && !empty($iconsMap[$iconGroup]) && $iconName && !empty($iconsMap[$iconGroup][$iconName])}
     <i
-      class="material-icons{if !empty($extraAttributes['class'])} {$extraAttributes['class']}{/if}"
+      class="{$iconGroup}{if !empty($extraAttributes['class'])} {$extraAttributes['class']}{/if}"
       aria-hidden="{$ariaHidden}"
       {if !$ariaHidden && !empty($ariaLabel)}
         aria-label="{$ariaLabel}"
@@ -29,7 +29,7 @@
         {/if}
       {/foreach}
     >
-      {$iconsMap[$iconName]}
+      {$iconsMap[$iconGroup][$iconName]}
     </i>
   {/if}
 {/function}

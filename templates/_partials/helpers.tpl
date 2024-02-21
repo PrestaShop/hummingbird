@@ -14,3 +14,22 @@
     >
   </a>
 {/function}
+
+{function renderThemeIcon iconName="" ariaHidden="true" ariaLabel="" extraAttributes=[]}
+  {if isset($iconsMap) && $iconName && !empty($iconsMap[$iconName])}
+    <i
+      class="material-icons{if !empty($extraAttributes['class'])} {$extraAttributes['class']}{/if}"
+      aria-hidden="{$ariaHidden}"
+      {if !$ariaHidden && !empty($ariaLabel)}
+        aria-label="{$ariaLabel}"
+      {/if}
+      {foreach $extraAttributes as $key => $value}
+        {if $key != 'class'}
+          {$key}="{$value}"
+        {/if}
+      {/foreach}
+    >
+      {$iconsMap[$iconName]}
+    </i>
+  {/if}
+{/function}

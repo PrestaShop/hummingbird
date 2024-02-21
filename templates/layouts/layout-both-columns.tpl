@@ -3,6 +3,7 @@
  * file that was distributed with this source code.
  *}
 
+{include file='_partials/variables.tpl'}
 {include file='_partials/helpers.tpl'}
 
 <!doctype html>

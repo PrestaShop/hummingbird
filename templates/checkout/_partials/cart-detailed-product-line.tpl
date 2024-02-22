@@ -100,10 +100,10 @@
         {/if}
       </div>
 
-      <div class="product-line__basic">
-        <span class="product-line__regular">{$product.regular_price}</span>
+      {if $product.has_discount}
+        <div class="product-line__basic">
+          <span class="product-line__regular">{$product.regular_price}</span>
 
-        {if $product.has_discount}
           {if $product.discount_type === 'percentage'}
             <span class="discount badge discount">
               -{$product.discount_percentage_absolute}
@@ -113,8 +113,8 @@
               -{$product.discount_to_display}
             </span>
           {/if}
-        {/if}
-      </div>
+        </div>
+      {/if}
     </div>
   </div>
 

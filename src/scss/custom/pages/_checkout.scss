@@ -2,7 +2,8 @@ $component-name: step;
 
 .#{$component-name} {
   .address {
-    border: 1px solid $gray-300;
+    margin: 1px;
+    border: 1px solid $gray-200;
 
     &,
     &__content {
@@ -10,6 +11,7 @@ $component-name: step;
     }
 
     &.selected {
+      margin: 0;
       border: 2px solid $primary;
     }
   }

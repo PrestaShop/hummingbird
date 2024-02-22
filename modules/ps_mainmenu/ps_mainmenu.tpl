@@ -2,12 +2,12 @@
   {if $nodes|count}
     <ul
       {if $depth === 0}id="top-menu"{/if}
-      class="{if $depth === 0}main-menu__tree{else if $depth === 1}row row-cols-4 gy-3{else}submenu{/if}"
+      class="{if $depth === 0}main-menu__tree h-100{else if $depth === 1}row row-cols-4 gy-3{else}submenu{/if}"
       data-depth="{$depth}"
     >
     {foreach from=$nodes item=node}
       <li
-        class="{$node.type}{if $node.current} current{/if}{if $depth === 0} main-menu__tree__item{/if}"
+        class="{$node.type}{if $node.current} current{/if}{if $depth === 0} main-menu__tree__item d-flex align-items-center h-100{/if}"
         id="{$node.page_identifier}"
       >
         {if $depth > 1 && $node.children|count}
@@ -104,8 +104,8 @@
   {/if}
 {/function}
 
-<div class="main-menu col-xl col-auto">
-  <div class="d-none d-xl-block position-static js-menu-desktop">
+<div class="main-menu col-xl col-auto d-flex align-items-center">
+  <div class="d-none d-xl-block position-static js-menu-desktop h-100">
     {desktopMenu nodes=$menu.children}
   </div>
 

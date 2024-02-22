@@ -20,9 +20,7 @@
 >
   <div
     class="wishlist-modal modal fade"
-    {literal}
-      :class="{show: !isHidden}"
-    {/literal}
+    :class="{ldelim}show: !isHidden{rdelim}"
     tabindex="-1"
     role="dialog"
     aria-modal="true"
@@ -37,11 +35,10 @@
             @click="toggleModal"
             data-dismiss="modal"
             aria-label="Close"
-          >
-          </button>
+          ></button>
         </div>
         <div class="modal-body" v-if="productId">
-          <p class="modal-text">((confirmMessage))</p> 
+          <p class="modal-text">((confirmMessage))</p>
         </div>
         <div class="modal-footer">
           <button
@@ -49,27 +46,20 @@
             class="modal-cancel btn btn-secondary"
             data-dismiss="modal"
             @click="toggleModal"
-          >
-            ((cancelText))
-          </button>
+          >((cancelText))</button>
 
           <button
             type="button"
             class="btn btn-primary"
             @click="deleteWishlist"
-          >
-            ((modalDeleteText))
-          </button>
+          >((modalDeleteText))</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div 
+  <div
     class="modal-backdrop fade"
-    {literal}
-      :class="{in: !isHidden}"
-    {/literal}
-  >
-  </div>
+    :class="{ldelim}show: !isHidden{rdelim}"
+  ></div>
 </div>

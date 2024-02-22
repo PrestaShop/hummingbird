@@ -5,7 +5,11 @@
 {$componentName = 'product-miniature'}
 
 {block name='product_miniature_item'}
-  <article class="{$componentName} js-{$componentName}{if !empty($productClasses)} {$productClasses}{/if}" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
+  <article
+    class="{$componentName} js-{$componentName}{if !empty($productClasses)} {$productClasses}{/if}"
+    data-id-product="{$product.id_product}"
+    data-id-product-attribute="{$product.id_product_attribute}"
+  >
     <div class="card">
       <a href="{$product.url}" class="{$componentName}__link">
         {include file='catalog/_partials/product-flags.tpl'}
@@ -102,7 +106,7 @@
 
             {block name='quick_view_touch'}
               <button class="{$componentName}__quickview_touch btn js-quickview" data-link-action="quickview">
-                  <i class="material-icons">&#xE417;</i>
+                <i class="material-icons">&#xE417;</i>
               </button>
             {/block}
           </div>
@@ -133,6 +137,10 @@
                   {include file='catalog/_partials/variant-links.tpl' variants=$product.main_variants}
                 {/if}
               </div>
+            {/block}
+
+            {block name='product_reviews'}
+              {hook h='displayProductListReviews' product=$product}
             {/block}
 
             <div class="{$componentName}__prices">
@@ -176,8 +184,8 @@
                   {include file='components/qty-input.tpl'
                     attributes=[
                       "id"=>"quantity_wanted_{$product.id_product}",
-                      "value"=>"1",
-                      "min"=>"{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
+                      "value"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}",
+                      "min"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}"
                     ]
                     marginHelper="mb-0"
                   }

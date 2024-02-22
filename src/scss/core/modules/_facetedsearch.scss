@@ -7,7 +7,7 @@ $component-name: search-filters;
   }
 
   .noUi-horizontal {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     .noUi-handle {
       display: flex;
@@ -15,6 +15,11 @@ $component-name: search-filters;
       align-items: center;
       justify-content: center;
     }
+  }
+
+  .js-faceted-values{
+    font-size: 0.875rem;
+    color: var(--bs-gray-600);
   }
 
   .facet-dropdown {

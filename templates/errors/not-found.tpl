@@ -7,6 +7,10 @@
     {block name="error_content"}
       {if isset($errorContent)}
           {$errorContent nofilter}
+          <a href="{$urls.pages.index}" class="btn btn-primary back-to-index">
+            {l s='Back to Home page' d='Shop.Theme.Catalog'}
+            <i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
+          </a>
       {else}
         <h1 class="h4">{l s='The page you are looking for is no longer available' d='Shop.Theme.Catalog'}</h1>
         <p>{l s='It can not be reached anymore. Can we still attract you into our shop?' d='Shop.Theme.Catalog'}</p>

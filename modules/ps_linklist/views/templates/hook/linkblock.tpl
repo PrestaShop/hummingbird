@@ -7,7 +7,7 @@
 
     <p class="footer__block__title d-none d-md-flex">{$linkBlock.title}</p>
 
-    <div class="footer__block__toggle d-md-none collapsed" aria-expanded="false" data-bs-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
+    <div role="button" class="footer__block__toggle d-md-none collapsed" aria-expanded="false" data-bs-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
       <span class="footer__block__title">{$linkBlock.title}</span>
       <i class="material-icons" aria-hidden="true">arrow_drop_down</i>
     </div>

@@ -88,8 +88,21 @@ export const initSliders = () => {
         },
       });
 
+      // Remove tooltips:
+      initiatedSlider.removeTooltips();
+
       initiatedSlider.on('set', (values, handle, unencoded, tap, positions, instance) => {
         filterHandler(values, instance);
+      });
+
+      initiatedSlider.on('update', (values) => {
+        const formattedValues: string[] = values.map((value) => (
+          unitPosition === 'suffix' ? `${value}${unitSymbol}` : `${unitSymbol}${value}`),
+        );
+
+        const parentFacet = initiatedSlider.target.closest(Theme.selectors.facetedsearch.filterSlider) as HTMLElement;
+        const showValues = parentFacet.querySelector(Theme.selectors.facetedsearch.rangeValues) as HTMLElement;
+        showValues.innerHTML = formattedValues.join(' - ');
       });
     } else {
       container.noUiSlider.updateOptions({
@@ -101,8 +114,21 @@ export const initSliders = () => {
         },
       }, true);
 
+      // Remove tooltips:
+      container.noUiSlider.removeTooltips();
+
       container.noUiSlider.on('set', (values, handle, unencoded, tap, positions, instance) => {
         filterHandler(values, instance);
+      });
+
+      container.noUiSlider.on('update', (values) => {
+        const formattedValues: string[] = values.map((value) => (
+          unitPosition === 'suffix' ? `${value}${unitSymbol}` : `${unitSymbol}${value}`),
+        );
+
+        const parentFacet = initiatedSlider.target.closest(Theme.selectors.facetedsearch.filterSlider) as HTMLElement;
+        const showValues = parentFacet.querySelector(Theme.selectors.facetedsearch.rangeValues) as HTMLElement;
+        showValues.innerHTML = formattedValues.join(' - ');
       });
     }
   });

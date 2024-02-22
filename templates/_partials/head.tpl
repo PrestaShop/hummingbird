@@ -5,27 +5,33 @@
 {block name='head_charset'}
   <meta charset="utf-8">
 {/block}
+
 {block name='head_ie_compatibility'}
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 {/block}
 
 {block name='head_seo'}
   {block name='head_preload'}
-    {include file="_partials/preload.tpl"}
+    {include file='_partials/preload.tpl'}
   {/block}
 
   <title>{block name='head_seo_title'}{$page.meta.title}{/block}</title>
+
   {block name='hook_after_title_tag'}
     {hook h='displayAfterTitleTag'}
   {/block}
+
   <meta name="description" content="{block name='head_seo_description'}{$page.meta.description}{/block}">
   <meta name="keywords" content="{block name='head_seo_keywords'}{$page.meta.keywords}{/block}">
+
   {if $page.meta.robots !== 'index'}
     <meta name="robots" content="{$page.meta.robots}">
   {/if}
+
   {if $page.canonical}
     <link rel="canonical" href="{$page.canonical}">
   {/if}
+
   {block name='head_hreflang'}
     {foreach from=$urls.alternative_langs item=pageUrl key=code}
       <link rel="alternate" href="{$pageUrl}" hreflang="{$code}">
@@ -33,21 +39,24 @@
   {/block}
 
   {block name='head_microdata'}
-    {include file="_partials/microdata/head-jsonld.tpl"}
+    {include file='_partials/microdata/head-jsonld.tpl'}
   {/block}
 
   {block name='head_microdata_special'}{/block}
 
   {block name='head_pagination_seo'}
-    {include file="_partials/pagination-seo.tpl"}
+    {include file='_partials/pagination-seo.tpl'}
   {/block}
 
   {block name='head_open_graph'}
-    <meta property="og:title" content="{$page.meta.title}" />
-    <meta property="og:description" content="{$page.meta.description}" />
-    <meta property="og:url" content="{$urls.current_url}" />
-    <meta property="og:site_name" content="{$shop.name}" />
-    {if !isset($product) && $page.page_name != 'product'}<meta property="og:type" content="website" />{/if}
+    <meta property="og:title" content="{$page.meta.title}">
+    <meta property="og:description" content="{$page.meta.description}">
+    <meta property="og:url" content="{$urls.current_url}">
+    <meta property="og:site_name" content="{$shop.name}">
+
+    {if !isset($product) && $page.page_name !== 'product'}
+      <meta property="og:type" content="website">
+    {/if}
   {/block}
 {/block}
 
@@ -61,11 +70,11 @@
 {/block}
 
 {block name='stylesheets'}
-  {include file="_partials/stylesheets.tpl" stylesheets=$stylesheets}
+  {include file='_partials/stylesheets.tpl' stylesheets=$stylesheets}
 {/block}
 
 {block name='javascript_head'}
-  {include file="_partials/javascript.tpl" javascript=$javascript.head vars=$js_custom_vars}
+  {include file='_partials/javascript.tpl' javascript=$javascript.head vars=$js_custom_vars}
 {/block}
 
 {block name='hook_header'}

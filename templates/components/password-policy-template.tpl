@@ -33,6 +33,7 @@
         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
     </div>
+
     <script type="text/javascript" class="js-hint-password">
       {if !empty($page['password-policy']['feedbacks'])}
         {$page['password-policy']['feedbacks']|@json_encode nofilter}
@@ -40,11 +41,13 @@
     </script>
 
     <div class="password-strength-text"></div>
+
     <div class="password-requirements">
       <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' d='Shop.Theme.Customeraccount'}">
         <i class="material-icons">check_circle</i>
         <span></span>
       </p>
+
       <p class="password-requirements-score" data-translation="{l s='The minimum score must be: %s' d='Shop.Theme.Customeraccount'}">
         <i class="material-icons">check_circle</i>
         <span></span>

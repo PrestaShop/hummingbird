@@ -22,6 +22,7 @@
                 >
               {/if}
             </div>
+
             <p class="subcategory__name">{$subcategory.name|escape:'html':'UTF-8'}</p>
           </a>
         </div>

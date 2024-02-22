@@ -17,6 +17,7 @@
         {/block}
       </div>
     {/foreach}
+
     <div class="col-lg-4 col-md-6 mb-3">
       <a class="addresses__new-address" href="{$urls.pages.address}" data-link-action="add-address">
         <span class="new-address__text">{l s='Add new address' d='Shop.Theme.Actions'}</span>
@@ -26,5 +27,4 @@
       </a>
     </div>
   </div>
-
 {/block}

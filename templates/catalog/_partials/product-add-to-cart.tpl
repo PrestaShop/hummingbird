@@ -4,7 +4,6 @@
  *}
 <div class="product__add-to-cart product-add-to-cart js-product-add-to-cart">
   {if !$configuration.is_catalog}
-
     <div class="mb-3">
       {block name='product_availability'}
         <span id="product-availability" class="product__availability js-product-availability d-flex align-items-center">
@@ -16,10 +15,12 @@
             {else}
               <i class="material-icons product-unavailable me-2">&#xE14B;</i>
             {/if}
+
             {$product.availability_message}
           {/if}
         </span>
       {/block}
+
       {block name='product_delivery_times'}
         {if $product.is_virtual	== 0}
           {if $product.additional_delivery_times == 1}
@@ -41,11 +42,12 @@
     {block name='product_quantity'}
       <div class="row g-2">
         <div class="product-actions__quantity quantity-button js-quantity-button col-md-auto">
-          {include file='components/qty-input.tpl'
+          {include
+            file='components/qty-input.tpl'
             attributes=[
-              "id"=>"quantity_wanted",
-              "value"=>"{if $product.quantity_wanted}{$product.quantity_wanted}{else}1{/if}",
-              "min"=>"{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
+              'id' => 'quantity_wanted',
+              'value' => "{if $product.quantity_wanted}{$product.quantity_wanted}{else}1{/if}",
+              'min' => "{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
             ]
           }
         </div>
@@ -58,7 +60,7 @@
             {if !$product.add_to_cart_url}
               disabled
             {/if}
-         >
+          >
             <i class="material-icons me-1" aria-hidden="true">&#xE547;</i>
             {l s='Add to cart' d='Shop.Theme.Actions'}
           </button>

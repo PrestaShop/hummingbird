@@ -126,7 +126,9 @@
 
           <div class="{$componentName}__infos__top">
             {block name='product_name'}
-              <a href="{$product.url}"><p class="{$componentName}__title">{$product.name}</p></a>
+              <a href="{$product.url}">
+                <p class="{$componentName}__title">{$product.name}</p>
+              </a>
             {/block}
           </div>
 
@@ -149,7 +151,10 @@
                   {hook h='displayProductPriceBlock' product=$product type="before_price"}
 
                   <span class="{$componentName}__price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
-                    {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
+                    {capture name='custom_price'}
+                      {hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}
+                    {/capture}
+
                     {if '' !== $smarty.capture.custom_price}
                       {$smarty.capture.custom_price nofilter}
                     {else}
@@ -179,17 +184,20 @@
             {if $product.add_to_cart_url}
               <form action="{$urls.pages.cart}" method="post" class="d-flex flex-wrap flex-md-nowrap gap-3 align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
+
                 <input type="hidden" name="token" value="{$static_token}" />
+
                 <div class="quantity-button js-quantity-button w-100 w-sm-auto">
                   {include file='components/qty-input.tpl'
                     attributes=[
-                      "id"=>"quantity_wanted_{$product.id_product}",
-                      "value"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}",
-                      "min"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}"
+                      'id' => "quantity_wanted_{$product.id_product}",
+                      'value' => "{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}",
+                      'min' => "{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}"
                     ]
                     marginHelper="mb-0"
                   }
                 </div>
+
                 <button data-button-action="add-to-cart" class="btn btn-primary flex-grow-1 flex-md-grow-0">
                   <i class="material-icons" aria-hidden="true">&#xe854;</i>
                   <span class="visually-hidden">{l s='Add to cart' d='Shop.Theme.Actions'}</span>

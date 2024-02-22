@@ -23,6 +23,7 @@
             <th>{l s='Expiration date' d='Shop.Theme.Checkout'}</th>
           </tr>
         </thead>
+
         <tbody>
           {foreach from=$cart_rules item=cart_rule}
             <tr>
@@ -38,6 +39,7 @@
         </tbody>
       </table>
     </div>
+
     <div class="cart-rules row d-flex d-xl-none">
       {foreach from=$cart_rules item=cart_rule}
         <div class="cart-rule table-wrapper col-lg-6">
@@ -46,26 +48,32 @@
               <strong>{l s='Code' d='Shop.Theme.Checkout'}</strong>
               {$cart_rule.code}
             </li>
+
             <li class="d-flex align-items-center justify-content-between border-bottom py-3">
               <strong>{l s='Description' d='Shop.Theme.Checkout'}</strong>
               {$cart_rule.name}
             </li>
+
             <li class="d-flex align-items-center justify-content-between border-bottom py-3">
               <strong>{l s='Quantity' d='Shop.Theme.Checkout'}</strong>
               {$cart_rule.quantity_for_user}
             </li>
+
             <li class="d-flex align-items-center justify-content-between border-bottom py-3">
               <strong>{l s='Value' d='Shop.Theme.Checkout'}</strong>
               {$cart_rule.value}
             </li>
+
             <li class="d-flex align-items-center justify-content-between border-bottom py-3">
               <strong>{l s='Minimum' d='Shop.Theme.Checkout'}</strong>
               {$cart_rule.voucher_minimal}
             </li>
+
             <li class="d-flex align-items-center justify-content-between border-bottom py-3">
               <strong>{l s='Cumulative' d='Shop.Theme.Checkout'}</strong>
               {$cart_rule.voucher_cumulable}
             </li>
+
             <li class="d-flex align-items-center justify-content-between py-3">
               <strong>{l s='Expiration date' d='Shop.Theme.Checkout'}</strong>
               {$cart_rule.voucher_date}

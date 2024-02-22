@@ -24,6 +24,7 @@
     <i class="material-icons confirmation d-none">&#x{$prepend.confirm_icon};</i>
     <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
   </button>
+
   <input
     {foreach $attributes as $key=>$value}
       {$key}="{$value}"
@@ -39,6 +40,7 @@
       min="1"
     {* End of default attributes *}
   />
+
   <button role="button" aria-label="{$append.button}" class="btn {$append.button} js-{$append.button}-button" type="button">
     <i class="material-icons" aria-hidden="true">&#x{$append.icon};</i>
     <i class="material-icons confirmation d-none">&#x{$append.confirm_icon};</i>

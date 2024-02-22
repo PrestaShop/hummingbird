@@ -1,7 +1,6 @@
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
 {block name='step_content'}
-
   {hook h='displayPaymentTop'}
 
   {* used by javascript to correctly handle cart updates when we are on payment step (eg vouchers added) *}
@@ -56,7 +55,7 @@
           <div
             id="{$option.id}-additional-information"
             class="js-additional-information payment__definitions ps-sm-4 mt-2 additional-information{if $option.id != $selected_payment_option} ps-hidden{/if}"
-         >
+          >
             {$option.additionalInformation nofilter}
           </div>
         {/if}
@@ -64,7 +63,7 @@
         <div
           id="pay-with-{$option.id}-form"
           class="js-payment-option-form{if $option.id != $selected_payment_option} ps-hidden{/if}"
-       >
+        >
           {if $option.form}
             {$option.form nofilter}
           {else}
@@ -145,6 +144,7 @@
           </button>
         </div>
       </div>
+
       <div class="ps-hidden-by-js">
         {if $selected_payment_option and $all_conditions_approved}
           <label for="pay-with-{$selected_payment_option}">{l s='Order with an obligation to pay' d='Shop.Theme.Checkout'}</label>
@@ -152,5 +152,6 @@
       </div>
     </div>
   </div>
+
   {hook h='displayPaymentByBinaries'}
 {/block}

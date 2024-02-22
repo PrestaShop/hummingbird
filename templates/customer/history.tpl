@@ -25,6 +25,7 @@
             <th>&nbsp;</th>
           </tr>
         </thead>
+
         <tbody>
           {foreach from=$orders item=order}
             <tr>

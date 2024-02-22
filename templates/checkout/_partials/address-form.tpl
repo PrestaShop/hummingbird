@@ -8,17 +8,18 @@
   {/if}
 {/block}
 
-{block name="address_form_url"}
-    <form
-      method="POST"
-      action="{url entity='order' params=['id_address' => $id_address]}"
-      data-id-address="{$id_address}"
-      data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm', 'id_address' => $id_address]}"
-   >
+{block name='address_form_url'}
+  <form
+    method="POST"
+    action="{url entity='order' params=['id_address' => $id_address]}"
+    data-id-address="{$id_address}"
+    data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm', 'id_address' => $id_address]}"
+  >
 {/block}
 
 {block name='form_fields' append}
   <input type="hidden" name="saveAddress" value="{$type}">
+
   {if $type === "delivery"}
     <div class="mb-3 form-check">
       <input class="form-check-input" name="use_same_address" id="use_same_address" type="checkbox" value="1" {if $use_same_address} checked {/if}>
@@ -38,6 +39,7 @@
       {if $customer.addresses|count> 0}
         <a class="js-cancel-address cancel-address btn btn-outline-primary" href="{url entity='order' params=['cancelAddress' => {$type}]}">{l s='Cancel' d='Shop.Theme.Actions'}</a>
       {/if}
+
       <button type="submit" class="continue btn btn-primary" name="confirm-addresses" value="1">
           {l s='Continue' d='Shop.Theme.Actions'}
       </button>

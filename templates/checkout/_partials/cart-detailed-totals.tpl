@@ -15,10 +15,12 @@
                 {$subtotal.label}
               {/if}
             </span>
+
             <div class="cart-summary__line__value">
               <span class="cart-summary__value">
                 {if 'discount' == $subtotal.type}-&nbsp;{/if}{$subtotal.value}
               </span>
+
               {if $subtotal.type === 'shipping'}
                 <div><small class="value">{hook h='displayCheckoutSubtotalDetails' subtotal=$subtotal}</small></div>
               {/if}

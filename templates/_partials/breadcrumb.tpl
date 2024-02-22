@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
- {$componentName = 'breadcrumb'}
+{$componentName = 'breadcrumb'}
 
 <nav data-depth="{$breadcrumb.count}" class="{$componentName}__wrapper" aria-label="{$componentName}">
   <div class="container">
@@ -12,7 +12,9 @@
           {block name='breadcrumb_item'}
             <li class="{$componentName}-item">
               {if not $smarty.foreach.breadcrumb.last}
-                <a href="{$path.url}" class="{$componentName}-link"><span>{$path.title}</span></a>
+                <a href="{$path.url}" class="{$componentName}-link">
+                  <span>{$path.title}</span>
+                </a>
               {else}
                 <span>{$path.title}</span>
               {/if}

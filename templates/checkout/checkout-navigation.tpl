@@ -86,7 +86,7 @@
 
     <div class="{$componentName}__mobile mb-0 d-flex align-items-center d-md-none">
       <div class="{$componentName}__left mx-3">
-        {include file="components/progress-circle.tpl" classes="text-success col-4" size=74 stroke=4}
+        {include file='components/progress-circle.tpl' classes="text-success col-4" size=74 stroke=4}
       </div>
 
       <div class="{$componentName}__step d-none" data-step="checkout-personal-information-step">

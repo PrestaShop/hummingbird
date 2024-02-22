@@ -4,7 +4,7 @@
  *}
 {extends file='page.tpl'}
 
-{block name="container_class"}container container--limited-sm{/block}
+{block name='container_class'}container container--limited-sm{/block}
 
 {block name='page_title'}
   {l s='Forgot your password?' d='Shop.Theme.Customeraccount'}
@@ -24,6 +24,7 @@
 
 {block name='page_footer'}
   <hr>
+
   <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-unstyle btn-with-icon">
     <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
     <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>

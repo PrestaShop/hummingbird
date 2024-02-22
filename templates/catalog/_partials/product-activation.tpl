@@ -8,6 +8,7 @@
       {foreach $page.admin_notifications as $notif}
         <div>
           <i class="material-icons" aria-hidden="true">&#xE001;</i>
+
           <p class="alert-text">{$notif.message}</p>
         </div>
       {/foreach}

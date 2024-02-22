@@ -16,6 +16,7 @@
   {block name='page_content_container'}
     <section id="content" class="page-content page-general">
       {block name='page_content_top'}{/block}
+
       {block name='page_content'}
         <!-- Page content -->
       {/block}
@@ -25,7 +26,7 @@
   {block name='page_footer_container'}
     <footer class="page-footer">
       {block name='page_footer'}
-          <!-- Footer content -->
+        <!-- Footer content -->
       {/block}
     </footer>
   {/block}

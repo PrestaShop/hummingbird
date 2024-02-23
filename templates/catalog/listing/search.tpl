@@ -18,10 +18,10 @@
       {l s='Nothing to search for' d='Shop.Theme.Catalog'}
     {else}
       {if $listing.products|count}
-        {l s='Search results for' d='Shop.Theme.Catalog'}
+        {l s='Search results for "%search_term%"' sprintf=['%search_term%' => $smarty.get.s] d='Shop.Theme.Catalog'}
       {else}
-        {l s='No search results for' d='Shop.Theme.Catalog'}
-      {/if} "{$smarty.get.s}"
+        {l s='No search results for "%search_term%"' sprintf=['%search_term%' => $smarty.get.s] d='Shop.Theme.Catalog'}
+      {/if}
     {/if}
   </h1>
 {/block}

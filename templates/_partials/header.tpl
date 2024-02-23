@@ -41,7 +41,7 @@
         <div class="search__mobile d-md-none col-auto">
 
           <div class="header-block">
-            <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
+            <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas" aria-label="{l s='Show search bar' d='Shop.Theme.Global'}">
               <span class="material-icons header-block__icon">search</span>
             </a>
           </div>

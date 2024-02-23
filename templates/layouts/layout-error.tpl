@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {block name='stylesheets'}
-      {include file="_partials/stylesheets.tpl" stylesheets=$stylesheets}
+      {include file='_partials/stylesheets.tpl' stylesheets=$stylesheets}
     {/block}
 
   </head>

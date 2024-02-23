@@ -51,7 +51,7 @@
 
       {block name='product_customization'}
         {if $product.is_customizable && count($product.customizations.fields)}
-          {include file="catalog/_partials/product-customization.tpl" customizations=$product.customizations}
+          {include file='catalog/_partials/product-customization.tpl' customizations=$product.customizations}
         {/if}
       {/block}
 

@@ -4,7 +4,7 @@
  *}
 {extends file='page.tpl'}
 
-{block name="container_class"}container container--limited-md{/block}
+{block name='container_class'}container container--limited-md{/block}
 
 {block name='page_title'}
   {l s='Guest Order Tracking' d='Shop.Theme.Customeraccount'}

@@ -85,7 +85,7 @@
         {/if}
 
         {if is_array($product.customizations) && $product.customizations|count}
-          {include file="catalog/_partials/product-customization-modal.tpl" product=$product}
+          {include file='catalog/_partials/product-customization-modal.tpl' product=$product}
         {/if}
         
         {hook h='displayProductPriceBlock' product=$product type="unit_price"}

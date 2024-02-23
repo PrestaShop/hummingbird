@@ -6,12 +6,12 @@
 
 {block name='breadcrumb'}{/block}
 
-{block name="content_columns"}
-  {block name="left_column"}{/block}
+{block name='content_columns'}
+  {block name='left_column'}{/block}
 
-  {block name="content_wrapper"}
+  {block name='content_wrapper'}
     <div id="content-wrapper" class="wrapper__content">
-      {hook h="displayContentWrapperTop"}
+      {hook h='displayContentWrapperTop'}
       {block name='content'}
         <!-- TODO INSIDE -->
           {block name='page_header_container'}
@@ -43,9 +43,9 @@
           {/block}
         <!-- TODO INSIDE -->
       {/block}
-      {hook h="displayContentWrapperBottom"}
+      {hook h='displayContentWrapperBottom'}
     </div>
   {/block}
 
-  {block name="right_column"}{/block}
+  {block name='right_column'}{/block}
 {/block}

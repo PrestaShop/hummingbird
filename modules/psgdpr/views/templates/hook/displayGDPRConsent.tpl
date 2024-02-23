@@ -16,7 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-{extends file="modules/psgdpr/views/templates/hook/displayGDPRConsent.tpl"}
+{extends file='modules/psgdpr/views/templates/hook/displayGDPRConsent.tpl'}
 {block name='gdpr_checkbox'}
   <div id="gdpr_consent" class="mt-2 gdpr_module_{$psgdpr_id_module|escape:'htmlall':'UTF-8'}">
     <span class="form-check">

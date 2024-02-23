@@ -19,6 +19,7 @@
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
+
           <button class="carousel-control-next" type="button" data-bs-target="#product-images" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
@@ -70,6 +71,7 @@
                   data-full-size-image-url="{$image.bySize.home_default.url}"
                 >
               </picture>
+
               <div class="product__images__modal-opener" data-bs-toggle="modal" data-bs-target="#product-modal">
                 <i class="material-icons zoom-in">search</i>
               </div>

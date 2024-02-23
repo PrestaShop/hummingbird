@@ -9,10 +9,12 @@
         <img src="{$brand.image}" alt="{$brand.name}" loading="lazy">
       </a>
     </div>
+
     <div class="brand__infos">
       <p><a class="brand__link" href="{$brand.url}">{$brand.name}</a></p>
       {$brand.text nofilter}
     </div>
+
     <div class="brand__products">
       <a class="btn" href="{$brand.url}">{$brand.nb_products}</a>
     </div>

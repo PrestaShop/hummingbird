@@ -4,7 +4,6 @@
  *}
 <div class="product__add-to-cart product-add-to-cart js-product-add-to-cart">
   {if !$configuration.is_catalog}
-
     <div class="mb-3">
       {block name='product_availability'}
         <span id="product-availability" class="product__availability js-product-availability d-flex align-items-center">
@@ -16,10 +15,12 @@
             {else}
               <i class="material-icons product-unavailable me-2">&#xE14B;</i>
             {/if}
+
             {$product.availability_message}
           {/if}
         </span>
       {/block}
+
       {block name='product_delivery_times'}
         {if $product.is_virtual	== 0}
           {if $product.additional_delivery_times == 1}

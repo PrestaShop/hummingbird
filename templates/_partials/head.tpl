@@ -5,6 +5,7 @@
 {block name='head_charset'}
   <meta charset="utf-8">
 {/block}
+
 {block name='head_ie_compatibility'}
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 {/block}
@@ -15,17 +16,22 @@
   {/block}
 
   <title>{block name='head_seo_title'}{$page.meta.title}{/block}</title>
+
   {block name='hook_after_title_tag'}
     {hook h='displayAfterTitleTag'}
   {/block}
+
   <meta name="description" content="{block name='head_seo_description'}{$page.meta.description}{/block}">
   <meta name="keywords" content="{block name='head_seo_keywords'}{$page.meta.keywords}{/block}">
+
   {if $page.meta.robots !== 'index'}
     <meta name="robots" content="{$page.meta.robots}">
   {/if}
+
   {if $page.canonical}
     <link rel="canonical" href="{$page.canonical}">
   {/if}
+
   {block name='head_hreflang'}
     {foreach from=$urls.alternative_langs item=pageUrl key=code}
       <link rel="alternate" href="{$pageUrl}" hreflang="{$code}">

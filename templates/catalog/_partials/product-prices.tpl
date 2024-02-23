@@ -4,11 +4,11 @@
  *}
 {if $product.show_price}
   <div class="product__prices js-product-prices">
-
     {block name='product_price'}
       <div class="prices__wrapper d-flex align-items-center mb-1">
         <div class="product__current-price">
           {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='product_sheet'}{/capture}
+
           {if '' !== $smarty.capture.custom_price}
             {$smarty.capture.custom_price nofilter}
           {else}
@@ -19,7 +19,9 @@
         {if $product.has_discount}
           <div class="product__discount">
             {hook h='displayProductPriceBlock' product=$product type="old_price"}
+
             <span class="product__price-regular">{$product.regular_price}</span>
+
             {if $product.discount_type === 'percentage'}
               <span class="product__discount-percentage">
                 ({l s='Save %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage_absolute]})
@@ -31,7 +33,6 @@
             {/if}
           </div>
         {/if}
-
       </div>
     {/block}
 
@@ -73,7 +74,9 @@
       {elseif $configuration.display_taxes_label}
         {$product.labels.tax_long}
       {/if}
+
       {hook h='displayProductPriceBlock' product=$product type="price"}
+
       {hook h='displayProductPriceBlock' product=$product type="after_price"}
     </div>
   </div>

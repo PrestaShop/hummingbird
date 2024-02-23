@@ -3,13 +3,13 @@
  * file that was distributed with this source code.
  *}
 <div class="card-block cart-summary__totals">
-
   {block name='cart_summary_total'}
     {if !$configuration.display_prices_tax_incl && $configuration.taxes_enabled}
       <div class="cart-summary__line">
         <span class="cart-summary__label">{$cart.totals.total.label}&nbsp;{$cart.labels.tax_short}</span>
         <span class="cart-summary__value">{$cart.totals.total.value}</span>
       </div>
+
       <div class="cart-summary__line cart-total">
         <span class="cart-summary__label">{$cart.totals.total_including_tax.label}</span>
         <span class="cart-summary__value">{$cart.totals.total_including_tax.value}</span>
@@ -30,5 +30,4 @@
       </div>
     {/if}
   {/block}
-
 </div>

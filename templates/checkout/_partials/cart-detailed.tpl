@@ -8,6 +8,7 @@
     tabindex="-1"
   >
     <hr />
+
     {if $cart.products}
       <ul class="cart__items">
         {foreach from=$cart.products item=product}
@@ -17,6 +18,7 @@
             {/block}
             <hr />
           </li>
+
           {if is_array($product.customizations) && $product.customizations|count>1}
           <hr>{/if}
         {/foreach}

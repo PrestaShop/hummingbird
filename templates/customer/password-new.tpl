@@ -21,6 +21,7 @@
         </ul>
       </div>
     {/if}
+
     <section class="form-fields renew-password">
       <div class="mb-3">
         {l
@@ -63,9 +64,11 @@
           </button>
         </div>
       </div>
+
       <input type="hidden" name="token" id="token" value="{$customer_token}">
       <input type="hidden" name="id_customer" id="id_customer" value="{$id_customer}">
       <input type="hidden" name="reset_token" id="reset_token" value="{$reset_token}">
+
       <button class="btn btn-primary" type="submit" name="submit">
         {l s='Change Password' d='Shop.Theme.Actions'}
       </button>
@@ -75,6 +78,7 @@
 
 {block name='page_footer'}
   <hr>
+
   <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-unstyle btn-with-icon">
     <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
     <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>

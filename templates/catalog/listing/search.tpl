@@ -14,13 +14,13 @@
 
 {block name='product_list_header'}
   <h1 id="js-product-list-header" class="h4">
-    {if empty($smarty.get.s)}
+    {if empty($search_string)}
       {l s='Nothing to search for' d='Shop.Theme.Catalog'}
     {else}
       {if $listing.products|count}
-        {l s='Search results for "%search_term%"' sprintf=['%search_term%' => $smarty.get.s] d='Shop.Theme.Catalog'}
+        {l s='Search results for "%search_term%"' sprintf=['%search_term%' => $search_string] d='Shop.Theme.Catalog'}
       {else}
-        {l s='No search results for "%search_term%"' sprintf=['%search_term%' => $smarty.get.s] d='Shop.Theme.Catalog'}
+        {l s='No search results for "%search_term%"' sprintf=['%search_term%' => $search_string] d='Shop.Theme.Catalog'}
       {/if}
     {/if}
   </h1>

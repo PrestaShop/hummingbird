@@ -99,6 +99,7 @@
     </div>
   {/foreach}
   </div>
+
   <hr>
 
   <div class="{$componentName}__subtotals">
@@ -111,6 +112,7 @@
       {/if}
     {/foreach}
   </div>
+
   <hr>
 
   <div class="{$componentName}__totals fw-bold">
@@ -119,6 +121,7 @@
         <div class="col-6">{$totals.total.label}&nbsp;{$labels.tax_short}</div>
         <div class="col-6 text-end">{$totals.total.value}</div>
       </div>
+
       <div class="row fw-bold">
         <div class="col-6">{$totals.total_including_tax.label}</div>
         <div class="col-6 text-end">{$totals.total_including_tax.value}</div>
@@ -129,6 +132,7 @@
         <div class="col-6 text-end">{$totals.total.value}</div>
       </div>
     {/if}
+
     {if $subtotals.tax !== null && $subtotals.tax.label !== null}
       <div class="row">
         <div class="col-6">{l s='%label%:' sprintf=['%label%' => $subtotals.tax.label] d='Shop.Theme.Global'}</div>

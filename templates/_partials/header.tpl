@@ -18,6 +18,7 @@
         <div class="{$headerTopName}__left col-md-5">
           {hook h='displayNav1'}
         </div>
+
         <div class="{$headerTopName}__right col-md-7">
           {hook h='displayNav2'}
         </div>
@@ -80,5 +81,6 @@
       </div>
     </div>
   </div>
+
   {hook h='displayNavFullWidth'}
 {/block}

@@ -19,6 +19,7 @@
               <div class="detail__left">
                 <span class="detail__title">{l s='Brand' d='Shop.Theme.Catalog'}</span>
               </div>
+
               <div class="detail__right">
                 {if isset($manufacturer_image_url)}
                   <a href="{$product_brand_url}">
@@ -38,6 +39,7 @@
               <div class="detail__left">
                 <span class="detail__title">{l s='Reference' d='Shop.Theme.Catalog'}</span>
               </div>
+
               <div class="detail__right">
                 <span>{$product.reference_to_display}</span>
               </div>
@@ -51,6 +53,7 @@
               <div class="detail__left">
                 <span class="detail__title">{l s='In stock' d='Shop.Theme.Catalog'}</span>
               </div>
+
               <div class="detail__right">
                 <span data-stock="{$product.quantity}" data-allow-oosp="{$product.allow_oosp}">{$product.quantity} {$product.quantity_label}</span>
               </div>
@@ -64,6 +67,7 @@
               <div class="detail__left">
                 <span class="detail__title">{l s='Availability date:' d='Shop.Theme.Catalog'}</span>
               </div>
+
               <div class="detail__right">
                 <span>{$product.availability_date}</span>
               </div>
@@ -78,6 +82,7 @@
               <div class="detail__left">
                 <span class="detail__title">{l s='Condition' d='Shop.Theme.Catalog'}</span>
               </div>
+
               <div class="detail__right">
                 <span>{$product.condition.label}</span>
               </div>
@@ -92,6 +97,7 @@
                 <div class="detail__left">
                   <span class="detail__title">{$key}</span>
                 </div>
+
                 <div class="detail__right">
                   <span>{$reference}</span>
                 </div>
@@ -120,6 +126,7 @@
                   <div class="detail__left">
                     <span class="detail__title">{$feature.name}</span>
                   </div>
+
                   <div class="detail__right">
                     <span>{$feature.value|escape:'htmlall'|nl2br nofilter}</span>
                   </div>

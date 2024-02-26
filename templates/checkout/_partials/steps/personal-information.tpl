@@ -19,6 +19,7 @@
           ]
         }
       </p>
+
       <p class="mb-1">
         {* [1][/1] is for a HTML tag. *}
         {l
@@ -30,6 +31,7 @@
           ]
         }
       </p>
+
       {if !isset($empty_cart_on_logout) || $empty_cart_on_logout}
         <p><small class="text-gray">{l s='If you sign out now, your cart will be emptied.' d='Shop.Theme.Checkout'}</small></p>
       {/if}
@@ -64,6 +66,7 @@
           {l s='New customer' d='Shop.Theme.Checkout'}
         </button>
       </li>
+
       <li class="nav-item" role="presentation">
         <button 
           class="nav-link {if $show_login_form}active{/if}" 
@@ -84,6 +87,7 @@
       <div class="tab-pane fade{if !$show_login_form} show active{/if}" id="checkout-guest-form" aria-labelledby="checkout-guest-form" role="tabpanel" {if $show_login_form}aria-hidden="true"{/if}>
         {render file='checkout/_partials/customer-form.tpl' ui=$register_form guest_allowed=$guest_allowed}
       </div>
+
       <div class="tab-pane fade{if $show_login_form} show active{/if}" id="checkout-login-form" aria-labelledby="checkout-login-form" role="tabpanel" {if !$show_login_form}aria-hidden="true"{/if}>
         {render file='checkout/_partials/login-form.tpl' ui=$login_form}
       </div>

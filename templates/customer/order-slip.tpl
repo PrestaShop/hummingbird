@@ -22,6 +22,7 @@
             <th>{l s='View credit slip' d='Shop.Theme.Customeraccount'}</th>
           </tr>
         </thead>
+
         <tbody>
           {foreach from=$credit_slips item=slip}
             <tr>
@@ -36,6 +37,7 @@
         </tbody>
       </table>
     </div>
+
     <div class="credit-slips row d-flex d-xl-none">
       {foreach from=$credit_slips item=slip}
         <div class="credit-slip col-lg-6">
@@ -44,14 +46,17 @@
               <strong>{l s='Order' d='Shop.Theme.Customeraccount'}</strong>
               <a href="{$slip.order_url_details}" data-link-action="view-order-details">{$slip.order_reference}</a>
             </li>
+
             <li class="d-flex align-items-center justify-content-between border-bottom py-3">
               <strong>{l s='Credit slip' d='Shop.Theme.Customeraccount'}</strong>
               {$slip.credit_slip_number}
             </li>
+
             <li class="d-flex align-items-center justify-content-between border-bottom py-3">
               <strong>{l s='Date issued' d='Shop.Theme.Customeraccount'}</strong>
               {$slip.credit_slip_date}
             </li>
+
             <li class="d-flex align-items-center justify-content-end py-3">
               <a href="{$slip.url}" class="d-inline-block text-reset border-bottom">
                 {l s='View credit slip' d='Shop.Theme.Customeraccount'}

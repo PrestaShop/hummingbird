@@ -7,6 +7,7 @@
 {block name='head' append}
   <meta property="og:type" content="product">
   <meta content="{$product.url}">
+
   {if $product.cover}
     <meta property="og:image" content="{$product.cover.large.url}">
   {/if}
@@ -99,7 +100,6 @@
 
   {* SECOND PART - REASSURANCE, TABS *}
   <div class="row">
-
     <div class="col-lg-6 col-xl-5 order-lg-1">
       {block name='hook_display_reassurance'}
         {hook h='displayReassurance'}

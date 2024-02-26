@@ -109,6 +109,7 @@
               {l s='Continue to Shipping' d='Shop.Theme.Actions'}
               <div class="material-icons rtl-flip" aria-hidden="true">arrow_forward</div>
             </button>
+
             <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}
       </div>

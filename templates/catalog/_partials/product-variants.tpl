@@ -11,6 +11,7 @@
             {if $group_attribute.selected}{$group_attribute.name}{/if}
           {/foreach}
       </label>
+
       {if $group.group_type == 'select'}
         <select
           class="form-select"

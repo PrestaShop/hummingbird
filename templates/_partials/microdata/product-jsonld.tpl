@@ -3,21 +3,27 @@
  * file that was distributed with this source code.
  *}
 {assign var=hasAggregateRating value=false}
+
 {if !empty($product.productComments.averageRating) && !empty($product.productComments.nbComments)}
   {assign var=hasAggregateRating value=true}
   {assign var=ratingValue value=$product.productComments.averageRating}
   {assign var=ratingReviewCount value=$product.productComments.nbComments}
 {/if}
+
 {if !empty($ratings.avg) && !empty($nbComments)}
   {assign var=hasAggregateRating value=true}
   {assign var=ratingValue value=$ratings.avg}
   {assign var=ratingReviewCount value=$nbComments}
 {/if}
+
 {assign var=hasWeight value=false}
+
 {if isset($product.weight) && ($product.weight != 0)}
   {assign var=hasWeight value=true}
 {/if}
+
 {assign var=hasOffers value=$product.show_price}
+
 <script type="application/ld+json">
   {
     "@context": "https://schema.org/",

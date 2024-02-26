@@ -1,7 +1,6 @@
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
 {block name='step_content'}
-
   {hook h='displayPaymentTop'}
 
   {* used by javascript to correctly handle cart updates when we are on payment step (eg vouchers added) *}
@@ -145,6 +144,7 @@
           </button>
         </div>
       </div>
+
       <div class="ps-hidden-by-js">
         {if $selected_payment_option and $all_conditions_approved}
           <label for="pay-with-{$selected_payment_option}">{l s='Order with an obligation to pay' d='Shop.Theme.Checkout'}</label>
@@ -152,5 +152,6 @@
       </div>
     </div>
   </div>
+
   {hook h='displayPaymentByBinaries'}
 {/block}

@@ -179,7 +179,9 @@
             {if $product.add_to_cart_url}
               <form action="{$urls.pages.cart}" method="post" class="d-flex flex-wrap flex-md-nowrap gap-3 align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
+
                 <input type="hidden" name="token" value="{$static_token}" />
+
                 <div class="quantity-button js-quantity-button w-100 w-sm-auto">
                   {include file='components/qty-input.tpl'
                     attributes=[
@@ -190,6 +192,7 @@
                     marginHelper="mb-0"
                   }
                 </div>
+
                 <button data-button-action="add-to-cart" class="btn btn-primary flex-grow-1 flex-md-grow-0">
                   <i class="material-icons" aria-hidden="true">&#xe854;</i>
                   <span class="visually-hidden">{l s='Add to cart' d='Shop.Theme.Actions'}</span>

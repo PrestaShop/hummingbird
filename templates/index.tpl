@@ -12,6 +12,7 @@
   {block name="content_wrapper"}
     <div id="content-wrapper" class="wrapper__content">
       {hook h="displayContentWrapperTop"}
+
       {block name='content'}
         <!-- TODO INSIDE -->
           {block name='page_header_container'}
@@ -21,11 +22,11 @@
               </header>
             {/block}
           {/block}
-      
+
           {block name='page_content_container'}
             <section id="content" class="page-content page-home">
               {block name='page_content_top'}{/block}
-      
+
               {block name='page_content'}
                 {block name='hook_home'}
                   {$HOOK_HOME nofilter}
@@ -33,7 +34,7 @@
               {/block}
             </section>
           {/block}
-      
+
           {block name='page_footer_container'}
             <footer class="page-footer">
               {block name='page_footer'}
@@ -43,6 +44,7 @@
           {/block}
         <!-- TODO INSIDE -->
       {/block}
+
       {hook h="displayContentWrapperBottom"}
     </div>
   {/block}

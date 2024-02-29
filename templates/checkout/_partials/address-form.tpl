@@ -8,7 +8,7 @@
   {/if}
 {/block}
 
-{block name="address_form_url"}
+{block name='address_form_url'}
     <form
       method="POST"
       action="{url entity='order' params=['id_address' => $id_address]}"

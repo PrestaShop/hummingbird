@@ -6,10 +6,10 @@
 
 {block name='breadcrumb'}{/block}
 
-{block name="content_columns"}
-  {block name="left_column"}{/block}
+{block name='content_columns'}
+  {block name='left_column'}{/block}
 
-  {block name="content_wrapper"}
+  {block name='content_wrapper'}
     <div id="content-wrapper" class="wrapper__content">
       {hook h="displayContentWrapperTop"}
 
@@ -49,5 +49,5 @@
     </div>
   {/block}
 
-  {block name="right_column"}{/block}
+  {block name='right_column'}{/block}
 {/block}

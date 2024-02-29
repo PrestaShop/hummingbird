@@ -5,7 +5,7 @@
 <div id="js-product-list-header">
     {if $listing.pagination.items_shown_from == 1}
         <div class="block-category">
-          {include file="components/page-title-section.tpl" title={$category.name}}
+          {include file='components/page-title-section.tpl' title={$category.name}}
             {if $category.description}
               <div id="category-description" class="rich-text mb-4">{$category.description nofilter}</div>
             {/if}

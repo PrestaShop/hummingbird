@@ -6,7 +6,7 @@
 
 {extends file='page.tpl'}
 
-{block name="container_class"}container container--limited-sm{/block}
+{block name='container_class'}container container--limited-sm{/block}
 
 {block name='page_title'}
   {l s='Sign in' d='Shop.Theme.Customeraccount'}

@@ -2,7 +2,7 @@
   {if $nodes|count}
     <ul
       {if $depth === 0}id="top-menu"{/if}
-      class="{if $depth === 0}main-menu__tree h-100{else if $depth === 1}row row-cols-4 gy-3{else}submenu{/if}"
+      class="{if $depth === 0}main-menu__tree h-100{elseif $depth === 1}row row-cols-4 gy-3{else}submenu{/if}"
       data-depth="{$depth}"
     >
     {foreach from=$nodes item=node}

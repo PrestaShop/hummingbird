@@ -8,7 +8,14 @@ $component-name: header-bottom;
   border-bottom: var(--header-bottom-border-bottom);
 
   .navbar-brand {
+    max-width: 250px;
+    max-height: max(50px, 10vh);
     padding: 0;
+
+    .logo {
+      width: auto;
+      max-height: inherit;
+    }
   }
 
   .nav-link {

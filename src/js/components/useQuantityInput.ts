@@ -64,7 +64,19 @@ const useQuantityInput: Theme.QuantityInput.Function = (
             }
 
             if (event.key === ENTER_KEY) {
-              updateQuantity(qtyInputGroup, 1);
+              if (qtyInput.value === '0') {
+                const targetItem = qtyInput.closest(cartSelectorMap.productItem);
+                const removeButton = targetItem?.querySelector(cartSelectorMap.removeFromCartLink) as HTMLElement
+                    | null;
+
+                if (removeButton) {
+                  removeButton.click();
+                } else {
+                  updateQuantity(qtyInputGroup, 1);
+                }
+              } else {
+                updateQuantity(qtyInputGroup, 1);
+              }
             }
 
             if (event.key === ESCAPE_KEY) {

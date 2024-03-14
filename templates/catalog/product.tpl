@@ -118,7 +118,7 @@
                       {l s='Description' d='Shop.Theme.Catalog'}
                     </button>
                   </h2>
-                  <div id="product-description-collapse" class="info__content accordion-collapse collapse show" data-bs-parent="#product-infos-accordion"  ria-labelledby="product-description-heading">
+                  <div id="product-description-collapse" class="info__content accordion-collapse collapse show" data-bs-parent="#product-infos-accordion" aria-labelledby="product-description-heading">
                     <div class="product__description accordion-body rich-text">
                       {$product.description nofilter}
                     </div>

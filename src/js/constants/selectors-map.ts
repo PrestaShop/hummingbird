@@ -38,6 +38,8 @@ export const cart = {
   promoCode: '#promo-code',
   deleteLinkAction: 'delete-from-cart',
   productQuantity: '.cart__items .js-quantity-button',
+  productItem: '.cart__item',
+  removeFromCartLink: '.remove-from-cart',
 };
 
 export const blockcart = {

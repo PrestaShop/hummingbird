@@ -7,7 +7,7 @@ const envFilePath = './webpack/.env';
 if (fs.existsSync(envFilePath)) {
   require('dotenv').config({path: envFilePath});
 } else {
-  console.error('\x1b[41m\x1b[37m%s\x1b[0m', 'Your .env file not exits. Read getting started section in documentation for more information https://devdocs.prestashop.com/8/themes/getting-started/.');
+  console.error('\x1b[41m\x1b[37m%s\x1b[0m', 'Your .env file not exits. Read getting started section in documentation for more information https://github.com/PrestaShop/hummingbird?tab=readme-ov-file#how-to-build-assets/.');
   process.exit();
 }
 

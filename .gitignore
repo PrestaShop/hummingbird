@@ -1,4 +1,6 @@
 node_modules
-assets
 .env
 coverage
+assets/*
+!assets/resources
+!assets/resources/*

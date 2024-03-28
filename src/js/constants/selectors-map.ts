@@ -111,6 +111,7 @@ export const desktopMenu = {
 
 export const qtyInput = {
   default: '.js-quantity-button',
+  idProductInput: 'input[name="id_product"]',
   modal: '.modal-dialog .js-quantity-button',
   increment: '.js-increment-button',
   decrement: '.js-decrement-button',

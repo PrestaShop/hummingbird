@@ -176,7 +176,7 @@
               {/block}
             </div>
 
-            {if $product.add_to_cart_url}
+            {if $product.add_to_cart_url && $product.product_type !== 'combinations'}
               <form action="{$urls.pages.cart}" method="post" class="d-flex flex-wrap flex-md-nowrap gap-3 align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
 
@@ -185,9 +185,9 @@
                 <div class="quantity-button js-quantity-button w-100 w-sm-auto">
                   {include file='components/qty-input.tpl'
                     attributes=[
-                      "id"=>"quantity_wanted_{$product.id_product}",
-                      "value"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}",
-                      "min"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}"
+                      "id" => "quantity_wanted_{$product.id_product}",
+                      "value" => "{$product.minimal_quantity}",
+                      "min" => "{$product.minimal_quantity}"
                     ]
                     marginHelper="mb-0"
                   }

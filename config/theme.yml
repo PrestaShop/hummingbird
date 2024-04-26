@@ -87,6 +87,8 @@ global_settings:
         - ps_customeraccountlinks
         - ps_contactinfo
         - blockwishlist
+      displayFooterProduct:
+        - productcomments
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch

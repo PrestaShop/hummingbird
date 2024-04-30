@@ -51,7 +51,7 @@
             <div class="address__content col-10">
               <p class="address__alias h6 card-title">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
 
-              <address class="address__content">{$customer.addresses[$cart.id_address_delivery]['formatted'] nofilter}</address>
+              <address class="address__content">{$customer.addresses[$cart.id_address_invoice]['formatted'] nofilter}</address>
 
               <div class="address__actions">
                 <a

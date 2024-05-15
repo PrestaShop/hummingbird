@@ -115,6 +115,7 @@ export const qtyInput = {
   modal: '.modal-dialog .js-quantity-button',
   increment: '.js-increment-button',
   decrement: '.js-decrement-button',
+  quantityWanted: '.js-quantity-wanted',
   confirm: '.confirmation',
   icon: '.material-icons',
   spinner: '.spinner-border',

@@ -28,7 +28,16 @@
         {/block}
 
         {block name='product_list'}
-          {include file='catalog/_partials/products.tpl' listing=$listing productClass='col-6 col-xl-4'}
+          {if isset($page.body_classes['layout-full-width'])}
+            {assign var="classes" value="col-12 col-xs-6 col-lg-4 col-xl-3"}
+          {elseif isset($page.body_classes['layout-left-column']) || isset($page.body_classes['layout-right-column'])}
+            {assign var="classes" value="col-12 col-xs-6 col-xl-4"}
+          {elseif isset($page.body_classes['layout-both-columns'])}
+            {assign var="classes" value="col-12 col-xs-6 col-md-12 col-lg-6"}
+          {else}
+            {assign var="classes" value="col-12 col-xs-6 col-lg-4 col-xl-3"}
+          {/if}
+          {include file='catalog/_partials/products.tpl' listing=$listing productClass=$classes}
         {/block}
 
         {block name='product_list_bottom'}

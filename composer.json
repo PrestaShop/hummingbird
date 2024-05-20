@@ -1,0 +1,21 @@
+{
+  "name": "prestashop/hummingbird",
+  "description": "Hummingbird theme for develop PrestaShop version",
+  "type": "prestashop-theme",
+  "license": "AFL-3.0",
+  "authors": [
+    {
+      "name": "PrestaShop SA",
+      "email": "contact@prestashop.com"
+    },
+    {
+      "name": "PrestaShop Community",
+      "homepage": "https://contributors.prestashop-project.org/"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require-dev": {
+    "symfony/yaml": "~4.4 || ^5.0 || ^6.4",
+    "symfony/console": "~4.4 || ^5.0 || ^6.4"
+  }
+}

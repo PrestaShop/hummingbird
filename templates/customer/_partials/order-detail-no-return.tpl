@@ -83,26 +83,24 @@
           </td>
 
           <td>
-            <strong>
+            <p class="order__item__name fw-bold mb-0">
               <a href="{$link->getProductLink($product.id_product)}">
                 {$product.name}
               </a>
-            </strong>
-            
-            <br />
+            </p>
 
             {if $product.product_reference}
-              {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}<br />
+              <p class="order__item__ref">
+                {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
+              </p>
             {/if}
 
-            <br />
-
             {if isset($product.download_link)}
-              <a href="{$product.download_link}">
-                <i class="material-icons" aria-hidden="true">download</i> {l s='Download' d='Shop.Theme.Actions'}
-              </a>
-              
-              <br/>
+              <p class="order__item__download my-2">
+                <a href="{$product.download_link}">
+                  <i class="material-icons" aria-hidden="true">download</i> {l s='Download' d='Shop.Theme.Actions'}
+                </a>
+              </p>
             {/if}
 
             {if $product.customizations}
@@ -167,10 +165,26 @@
             </div>
 
             <div class="col-8">
-              <p class="order__item__name fw-bold">{$product.name}</p>
+              <p class="order__item__name fw-bold mb-0">
+                <a href="{$link->getProductLink($product.id_product)}">
+                  {$product.name}
+                </a>
+              </p>
+
               {if $product.product_reference}
-                <div class="order__item__ref">{l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}</div>
+                <p class="order__item__ref">
+                  {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
+                </p>
               {/if}
+
+              {if isset($product.download_link)}
+                <p class="order__item__download my-2">
+                  <a href="{$product.download_link}">
+                    <i class="material-icons" aria-hidden="true">download</i> {l s='Download' d='Shop.Theme.Actions'}
+                  </a>
+                </p>
+              {/if}
+              
               {if $product.customizations}
                 {foreach $product.customizations as $customization}
                   <div class="customization">

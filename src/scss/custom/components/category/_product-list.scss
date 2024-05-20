@@ -6,6 +6,10 @@
 
 .layout-left-column,
 .layout-full-width {
+  #js-product-list-top {
+    scroll-margin: 120px;
+  }
+
   .products-selection {
     margin-bottom: 1.25rem;
 

@@ -177,7 +177,7 @@
             {elseif $facet.widgetType == 'slider'}
               {block name='facet_item_slider'}
                 {foreach from=$facet.filters item="filter"}
-                  <div class="accordion-body faceted-filter px-3 js-faceted-filter-slider">
+                  <div class="accordion-body faceted-filter px-0 js-faceted-filter-slider">
                     <div
                       class="faceted-slider js-faceted-slider-container"
                       data-slider-min="{$facet.properties.min}"
@@ -191,6 +191,7 @@
                       data-slider-direction="{$language.is_rtl}"
                   >
                     </div>
+                    <div class="js-faceted-values"></div>  
                   <input 
                     type="hidden"
                     class="form-range-start js-faceted-slider js-faceted-slider-start"

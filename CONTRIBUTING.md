@@ -3,9 +3,9 @@
 ### Understanding
 
 Before getting started, you should read our article introducing the project:
-[We're Building A Starter Theme For PrestaShop 1.7.8 and 8](https://build.prestashop.com/news/new-theme-announce/).
+[We're Building A Starter Theme For PrestaShop 1.7.8 and 8](https://build.prestashop-project.org/news/2022/new-theme-announce/).
 
-If you are contributing to this theme, you are probably interested in PrestaShop development as well. Please the following article to get familiar with [PrestaShop branching model](http://build.prestashop.com/news/introducing-new-branching-model-prestashop/).
+If you are contributing to this theme, you are probably interested in PrestaShop development as well. Please the following article to get familiar with [PrestaShop branching model](https://build.prestashop-project.org/news/2015/introducing-new-branching-model-prestashop/).
 
 You got any questions ? Join the open source slack.
 
@@ -15,10 +15,10 @@ You got any questions ? Join the open source slack.
 
 There are few things to do before you are ready to contribute.
 
-1. Check your _Git_ configuration. Read [Set Up Your Git For Contributing](http://build.prestashop.com/howtos/misc/set-up-your-git-for-contributing/)
+1. Check your _Git_ configuration. Read [Set Up Your Git For Contributing](https://build.prestashop-project.org/howtos/misc/set-up-your-git-for-contributing/)
 2. Check your editor configuration. The rules are defined in `.editorconfig`. Do it manually or [install the available plugin](http://editorconfig.org/#download).
 3. Make sure you at least have [NodeJS 14](https://nodejs.org/en/download/) installed.
-4. You should install the theme inside a PrestaShop instance, please refer to [the developers docummentation of the project](https://devdocs.prestashop.com/1.7/basics/installation/).
+4. You should install the theme inside a PrestaShop instance, please refer to [the developers docummentation of the project](https://devdocs.prestashop-project.org/1.7/basics/installation/).
 
 ### How to build the theme
 
@@ -35,7 +35,7 @@ then build assets:
 ### Good practices
 
 - Follow the BEM convention
-- Be careful about creating SCSS files in the right folder, refer to the [documentation](https://build.prestashop.com/hummingbird/) for further informations.
+- Be careful about creating SCSS files in the right folder, refer to the [documentation](https://build.prestashop-project.org/hummingbird/) for further informations.
 - When you want to submit a PR, please make sure that you ran both linters using `npm run lint-fix && npm run scss-fix` and fixed every lint issues.
 - If your PR is a work in progress, make sure that you use the Github draft mode.
 - Fill the PR template as much as possible, it's important to speed the process of testing, reviewing...

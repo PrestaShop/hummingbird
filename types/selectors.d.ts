@@ -26,6 +26,7 @@ declare type listing = {
   listHeader: string,
   searchFiltersClearAll: string,
   searchLink: string,
+  pagerLink: string,
 };
 
 declare type cart = {
@@ -57,6 +58,7 @@ declare type searchBar = {
   searchResults: string,
   searchTemplate: string,
   searchInput: string,
+  searchIcon: string,
 };
 
 declare type checkout = {

@@ -80,6 +80,18 @@ export default () => {
     );
   });
 
+  /**
+   * Pager links also scroll up
+   */
+  $('body').on('click', Theme.selectors.listing.pagerLink, (event) => {
+    event.preventDefault();
+    document.querySelector(Theme.selectors.listing.listTop)?.scrollIntoView({block: 'start', behavior: 'auto'});
+    prestashop.emit(
+      events.updateFacets,
+      $(event.target)?.closest('a')?.get(0)?.getAttribute('href'),
+    );
+  });
+
   if ($(Theme.selectors.listing.list).length) {
     window.addEventListener('popstate', (e) => {
       const {state} = e;
@@ -99,6 +111,5 @@ export default () => {
   prestashop.on(events.updateProductList, (data: Record<string, never>) => {
     updateProductListDOM(data);
     useQuantityInput();
-    window.scrollTo(0, 0);
   });
 };

@@ -7,7 +7,7 @@
 
   <p class="footer__block__title d-none d-md-flex">{l s='Store information' d='Shop.Theme.Global'}</p>
 
-  <div class="footer__block__toggle d-md-none collapsed" data-bs-target="#contact-infos" data-bs-toggle="collapse" aria-expanded="false">
+  <div role="button" class="footer__block__toggle d-md-none collapsed" data-bs-target="#contact-infos" data-bs-toggle="collapse" aria-expanded="false">
     <span class="footer__block__title">{l s='Store information' d='Shop.Theme.Global'}</span>
     <i class="material-icons" aria-hidden="true">arrow_drop_down</i>
   </div>

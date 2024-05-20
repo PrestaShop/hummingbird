@@ -10,6 +10,7 @@ import handleCartAction from '../components/UseHandleCartAction';
 export default () => {
   const {Theme} = window;
   const voucherCodes = document.querySelectorAll(Theme.selectors.cart.discountCode);
+  const cartContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.container);
 
   voucherCodes.forEach((voucher) => {
     voucher.addEventListener('click', (event: Event) => {
@@ -33,11 +34,31 @@ export default () => {
     });
   });
 
-  const cartContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.container);
-
   if (cartContainer) {
     cartContainer.addEventListener('click', (event: Event) => {
       const eventTarget = event.target as HTMLElement;
+
+      const targetItem = eventTarget.closest('.cart__item');
+      const targetValue = targetItem?.querySelector('.js-cart-line-product-quantity') as HTMLInputElement | null;
+      const removeButton = targetItem?.querySelector('.remove-from-cart') as HTMLElement | null;
+
+      if (targetValue) {
+        if (eventTarget.classList.contains('js-increment-button')) {
+          if (targetValue.dataset.mode === 'confirmation' && Number(targetValue.value) < 1) {
+            if (removeButton) {
+              removeButton.click();
+            }
+          }
+        }
+
+        if (eventTarget.classList.contains('js-decrement-button')) {
+          if (targetValue.getAttribute('value') === '1' && targetValue.getAttribute('min') === '1') {
+            if (removeButton) {
+              removeButton.click();
+            }
+          }
+        }
+      }
 
       if (eventTarget.dataset.linkAction === Theme.selectors.cart.deleteLinkAction) {
         handleCartAction(event);

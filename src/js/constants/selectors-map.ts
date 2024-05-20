@@ -6,6 +6,7 @@
 export const facetedsearch = {
   range: '.js-faceted-slider',
   rangeContainer: '.js-faceted-slider-container',
+  rangeValues: '.js-faceted-values',
   filterSlider: '.js-faceted-filter-slider',
   offCanvasFaceted: '#offcanvas-faceted',
 };
@@ -25,6 +26,7 @@ export const listing = {
   listHeader: '#js-product-list-header',
   searchFiltersClearAll: '.js-search-filters-clear-all',
   searchLink: '.js-search-link',
+  pagerLink: '.js-pager-link',
 };
 
 export const cart = {
@@ -35,6 +37,7 @@ export const cart = {
   displayPromo: '.display-promo',
   promoCode: '#promo-code',
   deleteLinkAction: 'delete-from-cart',
+  productQuantity: '.cart__items .js-quantity-button',
 };
 
 export const blockcart = {
@@ -56,6 +59,7 @@ export const searchBar = {
   searchResults: '.js-search-results',
   searchTemplate: '.js-search-template',
   searchInput: '.js-search-input',
+  searchIcon: '.js-search-icon',
 };
 
 export const checkout = {

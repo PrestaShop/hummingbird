@@ -1,6 +1,6 @@
 # Hummingbird theme
 
-This is a PrestaShop's theme we are working on. Please, if you work on this theme, use the `8.0.x` branch of PrestaShop to make sure this theme is compatible with the latest `8.x` version.
+This is a PrestaShop's theme we are working on. Please, if you work on this theme, use the `8.1.x` branch of PrestaShop to make sure this theme is compatible with the latest `8.1.x` version.
 
 [Read more](https://build.prestashop.com/news/new-theme-announce/) about this theme on the blog.
 
@@ -9,7 +9,7 @@ This is a PrestaShop's theme we are working on. Please, if you work on this them
 
 ## How to build assets
 
-Same as the PrestaShop project, you need at least **NodeJS 14.x** and **NPM 7** in order to build the project.
+Same as the PrestaShop project, you need at least **NodeJS 16.x** and **NPM 8** in order to build the project.
 
 First you need to install every node module:
 

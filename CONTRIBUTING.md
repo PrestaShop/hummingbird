@@ -26,8 +26,6 @@ First you need to install every node module:
 
 `npm ci`
 
-then create a `.env` file inside the *webpack* folder by copying `webpack/.env-example` and complete it with your environment's informations. Please use a free tcp port.
-
 then build assets:
 
 `npm run build`

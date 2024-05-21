@@ -13,4 +13,4 @@ jobs:
           node-version: 16
 
       - name: Build and check types
-        run: touch ./webpack/.env && npm ci && npm run build
+        run: npm ci && npm run build

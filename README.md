@@ -9,7 +9,7 @@ This is a PrestaShop's theme we are working on. Please, if you work on this them
 
 ## How to build assets
 
-Same as the PrestaShop project, you need at least **NodeJS 14.x** and **NPM 7** in order to build the project.
+Same as the PrestaShop project, you need at least **NodeJS 16.x** and **NPM 8** in order to build the project.
 
 First you need to install every node module:
 

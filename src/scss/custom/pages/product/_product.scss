@@ -46,9 +46,13 @@
       margin-bottom: 1.5rem;
     }
 
+    &__tax-info {
+      font-size: 0.875rem;
+      color: var(--bs-gray-600);
+    }
+
     &__tax-label {
-      margin-bottom: 1.5rem;
-      color: var(--bs-gray-700);
+      white-space: nowrap;
     }
 
     &__prices {
@@ -56,16 +60,27 @@
     }
 
     &__current-price {
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 2rem;
+    }
+
+    &__unit-price {
+      font-size: 0.875rem;
+      color: var(--bs-gray-600);
     }
 
     &__discount {
-      margin-left: 0.5rem;
-      color: var(--bs-gray-700);
+      font-size: 1rem;
+      color: var(--bs-gray-600);
     }
 
     &__price-regular {
       text-decoration: line-through;
+    }
+
+    &__pack-price {
+      font-size: 1rem;
     }
 
     &__variants {

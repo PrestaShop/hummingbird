@@ -188,10 +188,6 @@
     {hook h='displayFooterProduct' product=$product category=$category}
   {/block}
 
-  {block name='product_images_modal'}
-    {include file='catalog/_partials/product-images-modal.tpl'}
-  {/block}
-
   {block name='page_footer_container'}
     {block name='page_footer'}
     {/block}

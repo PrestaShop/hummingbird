@@ -26,4 +26,4 @@ jobs:
           node-version: 16
 
       - name: Lint js
-        run: npm ci && npm run lint
+        run: touch ./webpack/.env && npm ci && npm run lint

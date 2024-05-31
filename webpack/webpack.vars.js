@@ -1,12 +1,18 @@
 const fs = require('fs');
 const path = require('path');
-const publicPath = '/themes/hummingbird/assets/';
 const themeDev = path.resolve(__dirname, '../src');
 
+const envFilePath = './webpack/.env';
+
+if (fs.existsSync(envFilePath)) {
+  require('dotenv').config({path: envFilePath});
+}
+
 const {
-  PORT: port,
-  SERVER_ADDRESS: serverAddress,
-  SITE_URL: siteURL,
+  PORT: port = null,
+  PUBLIC_PATH: publicPath = null,
+  SERVER_ADDRESS: serverAddress = null,
+  SITE_URL: siteURL = null,
 } = process.env;
 
 const entriesArray = {

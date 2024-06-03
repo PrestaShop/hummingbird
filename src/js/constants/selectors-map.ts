@@ -100,6 +100,11 @@ export const mobileMenu = {
   specificChild: (param: string | undefined) => `.menu[data-id="${param}"]`,
 };
 
+export const guestPasswordToggle = {
+  checkbox: '.js-password-form__check',
+  passwordWrapper: '.js-password-form__input-wrapper',
+};
+
 export const visiblePassword = {
   visiblePassword: '.js-visible-password',
 };
@@ -180,6 +185,7 @@ const selectorsMap = {
   languageSelector,
   searchBar,
   mobileMenu,
+  guestPasswordToggle,
   visiblePassword,
   desktopMenu,
   formValidation,

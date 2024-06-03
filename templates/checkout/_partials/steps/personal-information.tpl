@@ -63,7 +63,11 @@
           aria-controls="checkout-guest-form"
           aria-selected="{if !$show_login_form}true{else}false{/if}"
         >
-          {l s='New customer' d='Shop.Theme.Checkout'}
+          {if isset($guest_allowed) && $guest_allowed}
+            {l s='Order as a guest' d='Shop.Theme.Checkout'}
+          {else}
+            {l s='New customer' d='Shop.Theme.Checkout'}
+          {/if}
         </button>
       </li>
 

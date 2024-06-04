@@ -176,7 +176,7 @@
               {/block}
             </div>
 
-            {if $product.add_to_cart_url && $product.product_type !== 'combinations'}
+            {if $product.add_to_cart_url}
               <form action="{$urls.pages.cart}" method="post" class="d-flex flex-wrap flex-md-nowrap gap-3 align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
 

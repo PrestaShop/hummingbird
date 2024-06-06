@@ -16,25 +16,40 @@
       <nav aria-label="{l s='Products pagination' d='Shop.Theme.Catalog'}">
         {if $pagination.should_be_displayed}
           <ul class="pagination">
-            {foreach from=$pagination.pages item="page"}
+            {foreach from=$pagination.pages item="page" name="paginationLoop"}
+              {if $page@iteration === 1}
+                <li class="page-item">
+                  <a rel="prev" href="{$page.url}"
+                    class="page-link btn-with-icon previous {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
+                    <i class="material-icons rtl-flip" aria-hidden="true">&#xE314;</i>
+                    <span class="d-none d-xl-flex">{l s='Previous' d='Shop.Theme.Actions'}</span>
+                  </a>
+                </li>
+                
+                {if $page.type === 'previous'}
+                  {continue}
+                {/if}
+              {/if}
+
               {if $page.type === 'spacer'}
                 <li class="page-item disabled">
                   <span class="page-link">&hellip;</span>
                 </li>
-              {else}
+              {else if $page.type != "prev" && $page.type != "next"}
                 <li class="page-item{if $page.current} active{/if}" {if $page.current}aria-current="page" {/if}>
-                  <a rel="{if $page.type === 'previous'}prev{elseif $page.type === 'next'}next{else}nofollow{/if}"
-                    href="{$page.url}"
-                    class="page-link btn-with-icon {if $page.type === 'previous'}previous {elseif $page.type === 'next'}next {/if}{['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
-                    {if $page.type === 'previous'}
-                      <i class="material-icons rtl-flip" aria-hidden="true">&#xE314;</i>
-                      <span class="d-none d-md-flex">{l s='Previous' d='Shop.Theme.Actions'}</span>
-                    {elseif $page.type === 'next'}
-                      <span class="d-none d-md-flex">{l s='Next' d='Shop.Theme.Actions'}</span>
-                      <i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
-                    {else}
-                      {$page.page}
-                    {/if}
+                  <a rel="nofollow" href="{$page.url}"
+                    class="page-link btn-with-icon {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
+                    {$page.page}
+                  </a>
+                </li>
+              {/if}
+
+              {if $smarty.foreach.paginationLoop.last}
+                <li class="page-item">
+                  <a rel="next" href="{$page.url}"
+                    class="page-link btn-with-icon next {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
+                    <span class="d-none d-xl-flex">{l s='Next' d='Shop.Theme.Actions'}</span>
+                    <i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
                   </a>
                 </li>
               {/if}

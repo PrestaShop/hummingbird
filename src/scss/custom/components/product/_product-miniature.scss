@@ -108,9 +108,16 @@ $component-name: product-miniature;
     }
   }
 
-  .variant-links {
-    > a:first-child {
-      margin-left: 0;
+  & &__variants {
+    .variant-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      > a {
+        flex-shrink: 0;
+        margin: 0;
+      }
     }
   }
 }

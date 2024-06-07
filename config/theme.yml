@@ -87,6 +87,8 @@ global_settings:
         - ps_customeraccountlinks
         - ps_contactinfo
         - blockwishlist
+      displayFooterProduct:
+        - productcomments
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch
@@ -100,6 +102,9 @@ global_settings:
         - ps_searchbar
       displayProductAdditionalInfo:
         - ps_sharebuttons
+        - productcomments
+      displayProductListReviews:
+        - productcomments
       displayOrderConfirmation2:
         - ps_featuredproducts
       displayCrossSellingShoppingCart:

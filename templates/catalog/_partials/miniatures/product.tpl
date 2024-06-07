@@ -132,7 +132,7 @@
 
           <div class="{$componentName}__infos__bottom">
             {block name='product_variants'}
-              <div class="{$componentName}-variants">
+              <div class="{$componentName}__variants">
                 {if $product.main_variants}
                   {include file='catalog/_partials/variant-links.tpl' variants=$product.main_variants}
                 {/if}

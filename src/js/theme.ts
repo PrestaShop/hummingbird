@@ -15,6 +15,7 @@ import initMobileMenu from './mobile-menu';
 import initSearchbar from './modules/ps_searchbar';
 import initLanguageSelector from './modules/ps_languageselector';
 import initCurrencySelector from './modules/ps_currencyselector';
+import initGuestPasswordToggle from './guest-password-toggle';
 import initVisiblePassword from './visible-password';
 import initErrorHandler from './errors';
 import useToast from './components/useToast';
@@ -43,6 +44,7 @@ $(() => {
   initLanguageSelector();
   initCurrencySelector();
   initMobileMenu();
+  initGuestPasswordToggle();
   initVisiblePassword();
   initDesktopMenu();
   initFormValidation();
@@ -79,6 +81,7 @@ export default {
   initLanguageSelector,
   initCurrencySelector,
   initMobileMenu,
+  initGuestPasswordToggle,
   initVisiblePassword,
   initDesktopMenu,
 };

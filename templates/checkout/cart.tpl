@@ -12,6 +12,8 @@
 
       <!-- cart products detailed -->
       <div class="cart-container mb-3">
+        <div class="js-cart-update-alert" data-alert="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}"></div>
+        
         {block name='cart_overview'}
           {include file='checkout/_partials/cart-detailed.tpl' cart=$cart}
         {/block}

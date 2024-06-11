@@ -1,8 +1,4 @@
 .alert {
-  &.fade:not(.show) {
-    @extend .visually-hidden;
-  }
-
   p,
   ul,
   ol {

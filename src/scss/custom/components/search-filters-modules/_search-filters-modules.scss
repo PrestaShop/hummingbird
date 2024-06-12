@@ -3,12 +3,12 @@ $component-name: search-filters-modules;
 .#{$component-name} {
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: var(--category-tree-border-bottom);
+  border-bottom: var(--left-block-border-bottom);
 
   &-title {
-    font-size: var(--category-tree-title-size);
+    font-size: var(--left-block-title-size);
     font-weight: 600;
-    color: var(--category-tree-title-color);
+    color: var(--left-block-title-color);
   }
 
   &__list {
@@ -20,7 +20,7 @@ $component-name: search-filters-modules;
       display: block;
       font-weight: 600;
       line-height: 2rem;
-      color: var(--category-tree-title-color);
+      color: var(--left-block-title-color);
     }
   }
 }

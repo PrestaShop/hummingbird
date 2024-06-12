@@ -3,8 +3,8 @@
  * file that was distributed with this source code.
  *}
 
-{if isset($listing.rendered_facets)}
-  <div id="search_filters_wrapper" class="d-none d-md-block">
+{if isset($listing.rendered_facets) && !empty($listing.rendered_facets)}
+  <div id="search_filters_wrapper" class="d-none d-md-block left-block">
     <div id="_desktop_faceted">
       {$listing.rendered_facets nofilter}
     </div>

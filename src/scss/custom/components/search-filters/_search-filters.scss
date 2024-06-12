@@ -1,26 +1,22 @@
 $component-name: search-filters;
 
 .#{$component-name} {
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
-  border-bottom: var(--category-tree-border-bottom);
-
   & &-title {
-    font-size: var(--category-tree-title-size);
+    font-size: var(--left-block-title-size);
     font-weight: 600;
-    color: var(--category-tree-title-color);
+    color: var(--left-block-title-color);
   }
 
   & &-subtitle {
-    font-size: var(--category-tree-subtitle-size);
+    font-size: var(--left-block-subtitle-size);
     font-weight: 600;
-    color: var(--category-tree-subtitle-color);
+    color: var(--left-block-subtitle-color);
   }
 
   & &-link {
-    font-size: var(--category-tree-subtitle-size);
+    font-size: var(--left-block-subtitle-size);
     font-weight: 300;
-    color: var(--category-tree-subtitle-color);
+    color: var(--left-block-subtitle-color);
   }
 
   & &-label {

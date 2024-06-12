@@ -21,7 +21,7 @@
 {if $displayedFacets|count}
   <div id="search-filters" class="{$componentName} d-flex flex-direction-column flex-wrap w-100">
     {block name='facets_title'}
-      <p class="{$componentName}-title d-none d-md-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
+      <p class="{$componentName}-title left-block__title d-none d-md-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
     {/block}
 
     {block name='facets_clearall_button'}

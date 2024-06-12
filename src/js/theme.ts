@@ -27,6 +27,7 @@ import './modules/blockcart';
 import './modules/facetedsearch';
 import initDesktopMenu from './modules/ps_mainmenu';
 import initFormValidation from './form-validation';
+import initCategoryTree from './modules/ps_categorytree';
 
 initEmitter();
 
@@ -50,6 +51,7 @@ $(() => {
   initFormValidation();
   initErrorHandler();
   usePasswordPolicy('.field-password-policy');
+  initCategoryTree();
 
   prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();

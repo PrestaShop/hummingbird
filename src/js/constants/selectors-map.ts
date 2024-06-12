@@ -40,6 +40,7 @@ export const cart = {
   productQuantity: '.cart__items .js-quantity-button',
   productItem: '.cart__item',
   removeFromCartLink: '.remove-from-cart',
+  alertPlaceholder: '.js-cart-update-alert',
 };
 
 export const blockcart = {

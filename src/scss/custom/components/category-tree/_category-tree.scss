@@ -1,58 +1,112 @@
 $component-name: category-tree;
 
-#left-column {
-  --#{$component-name}-title-color: #{$gray-800};
-  --#{$component-name}-title-size: 1.5rem;
-  --#{$component-name}-title-spacing: 1rem;
-  --#{$component-name}-subtitle-color: #{$gray-800};
-  --#{$component-name}-subtitle-size: 1rem;
-  --#{$component-name}-subtitle-spacing: 0.25rem;
-  --#{$component-name}-border-bottom: 1px solid #{$gray-200};
-}
-
 .#{$component-name} {
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
-  border-bottom: var(--#{$component-name}-border-bottom);
+  .accordion {
+    --bs-accordion-bg: transparent;
+    --bs-accordion-btn-bg: transparent;
+    --bs-accordion-active-bg: transparent;
+  }
 
   &__child {
     padding: 0;
     border: none;
+    .#{$component-name}__list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5rem;
+
+      &[data-depth="0"] {
+        > .category-tree__item {
+          > .category-tree__item__header {
+            .category-tree__item__link {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      &[data-depth="1"] {
+        padding-left: 0.5rem;
+      }
+
+      &[data-depth="2"] {
+        padding-left: 0.5rem;
+      }
+
+      &[data-depth="3"] {
+        padding-left: 0.5rem;
+      }
+
+      &[data-depth="4"] {
+        padding-left: 0.5rem;
+      }
+    }
   }
 
   &__title {
-    padding: 0;
-    margin-bottom: var(--#{$component-name}-title-spacing);
-    font-size: var(--#{$component-name}-title-size);
-    border: none;
-
     &__link {
-      display: block;
-      font-weight: 600;
-      line-height: 2rem;
-      color: var(--#{$component-name}-title-color);
+      color: var(--bs-body-color);
     }
   }
 
   &__item {
-    &__link {
-      display: block;
-      padding: var(--#{$component-name}-subtitle-spacing) 0;
-      font-size: var(--#{$component-name}-subtitle-size);
-      font-weight: 600;
-      color: var(--#{$component-name}-subtitle-color);
-    }
+    /* stylelint-disable-next-line declaration-no-important */
+    transition: $transition-base;
 
-    &__header {
-      &--parent {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        > div {
-          padding: 0;
+    &.active {
+      > .category-tree__item__header {
+        &.parent {
+          .category-tree__item__link {
+            color: var(--bs-link-hover-color);
+          }
         }
       }
     }
+
+    &__link {
+      color: var(--bs-body-color);
+    }
+
+    &__header {
+      &.split {
+        display: flex;
+        padding: 0.25rem 0;
+
+        .accordion-button {
+          margin: -0.25rem -0.5rem -0.25rem auto;
+        }
+      }
+
+      &.nosplit {
+        display: flex;
+        padding: 0.25rem 0;
+      }
+
+      .category-tree__item__link {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+// Accordion variant
+.accordion--category {
+  margin-bottom: 0;
+
+  .accordion-item {
+    border: none;
+  }
+
+  .accordion-body {
+    padding: 0.5rem 0 0;
+    margin: 0;
+  }
+
+  .accordion-button {
+    width: auto;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
   }
 }

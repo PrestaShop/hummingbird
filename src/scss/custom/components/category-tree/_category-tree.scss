@@ -65,6 +65,10 @@ $component-name: category-tree;
 
     &__link {
       color: var(--bs-body-color);
+
+      &:hover {
+        color: var(--bs-primary);
+      }
     }
 
     &__header {

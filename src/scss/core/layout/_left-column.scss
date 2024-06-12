@@ -26,7 +26,7 @@ $component-name: left-block;
       color: var(--#{$component-name}-link-color);
 
       &:hover {
-        color: var(--bs-link-hover-color);
+        color: var(--bs-primary);
       }
     }
   }
@@ -43,5 +43,9 @@ $component-name: left-block;
     font-size: var(--#{$component-name}-subtitle-size);
     font-weight: 600;
     color: var(--#{$component-name}-subtitle-color);
+
+    &:hover {
+      color: var(--bs-primary);
+    }
   }
 }

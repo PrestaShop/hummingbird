@@ -57,7 +57,7 @@ $component-name: category-tree;
       > .category-tree__item__header {
         &.parent {
           .category-tree__item__link {
-            color: var(--bs-link-hover-color);
+            color: var(--bs-primary);
           }
         }
       }

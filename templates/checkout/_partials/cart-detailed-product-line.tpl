@@ -177,7 +177,7 @@
         data-id-product-attribute="{$product.id_product_attribute|escape:'javascript'}"
         data-id-customization="{$product.id_customization|escape:'javascript'}"
         data-product-url="{$product.url|escape:'javascript'}"
-        data-product-name="{$product.name|escape:'javascript'}"
+        data-product-name="{$product.name|escape:'htmlall':'UTF-8'}"
         >
         {l s='Remove' d='Shop.Theme.Checkout'}
       </a>

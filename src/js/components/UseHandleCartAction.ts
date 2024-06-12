@@ -50,17 +50,27 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
 
         if (alertPlaceholder && productUrl && productName) {
           const alertText = alertPlaceholder.getAttribute('data-alert');
-          const productLink = `<a class="alert-link" href="${productUrl}">${productName}</a>`;
-          const alertMessage = `${productLink} ${alertText}`;
 
-          if (alertMessage) {
-            const alert = useAlert(alertMessage, {
-              type: 'success',
-              selector: SelectorsMap.cart.alertPlaceholder,
-            });
+          // Create the product link element
+          const productLink = document.createElement('a');
+          productLink.classList.add('alert-link');
+          productLink.setAttribute('href', productUrl);
+          productLink.textContent = productName;
 
-            alert.show();
-          }
+          // Create the alert message container
+          const alertMessage = document.createElement('span');
+          alertMessage.appendChild(productLink);
+          alertMessage.append(` ${alertText}`);
+
+          const alertMessageContainer = document.createElement('div');
+          alertMessageContainer.appendChild(alertMessage);
+
+          const alert = useAlert(alertMessageContainer.innerHTML, {
+            type: 'success',
+            selector: SelectorsMap.cart.alertPlaceholder,
+          });
+
+          alert.show();
         }
       }
     })

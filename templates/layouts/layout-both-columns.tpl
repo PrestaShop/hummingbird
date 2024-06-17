@@ -21,7 +21,7 @@
       {include file='catalog/_partials/product-activation.tpl'}
     {/block}
 
-    <header id="header" class="header">
+    <header id="header" class="header js-sticky-header">
       {block name='header'}
         {include file='_partials/header.tpl'}
       {/block}

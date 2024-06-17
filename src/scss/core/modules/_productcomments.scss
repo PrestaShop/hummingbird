@@ -163,6 +163,9 @@
         display: flex;
         gap: 0.25rem;
         align-items: center;
+        padding-inline: 0;
+        margin-inline: 0;
+        border: none;
 
         &:hover {
           text-decoration: none;

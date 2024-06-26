@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 
-{assign var='icon' value=$icon|default:'check_circle'}
+{assign var='icon' value=$icon|default:'check'}
 {assign var='modal_message' value=$modal_message|default:''}
 
 <script type="text/javascript">
@@ -19,22 +19,24 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="h2">
+        <p class="h2 mb-0">
           <i class="material-icons {$icon}" data-icon="{$icon}"></i>
           {$modal_title}
         </p>
       </div>
+      
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12  col-sm-12" id="{$modal_id}-message">
             {$modal_message}
           </div>
         </div>
-        <div class="modal-footer post-comment-buttons">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="{l s='OK' d='Modules.Productcomments.Shop'}">
-            {l s='OK' d='Modules.Productcomments.Shop'}
-          </button>
-        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="{l s='OK' d='Modules.Productcomments.Shop'}">
+          {l s='OK' d='Modules.Productcomments.Shop'}
+        </button>
       </div>
     </div>
   </div>

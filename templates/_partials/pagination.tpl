@@ -15,7 +15,7 @@
     {block name='pagination_page_list'}
       <nav aria-label="{l s='Products pagination' d='Shop.Theme.Catalog'}">
         {if $pagination.should_be_displayed}
-          <ul class="pagination">
+          <ul class="pagination pagination--custom">
             {foreach from=$pagination.pages item="page" name="paginationLoop"}
               {if $page@iteration === 1}
                 <li class="page-item">

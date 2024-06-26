@@ -3,6 +3,10 @@
  * file that was distributed with this source code.
  */
 
+export const layout = {
+  stickyHeader: '.js-sticky-header',
+};
+
 export const facetedsearch = {
   range: '.js-faceted-slider',
   rangeContainer: '.js-faceted-slider-container',
@@ -145,6 +149,7 @@ export const passwordPolicy = {
 };
 
 const selectorsMap = {
+  layout,
   qtyInput,
   alert: {
     selector: '#notifications .container',

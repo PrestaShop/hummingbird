@@ -28,6 +28,7 @@ import './modules/facetedsearch';
 import initDesktopMenu from './modules/ps_mainmenu';
 import initFormValidation from './form-validation';
 import initCategoryTree from './modules/ps_categorytree';
+import initScrollPaddingTop from './helpers/scrollPadding';
 
 initEmitter();
 
@@ -52,6 +53,7 @@ $(() => {
   initErrorHandler();
   usePasswordPolicy('.field-password-policy');
   initCategoryTree();
+  initScrollPaddingTop();
 
   prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();

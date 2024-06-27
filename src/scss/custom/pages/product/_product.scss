@@ -35,6 +35,7 @@
         width: 2.5rem;
         min-width: 2.5rem;
         height: 2.5rem;
+        cursor: pointer;
         background-color: #fff;
         border: none;
         border-radius: 50%;
@@ -165,6 +166,15 @@
 
     &.active img {
       border: 2px solid $primary;
+    }
+  }
+}
+
+// Hide product image zoom on quickview modal
+body.modal-open {
+  .quickview {
+    .product__images__modal-opener {
+      display: none;
     }
   }
 }

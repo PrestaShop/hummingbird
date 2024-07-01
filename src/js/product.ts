@@ -53,9 +53,7 @@ export default () => {
       };
 
       // Attach event listener for input changes
-      quantityInput.addEventListener('input', triggerEmit);
-      quantityInput.addEventListener('keyup', triggerEmit);
-      quantityInput.addEventListener('keydown', triggerEmit);
+      quantityInput.addEventListener('change', triggerEmit);
 
       // Attach event listener for increment / decrement button click
       incrementButton.addEventListener('click', triggerEmit);

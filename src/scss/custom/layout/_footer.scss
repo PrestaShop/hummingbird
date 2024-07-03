@@ -1,13 +1,20 @@
 $component-name: footer;
-$footer-background-color: #16181c !default;
-$footer-heading-color: var(--bs-white) !default;
-$footer-text-color: var(--bs-body-color) !default;
+$footer-background-color: #212121 !default;
+$footer-heading-color: $primary !default;
+$footer-text-color: #999 !default;
 
 .#{$component-name} {
+  color: $footer-text-color;
+
   --footer-background-color: #{$footer-background-color};
   --footer-text-color: #{$footer-text-color};
   --footer-hover-color: var(--bs-white);
   --footer-heading-color: #{$footer-heading-color};
+
+  &__logo {
+    width: 200px;
+    height: auto;
+  }
 
   & &__main {
     padding-top: 2.5rem;

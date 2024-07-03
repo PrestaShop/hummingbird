@@ -2,9 +2,9 @@
 $default-icon-color: var(--bs-gray-700);
 
 // Footer
-$footer-background-color: #16181c;
-$footer-heading-color: var(--bs-white);
-$footer-text-color: var(--bs-gray-300);
+$footer-background-color: #212121;
+$footer-heading-color: $primary;
+$footer-text-color: #999;
 
 // Emailsubscriptions
 $email-input-color: var(--bs-gray-300);

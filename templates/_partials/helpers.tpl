@@ -7,7 +7,7 @@
   <a class="navbar-brand d-block" href="{$urls.pages.index}">
     <img
       class="logo img-fluid"
-      src="{$shop.logo_details.src}"
+      src="{$shop.logo_details.src|replace:'.jpg':'.webp'}"
       alt="{$shop.name}"
       width="{$shop.logo_details.width}"
       height="{$shop.logo_details.height}"

@@ -1,0 +1,36 @@
+$component-name: home-banner-section;
+
+.#{$component-name} {
+  &__intro-text {
+
+  }
+
+  &__title {
+
+  }
+
+  &__description {
+    text-shadow: 0 1px 0 #fff;
+    background: #ffffff6b;
+    border-radius: 5px;
+    padding: 7px;
+  }
+
+  &__btn {
+    width: fit-content;
+  }
+
+  &__red {
+    color: #f14141;
+  }
+
+  & img.first {
+    min-height: 300px;
+    object-fit: cover;
+  }
+
+  & img.second {
+    min-height: 150px;
+    object-fit: cover;
+  }
+}

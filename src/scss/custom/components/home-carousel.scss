@@ -1,0 +1,15 @@
+.carousel {
+
+  background: #f5f5f5;
+
+  &__left-image {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+
+    @include media-breakpoint-up(md) {
+      min-height: 550px;
+    }
+  }
+}

@@ -53,14 +53,13 @@
 
         <div class="product-actions__button add col">
           <button
-            class="btn btn-primary btn-with-icon add-to-cart"
+            class="btn btn-primary text-white"
             data-button-action="add-to-cart"
             type="submit"
             {if !$product.add_to_cart_url}
               disabled
             {/if}
          >
-            <i class="material-icons me-1" aria-hidden="true">&#xE547;</i>
             {l s='Add to cart' d='Shop.Theme.Actions'}
           </button>
         </div>

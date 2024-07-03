@@ -1,0 +1,33 @@
+#PM_ASBlockOutput_2 {
+  select.PM_ASCriterionGroupSelect {
+    width: 100%;
+  }
+
+  .PM_ASCriterionNoChoice {
+    color: #888;
+  }
+
+  .PM_ASCriterions {
+    margin: 10px 0;
+  }
+
+  .PM_ASResetSearch {
+    display: none;
+  }
+
+  .PM_ASSkipGroup {
+    font-size: 0.875rem;
+  }
+
+  .PM_ASearchTitle {
+    span:first-child {
+      font-size: 1rem;
+    }
+
+    span:last-child {
+      font-size: 3rem;
+      line-height: 50px;
+      margin-top: 13px;
+    }
+  }
+}

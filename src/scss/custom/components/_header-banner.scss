@@ -1,0 +1,17 @@
+$component-name: header-custom-banner;
+
+.#{$component-name} {
+  background: #f5f5f5;
+
+  &__title {
+    font-size: $font-size-base;
+    color: #555;
+  }
+
+  #_desktop_user_info {
+    a:not(.dropdown-item) {
+      color: $primary;
+      font-weight: bold;
+    }
+  }
+}

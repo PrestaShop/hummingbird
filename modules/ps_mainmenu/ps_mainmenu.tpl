@@ -109,7 +109,7 @@
     {desktopMenu nodes=$menu.children}
   </div>
 
-  <div class="header-block d-xl-none">
+  <div class="header-block d-md-none">
     <a
       class="header-block__action-btn"
       href="#"
@@ -118,7 +118,7 @@
       data-bs-target="#mobileMenu"
       aria-controls="mobileMenu"
     >
-      <span class="material-icons header-block__icon">menu</span>
+      <i title="Menu" class="icon-menu fs-5"></i>
     </a>
   </div>
 </div>

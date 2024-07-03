@@ -4,6 +4,7 @@
  *}
 
 <div class="product__images js-images-container">
+
   {if $product.images|@count > 0}
     <div
       id="product-images"
@@ -17,40 +18,41 @@
         {if $product.images|@count > 1}
           <button class="carousel-control-prev" type="button" data-bs-target="#product-images" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="visually-hidden">Précédent</span>
           </button>
 
           <button class="carousel-control-next" type="button" data-bs-target="#product-images" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden">Suivant</span>
           </button>
         {/if}
 
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
+
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}"
               data-bs-target="#product-images-modal"
               data-bs-slide-to="{$key}"
               >
               <picture>
                 {if isset($image.bySize.default_md.sources.avif)}
-                  <source 
+                  <source
                     srcset="
                       {$image.bySize.default_md.sources.avif} 320w,
                       {$image.bySize.product_main.sources.avif} 720w,
                       {$image.bySize.product_main_2x.sources.avif} 1440w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw"
                     type="image/avif"
                   >
                 {/if}
 
                 {if isset($image.bySize.default_md.sources.webp)}
-                  <source 
+                  <source
                     srcset="
                       {$image.bySize.default_md.sources.webp} 320w,
                       {$image.bySize.product_main.sources.webp} 720w,
                       {$image.bySize.product_main_2x.sources.webp} 1440w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw"
                     type="image/webp"
                   >
                 {/if}
@@ -61,8 +63,8 @@
                     {$image.bySize.default_md.url} 320w,
                     {$image.bySize.product_main.url} 720w,
                     {$image.bySize.product_main_2x.url} 1440w"
-                  sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
-                  src="{$image.bySize.product_main.url}" 
+                  sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw"
+                  src="{$image.bySize.product_main.url}"
                   width="{$image.bySize.product_main.width}"
                   height="{$image.bySize.product_main.height}"
                   loading="{if $smarty.foreach.productImages.first}eager{else}lazy{/if}"
@@ -73,7 +75,7 @@
               </picture>
 
               <div class="product__images__modal-opener" data-bs-toggle="modal" data-bs-target="#product-modal">
-                <i class="material-icons zoom-in">search</i>
+                {include file="_svg/zoom-in.svg"}
               </div>
             </div>
           {/foreach}
@@ -96,7 +98,7 @@
           >
               <picture>
                 {if isset($image.bySize.default_xs.sources.avif)}
-                  <source 
+                  <source
                     srcset="
                       {$image.bySize.default_xs.sources.avif},
                       {$image.bySize.default_m.sources.avif} 2x",
@@ -105,7 +107,7 @@
                 {/if}
 
                 {if isset($image.bySize.default_xs.sources.webp)}
-                  <source 
+                  <source
                     srcset="
                       {$image.bySize.default_xs.sources.webp},
                       {$image.bySize.default_m.sources.webp} 2x"
@@ -135,23 +137,23 @@
   {else}
     <picture>
       {if isset($urls.no_picture_image.bySize.default_md.sources.avif)}
-        <source 
+        <source
           srcset="
             {$urls.no_picture_image.bySize.default_md.sources.avif} 320w,
             {$urls.no_picture_image.bySize.product_main.sources.avif} 720w,
             {$urls.no_picture_image.bySize.product_main_2x.sources.avif} 1440w"
-          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw"
           type="image/avif"
         >
       {/if}
 
       {if isset($urls.no_picture_image.bySize.default_md.sources.webp)}
-        <source 
+        <source
           srcset="
             {$urls.no_picture_image.bySize.default_md.sources.webp} 320w,
             {$urls.no_picture_image.bySize.product_main.sources.webp} 720w,
             {$urls.no_picture_image.bySize.product_main_2x.sources.webp} 1440w"
-          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw"
           type="image/webp"
         >
       {/if}
@@ -162,10 +164,10 @@
           {$urls.no_picture_image.bySize.default_md.url} 320w,
           {$urls.no_picture_image.bySize.product_main.url} 720w,
           {$urls.no_picture_image.bySize.product_main_2x.url} 1440w"
-        sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+        sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw"
         width="{$urls.no_picture_image.bySize.product_main.width}"
         height="{$urls.no_picture_image.bySize.product_main.height}"
-        src="{$urls.no_picture_image.bySize.default_md.url}" 
+        src="{$urls.no_picture_image.bySize.default_md.url}"
         loading="lazy"
         alt="{l s='No image available' d='Shop.Theme.Catalog'}"
         title="{l s='No image available' d='Shop.Theme.Catalog'}"

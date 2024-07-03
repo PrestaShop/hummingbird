@@ -10,12 +10,12 @@
     data-id-product="{$product.id_product}"
     data-id-product-attribute="{$product.id_product_attribute}"
   >
-    <div class="card">
+    <div class="card m-2">
       <a href="{$product.url}" class="{$componentName}__link">
         {include file='catalog/_partials/product-flags.tpl'}
 
         {block name='product_miniature_image'}
-          <div class="{$componentName}__image-container thumbnail-container">
+          <div class="{$componentName}__image-container thumbnail-container border border-dark border-opacity-10 rounded-0">
             {if $product.cover}
               <picture>
                 {if isset($product.cover.bySize.default_md.sources.avif)}
@@ -106,7 +106,7 @@
 
             {block name='quick_view_touch'}
               <button class="{$componentName}__quickview_touch btn js-quickview" data-link-action="quickview">
-                <i class="material-icons">&#xE417;</i>
+                <img src="{$urls.img_url}/svg/zoom-in.svg" alt="Aperçu rapide">
               </button>
             {/block}
           </div>
@@ -118,7 +118,7 @@
           {block name='quick_view'}
             <div class="{$componentName}__quickview">
               <button class="{$componentName}__quickview_button btn btn-link js-quickview btn-with-icon" data-link-action="quickview">
-                <i class="material-icons" aria-hidden="true">&#xE417;</i>
+                {include file="_svg/zoom-in.svg"}
                 {l s='Quick view' d='Shop.Theme.Actions'}
               </button>
             </div>
@@ -126,7 +126,7 @@
 
           <div class="{$componentName}__infos__top">
             {block name='product_name'}
-              <a href="{$product.url}"><p class="{$componentName}__title">{$product.name}</p></a>
+              <a href="{$product.url}"><p class="{$componentName}__title text-dark">{$product.name}</p></a>
             {/block}
           </div>
 
@@ -148,7 +148,7 @@
                 {if $product.show_price}
                   {hook h='displayProductPriceBlock' product=$product type="before_price"}
 
-                  <span class="{$componentName}__price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
+                  <span class="{$componentName}__price text-primary fw-bold" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
                     {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
                     {if '' !== $smarty.capture.custom_price}
                       {$smarty.capture.custom_price nofilter}
@@ -182,25 +182,25 @@
 
                 <input type="hidden" name="token" value="{$static_token}" />
 
-                <div class="quantity-button js-quantity-button w-100 w-sm-auto">
-                  {include file='components/qty-input.tpl'
-                    attributes=[
-                      "id" => "quantity_wanted_{$product.id_product}",
-                      "value" => "{$product.minimal_quantity}",
-                      "min" => "{$product.minimal_quantity}"
-                    ]
-                    marginHelper="mb-0"
-                  }
-                </div>
+{*                <div class="quantity-button js-quantity-button w-100 w-sm-auto">*}
+{*                  {include file='components/qty-input.tpl'*}
+{*                    attributes=[*}
+{*                      "id" => "quantity_wanted_{$product.id_product}",*}
+{*                      "value" => "{$product.minimal_quantity}",*}
+{*                      "min" => "{$product.minimal_quantity}"*}
+{*                    ]*}
+{*                    marginHelper="mb-0"*}
+{*                  }*}
+{*                </div>*}
 
                 <button data-button-action="add-to-cart" class="btn btn-primary flex-grow-1 flex-md-grow-0">
-                  <i class="material-icons" aria-hidden="true">&#xe854;</i>
-                  <span class="visually-hidden">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
+
+                  <span class="text-white">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
                 </button>
               </form>
             {else}
               <a href="{$product.url}" class="btn btn-outline-primary mt-3">
-                {l s='See details' d='Shop.Theme.Actions'}
+                {l s='Voir les options' d='Shop.Theme.Actions'}
               </a>
             {/if}
           </div>

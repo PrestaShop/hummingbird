@@ -7,9 +7,11 @@ $component-name: header-bottom;
   padding: 0;
   border-bottom: var(--header-bottom-border-bottom);
 
+  &__container {
+    border-bottom: 1px solid #e6e6e6;
+  }
+
   .navbar-brand {
-    max-width: 250px;
-    max-height: max(50px, 10vh);
     padding: 0;
 
     .logo {

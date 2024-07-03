@@ -1,0 +1,43 @@
+$component-name: nav-menu;
+
+.#{$component-name} {
+  &__dropdown-columns {
+    column-count: 3;
+    @include media-breakpoint-up(lg) {
+      column-count: 4;
+    }
+  }
+
+  .nav-item {
+    text-transform: uppercase;
+
+    a {
+      font-weight: normal;
+    }
+  }
+
+  &__offcanvas {
+    & .offcanvas-header {
+      background: $primary;
+      color: white;
+    }
+
+    & #offcanvasMenu {
+      > li {
+        padding: 15px 0;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #e6e6e6;
+        text-transform: uppercase;
+
+        > ul {
+          border: none;
+          top: -30px !important;
+
+          > li a {
+            color: #888
+          }
+        }
+      }
+    }
+  }
+}

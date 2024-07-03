@@ -91,6 +91,7 @@ exports.extractScss = ({mode = 'production'}) => ({
       filename: 'css/[name].css',
       chunkFilename: mode === 'production' ? 'css/[chunkhash].css' : 'css/[id].css',
     }),
+
   ],
 });
 
@@ -172,23 +173,23 @@ exports.externals = () => ({
   },
 });
 
-exports.preloadFonts = () => ({
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'preload.html',
-      templateContent: '{{{preloadLinks}}}',
-      inject: false,
-    }),
-    new FontPreloadPlugin({
-      index: 'preload.html',
-      extensions: ['woff2'],
-      filter: /(materialicons)/i,
-      replaceCallback: ({ indexSource, linksAsString }) => {
-        return indexSource.replace('{{{preloadLinks}}}', linksAsString);
-      },
-    }),
-  ]
-});
+// exports.preloadFonts = () => ({
+//   plugins: [
+//     new HtmlWebpackPlugin({
+//       filename: 'preload.html',
+//       templateContent: '{{{preloadLinks}}}',
+//       inject: false,
+//     }),
+//     new FontPreloadPlugin({
+//       index: 'preload.html',
+//       extensions: ['woff2'],
+//       filter: /(materialicons)/i,
+//       replaceCallback: ({ indexSource, linksAsString }) => {
+//         return indexSource.replace('{{{preloadLinks}}}', linksAsString);
+//       },
+//     }),
+//   ]
+// });
 
 exports.expose = () => ({
   module: {

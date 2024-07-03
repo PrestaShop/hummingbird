@@ -20,7 +20,19 @@
             aria-hidden="{if $smarty.foreach.homeslider.first}false{else}true{/if}">
             {if !empty($slide.url)}<a class="carousel-link" href="{$slide.url}">{/if}
               <figure class="carousel-content">
-                <img src="{$slide.image_url}" alt="{$slide.legend|escape}" {if $slide@iteration == 1}loading="eager"{else}loading="lazy"{/if} {$slide.size|replace: '"':''}>
+
+                <img
+                  src="{$slide.image_url}"
+                  alt="{$slide.legend}"
+                  srcset="
+                    {$slide.bySize.default_xl.sources.webp} 400w,
+                    {$slide.image_url} 2000w"
+                  type="image/webp"
+                  {if $slide@iteration == 1} loading="eager" {else} loading="lazy" {/if}
+{*                  {$slide.size|replace: '"':''}*}
+                  width="414" height="414"
+                >
+
                 {if $slide.title || $slide.description}
                   <figcaption class="carousel-caption caption">
                     <h2 class="display-1 text-uppercase">{$slide.title}</h2>

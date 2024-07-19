@@ -117,6 +117,8 @@ export const visiblePassword = {
 export const desktopMenu = {
   dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
   dropdownItemAnchor: (depth: number) => `.js-menu-desktop a[data-depth="${depth}"]`,
+  menuItemsLvl0: '.js-menu-item-lvl-0',
+  subMenu: '.js-sub-menu',
 };
 
 export const qtyInput = {

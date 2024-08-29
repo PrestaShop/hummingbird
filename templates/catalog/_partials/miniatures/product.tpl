@@ -99,7 +99,7 @@
                   loading="lazy"
                   alt="{l s='No image available' d='Shop.Theme.Catalog'}"
                   title="{l s='No image available' d='Shop.Theme.Catalog'}"
-                  data-full-size-image-url="{$product.cover.bySize.home_default.url}"
+                  data-full-size-image-url="{$urls.no_picture_image.bySize.home_default.url}"
                 >
               </picture>
             {/if}

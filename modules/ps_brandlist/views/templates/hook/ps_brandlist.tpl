@@ -18,7 +18,7 @@
 
     <div>
       {if $brands}
-        {include file='module:ps_brandlist/views/templates/_partials/$brand_display_type.tpl' brands=$brands}
+        {include file="module:ps_brandlist/views/templates/_partials/$brand_display_type.tpl" brands=$brands}
       {else}
         <p class="mb-0">{l s='No brand' d='Shop.Theme.Catalog'}</p>
       {/if}

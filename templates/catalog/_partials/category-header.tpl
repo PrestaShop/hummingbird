@@ -9,14 +9,14 @@
             {if $category.description}
               <div id="category-description" class="rich-text mb-4">{$category.description nofilter}</div>
             {/if}
-            {if !empty($category.image.large.url)}
+            {if !empty($category.cover.large.url)}
               <div class="category-cover mb-4">
-                <img src="{$category.image.large.url}" 
-                  alt="{if !empty($category.image.legend)}{$category.image.legend}{else}{$category.name}{/if}" 
+                <img src="{$category.cover.large.url}" 
+                  alt="{if !empty($category.cover.legend)}{$category.cover.legend}{else}{$category.name}{/if}" 
                   fetchpriority="high" 
                   class="img-fluid"
-                  width="{$category.image.large.width}" 
-                  height="{$category.image.large.height}">
+                  width="{$category.cover.large.width}" 
+                  height="{$category.cover.large.height}">
               </div>
             {/if}
         </div>

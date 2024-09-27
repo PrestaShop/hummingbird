@@ -165,6 +165,7 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
           try {
             return JSON.parse(content);
           } catch (error) {
+            console.error(error);
             return false;
           }
         })(hintElement.innerHTML);

@@ -5,7 +5,6 @@ import initEmitter from './prestashop';
 import {
   desktopElement, mobileElement, mobileElementId, contentValue, desktopElementId,
 } from './constants/mocks/swapElements-data';
-import ThemeType = Theme.ThemeType;
 
 beforeAll(() => {
   document.body.innerHTML = `

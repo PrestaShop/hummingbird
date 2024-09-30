@@ -217,7 +217,7 @@ const mockedResponse = (ok: boolean, hasError?: boolean, qty?: string): jest.Moc
   return mockedFetch;
 };
 
-const debounceTimeout = async () => new Promise((fn) => setTimeout(fn, Quantify.delay));
+const debounceTimeout = async () => new Promise((fn) => { setTimeout(fn, Quantify.delay); });
 
 const getHTMLElement = <Type extends HTMLElement>(selector: string, parent?: Type): Type => {
   const parentElement = parent ?? document;

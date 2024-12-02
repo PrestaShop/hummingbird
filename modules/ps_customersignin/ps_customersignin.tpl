@@ -4,7 +4,7 @@
  *}
 
 <div id="_desktop_user_info">
-  <div class="user-info">
+  <div class="user-info d-flex align-items-center">
     {if $customer.is_logged}
       <div class="dropdown header-block">
         <a

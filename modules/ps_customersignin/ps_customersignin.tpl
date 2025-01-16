@@ -16,7 +16,7 @@
           aria-haspopup="true"
           aria-expanded="false"
           aria-label="{l s='View my account (%s)' d='Shop.Theme.Customeraccount' sprintf=[$customerName]}">
-          <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
+          <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
           <span class="header-block__title d-lg-inline d-none">{$customerName|truncate:22:"..":true}</span>
         </a>
 
@@ -73,15 +73,17 @@
         </div>
       </div>
     {else}
-      <a
-        href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
-        title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
-        class="header-block__action-btn"
-        rel="nofollow"
-        role="button">
-        <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
-        <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
-      </a>
+      <div class="header-block">
+        <a
+          href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
+          title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
+          class="header-block__action-btn"
+          rel="nofollow"
+          role="button">
+          <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
+          <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
+        </a>
+      </div>
     {/if}
   </div>
 </div>

@@ -6,26 +6,21 @@ $component-name: header-block;
     --header-block-spacing-y: #{$header-block-spacing-y};
 
     display: inline-flex;
-    flex-wrap: nowrap;
+    gap: 0.5rem;
     align-items: center;
     padding: var(--header-block-spacing-y) var(--header-block-spacing-x);
     color: var(--header-top-color);
     border-radius: $btn-border-radius;
 
-    &:hover,
-    &:focus {
-      color: var(--header-top-color);
+    &[href] {
+      &:hover,
+      &:focus {
+        color: var(--header-top-color-hover);
+      }
     }
 
-    @include media-breakpoint-up(md) {
-      --header-block-spacing-x: #{$header-block-spacing-lg-x};
-      --header-block-spacing-y: #{$header-block-spacing-lg-y};
-    }
-  }
-
-  &__icon {
-    @include media-breakpoint-up(md) {
-      margin-right: 0.2em;
+    &:not([href]) {
+      cursor: default;
     }
   }
 

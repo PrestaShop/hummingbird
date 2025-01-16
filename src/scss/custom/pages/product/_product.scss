@@ -106,21 +106,15 @@
           display: flex;
           flex-wrap: wrap;
           gap: 0.5rem;
-          margin-bottom: 0;
+          @extend %color-variant;
 
-          .color-variant {
-            .input-color {
-              display: none;
-            }
+          label {
+            display: block;
+            line-height: 0;
+          }
 
-            label {
-              display: block;
-              line-height: 0;
-            }
-
-            .color {
-              margin: 0;
-            }
+          .input-color {
+            display: none;
           }
         }
       }

@@ -1,11 +1,19 @@
 $component-name: product-miniature;
 
 .#{$component-name} {
-  .card {
-    height: 100%;
+  &__inner {
+    transition: $transition-base;
+    
+    &:hover {
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+
+      .#{$component-name}__quickview {
+        transform: translateY(-100%);
+      }
+    }
   }
 
-  & &__infos {
+  &__infos {
     position: relative;
     z-index: 90;
     display: flex;
@@ -35,28 +43,35 @@ $component-name: product-miniature;
     }
   }
 
-  & &__title {
+  &__title {
     margin: 0;
   }
 
-  & &__image {
+  &__image {
     height: auto;
   }
 
-  & &__quickview {
+  &__quickview {
     display: flex;
     margin: auto;
   }
 
-  & &__regular-price {
+  &__regular-price {
     text-decoration: line-through;
   }
 
-  & &__prices {
+  &__prices {
     display: flex;
   }
 
-  & &__price {
+  &__price {
     @extend .me-2;
+  }
+
+  &__variants {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    @extend %color-variant;
   }
 }

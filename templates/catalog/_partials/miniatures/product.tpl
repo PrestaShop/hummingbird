@@ -10,7 +10,7 @@
     data-id-product="{$product.id_product}"
     data-id-product-attribute="{$product.id_product_attribute}"
   >
-    <div class="card">
+    <div class="{$componentName}__inner">
       <a href="{$product.url}" class="{$componentName}__link">
         {include file='catalog/_partials/product-flags.tpl'}
 
@@ -132,11 +132,11 @@
 
           <div class="{$componentName}__infos__bottom">
             {block name='product_variants'}
-              <div class="{$componentName}__variants">
-                {if $product.main_variants}
+              {if $product.main_variants}
+                <div class="{$componentName}__variants">
                   {include file='catalog/_partials/variant-links.tpl' variants=$product.main_variants}
-                {/if}
-              </div>
+                </div>
+              {/if}
             {/block}
 
             {block name='product_reviews'}

@@ -14,7 +14,7 @@
 
       <div class="{$componentName}__content__right col-md-7">
         <form action="{$urls.current_url}#blockEmailSubscription_{$hookName}" method="post">
-          <div class="{$componentName}__content__inputs inline-items">
+          <div class="{$componentName}__content__inputs">
             <input
               name="email"
               type="email"

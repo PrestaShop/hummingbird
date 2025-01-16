@@ -1,15 +1,15 @@
 $component-name: header-top;
 
 .#{$component-name} {
+  --header-top-bg: #{$header-top-bg};
+  --header-top-color: #{$header-top-color};
+  --header-top-color-hover: #{$header-top-color-hover};
+  --header-top-border-bottom: #{$header-top-border-bottom};
+
   background-color: var(--header-top-bg);
 
-  a {
-    color: var(--header-top-color);
-  }
-
-  &__right {
-    flex-wrap: nowrap;
-    justify-content: flex-end;
+  &-desktop {
+    padding: 0.25rem 0;
   }
 
   &__right,
@@ -17,26 +17,29 @@ $component-name: header-top;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__right {
+    justify-content: flex-end;
+  }
+
+  a {
+    color: var(--header-top-color);
+
+    &:hover {
+      color: var(--header-top-color-hover);
+    }
   }
 
   .form-select {
     padding-right: 1.5rem;
     background-color: var(--header-top-bg);
-    background-position: right 0.12rem center;
+    background-position: right 0.125rem center;
     border: none;
-
-    option {
-      text-align: right;
-    }
   }
 
-  &-desktop {
-    padding: 0.25rem 0;
-  }
-
-  @include media-breakpoint-down(sm) {
-    .container {
-      padding: 0;
-    }
+  @include media-breakpoint-up(md) {
+    border-bottom: var(--header-top-border-bottom);
   }
 }

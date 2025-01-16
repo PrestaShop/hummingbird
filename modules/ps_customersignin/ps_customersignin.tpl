@@ -3,8 +3,8 @@
  * file that was distributed with this source code.
  *}
 
-<div id="_desktop_user_info">
-  <div class="user-info d-flex align-items-center">
+<div id="_desktop_ps_customersignin">
+  <div class="ps-customersignin">
     {if $customer.is_logged}
       <div class="dropdown header-block">
         <a
@@ -73,17 +73,15 @@
         </div>
       </div>
     {else}
-      <div class="header-block">
-        <a
-          href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
-          title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
-          class="header-block__action-btn"
-          rel="nofollow"
-          role="button">
-          <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
-          <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
-        </a>
-      </div>
+      <a
+        href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
+        title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
+        class="header-block__action-btn"
+        rel="nofollow"
+        role="button">
+        <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
+        <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
+      </a>
     {/if}
   </div>
 </div>

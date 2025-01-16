@@ -1,22 +1,6 @@
 $component-name: product-miniature;
 
 .#{$component-name} {
-  margin-bottom: 1.25rem;
-
-  .card {
-    transition: 0.25s ease-out;
-
-    &:hover {
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-    }
-  }
-
-  &:hover {
-    .#{$component-name}__quickview {
-      transform: translateY(-100%);
-    }
-  }
-
   & &__image-container {
     position: relative;
     overflow: hidden;

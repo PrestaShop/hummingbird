@@ -1,8 +1,6 @@
 $component-name: header-block;
 
 .#{$component-name} {
-  position: relative;
-
   &__action-btn {
     --header-block-spacing-x: #{$header-block-spacing-x};
     --header-block-spacing-y: #{$header-block-spacing-y};

@@ -1,16 +1,26 @@
-/* stylelint-disable */
-@import "~bourbon/core/bourbon";
+@layer vendors, abstract, core, custom;
 
-@import "abstract";
-@import "vendors";
+/* stylelint-disable */
+
+  @import "abstract";
+
+
+@layer vendors {
+  @import "vendors";
+}
 
 @import "~bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css";
 @import "partials";
 
 // Core
-@import "core/_core";
+@layer core {
+  @import "core/_core";
+}
 
 // Custom
-@import "custom/_custom";
+@layer custom {
+  @import "custom/_custom";
+}
 
 /* stylelint-enable */
+

@@ -2,9 +2,7 @@ $component-name: header;
 
 .#{$component-name} {
   --header-bg: #{$header-bg};
-  --header-top-bg: #{$header-top-bg};
   --header-color: #{$header-color};
-  --header-top-color: #{$header-top-color};
 
   position: sticky;
   top: 0;
@@ -12,16 +10,5 @@ $component-name: header;
   width: 100%;
   max-width: 100vw;
   background-color: var(--header-bg);
-
-  a:not(.dropdown-item):not(.btn) {
-    color: var(--header-color);
-
-    &:hover {
-      &,
-      i {
-        color: var(--bs-primary);
-      }
-    }
-  }
 }
 

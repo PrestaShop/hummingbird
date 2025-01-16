@@ -25,4 +25,9 @@ $component-name: search-filters;
   .facet-dropdown {
     cursor: pointer;
   }
+
+  .form-check-label {
+    cursor: pointer;
+    @extend %color-variant;
+  }
 }

@@ -11,7 +11,7 @@
   <div class="order__summary__addresses mb-4">
     <p class="h5 mb-3">
       {l s='Addresses' d='Shop.Theme.Checkout'}
-      <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-addresses" data-step="checkout-addresses-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
+      <span class="btn step-edit step-to-addresses fs-6 js-edit-addresses" data-step="checkout-addresses-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
     </p>
 
     <div class="row">
@@ -80,7 +80,7 @@
   {if !$cart.is_virtual}
     <p class="h5 mb-3">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
-      <span class="btn step-edit step-to-addresses fs-6 text-gray js-edit-shipping" data-step="checkout-delivery-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
+      <span class="btn step-edit step-to-addresses fs-6 js-edit-shipping" data-step="checkout-delivery-step"><i class="material-icons edit fs-6" aria-hidden="true">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
     </p>
 
     <div class="bg-light rounded-3 p-3 mb-4">

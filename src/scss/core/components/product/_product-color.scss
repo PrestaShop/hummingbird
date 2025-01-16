@@ -1,0 +1,24 @@
+$component-name: color;
+
+%color-variant {
+  .#{$component-name} {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    background-size: contain;
+    border: 1px solid $input-border-color;
+    border-radius: 0.25rem;
+    transition: 0.25s ease-out;
+  
+    &.#{$component-name}-sm {
+      width: 1rem;
+      height: 1rem;
+    }
+  
+    &.active,
+    &:hover {
+      border: 2px solid var(--bs-primary);
+    }
+  }
+}

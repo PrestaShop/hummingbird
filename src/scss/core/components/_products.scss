@@ -1,0 +1,18 @@
+$component-name: products;
+
+.layout-full-width {
+  .#{$component-name} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.layout-left-column,
+.layout-right-column {
+  .#{$component-name} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}

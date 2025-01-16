@@ -2,38 +2,48 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{$headerTopName = 'header-top'}
-{$headerBottomName = 'header-bottom'}
 
+{$headerBanner = 'header-banner'}
+{$headerTop = 'header-top'}
+{$headerBottom = 'header-bottom'}
+{$headerNavFullWidth = 'header-nav-full-width'}
+
+{capture name="header_banner"}{hook h='displayBanner'}{/capture}
 {block name='header_banner'}
-  <div class="header__banner">
-    {hook h='displayBanner'}
-  </div>
+  {if isset($smarty.capture.header_banner) && $smarty.capture.header_banner}
+    <div class="{$headerBanner}">
+      {$smarty.capture.header_banner nofilter}
+    </div>
+  {/if}
 {/block}
 
+{capture name="header_nav_1"}{hook h='displayNav1'}{/capture}
+{capture name="header_nav_2"}{hook h='displayNav2'}{/capture}
 {block name='header_nav'}
-  <nav class="{$headerTopName}">
-    <div class="container-md">
-      <div class="{$headerTopName}-desktop d-none d-md-flex row">
-        <div class="{$headerTopName}__left col-md-5">
-          {hook h='displayNav1'}
-        </div>
+  {if (isset($smarty.capture.header_nav_1) && $smarty.capture.header_nav_1) || (isset($smarty.capture.header_nav_2) && $smarty.capture.header_nav_2)}
+    <div class="{$headerTop} d-none d-md-block">
+      <div class="container-md">
+        <div class="{$headerTop}-desktop row">
+          <div class="{$headerTop}__left col-md-4">
+            {$smarty.capture.header_nav_1 nofilter}
+          </div>
 
-        <div class="{$headerTopName}__right col-md-7">
-          {hook h='displayNav2'}
+          <div class="{$headerTop}__right col-md-8">
+            {$smarty.capture.header_nav_2 nofilter}
+          </div>
         </div>
       </div>
     </div>
-  </nav>
+  {/if}
 {/block}
 
 {block name='header_bottom'}
-  <div class="{$headerBottomName}">
-    <div class="container-md {$headerBottomName}__container">
-      <div class="row gx-2 align-items-stretch {$headerBottomName}__row">
+  <div class="{$headerBottom}">
+    <div class="container-md {$headerBottom}__container">
+      <div class="row gx-2 align-items-stretch {$headerBottom}__row">
         <div class="d-flex align-items-center col-auto logo order-xl-1 ms-lg-0 ms-2 me-lg-0 me-auto">
           {if $shop.logo_details}
-            {if $page.page_name == 'index'}<h1 class="{$headerBottomName}__h1 mb-0">{/if}
+            {if $page.page_name == 'index'}<h1 class="{$headerBottom}__h1 mb-0">{/if}
               {renderLogo}
             {if $page.page_name == 'index'}</h1>{/if}
           {/if}
@@ -57,7 +67,7 @@
 
         {hook h='displayTop'}
 
-        <div id="_mobile_user_info" class="d-md-none d-flex col-auto">
+        <div id="_mobile_ps_customersignin" class="d-md-none d-flex col-auto">
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
             <span class="header-block__action-btn">
@@ -82,5 +92,10 @@
     </div>
   </div>
 
-  {hook h='displayNavFullWidth'}
+  {capture name="nav_full_width"}{hook h='displayNavFullWidth'}{/capture}
+  {if isset($smarty.capture.nav_full_width) && $smarty.capture.nav_full_width}
+    <div class="{$headerNavFullWidth}">
+      {$smarty.capture.nav_full_width nofilter}
+    </div>
+  {/if}
 {/block}

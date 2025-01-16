@@ -145,9 +145,9 @@
 
   <div class="main-menu__additionnals offcanvas-body">
     <div class="main-menu__selects row">
-      <div id="_mobile_currency_selector" class="col-auto"></div>
-      <div id="_mobile_language_selector" class="col-auto"></div>
+      <div id="_mobile_ps_currencyselector" class="col-auto"></div>
+      <div id="_mobile_ps_languageselector" class="col-auto"></div>
     </div>
-    <div id="_mobile_contact_link"></div>
+    <div id="_mobile_ps_contactinfo"></div>
   </div>
 </div>

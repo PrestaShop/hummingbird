@@ -27,8 +27,10 @@ $component-name: header-top;
   a {
     color: var(--header-top-color);
 
-    &:hover {
-      color: var(--header-top-color-hover);
+    &:not(.dropdown-item) {
+      &:hover {
+        color: var(--header-top-color-hover);
+      }
     }
   }
 
@@ -37,6 +39,7 @@ $component-name: header-top;
     background-color: var(--header-top-bg);
     background-position: right 0.125rem center;
     border: none;
+    cursor: pointer;
   }
 
   @include media-breakpoint-up(md) {

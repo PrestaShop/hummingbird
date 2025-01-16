@@ -1,0 +1,59 @@
+$component-name: dropdown;
+
+.#{$component-name} {
+  &-toggle {
+    display: inline-flex;
+    align-items: center;
+
+    &::after {
+      @include material-icon(1.375rem);
+      content: "\e313";
+      margin: 0;
+      border: none;
+      vertical-align: initial;
+    }
+  }
+}
+
+.dropup {
+  .#{$component-name} {
+    &-toggle {
+      &::after {
+        content: "\e313";
+        margin: 0;
+        border: none;
+        transform: rotate(180deg);
+        vertical-align: initial;
+      }
+    }
+  }
+}
+
+.dropend {
+  .#{$component-name} {
+    &-toggle {
+      &::after {
+        content: "\e313";
+        margin: 0;
+        border: none;
+        transform: rotate(-90deg);
+        vertical-align: initial;
+      }
+    }
+  }
+}
+
+.dropstart {
+  .#{$component-name} {
+    &-toggle {
+      &::before {
+        @extend .material-icons;
+        content: "\e313";
+        margin: 0;
+        border: none;
+        transform: rotate(90deg);
+        vertical-align: initial;
+      }
+    }
+  }
+}

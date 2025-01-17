@@ -1,26 +1,14 @@
-@layer vendors, abstract, core, custom;
-
 /* stylelint-disable */
-
-  @import "abstract";
-
-
-@layer vendors {
-  @import "vendors";
-}
-
+@import "abstract";
+@import "vendors";
 @import "~bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css";
 @import "partials";
 
 // Core
-@layer core {
-  @import "core/_core";
-}
+@import "core/_core";
 
 // Custom
-@layer custom {
-  @import "custom/_custom";
-}
+@import "custom/_custom";
 
 /* stylelint-enable */
 

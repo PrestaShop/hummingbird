@@ -80,7 +80,7 @@
           class="header-block__action-btn"
           rel="nofollow"
           role="button">
-          <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
+          <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
           <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
         </a>
       </div>

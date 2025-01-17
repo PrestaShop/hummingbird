@@ -86,7 +86,6 @@ $component-name: main-menu;
 
   &__additionnals {
     flex-shrink: 0;
-    padding-bottom: 0;
   }
 
   &__tree {
@@ -105,6 +104,6 @@ $component-name: main-menu;
   }
 
   &__toggle-child {
-    padding: 0.5rem;
+    padding: 0.25rem;
   }
 }

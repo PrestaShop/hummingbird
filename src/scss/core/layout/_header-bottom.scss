@@ -1,6 +1,15 @@
 $component-name: header-bottom;
 
 .#{$component-name} {
+  --header-bottom-border-bottom: #{$header-bottom-border-bottom};
+
+  padding: 0.5rem 0;
+  border-bottom: var(--header-bottom-border-bottom);
+
+  @include media-breakpoint-up(md) {
+    padding: 0;
+  }
+
   &__row {
     @include media-breakpoint-up(md) {
       min-height: 4rem;
@@ -10,11 +19,6 @@ $component-name: header-bottom;
   &__h1 {
     font-size: unset;
   }
-
-  --header-bottom-border-bottom: #{$header-bottom-border-bottom};
-
-  padding: 0;
-  border-bottom: var(--header-bottom-border-bottom);
 
   .navbar-brand {
     max-width: 250px;

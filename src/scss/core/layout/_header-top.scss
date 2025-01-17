@@ -1,15 +1,10 @@
 $component-name: header-top;
 
 .#{$component-name} {
-  --header-top-bg: #{$header-top-bg};
-  --header-top-color: #{$header-top-color};
-  --header-top-color-hover: #{$header-top-color-hover};
-  --header-top-border-bottom: #{$header-top-border-bottom};
-
   background-color: var(--header-top-bg);
 
   &-desktop {
-    padding: 0.25rem 0;
+    padding: 0.5rem 0;
   }
 
   &__right,
@@ -35,9 +30,6 @@ $component-name: header-top;
   }
 
   .form-select {
-    padding-right: 1.5rem;
-    background-color: var(--header-top-bg);
-    background-position: right 0.125rem center;
     border: none;
     cursor: pointer;
   }

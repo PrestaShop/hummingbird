@@ -59,7 +59,7 @@
 
           <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top h-auto" data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header">
-              <div id="_mobile_search" class="search__container"></div>
+              <div id="_mobile_ps_searchbar" class="search__container"></div>
               <button type="button" class="btn-close text-reset ms-1" data-bs-dismiss="offcanvas" aria-label="Close">{l s='Cancel' d='Shop.Theme.Global'}</button>
             </div>
           </div>
@@ -70,24 +70,26 @@
         <div id="_mobile_ps_customersignin" class="d-md-none d-flex col-auto">
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
-            <span class="header-block__action-btn">
-              <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
+            <a href="{$urls.pages.my_account|escape:'htmlall':'UTF-8'}" class="header-block__action-btn">
+              <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
               <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
-            </span>
+            </a>
           </div>
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
         </div>
 
-        <div id="_mobile_cart" class="d-md-none col-auto d-flex">
-          {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
-          <div class="header-block d-flex align-items-center">
-            <span class="header-block__action-btn">
-              <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
-              <span class="header-block__badge">{$cart.products_count}</span>
-            </span>
+        {if !$configuration.is_catalog}
+          <div id="_mobile_ps_shoppingcart" class="d-md-none col-auto d-flex">
+            {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
+            <div class="header-block d-flex align-items-center">
+              <a href="{$urls.pages.cart|escape:'htmlall':'UTF-8'}" class="header-block__action-btn">
+                <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
+                <span class="header-block__badge">{$cart.products_count}</span>
+              </a>
+            </div>
+            {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           </div>
-          {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
-        </div>
+        {/if}
       </div>
     </div>
   </div>

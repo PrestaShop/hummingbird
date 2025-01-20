@@ -1,34 +1,55 @@
+/* PrestaShop license placeholder */
 $component-name: search;
 
 .search-result {
-  margin: 0.5rem 0;
-
   &__product {
     margin: 0.25rem 0;
+  }
+
+  &__name {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    color: var(--bs-body-color);
+    transition: $transition-base;
   }
 
   &__link {
     display: flex;
     align-items: center;
-    padding: 0.25rem 0.5rem;
-    border-radius: $border-radius;
+    border-radius: var(--bs-border-radius);
+    outline: 2px solid transparent;
+    transition: $transition-base;
 
     &:hover {
-      background: var(--bs-gray-100);
+      background-color: var(--bs-gray-100);
+
+      .search-result__name {
+        color: var(--bs-body-color);
+      }
+    }
+
+    &:focus {
+      background-color: var(--bs-gray-100);
+      outline: 2px solid var(--bs-primary);
+
+      .search-result__name {
+        color: var(--bs-body-color);
+      }
+    }
+
+    &:active {
+      background-color: var(--bs-gray-100);
+
+      .search-result__name {
+        color: var(--bs-primary);
+      }
     }
   }
 
-  &__name {
-    margin-bottom: 0;
-    margin-left: 1rem;
-    font-size: 1rem;
-    color: var(--bs-gray-800);
-  }
-
   &__image {
-    max-width: 4rem;
-    height: auto;
-    border-radius: 8px;
+    flex-shrink: 0;
+    width: 4rem;
+    border-radius: var(--bs-border-radius);
   }
 }
 
@@ -41,100 +62,102 @@ $component-name: search;
     // stylelint-disable-next-line
     #search_widget {
       margin-bottom: 0;
+      overflow: initial;
     }
 
     .offcanvas-header {
-      padding: 0.375rem 1rem;
-
-      .btn-close {
-        width: auto;
-        height: auto;
-        margin: 0;
-        color: var(--bs-gray-700);
-        background: none;
-      }
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--bs-body-bg);
     }
   }
 
   &__container {
-    width: calc(100% - 0.5rem);
+    flex-grow: 1;
   }
 
   &-widgets {
     position: relative;
-    // stylelint-disable-next-line
-    overflow: visible !important;
-
-    @include media-breakpoint-down(md) {
-      max-width: inherit;
-    }
 
     &__dropdown {
       position: absolute;
-      top: calc(100% + 1rem);
+      top: calc(100% + 0.5rem);
       right: 0;
       width: 100vw;
       max-width: 30rem;
       overflow: hidden;
-      background: var(--bs-white);
-      border: 1px solid $input-border-color;
-      border-radius: var(--bs-border-radius-sm);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: var(--bs-body-bg);
+      border: 1px solid var(--bs-border-color);
+      border-radius: var(--bs-border-radius);
+      box-shadow: 0 10px 20px 0 rgba(var(--bs-black-rgb), 0.1);
 
       @include media-breakpoint-down(md) {
-        top: calc(100% + 0.25rem);
-        right: inherit;
-        left: -1rem;
+        top: 100%;
+        right: 0;
+        left: 0;
         max-width: inherit;
-        border-radius: 0 0 8px 8px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
       }
     }
 
     &__results {
-      max-height: 20rem;
-      padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
       margin: 0;
+      padding: 1rem;
+      max-height: 21rem;
       overflow-y: scroll;
+    }
+
+    @include media-breakpoint-down(md) {
+      position: inherit;
     }
   }
 }
 
-.header__bottom,
+.header-bottom,
 .#{$component-name}__offcanvas {
   // stylelint-disable-next-line, selector-id-pattern
   #search_widget {
-    min-width: 20rem;
+    min-width: 19rem;
     overflow: visible;
 
-    @include media-breakpoint-down(md) {
-      min-width: inherit;
+    form {
+      position: relative;
     }
 
     input {
-      height: 2.5rem;
-      padding-right: 3.5rem;
-      padding-left: 1.5rem;
-      background: var(--bs-gray-100);
-      border-radius: 100rem;
-
-      &:focus {
-        outline: 0;
-        box-shadow: $btn-focus-box-shadow;
-      }
-
-      @include media-breakpoint-down(md) {
-        font-size: 0.9rem;
-      }
+      padding-inline: 2.5rem;
     }
 
     .search {
-      right: 1.5rem;
-      color: var(--bs-gray-700);
+      position: absolute;
+      top: 50%;
+      left: 0.75rem;
+      transform: translateY(-50%);
+      color: var(--bs-body-color);
+      padding: 0;
+      cursor: pointer;
     }
 
     .clear {
-      right: 3.5rem;
-      color: var(--bs-gray-700);
+      position: absolute;
+      top: 50%;
+      right: 0.75rem;
+      transform: translateY(-50%);
+      color: var(--bs-body-color);
+      padding: 0;
+      cursor: pointer;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    #search_widget {
+      min-width: inherit;
+      overflow: inherit;
     }
   }
 }

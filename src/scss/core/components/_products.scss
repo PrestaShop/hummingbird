@@ -3,8 +3,14 @@ $component-name: products;
 .layout-full-width {
   .#{$component-name} {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+  }
+  
+  @include media-breakpoint-up(md) {
+    .#{$component-name} {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
 
@@ -12,7 +18,45 @@ $component-name: products;
 .layout-right-column {
   .#{$component-name} {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 1.5rem;
+  }
+
+  @include media-breakpoint-up(xs) {
+    .#{$component-name} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .#{$component-name} {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.layout-both-columns {
+  .#{$component-name} {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+  
+  @include media-breakpoint-up(xs) {
+    .#{$component-name} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    .#{$component-name} {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .#{$component-name} {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }

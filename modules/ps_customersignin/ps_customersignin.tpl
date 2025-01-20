@@ -17,6 +17,7 @@
           aria-expanded="false"
           aria-label="{l s='View my account (%s)' d='Shop.Theme.Customeraccount' sprintf=[$customerName]}">
           <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
+          <span class="header-block__title d-none d-md-block d-lg-none">{$customer.firstname|truncate:2:".":true}{$customer.lastname|truncate:2:".":true}</span>
           <span class="header-block__title d-lg-inline d-none">{$customerName|truncate:22:"..":true}</span>
         </a>
 

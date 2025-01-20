@@ -2,6 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
+
 <div id="_desktop_ps_shoppingcart">
   <div class="ps-shoppingcart">
     <div class="header-block d-flex align-items-center blockcart cart-preview {if $cart.products_count> 0}header-block--active{else}inactive{/if}" data-refresh-url="{$refresh_url}">

@@ -2,6 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
+
 <div id="_desktop_ps_contactinfo">
   <div class="ps-contactinfo">
     {if $contact_infos.phone}

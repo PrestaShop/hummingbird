@@ -132,7 +132,7 @@
             {if $node.children|count}
               {* Cannot use page identifier as we can have the same page several times *}
               {assign var=_expand_id value=10|mt_rand:100000}
-              <button class="main-menu__toggle-child btn btn-light btn-tertiary-icon js-menu-open-child" data-target="{$_expand_id|escape:'htmlall':'UTF-8'}">
+              <button class="main-menu__toggle-child btn btn-link btn-tertiary-icon js-menu-open-child" data-target="{$_expand_id|escape:'htmlall':'UTF-8'}">
                 <span data-target="#top_sub_menu_{$_expand_id|escape:'htmlall':'UTF-8'}">
                   <i class="material-icons rtl-flip">chevron_right</i>
                 </span>
@@ -167,7 +167,7 @@
   {* MOBILE MENU *}
   <div class="mobile-toggle d-xl-none">
     <a
-      class="menu-toggle btn btn-tertiary btn-tertiary-icon"
+      class="menu-toggle btn btn-link btn-tertiary-icon"
       href="#"
       role="button"
       data-bs-toggle="offcanvas"
@@ -187,7 +187,7 @@
 >
   <div class="offcanvas-header">
     <div class="main-menu__back-button">
-      <button class="btn btn-light btn-sm d-none js-back-button" type="button">
+      <button class="btn btn-link btn-sm d-none js-back-button" type="button">
         <span class="material-icons rtl-flip">chevron_left</span>
         <span class="js-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
       </button>
@@ -199,8 +199,8 @@
     {mobileMenu nodes=$menu.children}
   </div>
 
-  <div class="main-menu__additionnals offcanvas-body d-grid gap-3">
-    <div class="main-menu__selects d-flex gap-2">
+  <div class="main-menu__additionnals offcanvas-body d-flex flex-wrap align-items-center gap-3">
+    <div class="main-menu__selects d-flex gap-2 me-auto">
       <div id="_mobile_ps_currencyselector" class="col-auto"></div>
       <div id="_mobile_ps_languageselector" class="col-auto"></div>
     </div>

@@ -23,7 +23,7 @@
   {if (isset($smarty.capture.header_nav_1) && $smarty.capture.header_nav_1) || (isset($smarty.capture.header_nav_2) && $smarty.capture.header_nav_2)}
     <div class="{$headerTop} d-none d-md-block">
       <div class="container-md">
-        <div class="{$headerTop}-desktop row">
+        <div class="row">
           <div class="{$headerTop}__left col-md-4">
             {$smarty.capture.header_nav_1 nofilter}
           </div>
@@ -41,7 +41,7 @@
   <div class="{$headerBottom}">
     <div class="container-md {$headerBottom}__container">
       <div class="row gx-2 align-items-stretch {$headerBottom}__row">
-        <div class="d-flex align-items-center col-auto logo order-xl-1 ms-lg-0 ms-2 me-lg-0 me-auto">
+        <div class="d-flex align-items-center col-auto me-auto me-md-0">
           {if $shop.logo_details}
             {if $page.page_name == 'index'}<h1 class="{$headerBottom}__h1 mb-0">{/if}
               {renderLogo}
@@ -49,23 +49,23 @@
           {/if}
         </div>
 
-        <div class="search__mobile d-md-none d-flex col-auto">
+        {hook h='displayTop'}
 
+        {* MOBILE SEARCH BAR *}
+        <div class="search__mobile d-md-none d-flex col-auto">
           <div class="header-block d-flex align-items-center">
             <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas" aria-label="{l s='Show search bar' d='Shop.Theme.Global'}">
               <span class="material-icons header-block__icon">search</span>
             </a>
           </div>
 
-          <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top h-auto" data-bs-backdrop="false" data-bs-scroll="true" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
+          <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top h-auto" data-bs-backdrop="static" data-bs-scroll="true" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header">
               <div id="_mobile_ps_searchbar" class="search__container"></div>
-              <button type="button" class="btn-close text-reset ms-1" data-bs-dismiss="offcanvas" aria-label="Close">{l s='Cancel' d='Shop.Theme.Global'}</button>
+              <button type="button" class="btn btn-link text-reset" data-bs-dismiss="offcanvas" aria-label="Close">{l s='Cancel' d='Shop.Theme.Global'}</button>
             </div>
           </div>
         </div>
-
-        {hook h='displayTop'}
 
         <div id="_mobile_ps_customersignin" class="d-md-none d-flex col-auto">
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}

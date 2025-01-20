@@ -24,12 +24,12 @@
  *}
 
 <div id="_desktop_ps_searchbar" class="order-2 ms-auto col-auto d-none d-md-flex align-items-center">
-  <div id="search_widget" class="ps-searchbar search-widgets js-search-widget" data-search-controller-url="{$search_controller_url}">
-    <form method="get" action="{$search_controller_url}">
+  <div id="search_widget" class="search-widgets js-search-widget" data-search-controller-url="{$search_controller_url|escape:'htmlall':'UTF-8'}">
+    <form method="get" action="{$search_controller_url|escape:'htmlall':'UTF-8'}">
       <input type="hidden" name="controller" value="search">
       <i class="material-icons search js-search-icon" aria-hidden="true">search</i>
-      <input class="js-search-input" type="search" name="s" value="{$search_string}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
-      <i class="material-icons clear" aria-hidden="true">clear</i>
+      <i class="material-icons clear js-search-clear d-none" aria-hidden="true">clear</i>
+      <input class="js-search-input form-control" type="text" name="s" value="{$search_string|escape:'htmlall':'UTF-8'}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
     </form>
 
     <div class="search-widgets__dropdown js-search-dropdown d-none">

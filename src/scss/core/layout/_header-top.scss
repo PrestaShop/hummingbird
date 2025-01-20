@@ -2,10 +2,7 @@ $component-name: header-top;
 
 .#{$component-name} {
   background-color: var(--header-top-bg);
-
-  &-desktop {
-    padding: 0.5rem 0;
-  }
+  padding: 0.25rem 0;
 
   &__right,
   &__left {

@@ -1,0 +1,54 @@
+$component-name: ps-contactinfo;
+
+#header { 
+  .#{$component-name} {
+    a {
+      color: var(--header-top-color);
+
+      &:hover {
+        color: var(--header-top-color-hover);
+      }
+    }
+  }
+}
+
+#footer {
+  .#{$component-name}__infos {
+    margin-bottom: 1rem;
+  }
+
+  .#{$component-name}__infos,
+  .#{$component-name}__phone,
+  .#{$component-name}__fax,
+  .#{$component-name}__email {
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 0.5rem;
+      font-size: 1.125rem;
+    }
+  }
+}
+
+.#{$component-name} {
+  hr {
+    margin: 0;
+  }
+
+  &__item {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1rem;
+
+    &:not(:first-of-type) {
+      padding-top: 1rem;
+    }
+  }
+
+  &__info {
+    &--email {
+      word-break: break-all;
+    }
+  }
+}

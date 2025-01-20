@@ -10,6 +10,7 @@
   &__tree {
     align-items: stretch;
     height: 100%;
+    flex-wrap: wrap;
 
     > li {
       display: flex;
@@ -22,7 +23,7 @@
       }
 
       > a {
-        padding: 1.5rem 0.75rem;
+        padding: 1.25rem 0.75rem;
         color: var(--bs-gray-600);
 
         &.dropdown-toggle {
@@ -149,7 +150,6 @@
       &-items {
         display: none;
         grid-template-columns: repeat(3, 1fr);
-        border-radius: var(--bs-radius-rounded);
         column-gap: 1.25rem;
         row-gap: 2rem;
 

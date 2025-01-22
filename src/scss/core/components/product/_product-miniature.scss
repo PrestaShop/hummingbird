@@ -134,7 +134,7 @@ $component-name: product-miniature;
     line-height: initial;
   }
 
-  @container product-miniature (width < 14rem) {
+  @container product-miniature (width < 13.5rem) {
     .product-flags {
       .badge {
         padding: 0.125rem 0.25rem;

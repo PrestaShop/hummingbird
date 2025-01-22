@@ -5,6 +5,6 @@
 
 <div class="products">
   {foreach from=$products item='product' key='position'}
-    {include file='catalog/_partials/miniatures/product.tpl' product=$product position=$position productClasses=$productClasses}
+    {include file='catalog/_partials/miniatures/product.tpl' product=$product position=$position}
   {/foreach}
 </div>

@@ -24,26 +24,25 @@
  *}
 
 <div id="_desktop_ps_searchbar" class="order-2 ms-auto col-auto d-none d-md-flex align-items-center">
-  <div id="search_widget" class="search-widgets js-search-widget" data-search-controller-url="{$search_controller_url|escape:'htmlall':'UTF-8'}">
-    <form method="get" action="{$search_controller_url|escape:'htmlall':'UTF-8'}">
+  <div id="ps_searchbar" class="ps-searchbar js-search-widget" data-search-controller-url="{$search_controller_url|escape:'htmlall':'UTF-8'}">
+    <form class="ps-searchbar__form" method="get" action="{$search_controller_url|escape:'htmlall':'UTF-8'}">
       <input type="hidden" name="controller" value="search">
-      <i class="material-icons search js-search-icon" aria-hidden="true">search</i>
-      <i class="material-icons clear js-search-clear d-none" aria-hidden="true">clear</i>
-      <input class="js-search-input form-control" type="text" name="s" value="{$search_string|escape:'htmlall':'UTF-8'}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
+      <i class="material-icons ps-searchbar__magnifier js-search-icon" aria-hidden="true">search</i>
+      <i class="material-icons ps-searchbar__clear js-search-clear d-none" aria-hidden="true">clear</i>
+      <input class="js-search-input form-control ps-searchbar__input" type="text" name="s" value="{$search_string|escape:'htmlall':'UTF-8'}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
     </form>
 
-    <div class="search-widgets__dropdown js-search-dropdown d-none">
-      <ul class="search-widgets__results js-search-results">
-      </ul>
+    <div class="ps-searchbar__dropdown js-search-dropdown d-none">
+      <ul class="ps-searchbar__results js-search-results"></ul>
     </div>
   </div>
 </div>
 
-<template id="search-products" class="js-search-template">
-  <li class="search-result">
-    <a class="search-result__link" href="">
-      <img src="" alt="" class="search-result__image">
-      <p class="search-result__name"></p>
+<template id="ps_searchbar_result" class="js-search-template">
+  <li class="ps-searchbar__result">
+    <a class="ps-searchbar__result-link" href="">
+      <img src="" alt="" class="ps-searchbar__result-image">
+      <p class="ps-searchbar__result-name"></p>
     </a>
   </li>
 </template>

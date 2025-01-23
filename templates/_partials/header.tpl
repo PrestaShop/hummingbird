@@ -52,16 +52,16 @@
         {hook h='displayTop'}
 
         {* MOBILE SEARCH BAR *}
-        <div class="search__mobile d-md-none d-flex col-auto">
+        <div class="ps-searchbar--mobile d-md-none d-flex col-auto">
           <div class="header-block d-flex align-items-center">
             <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas" aria-label="{l s='Show search bar' d='Shop.Theme.Global'}">
               <span class="material-icons header-block__icon">search</span>
             </a>
           </div>
 
-          <div class="search__offcanvas js-search-offcanvas offcanvas offcanvas-top h-auto" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
+          <div class="ps-searchbar__offcanvas js-search-offcanvas offcanvas offcanvas-top h-auto" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header">
-              <div id="_mobile_ps_searchbar" class="search__container"></div>
+              <div id="_mobile_ps_searchbar" class="ps-searchbar__container"></div>
               <button type="button" class="btn btn-link text-reset" data-bs-dismiss="offcanvas" aria-label="Close">{l s='Cancel' d='Shop.Theme.Global'}</button>
             </div>
           </div>
@@ -72,16 +72,15 @@
           <div class="header-block">
             <a href="{$urls.pages.my_account|escape:'htmlall':'UTF-8'}" class="header-block__action-btn">
               <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
-              <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
             </a>
           </div>
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
         </div>
 
         {if !$configuration.is_catalog}
-          <div id="_mobile_ps_shoppingcart" class="d-md-none col-auto d-flex">
+          <div id="_mobile_ps_shoppingcart" class="d-md-none d-flex col-auto">
             {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
-            <div class="header-block d-flex align-items-center">
+            <div class="header-block">
               <a href="{$urls.pages.cart|escape:'htmlall':'UTF-8'}" class="header-block__action-btn">
                 <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
                 <span class="header-block__badge">{$cart.products_count}</span>

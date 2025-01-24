@@ -39,9 +39,9 @@
 
 {block name='header_bottom'}
   <div class="{$headerBottom}">
-    <div class="container-md {$headerBottom}__container">
-      <div class="row gx-2 align-items-stretch {$headerBottom}__row">
-        <div class="d-flex align-items-center col-auto me-auto me-md-0">
+    <div class="{$headerBottom}__container container-md">
+      <div class="{$headerBottom}__row row gx-2 align-items-stretch">
+        <div class="{$headerBottom}__logo d-flex align-items-center col-auto me-auto me-md-0">
           {if $shop.logo_details}
             {if $page.page_name == 'index'}<h1 class="{$headerBottom}__h1 mb-0">{/if}
               {renderLogo}

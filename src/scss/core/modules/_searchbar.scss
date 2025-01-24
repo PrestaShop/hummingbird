@@ -54,6 +54,7 @@ $component-name: ps-searchbar;
 
   &__dropdown {
     position: absolute;
+    z-index: 1070;
     top: calc(100% + 0.5rem);
     right: 0;
     width: 100vw;

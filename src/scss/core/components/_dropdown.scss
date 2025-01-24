@@ -7,10 +7,10 @@ $component-name: dropdown;
 
     &::after {
       @include material-icon(1.375rem);
-      content: "\e313";
       margin: 0;
-      border: none;
       vertical-align: initial;
+      content: "\e313";
+      border: none;
     }
   }
 }
@@ -19,11 +19,11 @@ $component-name: dropdown;
   .#{$component-name} {
     &-toggle {
       &::after {
-        content: "\e313";
         margin: 0;
+        vertical-align: initial;
+        content: "\e313";
         border: none;
         transform: rotate(180deg);
-        vertical-align: initial;
       }
     }
   }
@@ -33,11 +33,11 @@ $component-name: dropdown;
   .#{$component-name} {
     &-toggle {
       &::after {
-        content: "\e313";
         margin: 0;
+        vertical-align: initial;
+        content: "\e313";
         border: none;
         transform: rotate(-90deg);
-        vertical-align: initial;
       }
     }
   }
@@ -48,11 +48,11 @@ $component-name: dropdown;
     &-toggle {
       &::before {
         @extend .material-icons;
-        content: "\e313";
         margin: 0;
+        vertical-align: initial;
+        content: "\e313";
         border: none;
         transform: rotate(90deg);
-        vertical-align: initial;
       }
     }
   }

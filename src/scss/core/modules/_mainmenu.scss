@@ -30,9 +30,9 @@ $component-name: ps-mainmenu;
       // Menu Tree
       &__tree {
         display: flex;
-        align-items: stretch;
         //height: 100%;
         flex-wrap: wrap;
+        align-items: stretch;
         margin: 0;
 
         > li {
@@ -134,18 +134,18 @@ $component-name: ps-mainmenu;
           display: flex;
           align-items: center;
           padding: 0.75rem 1rem;
+          color: var(--bs-body-color);
           background-color: transparent;
           border-radius: var(--bs-border-radius);
-          color: var(--bs-body-color);
 
           &:hover {
-            background-color: var(--bs-gray-100);
             color: var(--bs-primary);
+            background-color: var(--bs-gray-100);
           }
 
           &.active {
-            background-color: var(--bs-gray-100);
             color: var(--bs-primary);
+            background-color: var(--bs-gray-100);
 
             &:active,
             &:focus {
@@ -156,8 +156,8 @@ $component-name: ps-mainmenu;
           &.has-child {
             &::after {
               @extend .material-icons;
-              content: "\e315";
               margin: 0 0 0 auto;
+              content: "\e315";
             }
           }
         }
@@ -169,8 +169,8 @@ $component-name: ps-mainmenu;
         &-items {
           display: none;
           grid-template-columns: repeat(3, 1fr);
-          column-gap: 1.25rem;
           row-gap: 2rem;
+          column-gap: 1.25rem;
 
           &:first-child {
             display: grid;
@@ -223,8 +223,8 @@ $component-name: ps-mainmenu;
 
   // Mobile Menu
   &:is(.#{$component-name}--mobile) {
-    overflow: hidden;
     padding: 0;
+    overflow: hidden;
 
     .contact-link {
       display: block;
@@ -237,8 +237,8 @@ $component-name: ps-mainmenu;
     }
 
     .btn-close {
-      margin: 0;
       padding: 0.75rem;
+      margin: 0;
     }
 
     .menu {
@@ -251,14 +251,14 @@ $component-name: ps-mainmenu;
       transition: $transition-base;
 
       a {
-        color: var(--bs-gray-600);
         display: block;
         padding-block: 0.5rem;
+        color: var(--bs-gray-600);
       }
 
       &__title {
-        margin-bottom: 0.75rem;
         padding: 0;
+        margin-bottom: 0.75rem;
         font-size: 1.25rem;
         font-weight: 600;
         color: var(--bs-gray-800);
@@ -316,8 +316,8 @@ $component-name: ps-mainmenu;
 
       &__back-button {
         .btn {
-          line-height: 1;
           padding: 0.25rem 0.5rem;
+          line-height: 1;
         }
       }
 
@@ -343,6 +343,7 @@ $component-name: ps-mainmenu;
   from {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -352,6 +353,7 @@ $component-name: ps-mainmenu;
   from {
     transform: translateX(100%);
   }
+
   to {
     transform: translateX(0);
   }

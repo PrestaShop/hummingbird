@@ -51,8 +51,8 @@ const initDesktopMenu = () => {
       // Get the value of the "data-open-tab" attribute
       const toggleTab = item.getAttribute('data-open-tab');
 
-      // Find the element with the matching "id" attribute value
-      const targetTab = document.getElementById(toggleTab || '');
+      // Find the element with the matching "data-id" attribute value
+      const targetTab = item.closest('.submenu__row')?.querySelector(`[data-id="${toggleTab}"]`);
 
       rightTabs.forEach((rightTab) => {
         rightTab.classList.remove('active');

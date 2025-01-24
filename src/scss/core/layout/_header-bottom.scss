@@ -6,12 +6,6 @@ $component-name: header-bottom;
   padding: 0.25rem 0;
   border-bottom: var(--header-bottom-border-bottom);
 
-  &__row {
-    @include media-breakpoint-up(md) {
-      min-height: 4rem;
-    }
-  }
-
   &__h1 {
     font-size: unset;
   }

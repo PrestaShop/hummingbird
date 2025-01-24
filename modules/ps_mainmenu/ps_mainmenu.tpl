@@ -54,7 +54,7 @@
     {if $depth === 1 }
       <div class="submenu__right col-sm-9">
         {foreach from=$nodes item=node}
-          <div class="submenu__right-items" id="submenu_{$node.label|lower|classname|escape:'htmlall':'UTF-8'}_{$node.depth|escape:'htmlall':'UTF-8'}_{$node.page_identifier}">
+          <div class="submenu__right-items" data-id="submenu_{$node.label|lower|classname|escape:'htmlall':'UTF-8'}_{$node.depth|escape:'htmlall':'UTF-8'}_{$node.page_identifier}">
             {generateLinks links=$node.children parent=$parent}
           </div>
         {/foreach}
@@ -75,14 +75,14 @@
   {/if}
 {/function}
 
-{* GENERATE FIRST LEVEL *}
+{* GENERATE DESKTOP FIRST LEVEL *}
 {function name="desktopFirstLevel" itemsFirstLevel=[]}
   {if $itemsFirstLevel|count}
-    <ul id="top-menu" class="main-menu__tree" data-depth="0">
+    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0">
       {foreach from=$itemsFirstLevel item=menuItem}
-        <li class="type-{$menuItem.type|escape:'htmlall':'UTF-8'} {if $menuItem.current} current{/if} main-menu__tree__item" id="{$menuItem.page_identifier|escape:'htmlall':'UTF-8'}">
+        <li class="ps-mainmenu__tree__item type-{$menuItem.type|escape:'htmlall':'UTF-8'} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier|escape:'htmlall':'UTF-8'}">
           <a
-            class="main-menu__tree__link{if $menuItem.children|count} dropdown-toggle{/if}"
+            class="ps-mainmenu__tree__link{if $menuItem.children|count} dropdown-toggle{/if}"
             href="{$menuItem.url|escape:'htmlall':'UTF-8'}"
             data-depth="0"
             {if $menuItem.open_in_new_window}target="_blank"{/if}
@@ -114,7 +114,7 @@
     >
       <ul class="menu__list">
         {if $depth >= 1}
-          <li class="main-menu__title h5">{$parent.label|escape:'htmlall':'UTF-8'}</li>
+          <li class="menu__title">{$parent.label|escape:'htmlall':'UTF-8'}</li>
         {/if}
         {foreach from=$nodes item=node}
           <li
@@ -132,10 +132,8 @@
             {if $node.children|count}
               {* Cannot use page identifier as we can have the same page several times *}
               {assign var=_expand_id value=10|mt_rand:100000}
-              <button class="main-menu__toggle-child btn btn-link js-menu-open-child" data-target="{$_expand_id|escape:'htmlall':'UTF-8'}">
-                <span data-target="#top_sub_menu_{$_expand_id|escape:'htmlall':'UTF-8'}">
-                  <i class="material-icons rtl-flip">chevron_right</i>
-                </span>
+              <button class="menu__toggle-child btn btn-link js-menu-open-child" data-target="{$_expand_id|escape:'htmlall':'UTF-8'}">
+                <i class="material-icons rtl-flip">chevron_right</i>
               </button>
             {/if}
           </li>
@@ -158,14 +156,14 @@
   {/if}
 {/function}
 
-<div class="main-menu col-xl col-auto">
+<div class="ps-mainmenu ps-mainmenu--desktop col-xl col-auto">
   {* DESKTOP MENU *}
-  <div class="d-none d-xl-block position-static js-menu-desktop menu-desktop">
+  <div class="ps-mainmenu__desktop d-none d-xl-block position-static js-menu-desktop">
     {desktopMenu nodes=$menu.children}
   </div>
 
   {* MOBILE MENU *}
-  <div class="mobile-toggle d-xl-none">
+  <div class="ps-mainmenu__mobile-toggle">
     <a
       class="menu-toggle btn btn-link"
       href="#"
@@ -180,14 +178,14 @@
 </div>
 
 <div
-  class="main-menu__offcanvas offcanvas offcanvas-start js-menu-canvas"
+  class="ps-mainmenu ps-mainmenu--mobile offcanvas offcanvas-start js-menu-canvas"
   tabindex="-1"
   id="mobileMenu"
   aria-labelledby="mobileMenuLabel"
 >
   <div class="offcanvas-header">
-    <div class="main-menu__back-button">
-      <button class="btn btn-link btn-sm d-none js-back-button" type="button">
+    <div class="ps-mainmenu__back-button">
+      <button class="btn btn-link btn-sm btn-with-icon d-none js-back-button" type="button">
         <span class="material-icons rtl-flip">chevron_left</span>
         <span class="js-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
       </button>
@@ -195,12 +193,12 @@
     <button type="button" class="btn-close btn text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
-  <div class="main-menu__mobile">
+  <div class="ps-mainmenu__mobile">
     {mobileMenu nodes=$menu.children}
   </div>
 
-  <div class="main-menu__additionnals offcanvas-body d-flex flex-wrap align-items-center gap-3">
-    <div class="main-menu__selects d-flex gap-2 me-auto">
+  <div class="ps-mainmenu__additionnals offcanvas-body d-flex flex-wrap align-items-center gap-3">
+    <div class="ps-mainmenu__selects d-flex gap-2 me-auto">
       <div id="_mobile_ps_currencyselector" class="col-auto"></div>
       <div id="_mobile_ps_languageselector" class="col-auto"></div>
     </div>

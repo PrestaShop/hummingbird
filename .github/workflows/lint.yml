@@ -11,9 +11,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+      
+      # Run Prettier check command
+      - name: Run Prettier check
+        run: |
+          npm run prettier || {
+            echo "::error::Prettier check failed. Run 'npm run prettier:fix' to format your code."
+            exit 1
+          }
 
-      - name: Lint scss
-        run: npm ci && npm run scss-lint
+      # Run Stylelint check command
+      - name: Run Stylelint check
+        run: |
+          npm run stylelint || {
+            echo "::error::Stylelint check failed. Run 'npm run stylelint:fix' to autofix issues."
+            exit 1
+          }
   eslint:
     name: ESLint
     runs-on: ubuntu-latest

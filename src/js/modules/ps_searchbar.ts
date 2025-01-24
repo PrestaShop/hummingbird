@@ -81,7 +81,7 @@ const initSearchbar = () => {
           if (productLink && productTitle && productImage) {
             productLink.href = product.canonical_url;
             productTitle.innerHTML = product.name;
-            
+
             if (product.cover) {
               productImage.src = product.cover.small.url;
             } else {

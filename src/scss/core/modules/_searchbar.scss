@@ -108,40 +108,40 @@ $component-name: ps-searchbar;
       color: var(--bs-body-color);
       transition: $transition-base;
     }
-  
+
     &-link {
       display: flex;
       align-items: center;
       border-radius: var(--bs-border-radius);
       outline: 2px solid transparent;
       transition: $transition-base;
-  
+
       &:hover {
         background-color: var(--bs-gray-100);
-  
+
         .#{$component-name}__result-name {
           color: var(--bs-body-color);
         }
       }
-  
+
       &:focus {
         background-color: var(--bs-gray-100);
         outline: 2px solid var(--bs-primary);
-  
+
         .#{$component-name}__result-name {
           color: var(--bs-body-color);
         }
       }
-  
+
       &:active {
         background-color: var(--bs-gray-100);
-  
+
         .#{$component-name}__result-name {
           color: var(--bs-primary);
         }
       }
     }
-  
+
     &-image {
       flex-shrink: 0;
       width: 4rem;

@@ -3,10 +3,10 @@ $component-name: ps-mainmenu;
 .#{$component-name} {
   order: -1;
 
-  // Desktop Menu  
+  // Desktop Menu
   &:is(.#{$component-name}--desktop) {
     display: flex;
-    
+
     .#{$component-name} {
       // Menu Mobile Toggler
       &__mobile-toggle {
@@ -34,42 +34,42 @@ $component-name: ps-mainmenu;
         //height: 100%;
         flex-wrap: wrap;
         margin: 0;
-    
+
         > li {
           display: flex;
           align-items: center;
-    
+
           &.current {
             > a {
               color: var(--bs-primary);
             }
           }
-    
+
           > a {
             padding: 1.25rem 0.75rem;
             color: var(--bs-gray-600);
-    
+
             &.dropdown-toggle {
               gap: 0.5rem;
             }
-    
+
             &:hover {
               color: var(--bs-body-color);
               cursor: pointer;
             }
-    
+
             &:active {
               color: var(--bs-primary);
             }
           }
-    
+
           &:hover {
             .submenu,
             .menu-container {
               display: block;
             }
           }
-    
+
           .submenu,
           .menu-container {
             position: absolute;
@@ -80,30 +80,30 @@ $component-name: ps-mainmenu;
             display: none;
             background-color: var(--bs-white);
             border-top: 1px solid var(--bs-gray-200);
-    
+
             &.focusing,
             &:focus-within {
               display: block;
             }
-    
+
             a {
               &[data-depth="1"],
               &[data-depth="2"] {
                 overflow-wrap: break-word;
                 white-space: normal;
               }
-    
+
               &[data-depth="1"] {
                 font-weight: 600;
                 color: var(--bs-body-color);
-    
+
                 &:hover {
                   &,
                   i {
                     color: var(--bs-primary);
                   }
                 }
-    
+
                 &::after {
                   display: none;
                 }
@@ -118,18 +118,18 @@ $component-name: ps-mainmenu;
     .submenu {
       background-color: var(--bs-white);
       box-shadow: 0 10px 20px 0 rgba(var(--bs-black-rgb), 0.1);
-  
+
       &__row {
         align-items: stretch;
       }
-  
+
       &__left {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
         padding-block: 1.5rem;
         border-right: 1px solid var(--bs-gray-200);
-  
+
         .submenu__left-item {
           display: flex;
           align-items: center;
@@ -137,22 +137,22 @@ $component-name: ps-mainmenu;
           background-color: transparent;
           border-radius: var(--bs-border-radius);
           color: var(--bs-body-color);
-  
+
           &:hover {
             background-color: var(--bs-gray-100);
             color: var(--bs-primary);
           }
-  
+
           &.active {
             background-color: var(--bs-gray-100);
             color: var(--bs-primary);
-  
+
             &:active,
             &:focus {
               background-color: var(--bs-gray-100);
             }
           }
-  
+
           &.has-child {
             &::after {
               @extend .material-icons;
@@ -162,36 +162,36 @@ $component-name: ps-mainmenu;
           }
         }
       }
-  
+
       &__right {
         padding-block: 1.5rem;
-  
+
         &-items {
           display: none;
           grid-template-columns: repeat(3, 1fr);
           column-gap: 1.25rem;
           row-gap: 2rem;
-  
+
           &:first-child {
             display: grid;
           }
-  
+
           &.active {
             display: grid;
           }
-  
+
           &.not-active {
             display: none;
           }
-  
+
           .menu-item {
             display: block;
             color: var(--bs-body-color);
-  
+
             &:hover {
               color: var(--bs-primary);
             }
-  
+
             &__group--child,
             &__group--nochild {
               .menu-item__group-main-item {
@@ -200,11 +200,11 @@ $component-name: ps-mainmenu;
                 font-weight: 600;
               }
             }
-  
+
             &__group--child {
               display: flex;
               flex-direction: column;
-  
+
               .menu-item {
                 display: flex;
                 gap: 0.25rem;
@@ -212,7 +212,7 @@ $component-name: ps-mainmenu;
               }
             }
           }
-  
+
           @include media-breakpoint-up(xxl) {
             grid-template-columns: repeat(4, 1fr);
           }
@@ -249,7 +249,7 @@ $component-name: ps-mainmenu;
       max-width: 25rem;
       padding: 0 1rem;
       transition: $transition-base;
-      
+
       a {
         color: var(--bs-gray-600);
         display: block;
@@ -263,7 +263,7 @@ $component-name: ps-mainmenu;
         font-weight: 600;
         color: var(--bs-gray-800);
       }
-      
+
       &__list {
         margin: 0;
       }
@@ -282,26 +282,26 @@ $component-name: ps-mainmenu;
           line-height: 0;
         }
       }
-  
+
       &--current {
         left: 0;
         display: block;
       }
-  
+
       &--fromLeft {
         animation: from-left 0.25s;
       }
-  
+
       &--fromRight {
         animation: from-right 0.25s;
       }
-  
+
       &--parent {
         left: -100%;
         display: none;
         opacity: 0;
       }
-  
+
       &--childrens {
         display: flex;
         align-items: center;
@@ -340,11 +340,19 @@ $component-name: ps-mainmenu;
 
 // Animations
 @keyframes from-left {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes from-right {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }

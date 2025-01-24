@@ -51,7 +51,6 @@ $footer-text-color: var(--bs-body-color) !default;
   }
 
   & &__block {
-
     &__content {
       padding-top: 0.5rem;
       color: var(--footer-text-color);
@@ -64,7 +63,6 @@ $footer-text-color: var(--bs-body-color) !default;
     }
 
     &__content-list {
-
       margin-bottom: 0;
 
       a {
@@ -81,7 +79,6 @@ $footer-text-color: var(--bs-body-color) !default;
         &.logout {
           color: #d5343c;
         }
-
       }
 
       @include media-breakpoint-down(md) {
@@ -90,7 +87,6 @@ $footer-text-color: var(--bs-body-color) !default;
           padding-left: 0;
         }
       }
-
     }
 
     &__content-contact {
@@ -149,7 +145,5 @@ $footer-text-color: var(--bs-body-color) !default;
         margin-bottom: 2rem;
       }
     }
-
   }
-
 }

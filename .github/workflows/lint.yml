@@ -1,8 +1,8 @@
 name: Lint
 on: [ push, pull_request ]
 jobs:
-  stylelint:
-    name: SCSS Lint
+  stylelint_prettier:
+    name: Stylelint & Prettier
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,6 +12,10 @@ jobs:
         with:
           node-version: 20
       
+      # Install project dependencies
+      - name: Install dependencies
+        run: npm ci
+
       # Run Prettier check command
       - name: Run Prettier check
         run: |

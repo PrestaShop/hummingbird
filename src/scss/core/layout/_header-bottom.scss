@@ -17,8 +17,8 @@ $component-name: header-bottom;
 
     .logo {
       width: auto;
-      max-height: 3rem;
       max-width: 8rem;
+      max-height: 3rem;
     }
 
     @include media-breakpoint-up(md) {

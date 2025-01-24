@@ -4,9 +4,9 @@ $component-name: header-block;
   &__action-btn {
     --header-block-spacing-x: #{$header-block-spacing-x};
     --header-block-spacing-y: #{$header-block-spacing-y};
+    position: relative;
 
     display: inline-flex;
-    position: relative;
     gap: 0.25rem;
     align-items: center;
     padding: 0.375rem;

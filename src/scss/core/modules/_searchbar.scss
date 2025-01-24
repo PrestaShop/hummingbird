@@ -2,9 +2,9 @@ $component-name: ps-searchbar;
 
 // Searchbar
 .#{$component-name} {
-  margin-block: 0.5rem;
   position: relative;
   min-width: 19rem;
+  margin-block: 0.5rem;
   overflow: visible;
 
   &__form {
@@ -19,20 +19,20 @@ $component-name: ps-searchbar;
     position: absolute;
     top: 50%;
     left: 0.75rem;
-    transform: translateY(-50%);
-    color: var(--bs-body-color);
     padding: 0;
+    color: var(--bs-body-color);
     cursor: pointer;
+    transform: translateY(-50%);
   }
 
   &__clear {
     position: absolute;
     top: 50%;
     right: 0.75rem;
-    transform: translateY(-50%);
-    color: var(--bs-body-color);
     padding: 0;
+    color: var(--bs-body-color);
     cursor: pointer;
+    transform: translateY(-50%);
   }
 
   &__offcanvas {
@@ -54,9 +54,9 @@ $component-name: ps-searchbar;
 
   &__dropdown {
     position: absolute;
-    z-index: 1070;
     top: calc(100% + 0.5rem);
     right: 0;
+    z-index: 1070;
     width: 100vw;
     max-width: 30rem;
     overflow: hidden;
@@ -68,11 +68,11 @@ $component-name: ps-searchbar;
 
   &__results {
     display: grid;
-    gap: 1rem;
     grid-template-columns: 1fr;
-    margin: 0;
-    padding: 1rem;
+    gap: 1rem;
     max-height: 21rem;
+    padding: 1rem;
+    margin: 0;
     overflow-y: scroll;
   }
 
@@ -103,8 +103,8 @@ $component-name: ps-searchbar;
   // Search result
   &__result {
     &-name {
-      margin: 0;
       padding: 0.5rem 1rem;
+      margin: 0;
       color: var(--bs-body-color);
       transition: $transition-base;
     }

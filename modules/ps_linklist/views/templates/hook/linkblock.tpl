@@ -9,7 +9,7 @@
 
     <div role="button" class="footer__block__toggle d-md-none collapsed" aria-expanded="false" data-bs-target="#footer_sub_menu_{$linkBlock.id}" data-bs-toggle="collapse">
       <span class="footer__block__title">{$linkBlock.title}</span>
-      <i class="material-icons" aria-hidden="true">arrow_drop_down</i>
+      <i class="material-icons" aria-hidden="true">keyboard_arrow_down</i>
     </div>
 
     <ul id="footer_sub_menu_{$linkBlock.id}" class="footer__block__content footer__block__content-list collapse">

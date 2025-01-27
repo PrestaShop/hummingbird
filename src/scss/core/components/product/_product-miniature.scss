@@ -1,4 +1,5 @@
 $component-name: product-miniature;
+$product-miniature-container-query-width: 13.5rem;
 
 .#{$component-name} {
   container-type: inline-size;
@@ -134,7 +135,7 @@ $component-name: product-miniature;
     line-height: initial;
   }
 
-  @container product-miniature (width < 13.5rem) {
+  @container product-miniature (width < #{$product-miniature-container-query-width}) {
     .product-flags {
       .badge {
         padding: 0.125rem 0.25rem;

@@ -13,7 +13,7 @@ $component-name: products;
     }
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     .#{$component-name} {
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }

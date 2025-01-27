@@ -4,7 +4,7 @@ const initDesktopMenu = () => {
    */
   const dropdownToggles = document.querySelectorAll('.js-menu-desktop .dropdown-toggle');
   dropdownToggles.forEach((dropdownToggleElement: HTMLElement) => {
-    /* Contrôle de l'affichage du sous-menu pour les événements de la souris à l'intérieur du conteneur du menu */
+    // Controls the display of the submenu for mouse events inside the menu container
     const liElement = dropdownToggleElement.closest('li');
 
     liElement?.addEventListener('mouseenter', () => {
@@ -12,7 +12,8 @@ const initDesktopMenu = () => {
       const subMenu = liElement?.querySelector('.js-sub-menu') as HTMLElement;
 
       if (subMenu) {
-        subMenu.style.top = `${liPosition}px`; // Ajoutez 'px' pour convertir en une chaîne valide
+        // Add 'px' to convert to a valid string
+        subMenu.style.top = `${liPosition}px`;
         rightTabs.forEach((rightTab) => {
           rightTab.classList.remove('active');
           rightTab.classList.remove('not-active');

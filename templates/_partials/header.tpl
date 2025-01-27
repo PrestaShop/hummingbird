@@ -10,7 +10,7 @@
 
 {capture name="header_banner"}{hook h='displayBanner'}{/capture}
 {block name='header_banner'}
-  {if isset($smarty.capture.header_banner) && $smarty.capture.header_banner}
+  {if !empty($smarty.capture.header_banner)}
     <div class="{$headerBanner}">
       {$smarty.capture.header_banner nofilter}
     </div>
@@ -20,7 +20,7 @@
 {capture name="header_nav_1"}{hook h='displayNav1'}{/capture}
 {capture name="header_nav_2"}{hook h='displayNav2'}{/capture}
 {block name='header_nav'}
-  {if (isset($smarty.capture.header_nav_1) && $smarty.capture.header_nav_1) || (isset($smarty.capture.header_nav_2) && $smarty.capture.header_nav_2)}
+  {if !empty($smarty.capture.header_nav_1) || !empty($smarty.capture.header_nav_2)}
     <div class="{$headerTop} d-none d-md-block">
       <div class="container-md">
         <div class="row">
@@ -94,7 +94,7 @@
   </div>
 
   {capture name="nav_full_width"}{hook h='displayNavFullWidth'}{/capture}
-  {if isset($smarty.capture.nav_full_width) && $smarty.capture.nav_full_width}
+  {if !empty($smarty.capture.nav_full_width)}
     <div class="{$headerNavFullWidth}">
       {$smarty.capture.nav_full_width nofilter}
     </div>

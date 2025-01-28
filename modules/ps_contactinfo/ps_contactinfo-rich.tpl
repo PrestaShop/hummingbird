@@ -12,14 +12,14 @@
     <hr/>
     <div class="ps-contactinfo__item">
       <i class="material-icons" aria-hidden="true">&#xE0CD;</i>
-      <div class="ps-contactinfo__info"><a href="tel:{$contact_infos.phone|escape:'htmlall':'UTF-8'}">{$contact_infos.phone|escape:'htmlall':'UTF-8'}</a></div>
+      <div class="ps-contactinfo__info"><a href="tel:{$contact_infos.phone}">{$contact_infos.phone}</a></div>
     </div>
   {/if}
   {if $contact_infos.fax}
     <hr/>
     <div class="ps-contactinfo__item">
       <i class="material-icons" aria-hidden="true">&#xE8AD;</i>
-      <div class="ps-contactinfo__info">{$contact_infos.fax|escape:'htmlall':'UTF-8'}</div>
+      <div class="ps-contactinfo__info">{$contact_infos.fax}</div>
     </div>
   {/if}
   {if $contact_infos.email && $display_email}

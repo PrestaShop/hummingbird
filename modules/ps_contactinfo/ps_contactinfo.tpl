@@ -20,14 +20,14 @@
     {if $contact_infos.phone}
       <div class="ps-contactinfo__phone">
         <i class="material-icons" aria-hidden="true">phone</i>
-        <a href="tel:{$contact_infos.phone|escape:'htmlall':'UTF-8'}">{$contact_infos.phone|escape:'htmlall':'UTF-8'}</a>
+        <a href="tel:{$contact_infos.phone}">{$contact_infos.phone}</a>
       </div>
     {/if}
 
     {if $contact_infos.fax}
       <div class="ps-contactinfo__fax">
         <i class="material-icons" aria-hidden="true">&#xE8AD;</i>
-        <a href="fax:{$contact_infos.fax|escape:'htmlall':'UTF-8'}">{$contact_infos.fax|escape:'htmlall':'UTF-8'}</a>
+        <a href="fax:{$contact_infos.fax}">{$contact_infos.fax}</a>
       </div>
     {/if}
 

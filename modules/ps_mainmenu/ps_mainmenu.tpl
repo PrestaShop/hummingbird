@@ -4,18 +4,18 @@
   {if $parent.depth === 1}
     {foreach from=$links item=link}
       {if $link.depth === 3 && $link.children|count}
-      <div class="{$class|escape:'htmlall':'UTF-8'}__group--child">
+      <div class="{$class}__group--child">
       {elseif $link.depth === 3 && !$link.children|count}
-      <div class="{$class|escape:'htmlall':'UTF-8'}__group--nochild">
+      <div class="{$class}__group--nochild">
       {/if}
 
         <a
-          class="{$class|escape:'htmlall':'UTF-8'} {if $link.depth === 3}{$class|escape:'htmlall':'UTF-8'}__group-main-item{/if}"
-          href="{$link.url|escape:'htmlall':'UTF-8'}"
-          data-depth="{$link.depth|escape:'htmlall':'UTF-8'}"
+          class="{$class} {if $link.depth === 3}{$class}__group-main-item{/if}"
+          href="{$link.url}"
+          data-depth="{$link.depth}"
           {if $link.open_in_new_window}target="_blank"{/if}
         >
-          {$link.label|escape:'htmlall':'UTF-8'}
+          {$link.label}
         </a>
         {call name=generateLinks links=$link.children parent=$parent}
 
@@ -40,12 +40,12 @@
         {foreach from=$nodes item=node}
           <a
             class="submenu__left-item {if $node.children|count}has-child{/if}"
-            href="{$node.url|escape:'htmlall':'UTF-8'}"
-            data-depth="{$node.depth|escape:'htmlall':'UTF-8'}"
-            {if $node.children|count}data-open-tab="submenu_{$node.label|lower|classname|escape:'htmlall':'UTF-8'}_{$node.depth|escape:'htmlall':'UTF-8'}_{$node.page_identifier}"{/if}
+            href="{$node.url}"
+            data-depth="{$node.depth}"
+            {if $node.children|count}data-open-tab="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}"{/if}
             {if $node.open_in_new_window}target="_blank"{/if}
           >
-            {$node.label|escape:'htmlall':'UTF-8'}
+            {$node.label}
           </a>
         {/foreach}
       </div>
@@ -54,7 +54,7 @@
     {if $depth === 1 }
       <div class="submenu__right col-sm-9">
         {foreach from=$nodes item=node}
-          <div class="submenu__right-items" data-id="submenu_{$node.label|lower|classname|escape:'htmlall':'UTF-8'}_{$node.depth|escape:'htmlall':'UTF-8'}_{$node.page_identifier}">
+          <div class="submenu__right-items" data-id="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}">
             {generateLinks links=$node.children parent=$parent}
           </div>
         {/foreach}
@@ -80,14 +80,14 @@
   {if $itemsFirstLevel|count}
     <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0">
       {foreach from=$itemsFirstLevel item=menuItem}
-        <li class="ps-mainmenu__tree__item type-{$menuItem.type|escape:'htmlall':'UTF-8'} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier|escape:'htmlall':'UTF-8'}">
+        <li class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}">
           <a
             class="ps-mainmenu__tree__link{if $menuItem.children|count} dropdown-toggle{/if}"
-            href="{$menuItem.url|escape:'htmlall':'UTF-8'}"
+            href="{$menuItem.url}"
             data-depth="0"
             {if $menuItem.open_in_new_window}target="_blank"{/if}
           >
-            {$menuItem.label|escape:'htmlall':'UTF-8'}
+            {$menuItem.label}
           </a>
 
           {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
@@ -108,31 +108,31 @@
   {if $nodes|count}
     <nav
       class="menu menu--mobile{if $depth === 0} menu--current js-menu-current{else} menu--child js-menu-child{/if}"
-      {if $depth === 0}id="menu-mobile"{else}data-parent-title="{$parent.label|escape:'htmlall':'UTF-8'}"{/if}
-      {if $depth > 1}data-back-title="{$backTitle|escape:'htmlall':'UTF-8'}" data-id="{$expandId|escape:'htmlall':'UTF-8'}"{/if}
-      data-depth="{$depth|escape:'htmlall':'UTF-8'}"
+      {if $depth === 0}id="menu-mobile"{else}data-parent-title="{$parent.label}"{/if}
+      {if $depth > 1}data-back-title="{$backTitle}" data-id="{$expandId}"{/if}
+      data-depth="{$depth}"
     >
       <ul class="menu__list">
         {if $depth >= 1}
-          <li class="menu__title">{$parent.label|escape:'htmlall':'UTF-8'}</li>
+          <li class="menu__title">{$parent.label}</li>
         {/if}
         {foreach from=$nodes item=node}
           <li
-            class="type-{$node.type|escape:'htmlall':'UTF-8'} {if $node.current} current{/if} {if $node.children|count} menu--childrens{/if}"
-            id="{$node.page_identifier|escape:'htmlall':'UTF-8'}"
+            class="type-{$node.type} {if $node.current} current{/if} {if $node.children|count} menu--childrens{/if}"
+            id="{$node.page_identifier}"
           >
             <a
               class="{if $depth>= 0}menu__link{/if}"
-              href="{$node.url|escape:'htmlall':'UTF-8'}"
-              data-depth="{$depth|escape:'htmlall':'UTF-8'}"
+              href="{$node.url}"
+              data-depth="{$depth}"
               {if $node.open_in_new_window}target="_blank"{/if}
             >
-            {$node.label|escape:'htmlall':'UTF-8'}
+            {$node.label}
             </a>
             {if $node.children|count}
               {* Cannot use page identifier as we can have the same page several times *}
               {assign var=_expand_id value=10|mt_rand:100000}
-              <button class="menu__toggle-child btn btn-link js-menu-open-child" data-target="{$_expand_id|escape:'htmlall':'UTF-8'}">
+              <button class="menu__toggle-child btn btn-link js-menu-open-child" data-target="{$_expand_id}">
                 <i class="material-icons rtl-flip">chevron_right</i>
               </button>
             {/if}

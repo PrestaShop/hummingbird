@@ -70,7 +70,7 @@
         <div id="_mobile_ps_customersignin" class="d-md-none d-flex col-auto">
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
-            <a href="{$urls.pages.my_account|escape:'htmlall':'UTF-8'}" class="header-block__action-btn">
+            <a href="{$urls.pages.my_account}" class="header-block__action-btn">
               <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
             </a>
           </div>
@@ -81,7 +81,7 @@
           <div id="_mobile_ps_shoppingcart" class="d-md-none d-flex col-auto">
             {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
             <div class="header-block">
-              <a href="{$urls.pages.cart|escape:'htmlall':'UTF-8'}" class="header-block__action-btn">
+              <a href="{$urls.pages.cart}" class="header-block__action-btn">
                 <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
                 <span class="header-block__badge">{$cart.products_count}</span>
               </a>

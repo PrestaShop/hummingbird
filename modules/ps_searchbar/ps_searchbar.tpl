@@ -46,3 +46,19 @@
     </a>
   </li>
 </template>
+
+{* MOBILE SEARCH BAR *}
+<div class="ps-searchbar--mobile d-md-none d-flex col-auto">
+  <div class="header-block d-flex align-items-center">
+    <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas" aria-label="{l s='Show search bar' d='Shop.Theme.Global'}">
+      <span class="material-icons header-block__icon">search</span>
+    </a>
+  </div>
+
+  <div class="ps-searchbar__offcanvas js-search-offcanvas offcanvas offcanvas-top h-auto" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas-header">
+      <div id="_mobile_ps_searchbar" class="ps-searchbar__container"></div>
+      <button type="button" class="btn btn-link" data-bs-dismiss="offcanvas" aria-label="Close">{l s='Cancel' d='Shop.Theme.Global'}</button>
+    </div>
+  </div>
+</div>

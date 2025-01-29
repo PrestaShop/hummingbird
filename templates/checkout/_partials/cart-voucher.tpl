@@ -56,9 +56,11 @@
 
       {if $cart.discounts|count> 0}
         <hr />
+
         <p class="fw-bold fs-6">
           {l s='Take advantage of our exclusive offers:' d='Shop.Theme.Actions'}
         </p>
+
         <ul class="js-discount cart-voucher__offers">
           {foreach from=$cart.discounts item=discount}
             <li class="cart-voucher__code">

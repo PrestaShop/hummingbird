@@ -3,6 +3,10 @@
  * file that was distributed with this source code.
  */
 
+export const layout = {
+  stickyHeader: '.js-sticky-header',
+};
+
 export const facetedsearch = {
   range: '.js-faceted-slider',
   rangeContainer: '.js-faceted-slider-container',
@@ -38,6 +42,9 @@ export const cart = {
   promoCode: '#promo-code',
   deleteLinkAction: 'delete-from-cart',
   productQuantity: '.cart__items .js-quantity-button',
+  productItem: '.cart__item',
+  removeFromCartLink: '.remove-from-cart',
+  alertPlaceholder: '.js-cart-update-alert',
 };
 
 export const blockcart = {
@@ -98,6 +105,11 @@ export const mobileMenu = {
   specificChild: (param: string | undefined) => `.menu[data-id="${param}"]`,
 };
 
+export const guestPasswordToggle = {
+  checkbox: '.js-password-form__check',
+  passwordWrapper: '.js-password-form__input-wrapper',
+};
+
 export const visiblePassword = {
   visiblePassword: '.js-visible-password',
 };
@@ -105,13 +117,17 @@ export const visiblePassword = {
 export const desktopMenu = {
   dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
   dropdownItemAnchor: (depth: number) => `.js-menu-desktop a[data-depth="${depth}"]`,
+  menuItemsLvl0: '.js-menu-item-lvl-0',
+  subMenu: '.js-sub-menu',
 };
 
 export const qtyInput = {
   default: '.js-quantity-button',
+  idProductInput: 'input[name="id_product"]',
   modal: '.modal-dialog .js-quantity-button',
   increment: '.js-increment-button',
   decrement: '.js-decrement-button',
+  quantityWanted: '.js-quantity-wanted',
   confirm: '.confirmation',
   icon: '.material-icons',
   spinner: '.spinner-border',
@@ -135,6 +151,7 @@ export const passwordPolicy = {
 };
 
 const selectorsMap = {
+  layout,
   qtyInput,
   alert: {
     selector: '#notifications .container',
@@ -177,6 +194,7 @@ const selectorsMap = {
   languageSelector,
   searchBar,
   mobileMenu,
+  guestPasswordToggle,
   visiblePassword,
   desktopMenu,
   formValidation,

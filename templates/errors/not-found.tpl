@@ -4,7 +4,7 @@
  *}
 <section id="content" class="page-content page-not-found">
   {block name='page_content'}
-    {block name="error_content"}
+    {block name='error_content'}
       {if isset($errorContent)}
           {$errorContent nofilter}
           <a href="{$urls.pages.index}" class="btn btn-primary back-to-index">

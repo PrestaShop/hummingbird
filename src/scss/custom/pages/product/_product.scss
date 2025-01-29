@@ -35,6 +35,7 @@
         width: 2.5rem;
         min-width: 2.5rem;
         height: 2.5rem;
+        cursor: pointer;
         background-color: #fff;
         border: none;
         border-radius: 50%;
@@ -46,9 +47,13 @@
       margin-bottom: 1.5rem;
     }
 
+    &__tax-info {
+      font-size: 0.875rem;
+      color: var(--bs-gray-600);
+    }
+
     &__tax-label {
-      margin-bottom: 1.5rem;
-      color: var(--bs-gray-700);
+      white-space: nowrap;
     }
 
     &__prices {
@@ -56,42 +61,66 @@
     }
 
     &__current-price {
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 2rem;
+    }
+
+    &__unit-price {
+      font-size: 0.875rem;
+      color: var(--bs-gray-600);
     }
 
     &__discount {
-      margin-left: 0.5rem;
-      color: var(--bs-gray-700);
+      font-size: 1rem;
+      color: var(--bs-gray-600);
     }
 
     &__price-regular {
       text-decoration: line-through;
     }
 
+    &__pack-price {
+      font-size: 1rem;
+    }
+
     &__variants {
       .variant {
         margin-bottom: 1.5rem;
 
-        ul {
+        // RADIO
+        .radio-variants {
           display: flex;
-          align-items: center;
+          flex-wrap: wrap;
+          row-gap: 0.5rem;
+          column-gap: 0.875rem;
+          margin-bottom: 0;
 
-          li {
-            &:first-of-type {
-              span {
-                margin-left: 0;
-              }
-            }
+          .radio-variant {
+            margin: 0;
           }
         }
 
-        .input-color {
-          display: none;
-        }
+        // COLORS
+        .color-variants {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-bottom: 0;
 
-        .color {
-          span {
-            font-size: 0;
+          .color-variant {
+            .input-color {
+              display: none;
+            }
+
+            label {
+              display: block;
+              line-height: 0;
+            }
+
+            .color {
+              margin: 0;
+            }
           }
         }
       }
@@ -137,6 +166,15 @@
 
     &.active img {
       border: 2px solid $primary;
+    }
+  }
+}
+
+// Hide product image zoom on quickview modal
+body.modal-open {
+  .quickview {
+    .product__images__modal-opener {
+      display: none;
     }
   }
 }

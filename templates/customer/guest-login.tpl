@@ -4,7 +4,7 @@
  *}
 {extends file='page.tpl'}
 
-{block name="container_class"}container container--limited-md{/block}
+{block name='container_class'}container container--limited-md{/block}
 
 {block name='page_title'}
   {l s='Guest Order Tracking' d='Shop.Theme.Customeraccount'}
@@ -17,13 +17,13 @@
     </header>
 
     <section class="form-fields">
-    
       <input type="hidden" name="controller" value="guest-tracking">
 
       <div class="mb-3 row">
         <label class="col-md-3 form-label required">
           {l s='Order Reference:' d='Shop.Forms.Labels'}
         </label>
+
         <div class="col-md-6">
           <input
             class="form-control"
@@ -42,6 +42,7 @@
         <label class="col-md-3 form-label required">
           {l s='Email:' d='Shop.Forms.Labels'}
         </label>
+
         <div class="col-md-6">
           <input
             class="form-control"
@@ -51,7 +52,6 @@
          >
         </div>
       </div>
-
     </section>
 
     <footer class="form-footer text-sm-center">

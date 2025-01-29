@@ -18,6 +18,7 @@
         <div class="{$headerTopName}__left col-md-5">
           {hook h='displayNav1'}
         </div>
+
         <div class="{$headerTopName}__right col-md-7">
           {hook h='displayNav2'}
         </div>
@@ -38,10 +39,10 @@
           {/if}
         </div>
 
-        <div class="search__mobile d-md-none col-auto">
+        <div class="search__mobile d-md-none d-flex col-auto">
 
-          <div class="header-block">
-            <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas">
+          <div class="header-block d-flex align-items-center">
+            <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas" aria-label="{l s='Show search bar' d='Shop.Theme.Global'}">
               <span class="material-icons header-block__icon">search</span>
             </a>
           </div>
@@ -56,7 +57,7 @@
 
         {hook h='displayTop'}
 
-        <div id="_mobile_user_info" class="d-md-none col-auto">
+        <div id="_mobile_user_info" class="d-md-none d-flex col-auto">
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
             <span class="header-block__action-btn">
@@ -67,9 +68,9 @@
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
         </div>
 
-        <div id="_mobile_cart" class="d-md-none col-auto">
+        <div id="_mobile_cart" class="d-md-none col-auto d-flex">
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
-          <div class="header-block">
+          <div class="header-block d-flex align-items-center">
             <span class="header-block__action-btn">
               <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
               <span class="header-block__badge">{$cart.products_count}</span>
@@ -80,5 +81,6 @@
       </div>
     </div>
   </div>
+
   {hook h='displayNavFullWidth'}
 {/block}

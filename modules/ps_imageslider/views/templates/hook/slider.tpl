@@ -33,13 +33,12 @@
         {/foreach}
       </div>
 
-      <button class="carousel-control-prev" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="prev" aria-label="{l s='Previous' d='Shop.Theme.Actions'}">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">{l s='Previous' d='Shop.Theme.Actions'}</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="next">
+
+      <button class="carousel-control-next" type="button" data-bs-target="#home-slider .carousel" data-bs-slide="next" aria-label="{l s='Next' d='Shop.Theme.Actions'}">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">{l s='Next' d='Shop.Theme.Actions'}</span>
       </button>
     </div>
   </div>

@@ -64,7 +64,19 @@ const useQuantityInput: Theme.QuantityInput.Function = (
             }
 
             if (event.key === ENTER_KEY) {
-              updateQuantity(qtyInputGroup, 1);
+              if (qtyInput.value === '0') {
+                const targetItem = qtyInput.closest(cartSelectorMap.productItem);
+                const removeButton = targetItem?.querySelector(cartSelectorMap.removeFromCartLink) as HTMLElement
+                    | null;
+
+                if (removeButton) {
+                  removeButton.click();
+                } else {
+                  updateQuantity(qtyInputGroup, 1);
+                }
+              } else {
+                updateQuantity(qtyInputGroup, 1);
+              }
             }
 
             if (event.key === ESCAPE_KEY) {
@@ -278,8 +290,36 @@ const sendUpdateCartRequest = async (updateUrl: string, quantity: number) => {
   return response;
 };
 
+export const populateMinQuantityInput = (selector = quantityInputMap.default) => {
+  const qtyInputNodeList = document.querySelectorAll<HTMLElement>(selector);
+
+  // For each product in list
+  qtyInputNodeList.forEach((qtyInputWrapper: HTMLElement) => {
+    const idProduct = qtyInputWrapper.closest('form')
+      ?.querySelector<HTMLInputElement>(quantityInputMap.idProductInput)?.value;
+    const qtyInput = qtyInputWrapper.querySelector<HTMLInputElement>('input');
+    const qtyInputMin = qtyInput?.getAttribute('min');
+
+    // if the idproduct is set, and the input has a min attribute
+    if (idProduct && qtyInput && qtyInputMin) {
+      // we check if the product is already in the cart
+      const productInCart = window.prestashop.cart.products.filter(
+        (product: {id: number}) => product.id === parseInt(idProduct, 10),
+      ).shift();
+      // if the product is in the cart (and if the qty wanted is >= than the min qty, we set the minimal quantity to 1
+      const minimalQuantity = productInCart && productInCart.quantity_wanted >= qtyInputMin
+        ? 1 : qtyInputMin;
+      // we set the min attribute to the input
+      qtyInput.setAttribute('min', minimalQuantity.toString());
+      qtyInput.setAttribute('value', minimalQuantity.toString());
+    }
+  });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const {prestashop, Theme: {events, selectors}} = window;
+
+  populateMinQuantityInput();
 
   prestashop.on(events.updatedCart, () => {
     useQuantityInput(cartSelectorMap.productQuantity);
@@ -287,9 +327,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const {cart: cartMap} = selectors;
     const cartOverview = document.querySelector<HTMLElement>(cartMap.overview);
     cartOverview?.focus();
+
+    populateMinQuantityInput();
   });
 
-  prestashop.on(events.quickviewOpened, () => useQuantityInput(quantityInputMap.modal));
+  prestashop.on(events.updateProduct, () => {
+    populateMinQuantityInput();
+  });
+
+  prestashop.on(events.quickviewOpened, () => {
+    useQuantityInput(quantityInputMap.modal);
+    populateMinQuantityInput(quantityInputMap.modal);
+  });
 });
 
 export default useQuantityInput;

@@ -9,6 +9,7 @@
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
       </div>
+
       <div class="modal-body text-center">
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">{l s='Loading...' d='Shop.Theme.Global'}</span>

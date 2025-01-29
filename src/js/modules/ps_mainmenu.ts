@@ -16,6 +16,21 @@ const initDesktopMenu = () => {
   const {desktopMenu: desktopMenuMap} = Theme.selectors;
 
   /**
+   * Handle submenu position
+   */
+  const menuItemsLvl0 = document.querySelectorAll(desktopMenuMap.menuItemsLvl0);
+
+  if (menuItemsLvl0) {
+    menuItemsLvl0.forEach((element: HTMLElement) => {
+      element.addEventListener('mouseenter', () => {
+        const subMenuTopPosition = element.offsetHeight + element.offsetTop;
+        const subMenu = element.querySelector(desktopMenuMap.subMenu) as HTMLElement;
+        subMenu.style.top = `${subMenuTopPosition}px`;
+      });
+    });
+  }
+
+  /**
    * Handle Mouse and Keyboard events for Submenus.
    * Find all dropdown toggles with [data-depth: ^2]
    */

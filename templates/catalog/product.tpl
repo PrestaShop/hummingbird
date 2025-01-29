@@ -7,6 +7,7 @@
 {block name='head' append}
   <meta property="og:type" content="product">
   <meta content="{$product.url}">
+
   {if $product.cover}
     <meta property="og:image" content="{$product.cover.large.url}">
   {/if}
@@ -51,7 +52,7 @@
 
       {block name='product_customization'}
         {if $product.is_customizable && count($product.customizations.fields)}
-          {include file="catalog/_partials/product-customization.tpl" customizations=$product.customizations}
+          {include file='catalog/_partials/product-customization.tpl' customizations=$product.customizations}
         {/if}
       {/block}
 
@@ -99,7 +100,6 @@
 
   {* SECOND PART - REASSURANCE, TABS *}
   <div class="row">
-
     <div class="col-lg-6 col-xl-5 order-lg-1">
       {block name='hook_display_reassurance'}
         {hook h='displayReassurance'}
@@ -118,7 +118,7 @@
                       {l s='Description' d='Shop.Theme.Catalog'}
                     </button>
                   </h2>
-                  <div id="product-description-collapse" class="info__content accordion-collapse collapse show" data-bs-parent="#product-infos-accordion"  ria-labelledby="product-description-heading">
+                  <div id="product-description-collapse" class="info__content accordion-collapse collapse show" data-bs-parent="#product-infos-accordion" aria-labelledby="product-description-heading">
                     <div class="product__description accordion-body rich-text">
                       {$product.description nofilter}
                     </div>
@@ -186,10 +186,6 @@
 
   {block name='product_footer'}
     {hook h='displayFooterProduct' product=$product category=$category}
-  {/block}
-
-  {block name='product_images_modal'}
-    {include file='catalog/_partials/product-images-modal.tpl'}
   {/block}
 
   {block name='page_footer_container'}

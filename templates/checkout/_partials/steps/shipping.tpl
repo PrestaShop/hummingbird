@@ -30,6 +30,7 @@
                             <input type="radio" class="form-check-input" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
                             <i class="form-check-round"></i>
                           </span>
+
                           <div class="carrier col-10{if $carrier.logo} carrier--hasLogo{/if}">
                             <div class="row align-items-center">
                               {if $carrier.logo}
@@ -45,19 +46,23 @@
                           </div>
                         </div> 
                       </div>
+
                       <span class="delivery-option__center col-6 col-sm-4 order-2 order-sm-1 d-flex align-items-center">
                         {$carrier.delay}
                       </span>
+
                       <span class="delivery-option__right col-6 col-sm-4 order-1 order-sm-2 d-flex align-items-center">
                         {$carrier.price}
                       </span>
                     </div>
                   </label>
+
                   <div class="carrier__extra-content-wrapper {if $delivery_option == $carrier_id} carrier__extra-content-wrapper--active {/if} js-carrier-extra-content" {if $delivery_option !== $carrier_id}style="max-height:0px"{/if}>
                     <div class="carrier__extra-content">
                       {$carrier.extraContent nofilter}
                     </div>
                   </div>
+
                   {if !$smarty.foreach.delivery_options.last}
                     <hr />
                   {/if}

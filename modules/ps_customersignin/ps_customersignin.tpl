@@ -4,7 +4,7 @@
  *}
 
 <div id="_desktop_user_info">
-  <div class="user-info">
+  <div class="user-info d-flex align-items-center">
     {if $customer.is_logged}
       <div class="dropdown header-block">
         <a
@@ -14,7 +14,8 @@
           id="userMenuButton"
           data-bs-toggle="dropdown"
           aria-haspopup="true"
-          aria-expanded="false">
+          aria-expanded="false"
+          aria-label="{l s='View my account (%s)' d='Shop.Theme.Customeraccount' sprintf=[$customerName]}">
           <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
           <span class="header-block__title d-lg-inline d-none">{$customerName|truncate:22:"..":true}</span>
         </a>

@@ -99,7 +99,7 @@
                   loading="lazy"
                   alt="{l s='No image available' d='Shop.Theme.Catalog'}"
                   title="{l s='No image available' d='Shop.Theme.Catalog'}"
-                  data-full-size-image-url="{$product.cover.bySize.home_default.url}"
+                  data-full-size-image-url="{$urls.no_picture_image.bySize.home_default.url}"
                 >
               </picture>
             {/if}
@@ -132,7 +132,7 @@
 
           <div class="{$componentName}__infos__bottom">
             {block name='product_variants'}
-              <div class="{$componentName}-variants">
+              <div class="{$componentName}__variants">
                 {if $product.main_variants}
                   {include file='catalog/_partials/variant-links.tpl' variants=$product.main_variants}
                 {/if}
@@ -179,17 +179,20 @@
             {if $product.add_to_cart_url}
               <form action="{$urls.pages.cart}" method="post" class="d-flex flex-wrap flex-md-nowrap gap-3 align-items-center mt-3">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
+
                 <input type="hidden" name="token" value="{$static_token}" />
+
                 <div class="quantity-button js-quantity-button w-100 w-sm-auto">
                   {include file='components/qty-input.tpl'
                     attributes=[
-                      "id"=>"quantity_wanted_{$product.id_product}",
-                      "value"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}",
-                      "min"=>"{if $product.cart_quantity && $product.cart_quantity >= $product.minimal_quantity}1{else}{$product.minimal_quantity}{/if}"
+                      "id" => "quantity_wanted_{$product.id_product}",
+                      "value" => "{$product.minimal_quantity}",
+                      "min" => "{$product.minimal_quantity}"
                     ]
                     marginHelper="mb-0"
                   }
                 </div>
+
                 <button data-button-action="add-to-cart" class="btn btn-primary flex-grow-1 flex-md-grow-0">
                   <i class="material-icons" aria-hidden="true">&#xe854;</i>
                   <span class="visually-hidden">{l s='Add to cart' d='Shop.Theme.Actions'}</span>

@@ -4,7 +4,7 @@
  *}
 {extends file='page.tpl'}
 
-{block name="container_class"}container container--limited-sm{/block}
+{block name='container_class'}container container--limited-sm{/block}
 
 {block name='page_title'}
   {l s='Forgot your password?' d='Shop.Theme.Customeraccount'}
@@ -27,7 +27,7 @@
     <section class="form-fields">
       <div class="mb-3">
         <label class="form-label required">{l s='Email address' d='Shop.Forms.Labels'}</label>
-        <input type="email" name="email" id="email" value="{if isset($smarty.post.email)}{stripslashes($smarty.post.email)}{/if}" class="form-control" required>
+        <input type="email" name="email" id="email" value="{if isset($smarty.post.email)}{stripslashes($smarty.post.email)}{/if}" class="form-control" autocomplete="email" required>
       </div>
       <button id="send-reset-link" class="form-control-submit btn btn-primary" name="submit" type="submit">
         {l s='Send reset link' d='Shop.Theme.Actions'}
@@ -38,6 +38,7 @@
 
 {block name='page_footer'}
   <hr>
+
   <a id="back-to-login" href="{$urls.pages.my_account}" class="btn btn-unstyle btn-with-icon">
     <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
     <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>

@@ -3,6 +3,9 @@
  * file that was distributed with this source code.
  */
 
+import SelectorsMap from '@constants/selectors-map';
+import useAlert from './useAlert';
+
 const handleCartAction = (event: Event): void => {
   event.stopPropagation();
   event.preventDefault();
@@ -33,11 +36,43 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
     body: formData,
   })
     .then((resp: Response) => {
-    // Refresh cart preview
+      // Refresh cart preview
       prestashop.emit(events.updateCart, {
         reason: dataset,
         resp,
       });
+
+      // Show product removal success alert
+      if (target && target.getAttribute('data-link-action') === SelectorsMap.cart.deleteLinkAction) {
+        const alertPlaceholder = document.querySelector(SelectorsMap.cart.alertPlaceholder);
+        const productUrl = target.getAttribute('data-product-url');
+        const productName = target.getAttribute('data-product-name');
+
+        if (alertPlaceholder && productUrl && productName) {
+          const alertText = alertPlaceholder.getAttribute('data-alert');
+
+          // Create the product link element
+          const productLink = document.createElement('a');
+          productLink.classList.add('alert-link');
+          productLink.setAttribute('href', productUrl);
+          productLink.textContent = productName;
+
+          // Create the alert message container
+          const alertMessage = document.createElement('span');
+          alertMessage.appendChild(productLink);
+          alertMessage.append(` ${alertText}`);
+
+          const alertMessageContainer = document.createElement('div');
+          alertMessageContainer.appendChild(alertMessage);
+
+          const alert = useAlert(alertMessageContainer.innerHTML, {
+            type: 'success',
+            selector: SelectorsMap.cart.alertPlaceholder,
+          });
+
+          alert.show();
+        }
+      }
     })
     .catch((err) => {
       const errorData = err as Response;

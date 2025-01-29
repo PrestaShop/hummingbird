@@ -82,7 +82,7 @@
     </a>
 
     {if is_array($product.customizations) && $product.customizations|count}
-      {include file="catalog/_partials/product-customization-modal.tpl" product=$product}
+      {include file='catalog/_partials/product-customization-modal.tpl' product=$product}
     {/if}
 
     {foreach from=$product.attributes key="attribute" item="value"}
@@ -175,7 +175,10 @@
       <a class="remove-from-cart" rel="nofollow" href="{$product.remove_from_cart_url}"
         data-link-action="delete-from-cart" data-id-product="{$product.id_product|escape:'javascript'}"
         data-id-product-attribute="{$product.id_product_attribute|escape:'javascript'}"
-        data-id-customization="{$product.id_customization|escape:'javascript'}">
+        data-id-customization="{$product.id_customization|escape:'javascript'}"
+        data-product-url="{$product.url|escape:'javascript'}"
+        data-product-name="{$product.name|escape:'htmlall':'UTF-8'}"
+        >
         {l s='Remove' d='Shop.Theme.Checkout'}
       </a>
     {/if}

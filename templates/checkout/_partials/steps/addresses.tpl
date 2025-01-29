@@ -46,7 +46,7 @@
         {if isset($delivery_address_error)}
           <p class="alert alert-danger js-address-error" name="alert-delivery" id="id-failure-address-{$delivery_address_error.id_address}">{$delivery_address_error.exception}</p>
         {else}
-          <p class="alert alert-danger js-address-error" name="alert-delivery" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
+          <p class="alert alert-danger js-address-error" name="alert-delivery" style="display: none">{l s='Your address is incomplete, please update it.' d='Shop.Notifications.Error'}</p>
         {/if}
 
         <a href="{$new_address_delivery_url}" class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3">
@@ -87,7 +87,7 @@
           {if isset($invoice_address_error)}
             <p class="alert alert-danger js-address-error" name="alert-invoice" id="id-failure-address-{$invoice_address_error.id_address}">{$invoice_address_error.exception}</p>
           {else}
-            <p class="alert alert-danger js-address-error" name="alert-invoice" style="display: none">{l s="Your address is incomplete, please update it." d="Shop.Notifications.Error"}</p>
+            <p class="alert alert-danger js-address-error" name="alert-invoice" style="display: none">{l s='Your address is incomplete, please update it.' d='Shop.Notifications.Error'}</p>
           {/if}
 
           <a href="{$new_address_invoice_url}" class="btn btn-outline-primary btn-with-icon w-100 w-md-auto">
@@ -109,6 +109,7 @@
               {l s='Continue to Shipping' d='Shop.Theme.Actions'}
               <div class="material-icons rtl-flip" aria-hidden="true">arrow_forward</div>
             </button>
+
             <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}
       </div>

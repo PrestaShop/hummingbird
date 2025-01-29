@@ -12,5 +12,6 @@
       {elseif $variant.html_color_code} style="background-color: {$variant.html_color_code}" {/if}
    ></a>
   {/foreach}
+
   <span class="js-count count"></span>
 </div>

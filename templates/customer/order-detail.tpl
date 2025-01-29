@@ -20,9 +20,11 @@
                                                           sprintf=['%reference%' => $order.details.reference, '%date%' => $order.details.order_date]
                                                         }
           </p>
+
           <p class="order__carrier">
             {l s='Carrier: %carrierName%' d='Shop.Theme.Checkout' sprintf=['%carrierName%' => $order.carrier.name]}
           </p>
+
           <p class="order__payment">
             {l s='Payment method: %paymentMethod%' d='Shop.Theme.Checkout' sprintf=['%paymentMethod%' => $order.details.payment]}
           </p>
@@ -59,6 +61,7 @@
   {block name='order_history'}
     <section id="order-history" class="box">
       <h2 class="h3">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
+
       <div class="table-wrapper overflow-auto">
         <table class="table">
           <thead class="thead-default">
@@ -67,6 +70,7 @@
               <th>{l s='Status' d='Shop.Theme.Global'}</th>
             </tr>
           </thead>
+
           <tbody>
             {foreach from=$order.history item=state}
               <tr>
@@ -87,6 +91,7 @@
   {if $order.follow_up}
     <div class="box">
       <p>{l s='Click the following link to track the delivery of your order' d='Shop.Theme.Customeraccount'}</p>
+
       <a href="{$order.follow_up}">{$order.follow_up}</a>
     </div>
   {/if}
@@ -95,6 +100,7 @@
 
   {block name='addresses'}
     <h3 class="h3">{l s='Addresses' d='Shop.Theme.Customeraccount'}</h3>
+
     <div class="addresses row">
       {if $order.addresses.delivery}
         <div class="col-sm-6 mb-4">
@@ -143,6 +149,7 @@
   {block name='order_carriers'}
     {if $order.shipping}
       <h3 class="h3">{l s='Tracking' d='Shop.Theme.Customeraccount'}</h3>
+
       <div class="table-wrapper">
         <table class="table d-none d-sm-table d-md-table">
           <thead class="thead-default">
@@ -154,6 +161,7 @@
               <th>{l s='Tracking number' d='Shop.Theme.Checkout'}</th>
             </tr>
           </thead>
+
           <tbody>
             {foreach from=$order.shipping item=line}
               <tr>
@@ -176,18 +184,22 @@
                 <p class="col fw-bold">{l s='Date' d='Shop.Theme.Global'}</p>
                 <p class="col text-end">{$line.shipping_date}</p>
               </li>
+
               <li class="row">
                 <p class="col fw-bold">{l s='Carrier' d='Shop.Theme.Checkout'}</p>
                 <p class="col text-end">{$line.carrier_name}</p>
               </li>
+
               <li class="row">
                 <p class="col fw-bold">{l s='Weight' d='Shop.Theme.Global'}</p>
                 <p class="col text-end">{$line.shipping_weight}</p>
               </li>
+
               <li class="row">
                 <p class="col fw-bold">{l s='Shipping cost' d='Shop.Theme.Global'}</p>
                 <p class="col text-end">{$line.shipping_cost}</p>
               </li>
+
               <li class="row">
                 <p class="col fw-bold m-0">{l s='Tracking number' d='Shop.Theme.Global'}</p>
                 <p class="col text-end m-0">{$line.tracking nofilter}</p>

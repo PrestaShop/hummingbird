@@ -1,6 +1,6 @@
 name: hummingbird
 display_name: Hummingbird
-version: 0.2.0
+version: 1.0.1
 author:
   name: "PrestaShop Team"
   email: "pub@prestashop.com"
@@ -10,6 +10,7 @@ meta:
   compatibility:
       from: 8.1.0
       to: ~
+      framework: 'bootstrap-v5.2.0'
 
   available_layouts:
     layout-full-width:
@@ -87,6 +88,8 @@ global_settings:
         - ps_customeraccountlinks
         - ps_contactinfo
         - blockwishlist
+      displayFooterProduct:
+        - productcomments
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch
@@ -100,6 +103,9 @@ global_settings:
         - ps_searchbar
       displayProductAdditionalInfo:
         - ps_sharebuttons
+        - productcomments
+      displayProductListReviews:
+        - productcomments
       displayOrderConfirmation2:
         - ps_featuredproducts
       displayCrossSellingShoppingCart:

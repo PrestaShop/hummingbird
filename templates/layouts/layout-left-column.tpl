@@ -12,22 +12,22 @@
           {if $page.page_name == 'product'}
             {hook h='displayLeftColumnProduct'}
           {else}
-            {hook h="displayLeftColumn"}
+            {hook h='displayLeftColumn'}
           {/if}
         </div>
       {/block}
 
       {block name="content_wrapper"}
         <div id="content-wrapper" class="wrapper__content col-md-8 col-lg-9">
-          {hook h="displayContentWrapperTop"}
+          {hook h='displayContentWrapperTop'}
           {block name="content"}
             <p>Hello world! This is HTML5 Boilerplate.</p>
           {/block}
-          {hook h="displayContentWrapperBottom"}
+          {hook h='displayContentWrapperBottom'}
         </div>
       {/block}
 
-      {block name="right_column"}{/block}
+      {block name='right_column'}{/block}
     </div>
   </div>
 {/block}

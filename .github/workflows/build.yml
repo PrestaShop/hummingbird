@@ -16,7 +16,7 @@ jobs:
       - name: Setup node env
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
 
       - name: Install dependencies
         run: npm ci
@@ -52,7 +52,7 @@ jobs:
           rm webpack.config.js
 
       - name: Create & Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
             name: ${{ github.event.repository.name }}
             path: ./
@@ -62,7 +62,7 @@ jobs:
       if: github.event_name == 'push' && github.event.ref == 'refs/heads/master'
       steps:
           - name: Download artifact
-            uses: actions/download-artifact@v1
+            uses: actions/download-artifact@v4
             with:
                 name: ${{ github.event.repository.name }}
 

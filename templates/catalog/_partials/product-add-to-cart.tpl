@@ -4,22 +4,44 @@
  *}
 <div class="product__add-to-cart product-add-to-cart js-product-add-to-cart">
   {if !$configuration.is_catalog}
-
     <div class="mb-3">
       {block name='product_availability'}
-        <span id="product-availability" class="product__availability js-product-availability d-flex align-items-center">
+        <div id="product-availability" class="product-availability js-product-availability">
           {if $product.show_availability && $product.availability_message}
-            {if $product.availability == 'available'}
-              <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i>
+
+            {** First, we prepare the icons and colors we want to use *}
+            {if $product.availability == 'in_stock'}
+              {assign 'availability_icon' 'E5CA'}
+              {assign 'availability_color' 'success'}
+            {elseif $product.availability == 'available'}
+              {assign 'availability_icon' 'E002'}
+              {assign 'availability_color' 'warning'}
             {elseif $product.availability == 'last_remaining_items'}
-              <i class="material-icons product-last-items me-2">&#xE002;</i>
+              {assign 'availability_icon' 'E002'}
+              {assign 'availability_color' 'warning'}
             {else}
-              <i class="material-icons product-unavailable me-2">&#xE14B;</i>
+              {assign 'availability_icon' 'E14B'}
+              {assign 'availability_color' 'danger'}
             {/if}
-            {$product.availability_message}
+
+            {** And render the availability message with icon *}
+            <div class="alert alert-{$availability_color}" role="alert">
+              <div class="d-flex">
+                <div class="me-2">
+                  <i class="material-icons rtl-no-flip">&#x{$availability_icon};</i>
+                </div>
+                <div>
+                  <div>{$product.availability_message}</div>
+                  {if !empty($product.availability_submessage)}
+                    <div class="mt-1"><small>{$product.availability_submessage}</small></div>
+                  {/if}
+                </div>
+              </div>
+            </div>
           {/if}
-        </span>
+        </div>
       {/block}
+
       {block name='product_delivery_times'}
         {if $product.is_virtual	== 0}
           {if $product.additional_delivery_times == 1}
@@ -43,9 +65,10 @@
         <div class="product-actions__quantity quantity-button js-quantity-button col-md-auto">
           {include file='components/qty-input.tpl'
             attributes=[
-              "id"=>"quantity_wanted",
-              "value"=>"{if $product.quantity_wanted}{$product.quantity_wanted}{else}1{/if}",
-              "min"=>"{if $product.quantity_wanted}{$product.minimal_quantity}{else}1{/if}"
+              "id" => "quantity_wanted",
+              "class" => "form-control js-quantity-wanted",
+              "value" => "{$product.minimal_quantity}",
+              "min" => "{$product.minimal_quantity}"
             ]
           }
         </div>

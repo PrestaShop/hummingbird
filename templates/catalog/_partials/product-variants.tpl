@@ -11,6 +11,7 @@
             {if $group_attribute.selected}{$group_attribute.name}{/if}
           {/foreach}
       </label>
+
       {if $group.group_type == 'select'}
         <select
           class="form-select"
@@ -23,9 +24,9 @@
           {/foreach}
         </select>
       {elseif $group.group_type == 'color'}
-        <ul id="group_{$id_attribute_group}" class="d-flex">
+        <ul id="group_{$id_attribute_group}" class="color-variants">
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
-            <li>
+            <li class="color-variant">
               <label aria-label="{$group_attribute.name}">
                 <input class="input-color" type="radio" data-product-attribute="{$id_attribute_group}" name="group[{$id_attribute_group}]" value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} checked="checked"{/if}>
                 <span
@@ -40,12 +41,12 @@
           {/foreach}
         </ul>
       {elseif $group.group_type == 'radio'}
-        <ul id="group_{$id_attribute_group}">
+        <ul id="group_{$id_attribute_group}" class="radio-variants">
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
-            <li class="input-container">
+            <li class="radio-variant form-check">
               <label>
-                <input class="input-radio" type="radio" data-product-attribute="{$id_attribute_group}" name="group[{$id_attribute_group}]" value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} checked="checked"{/if}>
-                <span class="radio-label">{$group_attribute.name}</span>
+                <input class="form-check-input input-radio" type="radio" data-product-attribute="{$id_attribute_group}" name="group[{$id_attribute_group}]" value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} checked="checked"{/if}>
+                <span class="form-check-label radio-label">{$group_attribute.name}</span>
               </label>
             </li>
           {/foreach}

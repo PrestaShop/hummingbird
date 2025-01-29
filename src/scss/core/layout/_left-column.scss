@@ -21,6 +21,14 @@ $component-name: left-block;
     font-size: var(--#{$component-name}-title-size);
     font-weight: 600;
     border: none;
+
+    &__link {
+      color: var(--#{$component-name}-link-color);
+
+      &:hover {
+        color: var(--bs-primary);
+      }
+    }
   }
 
   &__content {
@@ -35,5 +43,9 @@ $component-name: left-block;
     font-size: var(--#{$component-name}-subtitle-size);
     font-weight: 600;
     color: var(--#{$component-name}-subtitle-color);
+
+    &:hover {
+      color: var(--bs-primary);
+    }
   }
 }

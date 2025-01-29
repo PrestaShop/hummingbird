@@ -4,6 +4,7 @@
  *}
 
 <hr />
+
 <section id="order-summary-content" class="order__summary">
   <p class="h4 mb-4">{l s='Please check your order before payment' d='Shop.Theme.Checkout'}</p>
 
@@ -19,6 +20,7 @@
           <div class="card-body">
             <div class="address__content col-10">
               <p class="address__alias h6 card-title">{l s='Your Delivery Address' d='Shop.Theme.Checkout'}</p>
+
               <address class="address__content">{$customer.addresses[$cart.id_address_delivery]['formatted'] nofilter}</address>
 
               <div class="address__actions">
@@ -29,6 +31,7 @@
                 >
                   {l s='Edit' d='Shop.Theme.Actions'}
                 </a>
+
                 <a
                   class="address__delete pb-0"
                   data-link-action="delete-address"
@@ -47,7 +50,8 @@
           <div class="card-body">
             <div class="address__content col-10">
               <p class="address__alias h6 card-title">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
-              <address class="address__content">{$customer.addresses[$cart.id_address_delivery]['formatted'] nofilter}</address>
+
+              <address class="address__content">{$customer.addresses[$cart.id_address_invoice]['formatted'] nofilter}</address>
 
               <div class="address__actions">
                 <a
@@ -57,6 +61,7 @@
                 >
                   {l s='Edit' d='Shop.Theme.Actions'}
                 </a>
+
                 <a
                   class="address__delete pb-0"
                   data-link-action="delete-address"
@@ -96,9 +101,11 @@
               </div>
             </div>
           </div>
+
           <span class="delivery-option__center col-6 col-sm-4 order-2 order-sm-1 d-flex align-items-center justify-content-center">
             {$selected_delivery_option.delay}
           </span>
+
           <span class="delivery-option__right col-6 col-sm-4 order-1 order-sm-2 d-flex align-items-center justify-content-end">
             {$selected_delivery_option.price}
           </span>

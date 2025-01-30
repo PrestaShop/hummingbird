@@ -16,6 +16,8 @@
 
 .material-icons {
   display: inline-block;
+  width: 1em;
+  height: 1em;
   font-family: "Material Icons", sans-serif;
   font-size: 24px; /* Preferred icon size */
   font-style: normal;
@@ -43,6 +45,8 @@
 
 @mixin material-icon($size: 24px, $color: inherit) {
   display: inline-block;
+  width: 1em;
+  height: 1em;
   font-family: "Material Icons", sans-serif;
   font-size: $size;
   font-style: normal;
@@ -56,6 +60,7 @@
   white-space: nowrap;
   vertical-align: middle;
   direction: ltr;
+
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
   -moz-osx-font-smoothing: grayscale;

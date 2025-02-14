@@ -5,7 +5,6 @@ $component-name: header-block;
     --header-block-spacing-x: #{$header-block-spacing-x};
     --header-block-spacing-y: #{$header-block-spacing-y};
     position: relative;
-
     display: inline-flex;
     gap: 0.25rem;
     align-items: center;

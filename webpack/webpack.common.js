@@ -24,6 +24,9 @@ exports.commonConfig = ({
           '@helpers': path.resolve(__dirname, '../src/js/helpers'),
         },
       },
+      stats: { 
+        warnings: false,
+      },
     },
     externals(),
     expose(),

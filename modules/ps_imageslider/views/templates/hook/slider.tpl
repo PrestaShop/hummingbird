@@ -4,7 +4,7 @@
  *}
 
 {if $homeslider.slides}
-  <div class="ps-imageslider">
+  <section class="ps-imageslider">
     <div id="ps_imageslider" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         {foreach from=$homeslider.slides item=slide name='homeslider'}
@@ -22,7 +22,7 @@
 
                 {if $slide.title || $slide.description}
                   <figcaption class="ps-imageslider__figcaption carousel-caption d-none d-lg-block fs-6">
-                    {if $slide.title}<h2 class="text-uppercase">{$slide.title}</h2>{/if}
+                    {if $slide.title}<h2 class="h1 text-uppercase">{$slide.title}</h2>{/if}
                     {if $slide.description}<div>{$slide.description nofilter}</div>{/if}
                   </figcaption>
                 {/if}
@@ -40,5 +40,5 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
       </button>
     </div>
-  </div>
+  </section>
 {/if}

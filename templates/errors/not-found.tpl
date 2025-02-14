@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<section id="content" class="page-content page-not-found">
+<section id="content" class="page-content page-content--not-found">
   {block name='page_content'}
     {block name='error_content'}
       {if isset($errorContent)}

@@ -3,10 +3,8 @@
  * file that was distributed with this source code.
  *}
 
-<div id="custom-text">
+<div class="ps-customtext">
   <div class="container">
-    <div class="custom-text__content rich-text">
-      {$cms_infos.text nofilter}
-    </div>
+    {$cms_infos.text nofilter}
   </div>
 </div>

@@ -27,7 +27,7 @@
       {/block}
 
       {block name='page_content_container'}
-        <section id="content" class="page-content page-customer">
+        <section id="content" class="page-content page-content--customer">
           {block name='page_content_top'}{/block}
 
           {block name='page_content'}

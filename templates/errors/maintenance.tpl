@@ -23,7 +23,7 @@
     {/block}
 
     {block name='page_content_container'}
-      <section id="content" class="page-content page-maintenance">
+      <section id="content" class="page-content page-content--maintenance">
         {block name='page_content'}
           {$maintenance_text nofilter}
         {/block}

@@ -130,7 +130,7 @@
   {/if}
 
   <div class="payment__actions d-block d-md-flex d-flex flex-wrap justify-content-between">
-    <button class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-delivery-step">
+    <button class="btn btn-outline-primary w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-delivery-step">
       <div class="material-icons rtl-flip" aria-hidden="true">arrow_backward</div>
       {l s='Back to Shipping method' d='Shop.Theme.Actions'}
     </button>
@@ -138,7 +138,7 @@
     <div id="payment-confirmation" class="w-100 w-md-auto js-payment-confirmation">
       <div class="ps-shown-by-js">
         <div class="payment__actions">
-          <button type="submit" class="btn btn-primary btn-with-icon w-100{if !$selected_payment_option} disabled{/if}">
+          <button type="submit" class="btn btn-primary w-100{if !$selected_payment_option} disabled{/if}">
             {l s='Place order' d='Shop.Theme.Checkout'}
             <div class="material-icons rtl-flip" aria-hidden="true">arrow_forward</div>
           </button>

@@ -5,7 +5,7 @@
 
 <div class="suppliers-sort dropdown">
   <button
-    class="btn-unstyle select-title"
+    class="select-title"
     rel="nofollow"
     data-bs-toggle="dropdown"
     aria-haspopup="true"

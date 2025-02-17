@@ -20,7 +20,7 @@
               {if $page@iteration === 1}
                 <li class="page-item">
                   <a rel="prev" href="{$page.url}"
-                    class="page-link btn-with-icon previous {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
+                    class="page-link previous {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
                     <i class="material-icons rtl-flip" aria-hidden="true">&#xE314;</i>
                     <span class="d-none d-xl-flex">{l s='Previous' d='Shop.Theme.Actions'}</span>
                   </a>
@@ -38,7 +38,7 @@
               {else if $page.type != "prev" && $page.type != "next"}
                 <li class="page-item{if $page.current} active{/if}" {if $page.current}aria-current="page" {/if}>
                   <a rel="nofollow" href="{$page.url}"
-                    class="page-link btn-with-icon {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
+                    class="page-link {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
                     {$page.page}
                   </a>
                 </li>
@@ -47,7 +47,7 @@
               {if $smarty.foreach.paginationLoop.last}
                 <li class="page-item">
                   <a rel="next" href="{$page.url}"
-                    class="page-link btn-with-icon next {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
+                    class="page-link next {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
                     <span class="d-none d-xl-flex">{l s='Next' d='Shop.Theme.Actions'}</span>
                     <i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
                   </a>

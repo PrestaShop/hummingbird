@@ -8,12 +8,12 @@
 {block name='module_products_name'}ps-featuredproducts{/block}
 
 {block name='module_products_title'}
-  {include file='components/section-title.tpl' title={l s='Popular Products' d='Shop.Theme.Catalog'}}
+  {include file='components/section-title.tpl' title={l s='Featured products' d='Shop.Theme.Catalog'}}
 {/block}
 
 {block name='module_products_footer'}
-  <a class="btn btn-outline-primary btn-with-icon" href="{$allProductsLink}">
-    {l s='All products' d='Shop.Theme.Catalog'}
-    <i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
+  <a class="btn btn-outline-primary" href="{$allProductsLink}">
+    {l s='All featured products' d='Shop.Theme.Catalog'}
+    <i class="material-icons" aria-hidden="true">&#xE315;</i>
   </a>
 {/block}

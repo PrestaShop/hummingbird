@@ -3,8 +3,8 @@
  * file that was distributed with this source code.
  *}
 
-<div id="_desktop_user_info">
-  <div class="user-info d-flex align-items-center">
+<div id="_desktop_ps_customersignin">
+  <div class="ps-customersignin">
     {if $customer.is_logged}
       <div class="dropdown header-block">
         <a
@@ -16,7 +16,8 @@
           aria-haspopup="true"
           aria-expanded="false"
           aria-label="{l s='View my account (%s)' d='Shop.Theme.Customeraccount' sprintf=[$customerName]}">
-          <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
+          <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
+          <span class="header-block__title d-none d-md-block d-lg-none">{$customer.firstname|truncate:2:".":true}{$customer.lastname|truncate:2:".":true}</span>
           <span class="header-block__title d-lg-inline d-none">{$customerName|truncate:22:"..":true}</span>
         </a>
 
@@ -80,7 +81,7 @@
           class="header-block__action-btn"
           rel="nofollow"
           role="button">
-          <i class="material-icons header-block__icon" aria-hidden="true">&#xE7FD;</i>
+          <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
           <span class="d-none d-md-inline header-block__title">{l s='Sign in' d='Shop.Theme.Actions'}</span>
         </a>
       </div>

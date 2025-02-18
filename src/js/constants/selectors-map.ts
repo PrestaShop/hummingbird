@@ -67,6 +67,7 @@ export const searchBar = {
   searchTemplate: '.js-search-template',
   searchInput: '.js-search-input',
   searchIcon: '.js-search-icon',
+  searchClear: '.js-search-clear',
 };
 
 export const checkout = {

@@ -4,8 +4,6 @@ $header-top-border-bottom: 1px solid var(--bs-gray-200);
 $header-bottom-border-bottom: $header-top-border-bottom;
 $header-color: var(--bs-gray-800);
 $header-top-color: $header-color;
-
-$header-block-spacing-x: 0.25rem;
-$header-block-spacing-y: 0.75rem;
-$header-block-spacing-lg-x: $btn-padding-x;
-$header-block-spacing-lg-y: $btn-padding-y;
+$header-top-color-hover: var(--bs-primary);
+$header-block-spacing-x: 0.75rem;
+$header-block-spacing-y: 0.5rem;

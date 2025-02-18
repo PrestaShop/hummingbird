@@ -1,8 +1,8 @@
 name: Lint
 on: [ push, pull_request ]
 jobs:
-  stylelint:
-    name: SCSS Lint
+  stylelint_prettier:
+    name: Stylelint & Prettier
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,9 +11,26 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+      
+      # Install project dependencies
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Lint scss
-        run: npm ci && npm run scss-lint
+      # Run Prettier check command
+      - name: Run Prettier check
+        run: |
+          npm run prettier || {
+            echo "::error::Prettier check failed. Run 'npm run prettier:fix' to format your code."
+            exit 1
+          }
+
+      # Run Stylelint check command
+      - name: Run Stylelint check
+        run: |
+          npm run stylelint || {
+            echo "::error::Stylelint check failed. Run 'npm run stylelint:fix' to autofix issues."
+            exit 1
+          }
   eslint:
     name: ESLint
     runs-on: ubuntu-latest

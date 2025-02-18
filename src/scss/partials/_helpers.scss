@@ -1,8 +1,3 @@
-.inline-items {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
 @each $breakpoint, $container-max-width in $container-max-widths {
   @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
     .container--limited-#{$breakpoint} {
@@ -19,8 +14,4 @@
       width: 100% !important;
     }
   }
-}
-
-.text-gray {
-  color: var(--bs-gray-700);
 }

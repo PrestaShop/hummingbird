@@ -1,42 +1,37 @@
 $component-name: header-top;
 
 .#{$component-name} {
+  padding: 0.25rem 0;
   background-color: var(--header-top-bg);
-
-  a {
-    color: var(--header-top-color);
-  }
-
-  &__right {
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-  }
 
   &__right,
   &__left {
     display: flex;
     flex-wrap: wrap;
+    gap: 0.25rem;
     align-items: center;
   }
 
+  &__right {
+    justify-content: flex-end;
+  }
+
+  a {
+    color: var(--header-top-color);
+
+    &:not(.dropdown-item) {
+      &:hover {
+        color: var(--header-top-color-hover);
+      }
+    }
+  }
+
   .form-select {
-    padding-right: 1.5rem;
-    background-color: var(--header-top-bg);
-    background-position: right 0.12rem center;
+    cursor: pointer;
     border: none;
-
-    option {
-      text-align: right;
-    }
   }
 
-  &-desktop {
-    padding: 0.25rem 0;
-  }
-
-  @include media-breakpoint-down(sm) {
-    .container {
-      padding: 0;
-    }
+  @include media-breakpoint-up(md) {
+    border-bottom: var(--header-top-border-bottom);
   }
 }

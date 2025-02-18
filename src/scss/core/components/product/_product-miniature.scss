@@ -1,62 +1,165 @@
 $component-name: product-miniature;
+$product-miniature-container-query-width: 13.5rem;
 
 .#{$component-name} {
-  .card {
-    height: 100%;
-  }
+  container-type: inline-size;
+  container-name: product-miniature;
 
-  & &__infos {
-    position: relative;
-    z-index: 90;
+  &__inner {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    padding: 0;
+    height: 100%;
+    background-color: var(--bs-white);
+    border-radius: var(--bs-border-radius);
+    transition: $transition-base;
 
-    &__top,
-    &__bottom {
-      padding: 0.25rem 0.5rem;
-      background-color: var(--bs-white);
-    }
+    @media (hover: hover) {
+      &:hover {
+        box-shadow: 0 0.625rem 1.25rem rgba(var(--bs-black-rgb), 0.1);
 
-    &__top {
-      height: 100%;
-      padding-top: 0.5rem;
-    }
+        .#{$component-name}__quickview {
+          transform: translateY(-100%);
+        }
 
-    &__bottom {
-      margin-top: auto;
-      margin-bottom: 1rem;
-      @media (max-width: 767px) {
-        .quantity-button input {
-          max-width: unset;
+        .#{$component-name}__image {
+          transform: scale(1.1);
         }
       }
     }
   }
 
-  & &__title {
-    margin: 0;
+  &__link {
+    position: relative;
+    display: block;
   }
 
-  & &__image {
+  &__image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--bs-border-radius);
+    transition: $transition-base;
+  }
+
+  &__image {
     height: auto;
+    transition: $transition-base;
   }
 
-  & &__quickview {
+  &__quickview {
+    position: absolute;
+    top: 100%;
+    z-index: 1;
     display: flex;
+    width: 100%;
     margin: auto;
+    background-color: var(--bs-white);
+    transition: $transition-base;
+
+    &-button {
+      width: 100%;
+      padding-block: 1rem;
+      border-radius: 0;
+    }
+
+    &-touch {
+      position: absolute;
+      right: 0.5rem;
+      bottom: 0.5rem;
+      z-index: 10;
+      display: none;
+      padding: 0.5rem;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      display: none;
+
+      &-touch {
+        display: inline-flex;
+      }
+    }
   }
 
-  & &__regular-price {
+  &__infos {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+
+    &-top {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    &-bottom {
+      margin-top: auto;
+    }
+  }
+
+  &__variants {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    @extend %color-variant;
+  }
+
+  &__prices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  &__price {
+    font-weight: 600;
+  }
+
+  &__regular-price {
+    color: var(--bs-gray-600);
     text-decoration: line-through;
   }
 
-  & &__prices {
+  &__form {
     display: flex;
+    row-gap: 0.5rem;
+    column-gap: 1rem;
+    align-items: center;
   }
 
-  & &__price {
-    @extend .me-2;
+  &__add {
+    padding: 0.5rem;
+  }
+
+  &__add-text {
+    display: none;
+    line-height: initial;
+  }
+
+  @container product-miniature (width < #{$product-miniature-container-query-width}) {
+    .product-flags {
+      .badge {
+        padding: 0.125rem 0.25rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    &__add,
+    &__details {
+      width: 100%;
+    }
+
+    &__add-text {
+      display: block;
+    }
+
+    &__infos-bottom {
+      .quantity-button input {
+        max-width: unset;
+      }
+    }
+
+    &__form {
+      flex-direction: column;
+    }
   }
 }

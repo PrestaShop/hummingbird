@@ -60,5 +60,7 @@
     </div>
   </div>
 
-  {hook h='displayCrossSellingShoppingCart'}
+  <div class="row">
+    {hook h='displayCrossSellingShoppingCart'}
+  </div>
 {/block}

@@ -7,3 +7,13 @@ $component-name: module-products;
     justify-content: center;
   }
 }
+
+body{
+  &:not(#index) {
+    .#{$component-name} {
+      &.container {
+        padding-inline: 0;
+      }
+    }
+  }
+}

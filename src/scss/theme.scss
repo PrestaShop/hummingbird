@@ -1,15 +1,18 @@
-@layer bs-base, bs-components;
+// Define Bootstrap and Prestashop layers
+@layer bs-base, ps-base, bs-components, bs-custom-components, ps-components, ps-modules, ps-layout;
+
+// Utilities Bootstrap and Prestashop
+@layer utilities;
 
 /* stylelint-disable */
 @import "abstract";
+
+// Vendors
 @import "vendors";
-@import "~bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css";
-@import "partials";
 
 // Core
 @import "core/_core";
 
-// Custom
-@import "custom/_custom";
-
+// Prestashop
+@import "prestashop";
 /* stylelint-enable */

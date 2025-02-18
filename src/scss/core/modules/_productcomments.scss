@@ -7,6 +7,10 @@
     align-items: stretch;
     height: 28px;
 
+    &:empty {
+      display: none;
+    }
+
     &.small-stars {
       height: 20px;
     }
@@ -22,6 +26,12 @@
     align-self: center;
     margin-left: 0.25rem;
     color: var(--bs-gray-600);
+  }
+}
+
+.product-list-reviews {
+  &:has(.grade-stars:empty) {
+    display: none;
   }
 }
 
@@ -119,7 +129,7 @@
     inset: auto;
     display: flex;
     justify-content: start;
-    padding: 0.5rem 0 1rem;
+    padding-block: 0;
 
     .comments-nb {
       margin: 0;
@@ -136,7 +146,9 @@
   padding: 0 0 1rem;
 
   .grade-stars {
-    height: 20px;
+    &:not(:empty) {
+      height: 20px;
+    }
   }
 }
 

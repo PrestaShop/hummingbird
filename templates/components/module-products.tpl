@@ -1,6 +1,10 @@
 {block name='module_products'}
+  {block name='module_products_variables'}
+    {assign var="need_container" value="true"}
+  {/block}
+
   <section class="{block name='module_products_name'}{/block}">
-    <div class="module-products container">
+    <div class="module-products {if isset($need_container) && $need_container}container{/if}">
       {block name='module_products_title'}{/block}
       
       {block name='module_products_list'}

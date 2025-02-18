@@ -1,0 +1,42 @@
+/* PrestaShop license placeholder */
+$component-name: breadcrumb;
+
+.#{$component-name} {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  overflow-x: scroll;
+  scrollbar-width: none;
+
+  &[data-depth="1"] {
+    display: none;
+  }
+
+  &-item {
+    padding: 0;
+    white-space: nowrap;
+
+    + .#{$component-name}-item {
+      &::before {
+        float: none;
+        padding-inline-end: 0.25rem;
+      }
+    }
+  }
+
+  &__wrapper {
+    margin-bottom: 1.5rem;
+    background-color: var(--bs-tertiary-bg);
+  }
+
+  @include media-breakpoint-up(md) {
+    overflow-x: visible;
+    flex-wrap: wrap;
+    overflow-x: initial;
+    scrollbar-width: initial;
+
+    &__wrapper {
+      margin-bottom: 2.5rem;
+    }
+  }
+}

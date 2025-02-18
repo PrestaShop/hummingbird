@@ -1,0 +1,23 @@
+// Bootstrap main variables
+
+// Border radius
+$border-radius:               0.5rem;
+
+// Links
+$link-decoration:             none;
+
+// Typography
+$font-family-base:            "Inter", sans-serif;
+
+$h1-font-size:                calc(var(--bs-body-font-size) * 2);
+$h2-font-size:                calc(var(--bs-body-font-size) * 1.5);
+$h3-font-size:                calc(var(--bs-body-font-size) * 1.25);
+$h4-font-size:                calc(var(--bs-body-font-size) * 1.125);
+$h5-font-size:                var(--bs-body-font-size);
+$h6-font-size:                var(--bs-body-font-size);
+
+$headings-font-weight:        600;
+$headings-margin-bottom:      1rem;
+
+// Options
+$enable-cssgrid:              true;

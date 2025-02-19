@@ -1,17 +1,11 @@
-// Define Bootstrap and Prestashop layers
-@layer bs-base, ps-base, bs-components, bs-custom-components, ps-components, ps-modules, ps-layout;
-
-// Utilities Bootstrap and Prestashop
-@layer utilities;
+// Define CSS layers orders to allow easy customization
+@layer vendors, bs-base, bs-components, bs-custom-components, ps-base, ps-components, ps-modules, utilities;
 
 /* stylelint-disable */
 @import "abstract";
 
 // Vendors
 @import "vendors";
-
-// Core
-@import "core/_core";
 
 // Prestashop
 @import "prestashop";

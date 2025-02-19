@@ -192,7 +192,7 @@
                   }
                 </div>
 
-                <button data-button-action="add-to-cart" class="product-miniature__add btn btn-primary">
+                <button data-button-action="add-to-cart" class="product-miniature__add btn btn-primary btn-square-icon">
                   <i class="material-icons" aria-hidden="true">&#xe854;</i>
                   <span class="product-miniature__add-text">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
                 </button>

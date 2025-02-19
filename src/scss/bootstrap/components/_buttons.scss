@@ -1,5 +1,6 @@
-// Bootstrap buttons
-.btn {
+$component-name: btn;
+
+.#{$component-name} {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -7,20 +8,28 @@
 
   .material-icons {
     font-size: 1.25em;
+    width: 1.2em;
+    height: 1.2em;
+    line-height: 1.2em;
   }
-}
 
-// Tertiary button
-.btn-tertiary {
-  --bs-btn-font-weight: 400;
-  --bs-btn-color: var(--bs-body-color);
-  --bs-btn-bg: var(--bs-white);
-  --bs-btn-border-color: var(--bs-white);
-  --bs-btn-hover-color: var(--bs-primary);
-  --bs-btn-hover-bg: var(--bs-white);
-  --bs-btn-hover-border-color: var(--bs-white);
-  --bs-btn-focus-shadow-rgb: var(--bs-white-rgb);
-  --bs-btn-active-color: var(--bs-primary);
-  --bs-btn-active-bg: var(--bs-white);
-  --bs-btn-active-border-color: var(--bs-white);
+  // Square icon only button
+  &-square-icon {
+    padding-inline: var(--bs-btn-padding-y);
+  }
+
+  // Tertiary button
+  &-tertiary {
+    --bs-btn-font-weight: 400;
+    --bs-btn-color: var(--bs-body-color);
+    --bs-btn-bg: var(--bs-white);
+    --bs-btn-border-color: var(--bs-white);
+    --bs-btn-hover-color: var(--bs-primary);
+    --bs-btn-hover-bg: var(--bs-white);
+    --bs-btn-hover-border-color: var(--bs-white);
+    --bs-btn-focus-shadow-rgb: var(--bs-white-rgb);
+    --bs-btn-active-color: var(--bs-primary);
+    --bs-btn-active-bg: var(--bs-white);
+    --bs-btn-active-border-color: var(--bs-white);
+  }
 }

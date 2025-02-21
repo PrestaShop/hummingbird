@@ -1,8 +1,12 @@
 $dropdown-padding-y: 0;
 $dropdown-divider-margin-y: 0;
+
 $dropdown-item-padding-x: $spacer;
 $dropdown-item-padding-y: $spacer * 0.75;
+
 $dropdown-link-color: $gray-800;
+$dropdown-link-hover-color: $gray-800;
 $dropdown-link-hover-bg: $gray-100;
-$dropdown-link-active-color: $dropdown-link-hover-color;
+
+$dropdown-link-active-color: $primary;
 $dropdown-link-active-bg: $dropdown-link-hover-bg;

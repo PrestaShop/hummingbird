@@ -1,16 +1,19 @@
-// @TODO: refacto
-.pagination {
-  margin-bottom: 0;
+$component-name: "pagination";
+$sub-component-name: "page";
 
-  .page-link i {
-    width: auto;
-    height: auto;
-    font-size: 1.25rem;
-  }
-
-  &-container {
+.#{$sub-component-name} {
+  &-link {
+    display: inline-flex;
     align-items: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    gap: 0.5em;
+
+    &.active,
+    .active > & {
+      font-weight: 600;
+
+      &.disabled {
+        color: var(--bs-pagination-active-color);
+      }
+    }
   }
 }

@@ -33,7 +33,7 @@
           </a>
           {if $customer.addresses|count}
             <a href="{$urls.pages.addresses}" title="{l s='Addresses' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">
-              <i class="material-icons me-2" aria-hidden="true">&#xE56A;</i>
+              <i class="material-icons me-2" aria-hidden="true">&#xF00F;</i>
               {l s='Addresses' d='Shop.Theme.Customeraccount'}
             </a>
           {else}

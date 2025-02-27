@@ -8,7 +8,7 @@ $component-name: module-products;
   }
 }
 
-body{
+body {
   &:not(#index) {
     .#{$component-name} {
       &.container {

@@ -29,7 +29,6 @@ $component-name: breadcrumb;
   }
 
   @include media-breakpoint-up(md) {
-    overflow-x: visible;
     flex-wrap: wrap;
     overflow-x: initial;
     scrollbar-width: initial;

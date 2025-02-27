@@ -51,6 +51,23 @@ $footer-text-color: var(--bs-body-color) !default;
   }
 
   & &__block {
+    &__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      i {
+        color: var(--bs-white);
+        transition: transform 0.25s ease-in-out;
+      }
+
+      &:not(.collapsed) {
+        i {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
     &__content {
       padding-top: 0.5rem;
       color: var(--footer-text-color);
@@ -146,10 +163,8 @@ $footer-text-color: var(--bs-body-color) !default;
       }
     }
   }
-}
 
-// @TODO: refacto
-.#{$component-name} {
+  // @TODO: refacto
   .title {
     &[aria-expanded="true"] {
       .material-icons.add {
@@ -192,25 +207,6 @@ $footer-text-color: var(--bs-body-color) !default;
   @include media-breakpoint-down(md) {
     & &__block {
       margin-bottom: 1rem;
-    }
-  }
-
-  & &__block {
-    &__toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      i {
-        color: var(--bs-white);
-        transition: transform 0.25s ease-in-out;
-      }
-
-      &:not(.collapsed) {
-        i {
-          transform: rotate(180deg);
-        }
-      }
     }
   }
 }

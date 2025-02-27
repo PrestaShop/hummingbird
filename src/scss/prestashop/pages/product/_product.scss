@@ -152,7 +152,13 @@
 
 // Needs to be outside of the .page-product scope because it can be inside a modal
 .thumbnails__container {
+  margin-top: 1rem;
+
   .thumbnail {
+    &:not(:last-child) {
+      margin-bottom: 0.75rem;
+    }
+
     img {
       border: 2px solid transparent;
       border-radius: 8px;
@@ -169,17 +175,6 @@ body.modal-open {
   .quickview {
     .product__images__modal-opener {
       display: none;
-    }
-  }
-}
-
-// @TODO: refacto
-.thumbnails__container {
-  margin-top: 1rem;
-
-  .thumbnail {
-    &:not(:last-child) {
-      margin-bottom: 0.75rem;
     }
   }
 }

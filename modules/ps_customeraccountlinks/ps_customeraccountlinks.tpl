@@ -12,7 +12,7 @@
 
   <div role="button" class="footer__block__toggle d-md-none collapsed" data-bs-target="#footer_account_list" data-bs-toggle="collapse" aria-expanded="false">
     <span class="footer__block__title">{l s='Your account' d='Shop.Theme.Customeraccount'}</span>
-    <i class="material-icons" aria-hidden="true">keyboard_arrow_down</i>
+    <i class="material-icons" aria-hidden="true">&#xE313;</i>
   </div>
   <ul class="footer__block__content footer__block__content-list collapse" id="footer_account_list">
     {if $customer.is_logged}

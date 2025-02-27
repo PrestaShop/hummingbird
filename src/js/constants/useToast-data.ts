@@ -4,14 +4,14 @@
  */
 
 export const Theme = {
-  light: 'bg-light text-dark border-1',
-  dark: 'bg-dark text-light',
-  primary: 'bg-primary text-white',
-  secondary: 'bg-secondary text-black',
-  info: 'bg-info text-black',
-  success: 'bg-success text-white',
-  warning: 'bg-warning text-black',
-  danger: 'bg-danger text-white',
+  light: 'text-bg-light',
+  dark: 'text-bg-dark',
+  primary: 'text-bg-primary',
+  secondary: 'text-bg-secondary',
+  info: 'text-bg-info',
+  success: 'text-bg-success',
+  warning: 'text-bg-warning',
+  danger: 'text-bg-danger',
 };
 
 export const Fallback = `

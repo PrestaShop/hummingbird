@@ -5,7 +5,7 @@
 
  declare namespace Theme {
   namespace Toast {
-    type Type = 'info' | 'dark' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+    type Type = 'success' | 'warning' | 'danger' | 'info' | 'primary' | 'secondary' | 'light' | 'dark';
 
     interface Options {
       type: Type;

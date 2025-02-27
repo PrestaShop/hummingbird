@@ -4,8 +4,8 @@ $sub-component-name: "page";
 .#{$sub-component-name} {
   &-link {
     display: inline-flex;
-    align-items: center;
     gap: 0.5em;
+    align-items: center;
 
     &.active,
     .active > & {

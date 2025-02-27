@@ -27,8 +27,8 @@
   <div id="ps_searchbar" class="ps-searchbar js-search-widget" data-search-controller-url="{$search_controller_url}">
     <form class="ps-searchbar__form" method="get" action="{$search_controller_url}">
       <input type="hidden" name="controller" value="search">
-      <i class="material-icons ps-searchbar__magnifier js-search-icon" aria-hidden="true">search</i>
-      <i class="material-icons ps-searchbar__clear js-search-clear d-none" aria-hidden="true">clear</i>
+      <i class="material-icons ps-searchbar__magnifier js-search-icon" aria-hidden="true">&#xE8B6;</i>
+      <i class="material-icons ps-searchbar__clear js-search-clear d-none" aria-hidden="true">&#xE14C;</i>
       <input class="js-search-input form-control ps-searchbar__input" type="text" name="s" value="{$search_string}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
     </form>
 
@@ -51,7 +51,7 @@
 <div class="ps-searchbar--mobile d-md-none d-flex col-auto">
   <div class="header-block d-flex align-items-center">
     <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas" aria-label="{l s='Show search bar' d='Shop.Theme.Global'}">
-      <span class="material-icons header-block__icon">search</span>
+      <span class="material-icons header-block__icon">&#xE8B6;</span>
     </a>
   </div>
 

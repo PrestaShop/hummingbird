@@ -19,6 +19,6 @@
     class="js-remove-email-alert btn btn-link {$componentName}__remove"
     rel="js-id-emailalerts-{$mailAlert.id_product|intval}-{$mailAlert.id_product_attribute|intval}"
     data-url="{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'remove']}">
-    <i class="material-icons" aria-label="{l s='Delete' d='Modules.Emailalerts.Shop'}">delete</i>
+    <i class="material-icons" aria-label="{l s='Delete' d='Modules.Emailalerts.Shop'}">&#xE872;</i>
   </a>
 </div>

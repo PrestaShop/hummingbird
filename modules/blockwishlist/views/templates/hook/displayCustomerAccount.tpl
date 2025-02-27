@@ -19,7 +19,7 @@
 
 <a class="col-md-6 col-lg-4{if $urls.current_url === $url} active{/if}" id="wishlist-link" href="{$url}">
   <span class="link-item">
-    <i class="material-icons" aria-hidden="true">favorite</i>
+    <i class="material-icons" aria-hidden="true">&#xE87D;</i>
     {$wishlistsTitlePage}
   </span>
 </a>

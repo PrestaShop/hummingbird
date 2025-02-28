@@ -73,7 +73,7 @@
 
     <a class="{$componentName}__line{if $urls.current_url === $urls.pages.order_follow} active{/if} {$componentName}--signout" id="returns__link" href="{$urls.actions.logout}">
       <span class="link-item">
-        <i class="material-icons" aria-hidden="true">exit_to_app</i>
+        <i class="material-icons" aria-hidden="true">&#xE879;</i>
         {l s='Sign out' d='Shop.Theme.Actions'}
       </span>
     </a>

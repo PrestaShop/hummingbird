@@ -98,7 +98,7 @@
             {if isset($product.download_link)}
               <p class="order__item__download my-2">
                 <a href="{$product.download_link}">
-                  <i class="material-icons" aria-hidden="true">download</i> {l s='Download' d='Shop.Theme.Actions'}
+                  <i class="material-icons" aria-hidden="true">&#xF090;</i> {l s='Download' d='Shop.Theme.Actions'}
                 </a>
               </p>
             {/if}
@@ -180,7 +180,7 @@
               {if isset($product.download_link)}
                 <p class="order__item__download my-2">
                   <a href="{$product.download_link}">
-                    <i class="material-icons" aria-hidden="true">download</i> {l s='Download' d='Shop.Theme.Actions'}
+                    <i class="material-icons" aria-hidden="true">&#xF090;</i> {l s='Download' d='Shop.Theme.Actions'}
                   </a>
                 </p>
               {/if}

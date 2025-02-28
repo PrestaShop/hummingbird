@@ -55,7 +55,7 @@
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           <div class="header-block">
             <a href="{$urls.pages.my_account}" class="header-block__action-btn">
-              <i class="material-icons header-block__icon" aria-hidden="true">account_circle</i>
+              <i class="material-icons header-block__icon" aria-hidden="true">&#xE853;</i>
             </a>
           </div>
           {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
@@ -66,7 +66,7 @@
             {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
             <div class="header-block">
               <a href="{$urls.pages.cart}" class="header-block__action-btn">
-                <i class="material-icons header-block__icon" aria-hidden="true">shopping_cart</i>
+                <i class="material-icons header-block__icon" aria-hidden="true">&#xE8CC;</i>
                 <span class="header-block__badge">{$cart.products_count}</span>
               </a>
             </div>

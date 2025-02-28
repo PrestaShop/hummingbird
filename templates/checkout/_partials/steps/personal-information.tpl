@@ -46,7 +46,7 @@
           value="order"
        > 
           {l s='Continue to Addresses' d='Shop.Theme.Actions'}
-          <div class="material-icons rtl-flip" aria-hidden="true">arrow_forward</div>
+          <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
         </button>
       </form>
     </div>

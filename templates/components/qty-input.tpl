@@ -25,21 +25,19 @@
     <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
   </button>
 
-  <input
+<input
     {foreach $attributes as $key=>$value}
-      {$key}="{$value}"
+        {$key}="{$value}"
     {/foreach}
-    {* The default attributes, will be used if not defined *}
-      class="form-control"
-      name="qty"
-      aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
-      type="text"
-      inputmode="numeric"
-      pattern="[0-9]*"
-      value="1"
-      min="1"
-    {* End of default attributes *}
-  />
+    {if !isset($attributes.class)}class="form-control"{/if}
+    {if !isset($attributes.name)}name="qty"{/if}
+    {if !isset($attributes['aria-label'])}aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"{/if}
+    {if !isset($attributes.type)}type="text"{/if}
+    {if !isset($attributes.inputmode)}inputmode="numeric"{/if}
+    {if !isset($attributes.pattern)}pattern="[0-9]*"{/if}
+    {if !isset($attributes.value)}value="1"{/if}
+    {if !isset($attributes.min)}min="1"{/if}
+/>
 
   <button role="button" aria-label="{$append.button}" class="btn {$append.button} js-{$append.button}-button" type="button">
     <i class="material-icons" aria-hidden="true">&#x{$append.icon};</i>

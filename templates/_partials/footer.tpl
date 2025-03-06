@@ -2,25 +2,31 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div class="footer__before">
-  {block name='hook_footer_before'}
-    {hook h='displayFooterBefore'}
-  {/block}
-</div>
+{capture name="footer_before"}{hook h='displayFooterBefore'}{/capture}
+{if isset($smarty.capture.footer_before) && $smarty.capture.footer_before}
+  <div class="footer footer__before">
+    {block name='hook_footer_before'}
+      {$smarty.capture.footer_before nofilter}
+    {/block}
+  </div>
+{/if}
 
-<div class="footer__main">
+<div class="footer footer__main">
   <div class="container">
-    <div class="footer__main__top row">
+    <div class="footer__main-top row">
       {block name='hook_footer'}
         {hook h='displayFooter'}
       {/block}
     </div>
 
-    <div class="footer__main__bottom row">
-      {block name='hook_footer_after'}
-        {hook h='displayFooterAfter'}
-      {/block}
-    </div>
+    {capture name="footer_main_bottom"}{hook h='displayFooterAfter'}{/capture}
+    {if isset($smarty.capture.footer_main_bottom) && $smarty.capture.footer_main_bottom}
+      <div class="footer__main-bottom row">
+        {block name='hook_footer_after'}
+          {$smarty.capture.footer_main_bottom nofilter}
+        {/block}
+      </div>
+    {/if}
 
     <p class="copyright">
       {block name='copyright_link'}

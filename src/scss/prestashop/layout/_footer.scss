@@ -9,38 +9,34 @@ $footer-text-color: var(--bs-body-color) !default;
   --footer-hover-color: var(--bs-white);
   --footer-heading-color: #{$footer-heading-color};
 
-  & &__main {
+  &__main {
     padding-top: 2.5rem;
     padding-bottom: 1.25rem;
     background: var(--footer-background-color);
-  }
 
-  & &-top {
-    padding-bottom: 2.5rem;
-  }
-
-  h2,
-  h3,
-  .h4,
-  .h3,
-  .copyright {
-    &,
-    a {
-      color: var(--bs-white);
+    h2,
+    h3,
+    .h4,
+    .h3,
+    .copyright {
+      &,
+      a {
+        color: var(--bs-white);
+      }
     }
-  }
 
-  h2,
-  h3,
-  .h3,
-  .h4 {
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
+    h2,
+    h3,
+    .h3,
+    .h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
 
-    &,
-    a {
-      // stylelint-disable-next-line
-      text-transform: inherit !important;
+      &,
+      a {
+        // stylelint-disable-next-line
+        text-transform: inherit !important;
+      }
     }
   }
 

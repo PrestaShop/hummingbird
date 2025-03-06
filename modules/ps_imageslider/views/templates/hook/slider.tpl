@@ -21,7 +21,7 @@
                 <img class="w-100" src="{$slide.image_url}" alt="{$slide.legend|escape}" {if $slide@first}loading="eager"{else}loading="lazy"{/if} width="{$slide.sizes[0]}" height="{$slide.sizes[1]}">
 
                 {if $slide.title || $slide.description}
-                  <figcaption class="ps-imageslider__figcaption carousel-caption d-none d-lg-block fs-6">
+                  <figcaption class="ps-imageslider__figcaption carousel-caption d-none d-lg-block fs-5">
                     {if $slide.title}<h2 class="h1 text-uppercase">{$slide.title}</h2>{/if}
                     {if $slide.description}<div>{$slide.description nofilter}</div>{/if}
                   </figcaption>

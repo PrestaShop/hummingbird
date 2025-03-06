@@ -81,8 +81,8 @@ global_settings:
         - ps_newproducts
         - ps_bestsellers
       displayFooterBefore:
-        - ps_emailsubscription
         - ps_socialfollow
+        - ps_emailsubscription
       displayFooter:
         - ps_linklist
         - ps_customeraccountlinks

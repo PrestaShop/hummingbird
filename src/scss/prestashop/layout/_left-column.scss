@@ -1,33 +1,19 @@
 $component-name: left-block;
 
-#left-column {
-  --#{$component-name}-title-color: #{$gray-800};
-  --#{$component-name}-title-size: 1.5rem;
-  --#{$component-name}-title-spacing: 1rem;
-  --#{$component-name}-subtitle-color: #{$gray-800};
-  --#{$component-name}-subtitle-size: 1rem;
-  --#{$component-name}-subtitle-spacing: 0.25rem;
-  --#{$component-name}-border-bottom: 1px solid #{$gray-200};
-}
-
 .#{$component-name} {
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: var(--#{$component-name}-border-bottom);
+  border-bottom: 1px solid var(--bs-border-color);
 
   &__title {
-    padding: 0;
-    margin-bottom: var(--#{$component-name}-title-spacing);
-    font-size: var(--#{$component-name}-title-size);
-    font-weight: 600;
-    border: none;
+    @extend .h3;
+  }
 
-    &__link {
-      color: var(--#{$component-name}-link-color);
+  &__title-link {
+    color: var(--bs-body-color);
 
-      &:hover {
-        color: var(--bs-primary);
-      }
+    &:hover {
+      color: var(--bs-link-hover-color);
     }
   }
 
@@ -39,13 +25,12 @@ $component-name: left-block;
 
   &__link {
     display: block;
-    padding: var(--#{$component-name}-subtitle-spacing) 0;
-    font-size: var(--#{$component-name}-subtitle-size);
+    padding: 0.25rem 0;
     font-weight: 600;
-    color: var(--#{$component-name}-subtitle-color);
+    color: var(--bs-body-color);
 
     &:hover {
-      color: var(--bs-primary);
+      color: var(--bs-link-hover-color);
     }
   }
 }

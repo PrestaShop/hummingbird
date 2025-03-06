@@ -2,59 +2,42 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
+<section class="ps-emailsubscription bg-body-tertiary py-3 py-lg-4" id="emailsubscription_anchor_{$hookName}">
+  <div class="container">
+    <div class="row justify-content-center">
+      <p class="h3 col-lg-4">
+        {l s='Get our latest news and special sales' d='Shop.Theme.Global'}
+      </p>
 
-{$componentName = 'email-subscription'}
+      <form class="col-lg-6" action="{$urls.current_url}#emailsubscription_anchor_{$hookName}" method="post">
+        <div class="d-flex gap-2 align-items-center mb-2">
+          <input class="form-control flex-grow-1" type="email" name="email" value="{$value}" placeholder="{l s='Your email address' d='Modules.Emailsubscription.Shop'}" aria-label="{l s='Your email address' d='Modules.Emailsubscription.Shop'}" required />
+          <input class="btn btn-primary" type="submit" name="submitNewsletter" value="{l s='Subscribe' d='Shop.Theme.Actions'}" />
+        </div>
 
-<div class="{$componentName} px-0 py-4">
-  <div class="container px-1">
-    <div class="{$componentName}__content row">
-      <div class="{$componentName}__content__left col-md-5">
-        <p id="block-newsletter-label-{$hookName}" class="{$componentName}__label">{l s='Get our latest news and special sales' d='Shop.Theme.Global'}</p>
-      </div>
-
-      <div class="{$componentName}__content__right col-md-7">
-        <form action="{$urls.current_url}#blockEmailSubscription_{$hookName}" method="post">
-          <div class="{$componentName}__content__inputs">
-            <input
-              name="email"
-              type="email"
-              class="form-control"
-              value="{$value}"
-              placeholder="{l s='Your email address' d='Shop.Forms.Labels'}"
-              aria-labelledby="block-newsletter-label-{$hookName}"
-              required
-           >
-
-            <input
-              class="btn btn-primary"
-              name="submitNewsletter"
-              type="submit"
-              value="{l s='Subscribe' d='Shop.Theme.Actions'}"
-           >
+        {if $msg}
+          <div class="alert {if $nw_error}alert-danger{else}alert-success{/if} alert-dismissible fade show mb-2" role="alert">
+            {$msg}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
+        {/if}
 
-          <div class="{$componentName}__content__infos">
-            {if $conditions}
-              <p>{$conditions}</p>
-            {/if}
-
-            {if $msg}
-              <p class="alert {if $nw_error}alert-danger{else}alert-success{/if}">
-                {$msg}
-              </p>
-            {/if}
-
-            {hook h='displayNewsletterRegistration'}
-
-            {if isset($id_module)}
-              {hook h='displayGDPRConsent' id_module=$id_module}
-            {/if}
+        {capture name="display_gdpr_consent"}{hook h='displayGDPRConsent' id_module=$id_module}{/capture}
+        {if isset($smarty.capture.display_gdpr_consent) && $smarty.capture.display_gdpr_consent}
+          <div class="fs-6 mb-2">
+            {$smarty.capture.display_gdpr_consent nofilter}
           </div>
+        {/if}
 
-          <input type="hidden" name="blockHookName" value="{$hookName}" />
-          <input type="hidden" name="action" value="0">
-        </form>
-      </div>
+        {if $conditions}
+          <p class="fs-6 text-body-secondary mb-0">{$conditions}</p>
+        {/if}
+
+        {hook h='displayNewsletterRegistration'}
+        
+        <input type="hidden" value="{$hookName}" name="blockHookName" />
+        <input type="hidden" name="action" value="0" />
+      </form>
     </div>
   </div>
-</div>
+</section>

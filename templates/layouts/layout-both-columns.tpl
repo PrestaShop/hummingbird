@@ -77,11 +77,11 @@
       {hook h='displayWrapperBottom'}
     </main>
 
-    <footer id="footer" class="footer">
-      {block name='footer'}
+    {block name='footer'}
+      <footer id="footer" class="footer">
         {include file='_partials/footer.tpl'}
-      {/block}
-    </footer>
+      </footer>
+    {/block}
 
     {block name='javascript_bottom'}
       {include file='_partials/javascript.tpl' javascript=$javascript.bottom}

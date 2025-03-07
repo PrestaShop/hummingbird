@@ -13,6 +13,9 @@
 // Bootstrap CSS variables
 @import "~bootstrap/scss/root";
 
+// Bootstrap custom CSS variables
+@import "../../bootstrap/root";
+
 // Bootstrap base styles
 @layer bs-base {
   @import "~bootstrap/scss/reboot";

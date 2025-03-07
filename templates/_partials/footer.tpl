@@ -3,37 +3,36 @@
  * file that was distributed with this source code.
  *}
 {capture name="footer_before"}{hook h='displayFooterBefore'}{/capture}
-{if isset($smarty.capture.footer_before) && $smarty.capture.footer_before}
-  <div class="footer footer__before">
-    {block name='hook_footer_before'}
+{if $smarty.capture.footer_before}
+  {block name='hook_footer_before'}
+    <div class="footer footer__before">
       {$smarty.capture.footer_before nofilter}
-    {/block}
-  </div>
+    </div>
+  {/block}
 {/if}
 
-<div class="footer footer__main">
-  <div class="container">
-    <div class="footer__main-top row">
-      {block name='hook_footer'}
-        {hook h='displayFooter'}
-      {/block}
-    </div>
-
-    {capture name="footer_main_bottom"}{hook h='displayFooterAfter'}{/capture}
-    {if isset($smarty.capture.footer_main_bottom) && $smarty.capture.footer_main_bottom}
-      <div class="footer__main-bottom row">
-        {block name='hook_footer_after'}
-          {$smarty.capture.footer_main_bottom nofilter}
+{block name='footer_main'}
+  <div class="footer footer__main">
+    <div class="container">
+      {capture name="footer_main_top"}{hook h='displayFooter'}{/capture}
+      {if $smarty.capture.footer_main_top}
+        {block name='hook_footer_main'}
+          <div class="footer__main-top row">
+            {$smarty.capture.footer_main_top nofilter}
+          </div>
         {/block}
-      </div>
-    {/if}
+      {/if}
 
-    <p class="copyright">
-      {block name='copyright_link'}
-        <a href="https://www.prestashop-project.org/" target="_blank" rel="noopener noreferrer nofollow">
-          {l s='%copyright% %year% - Ecommerce software by %prestashop%' sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
-        </a>
-      {/block}
-    </p>
+      {capture name="footer_main_bottom"}{hook h='displayFooterAfter'}{/capture}
+      {if isset($smarty.capture.footer_main_bottom) && $smarty.capture.footer_main_bottom}
+        {block name='hook_footer_after'}
+          <div class="footer__main-bottom row">
+            {$smarty.capture.footer_main_bottom nofilter}
+          </div>
+        {/block}
+      {/if}
+
+      {include file='_partials/copyright.tpl'}
+    </div>
   </div>
-</div>
+{/block}

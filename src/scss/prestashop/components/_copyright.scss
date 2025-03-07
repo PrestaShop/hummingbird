@@ -3,11 +3,11 @@ $component-name: copyright;
 .#{$component-name} {
   padding-block-start: 1rem;
   font-size: 0.875rem;
-  text-align: center;
   color: var(--bs-gray-300);
+  text-align: center;
 
   @include media-breakpoint-up(md) {
-    font-size: 1rem;
     padding-block-start: 2rem;
+    font-size: 1rem;
   }
 }

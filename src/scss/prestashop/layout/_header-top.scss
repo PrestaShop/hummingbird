@@ -18,9 +18,9 @@ $component-name: header-top;
   }
 
   a {
-    color: var(--header-top-color);
-
     &:not(.dropdown-item) {
+      color: var(--header-top-color);
+
       &:hover {
         color: var(--header-top-color-hover);
       }

@@ -14,35 +14,17 @@
       {hook h="displayContentWrapperTop"}
 
       {block name='content'}
-        <!-- TODO INSIDE -->
-          {block name='page_header_container'}
-            {block name='page_title' hide}
-              <header class="page-header">
-                <h1 class="h1">{$smarty.block.child}</h1>
-              </header>
+        {block name='page_content_container'}
+          <div id="content" class="page-content page-content--home">
+            {block name='page_content_top'}{/block}
+
+            {block name='page_content'}
+              {block name='hook_home'}
+                {$HOOK_HOME nofilter}
+              {/block}
             {/block}
-          {/block}
-
-          {block name='page_content_container'}
-            <div id="content" class="page-content page-content--home">
-              {block name='page_content_top'}{/block}
-
-              {block name='page_content'}
-                {block name='hook_home'}
-                  {$HOOK_HOME nofilter}
-                {/block}
-              {/block}
-            </div>
-          {/block}
-
-          {block name='page_footer_container'}
-            <footer class="page-footer">
-              {block name='page_footer'}
-                <!-- Footer content -->
-              {/block}
-            </footer>
-          {/block}
-        <!-- TODO INSIDE -->
+          </div>
+        {/block}
       {/block}
 
       {hook h="displayContentWrapperBottom"}

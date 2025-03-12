@@ -29,7 +29,7 @@ $product-miniature-container-query-width: 13.5rem;
     &-container {
       position: relative;
     }
-  
+
     &-link {
       display: block;
     }
@@ -37,15 +37,15 @@ $product-miniature-container-query-width: 13.5rem;
 
   &__quickview {
     &-button {
-      width: 100%;
-      padding-block: 1rem;
-      border-radius: 0;
       position: absolute;
       top: 100%;
       z-index: 1;
       display: flex;
+      width: 100%;
+      padding-block: 1rem;
       margin: auto;
       background-color: var(--bs-body-bg);
+      border-radius: 0;
       transition: var(--bs-transition-default);
       transition-delay: 0.1s;
     }
@@ -121,16 +121,16 @@ $product-miniature-container-query-width: 13.5rem;
     &__inner {
       &:hover {
         box-shadow: var(--bs-box-shadow-md);
-  
+
         .#{$component-name}__top {
-          border-end-end-radius: 0;
           border-end-start-radius: 0;
+          border-end-end-radius: 0;
         }
-  
+
         .#{$component-name}__quickview-button {
           transform: translateY(-100%);
         }
-  
+
         .#{$component-name}__image {
           transform: scale(1.1);
         }

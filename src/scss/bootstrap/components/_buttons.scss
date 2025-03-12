@@ -22,14 +22,14 @@ $component-name: btn;
   &-tertiary {
     --bs-btn-font-weight: 400;
     --bs-btn-color: var(--bs-body-color);
-    --bs-btn-bg: var(--bs-white);
-    --bs-btn-border-color: var(--bs-white);
-    --bs-btn-hover-color: var(--bs-primary);
-    --bs-btn-hover-bg: var(--bs-white);
-    --bs-btn-hover-border-color: var(--bs-white);
-    --bs-btn-focus-shadow-rgb: var(--bs-white-rgb);
-    --bs-btn-active-color: var(--bs-primary);
-    --bs-btn-active-bg: var(--bs-white);
-    --bs-btn-active-border-color: var(--bs-white);
+    --bs-btn-bg: var(--bs-body-bg);
+    --bs-btn-border-color: var(--bs-body-bg);
+    --bs-btn-hover-color: var(--bs-link-hover-color);
+    --bs-btn-hover-bg: var(--bs-body-bg);
+    --bs-btn-hover-border-color: var(--bs-body-bg);
+    --bs-btn-focus-shadow-rgb: var(--bs-body-bg-rgb);
+    --bs-btn-active-color: var(--bs-link-hover-color);
+    --bs-btn-active-bg: var(--bs-body-bg);
+    --bs-btn-active-border-color: var(--bs-body-bg);
   }
 }

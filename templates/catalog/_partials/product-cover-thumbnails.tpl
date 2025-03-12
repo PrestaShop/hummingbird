@@ -99,7 +99,7 @@
                   <source 
                     srcset="
                       {$image.bySize.default_xs.sources.avif},
-                      {$image.bySize.default_m.sources.avif} 2x",
+                      {$image.bySize.default_md.sources.avif} 2x",
                   type="image/avif"
                   >
                 {/if}
@@ -108,7 +108,7 @@
                   <source 
                     srcset="
                       {$image.bySize.default_xs.sources.webp},
-                      {$image.bySize.default_m.sources.webp} 2x"
+                      {$image.bySize.default_md.sources.webp} 2x"
                     type="image/webp"
                   >
                 {/if}
@@ -117,7 +117,7 @@
                   class="img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
                   srcset="
                     {$image.bySize.default_xs.url},
-                    {$image.bySize.default_m.url} 2x"
+                    {$image.bySize.default_md.url} 2x"
                   width="{$image.bySize.default_xs.width}"
                   height="{$image.bySize.default_xs.height}"
                   loading="lazy"

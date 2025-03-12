@@ -15,7 +15,7 @@
             <source 
               srcset="
                 {$product.default_image.bySize.default_xs.sources.avif},
-                {$product.default_image.bySize.default_m.sources.avif} 2x"
+                {$product.default_image.bySize.default_md.sources.avif} 2x"
               type="image/avif"
             >
           {/if}
@@ -24,7 +24,7 @@
             <source 
               srcset="
                 {$product.default_image.bySize.default_xs.sources.webp},
-                {$product.default_image.bySize.default_m.sources.webp} 2x"
+                {$product.default_image.bySize.default_md.sources.webp} 2x"
               type="image/webp"
             >
           {/if}
@@ -33,7 +33,7 @@
             class="img-fluid"
             srcset="
               {$product.default_image.bySize.default_xs.url},
-              {$product.default_image.bySize.default_m.url} 2x"
+              {$product.default_image.bySize.default_md.url} 2x"
             width="{$product.default_image.bySize.default_xs.width}"
             height="{$product.default_image.bySize.default_xs.height}"
             loading="lazy"
@@ -47,7 +47,7 @@
             <source 
               srcset="
                 {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                {$urls.no_picture_image.bySize.default_m.sources.avif} 2x"
+                {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
               type="image/avif"
             >
           {/if}
@@ -56,7 +56,7 @@
             <source 
               srcset="
                 {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                {$urls.no_picture_image.bySize.default_m.sources.webp} 2x"
+                {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
               type="image/webp"
             >
           {/if}
@@ -65,7 +65,7 @@
             class="img-fluid"
             srcset="
               {$urls.no_picture_image.bySize.default_xs.url},
-              {$urls.no_picture_image.bySize.default_m.url} 2x"
+              {$urls.no_picture_image.bySize.default_md.url} 2x"
             width="{$urls.no_picture_image.bySize.default_xs.width}"
             height="{$urls.no_picture_image.bySize.default_xs.height}"
             loading="lazy"

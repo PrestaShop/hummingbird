@@ -12,7 +12,7 @@ export default () => {
   const cartContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.container);
   const cartSummary = document.querySelector<HTMLElement>(Theme.selectors.cart.summary);
 
-  if(cartSummary) {
+  if (cartSummary) {
     cartSummary.addEventListener('click', (event: Event) => {
       const target = event.target as HTMLElement;
 
@@ -37,7 +37,6 @@ export default () => {
       }
     });
   }
-
 
   if (cartContainer) {
     cartContainer.addEventListener('click', (event: Event) => {

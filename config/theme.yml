@@ -126,14 +126,14 @@ global_settings:
       width: 452
       height: 452
       scope: [products, manufacturers, suppliers]
-    home_default:
-      width: 250
-      height: 250
-      scope: [products]
     large_default:
       width: 800
       height: 800
       scope: [products, manufacturers, suppliers]
+    home_default:
+      width: 250
+      height: 250
+      scope: [products]
     category_default:
       width: 141
       height: 180
@@ -146,17 +146,17 @@ global_settings:
       width: 120
       height: 120
       scope: [products, manufacturers, suppliers, categories]
-    default_s:
-      width: 160
-      height: 160
+    default_sm:
+      width: 216
+      height: 216
       scope: [categories, products]
-    default_m:
-      width: 200
-      height: 200
-      scope: [stores, manufacturers, suppliers, products]
     default_md:
-      width: 320
-      height: 320
+      width: 261
+      height: 261
+      scope: [stores, manufacturers, suppliers, products, categories]
+    default_lg:
+      width: 336
+      height: 336
       scope: [categories, products]
     default_xl:
       width: 400

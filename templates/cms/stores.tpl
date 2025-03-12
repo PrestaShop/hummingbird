@@ -18,19 +18,19 @@
             <div class="row">
               <div class="col-xl-6 store__picture">
                 <picture>
-                  {if isset($store.image.bySize.default_m.sources.avif)}
+                  {if isset($store.image.bySize.default_md.sources.avif)}
                     <source 
                       srcset="
-                        {$store.image.bySize.default_m.sources.avif},
+                        {$store.image.bySize.default_md.sources.avif},
                         {$store.image.bySize.default_xl.sources.avif} 2x"
                       type="image/avif"
                     >
                   {/if}
 
-                  {if isset($store.image.bySize.default_m.sources.webp)}
+                  {if isset($store.image.bySize.default_md.sources.webp)}
                     <source 
                       srcset="
-                        {$store.image.bySize.default_m.sources.webp},
+                        {$store.image.bySize.default_md.sources.webp},
                         {$store.image.bySize.default_xl.sources.webp} 2x"
                       type="image/webp"
                     >
@@ -39,11 +39,11 @@
                   <img
                     class="img-fluid rounded"
                     srcset="
-                      {$store.image.bySize.default_m.url},
+                      {$store.image.bySize.default_md.url},
                       {$store.image.bySize.default_xl.url} 2x"
                     loading="lazy"
-                    width="{$store.image.bySize.default_m.width}"
-                    height="{$store.image.bySize.default_m.height}"
+                    width="{$store.image.bySize.default_md.width}"
+                    height="{$store.image.bySize.default_md.height}"
                     {if !empty($store.image.legend)}
                       alt="{$store.image.legend}"
                       title="{$store.image.legend}"

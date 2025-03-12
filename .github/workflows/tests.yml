@@ -14,10 +14,10 @@ jobs:
           node-version: ${{ matrix.js }}
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Cache Node Directory
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}

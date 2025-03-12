@@ -12,11 +12,15 @@
           <ul class="cart-voucher__list">
             {foreach from=$cart.vouchers.added item=voucher}
               <li class="cart-voucher__item row">
-                <span class="cart-voucher__name col">{$voucher.name}</span>
                 <div class="d-flex align-items-center justify-content-end col">
+                  <span class="cart-voucher__name col">{$voucher.name}</span>
                   <span class="fw-bold">{$voucher.reduction_formatted}</span>
                     {if isset($voucher.code) && $voucher.code !== ''}
-                      <a href="{$voucher.delete_url}" class="ms-2" data-link-action="remove-voucher"><i class="material-icons" title="{l s='Remove Voucher' d='Shop.Theme.Checkout'}">&#xE872;</i></a>
+                      <form action="{$urls.pages.cart}?action=show" data-link-action="remove-voucher" class="d-flex" method="post">
+                        <input type="hidden" name="token" value="{$static_token}">
+                        <input type="hidden" name="deleteDiscount" value="{$voucher.id_cart_rule}">
+                        <button type="submit" class="btn btn-link ms-2"><span><i class="material-icons" title="{l s='Remove Voucher' d='Shop.Theme.Checkout'}">&#xE872;</i></span></button>
+                      </form>
                     {/if}
                 </div>
               </li>
@@ -24,7 +28,7 @@
           </ul>
         {/block}
       {/if}
-    
+
       <hr />
 
       <div class="accordion">
@@ -36,7 +40,7 @@
           <div id="promo-code" class="accordion-collapse collapse">
             <div class="accordion-body px-0">
               {block name='cart_voucher_form'}
-                <form action="{$urls.pages.cart}" data-link-action="add-voucher" class="d-flex" method="post">
+                <form action="{$urls.pages.cart}?action=show" data-link-action="add-voucher" class="d-flex" method="post">
                   <input type="hidden" name="token" value="{$static_token}">
                   <input type="hidden" name="addDiscount" value="1">
                   <input class="form-control" type="text" name="discount_name" placeholder="{l s='Paste your voucher here' d='Shop.Theme.Checkout'}">

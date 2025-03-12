@@ -42,6 +42,7 @@ export const cart = {
   displayPromo: '.display-promo',
   promoCode: '#promo-code',
   deleteLinkAction: 'delete-from-cart',
+  removeVoucherAction: 'remove-voucher',
   productQuantity: '.cart__items .js-quantity-button',
   productItem: '.cart__item',
   removeFromCartLink: '.remove-from-cart',

@@ -16,7 +16,7 @@
                   <span class="cart-voucher__name col">{$voucher.name}</span>
                   <span class="fw-bold">{$voucher.reduction_formatted}</span>
                     {if isset($voucher.code) && $voucher.code !== ''}
-                      <form action="{$urls.pages.cart}?action=show" data-link-action="remove-voucher" class="d-flex" method="post">
+                      <form action="{$urls.pages.cart}?action=show" data-form-action="remove-voucher" class="d-flex" method="post">
                         <input type="hidden" name="token" value="{$static_token}">
                         <input type="hidden" name="deleteDiscount" value="{$voucher.id_cart_rule}">
                         <button type="submit" class="btn btn-link ms-2"><span><i class="material-icons" title="{l s='Remove Voucher' d='Shop.Theme.Checkout'}">&#xE872;</i></span></button>

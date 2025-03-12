@@ -14,26 +14,22 @@ export default () => {
 
   if (cartSummary) {
     cartSummary.addEventListener('click', (event: Event) => {
-      const target = event.target as HTMLElement;
+      const eventTarget = event.target as HTMLElement;
+      const voucherTarget = eventTarget.closest(Theme.selectors.cart.discountCode);
 
-      // Check if the clicked element is a voucher code or inside one
-      const voucher = target.closest(Theme.selectors.cart.discountCode);
+      if (voucherTarget && isHTMLElement(voucherTarget)) {
+        const discountInput = document.querySelector<HTMLInputElement>(Theme.selectors.cart.discountName);
+        const promoCode = document.querySelector(Theme.selectors.cart.promoCode);
 
-      if (!voucher || !isHTMLElement(voucher)) return;
+        if (promoCode && discountInput) {
+          const formCollapser = new Collapse(promoCode, {
+            toggle: false,
+          });
 
-      event.stopPropagation();
-
-      const discountInput = document.querySelector<HTMLInputElement>(Theme.selectors.cart.discountName);
-      const promoCode = document.querySelector(Theme.selectors.cart.promoCode);
-
-      if (promoCode && discountInput) {
-        const formCollapser = new Collapse(promoCode, {
-          toggle: false,
-        });
-
-        discountInput.value = voucher.innerText;
-        // Show promo code field
-        formCollapser.show();
+          discountInput.value = voucherTarget.innerText;
+          // Show promo code field
+          formCollapser.show();
+        }
       }
     });
   }

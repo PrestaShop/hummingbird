@@ -9,30 +9,35 @@ import handleCartAction from '../components/UseHandleCartAction';
 
 export default () => {
   const {Theme} = window;
-  const voucherCodes = document.querySelectorAll(Theme.selectors.cart.discountCode);
   const cartContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.container);
+  const cartSummary = document.querySelector<HTMLElement>(Theme.selectors.cart.summary);
 
-  voucherCodes.forEach((voucher) => {
-    voucher.addEventListener('click', (event: Event) => {
+  if(cartSummary) {
+    cartSummary.addEventListener('click', (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      // Check if the clicked element is a voucher code or inside one
+      const voucher = target.closest(Theme.selectors.cart.discountCode);
+
+      if (!voucher || !isHTMLElement(voucher)) return;
+
       event.stopPropagation();
 
-      if (isHTMLElement(event.currentTarget)) {
-        const code = event.currentTarget;
-        const discountInput = document.querySelector<HTMLInputElement>(Theme.selectors.cart.discountName);
-        const promoCode = document.querySelector(Theme.selectors.cart.promoCode);
+      const discountInput = document.querySelector<HTMLInputElement>(Theme.selectors.cart.discountName);
+      const promoCode = document.querySelector(Theme.selectors.cart.promoCode);
 
-        if (promoCode && discountInput) {
-          const formCollapser = new Collapse(promoCode);
+      if (promoCode && discountInput) {
+        const formCollapser = new Collapse(promoCode, {
+          toggle: false,
+        });
 
-          discountInput.value = code.innerText;
-          // Show promo code field
-          formCollapser.show();
-        }
+        discountInput.value = voucher.innerText;
+        // Show promo code field
+        formCollapser.show();
       }
-
-      return false;
     });
-  });
+  }
+
 
   if (cartContainer) {
     cartContainer.addEventListener('click', (event: Event) => {

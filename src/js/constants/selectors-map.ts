@@ -35,6 +35,7 @@ export const listing = {
 
 export const cart = {
   container: '.cart-container',
+  summary: '.cart-summary',
   overview: '.cart-overview',
   discountCode: '.js-discount .js-code',
   discountName: '[name=discount_name]',

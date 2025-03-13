@@ -107,7 +107,7 @@ $component-name: ps-searchbar;
       padding: 0.5rem 1rem;
       margin: 0;
       color: var(--bs-body-color);
-      transition: $transition-base;
+      transition: var(--bs-transition-default);
     }
 
     &-link {
@@ -115,10 +115,10 @@ $component-name: ps-searchbar;
       align-items: center;
       border-radius: var(--bs-border-radius);
       outline: 2px solid transparent;
-      transition: $transition-base;
+      transition: var(--bs-transition-default);
 
       &:hover {
-        background-color: var(--bs-gray-100);
+        background-color: var(--bs-light-bg-subtle);
 
         .#{$component-name}__result-name {
           color: var(--bs-body-color);
@@ -126,19 +126,22 @@ $component-name: ps-searchbar;
       }
 
       &:focus {
-        background-color: var(--bs-gray-100);
-        outline: 2px solid var(--bs-primary);
+        background-color: var(--bs-light-bg-subtle);
 
         .#{$component-name}__result-name {
           color: var(--bs-body-color);
         }
       }
 
+      &:focus-visible {
+        outline: 2px solid var(--bs-primary);
+      }
+
       &:active {
-        background-color: var(--bs-gray-100);
+        background-color: var(--bs-light-bg-subtle);
 
         .#{$component-name}__result-name {
-          color: var(--bs-primary);
+          color: var(--bs-link-hover-color);
         }
       }
     }

@@ -3,10 +3,10 @@ $component-name: ps-contactinfo;
 #header {
   .#{$component-name} {
     a {
-      color: var(--header-top-color);
+      color: var(--bs-body-color);
 
       &:hover {
-        color: var(--header-top-color-hover);
+        color: var(--bs-link-hover-color);
       }
     }
   }

@@ -34,13 +34,12 @@ exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
     '../../modules/**/*.css',
   ],
   port,
-  proxy: {
-    '**': {
-      target: siteURL,
-      secure: false,
-      changeOrigin: true,
-    },
-  },
+  proxy: [{
+    context: '**',
+    target: siteURL,
+    secure: false,
+    changeOrigin: true,
+  }],
   static: {
     publicPath,
   },

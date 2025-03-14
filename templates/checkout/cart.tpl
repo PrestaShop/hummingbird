@@ -19,7 +19,7 @@
         {/block}
 
         {block name='continue_shopping'}
-          <a class="btn btn-outline-primary btn-with-icon" href="{$urls.pages.index}">
+          <a class="btn btn-outline-primary" href="{$urls.pages.index}">
             <i class="material-icons rtl-flip" aria-hidden="true">chevron_left</i>
             {l s='Continue shopping' d='Shop.Theme.Actions'}
           </a>
@@ -60,5 +60,7 @@
     </div>
   </div>
 
-  {hook h='displayCrossSellingShoppingCart'}
+  <div class="row">
+    {hook h='displayCrossSellingShoppingCart'}
+  </div>
 {/block}

@@ -75,7 +75,7 @@
 
         <div class="product-actions__button add col">
           <button
-            class="btn btn-primary btn-with-icon add-to-cart"
+            class="btn btn-primary add-to-cart"
             data-button-action="add-to-cart"
             type="submit"
             {if !$product.add_to_cart_url}

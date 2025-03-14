@@ -1,0 +1,9 @@
+$component-name: pagination;
+
+.#{$component-name} {
+  @include media-breakpoint-down(lg) {
+    &--custom {
+      margin-block: 1rem;
+    }
+  }
+}

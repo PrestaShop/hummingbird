@@ -18,7 +18,7 @@
       {/block}
 
       {block name="content_wrapper"}
-        <div id="content-wrapper" class="wrapper__content col-md-8 col-lg-9">
+        <div id="content-wrapper" class="page col-md-8 col-lg-9">
           {hook h='displayContentWrapperTop'}
           {block name="content"}
             <p>Hello world! This is HTML5 Boilerplate.</p>

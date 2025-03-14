@@ -1,0 +1,45 @@
+// Bootstrap carousel custom variables
+$carousel-caption-padding-x: $carousel-caption-padding-y;
+
+// Bootstrap carousel
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bs-white);
+  background-image: none;
+  border-radius: var(--bs-border-radius-sm);
+}
+
+.carousel-control-prev-icon {
+  &::before {
+    content: $carousel-control-prev-icon-bg;
+    @include material-icon(20px, var(--bs-dark));
+  }
+}
+
+.carousel-control-next-icon {
+  &::before {
+    content: $carousel-control-next-icon-bg;
+    @include material-icon(20px, var(--bs-dark));
+  }
+}
+
+.carousel-indicators {
+  bottom: 0;
+  margin-bottom: 1rem;
+
+  [data-bs-target] {
+    border-radius: 50%;
+  }
+
+  .active {
+    background-color: var(--bs-primary);
+  }
+}
+
+.carousel-caption {
+  bottom: $carousel-caption-spacer * 2.5;
+  padding-inline: $carousel-caption-padding-x;
+}

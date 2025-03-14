@@ -105,14 +105,14 @@
             {/if}
 
             {block name='quick_view_touch'}
-              <button class="{$componentName}__quickview-touch btn btn-tertiary btn-with-icon js-quickview" data-link-action="quickview">
+              <button class="{$componentName}__quickview-touch btn btn-tertiary js-quickview" data-link-action="quickview">
                 <i class="material-icons">&#xE417;</i>
               </button>
             {/block}
 
             {block name='quick_view'}
               <div class="{$componentName}__quickview">
-                <button class="{$componentName}__quickview-button btn btn-tertiary btn-with-icon js-quickview" data-link-action="quickview">
+                <button class="{$componentName}__quickview-button btn btn-tertiary js-quickview" data-link-action="quickview">
                   <i class="material-icons" aria-hidden="true">&#xE417;</i>
                   {l s='Quick view' d='Shop.Theme.Actions'}
                 </button>
@@ -192,7 +192,7 @@
                   }
                 </div>
 
-                <button data-button-action="add-to-cart" class="product-miniature__add btn btn-primary btn-with-icon">
+                <button data-button-action="add-to-cart" class="product-miniature__add btn btn-primary btn-square-icon">
                   <i class="material-icons" aria-hidden="true">&#xe854;</i>
                   <span class="product-miniature__add-text">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
                 </button>

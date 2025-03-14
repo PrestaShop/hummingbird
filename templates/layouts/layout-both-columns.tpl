@@ -52,13 +52,13 @@
             {/block}
 
             {block name='content_wrapper'}
-              <section id="content-wrapper" class="wrapper__content col-md-4 col-lg-6">
+              <div id="content-wrapper" class="page col-md-4 col-lg-6">
                 {hook h='displayContentWrapperTop'}
                 {block name='content'}
                   <p>Hello world! This is HTML5 Boilerplate.</p>
                 {/block}
                 {hook h='displayContentWrapperBottom'}
-              </section>
+              </div>
             {/block}
 
             {block name='right_column'}

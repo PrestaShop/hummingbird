@@ -1,13 +1,12 @@
+// Define CSS layers orders to allow easy customization
+@layer vendors, bs-base, bs-components, bs-custom-components, ps-base, ps-components, ps-modules, utilities;
+
 /* stylelint-disable */
 @import "abstract";
+
+// Vendors
 @import "vendors";
-@import "~bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css";
-@import "partials";
 
-// Core
-@import "core/_core";
-
-// Custom
-@import "custom/_custom";
-
+// Prestashop
+@import "prestashop";
 /* stylelint-enable */

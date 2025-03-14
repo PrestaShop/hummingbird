@@ -18,7 +18,7 @@
     {if $customer.addresses|count}
       <a class="{$componentName}__line{if $urls.current_url === $urls.pages.addresses} active{/if}" id="addresses__link" href="{$urls.pages.addresses}">
         <span class="link-item">
-          <i class="material-icons" aria-hidden="true">&#xE56A;</i>
+          <i class="material-icons" aria-hidden="true">&#xF00F;</i>
           {l s='Addresses' d='Shop.Theme.Customeraccount'}
         </span>
       </a>

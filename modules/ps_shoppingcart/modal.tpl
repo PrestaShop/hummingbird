@@ -97,7 +97,7 @@
       </div>
       <div class="modal-footer border-1">
         <div class="cart-footer-actions d-flex flex-wrap align-items-center justify-content-between w-100">
-          <button type="button" class="btn btn-outline-primary btn-with-icon w-md-auto w-100 mb-md-0 mb-3" data-bs-dismiss="modal">
+          <button type="button" class="btn btn-outline-primary w-md-auto w-100 mb-md-0 mb-3" data-bs-dismiss="modal">
             <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
             {l s='Continue shopping' d='Shop.Theme.Actions'}
           </button>

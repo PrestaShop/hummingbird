@@ -10,7 +10,7 @@
   {block name='left_column'}{/block}
 
   {block name='content_wrapper'}
-    <div id="content-wrapper" class="wrapper__content">
+    <div id="content-wrapper" class="page">
       {hook h="displayContentWrapperTop"}
 
       {block name='content'}
@@ -24,7 +24,7 @@
           {/block}
 
           {block name='page_content_container'}
-            <section id="content" class="page-content page-home">
+            <div id="content" class="page-content page-content--home">
               {block name='page_content_top'}{/block}
 
               {block name='page_content'}
@@ -32,7 +32,7 @@
                   {$HOOK_HOME nofilter}
                 {/block}
               {/block}
-            </section>
+            </div>
           {/block}
 
           {block name='page_footer_container'}

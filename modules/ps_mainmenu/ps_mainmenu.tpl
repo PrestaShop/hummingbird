@@ -185,7 +185,7 @@
 >
   <div class="offcanvas-header">
     <div class="ps-mainmenu__back-button">
-      <button class="btn btn-link btn-sm btn-with-icon d-none js-back-button" type="button">
+      <button class="btn btn-link btn-sm d-none js-back-button" type="button">
         <span class="material-icons rtl-flip">chevron_left</span>
         <span class="js-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
       </button>

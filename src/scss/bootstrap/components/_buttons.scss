@@ -1,0 +1,35 @@
+$component-name: btn;
+
+.#{$component-name} {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+
+  .material-icons {
+    width: 1.2em;
+    height: 1.2em;
+    font-size: 1.25em;
+    line-height: 1.2em;
+  }
+
+  // Square icon only button
+  &-square-icon {
+    padding-inline: var(--bs-btn-padding-y);
+  }
+
+  // Tertiary button
+  &-tertiary {
+    --bs-btn-font-weight: 400;
+    --bs-btn-color: var(--bs-body-color);
+    --bs-btn-bg: var(--bs-white);
+    --bs-btn-border-color: var(--bs-white);
+    --bs-btn-hover-color: var(--bs-primary);
+    --bs-btn-hover-bg: var(--bs-white);
+    --bs-btn-hover-border-color: var(--bs-white);
+    --bs-btn-focus-shadow-rgb: var(--bs-white-rgb);
+    --bs-btn-active-color: var(--bs-primary);
+    --bs-btn-active-bg: var(--bs-white);
+    --bs-btn-active-border-color: var(--bs-white);
+  }
+}

@@ -10,10 +10,10 @@ $module-name: ps-imageslider;
   }
 
   &__figcaption {
-    background-color: rgba(var(--bs-dark-rgb), 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: var(--bs-border-radius);
     color: var(--bs-light);
+    background-color: rgba(var(--bs-dark-rgb), 0.5);
+    border-radius: var(--bs-border-radius);
+    backdrop-filter: blur(10px);
 
     p {
       margin-block-end: 0;

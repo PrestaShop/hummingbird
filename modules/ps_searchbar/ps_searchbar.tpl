@@ -29,7 +29,7 @@
       <input type="hidden" name="controller" value="search">
       <i class="material-icons ps-searchbar__magnifier js-search-icon" aria-hidden="true">&#xE8B6;</i>
       <i class="material-icons ps-searchbar__clear js-search-clear d-none" aria-hidden="true">&#xE14C;</i>
-      <input class="js-search-input form-control ps-searchbar__input" type="text" name="s" value="{$search_string}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
+      <input class="js-search-input form-control ps-searchbar__input" type="text" name="s" value="{$search_string}" placeholder="{l s='Search products...' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
     </form>
 
     <div class="ps-searchbar__dropdown js-search-dropdown d-none">

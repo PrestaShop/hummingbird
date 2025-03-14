@@ -15,7 +15,12 @@ $component-name: ps-mainmenu;
 
         .menu-toggle {
           padding-inline: 0.375rem;
+          color: var(--bs-body-color);
           background-color: transparent;
+
+          &:hover {
+            color: var(--bs-link-hover-color);
+          }
 
           .material-icons {
             font-size: 1.5rem;
@@ -41,25 +46,25 @@ $component-name: ps-mainmenu;
 
           &.current {
             > a {
-              color: var(--bs-primary);
+              color: var(--bs-link-color);
             }
           }
 
           > a {
             padding: 1.25rem 0.75rem;
-            color: var(--bs-gray-600);
+            color: var(--bs-secondary-color);
 
             &.dropdown-toggle {
               gap: 0.5rem;
             }
 
             &:hover {
-              color: var(--bs-body-color);
+              color: var(--bs-link-hover-color);
               cursor: pointer;
             }
 
             &:active {
-              color: var(--bs-primary);
+              color: var(--bs-link-hover-color);
             }
           }
 
@@ -78,8 +83,8 @@ $component-name: ps-mainmenu;
             left: 0;
             z-index: 1060;
             display: none;
-            background-color: var(--bs-white);
-            border-top: 1px solid var(--bs-gray-200);
+            background-color: var(--bs-body-bg);
+            border-top: 1px solid var(--bs-border-color);
 
             &.focusing,
             &:focus-within {
@@ -100,7 +105,7 @@ $component-name: ps-mainmenu;
                 &:hover {
                   &,
                   i {
-                    color: var(--bs-primary);
+                    color: var(--bs-link-color);
                   }
                 }
 
@@ -116,8 +121,7 @@ $component-name: ps-mainmenu;
 
     // Submenu
     .submenu {
-      background-color: var(--bs-white);
-      box-shadow: 0 10px 20px 0 rgba(var(--bs-black-rgb), 0.1);
+      box-shadow: var(--bs-box-shadow-md);
 
       &__row {
         align-items: stretch;
@@ -128,7 +132,7 @@ $component-name: ps-mainmenu;
         flex-direction: column;
         gap: 0.25rem;
         padding-block: 1.5rem;
-        border-right: 1px solid var(--bs-gray-200);
+        border-right: 1px solid var(--bs-border-color);
 
         .submenu__left-item {
           display: flex;
@@ -139,17 +143,18 @@ $component-name: ps-mainmenu;
           border-radius: var(--bs-border-radius);
 
           &:hover {
-            color: var(--bs-primary);
-            background-color: var(--bs-gray-100);
+            color: var(--bs-link-hover-color);
+            background-color: var(--bs-tertiary-bg);
           }
 
           &.active {
-            color: var(--bs-primary);
-            background-color: var(--bs-gray-100);
+            color: var(--bs-link-color);
+            background-color: var(--bs-tertiary-bg);
 
             &:active,
             &:focus {
-              background-color: var(--bs-gray-100);
+              color: var(--bs-link-hover-color);
+              background-color: var(--bs-tertiary-bg);
             }
           }
 
@@ -189,7 +194,7 @@ $component-name: ps-mainmenu;
             color: var(--bs-body-color);
 
             &:hover {
-              color: var(--bs-primary);
+              color: var(--bs-link-hover-color);
             }
 
             &__group--child,
@@ -248,12 +253,16 @@ $component-name: ps-mainmenu;
       width: 100%;
       max-width: 25rem;
       padding: 0 1rem;
-      transition: $transition-base;
+      transition: var(--bs-transition-default);
 
       a {
         display: block;
         padding-block: 0.5rem;
-        color: var(--bs-gray-600);
+        color: var(--bs-secondary-color);
+
+        &:hover {
+          color: var(--bs-link-hover-color);
+        }
       }
 
       &__title {
@@ -261,7 +270,7 @@ $component-name: ps-mainmenu;
         margin-bottom: 0.75rem;
         font-size: 1.25rem;
         font-weight: 600;
-        color: var(--bs-gray-800);
+        color: var(--bs-body-color);
       }
 
       &__list {
@@ -270,7 +279,7 @@ $component-name: ps-mainmenu;
 
       &__link {
         &:active {
-          color: var(--bs-primary);
+          color: var(--bs-link-color);
         }
       }
 

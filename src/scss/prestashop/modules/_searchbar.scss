@@ -118,7 +118,7 @@ $component-name: ps-searchbar;
       transition: var(--bs-transition-default);
 
       &:hover {
-        background-color: var(--bs-light-bg-subtle);
+        background-color: var(--bs-tertiary-bg);
 
         .#{$component-name}__result-name {
           color: var(--bs-body-color);
@@ -126,7 +126,7 @@ $component-name: ps-searchbar;
       }
 
       &:focus {
-        background-color: var(--bs-light-bg-subtle);
+        background-color: var(--bs-tertiary-bg);
 
         .#{$component-name}__result-name {
           color: var(--bs-body-color);
@@ -138,7 +138,7 @@ $component-name: ps-searchbar;
       }
 
       &:active {
-        background-color: var(--bs-light-bg-subtle);
+        background-color: var(--bs-tertiary-bg);
 
         .#{$component-name}__result-name {
           color: var(--bs-link-hover-color);

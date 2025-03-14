@@ -133,7 +133,7 @@
               {* Cannot use page identifier as we can have the same page several times *}
               {assign var=_expand_id value=10|mt_rand:100000}
               <button class="menu__toggle-child btn btn-link js-menu-open-child" data-target="{$_expand_id}">
-                <i class="material-icons rtl-flip">chevron_right</i>
+                <i class="material-icons rtl-flip">&#xE5CC;</i>
               </button>
             {/if}
           </li>
@@ -172,7 +172,7 @@
       data-bs-target="#mobileMenu"
       aria-controls="mobileMenu"
     >
-      <span class="material-icons">menu</span>
+      <span class="material-icons">&#xE5D2;</span>
     </a>
   </div>
 </div>
@@ -186,7 +186,7 @@
   <div class="offcanvas-header">
     <div class="ps-mainmenu__back-button">
       <button class="btn btn-link btn-sm d-none js-back-button" type="button">
-        <span class="material-icons rtl-flip">chevron_left</span>
+        <span class="material-icons rtl-flip">&#xE5CB;</span>
         <span class="js-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
       </button>
     </div>

@@ -73,7 +73,7 @@
               </picture>
 
               <div class="product__images__modal-opener" data-bs-toggle="modal" data-bs-target="#product-modal">
-                <i class="material-icons zoom-in">search</i>
+                <i class="material-icons zoom-in">&#xE8B6;</i>
               </div>
             </div>
           {/foreach}

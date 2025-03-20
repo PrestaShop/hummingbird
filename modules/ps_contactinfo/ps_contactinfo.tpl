@@ -2,17 +2,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
+<div class="ps-contactinfo footer-block col-md-6 col-lg-3">
+  <p class="footer-block__title footer-block__title--toggle">
+    {l s='Store information' d='Shop.Theme.Global'}
+    <span class="stretched-link collapsed d-md-none" role="button" aria-expanded="true"
+      data-bs-target="#footer_contactinfo" data-bs-toggle="collapse">
+      <i class="material-icons" aria-hidden="true">&#xE313;</i>
+    </span>
+  </p>
 
- <div class="ps-contactinfo footer__block block-contact col-md-6 col-lg-3">
-  <p class="footer__block__title d-none d-md-flex">{l s='Store information' d='Shop.Theme.Global'}</p>
-
-  <div role="button" class="footer__block__toggle d-md-none collapsed" data-bs-target="#contact-infos" data-bs-toggle="collapse" aria-expanded="false">
-    <span class="footer__block__title">{l s='Store information' d='Shop.Theme.Global'}</span>
-    <i class="material-icons" aria-hidden="true">&#xE313;</i>
-  </div>
-
-  <div id="contact-infos" class="footer__block__content footer__block__content-contact collapse">
-
+  <div class="footer-block__content collapse" id="footer_contactinfo">
     <div class="ps-contactinfo__infos">
       {$contact_infos.address.formatted nofilter}
     </div>
@@ -37,6 +36,5 @@
         {mailto address=$contact_infos.email encode="javascript"}
       </div>
     {/if}
-
   </div>
 </div>

@@ -33,9 +33,9 @@
 
 {if !empty($categories.children)}
   <div class="ps_categorytree {$componentName} left-block">
-    <div class="left-block__title">
-      <a class="left-block__title__link" href="{$categories.link nofilter}">{$categories.name|escape:'htmlall':'UTF-8'}</a>
-    </div>
+    <p class="left-block__title">
+      <a class="left-block__title-link" href="{$categories.link nofilter}">{$categories.name|escape:'htmlall':'UTF-8'}</a>
+    </p>
 
     <ul class="accordion accordion-flush accordion--small accordion--category">
       {if !empty($categories.children)}

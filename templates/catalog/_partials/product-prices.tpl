@@ -5,54 +5,54 @@
 {if $product.show_price}
   <div class="product__prices js-product-prices">
     {block name='product_price'}
-      <div class="prices__wrapper d-flex flex-column gap-2 mb-4">
+      <div class="product__prices-block">
         {if $product.has_discount}
-          <div class="product__discount">
+          <div class="product__discount-price product__prices-inline product__prices-inline--small-gap">
             {hook h='displayProductPriceBlock' product=$product type="old_price"}
 
-            <span class="product__price-regular">{$product.regular_price}</span>
+            <span class="product__regular-price">{$product.regular_price}</span>
 
             {if $product.discount_type === 'percentage'}
-              <span class="product__discount-percentage">
+              <span class="product__discount-percentage text-primary">
                 ({l s='Save %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage_absolute]})
               </span>
             {else}
-              <span class="product__discount-amount">
+              <span class="product__discount-amount text-primary">
                 ({l s='Save %amount%' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.discount_to_display]})
               </span>
             {/if}
           </div>
         {/if}
         
-        <div class="d-flex align-items-center gap-2">
-          <div class="product__current-price">
+        <div class="product__prices-inline product__prices-inline--small-gap">
+          <span class="product__price">
             {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='product_sheet'}{/capture}
-            {if '' !== $smarty.capture.custom_price}
+            {if !empty($smarty.capture.custom_price)}
               {$smarty.capture.custom_price nofilter}
             {else}
               {$product.price}
             {/if}
-          </div>
+          </span>
 
           {block name='product_unit_price'}
             {if $displayUnitPrice}
-              <div class="product__unit-price">
+              <span class="product__unit-price">
                 {l s='(%unit_price%)' d='Shop.Theme.Catalog' sprintf=['%unit_price%' => $product.unit_price_full]}
-              </div>
+              </span>
             {/if}
           {/block}
         </div>
 
         {block name='product_pack_price'}
           {if $displayPackPrice}
-            <div class="product__pack-price">
+            <span class="product__pack-price">
               {l s='Instead of %price%' d='Shop.Theme.Catalog' sprintf=['%price%' => $noPackPrice]}
-            </div>
+            </span>
           {/if}
         {/block}
 
-        <div class="product__tax-info d-flex align-items-start gap-2">
-          <div class="product__tax-label">
+        <div class="product__tax-infos">
+          <span class="product__tax-label">
             {if !$configuration.taxes_enabled}
               {l s='No tax' d='Shop.Theme.Catalog'}
             {elseif $configuration.display_taxes_label}
@@ -61,26 +61,26 @@
             
             {hook h='displayProductPriceBlock' product=$product type="price"}
             {hook h='displayProductPriceBlock' product=$product type="after_price"}
-          </div>
+          </span>
 
           {* Separator *}
-          {if $configuration.display_taxes_label && $product.ecotax.amount > 0}<span class="product__sep-price"> - </span>{/if}
+          {if $configuration.display_taxes_label && $product.ecotax.amount > 0}<span class="product__price-separator"> - </span>{/if}
 
           {block name='product_ecotax'}
             {if $product.ecotax.amount> 0}
-              <div class="product__ecotax-price">
+              <span class="product__ecotax-price">
                 {l s='Including %amount% for ecotax' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.ecotax.value]}
                 {if $product.has_discount}
                   {l s='(not impacted by the discount)' d='Shop.Theme.Catalog'}
                 {/if}
-              </div>
+              </span>
             {/if}
           {/block}
         </div>
 
         {block name='product_without_taxes'}
           {if $priceDisplay == 2}
-            <p class="product__price-taxless">{l s='%price% tax excl.' d='Shop.Theme.Catalog' sprintf=['%price%' => $product.price_tax_exc]}</p>
+            <span class="product__taxless-price">{l s='%price% tax excl.' d='Shop.Theme.Catalog' sprintf=['%price%' => $product.price_tax_exc]}</span>
           {/if}
         {/block}
       </div>

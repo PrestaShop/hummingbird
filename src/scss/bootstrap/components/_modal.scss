@@ -1,0 +1,7 @@
+$component-name: modal;
+
+.#{$component-name} {
+  &-body {
+    padding-block: 0.5rem;
+  }
+}

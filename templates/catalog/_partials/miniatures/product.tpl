@@ -87,7 +87,6 @@
                       "value" => "{$product.minimal_quantity}",
                       "min" => "{$product.minimal_quantity}"
                     ]
-                    marginHelper="mb-0"
                   }
                 </div>
 

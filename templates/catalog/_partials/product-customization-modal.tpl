@@ -79,7 +79,7 @@
               <img class="img-fluid" src="{$image_modal['image_url']}">
             </div>
 
-            <div class="modal-footer border-1 d-flex flex-wrap justify-content-between w-100">
+            <div class="modal-footer d-flex flex-wrap justify-content-between w-100">
                 <div class="d-inline-flex">
                   <span>{$image_modal['image_info'][0]} x {$image_modal['image_info'][1]}</span>
                   <span class="text-muted ms-2">({$image_modal['image_info']['mime']})</span>

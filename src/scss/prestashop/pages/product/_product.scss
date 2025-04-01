@@ -3,10 +3,6 @@ $component-name: 'product';
 
 .#{$page-name} {
   .#{$component-name} {
-    &__name {
-      margin-block-end: 2rem;
-    }
-
     &__infos {
       .accordion-button {
         padding: 1.25rem 0;
@@ -45,7 +41,6 @@ $component-name: 'product';
     }
 
     &__prices {
-      margin-block-end: 1rem;
       font-size: 1.25rem;
       line-height: 1;
     }
@@ -99,20 +94,19 @@ $component-name: 'product';
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      margin-block-end: 1rem;
     }
 
     &__availability {
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
-      margin-block-end: 1rem;
     }
 
     &__availability-status {
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      line-height: 1.2;
     }
 
     &__delivery-infos {
@@ -131,7 +125,6 @@ $component-name: 'product';
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-block-end: 1rem;
     }
 
     &__quantity {
@@ -152,8 +145,52 @@ $component-name: 'product';
       gap: 0.5rem;
       font-size: 0.875rem;
       line-height: 1.2;
-      margin-block-end: 1rem;
       color: var(--bs-tertiary-color);
+    }
+
+    // Spacings
+    &__name,
+    &__prices,
+    &__description-short,
+    &__actions,
+    &__variants,
+    &__availability,
+    &__actions-qty-add,
+    &__minimal-quantity,
+    &__customization {
+      margin-block-end: 1.25rem;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .#{$component-name} {
+      &__container {
+        display: grid;
+        grid-template-columns: 48% 1fr;
+        gap: 1.5rem;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .#{$component-name} {
+      &__container {
+        grid-template-columns: 55% 1fr;
+        gap: 2rem;
+      }
+
+      // Spacings
+      &__name,
+      &__prices,
+      &__description-short,
+      &__actions,
+      &__variants,
+      &__availability,
+      &__actions-qty-add,
+      &__minimal-quantity,
+      &__customization {
+        margin-block-end: 2rem;
+      }
     }
   }
 }
@@ -162,11 +199,13 @@ $component-name: 'product';
 .#{$component-name} {
   &__thumbnails {
     margin-block-start: 1.5rem;
+    margin-block-end: 2rem;
 
     &-list {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 1.5rem;
+      margin: 0;
     }
   }
 
@@ -204,7 +243,12 @@ $component-name: 'product';
     // Quickview spacings
     &__prices,
     &__description-short,
-    &__actions {
+    &__actions,
+    &__variants,
+    &__availability,
+    &__actions-qty-add,
+    &__minimal-quantity,
+    &__customization {
       margin-block-end: 1rem;
     }
   }

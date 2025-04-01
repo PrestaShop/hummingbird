@@ -4,7 +4,7 @@
  *}
  
 {if !$configuration.is_catalog}
-  <section class="product-customization js-product-customization">
+  <section class="product__customization product-customization js-product-customization">
     <p class="product-customization__title h4">{l s='Product customization' d='Shop.Theme.Catalog'}</p>
     {block name='product_customization_form'}
       <form method="post" action="{$product.url}" enctype="multipart/form-data" class="mb-0">

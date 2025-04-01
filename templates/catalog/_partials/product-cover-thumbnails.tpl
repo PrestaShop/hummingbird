@@ -32,24 +32,22 @@
               data-bs-slide-to="{$key}"
             >
               <picture>
-                {if isset($image.bySize.default_md.sources.avif)}
+                {if isset($image.bySize.default_xl.sources.avif)}
                   <source 
                     srcset="
-                      {$image.bySize.default_md.sources.avif} 320w,
-                      {$image.bySize.product_main.sources.avif} 720w,
-                      {$image.bySize.product_main_2x.sources.avif} 1440w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                      {$image.bySize.default_xl.sources.avif} 400w,
+                      {$image.bySize.product_main.sources.avif} 720w"
+                    sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
                     type="image/avif"
                   >
                 {/if}
 
-                {if isset($image.bySize.default_md.sources.webp)}
+                {if isset($image.bySize.default_xl.sources.webp)}
                   <source 
                     srcset="
-                      {$image.bySize.default_md.sources.webp} 320w,
-                      {$image.bySize.product_main.sources.webp} 720w,
-                      {$image.bySize.product_main_2x.sources.webp} 1440w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                      {$image.bySize.default_xl.sources.webp} 400w,
+                      {$image.bySize.product_main.sources.webp} 720w"
+                    sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
                     type="image/webp"
                   >
                 {/if}
@@ -57,10 +55,9 @@
                 <img
                   class="img-fluid w-100"
                   srcset="
-                    {$image.bySize.default_md.url} 320w,
-                    {$image.bySize.product_main.url} 720w,
-                    {$image.bySize.product_main_2x.url} 1440w"
-                  sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    {$image.bySize.default_xl.url} 400w,
+                    {$image.bySize.product_main.url} 720w"
+                  sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
                   src="{$image.bySize.product_main.url}" 
                   width="{$image.bySize.product_main.width}"
                   height="{$image.bySize.product_main.height}"
@@ -98,8 +95,8 @@
                   <source 
                     srcset="
                       {$image.bySize.default_xs.sources.avif},
-                      {$image.bySize.default_md.sources.avif} 2x",
-                  type="image/avif"
+                      {$image.bySize.default_xl.sources.avif} 2x"
+                    type="image/avif"
                   >
                 {/if}
 
@@ -107,7 +104,7 @@
                   <source 
                     srcset="
                       {$image.bySize.default_xs.sources.webp},
-                      {$image.bySize.default_md.sources.webp} 2x"
+                      {$image.bySize.default_xl.sources.webp} 2x"
                     type="image/webp"
                   >
                 {/if}
@@ -116,7 +113,7 @@
                   class="product__thumbnail-image img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
                   srcset="
                     {$image.bySize.default_xs.url},
-                    {$image.bySize.default_md.url} 2x"
+                    {$image.bySize.default_xl.url} 2x"
                   width="{$image.bySize.default_xs.width}"
                   height="{$image.bySize.default_xs.height}"
                   loading="lazy"
@@ -133,24 +130,22 @@
     {hook h='displayAfterProductThumbs' product=$product}
   {else}
     <picture>
-      {if isset($urls.no_picture_image.bySize.default_md.sources.avif)}
+      {if isset($urls.no_picture_image.bySize.default_xl.sources.avif)}
         <source 
           srcset="
-            {$urls.no_picture_image.bySize.default_md.sources.avif} 320w,
-            {$urls.no_picture_image.bySize.product_main.sources.avif} 720w,
-            {$urls.no_picture_image.bySize.product_main_2x.sources.avif} 1440w"
-          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+            {$urls.no_picture_image.bySize.default_xl.sources.avif} 400w,
+            {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
+          sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
           type="image/avif"
         >
       {/if}
 
-      {if isset($urls.no_picture_image.bySize.default_md.sources.webp)}
+      {if isset($urls.no_picture_image.bySize.default_xl.sources.webp)}
         <source 
           srcset="
-            {$urls.no_picture_image.bySize.default_md.sources.webp} 320w,
-            {$urls.no_picture_image.bySize.product_main.sources.webp} 720w,
-            {$urls.no_picture_image.bySize.product_main_2x.sources.webp} 1440w"
-          sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+            {$urls.no_picture_image.bySize.default_xl.sources.webp} 400w,
+            {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
+          sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
           type="image/webp"
         >
       {/if}
@@ -158,13 +153,12 @@
       <img
         class="img-fluid"
         srcset="
-          {$urls.no_picture_image.bySize.default_md.url} 320w,
-          {$urls.no_picture_image.bySize.product_main.url} 720w,
-          {$urls.no_picture_image.bySize.product_main_2x.url} 1440w"
-        sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+          {$urls.no_picture_image.bySize.default_xl.url} 400w,
+          {$urls.no_picture_image.bySize.product_main.url} 720w"
+        sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
         width="{$urls.no_picture_image.bySize.product_main.width}"
         height="{$urls.no_picture_image.bySize.product_main.height}"
-        src="{$urls.no_picture_image.bySize.default_md.url}" 
+        src="{$urls.no_picture_image.bySize.default_xl.url}" 
         loading="lazy"
         alt="{l s='No image available' d='Shop.Theme.Catalog'}"
         title="{l s='No image available' d='Shop.Theme.Catalog'}"

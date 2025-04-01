@@ -30,16 +30,16 @@
 
 {block name='content'}
   {* FIRST PART - PHOTO, NAME, PRICES, ADD TO CART*}
-  <div class="row g-4 g-xl-5 product js-product-container">
-    <div class="product__left col-lg-6 col-xl-7">
+  <div class="product__container js-product-container">
+    <div class="product__left">
       {block name='product_cover_thumbnails'}
         {include file='catalog/_partials/product-cover-thumbnails.tpl'}
       {/block}
     </div>
 
-    <div class="product__col col-lg-6 col-xl-5">
+    <div class="product__right">
       {block name='product_header'}
-        <h1 class="h4 product__name">{block name='page_title'}{$product.name}{/block}</h1>
+        <h1 class="h2 product__name">{block name='page_title'}{$product.name}{/block}</h1>
       {/block}
 
       {block name='product_prices'}

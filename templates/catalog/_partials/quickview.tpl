@@ -10,13 +10,13 @@
       </div>
 
       <div class="modal-body page-product page-product--quickview">
-        <div class="product__left--quickview">
+        <div class="product__left">
           {block name='product_cover_thumbnails'}
             {include file='catalog/_partials/product-cover-thumbnails.tpl'}
           {/block}
         </div>
 
-        <div class="product__right--quickview">
+        <div class="product__right">
           <p class="h2">{$product.name}</p>
 
           {block name='product_prices'}

@@ -1,5 +1,16 @@
 // Bootstrap main variables
 
+// Breakpoints
+$grid-breakpoints: (
+  "xxs": 0,
+  "xs": 360px,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1400px,
+);
+
 // Caret
 $caret-width: 1.375em;
 $caret-vertical-align: initial;
@@ -22,6 +33,9 @@ $h6-font-size: calc(var(--bs-body-font-size) * 0.875);
 
 $headings-font-weight: 600;
 $headings-margin-bottom: 1rem;
+
+// Box shadow
+$box-shadow-md: 0 0.625rem 1.25rem rgba(var(--bs-black-rgb), 0.1);
 
 // Options
 $enable-cssgrid: true;

@@ -3,7 +3,6 @@ $component-name: header-top;
 
 .#{$component-name} {
   padding: 0.25rem 0;
-  background-color: var(--header-top-bg);
 
   &__right,
   &__left {
@@ -18,9 +17,9 @@ $component-name: header-top;
   }
 
   a {
-    color: var(--header-top-color);
-
     &:not(.dropdown-item) {
+      color: var(--header-top-color);
+
       &:hover {
         color: var(--header-top-color-hover);
       }
@@ -33,6 +32,6 @@ $component-name: header-top;
   }
 
   @include media-breakpoint-up(md) {
-    border-bottom: var(--header-top-border-bottom);
+    border-bottom: 1px solid var(--bs-border-color);
   }
 }

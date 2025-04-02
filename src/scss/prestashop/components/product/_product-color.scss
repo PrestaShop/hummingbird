@@ -8,8 +8,8 @@ $component-name: color;
     cursor: pointer;
     background-size: contain;
     border: 1px solid var(--bs-border-color);
-    border-radius: 0.25rem;
-    transition: 0.25s ease-out;
+    border-radius: var(--bs-border-radius-sm);
+    transition: var(--bs-transition-default);
 
     &.#{$component-name}-sm {
       width: 1rem;
@@ -18,7 +18,7 @@ $component-name: color;
 
     &.active,
     &:hover {
-      border: 2px solid var(--bs-primary);
+      border: 2px solid var(--bs-link-hover-color);
     }
   }
 }

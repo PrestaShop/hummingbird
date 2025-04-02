@@ -22,7 +22,7 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-start" aria-labelledby="userMenuButton">
-          <a class="dropdown-item" href="{$urls.pages.my_account}">
+          <a href="{$urls.pages.my_account}" class="dropdown-item">
             <i class="material-icons me-2" aria-hidden="true">&#xF02E;</i>
             {l s='Your account' d='Shop.Theme.Customeraccount'}
           </a>
@@ -38,7 +38,7 @@
             </a>
           {else}
             <a href="{$urls.pages.address}" title="{l s='Add first address' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">
-              <i class="material-icons me-2" aria-hidden="true">&#xE567;</i>
+              <i class="material-icons me-2" aria-hidden="true">&#xEF3A;</i>
               {l s='Add first address' d='Shop.Theme.Customeraccount'}
             </a>
           {/if}
@@ -56,8 +56,8 @@
           {/if}
           {if $configuration.voucher_enabled && !$configuration.is_catalog}
             <a href="{$urls.pages.discount}" title="{l s='Vouchers' d='Shop.Theme.Customeraccount'}" class="dropdown-item" rel="nofollow">
-            <i class="material-icons me-2" aria-hidden="true">&#xE54E;</i>
-            {l s='Vouchers' d='Shop.Theme.Customeraccount'}
+              <i class="material-icons me-2" aria-hidden="true">&#xE54E;</i>
+              {l s='Vouchers' d='Shop.Theme.Customeraccount'}
             </a>
           {/if}
           {if $configuration.return_enabled && !$configuration.is_catalog}

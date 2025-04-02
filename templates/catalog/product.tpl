@@ -30,7 +30,7 @@
 
 {block name='content'}
   {* FIRST PART - PHOTO, NAME, PRICES, ADD TO CART*}
-  <div class="product__container js-product-container">
+  <div class="product__container product-container js-product-container">
     <div class="product__left">
       {block name='product_cover_thumbnails'}
         {include file='catalog/_partials/product-cover-thumbnails.tpl'}
@@ -47,7 +47,7 @@
       {/block}
 
       {block name='product_description_short'}
-        <div class="product__description-short rich-text">{$product.description_short nofilter}</div>
+        <div class="product__description-short">{$product.description_short nofilter}</div>
       {/block}
 
       {block name='product_customization'}
@@ -68,9 +68,7 @@
             {/block}
 
             {block name='product_pack'}
-              {if $packItems}
-                {include file='catalog/_partials/product-pack.tpl'}
-              {/if}
+              {include file='catalog/_partials/product-pack.tpl'}
             {/block}
 
             {block name='product_discounts'}

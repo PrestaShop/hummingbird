@@ -143,8 +143,8 @@ global_settings:
       height: 115
       scope: [stores]
     default_xs:
-      width: 120
-      height: 120
+      width: 160
+      height: 160
       scope: [products, manufacturers, suppliers, categories]
     default_sm:
       width: 216

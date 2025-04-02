@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 {if !$configuration.is_catalog}
-  <div class="product__add-to-cart product-add-to-cart js-product-add-to-cart">
+  <div class="product__add-to-cart-container product-add-to-cart js-product-add-to-cart">
     {block name='product_availability'}
       {if $product.show_availability && $product.availability_message}
         <div id="product-availability" class="product__availability js-product-availability">
@@ -51,7 +51,7 @@
 
     {block name='product_quantity'}
       <div class="product__actions-qty-add">
-        <div class="product__quantity quantity-button js-quantity-button">
+        <div class="product-actions__quantity product__quantity quantity-button js-quantity-button">
           {include file='components/qty-input.tpl'
             attributes=[
               "id" => "quantity_wanted",

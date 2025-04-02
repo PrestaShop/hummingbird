@@ -3,6 +3,29 @@ $component-name: 'product';
 
 .#{$page-name} {
   .#{$component-name} {
+    &__thumbnails {
+      margin-block-start: 1rem;
+      margin-block-end: 2rem;
+  
+      &-list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin: 0;
+      }
+    }
+  
+    &__thumbnail {
+      &.active .#{$component-name}__thumbnail-image {
+        outline: 2px solid var(--bs-primary);
+      }
+  
+      &-image {
+        outline: 2px solid transparent;
+        border-radius: var(--bs-border-radius);
+      }
+    }
+
     &__infos {
       .accordion-button {
         padding: 1.25rem 0;
@@ -115,11 +138,6 @@ $component-name: 'product';
       color: var(--bs-tertiary-color);
     }
 
-    // @todo
-    &-pack__item {
-      border: 1px $gray-200 solid;
-    }
-
     &__actions-qty-add {
       display: flex;
       align-items: center;
@@ -155,10 +173,26 @@ $component-name: 'product';
     &__actions,
     &__variants,
     &__availability,
-    &__actions-qty-add,
+    &__add-to-cart-container,
     &__minimal-quantity,
-    &__customization {
+    &__customization,
+    &__pack,
+    &__discounts {
       margin-block-end: 1.25rem;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    .#{$component-name} {
+      &__thumbnails {    
+        margin-block-start: 1.5rem;
+        margin-block-end: 2rem;
+
+        &-list {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 1.5rem;
+        }
+      }
     }
   }
 
@@ -166,7 +200,7 @@ $component-name: 'product';
     .#{$component-name} {
       &__container {
         display: grid;
-        grid-template-columns: 48% 1fr;
+        grid-template-columns: 48% minmax(0, 1fr);
         gap: 1.5rem;
       }
     }
@@ -175,8 +209,14 @@ $component-name: 'product';
   @include media-breakpoint-up(xl) {
     .#{$component-name} {
       &__container {
-        grid-template-columns: 55% 1fr;
+        grid-template-columns: 55% minmax(0, 1fr);
         gap: 2rem;
+      }
+
+      &__thumbnails {    
+        &-list {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
       }
 
       // Spacings
@@ -186,109 +226,85 @@ $component-name: 'product';
       &__actions,
       &__variants,
       &__availability,
-      &__actions-qty-add,
+      &__add-to-cart-container,
       &__minimal-quantity,
-      &__customization {
+      &__customization,
+      &__pack,
+      &__discounts {
         margin-block-end: 2rem;
       }
     }
   }
-}
 
-// Needs to be outside of the .page-product scope because it can be inside a modal
-.#{$component-name} {
-  &__thumbnails {
-    margin-block-start: 1.5rem;
-    margin-block-end: 2rem;
-
-    &-list {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1.5rem;
-      margin: 0;
-    }
-  }
-
-  &__thumbnail {
-    &.active &-image {
-      outline: 2px solid var(--bs-primary);
-    }
-
-    &-image {
-      outline: 2px solid transparent;
-      border-radius: var(--bs-border-radius);
-    }
-  }
-}
-
-// Quickview modal
-.#{$page-name}--quickview {
-  .#{$component-name} {
-    &__thumbnails {
-      margin-block-start: 0.875rem;
-      margin-block-end: 2rem;
-  
-      &-list {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.875rem;
-      }
-    }
-      
-    // Hide product image zoom on quickview modal
-    &__zoom {
-      display: none;
-    }
-
-    // Quickview spacings
-    &__prices,
-    &__description-short,
-    &__actions,
-    &__variants,
-    &__availability,
-    &__actions-qty-add,
-    &__minimal-quantity,
-    &__customization {
-      margin-block-end: 1rem;
-    }
-  }
-
-  @include media-breakpoint-up(sm) {
+  // Quickview modal
+  &--quickview {
     .#{$component-name} {
       &__thumbnails {
         margin-block-start: 0.875rem;
+        margin-block-end: 2rem;
     
         &-list {
-          grid-template-columns: repeat(6, 1fr);
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
           gap: 0.875rem;
         }
       }
-    }
-  }
-
-  @include media-breakpoint-up(md) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-
-    .#{$component-name} {
-      &__thumbnails {
-        margin-block-end: 0;
+        
+      // Hide product image zoom on quickview modal
+      &__zoom {
+        display: none;
+      }
   
-        &-list {
-          grid-template-columns: repeat(5, 1fr);
+      // Quickview spacings
+      &__prices,
+      &__description-short,
+      &__actions,
+      &__variants,
+      &__availability,
+      &__actions-qty-add,
+      &__minimal-quantity,
+      &__customization {
+        margin-block-end: 1rem;
+      }
+    }
+  
+    @include media-breakpoint-up(sm) {
+      .#{$component-name} {
+        &__thumbnails {
+          margin-block-start: 0.875rem;
+      
+          &-list {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 0.875rem;
+          }
         }
       }
     }
-  }
-
-  @include media-breakpoint-up(xl) {
-    .#{$component-name} {
-      &__thumbnails {
-        margin-block-start: 1.5rem;
+  
+    @include media-breakpoint-up(md) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 2rem;
+  
+      .#{$component-name} {
+        &__thumbnails {
+          margin-block-end: 0;
     
-        &-list {
-          gap: 1.5rem;
+          &-list {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+          }
+        }
+      }
+    }
+  
+    @include media-breakpoint-up(xl) {
+      .#{$component-name} {
+        &__thumbnails {
+          margin-block-start: 1.5rem;
+      
+          &-list {
+            gap: 1.5rem;
+          }
         }
       }
     }

@@ -5,7 +5,7 @@
 {if $product.quantity_discounts}
   <section class="product__discounts js-product-discounts">
     {block name='product_discount_table'}
-      <table class="table product__discounts__table w-100 mb-3 text-center">
+      <table class="discounts-table">
         <thead>
           <tr>
             <th>{l s='Quantity' d='Shop.Theme.Catalog'}</th>

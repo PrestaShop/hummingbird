@@ -1,0 +1,6 @@
+$component-name: discounts-table;
+
+.#{$component-name} {
+  margin-block-end: 0;
+  @extend .table;
+}

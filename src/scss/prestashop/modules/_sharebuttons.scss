@@ -1,0 +1,40 @@
+$module-name: ps-sharebuttons;
+
+.#{$module-name} {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    gap: 0.125rem;
+  }
+
+  &__link {
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    width: 1.875rem;
+    height: 1.875rem;
+    color: var(--bs-body-color);
+
+    &:hover {
+      color: var(--bs-link-hover-color);
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    gap: 0.75rem;
+
+    &__list {
+      gap: 0.25rem;
+    }
+
+    &__link {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

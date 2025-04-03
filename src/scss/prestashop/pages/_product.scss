@@ -3,9 +3,9 @@ $component-name: 'product';
 
 .#{$page-name} {
   .#{$component-name} {
+    // Top section
     &__thumbnails {
       margin-block-start: 1rem;
-      margin-block-end: 2rem;
   
       &-list {
         display: grid;
@@ -26,23 +26,13 @@ $component-name: 'product';
       }
     }
 
-    &__infos {
-      .accordion-button {
-        padding: 1.25rem 0;
-        font-size: 1.25rem;
-        font-weight: 700;
-      }
-
-      .accordion-body {
-        padding: 0;
-      }
+    &__images {
+      margin-block-end: 2rem;
     }
 
-    &__images {
-      .carousel {
-        overflow: hidden;
-        border-radius: 8px;
-      }
+    &__carousel {
+      overflow: hidden;
+      border-radius: var(--bs-border-radius);
     }
 
     &__zoom {
@@ -166,6 +156,17 @@ $component-name: 'product';
       color: var(--bs-tertiary-color);
     }
 
+    // Bottom section
+    &__bottom {
+      &-left {
+        margin-block-end: 1.25rem;
+      }
+
+      &-right {
+        margin-block-end: 1.25rem;
+      }
+    }
+
     // Spacings
     &__name,
     &__prices,
@@ -186,7 +187,7 @@ $component-name: 'product';
     .#{$component-name} {
       &__thumbnails {    
         margin-block-start: 1.5rem;
-        margin-block-end: 2rem;
+        margin-block-end: 0;
 
         &-list {
           grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -198,10 +199,21 @@ $component-name: 'product';
 
   @include media-breakpoint-up(lg) {
     .#{$component-name} {
+      &__images {
+        margin-block-end: 0;
+      }
+
       &__container {
         display: grid;
         grid-template-columns: 48% minmax(0, 1fr);
         gap: 1.5rem;
+      }
+
+      &__bottom {
+        display: grid;
+        grid-template-columns: 55% minmax(0, 1fr);
+        gap: 2rem;
+        margin-block-start: 1.5rem;
       }
     }
   }
@@ -216,6 +228,17 @@ $component-name: 'product';
       &__thumbnails {    
         &-list {
           grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+      }
+
+      // Bottom section
+      &__bottom {
+        &-left {
+          margin-block-end: 2rem;
+        }
+
+        &-right {
+          margin-block-end: 2rem;
         }
       }
 

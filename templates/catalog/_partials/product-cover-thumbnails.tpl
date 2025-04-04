@@ -6,7 +6,7 @@
 <div class="product__images js-images-container">
   {if $product.images|@count > 0}
     <div
-      id="product-images"
+      id="product-images-{$product.id}"
       class="product__carousel carousel slide js-product-carousel"
       data-bs-ride="carousel"
     >
@@ -14,12 +14,12 @@
         {include file='catalog/_partials/product-flags.tpl'}
 
         {if $product.images|@count > 1}
-          <button class="carousel-control-prev" type="button" data-bs-target="#product-images" data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#product-images-{$product.id}" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
 
-          <button class="carousel-control-next" type="button" data-bs-target="#product-images" data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#product-images-{$product.id}" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -28,7 +28,7 @@
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}"
-              data-bs-target="#product-images-modal"
+              data-bs-target="#product-images-modal-{$product.id}"
               data-bs-slide-to="{$key}"
             >
               <picture>
@@ -83,7 +83,7 @@
           {foreach from=$product.images item=image key=key}
             <li
               class="product__thumbnail js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
-              data-bs-target="#product-images"
+              data-bs-target="#product-images-{$product.id}"
               data-bs-slide-to="{$key}"
               {if $image.id_image == $product.default_image.id_image}
                 aria-current="true"

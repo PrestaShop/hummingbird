@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview in" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="quickview__dialog modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="quickview__content modal-content">
       <div class="quickview__header modal-header">

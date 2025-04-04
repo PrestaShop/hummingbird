@@ -127,24 +127,34 @@
 
           {block name='product_attachments'}
             {if $product.attachments}
-              <div class="info accordion-item" id="attachments">
-                <h2 class="accordion-header" id="product-attachments-heading">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-attachments-collapse" aria-expanded="true" aria-controls="product-attachments-collapse">
+              <div class="info accordion-item" id="product_attachments">
+                <h2 class="accordion-header" id="product_attachments_heading">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product_attachments_collapse" aria-expanded="false" aria-controls="product_attachments_collapse">
                     {l s='Download' d='Shop.Theme.Actions'}
                   </button>
                 </h2>
 
-                <div id="product-attachments-collapse" class="info__content accordion-collapse collapse" aria-labelledby="product-attachments-heading">
-                  <div class="product__attachments accordion-body">
-                    {foreach from=$product.attachments item=attachment}
-                      <div class="attachment">
-                        <p class="h5"><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></p>
-                        <p>{$attachment.description}</p>
-                        <a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
-                          {l s='Download' d='Shop.Theme.Actions'} ({$attachment.file_size_formatted})
-                        </a>
-                      </div>
-                    {/foreach}
+                <div id="product_attachments_collapse" class="accordion-collapse collapse" aria-labelledby="product_attachments_heading">
+                  <div class="accordion-body">
+                    <div class="product__attachments">
+                      {foreach from=$product.attachments item=attachment}
+                        <div class="attachment">
+                          <p class="attachment__name">
+                            {$attachment.name}
+                          </p>
+
+                          {if $attachment.description}
+                            <p class="attachment__description">
+                              {$attachment.description}
+                            </p>
+                          {/if}
+
+                          <a class="attachment__link stretched-link" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                            <i class="material-icons">&#xE2C4;</i> {l s='Download' d='Shop.Theme.Actions'} ({$attachment.file_size_formatted})
+                          </a>
+                        </div>
+                      {/foreach}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -153,13 +163,14 @@
 
           {* New collapses for module hooked content *}
           {foreach from=$product.extraContent item=extra key=extraKey}
-            <div class="info accordion-item" id="extra-{$extraKey}" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
-              <h2 class="accordion-header" id="product-extra{$extraKey}-heading">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product-extra{$extraKey}-collapse" aria-expanded="true" aria-controls="product-extra{$extraKey}-collapse">
+            <div class="accordion-item" id="extra_{$extraKey}" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
+              <h2 class="accordion-header" id="product_extra_{$extraKey}_heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#product_extra_{$extraKey}_collapse" aria-expanded="false" aria-controls="product_extra_{$extraKey}_collapse">
                   {$extra.title}
                 </button>
               </h2>
-              <div id="product-extra{$extraKey}-collapse" class="info__content accordion-collapse collapse" data-bs-parent="#product_accordion" aria-labelledby="product-extra{$extraKey}-heading">
+
+              <div id="product_extra_{$extraKey}_collapse" class="accordion-collapse collapse" data-bs-parent="#product_accordion" aria-labelledby="product_extra_{$extraKey}_heading">
                 <div class="accordion-body">
                   {$extra.content nofilter}
                 </div>

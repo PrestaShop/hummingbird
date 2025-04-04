@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{* {extends file="components/module-products.tpl"}
+{extends file="components/module-products.tpl"}
 
 {block name='module_products_variables'}
   {assign var="need_container" value=false}
@@ -16,4 +16,4 @@
   {else}
     {include file='components/section-title.tpl' title={l s='%s other products in the same category' sprintf=[$products|@count] d='Shop.Theme.Catalog'}}
   {/if}
-{/block} *}
+{/block}

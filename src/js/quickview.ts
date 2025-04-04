@@ -23,7 +23,9 @@ export default function initQuickviews() {
         productModal.on('hidden.bs.modal', () => {
           productModal.remove();
         });
-        prestashop.emit(events.quickviewOpened);
+        productModal.on('shown.bs.modal', () => {
+          prestashop.emit(events.quickviewOpened);
+        });
       })
       .fail((resp) => {
         prestashop.emit(events.handleError, {

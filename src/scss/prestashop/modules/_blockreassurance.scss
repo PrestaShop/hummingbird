@@ -1,7 +1,57 @@
-.blockreassurance_product {
-  span,
-  p {
-    display: block;
-    line-height: 1.5rem;
+$module-name: 'blockreassurance';
+$component-name: 'reassurance';
+
+.#{$module-name} {
+  &--product,
+  &--cart,
+  &--checkout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+    margin-block-end: 2rem;
+    text-align: initial;
+  }
+
+  &--cart,
+  &--checkout {
+    margin-block: 2rem;
+  }
+
+  .#{$component-name} {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__image {
+      flex-shrink: 0;
+      width: 3rem;
+      height: 3rem;
+    }
+
+    &__content {
+      flex-grow: 1;
+    }
+    
+    &__desc {
+      color: var(--bs-secondary-color);
+    }
+
+    &--link {
+      color: var(--bs-body-color);
+
+      &:hover {
+        color: var(--bs-link-hover-color);
+      }
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    .#{$component-name} {
+      &__image {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
   }
 }

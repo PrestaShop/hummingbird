@@ -3,10 +3,6 @@ $component-name: accordion;
 .#{$component-name} {
   &-item {
     border-block-end: 1px solid var(--bs-border-color);
-
-    &:last-child {
-      border-block-end: none;
-    }
   }
 
   &-button {

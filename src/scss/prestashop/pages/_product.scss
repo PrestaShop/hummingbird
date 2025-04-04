@@ -167,6 +167,13 @@ $component-name: 'product';
       }
     }
 
+    &__attachments {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-block-end: 1rem;
+    }
+
     // Spacings
     &__name,
     &__prices,
@@ -178,7 +185,8 @@ $component-name: 'product';
     &__minimal-quantity,
     &__customization,
     &__pack,
-    &__discounts {
+    &__discounts,
+    &__accessories {
       margin-block-end: 1.25rem;
     }
   }
@@ -253,7 +261,8 @@ $component-name: 'product';
       &__minimal-quantity,
       &__customization,
       &__pack,
-      &__discounts {
+      &__discounts,
+      &__accessories {
         margin-block-end: 2rem;
       }
     }

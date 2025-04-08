@@ -2,14 +2,14 @@ $module-name: ps-sharebuttons;
 
 .#{$module-name} {
   display: flex;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
 
   &__list {
     display: flex;
+    gap: 0.125rem;
     align-items: center;
     margin: 0;
-    gap: 0.125rem;
   }
 
   &__link {

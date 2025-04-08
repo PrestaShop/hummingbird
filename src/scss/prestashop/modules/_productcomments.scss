@@ -1,7 +1,7 @@
 /* PrestaShop license placeholder */
 
 // Icons
-.product-comment-list-item .material-icons[data-icon]:before {
+.product-comment-list-item .material-icons[data-icon]::before {
   content: attr(data-icon);
 }
 
@@ -36,8 +36,8 @@
 // Average grade
 .comments-note {
   display: flex;
-  align-items: center;
   gap: 0.25rem;
+  align-items: center;
 }
 
 .average-grade {
@@ -54,10 +54,14 @@
 
     &--show {
       display: flex;
-      visibility: visible;
       align-items: center;
-      color: var(--bs-secondary-color);
       font-size: 0.875rem;
+      color: var(--bs-secondary-color);
+      visibility: visible;
+    }
+
+    .comments-nb {
+      line-height: 1;
     }
   }
 }
@@ -101,17 +105,11 @@
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
-    margin-block-end: 1rem;
     padding: 0;
+    margin-block-end: 1rem;
 
     .section-title {
       margin-block-end: 0;
-    }
-
-    .comments-nb {
-      padding: 0;
-      font-size: 1.25rem;
-      font-weight: 600;
     }
   }
 
@@ -126,8 +124,8 @@
   }
 
   .product-comment-list-item {
-    margin: 0;
     padding: 0;
+    margin: 0;
     background-color: transparent;
   }
 
@@ -165,8 +163,8 @@
     margin-block-end: 1rem;
 
     .comment {
-      margin: 0;
       padding: 1rem 0;
+      margin: 0;
       background-color: transparent;
       border-bottom: 1px solid var(--bs-border-color);
 
@@ -195,10 +193,10 @@
       }
 
       &__text {
-        margin: 0 0 1rem 0;
+        margin: 0 0 1rem;
         font-size: 1rem;
-        letter-spacing: initial;
         line-height: 1.5;
+        letter-spacing: initial;
       }
 
       &__infos {
@@ -206,9 +204,9 @@
         flex-wrap: wrap;
         gap: 0.5rem;
         align-items: center;
-        margin-bottom: 1rem;
         height: auto;
         min-height: inherit;
+        margin-bottom: 1rem;
 
         .grade-stars {
           margin: 0 0 0 calc(-1 * 0.25rem);
@@ -231,8 +229,8 @@
 
         a {
           display: inline-flex;
-          align-items: center;
           gap: 0.25rem;
+          align-items: center;
           color: var(--bs-secondary-color);
           transition: var(--bs-transition-default);
 
@@ -249,20 +247,20 @@
 // Star rating
 .star-content {
   position: absolute;
-  margin: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  margin: 0;
 
   .star,
   .star-on,
   .star-hover {
     display: block;
+    flex: auto;
     width: 1.25rem;
     height: 1.25rem;
-    background: url("../img/stars.png") no-repeat 0 0 transparent;
-    flex: auto;
     margin-left: 0.125rem;
+    background: url("../img/stars.png") no-repeat 0 0 transparent;
   }
 
   .star-on,
@@ -275,10 +273,10 @@
   .star,
   .star-on,
   .star-hover {
-    background: url("../img/small_stars.png") no-repeat 0 0 transparent;
     width: 1rem;
     height: 1rem;
     margin-left: 0.125rem;
+    background: url("../img/small_stars.png") no-repeat 0 0 transparent;
   }
 
   .star-on,
@@ -290,9 +288,9 @@
 // Grade stars
 .grade-stars {
   position: relative;
-  height: 1.25rem;
-  min-width: 7.5rem;
   display: inline-block;
+  min-width: 7.5rem;
+  height: 1.25rem;
 
   &.small-stars {
     min-width: 6.25rem;

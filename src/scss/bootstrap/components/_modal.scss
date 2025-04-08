@@ -1,6 +1,10 @@
 $component-name: modal;
 
 .#{$component-name} {
+  &-title {
+    color: var(--bs-body-color);
+  }
+
   &-body {
     padding-block: 0.5rem;
   }

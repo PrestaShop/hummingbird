@@ -137,6 +137,7 @@ $component-name: "product";
 
     &__quantity {
       display: flex;
+      width: 100%;
     }
 
     &__add-to-cart {
@@ -191,6 +192,14 @@ $component-name: "product";
 
     &__accessories {
       margin-block-end: 2rem;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    .#{$component-name} {
+      &__quantity {
+        width: auto;
+      }
     }
   }
 

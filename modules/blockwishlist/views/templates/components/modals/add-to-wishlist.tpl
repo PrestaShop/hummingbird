@@ -14,10 +14,10 @@
     role="dialog"
     aria-modal="true"
   >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       <div class="modal-content">
-        <div class="modal-header px-3">
-          <p class="h5 modal-title">{l s='Add to wishlist' d='Modules.Blockwishlist.Shop'}</p>
+        <div class="modal-header">
+          <p class="h2 modal-title">{l s='Add to wishlist' d='Modules.Blockwishlist.Shop'}</p>
           <button
             type="button"
             class="btn-close"

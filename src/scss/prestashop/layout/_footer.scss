@@ -7,23 +7,6 @@ $sub-component-name: "footer-block";
     padding-block: 1.5rem;
     color: var(--bs-gray-300);
     background: var(--bs-dark);
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: var(--bs-white);
-    }
-
-    a {
-      color: var(--bs-gray-300);
-
-      &:hover {
-        color: var(--bs-white);
-      }
-    }
   }
 
   @include media-breakpoint-up(md) {
@@ -74,6 +57,14 @@ $sub-component-name: "footer-block";
       display: block;
       padding-block: 0.25rem;
       line-height: 1.5;
+    }
+  }
+
+  a {
+    color: var(--bs-gray-300);
+
+    &:hover {
+      color: var(--bs-white);
     }
   }
 

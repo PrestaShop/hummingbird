@@ -1,9 +1,38 @@
-$module-name: wishlist;
+/* stylelint-disable */
+// Can't style module without using !important
+$module-name: blockwishlist;
+$component-name: wishlist;
 
-.#{$module-name} {
+.#{$component-name} {
   &-button {
+    // Hide inside quickview if empty
     &:empty {
       display: none;
+    }
+  }
+
+  &-button-add {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+    color: var(--bs-body-color) !important;
+    width: inherit !important;
+    height: inherit !important;
+    padding: 0.5rem !important;
+    margin: 0 !important;
+    border-radius: var(--bs-border-radius-sm) !important;
+    box-shadow: none !important;
+    border: 1px solid var(--bs-body-bg) !important;
+    background-color: var(--bs-body-bg) !important;
+
+    &:hover {
+      color: var(--bs-link-hover-color) !important;
+      background-color: var(--bs-body-bg) !important;
+      border: 1px solid var(--bs-body-bg) !important;
+      opacity: 1 !important;
+    }
+
+    i {
+      color: inherit !important;
     }
   }
 }

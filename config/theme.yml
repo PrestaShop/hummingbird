@@ -51,6 +51,12 @@ assets:
 global_settings:
   configuration:
     PS_IMAGE_QUALITY: png
+    HOME_FEATURED_NBR: 4
+    NEW_PRODUCTS_NBR: 4
+    BLOCKSPECIALS_SPECIALS_NBR: 4
+    PS_BLOCK_BESTSELLERS_TO_DISPLAY: 4
+    PSR_ICON_COLOR: "#0d6efd"
+    PSR_TEXT_COLOR: "#212529"
   modules:
    to_enable:
      - ps_linklist

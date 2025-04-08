@@ -3,16 +3,15 @@
  * file that was distributed with this source code.
  *}
 
-<div class="product-comments-wrapper my-3">
+<div class="product-comments-wrapper">
   <script type="text/javascript">
     var productCommentUpdatePostErrorMessage = '{l|escape:'javascript' s='Sorry, your review appreciation cannot be sent.' d='Modules.Productcomments.Shop'}';
     var productCommentAbuseReportErrorMessage = '{l|escape:'javascript' s='Sorry, your abuse report cannot be sent.' d='Modules.Productcomments.Shop'}';
   </script>
 
   <div id="product-comments-list-header">
-    <h2 class="section-title">
-      {l s='Comments' d='Modules.Productcomments.Shop'} ({$nb_comments})
-    </h2>
+    <h2 class="section-title">{l s='Comments' d='Modules.Productcomments.Shop'}
+      ({$nb_comments})</h2>
     {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade showGradeAverage=true showNbComments=false}
   </div>
 
@@ -30,7 +29,7 @@
   <div id="product-comments-list" data-list-comments-url="{$list_comments_url nofilter}"
     data-update-comment-usefulness-url="{$update_comment_usefulness_url nofilter}"
     data-report-comment-url="{$report_comment_url nofilter}"
-    data-comment-item-prototype="{$comment_prototype|escape:'html'}" data-current-page="1"
+    data-comment-item-prototype="{$comment_prototype}" data-current-page="1"
     data-total-pages="{$list_total_pages}">
   </div>
 
@@ -40,7 +39,7 @@
         <ul class="pagination justify-content-center">
           {assign var = "prevCount" value = 0}
           <li class="page-item" id="pcl_page_{$prevCount}">
-            <button class="page-link btn prev"><i class="material-icons">&#xE5CB;</i></button>
+            <button class="page-link btn prev" aria-label="Previous"><i class="material-icons">chevron_left</i></button>
           </li>
           {for $pageCount = 1 to $list_total_pages}
             <li class="page-item" id="pcl_page_{$pageCount}">
@@ -49,7 +48,7 @@
           {/for}
           {assign var = "nextCount" value = $list_total_pages + 1}
           <li class="page-item" id="pcl_page_{$nextCount}">
-            <button class="page-link btn next"><i class="material-icons">&#xE5CC;</i></button>
+            <button class="page-link btn next" aria-label="Next"><i class="material-icons">chevron_right</i></button>
           </li>
         </ul>
       </nav>

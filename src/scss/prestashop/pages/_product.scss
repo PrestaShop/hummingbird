@@ -159,11 +159,11 @@ $component-name: 'product';
     // Bottom section
     &__bottom {
       &-left {
-        margin-block-end: 1.25rem;
+        margin-block-end: 2rem;
       }
 
       &-right {
-        margin-block-end: 1.25rem;
+        margin-block-end: 2rem;
       }
     }
 
@@ -185,9 +185,12 @@ $component-name: 'product';
     &__minimal-quantity,
     &__customization,
     &__pack,
-    &__discounts,
-    &__accessories {
+    &__discounts {
       margin-block-end: 1.25rem;
+    }
+
+    &__accessories {
+      margin-block-end: 2rem;
     }
   }
 
@@ -242,11 +245,11 @@ $component-name: 'product';
       // Bottom section
       &__bottom {
         &-left {
-          margin-block-end: 2rem;
+          margin-block-end: 3rem;
         }
 
         &-right {
-          margin-block-end: 2rem;
+          margin-block-end: 3rem;
         }
       }
 
@@ -261,9 +264,12 @@ $component-name: 'product';
       &__minimal-quantity,
       &__customization,
       &__pack,
-      &__discounts,
-      &__accessories {
+      &__discounts {
         margin-block-end: 2rem;
+      }
+
+      &__accessories {
+        margin-block-end: 3rem;
       }
     }
   }

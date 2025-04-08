@@ -17,7 +17,7 @@
         </div>
 
         <div class="product__right">
-          <p class="h2">{$product.name}</p>
+          <p class="product__name h2">{$product.name}</p>
 
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}

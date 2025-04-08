@@ -9,22 +9,21 @@
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function() {
     const alertModal = $('#{$modal_id}');
-    alertModal.on('hidden.bs.modal', function () {
+    alertModal.on('hidden.bs.modal', function() {
       alertModal.modal('hide');
     });
   });
 </script>
 
 <div id="{$modal_id}" class="modal fade product-comment-modal" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="h2 mb-0">
-          <i class="material-icons {$icon}" data-icon="{$icon}"></i>
+        <p class="h2 modal-title">
           {$modal_title}
         </p>
       </div>
-      
+
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12  col-sm-12" id="{$modal_id}-message">
@@ -33,8 +32,9 @@
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="{l s='OK' d='Modules.Productcomments.Shop'}">
+      <div class="modal-footer post-comment-buttons">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          aria-label="{l s='OK' d='Modules.Productcomments.Shop'}">
           {l s='OK' d='Modules.Productcomments.Shop'}
         </button>
       </div>

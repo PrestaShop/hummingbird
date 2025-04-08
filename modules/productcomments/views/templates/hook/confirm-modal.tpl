@@ -9,7 +9,7 @@
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function() {
     const confirmModal = $('#{$modal_id}');
-    confirmModal.on('hidden.bs.modal', function () {
+    confirmModal.on('hidden.bs.modal', function() {
       confirmModal.modal('hide');
       confirmModal.trigger('modal:confirm', false);
     });
@@ -23,12 +23,12 @@
   });
 </script>
 
-<div id="{$modal_id}" class="modal fade product-comment-modal" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div id="{$modal_id}" class="modal fade product-comment-modal" role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="h2">
-          <i class="material-icons {$icon}" data-icon="{$icon}"></i>
+        <p class="h2 modal-title">
           {$modal_title}
         </p>
       </div>
@@ -40,12 +40,16 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary me-2 refuse-button" data-bs-dismiss="modal" aria-label="{l s='No' d='Modules.Productcomments.Shop'}">
-          {l s='No' d='Modules.Productcomments.Shop'}
-        </button>
-        <button type="button" class="btn btn-primary confirm-button" data-bs-dismiss="modal" aria-label="{l s='Yes' d='Modules.Productcomments.Shop'}">
-          {l s='Yes' d='Modules.Productcomments.Shop'}
-        </button>
+        <div class="post-comment-buttons">
+          <button type="button" class="btn btn-outline-primary me-2 refuse-button" data-bs-dismiss="modal"
+            aria-label="{l s='No' d='Modules.Productcomments.Shop'}">
+            {l s='No' d='Modules.Productcomments.Shop'}
+          </button>
+          <button type="button" class="btn btn-primary confirm-button" data-bs-dismiss="modal"
+            aria-label="{l s='Yes' d='Modules.Productcomments.Shop'}">
+            {l s='Yes' d='Modules.Productcomments.Shop'}
+          </button>
+        </div>
       </div>
     </div>
   </div>

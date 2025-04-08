@@ -10,7 +10,8 @@ const setScrollPaddingTop = () => {
 
   if (header) {
     const headerHeight = header.offsetHeight;
-    document.documentElement.style.setProperty('scroll-padding-top', `${headerHeight}px`);
+    const offset = 16;
+    document.documentElement.style.setProperty('scroll-padding-top', `${headerHeight + offset}px`);
   }
 };
 

@@ -1,12 +1,12 @@
-$page-name: 'page-product';
-$component-name: 'product';
+$page-name: "page-product";
+$component-name: "product";
 
 .#{$page-name} {
   .#{$component-name} {
     // Top section
     &__thumbnails {
       margin-block-start: 1rem;
-  
+
       &-list {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -14,15 +14,15 @@ $component-name: 'product';
         margin: 0;
       }
     }
-  
+
     &__thumbnail {
       &.active .#{$component-name}__thumbnail-image {
         outline: 2px solid var(--bs-primary);
       }
-  
+
       &-image {
-        outline: 2px solid transparent;
         border-radius: var(--bs-border-radius);
+        outline: 2px solid transparent;
       }
     }
 
@@ -48,9 +48,9 @@ $component-name: 'product';
     }
 
     &__tax-infos {
-      color: var(--bs-tertiary-color);
       font-size: 0.875rem;
       line-height: 1.2;
+      color: var(--bs-tertiary-color);
     }
 
     &__prices {
@@ -61,8 +61,8 @@ $component-name: 'product';
     &__prices-inline {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       gap: 0.75rem;
+      align-items: center;
 
       &--small-gap {
         gap: 0.5rem;
@@ -117,8 +117,8 @@ $component-name: 'product';
 
     &__availability-status {
       display: flex;
-      align-items: center;
       gap: 0.5rem;
+      align-items: center;
       line-height: 1.2;
     }
 
@@ -130,9 +130,9 @@ $component-name: 'product';
 
     &__actions-qty-add {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
+      align-items: center;
     }
 
     &__quantity {
@@ -149,8 +149,8 @@ $component-name: 'product';
 
     &__minimal-quantity {
       display: flex;
-      align-items: center;
       gap: 0.5rem;
+      align-items: center;
       font-size: 0.875rem;
       line-height: 1.2;
       color: var(--bs-tertiary-color);
@@ -196,7 +196,7 @@ $component-name: 'product';
 
   @include media-breakpoint-up(md) {
     .#{$component-name} {
-      &__thumbnails {    
+      &__thumbnails {
         margin-block-start: 1.5rem;
         margin-block-end: 0;
 
@@ -236,7 +236,7 @@ $component-name: 'product';
         gap: 2rem;
       }
 
-      &__thumbnails {    
+      &__thumbnails {
         &-list {
           grid-template-columns: repeat(6, minmax(0, 1fr));
         }
@@ -280,19 +280,19 @@ $component-name: 'product';
       &__thumbnails {
         margin-block-start: 0.875rem;
         margin-block-end: 2rem;
-    
+
         &-list {
           display: grid;
           grid-template-columns: repeat(4, minmax(0, 1fr));
           gap: 0.875rem;
         }
       }
-        
+
       // Hide product image zoom on quickview modal
       &__zoom {
         display: none;
       }
-  
+
       // Quickview spacings
       &__prices,
       &__description-short,
@@ -305,12 +305,12 @@ $component-name: 'product';
         margin-block-end: 1.5rem;
       }
     }
-  
+
     @include media-breakpoint-up(sm) {
       .#{$component-name} {
         &__thumbnails {
           margin-block-start: 0.875rem;
-      
+
           &-list {
             grid-template-columns: repeat(6, minmax(0, 1fr));
             gap: 0.875rem;
@@ -318,28 +318,28 @@ $component-name: 'product';
         }
       }
     }
-  
+
     @include media-breakpoint-up(md) {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 2rem;
-  
+
       .#{$component-name} {
         &__thumbnails {
           margin-block-end: 0;
-    
+
           &-list {
             grid-template-columns: repeat(5, minmax(0, 1fr));
           }
         }
       }
     }
-  
+
     @include media-breakpoint-up(xl) {
       .#{$component-name} {
         &__thumbnails {
           margin-block-start: 1.5rem;
-      
+
           &-list {
             gap: 1.5rem;
           }

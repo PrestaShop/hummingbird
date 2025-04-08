@@ -1,5 +1,5 @@
-$module-name: 'blockreassurance';
-$component-name: 'reassurance';
+$module-name: blockreassurance;
+$component-name: reassurance;
 
 .#{$module-name} {
   &--product,
@@ -20,8 +20,8 @@ $component-name: 'reassurance';
 
   .#{$component-name} {
     display: flex;
-    align-items: center;
     gap: 1rem;
+    align-items: center;
 
     &__image {
       flex-shrink: 0;
@@ -32,7 +32,7 @@ $component-name: 'reassurance';
     &__content {
       flex-grow: 1;
     }
-    
+
     &__desc {
       color: var(--bs-secondary-color);
     }

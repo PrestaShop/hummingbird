@@ -36,10 +36,6 @@
               {/if}
             {/block}
 
-            {block name='product_reviews'}
-              {hook h='displayProductListReviews' product=$product}
-            {/block}
-
             {if $product.show_price}
               <div class="{$componentName}__prices">
                 {block name='product_price'}
@@ -72,6 +68,10 @@
                 {/block}
               </div>
             {/if}
+
+            {block name='product_reviews'}
+              {hook h='displayProductListReviews' product=$product}
+            {/block}
           </div>
 
           <div class="{$componentName}__actions">

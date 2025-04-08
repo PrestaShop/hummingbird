@@ -34,9 +34,9 @@ $component-name: product-customization;
 
     &-wrapper {
       display: flex;
+      gap: 0.5rem;
       align-items: center;
       margin-block-start: 0.5rem;
-      gap: 0.5rem;
     }
 
     &-remove {
@@ -46,9 +46,9 @@ $component-name: product-customization;
 
   &__field-footer {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
   }
 }

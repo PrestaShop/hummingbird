@@ -1,5 +1,9 @@
-.wishlist-button {
-  &:empty {
-    display: none;
+$module-name: wishlist;
+
+.#{$module-name} {
+  &-button {
+    &:empty {
+      display: none;
+    }
   }
 }

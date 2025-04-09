@@ -2,13 +2,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div class="modal fade js-product-images-modal" id="product-modal">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="product-images-modal modal fade js-product-images-modal" id="product-modal">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-body">
+      <div class="product-images-modal__body modal-body">
         <div
           id="product-images-modal-{$product.id}"
-          class="carousel slide js-product-images-modal-carousel"
+          class="product-images-modal__carousel carousel slide js-product-images-modal-carousel"
           data-bs-ride="carousel"
         >
           <div class="carousel-inner">
@@ -33,7 +33,7 @@
                         {$image.bySize.default_md.sources.avif} 320w,
                         {$image.bySize.product_main.sources.avif} 720w,
                         {$image.bySize.product_main_2x.sources.avif} 1440w"
-                      sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
                       type="image/avif"
                     >
                   {/if}
@@ -44,7 +44,7 @@
                         {$image.bySize.default_md.sources.webp} 320w,
                         {$image.bySize.product_main.sources.webp} 720w,
                         {$image.bySize.product_main_2x.sources.webp} 1440w"
-                      sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
                       type="image/webp"
                     >
                   {/if}
@@ -55,10 +55,10 @@
                       {$image.bySize.default_md.url} 320w,
                       {$image.bySize.product_main.url} 720w,
                       {$image.bySize.product_main_2x.url} 1440w"
-                    sizes="(min-width: 1300px) 720px, (min-width: 768px) 50vw, 100vw" 
+                    sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
                     src="{$image.bySize.product_main.url}" 
-                    width="{$image.bySize.product_main.width}"
-                    height="{$image.bySize.product_main.height}"
+                    width="{$image.bySize.product_main_2x.width}"
+                    height="{$image.bySize.product_main_2x.height}"
                     loading="{if $smarty.foreach.productImages.first}eager{else}lazy{/if}"
                     alt="{$image.legend}"
                     title="{$image.legend}"

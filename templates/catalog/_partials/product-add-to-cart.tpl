@@ -8,10 +8,13 @@
       {if $product.show_availability && $product.availability_message}
         <div id="product-availability" class="product__availability js-product-availability">
           {** First, we prepare the icons and colors we want to use *}
-          {if $product.availability == 'in_stock' || $product.availability == 'available'}
+          {if $product.availability == 'in_stock'}
             {assign 'availability_icon' 'E5CA'}
             {assign 'availability_class' 'text-success'}
-          {elseif $product.availability == 'unavailable' || $product.availability == 'last_remaining_items'}
+          {elseif $product.availability == 'available'}
+            {assign 'availability_icon' 'E002'}
+            {assign 'availability_class' 'text-warning'}
+          {elseif $product.availability == 'last_remaining_items'}
             {assign 'availability_icon' 'E002'}
             {assign 'availability_class' 'text-warning'}
           {else}

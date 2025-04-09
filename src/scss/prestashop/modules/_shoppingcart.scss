@@ -10,15 +10,15 @@ $modal-name: blockcart-modal;
   &__title {
     display: inline-flex;
     gap: 0.5rem;
-    font-size: 1rem;
     align-items: center;
+    font-size: 1rem;
     color: var(--bs-success);
   }
 
   &__title-icon {
     font-size: 1.5rem;
-    color: var(--bs-success);
     line-height: 1;
+    color: var(--bs-success);
   }
 
   &__name,
@@ -44,8 +44,8 @@ $modal-name: blockcart-modal;
   }
 
   &__image {
-    border-radius: var(--bs-border-radius);
     margin-block-end: 2rem;
+    border-radius: var(--bs-border-radius);
   }
 
   &__cart-footer-extra {
@@ -64,7 +64,7 @@ $modal-name: blockcart-modal;
       font-size: 1.5rem;
       color: var(--bs-body-color);
     }
-    
+
     &__title-icon {
       font-size: 2rem;
     }

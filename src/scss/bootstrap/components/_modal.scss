@@ -11,20 +11,20 @@ $component-name: modal;
 
   &-footer {
     &--split-buttons {
-      padding-inline: var(--bs-modal-padding);
-      justify-content: space-between;
       gap: 0.5rem;
+      justify-content: space-between;
+      padding-inline: var(--bs-modal-padding);
     }
 
     // Invert order of first 2 direct children can be usefull for modal with split buttons
     &--revert-order-mobile {
       > :nth-child(2) {
-        order: -1; 
+        order: -1;
       }
 
       > * {
-        margin: 0;
         width: 100%;
+        margin: 0;
       }
     }
   }
@@ -35,7 +35,7 @@ $component-name: modal;
         flex-direction: initial;
 
         > :nth-child(2) {
-          order: initial; 
+          order: initial;
         }
 
         > * {

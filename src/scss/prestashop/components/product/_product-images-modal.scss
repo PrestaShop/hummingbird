@@ -1,0 +1,12 @@
+$component-name: product-images-modal;
+
+.#{$component-name} {
+  &__body {
+    padding: 0.5rem;
+  }
+  
+  &__carousel {
+    border-radius: var(--bs-border-radius-sm);
+    overflow: hidden;
+  }
+}

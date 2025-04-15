@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<section id="js-active-search-filters">
+<div id="js-active-search-filters">
   {if $activeFilters|count}
     <ul class="d-flex align-items-center flex-wrap mb-4">
       {block name='active_filters_title'}
@@ -21,4 +21,4 @@
       {/foreach}
     </ul>
   {/if}
-</section>
+</div>

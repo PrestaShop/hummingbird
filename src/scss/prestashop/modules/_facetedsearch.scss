@@ -1,9 +1,26 @@
+$module-name: ps-facetedsearch;
 $component-name: search-filters;
+
+.#{$module-name} {
+  border-bottom: 0;
+}
 
 .#{$component-name} {
   & &-subtitle {
     // stylelint-disable-next-line
     width: auto !important;
+  }
+
+  &__link {
+    color: var(--bs-body-color);
+
+    &:hover {
+      color: var(--bs-link-hover-color);
+    }
+  }
+
+  &__magnitude {
+    color: var(--bs-tertiary-color);
   }
 
   .noUi-horizontal {

@@ -19,4 +19,11 @@ $component-name: accordion;
       box-shadow: var(--bs-accordion-btn-focus-box-shadow);
     }
   }
+
+  &--small {
+    .#{$component-name}-button {
+      font-size: 1rem;
+      padding-block: 0.5rem;
+    }
+  }
 }

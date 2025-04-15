@@ -4,18 +4,18 @@
  *}
 {$componentName = 'pagination'}
 
-<nav class="{$componentName}-container row">
-  <div class="{$componentName}-number text-center text-lg-start col-lg-4">
+<nav class="{$componentName}__container">
+  <div class="{$componentName}__number">
     {block name='pagination_summary'}
       {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=['%from%' => $pagination.items_shown_from ,'%to%' => $pagination.items_shown_to, '%total%' => $pagination.total_items]}
     {/block}
   </div>
 
-  <div class="{$componentName}-list-container d-flex justify-content-center justify-content-lg-end col-lg-8">
+  <div class="{$componentName}__nav">
     {block name='pagination_page_list'}
       <nav aria-label="{l s='Products pagination' d='Shop.Theme.Catalog'}">
         {if $pagination.should_be_displayed}
-          <ul class="pagination pagination--custom">
+          <ul class="{$componentName}">
             {foreach from=$pagination.pages item="page" name="paginationLoop"}
               {if $page@iteration === 1}
                 <li class="page-item">

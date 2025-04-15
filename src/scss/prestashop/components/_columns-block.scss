@@ -1,6 +1,10 @@
-$component-name: left-block;
+$component-name: (
+  left: left-block,
+  right: right-block
+);
 
-.#{$component-name} {
+.#{map-get($component-name, left)},
+.#{map-get($component-name, right)} {
   padding-bottom: 1rem;
   margin-bottom: 2rem;
   border-bottom: 1px solid var(--bs-border-color);

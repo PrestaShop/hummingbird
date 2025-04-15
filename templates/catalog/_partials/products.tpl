@@ -6,6 +6,8 @@
   {include file='catalog/_partials/productlist.tpl' products=$listing.products}
 
   {block name='pagination'}
-    {include file='_partials/pagination.tpl' pagination=$listing.pagination}
+    <div class="products__pagination">
+      {include file='_partials/pagination.tpl' pagination=$listing.pagination}
+    </div>
   {/block}
 </div>

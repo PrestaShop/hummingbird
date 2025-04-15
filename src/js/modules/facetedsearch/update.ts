@@ -44,9 +44,16 @@ export function updateProductListDOM(data: Record<string, never>) {
   $(Theme.selectors.listing.listBottom).replaceWith(
     data.rendered_products_bottom,
   );
+
   if (data.rendered_products_header) {
     $(Theme.selectors.listing.listHeader).replaceWith(
       data.rendered_products_header,
+    );
+  }
+
+  if (data.rendered_products_footer) {
+    $(Theme.selectors.listing.listFooter).replaceWith(
+      data.rendered_products_footer,
     );
   }
 }
@@ -85,7 +92,7 @@ export default () => {
    */
   $('body').on('click', Theme.selectors.listing.pagerLink, (event) => {
     event.preventDefault();
-    document.querySelector(Theme.selectors.listing.listTop)?.scrollIntoView({block: 'start', behavior: 'auto'});
+    document.querySelector(Theme.selectors.listing.listHeader)?.scrollIntoView({block: 'start', behavior: 'auto'});
     prestashop.emit(
       events.updateFacets,
       $(event.target)?.closest('a')?.get(0)?.getAttribute('href'),

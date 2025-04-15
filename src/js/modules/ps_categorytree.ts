@@ -1,5 +1,5 @@
 const initCategoryTree = () => {
-  const categoryTree = document.querySelector('.ps_categorytree');
+  const categoryTree = document.querySelector('.ps-categorytree');
 
   if (categoryTree) {
     const accordionButtons = categoryTree.querySelectorAll('.accordion-button');

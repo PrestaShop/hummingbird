@@ -28,6 +28,7 @@ export const listing = {
   list: '#js-product-list',
   listBottom: '#js-product-list-bottom',
   listHeader: '#js-product-list-header',
+  listFooter: '#js-product-list-footer',
   searchFiltersClearAll: '.js-search-filters-clear-all',
   searchLink: '.js-search-link',
   pagerLink: '.js-pager-link',

@@ -1,16 +1,16 @@
 $component-name: pagination;
 
 .#{$component-name} {
-  margin-block-end: 0;
   width: 100%;
+  margin-block-end: 0;
 
   &__container {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    justify-content: center;
     row-gap: 1rem;
     column-gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
   }
 
   &__number {
@@ -20,8 +20,8 @@ $component-name: pagination;
   &__nav {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 0.5rem;
+    align-items: center;
   }
 
   @include media-breakpoint-up(lg) {

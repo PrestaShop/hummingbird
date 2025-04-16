@@ -22,8 +22,8 @@ $component-name: accordion;
 
   &--small {
     .#{$component-name}-button {
-      font-size: 1rem;
       padding-block: 0.5rem;
+      font-size: 1rem;
     }
   }
 }

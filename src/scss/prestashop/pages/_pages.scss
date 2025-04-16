@@ -14,4 +14,10 @@ $component-name: "page";
       gap: 2.5rem;
     }
   }
+
+  &-category {
+    .wrapper__left-column {
+      padding-inline-end: 2rem;
+    }
+  }
 }

@@ -137,18 +137,29 @@ $component-name: noUi;
 
   &-handle {
     position: absolute;
-    cursor: default;
+    cursor: pointer;
     background: $nouislider-handle-background-color;
     border: $nouislider-handle-border-width solid $nouislider-handle-border-color;
     border-radius: $nouislider-handle-border-radius;
     outline: none;
     box-shadow: $nouislider-handle-shadow;
     backface-visibility: hidden;
+    transition: var(--bs-transition-default);
+
+    &:hover {
+      background: $nouislider-handle-hover-background-color;
+      border-color: $nouislider-handle-hover-border-color;
+    }
   }
 
   &-active {
     background: $nouislider-handle-active-background-color;
     box-shadow: $nouislider-handle-active-shadow;
+
+    &:hover {
+      background: $nouislider-handle-active-background-color;
+      border-color: $nouislider-handle-active-border-color;
+    }
   }
 }
 

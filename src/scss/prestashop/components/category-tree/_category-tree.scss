@@ -66,18 +66,15 @@ $component-name: category-tree;
     }
 
     &-header {
+      display: flex;
+      padding: 0.25rem 0;
+
       &.split {
-        display: flex;
-        padding: 0.25rem 0;
-
         .accordion-button {
-          margin: -0.25rem -0.5rem -0.25rem auto;
+          padding-inline-end: 0;
+          margin: -0.25rem 0 -0.25rem auto;
+          background-color: transparent;
         }
-      }
-
-      &.nosplit {
-        display: flex;
-        padding: 0.25rem 0;
       }
 
       .#{$component-name}__item-link {

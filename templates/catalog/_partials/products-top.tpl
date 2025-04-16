@@ -17,7 +17,7 @@
         {include file='catalog/_partials/sort-orders.tpl' sort_orders=$listing.sort_orders}
       {/block}
 
-      {if !empty($listing.rendered_facets)}
+      {if !empty($listing.rendered_facets) && !$page.body_classes['layout-full-width']}
         <button id="search_filter_toggler" class="products__filter-button btn btn-outline-primary js-search-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-faceted">
           <i class="material-icons" aria-hidden="true">&#xE152;</i>
           {l s='Filter' d='Shop.Theme.Actions'}

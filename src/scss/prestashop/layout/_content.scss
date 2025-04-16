@@ -1,31 +1,15 @@
-$component-name: content;
+$component-name: (
+  container: columns-container,
+  left-column: left-column,
+  center-column: center-column,
+  right-column: right-column
+);
 
-.#{$component-name} {
-  &-columns {
-    display: flex;
-    align-items: stretch;
-    padding: 0 3.75rem;
-
-    &-right {
-      .h2 {
-        text-transform: inherit;
-      }
-    }
-  }
-}
-
-##{$component-name}-wrapper {
-  .page-footer {
-    margin-top: 3rem;
-
-    > .container {
-      > a:last-of-type:not(:first-of-type) {
-        float: right;
-      }
-    }
-
-    a {
-      margin-right: 1rem;
+.layout-left-column,
+.layout-right-column {
+  .#{map-get($component-name, container)} {
+    > .row {
+      --bs-gutter-x: 2.5rem;
     }
   }
 }

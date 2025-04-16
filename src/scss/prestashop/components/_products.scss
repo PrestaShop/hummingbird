@@ -113,7 +113,7 @@ $component-name: products;
     margin-block: 1.5rem;
   }
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     &__filter-button {
       display: none;
     }

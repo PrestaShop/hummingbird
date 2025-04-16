@@ -10,7 +10,7 @@
   {block name='left_column'}{/block}
 
   {block name='content_wrapper'}
-    <div id="content-wrapper" class="page">
+    <div id="center-column" class="center-column page">
       {hook h="displayContentWrapperTop"}
 
       {block name='content'}

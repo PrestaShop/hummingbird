@@ -7,13 +7,16 @@ $nouislider-target-shadow: null;
 
 // Slider handle basic styles
 $nouislider-handle-border-radius: 50%;
-$nouislider-handle-border-color: var(--bs-gray-800);
+$nouislider-handle-border-color: var(--bs-border-color);
 $nouislider-handle-border-width: 1px;
-$nouislider-handle-background-color: var(--bs-white);
+$nouislider-handle-background-color: var(--bs-body-bg);
+$nouislider-handle-hover-background-color: var(--bs-primary);
+$nouislider-handle-hover-border-color: var(--bs-primary);
 $nouislider-handle-shadow: null;
 // Slider handle active styles
 $nouislider-handle-active-shadow: null;
 $nouislider-handle-active-background-color: var(--bs-primary);
+$nouislider-handle-active-border-color: var(--bs-primary);
 
 // Slider bar horizontal
 $nouislider-horizontal-height: 4px;
@@ -26,7 +29,7 @@ $nouislider-vertical-handler-width: 24px;
 $nouislider-vertical-handler-height: 24px;
 
 // Slider connect
-$nouislider-connects-background-color: var(--bs-gray-700);
+$nouislider-connects-background-color: var(--bs-primary);
 $nouislider-connects-border-radius: $border-radius;
 $nouislider-connects-disabled-background-color: var(--bs-gray-200);
 

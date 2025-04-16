@@ -1,13 +1,25 @@
 $component-name: quickview;
 
 .#{$component-name} {
-  .modal-dialog {
-    @include media-breakpoint-only(md) {
+  &__footer {
+    justify-content: space-between;
+  }
+
+  &__details-link {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+    margin-inline-start: auto;
+  }
+
+  @include media-breakpoint-only(md) {
+    &__dialog {
       max-width: 750px;
     }
-    @include media-breakpoint-only(sm) {
-      max-width: 100%;
-      margin: 1.75rem;
+  }
+  @include media-breakpoint-only(sm) {
+    &__dialog {
+      max-width: calc(100% - var(--bs-modal-margin) * 2);
     }
   }
 }

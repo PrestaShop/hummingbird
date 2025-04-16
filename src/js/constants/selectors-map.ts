@@ -170,6 +170,7 @@ const selectorsMap = {
     close: '.btn-close',
   },
   product: {
+    images: '.js-images-container',
     carousel: '.js-product-carousel',
     miniature: '.js-product-miniature',
     thumbnail: '.js-thumb-container',

@@ -3,9 +3,9 @@
  * file that was distributed with this source code.
  *}
 {block name='pack_miniature_item'}
-  <article class="product-pack__item rounded mb-2 p-2">
-    <a href="{$product.url}" title="{$product.name}" class="row align-items-center">
-      <div class="product-pack__image col-2">
+  <article class="product-pack__item">
+    <a href="{$product.url}" title="{$product.name}" class="product-pack__link">
+      <div class="product-pack__image-wrapper">
         {if !empty($product.default_image)}
           <picture>
             {if isset($product.default_image.bySize.default_xs.sources.avif)}
@@ -27,7 +27,7 @@
             {/if}
 
             <img
-              class="img-fluid rounded"
+              class="product-pack__image img-fluid"
               srcset="
                 {$product.default_image.bySize.default_xs.url},
                 {$product.default_image.bySize.default_md.url} 2x"
@@ -58,7 +58,7 @@
             {/if}
 
             <img
-              class="img-fluid rounded"
+              class="product-pack__image img-fluid"
               srcset="
                 {$urls.no_picture_image.bySize.default_xs.url},
                 {$urls.no_picture_image.bySize.default_md.url} 2x"
@@ -70,17 +70,17 @@
         {/if}
       </div>
 
-      <p class="product-pack__name col-6 my-0">
+      <p class="product-pack__name">
         {$product.name}
       </p>
 
       {if $showPackProductsPrice}
-        <p class="product-pack__price col text-center">
-          <strong>{$product.price}</strong>
+        <p class="product-pack__price">
+          {$product.price}
         </p>
       {/if}
 
-      <p class="product-pack__quantity col text-center my-0">
+      <p class="product-pack__quantity">
         x{$product.pack_quantity}
       </p>
     </a>

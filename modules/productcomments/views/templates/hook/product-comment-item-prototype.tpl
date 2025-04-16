@@ -4,26 +4,26 @@
  *}
 
 <div class="product-comment-list-item comment" data-product-comment-id="@COMMENT_ID@" data-product-id="@PRODUCT_ID@">
-  <div class="comment-top">
-    <div class="comment-author">
+  <div class="comment__top">
+    <div class="comment__author">
       @CUSTOMER_NAME@
     </div>
 
-    <div class="comment-date">
+    <div class="comment__date">
       @COMMENT_DATE@
     </div>
   </div>
 
-  <div class="comment-infos">
+  <div class="comment__infos">
     <div class="grade-stars" data-grade="@COMMENT_GRADE@"></div>
-    <p class="comment-title">@COMMENT_TITLE@</p>
+    <p class="comment__title">@COMMENT_TITLE@</p>
   </div>
 
-  <div class="comment-content">
-    <p class="comment-text">@COMMENT_COMMENT@</p>
+  <div class="comment__content">
+    <p class="comment__text">@COMMENT_COMMENT@</p>
   </div>
 
-  <div class="comment-buttons">
+  <div class="comment__buttons">
     {if $usefulness_enabled}
       <a class="useful-review">
         <i class="material-icons thumb_up" data-icon="thumb_up"></i>

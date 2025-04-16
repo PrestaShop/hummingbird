@@ -1,6 +1,6 @@
 $component-name: (
   left: left-block,
-  right: right-block
+  right: right-block,
 );
 
 .#{map-get($component-name, left)},

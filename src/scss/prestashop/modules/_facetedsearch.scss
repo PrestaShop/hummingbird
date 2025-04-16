@@ -1,7 +1,7 @@
 $module-name: ps-facetedsearch;
 $component-name: (
   search-filters: search-filters,
-  active-filters: active-filters
+  active-filters: active-filters,
 );
 
 .#{$module-name} {
@@ -14,28 +14,28 @@ $component-name: (
   gap: 1rem;
 
   &__clear {
-    margin-inline-start: auto;
-    margin-block-end: 0;
     order: 1;
+    margin-block-end: 0;
+    margin-inline-start: auto;
   }
 
   &__form-check {
     display: flex;
-    align-items: center;
     gap: 0.5rem;
+    align-items: center;
     padding-inline-start: 0;
 
     .form-check-input,
     .color {
-      margin: 0;
       flex-shrink: 0;
+      margin: 0;
     }
 
     &--color {
       .form-check-label {
         display: flex;
-        align-items: center;
         gap: 0.5rem;
+        align-items: center;
         cursor: pointer;
         @extend %color-variant;
       }
@@ -67,7 +67,7 @@ $component-name: (
     width: 100%;
   }
 
-  &__slider {    
+  &__slider {
     &-container {
       margin-block-end: 1rem;
     }
@@ -83,9 +83,9 @@ $component-name: (
 
     &__clear {
       order: initial;
-      margin-inline-start: initial;
       margin-block-end: 0.5rem;
-    }    
+      margin-inline-start: initial;
+    }
   }
 }
 
@@ -96,8 +96,8 @@ $component-name: (
 
   &__list {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
+    align-items: center;
   }
 }

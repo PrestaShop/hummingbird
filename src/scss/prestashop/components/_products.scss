@@ -70,10 +70,10 @@ $component-name: products;
 .#{$component-name} {
   &__selection {
     display: grid;
-    align-items: center;
     grid-template-columns: minmax(0, 1fr);
     row-gap: 1rem;
     column-gap: 1.5rem;
+    align-items: center;
     margin-block-end: 1.5rem;
   }
 
@@ -84,10 +84,10 @@ $component-name: products;
   &__sort {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 0.5rem;
+    align-items: center;
     order: -1;
-    
+
     &-label {
       display: none;
       align-items: center;
@@ -99,8 +99,8 @@ $component-name: products;
     }
 
     &-dropdown-button {
-      width: 100%;
       justify-content: space-between;
+      width: 100%;
     }
   }
 

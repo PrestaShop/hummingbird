@@ -10,7 +10,9 @@
 
 {block name='content'}
   {block name='product_list_header'}
-    <h1 id="js-product-list-header">{$listing.label}</h1>
+    <div id="js-product-list-header">
+      {include file='components/page-title-section.tpl' title=$listing.label}
+    </div>
   {/block}
   
   {hook h='displayHeaderCategory'}

@@ -1,0 +1,21 @@
+$component-name: cart-summary;
+
+.#{$component-name} {
+  &__total {
+    margin-block: 0.5rem;
+    padding-block: 0.5rem;
+    border-block: 1px solid var(--bs-border-color);
+  }
+
+  &__line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    gap: 0.5rem;
+
+    &--bold {
+      font-weight: 600;
+    }
+  }
+}

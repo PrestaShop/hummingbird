@@ -3,8 +3,8 @@
  * file that was distributed with this source code.
  *}
 {block name='cart_detailed_totals'}
-  <div class="cart-detailed__totals card-block js-cart-detailed-totals">
-    <div class="cart-detailed__subtotals js-cart-detailed-subtotals">
+  <div class="cart-summary__totals js-cart-detailed-totals">
+    <div class="cart-summary__subtotals js-cart-detailed-subtotals">
       {foreach from=$cart.subtotals item="subtotal"}
         {if $subtotal && $subtotal.value|count_characters> 0 && $subtotal.type !== 'tax'}
           <div class="cart-summary__line" id="cart-subtotal-{$subtotal.type}">

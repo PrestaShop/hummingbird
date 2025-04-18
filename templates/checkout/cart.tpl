@@ -38,7 +38,7 @@
       <h2>{l s='Order summary' d='Shop.Theme.Checkout'}</h2>
 
       {block name='cart_summary'}
-        <div class="card cart-summary">
+        <div class="cart-summary">
           {block name='hook_shopping_cart'}
             {hook h='displayShoppingCart'}
           {/block}

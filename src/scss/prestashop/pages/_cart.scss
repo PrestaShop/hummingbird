@@ -1,4 +1,4 @@
-$component-name: "cart-grid";
+$component-name: cart-grid;
 
 .#{$component-name} {
   &__content {
@@ -6,7 +6,7 @@ $component-name: "cart-grid";
   }
 
   &__aside {
-    margin-block-end: 3rem;
+    margin-block-end: 1rem;
   }
 
   @include media-breakpoint-up(md) {
@@ -15,7 +15,7 @@ $component-name: "cart-grid";
     }
 
     &__aside {
-      margin-block-end: 4rem;
+      margin-block-end: 2rem;
     }
   }
 }

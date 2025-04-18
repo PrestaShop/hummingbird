@@ -1,0 +1,131 @@
+$component-name: product-line;
+
+.#{$component-name} {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+
+  &__img {
+    width: 6rem;
+    border-radius: var(--bs-border-radius);
+  }
+
+  &__content {
+    flex-grow: 1;
+
+    &-left {
+      margin-block-end: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    &-right {
+      margin-block-end: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+    color: var(--bs-body-color);
+
+    &:hover {
+      color: var(--bs-link-hover-color);
+    }
+  }
+
+  &__item {
+    &-price {
+      width: 100%;
+      font-weight: 600;
+    }
+
+    &-unit-price {
+      font-size: 0.875rem;
+      color: var(--bs-secondary-color);
+    }
+
+    &-regular-price {
+      font-size: 0.875rem;
+      color: var(--bs-tertiary-color);
+      text-decoration: line-through;
+    }
+
+    &-discount {
+      font-size: 0.875rem;
+    }
+
+    &--info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    &--prices {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      row-gap: 0.25rem;
+      column-gap: 0.5rem;
+    }
+  }
+
+  &__quantity-button {
+    max-width: 9rem;
+
+    .spinner-border {
+      margin: 0.25rem;
+    }
+  }
+
+  &__quantity-input {
+    max-width: initial;
+  }
+
+  &__price {
+    font-weight: 600;
+  }
+
+  &__gift {
+    font-weight: 600;
+  }
+
+  &__actions {
+    display: flex;
+    grid-column: 1 / -1;
+  }
+
+  @include media-breakpoint-up(sm) {
+    &__content {
+      display: grid;
+      flex-grow: 1;
+      grid-template-columns: minmax(0, 1fr) 9rem;
+      gap: 1.5rem;
+
+      &-right,
+      &-left {
+        margin-block-end: 0;
+      }
+    }
+
+    &__quantity-button {
+      max-width: 100%;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &__img {
+      width: 7rem;
+    }    
+  }
+
+  @include media-breakpoint-up(lg) {
+    &__img {
+      width: 8rem;
+    }    
+  }
+}

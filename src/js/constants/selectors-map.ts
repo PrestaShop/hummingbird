@@ -35,14 +35,14 @@ export const listing = {
 };
 
 export const cart = {
-  container: '.cart-container',
-  overview: '.cart-overview',
+  container: '.js-cart-container',
+  overview: '.js-cart',
   discountCode: '.js-discount .js-code',
   discountName: '[name=discount_name]',
   displayPromo: '.display-promo',
   promoCode: '#promo-code',
   deleteLinkAction: 'delete-from-cart',
-  productQuantity: '.cart__items .js-quantity-button',
+  productQuantity: '.cart__list .js-quantity-button',
   productItem: '.cart__item',
   removeFromCartLink: '.remove-from-cart',
   alertPlaceholder: '.js-cart-update-alert',

@@ -152,8 +152,8 @@ $component-name: product;
       display: flex;
       gap: 0.5rem;
       align-items: center;
+      margin-block-start: 0.5rem;
       font-size: 0.875rem;
-      line-height: 1.2;
       color: var(--bs-tertiary-color);
     }
 

@@ -7,8 +7,8 @@ $component-name: cart;
     border-block-end: 1px solid var(--bs-border-color);
 
     &:last-child {
-      border-block-end: 0;
       padding-block-end: 0;
+      border-block-end: 0;
     }
   }
 }

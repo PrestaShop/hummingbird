@@ -2,8 +2,8 @@ $component-name: product-line;
 
 .#{$component-name} {
   display: flex;
-  align-items: flex-start;
   gap: 1.5rem;
+  align-items: flex-start;
 
   &__img {
     width: 6rem;
@@ -14,17 +14,17 @@ $component-name: product-line;
     flex-grow: 1;
 
     &-left {
-      margin-block-end: 0.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
+      margin-block-end: 0.5rem;
     }
 
     &-right {
-      margin-block-end: 1rem;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      margin-block-end: 1rem;
     }
   }
 
@@ -61,16 +61,16 @@ $component-name: product-line;
     &--info {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       gap: 0.25rem;
+      align-items: center;
     }
 
     &--prices {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       row-gap: 0.25rem;
       column-gap: 0.5rem;
+      align-items: center;
     }
   }
 
@@ -120,12 +120,12 @@ $component-name: product-line;
   @include media-breakpoint-up(md) {
     &__img {
       width: 7rem;
-    }    
+    }
   }
 
   @include media-breakpoint-up(lg) {
     &__img {
       width: 8rem;
-    }    
+    }
   }
 }

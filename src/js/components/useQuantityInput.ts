@@ -66,7 +66,7 @@ const useQuantityInput: Theme.QuantityInput.Function = (
             if (event.key === ENTER_KEY) {
               if (qtyInput.value === '0') {
                 const targetItem = qtyInput.closest(cartSelectorMap.productItem);
-                const removeButton = targetItem?.querySelector(cartSelectorMap.removeFromCartLink) as HTMLElement
+                const removeButton = targetItem?.querySelector(cartSelectorMap.removeFromCart) as HTMLElement
                     | null;
 
                 if (removeButton) {

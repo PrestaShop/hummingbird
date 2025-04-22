@@ -8,23 +8,24 @@
       {foreach from=$cart.subtotals item="subtotal"}
         {if $subtotal && $subtotal.value|count_characters> 0 && $subtotal.type !== 'tax'}
           <div class="cart-summary__line" id="cart-subtotal-{$subtotal.type}">
-            <span class="cart-summary__label{if 'products' === $subtotal.type} js-subtotal{/if}">
-              {if 'products' == $subtotal.type}
+            <span class="cart-summary__label{if $subtotal.type === 'products'} js-subtotal{/if}">
+              {if $subtotal.type === 'products'}
                 {$cart.summary_string}
               {else}
                 {$subtotal.label}
               {/if}
             </span>
 
-            <div class="cart-summary__line__value">
-              <span class="cart-summary__value">
-                {if 'discount' == $subtotal.type}-&nbsp;{/if}{$subtotal.value}
-              </span>
-
-              {if $subtotal.type === 'shipping'}
-                <div><small class="value">{hook h='displayCheckoutSubtotalDetails' subtotal=$subtotal}</small></div>
+            <span class="cart-summary__value">
+              {if $subtotal.type === 'discount'}
+                -{$subtotal.value}
+              {else if $subtotal.type === 'shipping'}
+                {$subtotal.value}
+                <small class="cart-summary__value-inner">{hook h='displayCheckoutSubtotalDetails' subtotal=$subtotal}</small>
+              {else}
+                {$subtotal.value}
               {/if}
-            </div>
+            </span>
           </div>
         {/if}
       {/foreach}

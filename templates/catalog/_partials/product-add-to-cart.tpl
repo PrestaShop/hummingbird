@@ -88,7 +88,7 @@
 
     {block name='product_minimal_quantity'}
       {if $product.minimal_quantity > 1}
-        <div class="product__minimal-quantity product-minimal-quantity js-product-minimal-quantity d-flex align-items-center mt-3 mt-md-0">
+        <div class="product__minimal-quantity product-minimal-quantity js-product-minimal-quantity">
           <i class="material-icons" aria-hidden="true">&#xE88F;</i>
           {l
             s='The minimum purchase order quantity for the product is %quantity%.'

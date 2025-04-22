@@ -36,16 +36,18 @@ export const listing = {
 
 export const cart = {
   container: '.js-cart-container',
+  summaryContainer: '.js-cart-summary',
   overview: '.js-cart',
-  discountCode: '.js-discount .js-code',
-  discountName: '[name=discount_name]',
-  displayPromo: '.display-promo',
-  promoCode: '#promo-code',
-  deleteLinkAction: 'delete-from-cart',
-  productQuantity: '.cart__list .js-quantity-button',
-  productItem: '.cart__item',
-  removeFromCartLink: '.remove-from-cart',
+  voucherCode: '.js-voucher-code',
+  voucherInput: '.js-voucher-input',
+  voucherAccordion: '.js-voucher-accordion',
+  productQuantity: '.js-cart-list .js-quantity-button',
+  productItem: '.js-cart-item',
+  productItemQuantityInput: '.js-cart-line-product-quantity',
+  removeFromCart: '.js-remove-from-cart',
   alertPlaceholder: '.js-cart-update-alert',
+  deleteLinkAction: 'delete-from-cart',
+  removeVoucherLinkAction: 'remove-voucher',
 };
 
 export const blockcart = {

@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 {block name='cart_detailed_product'}
-  {* cart-overview needed for JS *}
+  {* .cart-overview needed for JS *}
   <div class="cart__overview cart-overview js-cart"
     data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}"
     tabindex="-1"

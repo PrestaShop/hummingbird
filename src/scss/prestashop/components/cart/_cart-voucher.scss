@@ -1,13 +1,6 @@
 $component-name: cart-voucher;
 
 .#{$component-name} {
-  &__value {
-    display: inline-flex;
-    gap: 0.25rem;
-    align-items: center;
-    font-weight: 600;
-  }
-
   &__accordion {
     padding-block-end: 0.5rem;
     margin-block-end: 0.5rem;
@@ -47,6 +40,17 @@ $component-name: cart-voucher;
     &:hover {
       color: var(--bs-link-hover-color);
       cursor: pointer;
+    }
+  }
+
+  &__error {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-block-start: 0.5rem;
+
+    &-icon {
+      flex-shrink: 0;
     }
   }
 }

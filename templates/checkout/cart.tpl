@@ -19,7 +19,7 @@
         {/block}
 
         {block name='continue_shopping'}
-          <a class="btn btn-outline-primary" href="{$urls.pages.index}">
+          <a class="cart__continue-shopping btn btn-outline-primary" href="{$urls.pages.index}">
             <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
             {l s='Continue shopping' d='Shop.Theme.Actions'}
           </a>
@@ -45,10 +45,6 @@
 
           {block name='cart_totals'}
             {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
-          {/block}
-
-          {block name='cart_actions'}
-            {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
           {/block}
         </div>
       {/block}

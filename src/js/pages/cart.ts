@@ -22,7 +22,9 @@ export default () => {
       const voucherAccordion = document.querySelector(Theme.selectors.cart.voucherAccordion);
 
       if (voucherAccordion && voucherInput) {
-        const voucherAccordionCollapser = new Collapse(voucherAccordion);
+        const voucherAccordionCollapser = new Collapse(voucherAccordion, {
+          toggle: false,
+        });
 
         voucherInput.value = code.innerText;
         voucherAccordionCollapser.show();
@@ -82,7 +84,8 @@ export default () => {
   const attachEventListeners = () => {
     const voucherCodes = document.querySelectorAll(Theme.selectors.cart.voucherCode);
     const cartContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.container);
-    const summaryContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.summaryContainer);
+    const cartSummaryContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.summaryContainer);
+    const checkoutSummaryContainer = document.querySelector<HTMLElement>('.js-checkout-summary');
 
     // Add click listener for voucher codes
     voucherCodes.forEach((voucher) => {
@@ -94,26 +97,31 @@ export default () => {
       cartContainer.addEventListener('click', handleCartContainerClick);
     }
 
-    // Add click listener for the summary container
-    if (summaryContainer) {
-      summaryContainer.addEventListener('click', handleSummaryContainerClick);
-    }
+    // Add click listener for both summary containers
+    [cartSummaryContainer, checkoutSummaryContainer].forEach((container) => {
+      if (container) {
+        container.addEventListener('click', handleSummaryContainerClick);
+      }
+    });
   };
 
   // MutationObserver to handle dynamic updates (e.g., when cart is updated or refreshed)
   const setupMutationObserver = () => {
-    const summaryContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.summaryContainer);
+    const cartSummaryContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.summaryContainer);
+    const checkoutSummaryContainer = document.querySelector<HTMLElement>('.js-checkout-summary');
 
-    if (summaryContainer) {
-      const observer = new MutationObserver(() => {
-        attachEventListeners();
-      });
+    const observer = new MutationObserver(() => {
+      attachEventListeners();
+    });
 
-      observer.observe(summaryContainer, {
-        childList: true,
-        subtree: true,
-      });
-    }
+    [cartSummaryContainer, checkoutSummaryContainer].forEach((container) => {
+      if (container) {
+        observer.observe(container, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
   };
 
   // Initialize event listeners and mutation observer

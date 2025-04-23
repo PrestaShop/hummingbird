@@ -18,11 +18,11 @@
       </div>
 
       <div class="d-grid">
-        <button type="button" class="btn btn-primary disabled" disabled>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</button>
+        <button type="button" class="btn btn-primary btn-lg disabled" disabled>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</button>
       </div>
     {elseif empty($cart.products) || $disableCheckout === true}
       <div class="d-grid">
-        <button type="button" class="btn btn-primary disabled" disabled>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</button>
+        <button type="button" class="btn btn-primary btn-lg disabled" disabled>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</button>
       </div>
     {else}
       <div class="d-grid">

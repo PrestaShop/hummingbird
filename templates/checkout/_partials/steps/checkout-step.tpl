@@ -19,9 +19,9 @@
   >
     <div class="step__title js-step-title">
       {if $step_is_current eq true}
-        <h1 class="step__title-left h3">
+        <h1 class="page-title-section">
       {else}
-        <p class="step__title-left h3">
+        <p class="page-title-section">
       {/if}
         {$title}
       {if $step_is_current eq true}

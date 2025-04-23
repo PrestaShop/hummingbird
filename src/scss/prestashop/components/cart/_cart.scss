@@ -11,4 +11,14 @@ $component-name: cart;
       border-block-end: 0;
     }
   }
+
+  &__continue-shopping {
+    width: 100%;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__continue-shopping {
+      width: auto;
+    }
+  }
 }

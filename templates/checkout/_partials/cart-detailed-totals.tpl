@@ -38,5 +38,9 @@
     {block name='cart_voucher'}
       {include file='checkout/_partials/cart-voucher.tpl'}
     {/block}
+
+    {block name='cart_actions'}
+      {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
+    {/block}
   </div>
 {/block}

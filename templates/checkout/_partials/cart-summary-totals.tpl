@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div class="cart-summary__total">
+<div class="cart-summary__total js-cart-summary-totals">
   {block name='cart_summary_total'}
     {if !$configuration.display_prices_tax_incl && $configuration.taxes_enabled}
       <div class="cart-summary__line cart-summary__line--bold">

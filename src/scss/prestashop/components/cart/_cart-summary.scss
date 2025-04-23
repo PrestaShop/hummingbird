@@ -27,6 +27,26 @@ $component-name: cart-summary;
     }
   }
 
+  &__label {
+    &--voucher {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &__value {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
   &__actions {
     padding-block-start: 0.5rem;
   }

@@ -20,7 +20,7 @@ $component-name: accordion;
     }
   }
 
-  &-small {
+  &--small {
     .#{$component-name}-button {
       padding-block: 0.5rem;
       font-size: 1rem;

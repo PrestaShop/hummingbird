@@ -10,7 +10,11 @@
           <ul class="cart-voucher__list">
             {foreach from=$cart.vouchers.added item=voucher}
               <li class="cart-summary__line">
-                <span class="cart-summary__label">{$voucher.name}</span>
+                <span class="cart-summary__label cart-summary__label--voucher">
+                  <i class="material-icons" aria-hidden="true">&#xF05B;</i>
+                  {$voucher.name}
+                </span>
+
                 <div class="cart-summary__value cart-summary__value--bold cart-voucher__value">
                   {$voucher.reduction_formatted}
 
@@ -26,7 +30,7 @@
         {/block}
       {/if}
 
-      <div class="cart-voucher__accordion accordion accordion-flush accordion-small">
+      <div class="cart-voucher__accordion accordion accordion-flush accordion--small">
         <div class="cart-voucher__accordion-item accordion-item">
           <button class="cart-voucher__accordion-button accordion-button collapsed" type="button" data-bs-target="#promo-code" data-bs-toggle="collapse" aria-expanded="false">
             {l s='Promo code' d='Shop.Theme.Checkout'}
@@ -44,8 +48,9 @@
               {/block}
 
               {block name='cart_voucher_notifications'}
-                <div class="alert alert-danger js-error" role="alert" style="display: none;">
-                  <i class="material-icons" aria-hidden="true">&#xE001;</i><span class="ml-1 js-error-text"></span>
+                <div class="cart-voucher__error alert alert-danger js-error" role="alert" style="display: none;">
+                  <i class="cart-voucher__error-icon material-icons" aria-hidden="true">&#xE001;</i>
+                  <span class="js-error-text"></span>
                 </div>
               {/block}
             </div>

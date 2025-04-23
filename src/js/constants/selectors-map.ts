@@ -88,6 +88,7 @@ export const checkout = {
   carrierExtraContentWrapper: '.carrier__extra-content-wrapper',
   carrierExtraContent: '.carrier__extra-content',
   carrierExtraContentActive: '.carrier__extra-content-wrapper--active',
+  summaryContainer: '.js-checkout-summary',
 };
 
 export const progressRing = {

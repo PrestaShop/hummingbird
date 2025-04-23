@@ -37,7 +37,7 @@
       {/if}
     {/block}
 
-    <div class="accordion accordion-flush accordion-small">
+    <div class="accordion accordion-flush accordion--small">
       {foreach from=$displayedFacets item="facet" name="facets"}
         <section class="accordion-item">
           {assign var=_expand_id value=10|mt_rand:100000}

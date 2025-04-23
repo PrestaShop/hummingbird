@@ -52,7 +52,7 @@ export default () => {
       }
 
       if (eventTarget.classList.contains('js-decrement-button')) {
-        if (targetValue.value === '1' && targetValue.getAttribute('min') === '1') {
+        if (targetValue.value === '0' && targetValue.getAttribute('min') === '1') {
           removeButton?.click();
         }
       }
@@ -85,7 +85,7 @@ export default () => {
     const voucherCodes = document.querySelectorAll(Theme.selectors.cart.voucherCode);
     const cartContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.container);
     const cartSummaryContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.summaryContainer);
-    const checkoutSummaryContainer = document.querySelector<HTMLElement>('.js-checkout-summary');
+    const checkoutSummaryContainer = document.querySelector<HTMLElement>(Theme.selectors.checkout.summaryContainer);
 
     // Add click listener for voucher codes
     voucherCodes.forEach((voucher) => {
@@ -108,7 +108,7 @@ export default () => {
   // MutationObserver to handle dynamic updates (e.g., when cart is updated or refreshed)
   const setupMutationObserver = () => {
     const cartSummaryContainer = document.querySelector<HTMLElement>(Theme.selectors.cart.summaryContainer);
-    const checkoutSummaryContainer = document.querySelector<HTMLElement>('.js-checkout-summary');
+    const checkoutSummaryContainer = document.querySelector<HTMLElement>(Theme.selectors.checkout.summaryContainer);
 
     const observer = new MutationObserver(() => {
       attachEventListeners();

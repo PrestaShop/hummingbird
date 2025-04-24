@@ -65,12 +65,12 @@ const initCheckout = () => {
     if (stepContent) {
       // If step is finished, we mark it green
       if (stepContent.classList.contains('step--complete')) {
-        step.classList.add('checkout__steps--success');
+        step.classList.add('checkout-steps__step--success');
       }
 
       // Current step will get an active property
       if (stepContent.classList.contains('step--current')) {
-        step.classList.add('checkout__steps--current');
+        step.classList.add('checkout-steps__step--current');
         stepButton?.classList.add('active');
         const responsiveStep = document.querySelector<HTMLElement>(
           CheckoutMap.steps.specificStep(step.dataset.step),
@@ -89,8 +89,6 @@ const initCheckout = () => {
 
       // If the step can be navigated
       if (stepContent.classList.contains('step--reachable')) {
-        stepButton?.classList.add('btn-link');
-
         stepButton?.addEventListener('click', () => {
           if (setProgress) {
             setProgress(index + 1);

@@ -6,6 +6,8 @@
  <div class="cart-summary__products js-cart-summary-products">
   <div class="cart-summary__products-number">{$cart.summary_string}</div>
 
+  <hr class="mb-2">
+
   <div class="cart-summary__products-accordion accordion accordion-flush accordion--small">
     <div class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-target="#cart-summary-product-list" data-bs-toggle="collapse" aria-expanded="false">
@@ -25,4 +27,6 @@
       </div>
     {/block}
   </div>
+
+  <hr class="mt-2">
 </div>

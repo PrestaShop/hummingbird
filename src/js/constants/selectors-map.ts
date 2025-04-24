@@ -77,8 +77,8 @@ export const checkout = {
   steps: {
     item: '.js-step-item',
     current: '.js-current-step',
-    shownResponsiveStep: '.checkout__steps__step:not(.d-none)',
-    specificStep: (param: string | undefined) => `.checkout__steps__step[data-step="${param}"]`,
+    shownResponsiveStep: '.checkout-steps__step-mobile:not(.d-none)',
+    specificStep: (param: string | undefined) => `.checkout-steps__step-mobile[data-step="${param}"]`,
     specificStepContent: (param: string | undefined) => `#${param}`,
     backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
   },

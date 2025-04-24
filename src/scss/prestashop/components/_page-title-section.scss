@@ -3,4 +3,5 @@ $component-name: page-title-section;
 .#{$component-name} {
   font-size: clamp(1.5rem, calc(var(--bs-body-font-size) * 2 * 0.6 + 1.2vw), 2rem);
   font-weight: 600;
+  line-height: 1.2;
 }

@@ -1,7 +1,5 @@
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
-{if $step_is_complete}
-{/if}
 {block name='step_content'}
   {hook h='displayPersonalInformationTop' customer=$customer}
 

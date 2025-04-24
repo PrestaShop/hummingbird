@@ -1,6 +1,58 @@
-$component-name: step;
+$component-name: (
+  checkout-grid: checkout-grid,
+  checkout: checkout,
+  step: step,
+);
 
-.#{$component-name} {
+$page-name: (
+  checkout: page-order,
+);
+
+.#{map-get($component-name, checkout-grid)} {
+  &__content {
+    margin-block-end: 3rem;
+  }
+
+  &__aside {
+    margin-block-end: 1rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__content {
+      margin-block-end: 4rem;
+    }
+
+    &__aside {
+      margin-block-end: 2rem;
+    }
+  }
+}
+
+/* Checkout page specific styles */
+.#{map-get($component-name, checkout)} {
+  &__summary-accordion-item {
+    border-block-end: 0;
+  }
+
+  &__summary-accordion-header {
+    display: flex;
+  }
+
+  @include media-breakpoint-up(lg) {
+    &__summary-accordion-header {
+      display: none;
+    }
+
+    &__summary-accordion-wrapper {
+      > .accordion-collapse {
+        display: block;
+      }
+    }
+  }
+}
+
+/* TODO move this */
+.#{map-get($component-name, step)} {
   .address {
     margin: 1px;
     border: 1px solid $gray-200;

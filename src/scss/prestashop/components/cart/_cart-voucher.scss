@@ -22,9 +22,10 @@ $component-name: cart-voucher;
     margin-block-end: 0.5rem;
     border-block-end: 1px solid var(--bs-border-color);
   }
-
+  
   &__highlight {
     padding-block: 0.5rem;
+    border-block-end: 1px solid var(--bs-border-color);
   }
 
   &__offers {

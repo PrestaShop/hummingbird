@@ -20,7 +20,7 @@
 
         {block name='continue_shopping'}
           <a class="cart__continue-shopping btn btn-outline-primary" href="{$urls.pages.index}">
-            <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
+            <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
             {l s='Continue shopping' d='Shop.Theme.Actions'}
           </a>
         {/block}

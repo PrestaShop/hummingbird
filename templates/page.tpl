@@ -8,7 +8,7 @@
   {block name='page_header_container'}
     {block name='page_title'}
       <div class="page-header">
-        <h1 class="h4">{$smarty.block.child}</h1>
+        {include file='components/page-title-section.tpl' title={$smarty.block.child}}
       </div>
     {/block}
   {/block}

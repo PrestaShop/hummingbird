@@ -1,16 +1,18 @@
 $component-name: (
   checkout-grid: checkout-grid,
   checkout: checkout,
-  step: step,
+  address: address,
 );
 
-$page-name: (
-  checkout: page-order,
+$step-name: (
+  personal-information: checkout-personal-information-step,
+  addresses: checkout-personal-information-step,
 );
 
+/* Checkout / Order page component structure */
 .#{map-get($component-name, checkout-grid)} {
   &__content {
-    margin-block-end: 3rem;
+    margin-block-end: 2rem;
   }
 
   &__aside {
@@ -19,7 +21,7 @@ $page-name: (
 
   @include media-breakpoint-up(md) {
     &__content {
-      margin-block-end: 4rem;
+      margin-block-end: 3rem;
     }
 
     &__aside {
@@ -28,7 +30,7 @@ $page-name: (
   }
 }
 
-/* Checkout page specific styles */
+/* Checkout / Order page specific styles */
 .#{map-get($component-name, checkout)} {
   &__summary-accordion-item {
     border-block-end: 0;
@@ -51,45 +53,35 @@ $page-name: (
   }
 }
 
-/* TODO move this */
-.#{map-get($component-name, step)} {
-  .address {
-    margin: 1px;
-    border: 1px solid $gray-200;
-
-    &,
-    &__content {
-      cursor: pointer;
-    }
-
-    &.selected {
-      margin: 0;
-      border: 2px solid $primary;
-    }
+/* Personal information step */
+##{map-get($step-name, personal-information)} {
+  em {
+    display: inline-block;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    font-style: normal;
+    color: var(--bs-secondary-color);
   }
 
-  dl {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background: var(--bs-gray-100);
-    border-radius: var(--bs-border-radius-sm);
-
-    dd,
-    dt {
-      width: 50%;
-      padding: 1rem 0;
-      margin: 0;
-
-      &:not(:last-of-type) {
-        border-bottom: 1px solid var(--bs-gray-300);
-      }
-    }
-
-    dd {
-      text-align: right;
-    }
+  #personal-information-tabs-content {
+    margin-block-start: 1.5rem;
   }
+}
+
+
+/* Addresses step */
+.#{map-get($component-name, address)} {
+  &__list {
+    display: grid;
+    gap: 1rem;
+    margin-block-end: 1rem;
+
+    @include media-breakpoint-up(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    } 
+  }
+}
+
+##{map-get($step-name, addresses)} {
+  
 }

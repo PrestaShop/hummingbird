@@ -46,4 +46,19 @@ $component-name: btn;
     --bs-btn-active-bg: var(--bs-body-bg);
     --bs-btn-active-border-color: var(--bs-border-color);
   }
+
+  &-basic {
+    --bs-btn-padding-x: 0;
+    --bs-btn-font-weight: 400;
+    --bs-btn-color: var(--bs-link-color);
+    --bs-btn-bg: var(--bs-body-bg);
+    --bs-btn-border-color: var(--bs-body-bg);
+    --bs-btn-hover-color: var(--bs-link-hover-color);
+    --bs-btn-hover-bg: var(--bs-body-bg);
+    --bs-btn-hover-border-color: var(--bs-body-bg);
+    --bs-btn-focus-shadow-rgb: var(--bs-body-bg-rgb);
+    --bs-btn-active-color: var(--bs-link-hover-color);
+    --bs-btn-active-bg: var(--bs-body-bg);
+    --bs-btn-active-border-color: var(--bs-body-bg);
+  }
 }

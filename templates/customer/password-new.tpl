@@ -14,7 +14,7 @@
   <form action="{$urls.pages.password}" method="post" class="form-validation" novalidate>
     {if count($errors)}
       <div class="alert alert-danger" role="alert">
-        <ul>
+        <ul class="mb-0">
           {foreach $errors as $error}
             <li>{$error}</li>
           {/foreach}
@@ -79,8 +79,10 @@
 {block name='page_footer'}
   <hr>
 
-  <a id="back-to-login" href="{$urls.pages.authentication}" class="btn">
-    <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
-    <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
-  </a>
+  <div class="buttons-wrapper">
+    <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-basic">
+      <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
+      <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
+    </a>
+  </div>
 {/block}

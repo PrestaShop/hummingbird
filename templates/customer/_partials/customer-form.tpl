@@ -26,8 +26,9 @@
   </section>
 
   {block name='customer_form_footer'}
-    <footer class="form-footer">
-      <input type="hidden" name="submitCreate" value="1">
+    <input type="hidden" name="submitCreate" value="1">
+
+    <footer class="buttons-wrapper buttons-wrapper--end">
       {block "form_buttons"}
         <button class="btn btn-primary form-control-submit" data-link-action="save-customer" type="submit">
         {if isset($mode) && $mode === "register"}

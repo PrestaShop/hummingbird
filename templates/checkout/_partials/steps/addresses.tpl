@@ -20,7 +20,7 @@
           {/if}
         </p>
       {else}
-        <p class="h4">{l s='Shipping Address' d='Shop.Theme.Checkout'}</p>
+        <p class="h3">{l s='Shipping Address' d='Shop.Theme.Checkout'}</p>
       {/if}
 
       {if $show_delivery_address_form}
@@ -33,7 +33,7 @@
           }
         </div>
       {elseif $customer.addresses|count> 0}
-        <div id="delivery-addresses" class="address-selector js-address-selector row">
+        <div id="delivery-addresses" class="address__list js-address-selector">
           {include  file        = 'checkout/_partials/address-selector-block.tpl'
             addresses   = $customer.addresses
             name        = "id_address_delivery"
@@ -49,20 +49,22 @@
           <p class="alert alert-danger js-address-error" name="alert-delivery" style="display: none">{l s='Your address is incomplete, please update it.' d='Shop.Notifications.Error'}</p>
         {/if}
 
-        <a href="{$new_address_delivery_url}" class="btn btn-outline-primary w-100 w-md-auto mb-3">
-          <i class="material-icons" aria-hidden="true">&#xE145;</i>
-          {l s='Add new address' d='Shop.Theme.Actions'}
-        </a>
+        <div class="buttons-wrapper mb-3">
+          <a href="{$new_address_delivery_url}" class="btn btn-outline-primary">
+            <i class="material-icons" aria-hidden="true">&#xE145;</i>
+            {l s='Add new address' d='Shop.Theme.Actions'}
+          </a>
+        </div>
 
         {if $use_same_address && !$cart.is_virtual}
-          <a data-link-action="different-invoice-address" href="{$use_different_address_url}" class="d-block">
+          <a data-link-action="different-invoice-address" href="{$use_different_address_url}" class="btn btn-basic">
             {l s='Billing address differs from shipping address' d='Shop.Theme.Checkout'}
           </a>
         {/if}
       {/if}
 
       {if !$use_same_address}
-        <p class="h4 mt-4">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
+        <p class="h3 mt-4">{l s='Your Invoice Address' d='Shop.Theme.Checkout'}</p>
 
         {if $show_invoice_address_form}
           <div id="invoice-address">
@@ -74,7 +76,7 @@
             }
           </div>
         {else}
-          <div id="invoice-addresses" class="row address-selector js-address-selector">
+          <div id="invoice-addresses" class="address__list js-address-selector">
             {include  file        = 'checkout/_partials/address-selector-block.tpl'
               addresses   = $customer.addresses
               name        = "id_address_invoice"
@@ -95,22 +97,21 @@
             {l s='Add new address' d='Shop.Theme.Actions'}
           </a>
         {/if}
-
       {/if}
 
-      <div class="mt-4 d-flex flex-wrap justify-content-between">
-        <button class="btn btn-outline-primary w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-personal-information-step">
+      <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
+        <button class="btn btn-outline-primary js-back" data-step="checkout-personal-information-step">
           <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
           {l s='Back to Personal Information' d='Shop.Theme.Actions'}
         </button>
 
         {if !$form_has_continue_button}
-            <button type="submit" class="btn btn-primary w-100 w-md-auto continue" name="confirm-addresses" value="1">
-              {l s='Continue to Shipping' d='Shop.Theme.Actions'}
-              <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
-            </button>
+          <button type="submit" class="btn btn-primary" name="confirm-addresses" value="1">
+            {l s='Continue to Shipping' d='Shop.Theme.Actions'}
+            <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
+          </button>
 
-            <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
+          <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}
       </div>
     </form>

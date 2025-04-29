@@ -164,29 +164,6 @@ const initCheckout = () => {
       }
     }
   });
-
-  const setMaxHeightToActiveCarrierExtraContent = () => {
-    const activeExtraContent = document.querySelector(`${CheckoutMap.carrierExtraContentActive}`) as HTMLElement;
-
-    if (activeExtraContent === null) {
-      return;
-    }
-
-    const content = activeExtraContent.querySelector(CheckoutMap.carrierExtraContent) as HTMLElement;
-
-    if (content != null) {
-      activeExtraContent.style.maxHeight = `${content.clientHeight}px`;
-    }
-  };
-
-  // Initiate active carrier extra content height
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(() => { setMaxHeightToActiveCarrierExtraContent(); }, 1);
-  } else {
-    document.addEventListener('DOMContentLoaded', () => {
-      setMaxHeightToActiveCarrierExtraContent();
-    });
-  }
 };
 
 export default initCheckout;

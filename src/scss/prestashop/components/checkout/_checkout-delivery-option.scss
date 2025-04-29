@@ -7,6 +7,7 @@ $component-name: delivery-option;
   }
   
   &__label {
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -51,8 +52,17 @@ $component-name: delivery-option;
     color: var(--bs-secondary-color);
   }
 
+  &__extra {
+    overflow: hidden;
+    transition: var(--bs-transition-default);
+    
+    &:not([data-active]) {
+      max-height: 0;
+    }
+  }
+
   &__extra-content {
-    padding: 1rem;
+    padding: 0 1rem 1rem;
   }
 
   @include media-breakpoint-up(md) {

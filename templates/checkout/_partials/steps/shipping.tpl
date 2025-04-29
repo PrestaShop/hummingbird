@@ -46,10 +46,10 @@
                   </div>
                 </label>
 
-                <div class="delivery-option__extra {if $delivery_option == $carrier_id} delivery-option__extra--active {/if} js-carrier-extra-content" {if $delivery_option !== $carrier_id}style="max-height:0px"{/if}>
+                <div class="delivery-option__extra {if $delivery_option == $carrier_id} delivery-option__extra--active {/if} js-carrier-extra" {if $delivery_option == $carrier_id} data-active{/if}>
                   {capture name='delivery_option_extra_content'}{$carrier.extraContent}{/capture}
                   {if !empty($smarty.capture.delivery_option_extra_content)}
-                    <div class="delivery-option__extra-content">
+                    <div class="delivery-option__extra-content js-carrier-extra-content">
                       {$smarty.capture.delivery_option_extra_content nofilter}
                     </div>
                   {/if}

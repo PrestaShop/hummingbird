@@ -85,9 +85,9 @@ export const checkout = {
   actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
   termsLink: '.js-terms a',
   checkoutModal: '#checkout-modal',
-  carrierExtraContentWrapper: '.carrier__extra-content-wrapper',
-  carrierExtraContent: '.carrier__extra-content',
-  carrierExtraContentActive: '.carrier__extra-content-wrapper--active',
+  carrierExtraContentWrapper: '.js-carrier-extra',
+  carrierExtraContentWrapperActive: '.js-carrier-extra[data-active]',
+  carrierExtraContent: '.js-carrier-extra-content',
   summaryContainer: '.js-checkout-summary',
 };
 

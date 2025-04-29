@@ -73,8 +73,8 @@ declare type checkout = {
   termsLink: string,
   checkoutModal: string,
   carrierExtraContentWrapper: string,
+  carrierExtraContentWrapperActive: string,
   carrierExtraContent: string,
-  carrierExtraContentActive: string,
 };
 
 declare type progressRing = {

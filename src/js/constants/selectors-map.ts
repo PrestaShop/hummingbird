@@ -186,7 +186,7 @@ const selectorsMap = {
     returnFormItemCheckbox: '.js-order-return-form table tbody input[type=checkbox]',
   },
   modalBody: '.modal-body',
-  pageCms: '.page-cms',
+  pageCms: '.js-page-content-cms',
   quickview: '.js-quickview',
   quickviewModal: '.quickview',
   facetedsearch,

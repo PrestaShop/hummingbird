@@ -113,7 +113,6 @@ const initCheckout = () => {
 
     if (termsModalElement) {
       const termsModal = new Modal(termsModalElement);
-
       const linkElement = event.target as HTMLLinkElement;
       let url = linkElement.getAttribute('href');
 

@@ -3,15 +3,17 @@ $component-name: (
   checkout: checkout,
   address: address,
   delivery-options: delivery-options,
+  payment-options: payment-options,
 );
 
 $step-name: (
   personal-information: checkout-personal-information-step,
   addresses: checkout-personal-information-step,
   shipping: checkout-delivery-step,
+  payment: checkout-payment-step,
 );
 
-/* Checkout / Order page component structure */
+/* Checkout */
 .#{map-get($component-name, checkout-grid)} {
   &__content {
     margin-block-end: 2rem;
@@ -32,7 +34,6 @@ $step-name: (
   }
 }
 
-/* Checkout / Order page specific styles */
 .#{map-get($component-name, checkout)} {
   &__summary-accordion-item {
     border-block-end: 0;
@@ -55,7 +56,7 @@ $step-name: (
   }
 }
 
-/* Personal information step */
+/* Personal information */
 ##{map-get($step-name, personal-information)} {
   em {
     display: inline-block;
@@ -71,7 +72,7 @@ $step-name: (
 }
 
 
-/* Addresses step */
+/* Addresses */
 .#{map-get($component-name, address)} {
   &__list {
     display: grid;
@@ -84,24 +85,31 @@ $step-name: (
   }
 }
 
-/* Shipping step */
-##{map-get($step-name, shipping)} {
-  .#{map-get($component-name, delivery-options)} {
-    &__list {
-      margin-block-end: 1.5rem;
+/* Shipping */
 
-      > .delivery-option__item{
-        &:first-child {
-          border-start-start-radius: 0.5rem;
-          border-start-end-radius: 0.5rem;
-        }
+.#{map-get($component-name, delivery-options)} {
+  &__list {
+    margin-block-end: 1.5rem;
 
-        &:last-child {
-          border-end-start-radius: 0.5rem;
-          border-end-end-radius: 0.5rem;
-          border-block-end: 0;
-        }
+    > .delivery-option__item{
+      &:first-child {
+        border-start-start-radius: 0.5rem;
+        border-start-end-radius: 0.5rem;
+      }
+
+      &:last-child {
+        border-end-start-radius: 0.5rem;
+        border-end-end-radius: 0.5rem;
+        border-block-end: 0;
       }
     }
+  }
+}
+
+/* Payment */
+.#{map-get($component-name, payment-options)} {
+  &__list {
+    display: grid;
+    gap: 0.5rem;
   }
 }

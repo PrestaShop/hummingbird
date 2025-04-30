@@ -110,7 +110,7 @@
                   </button>
                 </h2>
 
-                <div id="product_description_collapse" class="accordion-collapse collapse show" data-bs-parent="#product_accordion" aria-labelledby="product_description_heading">
+                <div id="product_description_collapse" class="accordion-collapse collapse show" aria-labelledby="product_description_heading">
                   <div class="accordion-body">
                     <div class="product__description rich-text">
                       {$product.description nofilter}

@@ -6,17 +6,20 @@
   {block name='page_content'}
     {block name='error_content'}
       {if isset($errorContent)}
-          {$errorContent nofilter}
-          <a href="{$urls.pages.index}" class="btn btn-primary back-to-index">
-            {l s='Back to Home page' d='Shop.Theme.Catalog'}
-            <i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
-          </a>
+        {$errorContent nofilter}
+
+        <a href="{$urls.pages.index}" class="btn btn-primary">
+          <i class="material-icons" aria-hidden="true">&#xE5CB;</i>
+          {l s='Back to Home page' d='Shop.Theme.Catalog'}
+        </a>
       {else}
         <h1 class="h4">{l s='The page you are looking for is no longer available' d='Shop.Theme.Catalog'}</h1>
+
         <p>{l s='It can not be reached anymore. Can we still attract you into our shop?' d='Shop.Theme.Catalog'}</p>
-        <a class="btn btn-outline-primary mt-3" href="{$urls.pages.index}">
+
+        <a class="btn btn-primary" href="{$urls.pages.index}">
           {l s='Go shopping' d='Shop.Theme.Catalog'}
-          <i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
+          <i class="material-icons" aria-hidden="true">&#xE5CC;</i>
         </a>
       {/if}
     {/block}

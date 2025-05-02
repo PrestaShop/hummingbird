@@ -66,3 +66,72 @@ $component-name: products;
     }
   }
 }
+
+.#{$component-name} {
+  &__selection {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1rem;
+    column-gap: 1.5rem;
+    align-items: center;
+    margin-block-end: 1.5rem;
+  }
+
+  &__count {
+    color: var(--bs-secondary-color);
+  }
+
+  &__sort {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    order: -1;
+
+    &-label {
+      display: none;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    &-dropdown {
+      flex-grow: 1;
+    }
+
+    &-dropdown-button {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  &__filter-button {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  &__pagination {
+    margin-block: 1.5rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__filter-button {
+      display: none;
+    }
+
+    &__sort {
+      &-label {
+        display: flex;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    &__selection {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__sort {
+      order: initial;
+    }
+  }
+}

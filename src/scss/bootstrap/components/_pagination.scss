@@ -1,6 +1,10 @@
 $component-name: "pagination";
 $sub-component-name: "page";
 
+.#{$component-name} {
+  flex-wrap: wrap;
+}
+
 .#{$sub-component-name} {
   &-link {
     display: inline-flex;

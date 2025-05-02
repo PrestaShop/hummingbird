@@ -17,17 +17,13 @@
     <section id="content" class="page-content page-content--general">
       {block name='page_content_top'}{/block}
 
-      {block name='page_content'}
-        <!-- Page content -->
-      {/block}
+      {block name='page_content'}{/block}
     </section>
   {/block}
 
   {block name='page_footer_container'}
     <footer class="page-footer">
-      {block name='page_footer'}
-          <!-- Footer content -->
-      {/block}
+      {block name='page_footer'}{/block}
     </footer>
   {/block}
 {/block}

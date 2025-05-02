@@ -1,7 +1,7 @@
 $component-name: "page";
 
 .#{$component-name} {
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 
   &-header {
     margin-bottom: 2rem;
@@ -12,6 +12,12 @@ $component-name: "page";
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       gap: 2.5rem;
+    }
+  }
+
+  &-category {
+    .wrapper__left-column {
+      padding-inline-end: 2rem;
     }
   }
 }

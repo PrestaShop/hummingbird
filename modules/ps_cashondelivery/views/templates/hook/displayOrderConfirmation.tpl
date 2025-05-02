@@ -21,4 +21,3 @@
     <a href="{$contact_url}" rel="nofollow">{l s='customer support' d='Modules.Cashondelivery.Shop'}</a>.
   </div>
 </div>
-

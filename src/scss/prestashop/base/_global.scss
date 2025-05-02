@@ -16,11 +16,7 @@ ul {
 }
 
 a {
-  transition: $transition-base;
-
-  &.alert-link {
-    text-decoration: underline;
-  }
+  transition: var(--bs-transition-default);
 }
 
 // #TODO: remove this and check impact

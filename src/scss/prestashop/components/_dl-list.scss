@@ -3,9 +3,9 @@ $component-name: dl-list;
 .#{$component-name} {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-radius: var(--bs-border-radius);
   margin-block-end: 0;
   background-color: var(--bs-tertiary-bg);
+  border-radius: var(--bs-border-radius);
 
   dt {
     padding: 1rem;

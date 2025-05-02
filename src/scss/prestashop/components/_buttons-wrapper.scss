@@ -4,8 +4,8 @@ $component-name: buttons-wrapper;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  column-gap: 1rem;
   row-gap: 0.5rem;
+  column-gap: 1rem;
 
   .btn {
     width: 100%;

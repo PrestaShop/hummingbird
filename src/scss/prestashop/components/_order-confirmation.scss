@@ -61,7 +61,7 @@ $component-name: order-confirmation;
     padding: 0.25rem 0;
 
     &-label {
-      font-weight: normal;
+      font-weight: 400;
     }
 
     &-value {
@@ -84,9 +84,9 @@ $component-name: order-confirmation;
 
       &-content {
         display: flex;
+        flex-grow: 1;
         gap: 1rem;
         align-items: flex-start;
-        flex-grow: 1;
       }
 
       &-prices {

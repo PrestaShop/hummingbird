@@ -2,17 +2,17 @@ $component-name: delivery-option;
 
 .#{$component-name} {
   &__item {
-    border-block-end: 1px solid var(--bs-border-color);
     background-color: var(--bs-tertiary-bg);
+    border-block-end: 1px solid var(--bs-border-color);
   }
-  
+
   &__label {
-    cursor: pointer;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
     flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
   }
 
   &__check {
@@ -21,17 +21,17 @@ $component-name: delivery-option;
 
   &__left {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-shrink: 0;
-    flex-grow: 1;
     flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    gap: 0.5rem;
+    align-items: center;
   }
 
   &__carrier {
     display: flex;
-    align-items: center;
     gap: 1rem;
+    align-items: center;
 
     &-logo {
       width: 3rem;
@@ -47,15 +47,15 @@ $component-name: delivery-option;
   }
 
   &__content {
-    flex-grow: 1;
     flex-basis: 100%;
+    flex-grow: 1;
     color: var(--bs-secondary-color);
   }
 
   &__extra {
     overflow: hidden;
     transition: var(--bs-transition-default);
-    
+
     &:not([data-active]) {
       max-height: 0;
     }
@@ -67,8 +67,8 @@ $component-name: delivery-option;
 
   @include media-breakpoint-up(md) {
     &__left {
-      flex-grow: 0;
       flex-basis: calc(40% - 1rem);
+      flex-grow: 0;
     }
 
     &__content {
@@ -76,8 +76,8 @@ $component-name: delivery-option;
     }
 
     &__price {
-      text-align: right;
       flex-basis: calc(20% - 1rem);
+      text-align: right;
     }
 
     &__carrier {

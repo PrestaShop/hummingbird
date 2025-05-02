@@ -2,9 +2,9 @@ $component-name: cart-summary-product;
 
 .#{$component-name} {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   align-items: flex-start;
-  flex-wrap: wrap;
 
   &__image {
     flex-shrink: 0;
@@ -12,14 +12,14 @@ $component-name: cart-summary-product;
 
   &__img {
     width: 5rem;
-    height: 5rem; 
+    height: 5rem;
     border-radius: var(--bs-border-radius);
   }
 
   &__content {
-    flex-grow: 1;
     display: flex;
     flex-basis: 12rem;
+    flex-grow: 1;
     gap: 1rem;
     justify-content: space-between;
 

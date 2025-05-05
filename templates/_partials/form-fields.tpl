@@ -155,6 +155,26 @@
         </div>
       {/block}
 
+    {elseif $field.type === 'textarea'}
+
+      {block name='form_field_item_textarea'}
+          <textarea
+            id="field-{$field.name}"
+            class="form-control"
+            name="{$field.name}"
+            {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
+            {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
+            {if $field.required}required{/if}
+            {if isset($field.availableValues.rows)}rows="{$field.availableValues.rows}"{/if}
+            {if isset($field.availableValues.cols)}cols="{$field.availableValues.cols}"{/if}
+          >{$field.value|default}</textarea>
+          {if isset($field.availableValues.comment)}
+            <span class="form-control-comment">
+              {$field.availableValues.comment}
+            </span>
+          {/if}
+      {/block}
+
     {else}
 
       {block name='form_field_item_other'}

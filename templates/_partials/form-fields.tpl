@@ -169,7 +169,7 @@
             {if isset($field.availableValues.cols)}cols="{$field.availableValues.cols}"{/if}
           >{$field.value|default}</textarea>
           {if isset($field.availableValues.comment)}
-            <span class="form-control-comment">
+            <span class="form-text">
               {$field.availableValues.comment}
             </span>
           {/if}

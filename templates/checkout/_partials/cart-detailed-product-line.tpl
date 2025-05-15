@@ -92,6 +92,8 @@
       </div>
     {/foreach}
 
+    {hook h='displayCartExtraProductInfo' product=$product}
+
     <div class="product-line__prices product-line__item">
       <div class="product-line__current">
         <span class="price">{$product.price}</span>

@@ -7,21 +7,22 @@
 
 {block name='content'}
   <div class="row">
-    <div class="col-md-4 col-lg-3">
+    <div class="col-lg-3">
       {include file='components/account-menu.tpl'}
     </div>
 
-    <div class="col-md-8 col-lg-9">
+    <div class="col-lg-9">
       {block name='page_header_container'}
         {block name='page_title'}
           <div class="page-header">
-            <h1 class="h4">{$smarty.block.child}</h1>
+            {include file='components/page-title-section.tpl' title={$smarty.block.child}}
           </div>
         {/block}
 
         {block name='account_link'}
-          <a class="btn d-md-none account-menu__back" href="{$urls.pages.my_account}">
-            <i class="material-icons" aria-hidden="true">&#xE5CB;</i> {l s='Back to your account' d='Shop.Theme.Customeraccount'}
+          <a class="btn btn-outline-tertiary account-menu__back" href="{$urls.pages.my_account}">
+            <i class="material-icons" aria-hidden="true">&#xE5C4;</i>
+            {l s='Back to your account' d='Shop.Theme.Customeraccount'}
           </a>
         {/block}
       {/block}

@@ -1,0 +1,136 @@
+$component-name: order-history;
+
+.#{$component-name} {
+  &__inner {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  &__header {
+    display: none;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+    padding: 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+  }
+
+  &__cell {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 66.666666%;
+    line-height: 1.25;
+
+    &:before {
+      content: attr(aria-label);
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--bs-secondary-color);
+    }
+
+    &--reference {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    &--date {
+      font-size: 0.875rem;
+      color: var(--bs-secondary-color);
+    }
+
+    &--total {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    &--payment {
+      font-size: 0.875rem;
+      color: var(--bs-secondary-color);
+    }
+
+    &--actions {
+      display: grid;
+      gap: 0.5rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  &__status {
+    white-space: normal;
+
+    &--bright {
+      color: var(--bs-white);
+    }
+
+    &--dark {
+      color: var(--bs-dark);
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &__inner {
+      display: grid;
+      gap: 0 1rem;
+      grid-template-columns: repeat(7, minmax(0, auto));
+      overflow-x: auto;
+    }
+
+    &__header {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: span 7;
+      padding-block: 1rem;
+      font-weight: 600;
+      border-block-end: 1px solid var(--bs-border-color);
+    }
+
+    &__row {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: span 7;
+      padding-inline: 0;
+      padding-block: 0.875rem;
+      border: none;
+      border-radius: 0;
+      border-block-end: 1px solid var(--bs-border-color);
+
+      &:last-child {
+        border-block-end: none;
+      }
+    }
+
+    &__cell {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 0;
+
+      &:before {
+        display: none;
+      }
+
+      &--payment {
+        font-size: 0.75rem;
+      }
+
+      &--date {
+        font-size: 0.75rem;
+      }
+
+      &--actions {
+        display: grid;
+        gap: 0.5rem;
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ const initCustomer = () => {
   const productCheckboxes = document.querySelectorAll<HTMLInputElement>(returnFormProductCheckbox);
 
   selectAllCheckbox?.addEventListener('click', () => {
-    const checked = selectAllCheckbox.checked;
+    const {checked} = selectAllCheckbox;
     productCheckboxes.forEach((checkbox) => {
       if (!checkbox.disabled) {
         checkbox.checked = checked;

@@ -9,80 +9,51 @@
 {/block}
 
 {block name='page_content'}
+  <p>{l s='View and manage your available vouchers and discount codes for use on your next purchase.' d='Shop.Theme.Customeraccount'}</p>
+
   {if $cart_rules}
-    <div class="table-wrapper">
-      <table class="table table-striped d-none d-xl-table">
-        <thead class="thead-default">
-          <tr>
-            <th>{l s='Code' d='Shop.Theme.Checkout'}</th>
-            <th>{l s='Description' d='Shop.Theme.Checkout'}</th>
-            <th>{l s='Quantity' d='Shop.Theme.Checkout'}</th>
-            <th>{l s='Value' d='Shop.Theme.Checkout'}</th>
-            <th>{l s='Minimum' d='Shop.Theme.Checkout'}</th>
-            <th>{l s='Cumulative' d='Shop.Theme.Checkout'}</th>
-            <th>{l s='Expiration date' d='Shop.Theme.Checkout'}</th>
-          </tr>
-        </thead>
+    <div class="grid-table">
+      <div class="grid-table__inner grid-table__inner--7">
+        <header class="grid-table__header">
+          <div class="grid-table__cell">{l s='Code' d='Shop.Theme.Checkout'}</div>
+          <div class="grid-table__cell">{l s='Name' d='Shop.Theme.Checkout'}</div>
+          <div class="grid-table__cell">{l s='Quantity' d='Shop.Theme.Checkout'}</div>
+          <div class="grid-table__cell">{l s='Value' d='Shop.Theme.Checkout'}</div>
+          <div class="grid-table__cell">{l s='Minimum' d='Shop.Theme.Checkout'}</div>
+          <div class="grid-table__cell">{l s='Cumulative' d='Shop.Theme.Checkout'}</div>
+          <div class="grid-table__cell">{l s='Expiration date' d='Shop.Theme.Checkout'}</div>
+        </header>
 
-        <tbody>
-          {foreach from=$cart_rules item=cart_rule}
-            <tr>
-              <th scope="row">{$cart_rule.code}</th>
-              <td>{$cart_rule.name}</td>
-              <td class="text-xs-end">{$cart_rule.quantity_for_user}</td>
-              <td>{$cart_rule.value}</td>
-              <td>{$cart_rule.voucher_minimal}</td>
-              <td>{$cart_rule.voucher_cumulable}</td>
-              <td>{$cart_rule.voucher_date}</td>
-            </tr>
-          {/foreach}
-        </tbody>
-      </table>
-    </div>
+        {foreach from=$cart_rules item=cart_rule}
+          <div class="grid-table__row">
+            <div class="grid-table__cell" aria-label="{l s='Code' d='Shop.Theme.Checkout'}">
+              <strong>{$cart_rule.code}</strong>
+            </div>
 
-    <div class="cart-rules row d-flex d-xl-none">
-      {foreach from=$cart_rules item=cart_rule}
-        <div class="cart-rule table-wrapper col-lg-6">
-          <ul>
-            <li class="d-flex align-items-center justify-content-between border-bottom py-3">
-              <strong>{l s='Code' d='Shop.Theme.Checkout'}</strong>
-              {$cart_rule.code}
-            </li>
+            <div class="grid-table__cell" aria-label="{l s='Name' d='Shop.Theme.Checkout'}">
+              <small class="text-secondary">{$cart_rule.name}</small>
+            </div>
 
-            <li class="d-flex align-items-center justify-content-between border-bottom py-3">
-              <strong>{l s='Description' d='Shop.Theme.Checkout'}</strong>
-              {$cart_rule.name}
-            </li>
+            <div class="grid-table__cell" aria-label="{l s='Quantity' d='Shop.Theme.Checkout'}">{$cart_rule.quantity_for_user}</div>
 
-            <li class="d-flex align-items-center justify-content-between border-bottom py-3">
-              <strong>{l s='Quantity' d='Shop.Theme.Checkout'}</strong>
-              {$cart_rule.quantity_for_user}
-            </li>
+            <div class="grid-table__cell" aria-label="{l s='Value' d='Shop.Theme.Checkout'}">
+              <strong>{$cart_rule.value}</strong>
+            </div>
 
-            <li class="d-flex align-items-center justify-content-between border-bottom py-3">
-              <strong>{l s='Value' d='Shop.Theme.Checkout'}</strong>
-              {$cart_rule.value}
-            </li>
+            <div class="grid-table__cell" aria-label="{l s='Minimum' d='Shop.Theme.Checkout'}">{$cart_rule.voucher_minimal}</div>
 
-            <li class="d-flex align-items-center justify-content-between border-bottom py-3">
-              <strong>{l s='Minimum' d='Shop.Theme.Checkout'}</strong>
-              {$cart_rule.voucher_minimal}
-            </li>
+            <div class="grid-table__cell" aria-label="{l s='Cumulative' d='Shop.Theme.Checkout'}">{$cart_rule.voucher_cumulable}</div>
 
-            <li class="d-flex align-items-center justify-content-between border-bottom py-3">
-              <strong>{l s='Cumulative' d='Shop.Theme.Checkout'}</strong>
-              {$cart_rule.voucher_cumulable}
-            </li>
-
-            <li class="d-flex align-items-center justify-content-between py-3">
-              <strong>{l s='Expiration date' d='Shop.Theme.Checkout'}</strong>
-              {$cart_rule.voucher_date}
-            </li>
-          </ul>
-        </div>
-      {/foreach}
+            <div class="grid-table__cell" aria-label="{l s='Expiration date' d='Shop.Theme.Checkout'}">
+              <small class="text-secondary">{$cart_rule.voucher_date}</small>
+            </div>
+          </div>
+        {/foreach}
+      </div>
     </div>
   {else}
-    <div class="alert alert-info" role="alert" data-alert="info">{l s='You do not have any vouchers.' d='Shop.Notifications.Warning'}</div>
+    <div class="alert alert-info" role="alert" data-alert="info">
+      {l s='You do not have any vouchers.' d='Shop.Notifications.Warning'}
+    </div>
   {/if}
 {/block}

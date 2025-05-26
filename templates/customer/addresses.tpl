@@ -9,6 +9,8 @@
 {/block}
 
 {block name='page_content'}
+  <p>{l s='Manage your addresses for billing and delivery to streamline your future orders.' d='Shop.Theme.Customeraccount'}</p>
+
   <div class="addresses">
     <div class="addresses__list">
       {foreach $customer.addresses as $address}

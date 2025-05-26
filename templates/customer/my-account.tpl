@@ -28,7 +28,7 @@
       </a>
     {else}
       <a class="{$componentName}__link" id="address_main_link" href="{$urls.pages.address}">
-        <i class="{$componentName}__icon material-icons" aria-hidden="true">&#xE567;</i>
+        <i class="{$componentName}__icon material-icons" aria-hidden="true">&#xEF3A;</i>
         {l s='Add first address' d='Shop.Theme.Customeraccount'}
       </a>
     {/if}

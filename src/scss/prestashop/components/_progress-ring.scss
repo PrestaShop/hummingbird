@@ -6,8 +6,12 @@
   }
 
   &__background-circle {
-    stroke: var(--bs-gray-200);
+    stroke: var(--bs-secondary-bg);
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
+  }
+
+  &__text {
+    fill: var(--bs-body-color);
   }
 }

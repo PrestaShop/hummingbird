@@ -1,0 +1,21 @@
+$component-name: cart-grid;
+
+.#{$component-name} {
+  &__content {
+    margin-block-end: 3rem;
+  }
+
+  &__aside {
+    margin-block-end: 1rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__content {
+      margin-block-end: 4rem;
+    }
+
+    &__aside {
+      margin-block-end: 2rem;
+    }
+  }
+}

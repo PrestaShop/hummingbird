@@ -5,15 +5,17 @@
 {extends file='checkout/cart.tpl'}
 
 {block name='continue_shopping' append}
-  <a class="btn btn-outline-primary" href="{$urls.pages.index}">
-    <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
+  <a class="cart__continue-shopping btn btn-outline-primary" href="{$urls.pages.index}">
+    <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
     {l s='Continue shopping' d='Shop.Theme.Actions'}
   </a>
 {/block}
 
 {block name='cart_actions'}
-  <div class="checkout text-sm-center card-block">
-    <button type="button" class="btn btn-primary w-100 disabled" disabled>{l s='Checkout' d='Shop.Theme.Actions'}</button>
+  <div class="cart-summary__actions checkout">
+    <div class="d-grid">
+      <button type="button" class="btn btn-primary disabled" disabled>{l s='Checkout' d='Shop.Theme.Actions'}</button>
+    </div>
   </div>
 {/block}
 

@@ -33,5 +33,5 @@
     cy="{$size / 2}"
     style="stroke-dasharray: {$circumference}, {$circumference}; stroke-dashoffset: {$circumference};"
   />
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
+  <text class="progress-ring__text" x="50%" y="52%" dominant-baseline="middle" text-anchor="middle"></text>
 </svg>

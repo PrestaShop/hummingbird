@@ -1,43 +1,114 @@
-$component-name: step;
+$component-name: (
+  checkout-grid: checkout-grid,
+  checkout: checkout,
+  address: address,
+  delivery-options: delivery-options,
+  payment-options: payment-options,
+);
 
-.#{$component-name} {
-  .address {
-    margin: 1px;
-    border: 1px solid $gray-200;
+$step-name: (
+  personal-information: checkout-personal-information-step,
+  addresses: checkout-personal-information-step,
+  shipping: checkout-delivery-step,
+  payment: checkout-payment-step,
+);
 
-    &,
-    &__content {
-      cursor: pointer;
-    }
-
-    &.selected {
-      margin: 0;
-      border: 2px solid $primary;
-    }
+/* Checkout */
+.#{map-get($component-name, checkout-grid)} {
+  &__content {
+    margin-block-end: 2rem;
   }
 
-  dl {
+  &__aside {
+    margin-block-end: 1rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__content {
+      margin-block-end: 3rem;
+    }
+
+    &__aside {
+      margin-block-end: 2rem;
+    }
+  }
+}
+
+.#{map-get($component-name, checkout)} {
+  &__summary-accordion-item {
+    border-block-end: 0;
+  }
+
+  &__summary-accordion-header {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background: var(--bs-gray-100);
-    border-radius: var(--bs-border-radius-sm);
+  }
 
-    dd,
-    dt {
-      width: 50%;
-      padding: 1rem 0;
-      margin: 0;
+  @include media-breakpoint-up(lg) {
+    &__summary-accordion-header {
+      display: none;
+    }
 
-      &:not(:last-of-type) {
-        border-bottom: 1px solid var(--bs-gray-300);
+    &__summary-accordion-wrapper {
+      > .accordion-collapse {
+        display: block;
       }
     }
+  }
+}
 
-    dd {
-      text-align: right;
+/* Personal information */
+##{map-get($step-name, personal-information)} {
+  em {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-style: normal;
+    line-height: 1.4;
+    color: var(--bs-secondary-color);
+  }
+
+  #personal-information-tabs-content {
+    margin-block-start: 1.5rem;
+  }
+}
+
+/* Addresses */
+.#{map-get($component-name, address)} {
+  &__list {
+    display: grid;
+    gap: 1rem;
+    margin-block-end: 1rem;
+
+    @include media-breakpoint-up(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+  }
+}
+
+/* Shipping */
+
+.#{map-get($component-name, delivery-options)} {
+  &__list {
+    margin-block-end: 1.5rem;
+
+    > .delivery-option__item {
+      &:first-child {
+        border-start-start-radius: 0.5rem;
+        border-start-end-radius: 0.5rem;
+      }
+
+      &:last-child {
+        border-block-end: 0;
+        border-end-start-radius: 0.5rem;
+        border-end-end-radius: 0.5rem;
+      }
+    }
+  }
+}
+
+/* Payment */
+.#{map-get($component-name, payment-options)} {
+  &__list {
+    display: grid;
+    gap: 0.5rem;
   }
 }

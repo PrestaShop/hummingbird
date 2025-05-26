@@ -1,13 +1,13 @@
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
-{if $step_is_complete}
-{/if}
+{$stepName = 'personnal-information'}
+
 {block name='step_content'}
   {hook h='displayPersonalInformationTop' customer=$customer}
 
   {if $customer.is_logged && !$customer.is_guest}
     <div class="step__account">
-      <p class="mb-3">
+      <p>
         {* [1][/1] is for a HTML tag. *}
         {l s='Connected as [1]%firstname% %lastname%[/1].'
           d='Shop.Theme.Customeraccount'
@@ -33,29 +33,30 @@
       </p>
 
       {if !isset($empty_cart_on_logout) || $empty_cart_on_logout}
-        <p><small>{l s='If you sign out now, your cart will be emptied.' d='Shop.Theme.Checkout'}</small></p>
+        <p class="mb-0">
+          <small class="text-body-tertiary">{l s='If you sign out now, your cart will be emptied.' d='Shop.Theme.Checkout'}</small>
+        </p>
       {/if}
     </div>
 
-    <div class="mt-4">
-      <form method="GET" action="{$urls.pages.order}">
+    <form id="checkout-continue-form" method="GET" action="{$urls.pages.order}">
+      <div class="buttons-wrapper buttons-wrapper--end mt-3">
         <button
-          class="continue btn btn-primary w-100 w-md-auto"
+          class="btn btn-primary"
           name="controller"
           type="submit"
           value="order"
-       > 
+        >
           {l s='Continue to Addresses' d='Shop.Theme.Actions'}
-          <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
+          <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</i>
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   {else}
-    <ul class="nav nav-tabs my-3" id="myTab" role="tablist">
+    <ul class="nav nav-underline" id="personal-information-tabs" role="tablist">
       <li class="nav-item" role="presentation">
         <button 
           class="nav-link {if !$show_login_form}active{/if}" 
-          id="contact-tab"
           data-bs-toggle="tab"
           data-bs-target="#checkout-guest-form"
           type="button"
@@ -74,7 +75,6 @@
       <li class="nav-item" role="presentation">
         <button 
           class="nav-link {if $show_login_form}active{/if}" 
-          id="contact-tab"
           data-bs-toggle="tab"
           data-bs-target="#checkout-login-form"
           type="button"
@@ -87,7 +87,7 @@
       </li>
     </ul>
 
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content" id="personal-information-tabs-content">
       <div class="tab-pane fade{if !$show_login_form} show active{/if}" id="checkout-guest-form" aria-labelledby="checkout-guest-form" role="tabpanel" {if $show_login_form}aria-hidden="true"{/if}>
         {render file='checkout/_partials/customer-form.tpl' ui=$register_form guest_allowed=$guest_allowed}
       </div>

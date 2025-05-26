@@ -1,3 +1,4 @@
+@import "buttons-wrapper";
 @import "currency-selector";
 @import "columns-block";
 @import "language-selector";
@@ -11,7 +12,7 @@
 @import "brand";
 @import "store";
 @import "sitemap";
-@import "address";
+@import "address-card";
 @import "table-wrapper";
 @import "search-filters-modules";
 @import "mailalerts-account";
@@ -22,9 +23,9 @@
 @import "rich-text";
 @import "qty-input";
 @import "page-loader";
-@import "checkout-steps";
+@import "checkout";
 @import "progress-ring";
-@import "customization-modal";
 @import "quickview-modal";
 @import "products";
 @import "nouislider";
+@import "dl-list";

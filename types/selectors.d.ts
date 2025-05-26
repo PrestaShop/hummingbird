@@ -31,10 +31,9 @@ declare type listing = {
 
 declare type cart = {
   overview: string,
-  discountCode: string,
-  discountName: string,
-  displayPromo: string,
-  promoCode: string,
+  voucherCode: string,
+  voucherInput: string,
+  voucherAccordion: string,
   deleteLinkAction: string,
   container: string,
 };
@@ -74,8 +73,8 @@ declare type checkout = {
   termsLink: string,
   checkoutModal: string,
   carrierExtraContentWrapper: string,
+  carrierExtraContentWrapperActive: string,
   carrierExtraContent: string,
-  carrierExtraContentActive: string,
 };
 
 declare type progressRing = {

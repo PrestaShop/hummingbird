@@ -2,22 +2,35 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{block name='address_block_item'}
-  <article id="address-{$address.id}" class="address card" data-id-address="{$address.id}">
-    <div class="card-body">
-      <p class="address__alias h4 card-title">{$address.alias}</p>
-      <address class="address__content">{$address.formatted nofilter}</address>
-      {* Display the extra field values added in an address from using hook 'additionalCustomerAddressFields' *}
-      {hook h='displayAdditionalCustomerAddressFields' address=$address}
-    </div> 
+{$componentName = 'address-card'}
 
-    {block name='address_block_item_actions'}
-      <div class="address__actions card-footer">
-        <a href="{url entity=address id=$address.id}" data-link-action="edit-address" 
-        class="address__edit">{l s='Edit' d='Shop.Theme.Actions'}</a>
-        <a href="{url entity=address id=$address.id params=['delete' => 1, 'token' => $token]}" data-link-action="delete-address" 
-        class="address__delete">{l s='Delete' d='Shop.Theme.Actions'}</a>
+{block name='address_block_item'}
+  <article id="address-{$address.id}" class="{$componentName}" data-id-address="{$address.id}">
+    <div class="{$componentName}__container">
+      <div class="{$componentName}__header">
+        <span class="{$componentName}__alias">{$address.alias}</span>
       </div>
-    {/block}
+
+      <address class="{$componentName}__content">{$address.formatted nofilter}</address>
+
+      {capture name='displayAdditionalCustomerAddressFields'}{hook h='displayAdditionalCustomerAddressFields' address=$address}{/capture}
+      {if $smarty.capture.displayAdditionalCustomerAddressFields}
+        <div class="{$componentName}__extra">
+          {$smarty.capture.displayAdditionalCustomerAddressFields}
+        </div>
+      {/if}
+
+      {block name='address_block_item_actions'}
+        <div class="{$componentName}__actions">
+          <a class="{$componentName}__edit link-body-emphasis" href="{url entity=address id=$address.id}" data-link-action="edit-address">
+            {l s='Edit' d='Shop.Theme.Actions'}
+          </a>
+  
+          <a class="{$componentName}__delete link-danger" href="{url entity=address id=$address.id params=['delete' => 1, 'token' => $token]}" data-link-action="delete-address">
+            {l s='Delete' d='Shop.Theme.Actions'}
+          </a>
+        </div>
+      {/block}
+    </div> 
   </article>
 {/block}

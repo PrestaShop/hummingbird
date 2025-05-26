@@ -35,17 +35,19 @@ export const listing = {
 };
 
 export const cart = {
-  container: '.cart-container',
-  overview: '.cart-overview',
-  discountCode: '.js-discount .js-code',
-  discountName: '[name=discount_name]',
-  displayPromo: '.display-promo',
-  promoCode: '#promo-code',
-  deleteLinkAction: 'delete-from-cart',
-  productQuantity: '.cart__items .js-quantity-button',
-  productItem: '.cart__item',
-  removeFromCartLink: '.remove-from-cart',
+  container: '.js-cart-container',
+  summaryContainer: '.js-cart-summary',
+  overview: '.js-cart',
+  voucherCode: '.js-voucher-code',
+  voucherInput: '.js-voucher-input',
+  voucherAccordion: '.js-voucher-accordion',
+  productQuantity: '.js-cart-list .js-quantity-button',
+  productItem: '.js-cart-item',
+  productItemQuantityInput: '.js-cart-line-product-quantity',
+  removeFromCart: '.js-remove-from-cart',
   alertPlaceholder: '.js-cart-update-alert',
+  deleteLinkAction: 'delete-from-cart',
+  removeVoucherLinkAction: 'remove-voucher',
 };
 
 export const blockcart = {
@@ -75,17 +77,18 @@ export const checkout = {
   steps: {
     item: '.js-step-item',
     current: '.js-current-step',
-    shownResponsiveStep: '.checkout__steps__step:not(.d-none)',
-    specificStep: (param: string | undefined) => `.checkout__steps__step[data-step="${param}"]`,
+    shownResponsiveStep: '.checkout-steps__step-mobile:not(.d-none)',
+    specificStep: (param: string | undefined) => `.checkout-steps__step-mobile[data-step="${param}"]`,
     specificStepContent: (param: string | undefined) => `#${param}`,
     backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
   },
   actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
   termsLink: '.js-terms a',
   checkoutModal: '#checkout-modal',
-  carrierExtraContentWrapper: '.carrier__extra-content-wrapper',
-  carrierExtraContent: '.carrier__extra-content',
-  carrierExtraContentActive: '.carrier__extra-content-wrapper--active',
+  carrierExtraContentWrapper: '.js-carrier-extra',
+  carrierExtraContentWrapperActive: '.js-carrier-extra[data-active]',
+  carrierExtraContent: '.js-carrier-extra-content',
+  summaryContainer: '.js-checkout-summary',
 };
 
 export const progressRing = {
@@ -183,7 +186,7 @@ const selectorsMap = {
     returnFormItemCheckbox: '.js-order-return-form table tbody input[type=checkbox]',
   },
   modalBody: '.modal-body',
-  pageCms: '.page-cms',
+  pageCms: '.js-page-content-cms',
   quickview: '.js-quickview',
   quickviewModal: '.quickview',
   facetedsearch,

@@ -7,40 +7,40 @@
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
 
   {if !empty($display_transaction_updated_info)}
-    <p class="payment__updated">
+    <p class="payment-options__updated">
       {l s='Transaction amount has been correctly updated' d='Shop.Theme.Checkout'}
     </p>
   {/if}
 
   {if $is_free}
-    <p>{l s='No payment needed for this order' d='Shop.Theme.Checkout'}</p>
+    <p class="payment-options__free">{l s='No payment needed for this order' d='Shop.Theme.Checkout'}</p>
   {/if}
 
-  <div class="payment__list{if $is_free} d-block d-sm-none{/if}">
+  <div class="payment-options__list{if $is_free} d-block d-sm-none{/if}">
     {foreach from=$payment_options item="module_options"}
       {foreach from=$module_options item="option"}
-        <div id="{$option.id}-container" class="payment__option">
+        <div id="{$option.id}-container" class="payment-option">
           {* This is the way an option should be selected when Javascript is enabled *}
-          <label class="form-check-label mb-3 d-flex align-items-center">
+          <div class="payment-option__form-check form-check">
             <input
-              class="form-check-input ps-shown-by-js flex-shrink-0 my-0 me-2{if $option.binary} binary{/if}"
+              class="payment-option__input form-check-input ps-shown-by-js {if $option.binary} binary{/if}"
               type="radio"
               name="payment-option"
               data-module-name="{$option.module_name}"
               id="{$option.id}"
               {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
             />
-            
-            <span class="d-flex flex-wrap gap-1 align-items-center flex-grow-1">	
+
+            <label class="payment-option__label form-check-label" for="{$option.id}">
               {if $option.logo}
-                <img class="flex-shrink-0 me-2" src="{$option.logo}" loading="lazy">
+                <img class="img-fluid" src="{$option.logo}" loading="lazy">
               {/if}
-							{$option.call_to_action_text}
-						</span>
-          </label>
+              {$option.call_to_action_text}
+            </label>
+          </div>
 
           {* This is the way an option should be selected when Javascript is disabled *}
-          <form method="GET" class="ps-hidden-by-js">
+          <form method="GET" class="payment-option__no-js-form ps-hidden-by-js">
             {if $option.id === $selected_payment_option}
               {l s='Selected' d='Shop.Theme.Checkout'}
             {else}
@@ -49,31 +49,33 @@
               </button>
             {/if}
           </form>
-        </div>
 
-        {if $option.additionalInformation}
-          <div
-            id="{$option.id}-additional-information"
-            class="js-additional-information payment__definitions ps-sm-4 mt-2 additional-information{if $option.id != $selected_payment_option} ps-hidden{/if}"
-         >
-            {$option.additionalInformation nofilter}
-          </div>
-        {/if}
-
-        <div
-          id="pay-with-{$option.id}-form"
-          class="js-payment-option-form{if $option.id != $selected_payment_option} ps-hidden{/if}"
-       >
-          {if $option.form}
-            {$option.form nofilter}
-          {else}
-            <form id="payment-form" method="POST" action="{$option.action nofilter}">
-              {foreach from=$option.inputs item=input}
-                <input type="{$input.type}" name="{$input.name}" value="{$input.value}">
-              {/foreach}
-              <button style="display:none" id="pay-with-{$option.id}" type="submit"></button>
-            </form>
+          {if $option.additionalInformation}
+            <div
+              id="{$option.id}-additional-information"
+              class="payment-option__additional-information js-additional-information"
+              {if $option.id != $selected_payment_option}style="display: none;"{/if}
+            >
+              {$option.additionalInformation nofilter}
+            </div>
           {/if}
+  
+          <div
+            id="pay-with-{$option.id}-form"
+            class="js-payment-option-form"
+            {if $option.id != $selected_payment_option}style="display: none;"{/if}
+          >
+            {if $option.form}
+              {$option.form nofilter}
+            {else}
+              <form id="payment-form" method="POST" action="{$option.action nofilter}">
+                {foreach from=$option.inputs item=input}
+                  <input type="{$input.type}" name="{$input.name}" value="{$input.value}">
+                {/foreach}
+                <button style="display:none" id="pay-with-{$option.id}" type="submit"></button>
+              </form>
+            {/if}
+          </div>
         </div>
       {/foreach}
     {foreachelse}
@@ -96,6 +98,7 @@
             <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
               {$condition nofilter}
             </label>
+
             <input  id    = "conditions_to_approve[{$condition_name}]"
                     name  = "conditions_to_approve[{$condition_name}]"
                     required
@@ -129,20 +132,18 @@
     </article>
   {/if}
 
-  <div class="payment__actions d-block d-md-flex d-flex flex-wrap justify-content-between">
-    <button class="btn btn-outline-primary w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-delivery-step">
+  <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
+    <button class="btn btn-outline-primary js-back" data-step="checkout-delivery-step">
       <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
       {l s='Back to Shipping method' d='Shop.Theme.Actions'}
     </button>
 
-    <div id="payment-confirmation" class="w-100 w-md-auto js-payment-confirmation">
+    <div id="payment-confirmation" class="js-payment-confirmation">
       <div class="ps-shown-by-js">
-        <div class="payment__actions">
-          <button type="submit" class="btn btn-primary w-100{if !$selected_payment_option} disabled{/if}">
-            {l s='Place order' d='Shop.Theme.Checkout'}
-            <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
-          </button>
-        </div>
+        <button type="submit" class="btn btn-primary {if !$selected_payment_option} disabled{/if}">
+          {l s='Place order' d='Shop.Theme.Checkout'}
+          <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
+        </button>
       </div>
 
       <div class="ps-hidden-by-js">

@@ -182,8 +182,9 @@ const selectorsMap = {
   },
   order: {
     returnForm: '.js-order-return-form',
-    returnFormMainCheckbox: '.js-order-return-form table thead input[type=checkbox]',
-    returnFormItemCheckbox: '.js-order-return-form table tbody input[type=checkbox]',
+    returnFormSelectAll: '[data-ref="select-all-products"]',
+    returnFormProductsTable: '[data-ref="order-return-products-table"]',
+    returnFormProductCheckbox: '[data-ref="select-product"]',
   },
   modalBody: '.modal-body',
   pageCms: '.js-page-content-cms',

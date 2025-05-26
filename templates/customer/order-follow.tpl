@@ -34,7 +34,9 @@
               {$return.state_name}
             </div>
             <div class="grid-table__cell" aria-label="{l s='Date issued' d='Shop.Theme.Customeraccount'}">
-              {$return.return_date}
+              <small class="text-secondary">
+                {$return.return_date}
+              </small>
             </div>
             <div class="grid-table__cell" aria-label="{l s='Returns form' d='Shop.Theme.Customeraccount'}">
               {if $return.print_url}

@@ -3,8 +3,8 @@ $component-name: order-history;
 .#{$component-name} {
   &__inner {
     display: grid;
-    gap: 1rem;
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   &__header {
@@ -22,16 +22,16 @@ $component-name: order-history;
 
   &__cell {
     display: grid;
-    gap: 0.5rem;
     grid-template-columns: 1fr 66.666666%;
+    gap: 0.5rem;
     line-height: 1.5;
 
-    &:before {
-      content: attr(aria-label);
+    &::before {
       display: block;
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--bs-secondary-color);
+      content: attr(aria-label);
     }
 
     &--reference {
@@ -56,10 +56,10 @@ $component-name: order-history;
 
     &--actions {
       display: grid;
-      gap: 0.5rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
 
-      &:before {
+      &::before {
         display: none;
       }
     }
@@ -80,8 +80,8 @@ $component-name: order-history;
   @include media-breakpoint-up(md) {
     &__inner {
       display: grid;
-      gap: 0 1rem;
       grid-template-columns: repeat(7, minmax(0, auto));
+      gap: 0 1rem;
       overflow-x: auto;
     }
 
@@ -98,11 +98,11 @@ $component-name: order-history;
       display: grid;
       grid-template-columns: subgrid;
       grid-column: span 7;
-      padding-inline: 0;
       padding-block: 0.5rem;
+      padding-inline: 0;
       border: none;
-      border-radius: 0;
       border-block-end: 1px solid var(--bs-border-color);
+      border-radius: 0;
 
       &:last-child {
         border-block-end: none;
@@ -111,12 +111,12 @@ $component-name: order-history;
 
     &__cell {
       display: grid;
-      justify-self: start;
-      align-items: center;
       grid-template-columns: 1fr;
       gap: 0;
+      align-items: center;
+      justify-self: start;
 
-      &:before {
+      &::before {
         display: none;
       }
 

@@ -10,208 +10,185 @@
 
 {block name='page_content'}
   {block name='order_infos'}
-    <div class="order__details">
-      <div class="order__header row align-items-end">
-        <div class="order__header__left col-12 col-sm-6">
-          <p class="order__reference">
-            {l
-                                                          s='Order Reference %reference% - placed on %date%'
-                                                          d='Shop.Theme.Customeraccount'
-                                                          sprintf=['%reference%' => $order.details.reference, '%date%' => $order.details.order_date]
-                                                        }
+    <section class="order-infos">
+      <div class="order-infos__summary">
+        <p class="order-infos__reference">
+          {l
+            s='Order Reference: %reference% - placed on %date%'
+            d='Shop.Theme.Customeraccount'
+            sprintf=['%reference%' => $order.details.reference, '%date%' => $order.details.order_date]
+          }
+        </p>
+
+        <p class="order-infos__carrier">
+          {l s='Carrier: %carrierName%' d='Shop.Theme.Checkout' sprintf=['%carrierName%' => $order.carrier.name]}
+        </p>
+
+        <p class="order-infos__payment">
+          {l s='Payment method: %paymentMethod%' d='Shop.Theme.Checkout' sprintf=['%paymentMethod%' => $order.details.payment]}
+        </p>
+
+        {if $order.details.recyclable}
+          <p class="order-infos__recyclable">
+            {l s='You have given permission to receive your order in recycled packaging.' d='Shop.Theme.Customeraccount'}
           </p>
+        {/if}
 
-          <p class="order__carrier">
-            {l s='Carrier: %carrierName%' d='Shop.Theme.Checkout' sprintf=['%carrierName%' => $order.carrier.name]}
-          </p>
-
-          <p class="order__payment">
-            {l s='Payment method: %paymentMethod%' d='Shop.Theme.Checkout' sprintf=['%paymentMethod%' => $order.details.payment]}
-          </p>
-
-          {if $order.details.invoice_url}
-            <a href="{$order.details.invoice_url}">
-              {l s='Download your invoice as a PDF file.' d='Shop.Theme.Customeraccount'}
-            </a>
-          {/if}
-
-          {if $order.details.recyclable}
-            <p>
-              {l s='You have given permission to receive your order in recycled packaging.' d='Shop.Theme.Customeraccount'}
-            </p>
-          {/if}
-
-          {if $order.details.gift_message}
+        {if $order.details.gift_message}
+          <div class="order-infos__gift-message">
             <p>{l s='You have requested gift wrapping for this order.' d='Shop.Theme.Customeraccount'}</p>
-            <p>{l s='Message' d='Shop.Theme.Customeraccount'} {$order.details.gift_message nofilter}</p>
-          {/if}
-        </div>
-
-        {if $order.details.reorder_url}
-          <div class="order__header__right col-12 col-sm-6">
-            <a href="{$order.details.reorder_url}" class="btn btn-outline-primary">{l s='Reorder' d='Shop.Theme.Actions'}</a>
+            <p>{l s='Message:' d='Shop.Theme.Customeraccount'} {$order.details.gift_message nofilter}</p>
           </div>
         {/if}
-      </div>
-    </div>
-  {/block}
 
-  <hr>
+        {if $order.details.invoice_url || $order.details.reorder_url}
+          <div class="order-infos__actions buttons-wrapper {if !$order.details.invoice_url && $order.details.reorder_url}buttons-wrapper--end{else}buttons-wrapper--split{/if}">
+            {if $order.details.invoice_url}
+              <a class="btn btn-link px-0" href="{$order.details.invoice_url}">
+                <i class="material-icons">&#xE415;</i>
+                {l s='Download your invoice as a PDF file.' d='Shop.Theme.Customeraccount'}
+              </a>
+            {/if}
 
-  {block name='order_history'}
-    <section id="order-history" class="box">
-      <h2 class="h3">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
-
-      <div class="table-wrapper overflow-auto">
-        <table class="table">
-          <thead class="thead-default">
-            <tr>
-              <th>{l s='Date' d='Shop.Theme.Global'}</th>
-              <th>{l s='Status' d='Shop.Theme.Global'}</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {foreach from=$order.history item=state}
-              <tr>
-                <td>{$state.history_date}</td>
-                <td>
-                  <span class="badge {$state.contrast}" style="background-color:{$state.color}">
-                    {$state.ostate_name}
-                  </span>
-                </td>
-              </tr>
-            {/foreach}
-          </tbody>
-        </table>
+            {if $order.details.reorder_url}
+              <a href="{$order.details.reorder_url}" class="btn btn-outline-primary">
+                {l s='Reorder' d='Shop.Theme.Actions'}
+              </a>
+            {/if}
+          </div>
+        {/if}
       </div>
     </section>
   {/block}
 
-  {if $order.follow_up}
-    <div class="box">
-      <p>{l s='Click the following link to track the delivery of your order' d='Shop.Theme.Customeraccount'}</p>
+  <hr class="order-separator">
 
-      <a href="{$order.follow_up}">{$order.follow_up}</a>
-    </div>
-  {/if}
+  {block name='order_status'}
+    <section class="order-status">
+      <h2 class="h3">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
 
-  <hr>
+      <div class="order-status__table grid-table grid-table--collapse">
+        <div class="grid-table__inner grid-table__inner--2">
+          <header class="grid-table__header">
+            <div class="grid-table__cell">{l s='Date' d='Shop.Theme.Global'}</div>
+            <div class="grid-table__cell">{l s='Status' d='Shop.Theme.Global'}</div>
+          </header>
 
-  {block name='addresses'}
-    <h3 class="h3">{l s='Addresses' d='Shop.Theme.Customeraccount'}</h3>
-
-    <div class="addresses row">
-      {if $order.addresses.delivery}
-        <div class="col-sm-6 mb-4">
-          <article id="delivery-address" class="address card">
-            <div class="card-body">
-              <h4 class="address__alias h4 card-title">
-                {l s='Delivery address: %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.delivery.alias]}
-              </h4>
-              <address class="address__content">{$order.addresses.delivery.formatted nofilter}</address>
+          {foreach from=$order.history item=state}
+            <div class="grid-table__row">
+              <div class="grid-table__cell" aria-label="{l s='Date' d='Shop.Theme.Global'}">
+                {$state.history_date}
+              </div>
+              <div class="grid-table__cell" aria-label="{l s='Status' d='Shop.Theme.Global'}">
+                <span class="order-status__badge order-status__badge--{$state.contrast} badge" style="background-color:{$state.color}">
+                  {$state.ostate_name}
+                </span>
+              </div>
             </div>
-          </article>
+          {/foreach}
         </div>
-      {/if}
-
-      <div class="col-sm-6">
-        <article id="invoice-address" class="address card">
-          <div class="card-body">
-            <h4 class="address__alias h4 card-title">
-              {l s='Invoice address: %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.invoice.alias]}
-            </h4>
-            <address class="address__content">{$order.addresses.invoice.formatted nofilter}</address>
-          </div>
-        </article>
       </div>
-    </div>
+    </section>
   {/block}
 
-  <hr>
-
-  {$HOOK_DISPLAYORDERDETAIL nofilter}
-
-  <div class="order__detail__products">
-    <h3 class="h3">{l s='Products' d='Shop.Theme.Customeraccount'}</h3>
-
-    {block name='order_detail'}
-      {if $order.details.is_returnable}
-        {include file='customer/_partials/order-detail-return.tpl'}
-      {else}
-        {include file='customer/_partials/order-detail-no-return.tpl'}
-      {/if}
-    {/block}
-  </div>
-
-  <hr>
+  <hr class="order-separator">
 
   {block name='order_carriers'}
     {if $order.shipping}
-      <h3 class="h3">{l s='Tracking' d='Shop.Theme.Customeraccount'}</h3>
+      <section class="order-carriers">
+        <h3 class="h3">{l s='Tracking' d='Shop.Theme.Customeraccount'}</h3>
 
-      <div class="table-wrapper">
-        <table class="table d-none d-sm-table d-md-table">
-          <thead class="thead-default">
-            <tr>
-              <th>{l s='Date' d='Shop.Theme.Global'}</th>
-              <th>{l s='Carrier' d='Shop.Theme.Checkout'}</th>
-              <th>{l s='Weight' d='Shop.Theme.Checkout'}</th>
-              <th>{l s='Shipping cost' d='Shop.Theme.Checkout'}</th>
-              <th>{l s='Tracking number' d='Shop.Theme.Checkout'}</th>
-            </tr>
-          </thead>
+        <div class="grid-table">
+          <div class="grid-table__inner grid-table__inner--5">
+            <div class="grid-table__header">
+              <div class="grid-table__cell">{l s='Date' d='Shop.Theme.Global'}</div>
+              <div class="grid-table__cell">{l s='Carrier' d='Shop.Theme.Checkout'}</div>
+              <div class="grid-table__cell">{l s='Weight' d='Shop.Theme.Checkout'}</div>
+              <div class="grid-table__cell">{l s='Shipping cost' d='Shop.Theme.Checkout'}</div>
+              <div class="grid-table__cell">{l s='Tracking number' d='Shop.Theme.Checkout'}</div>
+            </div>
 
-          <tbody>
             {foreach from=$order.shipping item=line}
-              <tr>
-                <td>{$line.shipping_date}</td>
-                <td>{$line.carrier_name}</td>
-                <td>{$line.shipping_weight}</td>
-                <td>{$line.shipping_cost}</td>
-                <td>{$line.tracking nofilter}</td>
-              </tr>
+              <div class="grid-table__row">
+                <div class="grid-table__cell" aria-label="{l s='Date' d='Shop.Theme.Global'}">
+                  <span>{$line.shipping_date}</span>
+                </div>
+                <div class="grid-table__cell" aria-label="{l s='Carrier' d='Shop.Theme.Checkout'}">
+                  <span>{$line.carrier_name}</span>
+                </div>
+                <div class="grid-table__cell" aria-label="{l s='Weight' d='Shop.Theme.Checkout'}">
+                  <span>{$line.shipping_weight}</span>
+                </div>
+                <div class="grid-table__cell" aria-label="{l s='Shipping cost' d='Shop.Theme.Checkout'}">
+                  <span>{$line.shipping_cost}</span>
+                </div>
+                <div class="grid-table__cell" aria-label="{l s='Tracking number' d='Shop.Theme.Checkout'}">
+                  <span>{$line.tracking nofilter}</span>
+                </div>
+              </div>
             {/foreach}
-          </tbody>
-        </table>
-      </div>
-
-      <div class="d-block d-sm-block d-md-none shipping-lines">
-        {foreach from=$order.shipping item=line}
-          <div class="table-wrapper py-2 my-2">
-            <ul class="m-0">
-              <li class="row">
-                <p class="col fw-bold">{l s='Date' d='Shop.Theme.Global'}</p>
-                <p class="col text-end">{$line.shipping_date}</p>
-              </li>
-
-              <li class="row">
-                <p class="col fw-bold">{l s='Carrier' d='Shop.Theme.Checkout'}</p>
-                <p class="col text-end">{$line.carrier_name}</p>
-              </li>
-
-              <li class="row">
-                <p class="col fw-bold">{l s='Weight' d='Shop.Theme.Global'}</p>
-                <p class="col text-end">{$line.shipping_weight}</p>
-              </li>
-
-              <li class="row">
-                <p class="col fw-bold">{l s='Shipping cost' d='Shop.Theme.Global'}</p>
-                <p class="col text-end">{$line.shipping_cost}</p>
-              </li>
-
-              <li class="row">
-                <p class="col fw-bold m-0">{l s='Tracking number' d='Shop.Theme.Global'}</p>
-                <p class="col text-end m-0">{$line.tracking nofilter}</p>
-              </li>
-            </ul>
           </div>
-        {/foreach}
-      </div>
+        </div>
+      </section>
     {/if}
   {/block}
 
-  <hr>
+  <hr class="order-separator">
+
+  {block name='order_addresses'}
+    <section class="order-addresses">
+      <h3 class="h3">{l s='Addresses' d='Shop.Theme.Customeraccount'}</h3>
+
+      <div class="order-addresses__list">
+        {if $order.addresses.delivery}
+          <article id="delivery-address" class="address-card">
+            <div class="address-card__container">
+              <h4 class="address-card__alias">
+                {l s='Delivery address: %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.delivery.alias]}
+              </h4>
+
+              <address class="address-card__content mb-0">{$order.addresses.delivery.formatted nofilter}</address>
+            </div>
+          </article>
+        {/if}
+
+        <article id="invoice-address" class="address-card">
+          <div class="address-card__container">
+            <h4 class="address-card__alias">
+              {l s='Invoice address: %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.invoice.alias]}
+            </h4>
+
+            <address class="address-card__content mb-0">{$order.addresses.invoice.formatted nofilter}</address>
+          </div>
+        </article>
+      </div>
+    </section>
+  {/block}
+
+  <hr class="order-separator">
+  
+  {capture name='displayOrderDetail'}{hook h='displayOrderDetail'}{/capture}
+  {if $smarty.capture.displayOrderDetail}
+    {$smarty.capture.displayOrderDetail nofilter}
+
+    <hr class="order-separator">
+  {/if}
+
+  {block name='order_products'}
+    <section class="order-products">
+      <h3 class="h3">{l s='Products' d='Shop.Theme.Customeraccount'}</h3>
+
+      {block name='order_detail'}
+        {if $order.details.is_returnable}
+          {include file='customer/_partials/order-detail-return.tpl'}
+        {else}
+          {include file='customer/_partials/order-detail-no-return.tpl'}
+        {/if}
+      {/block}
+    </section>
+  {/block}
+
+  <hr class="order-separator">
 
   {block name='order_messages'}
     {include file='customer/_partials/order-messages.tpl'}

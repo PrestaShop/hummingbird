@@ -25,12 +25,12 @@
           <a class="{$componentName}__edit link-body-emphasis" href="{url entity=address id=$address.id}" data-link-action="edit-address">
             {l s='Edit' d='Shop.Theme.Actions'}
           </a>
-  
+
           <a class="{$componentName}__delete link-danger" href="{url entity=address id=$address.id params=['delete' => 1, 'token' => $token]}" data-link-action="delete-address">
             {l s='Delete' d='Shop.Theme.Actions'}
           </a>
         </div>
       {/block}
-    </div> 
+    </div>
   </article>
 {/block}

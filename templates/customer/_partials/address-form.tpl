@@ -29,15 +29,13 @@
         </section>
       {/block}
 
-      {block name='address_form_footer'}
-        {block name='form_buttons'}
-          <footer class="buttons-wrapper buttons-wrapper--end">
-            <input type="hidden" name="submitAddress" value="1">
-            <button class="btn btn-primary form-control-submit" type="submit">
-              {l s='Save' d='Shop.Theme.Actions'}
-            </button>
-          </footer>
-        {/block}
+      {block name='form_buttons'}
+        <footer class="buttons-wrapper buttons-wrapper--end">
+          <input type="hidden" name="submitAddress" value="1">
+          <button class="btn btn-primary form-control-submit" type="submit">
+            {l s='Save' d='Shop.Theme.Actions'}
+          </button>
+        </footer>
       {/block}
     </form>
   </div>

@@ -12,7 +12,7 @@
   <p>{l s='Here is a list of pending merchandise returns.' d='Shop.Theme.Customeraccount'}</p>
 
   {if $ordersReturn && count($ordersReturn)}
-    <div class="grid-table">
+    <div class="grid-table" data-role="table">
       <div class="grid-table__inner grid-table__inner--5">
         <header class="grid-table__header">
           <div class="grid-table__cell">{l s='Order' d='Shop.Theme.Customeraccount'}</div>

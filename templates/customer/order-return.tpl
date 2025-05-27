@@ -26,7 +26,7 @@
 
         <h2 class="h3">{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</h2>
 
-        <div class="grid-table grid-table--collapse">
+        <div class="grid-table grid-table--collapse" data-role="table">
           <div class="grid-table__inner grid-table__inner--2">
             <header class="grid-table__header">
               <div class="grid-table__cell">{l s='Product' d='Shop.Theme.Catalog'}</div>

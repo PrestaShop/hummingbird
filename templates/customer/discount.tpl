@@ -12,7 +12,7 @@
   <p>{l s='View and manage your available vouchers and discount codes for use on your next purchase.' d='Shop.Theme.Customeraccount'}</p>
 
   {if $cart_rules}
-    <div class="grid-table">
+    <div class="grid-table" data-role="table">
       <div class="grid-table__inner grid-table__inner--7">
         <header class="grid-table__header">
           <div class="grid-table__cell">{l s='Code' d='Shop.Theme.Checkout'}</div>

@@ -4,7 +4,7 @@
  *}
 {block name='order_products_table'}
   <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post">
-    <div class="grid-table grid-table--collapse" data-ref="order-return-products-table">
+    <div class="grid-table grid-table--collapse" data-ref="order-return-products-table" data-role="table">
       <div class="grid-table__inner grid-table__inner--6">
         <header class="grid-table__header">
           <div class="grid-table__cell"><input class="form-check-input" type="checkbox" data-ref="select-all-products"></div>
@@ -36,26 +36,27 @@
             <div class="grid-table__cell order-product" aria-label="{l s='Product' d='Shop.Theme.Catalog'}">
               <div class="order-product__infos">
                 <div class="order-product__image">
-                  {if $product.cover}
-                    <picture>
-                      {if isset($product.cover.bySize.default_xs.sources.avif)}
-                        <source 
-                          srcset="
-                            {$product.cover.bySize.default_xs.sources.avif},
-                            {$product.cover.bySize.default_md.sources.avif} 2x",
-                          type="image/avif"
-                        >
-                      {/if}
+                  <a href="{$link->getProductLink($product.id_product)}">
+                    {if $product.cover}
+                      <picture>
+                        {if isset($product.cover.bySize.default_xs.sources.avif)}
+                          <source 
+                            srcset="
+                              {$product.cover.bySize.default_xs.sources.avif},
+                              {$product.cover.bySize.default_md.sources.avif} 2x",
+                            type="image/avif"
+                          >
+                        {/if}
 
-                      {if isset($product.cover.bySize.default_xs.sources.webp)}
-                        <source 
-                          srcset="
-                            {$product.cover.bySize.default_xs.sources.webp},
-                            {$product.cover.bySize.default_md.sources.webp} 2x"
-                          type="image/webp"
-                        >
-                      {/if}
-                      <a href="{$link->getProductLink($product.id_product)}">
+                        {if isset($product.cover.bySize.default_xs.sources.webp)}
+                          <source 
+                            srcset="
+                              {$product.cover.bySize.default_xs.sources.webp},
+                              {$product.cover.bySize.default_md.sources.webp} 2x"
+                            type="image/webp"
+                          >
+                        {/if}
+
                         <img
                           class="order-product__img img-fluid"
                           srcset="
@@ -67,29 +68,27 @@
                           alt="{$product.cover.legend}"
                           title="{$product.cover.legend}"
                         >
-                      </a>
-                    </picture>
-                  {else}
-                    <picture>
-                      {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
-                        <source 
-                          srcset="
-                            {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                            {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
-                          type="image/avif"
-                        >
-                      {/if}
+                      </picture>
+                    {else}
+                      <picture>
+                        {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+                          <source 
+                            srcset="
+                              {$urls.no_picture_image.bySize.default_xs.sources.avif},
+                              {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
+                            type="image/avif"
+                          >
+                        {/if}
 
-                      {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
-                        <source 
-                          srcset="
-                            {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                            {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
-                          type="image/webp"
-                        >
-                      {/if}
+                        {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+                          <source 
+                            srcset="
+                              {$urls.no_picture_image.bySize.default_xs.sources.webp},
+                              {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
+                            type="image/webp"
+                          >
+                        {/if}
 
-                      <a href="{$link->getProductLink($product.id_product)}">
                         <img
                           class="order-product__img img-fluid"
                           srcset="
@@ -99,13 +98,15 @@
                           height="{$urls.no_picture_image.bySize.default_xs.height}"
                           loading="lazy"
                         >
-                      </a>
-                    </picture>
-                  {/if}
+                      </picture>
+                    {/if}
+                  </a>
                 </div>
 
                 <div class="order-product__content">
-                  <strong>{$product.name}</strong>
+                  <a class="order-product__name" href="{$link->getProductLink($product.id_product)}">
+                    {$product.name}
+                  </a>
 
                   {if $product.product_reference}
                     <small class="text-secondary">
@@ -174,7 +175,7 @@
         <div class="grid-table__row">
           {foreach $order.subtotals as $line}
             {if $line.value}
-              <div class="grid-table__cell grid-table__cell--label-value" aria-label="{$line.label}"><span>{$line.value}</span></div>
+              <div class="grid-table__cell grid-table__cell--label-value" aria-label="{$line.label}">{$line.value}</div>
             {/if}
           {/foreach}
 

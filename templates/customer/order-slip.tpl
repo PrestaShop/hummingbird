@@ -12,7 +12,7 @@
   <p>{l s='Credit slips you have received after canceled orders.' d='Shop.Theme.Customeraccount'}</p>
 
   {if $credit_slips}
-    <div class="grid-table">
+    <div class="grid-table" data-role="table">
       <div class="grid-table__inner grid-table__inner--4">
         <header class="grid-table__header">
           <div class="grid-table__cell">{l s='Order' d='Shop.Theme.Customeraccount'}</div>

@@ -67,7 +67,7 @@
     <section class="order-status">
       <h2 class="h3">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
 
-      <div class="order-status__table grid-table grid-table--collapse">
+      <div class="order-status__table grid-table grid-table--collapse" data-role="table">
         <div class="grid-table__inner grid-table__inner--2">
           <header class="grid-table__header">
             <div class="grid-table__cell">{l s='Date' d='Shop.Theme.Global'}</div>
@@ -98,7 +98,7 @@
       <section class="order-carriers">
         <h3 class="h3">{l s='Tracking' d='Shop.Theme.Customeraccount'}</h3>
 
-        <div class="grid-table">
+        <div class="grid-table" data-role="table">
           <div class="grid-table__inner grid-table__inner--5">
             <div class="grid-table__header">
               <div class="grid-table__cell">{l s='Date' d='Shop.Theme.Global'}</div>
@@ -111,19 +111,19 @@
             {foreach from=$order.shipping item=line}
               <div class="grid-table__row">
                 <div class="grid-table__cell" aria-label="{l s='Date' d='Shop.Theme.Global'}">
-                  <span>{$line.shipping_date}</span>
+                  {$line.shipping_date}
                 </div>
                 <div class="grid-table__cell" aria-label="{l s='Carrier' d='Shop.Theme.Checkout'}">
-                  <span>{$line.carrier_name}</span>
+                  {$line.carrier_name}
                 </div>
                 <div class="grid-table__cell" aria-label="{l s='Weight' d='Shop.Theme.Checkout'}">
-                  <span>{$line.shipping_weight}</span>
+                  {$line.shipping_weight}
                 </div>
                 <div class="grid-table__cell" aria-label="{l s='Shipping cost' d='Shop.Theme.Checkout'}">
-                  <span>{$line.shipping_cost}</span>
+                  {$line.shipping_cost}
                 </div>
                 <div class="grid-table__cell" aria-label="{l s='Tracking number' d='Shop.Theme.Checkout'}">
-                  <span>{$line.tracking nofilter}</span>
+                  {$line.tracking nofilter}
                 </div>
               </div>
             {/foreach}

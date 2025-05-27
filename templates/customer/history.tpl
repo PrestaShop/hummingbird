@@ -12,26 +12,26 @@
   <p>{l s='Here are the orders you\'ve placed since your account was created.' d='Shop.Theme.Customeraccount'}</p>
 
   {if $orders}
-    <div class="order-history">
+    <div class="order-history" data-role="table">
       <div class="order-history__inner">
         <div class="order-history__header">
           <div class="order-history__cell">
-            <span>{l s='Order reference' d='Shop.Theme.Checkout'}</span>
+            {l s='Order reference' d='Shop.Theme.Checkout'}
           </div>
           <div class="order-history__cell">
-            <span>{l s='Date' d='Shop.Theme.Checkout'}</span>
+            {l s='Date' d='Shop.Theme.Checkout'}
           </div>
           <div class="order-history__cell">
-            <span>{l s='Total price' d='Shop.Theme.Checkout'}</span>
+            {l s='Total price' d='Shop.Theme.Checkout'}
           </div>
           <div class="order-history__cell">
-            <span>{l s='Payment' d='Shop.Theme.Checkout'}</span>
+            {l s='Payment' d='Shop.Theme.Checkout'}
           </div>
           <div class="order-history__cell">
-            <span>{l s='Status' d='Shop.Theme.Checkout'}</span>
+            {l s='Status' d='Shop.Theme.Checkout'}
           </div>
           <div class="order-history__cell">
-            <span>{l s='Invoice' d='Shop.Theme.Checkout'}</span>
+            {l s='Invoice' d='Shop.Theme.Checkout'}
           </div>
           <div class="order-history__cell"></div>
         </div>
@@ -39,16 +39,16 @@
         {foreach from=$orders item=order}
           <div class="order-history__row">
             <div class="order-history__cell order-history__cell--reference" aria-label="{l s='Order reference' d='Shop.Theme.Checkout'}">
-              <span>{$order.details.reference}</span>
+              {$order.details.reference}
             </div>
             <div class="order-history__cell order-history__cell--date" aria-label="{l s='Date' d='Shop.Theme.Checkout'}">
-              <span>{$order.details.order_date}</span>
+              {$order.details.order_date}
             </div>
             <div class="order-history__cell order-history__cell--total" aria-label="{l s='Total price' d='Shop.Theme.Checkout'}">
-              <span>{$order.totals.total.value}</span>
+              {$order.totals.total.value}
             </div>
             <div class="order-history__cell order-history__cell--payment" aria-label="{l s='Payment' d='Shop.Theme.Checkout'}">
-              <span>{$order.details.payment}</span>
+              {$order.details.payment}
             </div>
             <div class="order-history__cell order-history__cell--status" aria-label="{l s='Status' d='Shop.Theme.Checkout'}">
               <span

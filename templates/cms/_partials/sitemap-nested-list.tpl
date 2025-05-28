@@ -4,10 +4,11 @@
  *}
 
 {block name='sitemap_item'}
-  <ul {if !empty($is_nested)}class="nested"{/if}>
+  <ul class="sitemap__list{if !empty($is_nested)} sitemap__list--nested{/if}">
     {foreach $links as $link}
-      <li>
-        <a id="{$link.id}" href="{$link.url}" title="{$link.label}">
+      <li class="sitemap__item">
+        <a class="sitemap__link"
+          id="{$link.id}" href="{$link.url}" title="{$link.label}">
           {$link.label}
         </a>
 

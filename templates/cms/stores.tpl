@@ -9,163 +9,122 @@
   {l s='Our stores' d='Shop.Theme.Global'}
 {/block}
 
-{block name='page_content'}
-  <div class="row">
-    {foreach $stores as $store}
-      <article id="store-{$store.id}" class="store col-md-6 col-lg-4 col-xl-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-xl-6 store__picture">
-                <picture>
-                  {if isset($store.image.bySize.default_md.sources.avif)}
-                    <source 
-                      srcset="
-                        {$store.image.bySize.default_md.sources.avif},
-                        {$store.image.bySize.default_xl.sources.avif} 2x"
-                      type="image/avif"
-                    >
-                  {/if}
-
-                  {if isset($store.image.bySize.default_md.sources.webp)}
-                    <source 
-                      srcset="
-                        {$store.image.bySize.default_md.sources.webp},
-                        {$store.image.bySize.default_xl.sources.webp} 2x"
-                      type="image/webp"
-                    >
-                  {/if}
-
-                  <img
-                    class="img-fluid rounded"
-                    srcset="
-                      {$store.image.bySize.default_md.url},
-                      {$store.image.bySize.default_xl.url} 2x"
-                    loading="lazy"
-                    width="{$store.image.bySize.default_md.width}"
-                    height="{$store.image.bySize.default_md.height}"
-                    {if !empty($store.image.legend)}
-                      alt="{$store.image.legend}"
-                      title="{$store.image.legend}"
-                    {else}
-                      alt="{$store.name}"
-                    {/if}
-                </picture>
-              </div>
-
-              <div class="col-xl-6 store__description d-none d-md-block">
-                <h2 class="h5 store__name">
-                  {$store.name}
-                </h2>
-
-                <address class="store__address">
-                  {$store.address.formatted nofilter}
-                </address>
-
-                {if $store.note || $store.phone || $store.fax || $store.email}
-                  <a data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}">
-                    <strong>{l s='About and Contact' d='Shop.Theme.Global'}</strong><i class="material-icons" aria-hidden="true">&#xE409;</i>
-                  </a>
+{block name='page_content_container'}
+  <section id="content" class="page-content page-content--stores">
+    {block name='page_content'}
+      <div class="store__list">
+        {foreach $stores as $store}
+          <article id="store-{$store.id}" class="store">
+            <div class="store__image">
+              <picture>
+                {if isset($store.image.bySize.stores_default.sources.avif)}
+                  <source 
+                    srcset="{$store.image.bySize.stores_default.sources.avif}"
+                    type="image/avif"
+                  >
                 {/if}
 
-                <hr>
+                {if isset($store.image.bySize.stores_default.sources.webp)}
+                  <source 
+                    srcset="{$store.image.bySize.stores_default.sources.webp}"
+                    type="image/webp"
+                  >
+                {/if}
 
-                <table class="store__opening-times">
-                  {foreach $store.business_hours as $day}
-                    <tr>
-                      <th>
-                        {$day.day}
-                      </th>
-
-                      <td>
-                        <ul>
-                          {foreach $day.hours as $h}
-                            <li>
-                              {$h}
-                            </li>
-                          {/foreach}
-                        </ul>
-                      </td>
-                    </tr>
-                  {/foreach}
-                </table>
-              </div>
-
-              <div class="store__description accordion d-block d-md-none">
-                <div class="accordion-item">
-                  <h2 class="h5 store__name">
-                    {$store.name}
-                  </h2>
-
-                  <address class="store__address">
-                    {$store.address.formatted nofilter}
-                  </address>
-
-                  {if $store.note || $store.phone || $store.fax || $store.email}
-                    <a data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}">
-                      <strong>{l s='About and Contact' d='Shop.Theme.Global'}</strong><i class="material-icons" aria-hidden="true">&#xE409;</i>
-                    </a>
+                <img
+                  class="store__img img-fluid"
+                  srcset="{$store.image.bySize.stores_default.url}"
+                  loading="lazy"
+                  width="{$store.image.bySize.stores_default.width}"
+                  height="{$store.image.bySize.stores_default.height}"
+                  {if !empty($store.image.legend)}
+                    alt="{$store.image.legend}"
+                    title="{$store.image.legend}"
+                  {else}
+                    alt="{$store.name}"
                   {/if}
+                >
+              </picture>
+            </div>
 
-                  <hr>
+            <div class="store__informations">
+              <p class="store__name">{$store.name}</p>
 
-                  <button class="store__toggle accordion-button collapsed pb-2 px-0" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}">
-                    {l s='View schedules' d='Shop.Theme.Global'}
-                  </button>
+              <address class="store__address">
+                {$store.address.formatted nofilter}
+              </address>
 
-                  <table id="table-{$store.id}" class="store__opening-times accordion-collapse collapse">
-                    {foreach $store.business_hours as $day}
-                      <tr>
-                        <th>
-                          {$day.day|truncate:4:'.'}
-                        </th>
+              <div class="accordion accordion--small mt-2">
+                {if $store.note || $store.phone || $store.fax || $store.email}
+                  <div class="accordion-item">
+                    <div class="accordion-header">
+                      <a class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}">
+                        {l s='About and Contact' d='Shop.Theme.Global'}
+                      </a>
+                    </div>
 
-                        <td>
-                          <ul>
-                            {foreach $day.hours as $h}
-                              <li>
-                                {$h}
-                              </li>
-                            {/foreach}
-                          </ul>
-                        </td>
-                      </tr>
-                    {/foreach}
-                  </table>
+                    <div class="store__additional-infos accordion-collapse collapse" id="about-{$store.id}">
+                      <div class="accordion-body pb-2">
+                        {if $store.note}
+                          <p class="store__note">{$store.note}</p>
+                        {/if}
+          
+                        <ul class="store__contacts">
+                          {if $store.phone}
+                            <li class="store__contact">
+                              <i class="material-icons" aria-hidden="true">&#xE0B0;</i>{$store.phone}
+                            </li>
+                          {/if}
+          
+                          {if $store.fax}
+                            <li class="store__contact">
+                              <i class="material-icons" aria-hidden="true">&#xE8AD;</i>{$store.fax}
+                            </li>
+                          {/if}
+          
+                          {if $store.email}
+                            <li class="store__contact store__contact--email">
+                              <i class="material-icons" aria-hidden="true">&#xE0BE;</i>{$store.email}
+                            </li>
+                          {/if}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                {/if}
+
+                <div class="accordion-item border-0">
+                  <div class="accordion-header">
+                    <button class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}">
+                      {l s='View schedules' d='Shop.Theme.Global'}
+                    </button>
+                  </div>
+
+                  <div id="table-{$store.id}" class="accordion-collapse collapse">
+                    <div class="accordion-body pb-2">
+                      <table class="store__opening-times table-sm">
+                        {foreach $store.business_hours as $day}
+                          <tr>
+                            <th>
+                              {$day.day}
+                            </th>
+
+                            <td>
+                              {foreach $day.hours as $hour}
+                                {$hour}
+                              {/foreach}
+                            </td>
+                          </tr>
+                        {/foreach}
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          {if $store.note || $store.phone || $store.fax || $store.email}
-            <div class="card-footer store__footer collapse" id="about-{$store.id}">
-              {if $store.note}
-                  <p class="store__note">{$store.note}</p>
-              {/if}
-
-              <ul class="store__contacts">
-                {if $store.phone}
-                  <li>
-                    <i class="material-icons" aria-hidden="true">&#xE0B0;</i>{$store.phone}
-                  </li>
-                {/if}
-
-                {if $store.fax}
-                  <li>
-                    <i class="material-icons" aria-hidden="true">&#xE8AD;</i>{$store.fax}
-                  </li>
-                {/if}
-
-                {if $store.email}
-                  <li>
-                    <i class="material-icons" aria-hidden="true">&#xE0BE;</i>{$store.email}
-                  </li>
-                {/if}
-              </ul>
-            </div>
-          {/if}
-        </div>
-      </article>
-    {/foreach}
-  </div>
+          </article>
+        {/foreach}
+      </div>
+    {/block}
+  </section>
 {/block}

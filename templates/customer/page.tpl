@@ -31,9 +31,7 @@
         <section id="content" class="page-content page-content--customer">
           {block name='page_content_top'}{/block}
 
-          {block name='page_content'}
-            <!-- Page content -->
-          {/block}
+          {block name='page_content'}{/block}
         </section>
       {/block}
 

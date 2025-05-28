@@ -49,7 +49,7 @@
         </div>
       {/block}
 
-      <hr />
+      <hr>
 
       {block name='hook_reassurance'}
         {hook h='displayReassurance'}

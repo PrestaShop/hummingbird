@@ -6,7 +6,7 @@
   <form action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if}>
     {if $notifications}
       <div class="alert {if $notifications.nw_error}alert-danger{else}alert-success{/if}">
-        <ul>
+        <ul class="mb-0">
           {foreach $notifications.messages as $notif}
             <li>{$notif}</li>
           {/foreach}
@@ -16,8 +16,7 @@
 
     {if !$notifications || $notifications.nw_error}
       <section class="form-fields">
-
-        <h1 class="h2 mb-4">{l s='Contact us' d='Shop.Theme.Global'}</h1>
+        {include file='components/page-title-section.tpl' title={l s='Contact us' d='Shop.Theme.Global'}}
 
         <div class="mb-3">
           <label class="form-label">{l s='Subject' d='Shop.Forms.Labels'}</label>
@@ -82,8 +81,8 @@
 
       </section>
 
-      <footer class="form-footer">
-        <input type="hidden" name="url" value=""/>
+      <footer class="buttons-wrapper buttons-wrapper--end">
+        <input type="hidden" name="url" value="" />
         <input type="hidden" name="token" value="{$token}" />
         <input class="btn btn-primary" type="submit" name="submitMessage" value="{l s='Send' d='Shop.Theme.Actions'}">
       </footer>

@@ -9,28 +9,28 @@
     <div class="ps-contactinfo__info">{$contact_infos.address.formatted nofilter}</div>
   </div>
   {if $contact_infos.phone}
-    <hr/>
+    <hr>
     <div class="ps-contactinfo__item">
       <i class="material-icons" aria-hidden="true">&#xE0CD;</i>
       <div class="ps-contactinfo__info"><a href="tel:{$contact_infos.phone}">{$contact_infos.phone}</a></div>
     </div>
   {/if}
   {if $contact_infos.fax}
-    <hr/>
+    <hr>
     <div class="ps-contactinfo__item">
       <i class="material-icons" aria-hidden="true">&#xE8AD;</i>
       <div class="ps-contactinfo__info">{$contact_infos.fax}</div>
     </div>
   {/if}
   {if $contact_infos.email && $display_email}
-    <hr/>
+    <hr>
     <div class="ps-contactinfo__item">
       <i class="material-icons" aria-hidden="true">&#xE158;</i>
       <div class="ps-contactinfo__info ps-contactinfo__info--email">{mailto address=$contact_infos.email encode="javascript"}</div>
     </div>
   {/if}
   {if !empty($contact_infos.details)}
-    <hr/>
+    <hr>
     <div class="ps-contactinfo__item">
       <i class="material-icons" aria-hidden="true">&#xE88E;</i>
       <div class="ps-contactinfo__info">{$contact_infos.details|nl2br nofilter}</div>

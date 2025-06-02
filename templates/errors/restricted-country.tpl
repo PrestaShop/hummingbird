@@ -7,9 +7,22 @@
 {block name='content'}
   {block name='page_header_container'}
     <header class="page-header">
-      <div class="logo"><img src="{$shop.logo.src}" alt="logo" loading="lazy"></div>
+      {block name='page_header_logo'}
+        <img 
+          class="error__logo" 
+          src="{$shop.logo}" 
+          alt="{$shop.name}" 
+          title="{$shop.name}" 
+          width="{$shop.logo_details.width}" 
+          height="{$shop.logo_details.height}" 
+          loading="lazy"
+        >
+      {/block}
+
       {block name='page_header'}
-        <h1>{block name='page_title'}{$shop.name}{/block}</h1>
+        <h1 class="error__title">
+          {block name='page_title'}{$shop.name}{/block}
+        </h1>
       {/block}
     </header>
   {/block}

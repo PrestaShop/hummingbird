@@ -2,8 +2,8 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{extends file='catalog/brands.tpl'}
+{extends file='catalog/brands-suppliers.tpl'}
 
-{block name='brand_header'}
+{block name='brand_and_suppliers_header'}
   {include file='components/page-title-section.tpl' title={l s='Suppliers' d='Shop.Theme.Catalog'}}
 {/block}

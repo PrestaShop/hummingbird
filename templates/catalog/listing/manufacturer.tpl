@@ -6,6 +6,12 @@
 
 {block name='product_list_header'}
   {include file='components/page-title-section.tpl' title={l s='List of products by brand %brand_name%' sprintf=['%brand_name%' => $manufacturer.name] d='Shop.Theme.Catalog'}}
-  <div id="manufacturer-short_description" class="rich-text">{$manufacturer.short_description nofilter}</div>
-  <div id="manufacturer-description" class="rich-text">{$manufacturer.description nofilter}</div>
+
+  {if $manufacturer.short_description}
+    <div class="rich-text">{$manufacturer.short_description nofilter}</div>
+  {/if}
+
+  {if $manufacturer.description}
+    <div class="rich-text">{$manufacturer.description nofilter}</div>
+  {/if}
 {/block}

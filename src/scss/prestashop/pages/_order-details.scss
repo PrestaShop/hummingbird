@@ -1,4 +1,8 @@
-$page-name: page-order-detail;
+$page-name: (
+  page-order-detail: page-order-detail,
+  page-guest-tracking: page-guest-tracking,
+);
+
 $component-name: (
   order-infos: order-infos,
   order-status: order-status,
@@ -8,7 +12,8 @@ $component-name: (
   order-product: order-product,
 );
 
-.#{$page-name} {
+.#{map-get($page-name, page-order-detail)},
+.#{map-get($page-name, page-guest-tracking)} {
   .#{map-get($component-name, order-status)} {
     &__badge {
       &--bright {

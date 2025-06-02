@@ -14,7 +14,7 @@
       {include file='components/page-title-section.tpl' title=$listing.label}
     </div>
   {/block}
-  
+
   {hook h='displayHeaderCategory'}
 
   <section id="products">
@@ -39,7 +39,7 @@
 
       <div id="js-product-list">
         {capture assign="errorContent"}
-          <p class="h4">{l s='No products available yet' d='Shop.Theme.Catalog'}</p>
+          <p class="h3">{l s='No products available at the moment' d='Shop.Theme.Catalog'}</p>
           <p>{l s='Stay tuned! More products will be shown here as they are added.' d='Shop.Theme.Catalog'}</p>
         {/capture}
 

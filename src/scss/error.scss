@@ -1,74 +1,85 @@
+// Error layout
 body {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
-  color: #000;
-  background-color: #e9ecef;
+  line-height: 1.4;
+  color: #333333;
+  background-color: #f3f3f3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 100dvh;
+  width: 100%;
+  place-content: center;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
-#layout-error {
-  padding: 2.5rem 0.75rem;
-  margin: 3.125rem 0.5rem 0;
+.layout-error {
+  padding: 2rem;
+  margin: 1rem auto;
   text-align: center;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-
-  .logo {
-    margin-bottom: 1.5rem;
-  }
-
-  .page-content {
-    font-size: 0.875rem;
-    color: #495057;
-    text-align: center;
-  }
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  width: 34rem;
+  max-width: calc(100% - 2rem);
 
   h1,
-  h2 {
-    font-weight: 400;
-    line-height: 1.2;
-    color: #212529;
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    margin-block-start: 0;
+    margin-block-end: 1rem;
   }
 
-  h1 {
-    margin: 0 0 1.25rem;
-    font-size: calc(1rem + 1.5vw);
-  }
-
-  h2 {
-    margin: 0 0 1rem;
-    font-size: calc(1rem + 1vw);
-    color: #212529;
-  }
-
-  @media (min-width: 1200px) {
-    h1 {
-      font-size: 2.125rem;
-    }
-
-    h2 {
-      font-size: 1.75rem;
-    }
+  p {
+    margin-block-start: 0;
+    margin-block-end: 1rem;
   }
 }
 
-@media (min-width: 768px) {
-  #layout-error {
-    width: 576px;
-    padding: 3.125rem 1rem;
-    margin: 3.5rem auto 0;
+// Error component
+.error {
+  &__logo {
+    max-width: 100%;
+    max-height: 12rem;
+    width: auto;
+    height: auto;
+    margin-block-end: 2rem;
+  }
 
-    .logo {
-      margin-bottom: 2rem;
+  &__title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-block-end: 1.5rem;
+  }
+
+  &__content {
+    margin-block-end: 1.5rem;
+
+    > p {
+      &:last-child {
+        margin-block-end: 0;
+      }
     }
+  }
 
-    .page-content {
-      font-size: 1rem;
+  &__text {
+    margin-block-end: 0;
+
+    > p {
+      &:last-child {
+        margin-block-end: 0;
+      }
     }
   }
 }

@@ -26,7 +26,7 @@
 
 <template id="password-feedback">
   <div
-    class="password-strength-feedback d-none"
+    class="password-strength-feedback mb-3 d-none"
   >
     <div class="progress-container">
       <div class="progress mb-3">
@@ -43,13 +43,13 @@
     <div class="password-strength-text"></div>
 
     <div class="password-requirements">
-      <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' d='Shop.Theme.Customeraccount'}">
-        <i class="material-icons">&#xE86C;</i>
+      <p class="password-requirements__length" data-translation="{l s='Enter a password between %s and %s characters' d='Shop.Theme.Customeraccount'}">
+        <i class="password-requirements__icon material-icons">&#xE86C;</i>
         <span></span>
       </p>
 
-      <p class="password-requirements-score" data-translation="{l s='The minimum score must be: %s' d='Shop.Theme.Customeraccount'}">
-        <i class="material-icons">&#xE86C;</i>
+      <p class="password-requirements__score" data-translation="{l s='The minimum score must be: %s' d='Shop.Theme.Customeraccount'}">
+        <i class="password-requirements__icon material-icons">&#xE86C;</i>
         <span></span>
       </p>
     </div>

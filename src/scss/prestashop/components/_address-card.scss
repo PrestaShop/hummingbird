@@ -1,24 +1,9 @@
 $component-name: address-card;
 
 .#{$component-name} {
-  border: 2px solid var(--bs-border-color);
+  border: 1px solid var(--bs-border-color);
   border-radius: var(--bs-border-radius);
   transition: var(--bs-transition-default);
-
-  &--radio {
-    &:hover {
-      background-color: var(--bs-tertiary-bg);
-    }
-
-    &.selected {
-      background-color: var(--bs-tertiary-bg);
-      border-color: var(--bs-primary);
-    }
-
-    .#{$component-name}__container {
-      cursor: pointer;
-    }
-  }
 
   &__container {
     display: flex;
@@ -52,5 +37,33 @@ $component-name: address-card;
     display: flex;
     gap: 1.5rem;
     margin-block-start: auto;
+  }
+
+  &--radio {
+    &:hover {
+      background-color: var(--bs-tertiary-bg);
+    }
+
+    &.selected {
+      background-color: var(--bs-tertiary-bg);
+      border-color: var(--bs-primary);
+    }
+
+    .#{$component-name}__container {
+      cursor: pointer;
+    }
+  }
+
+  &--add-address {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+
+    &:hover {
+      background-color: var(--bs-tertiary-bg);
+    }
   }
 }

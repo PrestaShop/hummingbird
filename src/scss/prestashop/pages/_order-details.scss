@@ -1,0 +1,114 @@
+$page-name: page-order-detail;
+$component-name: (
+  order-infos: order-infos,
+  order-status: order-status,
+  order-address: order-addresses,
+  order-separator: order-separator,
+  order-message: order-message,
+  order-product: order-product,
+);
+
+.#{$page-name} {
+  .#{map-get($component-name, order-status)} {
+    &__badge {
+      &--bright {
+        color: var(--bs-white);
+      }
+
+      &--dark {
+        color: var(--bs-dark);
+      }
+    }
+  }
+
+  .#{map-get($component-name, order-address)} {
+    &__list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      &__list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  }
+
+  .#{map-get($component-name, order-product)} {
+    &__img {
+      width: 4rem;
+      height: auto;
+      object-fit: cover;
+      border-radius: var(--bs-border-radius);
+    }
+
+    &__name {
+      font-weight: 600;
+    }
+
+    &__infos {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem 0.5rem;
+    }
+
+    &__image {
+      flex-shrink: 0;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      &__infos {
+        flex-direction: row;
+        gap: 0.5rem 1rem;
+      }
+    }
+  }
+
+  .#{map-get($component-name, order-separator)} {
+    margin-block: 1.25rem;
+
+    @include media-breakpoint-up(md) {
+      margin-block: 2rem;
+    }
+  }
+
+  .#{map-get($component-name, order-message)} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+
+    &:nth-child(even) {
+      background-color: var(--bs-tertiary-bg);
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    &__name {
+      margin-block-end: 0;
+      font-weight: 600;
+    }
+
+    &__date {
+      margin-block-end: 0;
+      font-size: 0.875rem;
+      color: var(--bs-secondary-color);
+    }
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: 12rem 1fr;
+    }
+  }
+}

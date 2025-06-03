@@ -85,7 +85,6 @@ $step-name: (
 }
 
 /* Shipping */
-
 .#{map-get($component-name, delivery-options)} {
   &__list {
     margin-block-end: 1.5rem;

@@ -3,10 +3,7 @@
  * file that was distributed with this source code.
  *}
 
-<a class="col-md-6 col-lg-4" id="emailsalerts"
-   href="{url entity='module' name='ps_emailalerts' controller='account'}" title="{l s='My alerts' d='Shop.Theme.Catalog'}">
-  <span class="link-item">
-    <i class="material-icons" aria-hidden="true">&#xE151;</i>
-    {l s='My alerts' d='Shop.Theme.Catalog'}
-  </span>
+<a class="account-menu__link {if $urls.current_url === $link->getModuleLink(ps_emailalerts, 'account')} account-menu__link--active{/if}" id="emailalerts_link" href="{$link->getModuleLink(ps_emailalerts, 'account')}" title="{l s='My alerts' d='Shop.Theme.Catalog'}">
+  <i class="account-menu__icon material-icons" aria-hidden="true">&#xE151;</i>
+  {l s='My alerts' d='Shop.Theme.Catalog'}
 </a>

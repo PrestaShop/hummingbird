@@ -148,10 +148,10 @@ export const passwordPolicy = {
   hint: '.js-hint-password',
   container: '.password-strength-feedback',
   strengthText: '.password-strength-text',
-  requirementScore: '.password-requirements-score',
-  requirementLength: '.password-requirements-length',
-  requirementScoreIcon: '.password-requirements-score i',
-  requirementLengthIcon: '.password-requirements-length i',
+  requirementScore: '.password-requirements__score',
+  requirementLength: '.password-requirements__length',
+  requirementScoreIcon: '.password-requirements__score .password-requirements__icon',
+  requirementLengthIcon: '.password-requirements__length .password-requirements__icon',
   progressBar: '.progress-bar',
 };
 
@@ -182,8 +182,9 @@ const selectorsMap = {
   },
   order: {
     returnForm: '.js-order-return-form',
-    returnFormMainCheckbox: '.js-order-return-form table thead input[type=checkbox]',
-    returnFormItemCheckbox: '.js-order-return-form table tbody input[type=checkbox]',
+    returnFormSelectAll: '[data-ref="select-all-products"]',
+    returnFormProductsTable: '[data-ref="order-return-products-table"]',
+    returnFormProductCheckbox: '[data-ref="select-product"]',
   },
   modalBody: '.modal-body',
   pageCms: '.js-page-content-cms',

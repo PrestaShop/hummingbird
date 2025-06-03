@@ -35,7 +35,7 @@
       <button type="submit" class="btn btn-primary">{l s='Save' d='Shop.Theme.Actions'}</button>
     </div>
   {else}
-    <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--no-fw-mobile buttons-wrapper--invert-mobile mt-3">
+    <div class="buttons-wrapper {if $customer.addresses|count == 0}buttons-wrapper--end{else}buttons-wrapper--split buttons-wrapper--no-fw-mobile buttons-wrapper--invert-mobile{/if} mt-3">
       {if $customer.addresses|count> 0}
         <a class="js-cancel-address btn btn-basic" href="{url entity='order' params=['cancelAddress' => {$type}]}">{l s='Cancel' d='Shop.Theme.Actions'}</a>
       {/if}

@@ -24,12 +24,16 @@
 
           {** And render the availability message with icon *}
           <div class="product__availability-status {$availability_class}" role="alert">
-            <i class="material-icons rtl-no-flip">&#x{$availability_icon};</i>
-            <span>{$product.availability_message}</span>
+            <i class="product__availability-icon material-icons rtl-no-flip">&#x{$availability_icon};</i>
 
-            {if !empty($product.availability_submessage)}
-              <span>{$product.availability_submessage}</span>
-            {/if}
+            <div class="product__availability-messages">
+              <span>{$product.availability_message}</span>
+
+              {if !empty($product.availability_submessage)}
+                <br>
+                <small>{$product.availability_submessage}</small>
+              {/if}
+            </div>
           </div>
 
           {block name='product_delivery_times'}

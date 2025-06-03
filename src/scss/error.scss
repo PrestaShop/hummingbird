@@ -1,18 +1,18 @@
 // Error layout
 body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-content: center;
+  width: 100%;
+  min-height: 100dvh;
   padding: 0;
   margin: 0;
   font-family: sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.4;
-  color: #333333;
+  color: #333;
   background-color: #f3f3f3;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  min-height: 100dvh;
-  width: 100%;
-  place-content: center;
 
   * {
     box-sizing: border-box;
@@ -20,15 +20,15 @@ body {
 }
 
 .layout-error {
+  width: 34rem;
+  max-width: calc(100% - 2rem);
   padding: 2rem;
   margin: 1rem auto;
   text-align: center;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
+  background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  width: 34rem;
-  max-width: calc(100% - 2rem);
 
   h1,
   h2,
@@ -36,9 +36,9 @@ body {
   h4,
   h5,
   h6 {
-    font-weight: 600;
     margin-block-start: 0;
     margin-block-end: 1rem;
+    font-weight: 600;
   }
 
   p {
@@ -50,17 +50,17 @@ body {
 // Error component
 .error {
   &__logo {
-    max-width: 100%;
-    max-height: 12rem;
     width: auto;
+    max-width: 100%;
     height: auto;
+    max-height: 12rem;
     margin-block-end: 2rem;
   }
 
   &__title {
-    font-weight: 600;
-    font-size: 1.5rem;
     margin-block-end: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
   }
 
   &__content {

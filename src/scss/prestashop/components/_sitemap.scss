@@ -3,24 +3,24 @@ $component-name: sitemap;
 .#{$component-name} {
   &__list {
     &--nested {
-      margin-bottom: 0.25rem;
       padding-left: 1rem;
+      margin-bottom: 0.25rem;
       border-left: 0.125rem solid var(--bs-primary-border-subtle);
 
-      > .#{$component-name}__item{
+      > .#{$component-name}__item {
         > .#{$component-name}__link {
           position: relative;
-  
+
           &::before {
-            content: '';
-            display: block;
-            width: 0.5rem;
-            height: 0.125rem;
-            transform: translate(0, -50%);
             position: absolute;
             top: 50%;
             left: -1rem;
+            display: block;
+            width: 0.5rem;
+            height: 0.125rem;
+            content: "";
             background-color: var(--bs-primary-border-subtle);
+            transform: translate(0, -50%);
           }
         }
       }

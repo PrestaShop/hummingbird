@@ -20,7 +20,9 @@
               {if $page@iteration === 1}
                 <li class="page-item">
                   <a rel="prev" href="{$page.url}"
-                    class="page-link previous {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
+                    class="page-link previous {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}"
+                    {if !$page.clickable}aria-disabled="true"{/if}
+                  >
                     <i class="material-icons rtl-flip" aria-hidden="true">&#xE314;</i>
                     <span class="d-none d-xl-flex">{l s='Previous' d='Shop.Theme.Actions'}</span>
                   </a>
@@ -38,7 +40,9 @@
               {else if $page.type != "prev" && $page.type != "next"}
                 <li class="page-item{if $page.current} active{/if}" {if $page.current}aria-current="page" {/if}>
                   <a rel="nofollow" href="{$page.url}"
-                    class="page-link {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}">
+                    class="page-link {['disabled' => !$page.clickable, 'js-pager-link' => true]|classnames}"
+                    {if !$page.clickable}aria-disabled="true"{/if}
+                  >
                     {$page.page}
                   </a>
                 </li>

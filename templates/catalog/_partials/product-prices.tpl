@@ -13,11 +13,11 @@
             <span class="product__regular-price">{$product.regular_price}</span>
 
             {if $product.discount_type === 'percentage'}
-              <span class="product__discount-percentage text-primary">
+              <span class="product__discount-percentage text-primary-emphasis">
                 ({l s='Save %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage_absolute]})
               </span>
             {else}
-              <span class="product__discount-amount text-primary">
+              <span class="product__discount-amount text-primary-emphasis">
                 ({l s='Save %amount%' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.discount_to_display]})
               </span>
             {/if}

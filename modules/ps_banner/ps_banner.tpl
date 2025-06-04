@@ -2,11 +2,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
- <section class="ps-banner">
-  <div class="container">
-    <a class="banner d-block text-center" href="{$banner_link}" title="{$banner_desc}">
-      {if isset($banner_img)}
-        <img
+{if isset($banner_img)}
+  <section class="ps-banner">
+    <div class="container">
+      <a class="banner d-block text-center" href="{$banner_link}" title="{$banner_desc}">
+        <img 
           src="{$banner_img}"
           alt="{$banner_desc}"
           title="{$banner_desc}"
@@ -19,7 +19,7 @@
             height="{$banner_height}"
           {/if}
         >
-      {/if}
-    </a>
-  </div>
-</section>
+      </a>
+    </div>
+  </section>
+{/if}

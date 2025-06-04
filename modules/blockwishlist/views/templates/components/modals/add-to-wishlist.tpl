@@ -40,8 +40,8 @@
         </div>
 
         <div class="modal-footer">
-          <div role="button" @click="openNewWishlistModal" class="wishlist-add-to-new text-primary">
-            <i class="material-icons text-primary" aria-hidden="true">&#xE148;</i> {$newWishlistCTA}
+          <div role="button" @click="openNewWishlistModal" class="wishlist-add-to-new text-primary-emphasis">
+            <i class="material-icons text-primary-emphasis" aria-hidden="true">&#xE148;</i> {$newWishlistCTA}
           </div>
         </div>
       </div>

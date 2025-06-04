@@ -2,6 +2,38 @@ $module-name: blockreassurance;
 $component-name: reassurance;
 
 .#{$module-name} {
+  .#{$component-name} {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    &__image {
+      flex-shrink: 0;
+      width: 3rem;
+      height: 3rem;
+    }
+
+    &__content {
+      flex-grow: 1;
+    }
+
+    &__title {
+      transition: var(--bs-transition-default);
+    }
+
+    &__desc {
+      color: var(--bs-secondary-color);
+    }
+
+    &--link {
+      color: var(--bs-body-color);
+
+      &:hover {
+        color: var(--bs-link-hover-color);
+      }
+    }
+  }
+
   &--product,
   &--cart,
   &--checkout {
@@ -18,30 +50,65 @@ $component-name: reassurance;
     margin-block: 2rem;
   }
 
-  .#{$component-name} {
+  &--horizontal {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     align-items: center;
+    justify-content: center;
+    padding-block: 0.5rem;
 
-    &__image {
-      flex-shrink: 0;
-      width: 3rem;
-      height: 3rem;
-    }
-
-    &__content {
+    .#{$component-name} {
+      flex-basis: 100%;
       flex-grow: 1;
-    }
+      flex-shrink: 1;
+      line-height: 1.2;
 
-    &__desc {
-      color: var(--bs-secondary-color);
-    }
+      &__image {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
 
-    &--link {
+      &__desc {
+        display: block;
+        margin-block-start: 0.25rem;
+      }
+    }
+  }
+
+  &--light {
+    background-color: var(--bs-tertiary-bg);
+  }
+
+  &--dark {
+    padding-block: 1rem;
+    background-color: var(--bs-dark);
+
+    .#{$component-name} {
       color: var(--bs-body-color);
 
-      &:hover {
-        color: var(--bs-link-hover-color);
+      &__title {
+        color: var(--bs-white);
+      }
+
+      &__desc {
+        color: var(--bs-gray-300);
+      }
+
+      &--link {
+        &:hover {
+          .#{$component-name}__title {
+            color: var(--bs-primary);
+          }
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    &--horizontal {
+      .#{$component-name} {
+        flex-basis: calc(50% - 1.5rem);
       }
     }
   }
@@ -51,6 +118,19 @@ $component-name: reassurance;
       &__image {
         width: 4rem;
         height: 4rem;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    &--horizontal {
+      .#{$component-name} {
+        flex-basis: calc(25% - 1.5rem);
+
+        &__image {
+          width: 3rem;
+          height: 3rem;
+        }
       }
     }
   }

@@ -17,7 +17,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  *}
 {if isset($blocks) && !empty($blocks)}
-  <div class="blockreassurance blockreassurance--white">
+  <div class="blockreassurance blockreassurance--dark">
     <div class="blockreassurance--horizontal container">
       {foreach from=$blocks item=$block key=$key}
         {if $block['type_link'] !== $LINK_TYPE_NONE && !empty($block['link'])}

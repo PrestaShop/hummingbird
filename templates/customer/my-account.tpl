@@ -11,6 +11,9 @@
 {/block}
 
 {block name='page_content'}
+{block name='display_customer_account_top'}
+    {hook h='displayCustomerAccountTop'}
+{/block}
   <div class="{$componentName} row g-3">
     <a class="{$componentName}__link col-md-6 col-lg-4" id="identity-link" href="{$urls.pages.identity}">
       <span class="link-item">

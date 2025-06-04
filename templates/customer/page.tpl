@@ -7,11 +7,16 @@
 
 {block name='content'}
   <div class="row">
-    <div class="col-lg-3">
-      {include file='components/account-menu.tpl'}
-    </div>
+    {**
+     * Used for the account menu in the guest tracking page, the account don't have to be shown
+     *}
+    {if $customer.is_logged && !$customer.is_guest}
+      <div class="col-lg-3">
+        {include file='components/account-menu.tpl'}
+      </div>
+    {/if}
 
-    <div class="col-lg-9">
+    <div class="col-lg-{if $customer.is_logged && !$customer.is_guest}9{else}12{/if}">
       {block name='page_header_container'}
         {block name='page_title'}
           <div class="page-header">
@@ -31,9 +36,7 @@
         <section id="content" class="page-content page-content--customer">
           {block name='page_content_top'}{/block}
 
-          {block name='page_content'}
-            <!-- Page content -->
-          {/block}
+          {block name='page_content'}{/block}
         </section>
       {/block}
 

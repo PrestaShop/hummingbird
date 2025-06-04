@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 
-<hr />
+<hr>
 
 <section id="order-summary-content" class="order__summary">
   <p class="h4 mb-4">{l s='Please check your order before payment' d='Shop.Theme.Checkout'}</p>

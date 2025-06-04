@@ -19,7 +19,7 @@
         {render file='customer/_partials/login-form.tpl' ui=$login_form}
       </section>
       
-      <hr/>
+      <hr>
 
       {block name='display_after_login_form'}
         {hook h='displayCustomerLoginFormAfter'}

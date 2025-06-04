@@ -1,52 +1,68 @@
 $component-name: store;
 
 .#{$component-name} {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
 
-  .card {
-    height: 100%;
-    border: 1px solid $input-border-color;
+  &__list {
+    display: grid;
+    gap: 1rem;
   }
 
-  .card-body,
-  .card-footer {
-    padding: 1.5rem;
-    border: 1px solid $input-border-color;
+  &__img {
+    border-radius: var(--bs-border-radius);
   }
 
-  .store__contacts {
-    margin-bottom: 0;
+  &__name {
+    margin-block-end: 0;
+    font-weight: 600;
+  }
 
-    li:not(:last-child) {
-      margin-bottom: 0.3rem;
-    }
+  &__address {
+    margin: 0;
+  }
+
+  &__opening-times {
+    width: 100%;
+  }
+
+  &__note {
+    margin-block: 0.5rem;
+    color: var(--bs-tertiary-color);
+  }
+
+  &__contacts {
+    margin-block-end: 0;
+  }
+
+  &__contact {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-block: 0.25rem;
+    line-height: 1.2;
 
     i {
-      margin-right: 0.4rem;
+      font-size: 1.25rem;
+    }
+
+    &--email {
+      word-break: break-all;
     }
   }
 
-  img {
-    margin-bottom: 1.5rem;
-    border-radius: var(--bs-border-radius-sm);
+  @include media-breakpoint-up(md) {
+    &__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
-  address {
-    line-height: 2rem;
-  }
-
-  table {
-    ul {
-      margin: 0;
-    }
-
-    th,
-    td {
-      line-height: 1.75rem;
-    }
-
-    th {
-      padding-right: 1.6rem;
-    }
+  @include media-breakpoint-up(xl) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

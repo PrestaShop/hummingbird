@@ -145,8 +145,8 @@ global_settings:
       height: 180
       scope: [categories]
     stores_default:
-      width: 170
-      height: 115
+      width: 287
+      height: 160
       scope: [stores]
     default_xs:
       width: 160
@@ -159,7 +159,7 @@ global_settings:
     default_md:
       width: 261
       height: 261
-      scope: [stores, manufacturers, suppliers, products, categories]
+      scope: [manufacturers, suppliers, products, categories]
     default_lg:
       width: 336
       height: 336
@@ -167,7 +167,7 @@ global_settings:
     default_xl:
       width: 400
       height: 400
-      scope: [stores, products]
+      scope: [products]
     product_main:
       width: 720
       height: 720

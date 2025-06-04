@@ -1,21 +1,37 @@
 $component-name: sitemap;
 
 .#{$component-name} {
-  ul a {
-    display: block;
-    padding: 0.2rem 0;
-    color: var(--bs-gray-800);
+  &__list {
+    &--nested {
+      padding-left: 1rem;
+      margin-bottom: 0.25rem;
+      border-left: 0.125rem solid var(--bs-primary-border-subtle);
+
+      > .#{$component-name}__item {
+        > .#{$component-name}__link {
+          position: relative;
+
+          &::before {
+            position: absolute;
+            top: 50%;
+            left: -1rem;
+            display: block;
+            width: 0.5rem;
+            height: 0.125rem;
+            content: "";
+            background-color: var(--bs-primary-border-subtle);
+            transform: translate(0, -50%);
+          }
+        }
+      }
+    }
   }
 
-  h2 {
-    margin-bottom: 1rem;
-  }
+  &__link {
+    color: var(--bs-body-color);
 
-  li > ul {
-    margin-left: 1rem;
-
-    a {
-      color: var(--bs-gray-700);
+    &:hover {
+      color: var(--bs-link-hover-color);
     }
   }
 }

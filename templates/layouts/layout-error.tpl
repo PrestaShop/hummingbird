@@ -23,7 +23,7 @@
   </head>
 
   <body>
-    <div id="layout-error">
+    <div id="layout-error" class="layout-error">
       {block name='content'}
         <p>Hello world! This is HTML5 Boilerplate.</p>
       {/block}

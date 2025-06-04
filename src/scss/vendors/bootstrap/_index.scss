@@ -3,9 +3,11 @@
 
 // Bootstrap variables overrides
 @import "../../bootstrap/overrides/variables/variables";
+@import "../../bootstrap/overrides/variables/variables-dark";
 
 // Bootstrap core imports
 @import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/variables-dark";
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/mixins";
 @import "../../bootstrap/overrides/mixins";

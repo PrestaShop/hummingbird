@@ -51,18 +51,18 @@ $component-name: reassurance;
   }
 
   &--horizontal {
-    padding-block: 0.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
     align-items: center;
     justify-content: center;
+    padding-block: 0.5rem;
 
     .#{$component-name} {
-      line-height: 1.2;
+      flex-basis: 100%;
       flex-grow: 1;
       flex-shrink: 1;
-      flex-basis: 100%;
+      line-height: 1.2;
 
       &__image {
         width: 2.5rem;
@@ -81,8 +81,8 @@ $component-name: reassurance;
   }
 
   &--white {
-    background-color: var(--bs-dark);
     padding-block: 1rem;
+    background-color: var(--bs-dark);
 
     .#{$component-name} {
       color: var(--bs-body-color);
@@ -123,7 +123,7 @@ $component-name: reassurance;
   }
 
   @include media-breakpoint-up(lg) {
-    &--horizontal {  
+    &--horizontal {
       .#{$component-name} {
         flex-basis: calc(25% - 1.5rem);
 

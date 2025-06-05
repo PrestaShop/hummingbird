@@ -12,7 +12,7 @@
 
       <div class="modal-body">
         <div class="text-center">
-          <div class="spinner-border text-primary" role="status">
+          <div class="spinner-border text-primary-emphasis" role="status">
             <span class="visually-hidden">{l s='Loading...' d='Shop.Theme.Global'}</span>
           </div>
         </div>

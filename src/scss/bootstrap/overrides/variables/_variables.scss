@@ -11,6 +11,12 @@ $grid-breakpoints: (
   "xxl": 1400px,
 );
 
+// Colors
+$blue: #0b69f6;
+$primary: $blue;
+$primary-text-emphasis: $primary;
+$body-tertiary-color: rgba(#212529, 0.65);
+
 // Caret
 $caret-width: 1.375em;
 $caret-vertical-align: initial;
@@ -39,3 +45,7 @@ $box-shadow-md: 0 0.625rem 1.25rem rgba(var(--bs-black-rgb), 0.1);
 
 // Options
 $enable-cssgrid: true;
+
+// Color mode
+// Uncomment the line below to enable dark mode based on media query
+// $color-mode-type: media-query;

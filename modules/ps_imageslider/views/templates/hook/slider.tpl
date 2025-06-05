@@ -13,10 +13,10 @@
         {/foreach}
       </div>
 
-      <div class="carousel-inner" role="listbox" aria-label="{l s='Carousel container' d='Shop.Theme.Global'}">
+      <div class="carousel-inner" role="list" aria-label="{l s='Carousel container' d='Shop.Theme.Global'}">
         {foreach from=$homeslider.slides item=slide name='homeslider'}
-          <div class="carousel-item {if $slide@first} active{/if}">
-            {if !empty($slide.url)}<a class="ps-imageslider__link d-block h-100 text-body" href="{$slide.url}" aria-label="{$slide.title}">{/if}
+          <div class="carousel-item {if $slide@first} active{/if}" role="listitem">
+            {if !empty($slide.url)}<a class="ps-imageslider__link d-block h-100 text-body" href="{$slide.url}">{/if}
               <figure class="ps-imageslider__figure">
                 <img class="w-100" src="{$slide.image_url}" alt="{$slide.legend|escape}" {if $slide@first}loading="eager"{else}loading="lazy"{/if} width="{$slide.sizes[0]}" height="{$slide.sizes[1]}">
 

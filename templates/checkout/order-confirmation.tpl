@@ -51,7 +51,7 @@
   {/block}
 
   {block name='order_details'}
-    <div class="{$componentName}__details card bg-light {if !$registered_customer_exists}mb-3{else}mb-4{/if}">
+    <div class="{$componentName}__details card border-1 {if !$registered_customer_exists}mb-3{else}mb-4{/if}">
       <div class="card-body">
         <h2 class="h2">{l s='Order details' d='Shop.Theme.Checkout'}</h2>
 

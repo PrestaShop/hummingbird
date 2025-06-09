@@ -9,7 +9,7 @@
 {/if}
 
 {block name='checkout_steps'}
-  <div class="{$componentName} {if isset($notifications) && $hasNotifications} {$componentName}--has-notifications{/if}">
+  <div class="{$componentName} {if isset($notifications) && isset($hasNotifications) && $hasNotifications} {$componentName}--has-notifications{/if}">
     <div class="{$componentName}__desktop">
       <ul class="{$componentName}__list" role="tablist">
         {* Personal Information *}

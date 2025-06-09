@@ -2,14 +2,15 @@ const path = require('path');
 
 module.exports = {
   stories: [
-    '../stories/**/*.stories.mdx',
+    '../stories/**/*.mdx',
     '../stories/**/*.stories.@(js|jsx|ts|tsx)'
   ],
 
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-a11y'
+    '@storybook/addon-a11y',
+    '@storybook/addon-webpack5-compiler-swc'
   ],
 
   framework: {
@@ -70,7 +71,5 @@ module.exports = {
     return config;
   },
 
-  docs: {
-    autodocs: true
-  }
+  docs: {}
 };

@@ -5,6 +5,9 @@ const webpack = require('webpack');
 exports.developmentConfig = ({ port, publicPath, serverAddress, siteURL, entriesArray }) => ({
   devtool: "cheap-source-map",
   devServer: configureDevServer(serverAddress, publicPath, port, siteURL),
+  watchOptions: {
+    ignored: /node_modules/,
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HotAcceptPlugin({

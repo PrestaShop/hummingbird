@@ -21,7 +21,9 @@ window.prestashop = {
 
 const preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    // Add parameters here
   },
+
+  tags: ['autodocs']
 };
 export default preview;

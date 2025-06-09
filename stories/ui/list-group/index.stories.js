@@ -19,4 +19,3 @@ ListGroup.parameters = {
     }
   }
 };
-

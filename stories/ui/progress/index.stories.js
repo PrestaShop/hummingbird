@@ -19,4 +19,3 @@ ProgressBar.parameters = {
     }
   }
 };
-

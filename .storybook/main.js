@@ -19,16 +19,13 @@ module.exports = {
   },
 
   webpackFinal: (config) => {
-    // Fix the html-loader rule safely by identifying the rule, not by index
+    // Add support for HTML
     config.module.rules = config.module.rules.map((rule) => {
       if (rule.test && rule.test.toString().includes('\\.html$')) {
         return {
           ...rule,
           use: {
             loader: 'html-loader',
-            options: {
-              sources: false // disables processing of <img src>, <script src>, etc.
-            }
           }
         };
       }
@@ -45,7 +42,8 @@ module.exports = {
           loader: 'sass-loader',
           options: {
             sassOptions: {
-              quietDeps: true // ✅ suppresses deprecation warnings from Bootstrap
+              // Removes deprecation warnings from Bootstrap
+              quietDeps: true,
             }
           }
         }

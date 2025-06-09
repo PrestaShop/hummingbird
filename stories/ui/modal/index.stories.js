@@ -19,4 +19,3 @@ Modal.parameters = {
     }
   }
 };
-

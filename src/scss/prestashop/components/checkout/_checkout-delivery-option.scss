@@ -53,16 +53,25 @@ $component-name: delivery-option;
   }
 
   &__extra {
-    overflow: hidden;
+    height: 0px;
+    height: calc-size(0px, size);
     transition: var(--bs-transition-default);
-
-    &:not([data-active]) {
-      max-height: 0;
+    transition-behavior: allow-discrete;
+    overflow: hidden;
+    
+    &[data-active] {
+      height: auto;
+      height: calc-size(auto, size);
+      
+      .#{$component-name}__extra-content {
+        padding-block-end: 1rem;
+      }
     }
   }
-
+  
   &__extra-content {
-    padding: 0 1rem 1rem;
+    padding-inline: 1rem;
+    transition: var(--bs-transition-default);
   }
 
   @include media-breakpoint-up(md) {

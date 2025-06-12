@@ -144,16 +144,17 @@ const initCheckout = () => {
   // Prestashop event triggers after selecting different carrier
   prestashop.on(events.updatedDeliveryForm, (params: Theme.DeliveryOptionForm.DeliveryOptionItem): void => {
     const selectedOption = params.deliveryOption?.[0];
+
     if (!selectedOption) return;
 
     const selectedWrapper = selectedOption.querySelector(CheckoutMap.carrierExtraContentWrapper);
+
     if (!(selectedWrapper instanceof HTMLElement)) return;
-    
+
     const allWrappers = document.querySelectorAll(CheckoutMap.carrierExtraContentWrapper);
 
     // Reset all wrappers
     allWrappers.forEach((wrapper: HTMLElement) => {
-      wrapper.classList.remove('delivery-option__extra--active');
       wrapper.removeAttribute('data-active');
     });
 

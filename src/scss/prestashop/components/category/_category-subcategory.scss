@@ -1,6 +1,8 @@
 $component-name: subcategory;
 
 .#{$component-name} {
+  margin-inline: calc(var(--bs-gutter-x) * -0.5);
+
   &__link {
     display: block;
     flex-shrink: 0;
@@ -21,7 +23,7 @@ $component-name: subcategory;
     align-items: center;
     padding-block: 0.25rem 0.75rem;
     padding-inline: 0.75rem;
-    margin-inline: calc(var(--bs-gutter-x) * -0.5);
+    //margin-inline: calc(var(--bs-gutter-x) * -0.5);
     margin-bottom: 0.25rem;
     overflow-x: auto;
   }

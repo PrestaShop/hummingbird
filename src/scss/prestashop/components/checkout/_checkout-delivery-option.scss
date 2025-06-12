@@ -53,22 +53,23 @@ $component-name: delivery-option;
   }
 
   &__extra {
-    height: 0px;
-    height: calc-size(0px, size);
-    transition: var(--bs-transition-default);
-    transition-behavior: allow-discrete;
+    height: 0;
+    height: calc-size(0, size);
     overflow: hidden;
-    
+    transition: var(--bs-transition-default);
+    /* stylelint-disable-next-line */
+    transition-behavior: allow-discrete;
+
     &[data-active] {
       height: auto;
       height: calc-size(auto, size);
-      
+
       .#{$component-name}__extra-content {
         padding-block-end: 1rem;
       }
     }
   }
-  
+
   &__extra-content {
     padding-inline: 1rem;
     transition: var(--bs-transition-default);

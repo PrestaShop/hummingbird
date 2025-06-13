@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Copy Webpack config
-        run: cp ./webpack/.env-example ./webpack/.env
+        run: cp ./webpack/.env-vhost-example ./webpack/.env
 
       - name: Build assets
         run: npm run build

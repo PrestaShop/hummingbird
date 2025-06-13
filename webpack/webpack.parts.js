@@ -25,6 +25,12 @@ exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+
+    // 🚫 Disable browser caching
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0',
+    'Surrogate-Control': 'no-store',
   },
   hot: true,
   liveReload: true,

@@ -4,7 +4,8 @@ This is a PrestaShop's theme we are working on. Please, if you work on this them
 
 [Read more](https://build.prestashop.com/news/new-theme-announce/) about this theme on the blog.
 
-![image](https://user-images.githubusercontent.com/16455155/199937084-3d2eab3f-dc3e-488f-8b87-e8d4565219b3.png)
+![hummingbird-homepage](https://github.com/user-attachments/assets/2eb43ef1-6c7e-4b44-af20-cb6fa44e0882)
+
 
 
 ## How to build assets

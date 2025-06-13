@@ -1,30 +1,53 @@
-# Hummingbird theme
+# Hummingbird Theme for PrestaShop
 
-This is a PrestaShop's theme we are working on. Please, if you work on this theme, use the `8.1.x` branch of PrestaShop to make sure this theme is compatible with the latest `8.1.x` version.
+Hummingbird is a modern, in-development theme for PrestaShop built to be compatible with versions `8.1.x` and above.
 
-[Read more](https://build.prestashop.com/news/new-theme-announce/) about this theme on the blog.
+## 🔍 Theme previews
 
-![hummingbird-homepage](https://github.com/user-attachments/assets/2eb43ef1-6c7e-4b44-af20-cb6fa44e0882)
+| [<img src="https://github.com/user-attachments/assets/66c2611c-f10e-4371-8495-212c4522705e">](https://github.com/user-attachments/assets/59828a32-462d-437b-b137-3c78ce057bb6) | [<img src="https://github.com/user-attachments/assets/345a4813-33c3-45d8-92c7-18a34db81786">](https://github.com/user-attachments/assets/77e5e3ec-1004-4f69-bda6-c51a140c812f) | [<img src="https://github.com/user-attachments/assets/b27625ec-ff08-40a2-8ef8-f63392254c43">](https://github.com/user-attachments/assets/31a1966b-6e73-44af-9735-874666ae486a) |
+| --- | --- | --- |
+| Homepage | Category | Product |
 
+## 🛠️ Getting Started
 
+To build the theme assets, you’ll need:
 
-## How to build assets
+- Node.js **v20.x**
+- npm **v8**
 
-Same as the PrestaShop project, you need at least **NodeJS 20.x** and **NPM 8** in order to build the project.
+### Installation
 
-First you need to install every node module:
+1. Install dependencies:
 
-`npm ci`
+    `npm ci`
 
-then create a `.env` file inside the *webpack* folder by copying `webpack/.env-example` and complete it with your environment's informations. Please use a free tcp port.
+2. Set up environment:
+  - Using HMR:
+    - Copy `.env-docker-example` to `.env` in the `webpack/` folder: 
+    - Update it with your local environment settings and ensure you use a free TCP port.
+    - **To avoid issues with cached files during development:**
+      - Open your browser's DevTools.
+      - Go to the Network tab and enable 'Disable cache' **(⚠️ this setting works only while DevTools remains open)**.
+      - In the PrestaShop back office, go to **Advanced Parameters > Performance**. In the **Smarty** section, enable `Force compilation` and set Cache to `No`. Then, in the **CCC (Combine, Compress and Cache)** section, disable all available options. This ensures your theme changes are applied immediately during development.
+    - Run `npm run dev`
+  - Using watch mode:
+    - Simply run `npm run watch`
 
-then build assets:
+3. Build production assets:
 
-`npm run build`
+    `npm run build`
 
-## Documentation
+### Linting
 
-We use Storybook as a [documentation](https://build.prestashop.com/hummingbird/). As the theme is currently in development, there is a lot of work on documentation. Don't hesitate to add whatever you feel usefull to it.
+To ensure code quality and consistency, run the following commands:
+
+- Lint & auto-fix SCSS files: `npm run stylelint` or `npm run stylelint:fix`
+- Format & auto-format SCSS with Prettier: `npm run prettier` or `npm run prettier:fix`
+- Lint & auto-fix JS/TS files: `npm run lint` or `npm run lint:fix`
+
+## 📚 Storybook
+
+Storybook is used to document and preview the theme’s UI components during development. You can view the [live documentation here](https://build.prestashop.com/hummingbird/). Since the theme is still in progress, contributions to improve or expand the documentation are welcome and encouraged.
 
 ## Contributing
 
@@ -36,7 +59,7 @@ The CI runs contain stylelint, eslint, TypeScript type checks.
 
 ## Continuous Deployment
 
-When develop is merged into master, the Storybook is delivered almost instantly to his public link using a Github Pages.
+Whenever the `develop` branch is merged into `master`, the Storybook documentation is automatically deployed to GitHub Pages and becomes publicly accessible within minutes.
 
 ## License
 

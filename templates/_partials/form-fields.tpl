@@ -187,6 +187,7 @@
           {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
           {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
           {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
+          {if !empty($field.minLength)}minlength="{$field.minLength}"{/if}
           aria-label="{$field.name}"
           {if $field.required}required{/if}
         >

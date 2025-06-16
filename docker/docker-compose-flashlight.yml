@@ -1,0 +1,41 @@
+name: hummingbird-fl
+services:
+  prestashop:
+    image: prestashop/prestashop-flashlight:${PS_TAG}
+    platform: ${PLATFORM} # Set the desired platform in .env for Prestashop Flashlight Image
+    container_name: hummingbird-fl-prestashop
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    ports:
+      - 8887:80
+    environment:
+      PS_DOMAIN: localhost:8887
+    volumes:
+      - ..:/var/www/html/themes/hummingbird # Mount the theme to the container
+
+  mysql:
+    image: mariadb:lts
+    platform: ${PLATFORM}
+    container_name: hummingbird-fl-mysql
+    restart: unless-stopped
+    ports:
+      - 8888:3306
+    environment:
+      TZ: UTC
+      MYSQL_USER: prestashop
+      MYSQL_PASSWORD: prestashop
+      MYSQL_ROOT_PASSWORD: prestashop
+      MYSQL_DATABASE: prestashop
+
+  phpmyadmin:
+    platform: ${PLATFORM}
+    image: phpmyadmin:latest
+    container_name: hummingbird-fl-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    ports:
+      - 8889:80
+    environment:
+      PMA_HOST: mysql

@@ -1,0 +1,56 @@
+name: hummingbird-ps
+services:
+  prestashop:
+    image: prestashop/prestashop:${PS_TAG}
+    platform: linux/amd64 # Only platform supported by Prestashop Official Image
+    container_name: hummingbird-ps-prestashop
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    ports:
+      - 8887:80
+    environment:
+      PS_DEV_MODE: 1
+      DB_SERVER: mysql
+      DB_USER: root
+      DB_PASSWD: root
+      DB_NAME: prestashop
+      PS_INSTALL_AUTO: 1
+      PS_ERASE_DB: 1
+      PS_INSTALL_DB: 1
+      PS_DOMAIN: localhost:8887
+      PS_FOLDER_ADMIN: admin-dev
+      PS_FOLDER_INSTALL: install-dev
+      ADMIN_MAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWD: ${ADMIN_PASSWORD}
+    volumes:
+      - ..:/var/www/html/themes/hummingbird # Mount the theme to the container
+
+  mysql:
+    image: mariadb:lts
+    platform: ${PLATFORM}
+    container_name: hummingbird-ps-mysql
+    restart: unless-stopped
+    ports:
+      - 8888:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: prestashop
+    volumes:
+      - db_ps_data:/var/lib/mysql
+
+  phpmyadmin:
+    platform: ${PLATFORM}
+    image: phpmyadmin:latest
+    container_name: hummingbird-ps-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    ports:
+      - 8889:80
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+
+volumes:
+  db_ps_data:

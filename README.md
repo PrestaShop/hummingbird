@@ -10,44 +10,88 @@ Hummingbird is a modern, in-development theme for PrestaShop built to be compati
 
 ## 🛠️ Getting Started
 
-To build the theme assets, you’ll need:
+To build the theme assets, you'll need:
 
-- Node.js **v20.x**
-- npm **v8**
+- Node.js **v20.x**.
+- npm **v8**.
 
-### Installation
+### 🧰 Installation
 
-1. Install dependencies:
-
-    `npm ci`
-
+1. Install dependencies, from the **project root** run: `npm ci`.
 2. Set up environment:
-  - Using HMR:
-    - Copy `.env-docker-example` to `.env` in the `webpack/` folder: 
-    - Update it with your local environment settings and ensure you use a free TCP port.
-    - **To avoid issues with cached files during development:**
-      - Open your browser's DevTools.
-      - Go to the Network tab and enable 'Disable cache' **(⚠️ this setting works only while DevTools remains open)**.
-      - In the PrestaShop back office, go to **Advanced Parameters > Performance**. In the **Smarty** section, enable `Force compilation` and set Cache to `No`. Then, in the **CCC (Combine, Compress and Cache)** section, disable all available options. This ensures your theme changes are applied immediately during development.
-    - Run `npm run dev`
-  - Using watch mode:
-    - Simply run `npm run watch`
+    - 👀 Using watch mode:
+      - From the **project root** run `npm run watch`.
+    - 🔥 Using HMR:
+      - Navigate to the `webpack/` directory.
+      - Copy `.env-docker-example` or `.env-vhost-example` (depending on how you will run PrestaShop) to `.env` in the `webpack/` directory.
+      - Edit `.env` with your local environment settings and ensure you use a free TCP port.
+      - **To avoid issues with cached files during development:**
+        - Open your browser's DevTools.
+        - Go to the Network tab and enable 'Disable cache' **(⚠️ this setting works only while DevTools remains open)**.
+        - In the PrestaShop back office, go to **Advanced Parameters > Performance**. In the **Smarty** section, enable `Force compilation` and set Cache to `No`. Then, in the **CCC (Combine, Compress and Cache)** section, disable all available options. This ensures your theme changes are applied immediately during development.
+      - From the **project root** run `npm run dev`.
+3. Build production assets, from the **project root** run `npm run build`.
 
-3. Build production assets:
-
-    `npm run build`
-
-### Linting
+### 🖌️ Linting
 
 To ensure code quality and consistency, run the following commands:
 
-- Lint & auto-fix SCSS files: `npm run stylelint` or `npm run stylelint:fix`
-- Format & auto-format SCSS with Prettier: `npm run prettier` or `npm run prettier:fix`
-- Lint & auto-fix JS/TS files: `npm run lint` or `npm run lint:fix`
+- Lint & auto-fix SCSS files: `npm run stylelint` or `npm run stylelint:fix`.
+- Format & auto-format SCSS with Prettier: `npm run prettier` or `npm run prettier:fix`.
+- Lint & auto-fix JS/TS files: `npm run lint` or `npm run lint:fix`.
+
+## 🐳 Docker Environment
+
+This theme includes Docker configurations for both **PrestaShop** and **PrestaShop Flashlight** development environments.
+
+### 🛠️ Getting Started
+
+1. Navigate to the `docker/` directory.
+2. Copy the example environment file: `cp .env-example .env`.
+3. Edit `.env` to configure the following variables:
+   - `PS_TAG`: PrestaShop or Flashlight version tag.
+      - [Prestashop tags](https://hub.docker.com/r/prestashop/prestashop/tags).
+      - [Flashlight tags](https://hub.docker.com/r/prestashop/prestashop-flashlight/tags).
+   - `PLATFORM`: Platform architecture (e.g., linux/amd64, linux/arm64).
+   - `ADMIN_EMAIL`: Back office admin email.
+   - `ADMIN_PASSWORD`: Back office admin password.
+
+### 📦 Available Configurations
+
+- `docker-compose-prestashop.yml`: for standard PrestaShop development environment.
+- `docker-compose-flashlight.yml`: for PrestaShop Flashlight development environment.
+
+### ▶️ Starting the Environment
+
+From the **project root**, run one of the following commands:
+
+```bash
+# For PrestaShop environment
+docker compose -f docker/docker-compose-prestashop.yml up -d
+
+# For Flashlight environment
+docker compose -f docker/docker-compose-flashlight.yml up -d
+```
+
+### 👀 After starting the environment
+- PrestaShop/Flashlight will be available at http://localhost:8887 and BO at http://localhost:8887/admin-dev
+- phpMyAdmin will be available at http://localhost:8889
+
+### ⏹️ Stopping the environment
+
+From the **project root**, run one of the following commands:
+
+```bash
+# For PrestaShop environment
+docker compose -f docker/docker-compose-prestashop.yml down -v
+
+# For Flashlight environment
+docker compose -f docker/docker-compose-flashlight.yml down
+```
 
 ## 📚 Storybook
 
-Storybook is used to document and preview the theme’s UI components during development. You can view the [live documentation here](https://build.prestashop.com/hummingbird/). Since the theme is still in progress, contributions to improve or expand the documentation are welcome and encouraged.
+Storybook is used to document and preview the theme's UI components during development. You can view the [live documentation here](https://build.prestashop.com/hummingbird/). Since the theme is still in progress, contributions to improve or expand the documentation are welcome and encouraged.
 
 ## Contributing
 

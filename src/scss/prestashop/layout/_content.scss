@@ -5,11 +5,15 @@ $component-name: (
   right-column: right-column,
 );
 
-.layout-left-column,
-.layout-right-column {
-  .#{map-get($component-name, container)} {
-    > .row {
+@include media-breakpoint-up(md) {
+  .layout-left-column,
+  .layout-right-column {
+    .#{map-get($component-name, container)} {
       --bs-gutter-x: 2.5rem;
+
+      > .row {
+        --bs-gutter-x: 2.5rem;
+      }
     }
   }
 }

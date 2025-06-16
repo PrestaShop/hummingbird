@@ -5,8 +5,12 @@
 {if !$configuration.is_catalog}
   <div class="product__add-to-cart-container product-add-to-cart js-product-add-to-cart">
     {block name='product_availability'}
-      {if $product.show_availability && $product.availability_message}
-        <div id="product-availability" class="product__availability js-product-availability">
+      <div
+        id="product-availability"
+        class="product__availability js-product-availability"
+        {if !$product.show_availability || !$product.availability_message}hidden{/if}
+      >
+        {if $product.show_availability && $product.availability_message}
           {** First, we prepare the icons and colors we want to use *}
           {if $product.availability == 'in_stock'}
             {assign 'availability_icon' 'E5CA'}
@@ -52,8 +56,8 @@
               {/if}
             {/if}
           {/block}
-        </div>
-      {/if}
+        {/if}
+      </div>
     {/block}
 
     {block name='product_quantity'}
@@ -69,7 +73,7 @@
           }
         </div>
 
-        <div class="product__add-to-cart">
+        <div class="product__add-to-cart add">
           <button
             class="product__add-to-cart-button btn btn-primary"
             data-button-action="add-to-cart"
@@ -91,16 +95,21 @@
     {/block}
 
     {block name='product_minimal_quantity'}
-      {if $product.minimal_quantity > 1}
-        <div class="product__minimal-quantity product-minimal-quantity js-product-minimal-quantity">
+      <div
+        class="product__minimal-quantity product-minimal-quantity js-product-minimal-quantity"
+        {if $product.minimal_quantity <= 1}
+          hidden
+        {/if}
+      >
+        {if $product.minimal_quantity > 1}
           <i class="material-icons" aria-hidden="true">&#xE88F;</i>
           {l
             s='The minimum purchase order quantity for the product is %quantity%.'
             d='Shop.Theme.Checkout'
             sprintf=['%quantity%' => $product.minimal_quantity]
           }
-        </div>
-      {/if}
+        {/if}
+      </div>
     {/block}
   </div>
 {/if}

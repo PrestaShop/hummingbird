@@ -143,26 +143,23 @@ const initCheckout = () => {
 
   // Prestashop event triggers after selecting different carrier
   prestashop.on(events.updatedDeliveryForm, (params: Theme.DeliveryOptionForm.DeliveryOptionItem): void => {
-    if (typeof params.deliveryOption === 'undefined' || Object.keys(params.deliveryOption).length === 0) {
-      return;
-    }
+    const selectedOption = params.deliveryOption?.[0];
 
-    // Hide all extra content in delivery step
-    const extraContentElements = document.querySelectorAll(CheckoutMap.carrierExtraContentWrapper);
-    extraContentElements.forEach((content: HTMLElement) => {
-      content.style.maxHeight = '0';
+    if (!selectedOption) return;
+
+    const selectedWrapper = selectedOption.querySelector(CheckoutMap.carrierExtraContentWrapper);
+
+    if (!(selectedWrapper instanceof HTMLElement)) return;
+
+    const allWrappers = document.querySelectorAll(CheckoutMap.carrierExtraContentWrapper);
+
+    // Reset all wrappers
+    allWrappers.forEach((wrapper: HTMLElement) => {
+      wrapper.removeAttribute('data-active');
     });
-    const extraContentElementToShow = params.deliveryOption[0]
-      ?.querySelector(CheckoutMap.carrierExtraContentWrapper) as HTMLElement;
 
-    // Show selected delivery method extra content
-    if (extraContentElementToShow != null) {
-      const content = extraContentElementToShow.querySelector(CheckoutMap.carrierExtraContent);
-
-      if (content != null) {
-        extraContentElementToShow.style.maxHeight = `${content.clientHeight}px`;
-      }
-    }
+    // Activate the selected wrapper
+    selectedWrapper.setAttribute('data-active', '');
   });
 };
 

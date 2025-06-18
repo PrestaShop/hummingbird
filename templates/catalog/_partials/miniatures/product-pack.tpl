@@ -36,6 +36,7 @@
               height="{$product.default_image.bySize.default_xs.height}"
               alt="{$product.default_image.legend}"
               title="{$product.default_image.legend}"
+            >
           </picture>
         {else}
           <picture>

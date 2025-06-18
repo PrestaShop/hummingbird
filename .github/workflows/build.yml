@@ -32,6 +32,7 @@ jobs:
           rm .git/ -rf
           rm .github/ -rf
           rm .storybook/ -rf
+          rm docker/ -rf
           rm node_modules/ -rf
           rm src/ -rf
           rm stories/ -rf

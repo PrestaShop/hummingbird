@@ -22,9 +22,9 @@ To work on Hummingbird, you'll need:
 - npm **v8**.
 
 ## 📑 Table of Contents
-- Want to help develop the theme? Start with [🧑‍💻 Develop on Hummingbird](#-develop-on-hummingbird)
-- Want to preview or test it? Jump to [🐳 Run Hummingbird with Docker](#-run-hummingbird-with-docker)
-- Having issues with caching during development? Jump to [🥵 Troubleshooting](#-troubleshooting)
+- Want to help develop the theme? Start with [🧑‍💻 Develop on Hummingbird](#-develop-on-hummingbird).
+- Want to preview or test it? Jump to [🐳 Run Hummingbird with Docker](#-run-hummingbird-with-docker).
+- Having issues with caching during development? Jump to [🥵 Troubleshooting](#-troubleshooting).
 
 ## 🧑‍💻 Develop on Hummingbird
 
@@ -40,7 +40,7 @@ From the **project root** run the following commands if you want to:
 
 #### 🔥 Hot Module Reload (HMR) Setup
 
-1. From the **project root** run: `npm ci`
+1. From the **project root** run: `npm ci`.
 2. Navigate to the `webpack/` directory.
 3. Run `cp .env-docker-example .env` or `cp .env-vhost-example .env` (depending on how you want to run your PrestaShop environment).
 4. Edit `.env` with your local environment settings and ensure you use a free TCP port.
@@ -60,6 +60,8 @@ To ensure code quality and consistency, run the following commands from the **pr
 This theme includes Docker configurations for both **PrestaShop** and **PrestaShop Flashlight** development environments.
 
 ### 🛠️ Getting Started
+
+**Note:** If you've already set up your development environment using `Watch Mode` or `Hot Module Reload (HMR)`, you can skip ahead to **step 3**.
 
 1. From the **project root** run: `npm ci`.
 2. Then run: `npm run build`.
@@ -91,8 +93,8 @@ docker compose -f docker/docker-compose-flashlight.yml up -d
 ```
 
 ### 👀 After Starting the Environment
-- PrestaShop/Flashlight will be available at http://localhost:8887 and BO at http://localhost:8887/admin-dev
-- phpMyAdmin will be available at http://localhost:8889
+- PrestaShop/Flashlight will be available at http://localhost:8887 and BO at http://localhost:8887/admin-dev.
+- phpMyAdmin will be available at http://localhost:8889.
 
 ### ⏹️ Stopping the Environment
 
@@ -116,21 +118,28 @@ docker compose -f docker/docker-compose-flashlight.yml down
     - Go to the `Network` tab.
     - Enable `Disable cache` (⚠️ this only works while DevTools stays open).
 2. Disable PrestaShop caching:
-    - In the back office, go to:
-      `Advanced Parameters` → `Performance`
+    - In the back office, go to: `Advanced Parameters` → `Performance`.
     - Under the Smarty section:
-        - Set Force compilation to `Yes`
-        - Set Cache to `No`
+        - Set Force compilation to `Yes`.
+        - Set Cache to `No`.
     - Under the CCC (Combine, Compress and Cache) section:
-        - Disable all options
+        - Disable all options.
 
 ## 📚 Storybook
 
 Storybook is used to document and preview the theme's UI components during development. You can view the [live documentation here](https://build.prestashop.com/hummingbird/). Since the theme is still in progress, contributions to improve or expand the documentation are welcome and encouraged.
 
+### ▶️ Run Storybook Locally
+
+To run Storybook on your machine:
+
+1. Make sure project dependencies are installed, if not, from the **project root** run: `npm ci`.
+2. Then run: `npm run storybook`.
+3. Storybook will be available at http://localhost:6006.
+
 ## 🤝 Contributing
 
-Please refer to the [contributing guide](https://github.com/PrestaShop/hummingbird/blob/develop/CONTRIBUTING.md)
+Please refer to the [contributing guide](https://github.com/PrestaShop/hummingbird/blob/develop/CONTRIBUTING.md).
 
 ## ✅ Continuous Integration
 
@@ -142,6 +151,6 @@ Whenever the `develop` branch is merged into `master`, the Storybook documentati
 
 ## 📄 License
 
-This theme is released under the [Academic Free License 3.0][AFL-3.0]
+This theme is released under the [Academic Free License 3.0][AFL-3.0].
 
 [AFL-3.0]: https://opensource.org/licenses/AFL-3.0

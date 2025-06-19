@@ -51,6 +51,21 @@ $component-name: order-confirmation;
     &-prices {
       flex-shrink: 0;
     }
+
+    &-price {
+      font-size: 1rem;
+    }
+
+    &-price-unit {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--bs-tertiary-color);
+    }
+
+    &-total {
+      font-size: 1rem;
+      font-weight: 600;
+    }
   }
 
   &__line {

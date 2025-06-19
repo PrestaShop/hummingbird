@@ -96,9 +96,12 @@
           </div>
           
           <div class="{$componentName}__product-prices">
-            <div class="{$componentName}__product-price">
-              {l s='%product_price% (x%product_quantity%)' sprintf=['%product_price%' => $product.price, '%product_quantity%' => $product.quantity] d='Shop.Theme.Catalog'}
-            </div>
+            {if $product.quantity > 1}
+              <div class="{$componentName}__product-price">
+                {$product.price}
+                <span class="{$componentName}__product-price-unit">(x{$product.quantity})</span>
+              </div>
+            {/if}
 
             <div class="{$componentName}__product-total">
               {$product.total}

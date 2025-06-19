@@ -10,7 +10,7 @@
       <form method="post" action="{$product.url}" enctype="multipart/form-data" class="mb-0">
         {foreach from=$customizations.fields item="field"}
           <div class="product-customization__item">
-            <p class="product-customization__label form-label">{$field.label}</p>
+            <p class="product-customization__label form-label {if $field.required}required{/if}">{$field.label}</p>
 
             <div class="product-customization__field">
               {if $field.type === 'text'}

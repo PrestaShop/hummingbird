@@ -135,13 +135,13 @@
   <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
     <button class="btn btn-outline-primary js-back" data-step="checkout-delivery-step">
       <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
-      {l s='Back to Shipping method' d='Shop.Theme.Actions'}
+      {l s='Back to Shipping' d='Shop.Theme.Actions'}
     </button>
 
     <div id="payment-confirmation" class="js-payment-confirmation">
       <div class="ps-shown-by-js">
         <button type="submit" class="btn btn-primary {if !$selected_payment_option} disabled{/if}">
-          {l s='Place order' d='Shop.Theme.Checkout'}
+          {l s='Place Order' d='Shop.Theme.Checkout'}
           <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
         </button>
       </div>

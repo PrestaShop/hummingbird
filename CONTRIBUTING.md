@@ -11,7 +11,7 @@ Thank you for your interest in contributing! Hummingbird is an open-source **dev
 
 ## 🛠️ Environment Setup
 
-Follow the [README.md](https://github.com/PrestaShop/hummingbird/blob/develop/README.md) for detailed setup and build instructions.
+Follow the [README.md](README.md) for detailed setup and build instructions.
 
 ## ✅ Checklist Before You Start
 

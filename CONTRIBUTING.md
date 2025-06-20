@@ -1,49 +1,51 @@
-# Contributing
+# 🤝 Contributing to Hummingbird
 
-### Understanding
+Thank you for your interest in contributing! Hummingbird is an open-source **development theme** for PrestaShop, and your help is highly appreciated 🙌
 
-Before getting started, you should read our article introducing the project:
-[We're Building A Starter Theme For PrestaShop 1.7.8 and 8](https://build.prestashop-project.org/news/2022/new-theme-announce/).
+## 🧠 Learn Before You Start
 
-If you are contributing to this theme, you are probably interested in PrestaShop development as well. Please the following article to get familiar with [PrestaShop branching model](https://build.prestashop-project.org/news/2015/introducing-new-branching-model-prestashop/).
+- [We’re Building a Starter Theme for PrestaShop](https://build.prestashop-project.org/news/2022/new-theme-announce/).
+- [PrestaShop Branching Model](https://build.prestashop-project.org/news/2015/introducing-new-branching-model-prestashop/).
 
-You got any questions ? Join the open source slack.
+💬 Join our Slack community: [https://www.prestashop-project.org/slack/](https://www.prestashop-project.org/slack/)
 
-[Join the slack at https://www.prestashop-project.org/slack/](https://www.prestashop-project.org/slack/)
+## 🛠️ Environment Setup
 
-### Setting up
+Follow the [README.md](https://github.com/PrestaShop/hummingbird/blob/develop/README.md) for detailed setup and build instructions.
 
-There are few things to do before you are ready to contribute.
+## ✅ Checklist Before You Start
 
-1. Check your _Git_ configuration. Read [Set Up Your Git For Contributing](https://build.prestashop-project.org/howtos/misc/set-up-your-git-for-contributing/)
-2. Check your editor configuration. The rules are defined in `.editorconfig`. Do it manually or [install the available plugin](http://editorconfig.org/#download).
-3. Make sure you at least have [NodeJS 14](https://nodejs.org/en/download/) installed.
-4. You should install the theme inside a PrestaShop instance, please refer to [the developers docummentation of the project](https://devdocs.prestashop-project.org/1.7/basics/installation/).
+1. Set up your Git config:<br>
+  [Set up your Git for contributing](https://build.prestashop-project.org/howtos/misc/set-up-your-git-for-contributing/)
+2. Use an editor that supports .editorconfig.<br>
+  [Download an EditorConfig plugin](http://editorconfig.org/#download).
+3. Make sure you have [Node.js v20](https://nodejs.org/en/download/) installed.
 
-### How to build the theme
+## 👍 Good Practices
 
-First you need to install every node module:
+- Use [BEM naming conventions](https://getbem.com/) for CSS.
+- Use Bootstrap components **when they fully meet your needs**.
+- Create custom components when **Bootstrap isn't sufficient**.
+- Use **Bootstrap CSS variables** in your custom components wherever possible to maintain consistency.
+- Add comments to your code where clarification is needed.
+- Before submitting a PR:
+  - Format code using Prettier:<br>
+    `npm run prettier` and `npm run prettier:fix`
+  - Run linters for both JavaScript and styles:<br>
+    For linting check use `npm run lint && npm run stylelint`. Use `npm run lint:fix && npm run stylelint:fix` to auto-fix where possible.<br>
+    **Otherwise, fix issues manually.**
+- If your PR is a work in progress, use **GitHub draft PR**.
+- Fill out the PR template thoroughly to speed up testing and review.
+- Organize your commits clearly and try to follow [conventional commits](https://www.conventionalcommits.org/) to name it.<br>
+  **Examples:**
+  - `feat: add responsive support for product cards`
+  - `fix: correct header spacing on mobile`
+  - `chore: update dependencies`
 
-`npm ci`
+## 🐛 Reporting Issues 
 
-then create a `.env` file inside the *webpack* folder by copying `webpack/.env-example` and complete it with your environment's informations. Please use a free tcp port.
+You can [open an issue](https://github.com/PrestaShop/hummingbird/issues) to:
 
-then build assets:
-
-`npm run build`
-
-### Good practices
-
-- Follow the BEM convention
-- Be careful about creating SCSS files in the right folder, refer to the [documentation](https://build.prestashop-project.org/hummingbird/) for further informations.
-- When you want to submit a PR, please make sure that you ran both linters using `npm run lint-fix && npm run scss-fix` and fixed every lint issues.
-- If your PR is a work in progress, make sure that you use the Github draft mode.
-- Fill the PR template as much as possible, it's important to speed the process of testing, reviewing...
-- Try to organize your commits in a way to simplify the review.
-
-### Reporting issues
-
-Open an issue:
-
-1. To report a bug.
-2. To propose an improvement and get feedbacks before you code it. ([example](https://github.com/PrestaShop/hummingbird/issues/))
+- Report a bug 🐞
+- Suggest an improvement 💡
+- Ask a question or get feedback before starting work 💬

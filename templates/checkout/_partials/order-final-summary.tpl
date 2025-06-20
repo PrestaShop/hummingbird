@@ -124,19 +124,23 @@
 
   {block name='order_confirmation_table'}
     <p class="final-summary__header">
-      {l s='Order items' d='Shop.Theme.Checkout'}
+      {l s='%product_count% Order items' sprintf=['%product_count%' => $cart.products_count] d='Shop.Theme.Checkout'}
+
+      <a class="btn btn-outline-primary btn-sm" href="{url entity=cart params=['action' => 'show']}">
+        <i class="material-icons" aria-hidden="true">&#xE254;</i> {l s='Edit' d='Shop.Theme.Actions'}
+      </a>
     </p>
 
     <div class="final-summary__order-table card border-1 mb-4">
       <div class="card-body">
         {include file='checkout/_partials/order-final-summary-table.tpl'
-            products=$cart.products
-            products_count=$cart.products_count
-            subtotals=$cart.subtotals
-            totals=$cart.totals
-            labels=$cart.labels
-            add_product_link=true
-          }
+          products=$cart.products
+          products_count=$cart.products_count
+          subtotals=$cart.subtotals
+          totals=$cart.totals
+          labels=$cart.labels
+          add_product_link=true
+        }
       </div>
     </div>
   {/block}

@@ -139,7 +139,7 @@ To run Storybook on your machine:
 
 ## 🤝 Contributing
 
-Please refer to the [contributing guide](https://github.com/PrestaShop/hummingbird/blob/develop/CONTRIBUTING.md).
+Please refer to the [contributing guide](CONTRIBUTING.md).
 
 ## ✅ Continuous Integration
 

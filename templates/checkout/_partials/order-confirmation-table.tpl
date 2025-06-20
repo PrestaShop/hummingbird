@@ -4,6 +4,8 @@
  *}
 {$componentName = 'order-confirmation'}
 
+{block name='order-items-table-head'}{/block}
+
 <div class="{$componentName}__table {block name='order-confirmation-classes'}{/block}">
   <div class="{$componentName}__products">
     {foreach from=$products item=product}

@@ -67,3 +67,8 @@ label .color,
 .dark {
   color: var(--bs-gray-800);
 }
+
+label.required::after {
+  color: var(--bs-danger);
+  content: "*";
+}

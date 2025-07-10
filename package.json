@@ -3,7 +3,7 @@
   "version": "0.1.7",
   "description": "Tools to help while developing the Hummingbird theme",
   "engines": {
-    "node": ">= 14"
+    "node": ">= 20"
   },
   "main": "index.js",
   "scripts": {
@@ -37,11 +37,11 @@
     "@types/jest": "^29.5.13",
     "@types/sprintf-js": "^1.1.4",
     "@types/wnumb": "^1.2.3",
+    "@types/jquery": "^3.5.31",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "autoprefixer": "^10.4.20",
     "bootstrap-touchspin": "^4.7.3",
-    "bourbon": "^7.3.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
@@ -69,7 +69,6 @@
     "sass": "^1.61.0",
     "sass-embedded": "^1.79.3",
     "sass-loader": "^16.0.5",
-    "smarty4js": "^0.1.8",
     "storybook": "8.6.14",
     "style-loader": "^4.0.0",
     "stylelint": "^14.16.1",
@@ -88,7 +87,6 @@
   "dependencies": {
     "@fontsource/inter": "^5.1.0",
     "@popperjs/core": "^2.11.8",
-    "@types/jquery": "^3.5.31",
     "bootstrap": "5.3.3",
     "events": "^3.3.0",
     "jquery": "^3.7.1",

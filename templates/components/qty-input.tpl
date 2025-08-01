@@ -7,6 +7,8 @@
 {assign var="decrement_icon" value="E15B"}
 {assign var="submit_icon" value="E5CA"}
 {assign var="cancel_icon" value="E5CD"}
+{assign var="increment_label" value={l s='Increase quantity of' d='Shop.Theme.Actions'}}
+{assign var="decrement_label" value={l s='Decrease quantity of' d='Shop.Theme.Actions'}}
 
 {* The spin button placement for RTL should be same as LTR *}
 {* To fix mirroring by CSS need to place them in reverse for RTL *}
@@ -19,7 +21,7 @@
 {/if}
 
 <div class="quantity-button__group input-group">
-  <button role="button" aria-label="{$prepend.button}" class="btn {$prepend.button} btn-square-icon js-{$prepend.button}-button" type="button">
+  <button aria-label="{$decrement_label} {$product.name}" class="btn {$prepend.button} btn-square-icon js-{$prepend.button}-button" type="button">
     <i class="material-icons" aria-hidden="true">&#x{$prepend.icon};</i>
     <i class="material-icons confirmation d-none">&#x{$prepend.confirm_icon};</i>
     <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
@@ -39,7 +41,7 @@
     {if !isset($attributes.min)}min="1"{/if}
   />
 
-  <button role="button" aria-label="{$append.button}" class="btn {$append.button} btn-square-icon js-{$append.button}-button" type="button">
+  <button aria-label="{$increment_label} {$product.name}" class="btn {$append.button} btn-square-icon js-{$append.button}-button" type="button">
     <i class="material-icons" aria-hidden="true">&#x{$append.icon};</i>
     <i class="material-icons confirmation d-none">&#x{$append.confirm_icon};</i>
     <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>

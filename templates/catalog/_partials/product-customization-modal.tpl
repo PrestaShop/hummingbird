@@ -8,18 +8,11 @@
 <div class="{$componentName}__content">
   {assign var=customization_modal_id value="{$componentName}--{$product.id_customization|intval}"}
 
-  <button type="button" class="btn btn-sm btn-outline-primary"
-    data-bs-toggle="modal"
-    data-bs-target="#{$customization_modal_id}"
-  >
-    {l s='Customized' d='Shop.Theme.Checkout'}
-  </button>
-
-  <div class="modal fade" id="{$customization_modal_id}" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="{$customization_modal_id}" tabindex="-1" aria-hidden="true" aria-labelledby="customizations-modal-{$product.id_customization}-title">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <p class="h2 modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</p>
+          <p class="h2 modal-title" id="customizations-modal-{$product.id_customization}-title">{l s='Product customization' d='Shop.Theme.Checkout'}</p>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
         </div>
 
@@ -93,5 +86,12 @@
         </div>
       {/foreach}
     </div>
-  {/if}  
+  {/if}
+
+  <button type="button" class="btn btn-sm btn-outline-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#{$customization_modal_id}"
+  >
+    {l s='Customized' d='Shop.Theme.Checkout'}
+  </button>
 </div>

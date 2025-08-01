@@ -5,7 +5,8 @@
   }
 
   button {
-    border: 1px solid $input-border-color;
+    --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb);
+    border: 1px solid var(--bs-border-color);
 
     &.increment {
       .confirmation {
@@ -21,10 +22,6 @@
 
     &:hover {
       opacity: 0.6;
-    }
-
-    &:focus {
-      box-shadow: none;
     }
 
     &:disabled {

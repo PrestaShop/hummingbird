@@ -1,0 +1,19 @@
+$component-name: outline;
+
+.#{$component-name} {
+  &--onfocus {
+    border-radius: var(--bs-border-radius);
+
+    &:focus-visible {
+      outline: 0.125rem solid var(--bs-primary);
+      outline-offset: -0.125rem;
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}

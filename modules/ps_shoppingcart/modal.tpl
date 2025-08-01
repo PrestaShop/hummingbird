@@ -3,11 +3,11 @@
  * file that was distributed with this source code.
  *}
 
-<div id="blockcart-modal" class="blockcart-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="blockcart-modal" class="blockcart-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="blockcart-modal-title" aria-hidden="true" data-ps-ref="blockcart-modal">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="blockcart-modal__title h2 modal-title" id="myModalLabel">
+        <p class="blockcart-modal__title h2 modal-title" id="blockcart-modal-title">
           <i class="blockcart-modal__title-icon material-icons" aria-hidden="true">&#xE5CA;</i>
           {l s='Added to your cart' d='Shop.Theme.Checkout'}
         </p>

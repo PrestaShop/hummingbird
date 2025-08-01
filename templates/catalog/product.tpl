@@ -30,7 +30,7 @@
 
 {block name='content'}
   {* FIRST PART - PHOTO, NAME, PRICES, ADD TO CART*}
-  <div class="product__container product-container js-product-container">
+  <div class="product__container product-container js-product-container" data-ps-ref="product-container">
     <div class="product__left">
       {block name='product_cover_thumbnails'}
         {include file='catalog/_partials/product-cover-thumbnails.tpl'}

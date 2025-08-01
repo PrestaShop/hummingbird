@@ -103,16 +103,16 @@
 
                 {if $product.customizations}
                   {foreach from=$product.customizations item="customization"}
+                    <div id="product_customization_modal_wrapper_{$customization.id_customization}">
+                      {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
+                    </div>
+
                     <div class="customization">
                       <a class="btn btn-sm btn-link p-0" href="#" data-bs-toggle="modal"
                         data-bs-target="#product-customizations-modal-{$customization.id_customization}">
                         <i class="material-icons">&#xE8F4;</i>
                         {l s='Product customization' d='Shop.Theme.Catalog'}
                       </a>
-                    </div>
-
-                    <div id="product_customization_modal_wrapper_{$customization.id_customization}">
-                      {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
                     </div>
                   {/foreach}
                 {/if}

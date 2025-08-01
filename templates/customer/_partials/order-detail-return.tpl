@@ -4,10 +4,10 @@
  *}
 {block name='order_products_table'}
   <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post">
-    <div class="grid-table grid-table--collapse" data-ref="order-return-products-table" data-role="table">
+    <div class="grid-table grid-table--collapse" data-ps-ref="order-return-products-table" data-role="table">
       <div class="grid-table__inner grid-table__inner--6">
         <header class="grid-table__header">
-          <div class="grid-table__cell"><input class="form-check-input" type="checkbox" data-ref="select-all-products"></div>
+          <div class="grid-table__cell"><input class="form-check-input" type="checkbox" data-ps-ref="select-all-products"></div>
           <div class="grid-table__cell">{l s='Product' d='Shop.Theme.Catalog'}</div>
           <div class="grid-table__cell grid-table__cell--center">{l s='Quantity' d='Shop.Theme.Catalog'}</div>
           <div class="grid-table__cell grid-table__cell--center">{l s='Returned' d='Shop.Theme.Customeraccount'}</div>
@@ -20,7 +20,7 @@
             <div class="grid-table__cell" aria-label="{l s='Select' d='Shop.Theme.Catalog'}">
               {if !$product.customizations}
                 <span id="_desktop_product_line_{$product.id_order_detail}">
-                  <input class="form-check-input" type="checkbox" id="cb_{$product.id_order_detail}" data-ref="select-product"
+                  <input class="form-check-input" type="checkbox" id="cb_{$product.id_order_detail}" data-ps-ref="select-product"
                     name="ids_order_detail[{$product.id_order_detail}]" value="{$product.id_order_detail}" {if $product.qty_returned >= $product.quantity}disabled{/if}>
                 </span>
               {else}
@@ -116,15 +116,16 @@
 
                   {if $product.customizations}
                     {foreach from=$product.customizations item="customization"}
+                      <div id="product_customization_modal_wrapper_{$customization.id_customization}">
+                        {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
+                      </div>
+
                       <div class="customization">
                         <a class="btn btn-sm btn-link p-0" href="#" data-bs-toggle="modal"
                           data-bs-target="#product-customizations-modal-{$customization.id_customization}">
                           <i class="material-icons">&#xE8F4;</i>
                           {l s='Product customization' d='Shop.Theme.Catalog'}
                         </a>
-                      </div>
-                      <div id="product_customization_modal_wrapper_{$customization.id_customization}">
-                        {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
                       </div>
                     {/foreach}
                   {/if}

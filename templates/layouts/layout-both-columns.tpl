@@ -13,6 +13,14 @@
   </head>
 
   <body id="{$page.page_name}" class="{$page.body_classes|classnames}">
+    {block name='top_content'}
+      <div id="back-to-top"></div>
+    {/block}
+
+    {block name='skip_to_main_content'}
+      <a class="visually-hidden-focusable btn btn-primary skip-link" href="#main-content">{l s='Skip to main content' d='Shop.Theme.Global'}</a>
+    {/block}
+
     {block name='hook_after_body_opening_tag'}
       {hook h='displayAfterBodyOpeningTag'}
     {/block}
@@ -32,6 +40,11 @@
       
       {block name='breadcrumb'}
         {include file='_partials/breadcrumb.tpl'}
+      {/block}
+
+      {block name='main_content'}
+        {* This is the main content anchor used for accessibility. *}
+        <div id="main-content"></div>
       {/block}
 
       {block name='notifications'}
@@ -95,6 +108,19 @@
 
     {block name='hook_before_body_closing_tag'}
       {hook h='displayBeforeBodyClosingTag'}
+    {/block}
+
+    {block name='modal_container'}
+      <div data-ps-target="modal-container">
+        {capture name="modal_content"}{hook h='displayModalContent'}{/capture}
+        {if $smarty.capture.modal_content}
+          {$smarty.capture.modal_content nofilter}
+        {/if}
+      </div>
+    {/block}
+
+    {block name='back_to_top'}
+      <a class="visually-hidden-focusable btn btn-primary back-to-top-link" href="#back-to-top">{l s='Back to top' d='Shop.Theme.Global'}</a>
     {/block}
   </body>
 </html>

@@ -6,7 +6,7 @@
   <li class="brand card col-6 col-md-4 col-lg-3">
     <div class="brand__img">
       <a href="{$brand.url}">
-        <img src="{$brand.image}" alt="{$brand.name}" loading="lazy">
+        <img src="{$brand.image.bySize.small_default.url}" alt="{$brand.name}" loading="lazy">
       </a>
     </div>
 

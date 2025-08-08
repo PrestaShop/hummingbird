@@ -192,11 +192,7 @@ const selectorsMap = {
   quickview: '[data-ps-action="open-quickview"]',
   quickviewModal: '[data-ps-ref="quickview-modal"]',
   quickviewButton: '[data-ps-ref="quickview-button"]',
-  modalContainer: {
-    selector: '[data-ps-target="modal-container"]',
-    attribute: 'data-ps-target',
-    value: 'modal-container',
-  },
+  modalContainer: '[data-ps-target="modal-container"]',
   blockcartModal: '[data-ps-ref="blockcart-modal"]',
   addToCartButton: '[data-ps-ref="add-to-cart"]',
   facetedsearch,

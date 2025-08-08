@@ -2,14 +2,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import { Modal } from 'bootstrap';
+import {Modal} from 'bootstrap';
 
-import { events } from '@js/theme';
-import { getModalContentContainer } from '@js/helpers/modal';
+import {events} from '@js/theme';
+import getModalContentContainer from '@js/helpers/modal';
 import selectorsMap from '@js/constants/selectors-map';
 
 export default function initBlockCart() {
-  const { prestashop } = window as any;
+  const {prestashop} = window;
   let lastCartModalOpener: HTMLElement | null = null;
   let targetProductCard: HTMLElement | null = null;
   let quickviewCard: HTMLElement | null = null;
@@ -42,13 +42,13 @@ export default function initBlockCart() {
         if (e.key === 'Escape' || e.key === 'Esc') {
           dismissIntent = 'keyboard';
         }
-    
+
         const active = document.activeElement as HTMLElement | null;
-  
+
         if (
-          active &&
-          active.closest('[data-bs-dismiss="modal"]') &&
-          (e.key === 'Enter' || e.key === ' ' || e.code === 'Space')
+          active
+          && active.closest('[data-bs-dismiss="modal"]')
+          && (e.key === 'Enter' || e.key === ' ' || e.code === 'Space')
         ) {
           dismissIntent = 'keyboard';
         }
@@ -59,13 +59,13 @@ export default function initBlockCart() {
       };
 
       modalElement.addEventListener('shown.bs.modal', () => {
-        document.addEventListener('keydown', onKeyDown, { capture: true });
-        document.addEventListener('pointerdown', onPointerDown, { capture: true });
+        document.addEventListener('keydown', onKeyDown, {capture: true});
+        document.addEventListener('pointerdown', onPointerDown, {capture: true});
       });
 
       modalElement.addEventListener('hidden.bs.modal', () => {
-        document.removeEventListener('keydown', onKeyDown, { capture: true });
-        document.removeEventListener('pointerdown', onPointerDown, { capture: true });
+        document.removeEventListener('keydown', onKeyDown, {capture: true});
+        document.removeEventListener('pointerdown', onPointerDown, {capture: true});
 
         if (dismissIntent === 'keyboard' && lastCartModalOpener && document.contains(lastCartModalOpener)) {
           lastCartModalOpener.focus();
@@ -77,7 +77,7 @@ export default function initBlockCart() {
         modalElement.remove();
       });
 
-      Modal.getOrCreateInstance(modalElement, { focus: true, keyboard: true }).show();
+      Modal.getOrCreateInstance(modalElement, {focus: true, keyboard: true}).show();
     } else {
       throw new Error('Modal container not found.');
     }
@@ -89,13 +89,14 @@ export default function initBlockCart() {
 
   document.addEventListener('click', (event: MouseEvent) => {
     const target = event.target as HTMLElement | null;
+
     if (!target) return;
 
     const {
       quickview,
       quickviewButton,
       addToCartButton,
-      product: { miniature, container },
+      product: {miniature, container},
     } = selectorsMap;
 
     const isQuickviewBtn = target.closest<HTMLElement>(quickviewButton) !== null;
@@ -107,6 +108,7 @@ export default function initBlockCart() {
     } else if (isAddToCartBtn) {
       const productCard = target.closest<HTMLElement>(miniature);
       const productPage = target.closest<HTMLElement>(container);
+
       if (productCard) {
         targetProductCard = productCard;
         lastCartModalOpener = targetProductCard?.querySelector<HTMLElement>(addToCartButton) ?? null;
@@ -125,4 +127,4 @@ export default function initBlockCart() {
   prestashop.blockcart.showModal = function showAddToCartModal(addToCartModal: string) {
     openModalFromHtml(addToCartModal);
   };
-};
+}

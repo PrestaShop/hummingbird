@@ -151,7 +151,7 @@
       <h3 class="h3">{l s='Tracking' d='Shop.Theme.Customeraccount'}</h3>
 
       <div class="table-wrapper">
-        <table class="table d-none d-sm-table d-md-table">
+        <table class="table d-none d-md-table">
           <thead class="thead-default">
             <tr>
               <th>{l s='Date' d='Shop.Theme.Global'}</th>

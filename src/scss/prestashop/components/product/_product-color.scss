@@ -12,9 +12,9 @@ $component-name: (
     background-size: contain;
     border: 1px solid var(--bs-border-color);
     border-radius: var(--bs-border-radius-sm);
-    transition: var(--bs-transition-default);
     outline: 0.125rem solid transparent;
     outline-offset: -0.125rem;
+    transition: var(--bs-transition-default);
 
     &-sm {
       width: 1rem;
@@ -35,14 +35,19 @@ $component-name: (
     clip: rect(0, 0, 0, 0);
     pointer-events: none;
 
-    &:focus-visible + .#{map-get($component-name, input-color)}__label .#{map-get($component-name, color)} {
-      outline: 0.125rem solid var(--bs-link-hover-color);
+    &:focus-visible {
+      + .#{map-get($component-name, input-color)}__label {
+        .#{map-get($component-name, color)} {
+          outline: 0.125rem solid var(--bs-link-hover-color);
+        }
+      }
     }
 
     &:checked:focus-visible + .#{map-get($component-name, input-color)}__label {
-      outline: 0;
       border-radius: var(--bs-border-radius-sm);
-      box-shadow: var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur, 0) var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+      outline: 0;
+      box-shadow: var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur, 0)
+        var(--bs-focus-ring-width) var(--bs-focus-ring-color);
     }
   }
 }

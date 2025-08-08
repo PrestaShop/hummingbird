@@ -47,11 +47,11 @@ $product-miniature-container-query-width: 13.5rem;
       margin: auto;
       background-color: var(--bs-body-bg);
       border-radius: 0;
-      transition: var(--bs-transition-default);
-      transition-delay: 0.1s;
-      box-shadow: none;
       outline: revert;
       outline-offset: -0.125rem;
+      box-shadow: none;
+      transition: var(--bs-transition-default);
+      transition-delay: 0.1s;
 
       &:focus {
         transform: translateY(-100%);

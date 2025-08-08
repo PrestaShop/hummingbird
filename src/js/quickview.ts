@@ -2,15 +2,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import { Modal } from 'bootstrap';
+import {Modal} from 'bootstrap';
 
-import { getModalContentContainer } from '@js/helpers/modal';
+import getModalContentContainer from '@js/helpers/modal';
 import selectorsMap from '@js/constants/selectors-map';
 
-import type { QuickviewResponse } from '../../types/quickview';
+import type {QuickviewResponse} from '../../types/quickview';
 
 export default function initQuickview() {
-  const { prestashop, Theme: { events } } = window as any;
+  const {prestashop, Theme: {events}} = window;
   let lastQuickviewOpener: HTMLElement | null = null;
 
   async function fetchQuickview(data: Record<string, unknown>): Promise<QuickviewResponse> {
@@ -28,7 +28,7 @@ export default function initQuickview() {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'X-Requested-With': 'XMLHttpRequest',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       body: params,
       credentials: 'same-origin',
@@ -43,7 +43,7 @@ export default function initQuickview() {
     return resp.json();
   }
 
-  function openModalFromHtml(resp: QuickviewResponse, openerContext: HTMLElement) {
+  function openModalFromHtml(resp: QuickviewResponse) {
     const modalContainer = getModalContentContainer();
 
     if (modalContainer) {
@@ -65,13 +65,13 @@ export default function initQuickview() {
       if (e.key === 'Escape' || e.key === 'Esc') {
         dismissIntent = 'keyboard';
       }
-  
+
       const active = document.activeElement as HTMLElement | null;
 
       if (
-        active &&
-        active.closest('[data-bs-dismiss="modal"]') &&
-        (e.key === 'Enter' || e.key === ' ' || e.code === 'Space')
+        active
+        && active.closest('[data-bs-dismiss="modal"]')
+        && (e.key === 'Enter' || e.key === ' ' || e.code === 'Space')
       ) {
         dismissIntent = 'keyboard';
       }
@@ -82,15 +82,15 @@ export default function initQuickview() {
     };
 
     modalElement.addEventListener('shown.bs.modal', () => {
-      document.addEventListener('keydown', onKeyDown, { capture: true });
-      document.addEventListener('pointerdown', onPointerDown, { capture: true });
+      document.addEventListener('keydown', onKeyDown, {capture: true});
+      document.addEventListener('pointerdown', onPointerDown, {capture: true});
 
       prestashop.emit(events.quickviewOpened);
     });
 
     modalElement.addEventListener('hidden.bs.modal', () => {
-      document.removeEventListener('keydown', onKeyDown, { capture: true });
-      document.removeEventListener('pointerdown', onPointerDown, { capture: true });
+      document.removeEventListener('keydown', onKeyDown, {capture: true});
+      document.removeEventListener('pointerdown', onPointerDown, {capture: true});
 
       if (dismissIntent === 'keyboard' && lastQuickviewOpener && document.contains(lastQuickviewOpener)) {
         lastQuickviewOpener.focus();
@@ -101,7 +101,7 @@ export default function initQuickview() {
       modalElement.remove();
     });
 
-    Modal.getOrCreateInstance(modalElement, { focus: true, keyboard: true }).show();
+    Modal.getOrCreateInstance(modalElement, {focus: true, keyboard: true}).show();
   }
 
   prestashop.on(events.clickQuickview, (elm: HTMLElement) => {
@@ -112,7 +112,7 @@ export default function initQuickview() {
     };
 
     fetchQuickview(data)
-      .then((resp) => openModalFromHtml(resp, elm))
+      .then((resp) => openModalFromHtml(resp))
       .catch((err) => {
         prestashop.emit(events.handleError, {
           eventType: 'clickQuickView',
@@ -123,6 +123,7 @@ export default function initQuickview() {
 
   document.addEventListener('click', (event: MouseEvent) => {
     const target = event.target as Element | null;
+
     if (!target) return;
 
     const quickviewButton = target.closest(selectorsMap.quickview) as HTMLElement | null;

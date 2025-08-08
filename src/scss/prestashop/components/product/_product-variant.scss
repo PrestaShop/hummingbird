@@ -8,10 +8,10 @@ $component-name: product-variant;
   &__legend,
   &__selected {
     display: inline-block;
+    width: auto;
+    margin-block-end: 0;
     font-size: var(--bs-body-font-size);
     line-height: var(--bs-body-line-height);
-    margin-block-end: 0;
-    width: auto;
   }
 
   // Radios

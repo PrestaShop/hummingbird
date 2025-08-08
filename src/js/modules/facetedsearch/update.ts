@@ -3,121 +3,111 @@
  * file that was distributed with this source code.
  */
 
-import useQuantityInput, {populateMinQuantityInput} from '@js/components/useQuantityInput';
+import useQuantityInput, { populateMinQuantityInput } from '@js/components/useQuantityInput';
 
-// @TODO(NeOMakinG): Refactor this file, it comes from facetedsearch or classic
-export const parseSearchUrl = function (event: {target: HTMLElement}) {
-  if (event.target.dataset.searchUrl !== undefined) {
-    return event.target.dataset.searchUrl;
+export const parseSearchUrl = (event: Event): string => {
+  const target = (event.target as HTMLElement).closest<HTMLElement>('[data-search-url]');
+  const url = target?.dataset.searchUrl;
+  if (!url) {
+    throw new Error('Cannot parse search URL');
   }
-
-  if ($(event.target).parent()[0].dataset.searchUrl === undefined) {
-    throw new Error('Can not parse search URL');
-  }
-
-  return $(event.target).parent()[0].dataset.searchUrl;
+  return url;
 };
 
-export function updateProductListDOM(data: Record<string, never>) {
-  const {Theme} = window;
+export function updateProductListDOM(data: Record<string, any>): void {
+  const { Theme } = window as any;
+  const { listing } = Theme.selectors;
 
-  $(Theme.selectors.listing.searchFilters).replaceWith(
-    data.rendered_facets,
-  );
-  $(Theme.selectors.listing.activeSearchFilters).replaceWith(
-    data.rendered_active_filters,
-  );
-  $(Theme.selectors.listing.listTop).replaceWith(
-    data.rendered_products_top,
-  );
+  const replace = (selector: string, html: string | undefined) => {
+    const element = document.querySelector(selector);
+    if (!element) {
+      throw new Error(`Cannot find element with selector "${selector}".`);
+    }
+    if (!html) {
+      throw new Error(`No HTML content provided to be replaced in element "${selector}".`);
+    }
 
-  const renderedProducts = $(data.rendered_products);
-  const productSelectors = $(Theme.selectors.listing.product, renderedProducts);
-  const firstProductClasses = $(Theme.selectors.listing.product).first().attr('class');
+    const tmpWrapper = document.createElement('div');
+    tmpWrapper.innerHTML = html;
+    const newElement = tmpWrapper.firstElementChild as HTMLElement;
+    element.replaceWith(newElement);
+  };
 
-  if (productSelectors.length > 0 && firstProductClasses) {
-    productSelectors.removeClass().addClass(firstProductClasses);
-  }
-
-  $(Theme.selectors.listing.list).replaceWith(renderedProducts);
-
-  $(Theme.selectors.listing.listBottom).replaceWith(
-    data.rendered_products_bottom,
-  );
-
-  if (data.rendered_products_header) {
-    $(Theme.selectors.listing.listHeader).replaceWith(
-      data.rendered_products_header,
-    );
-  }
-
-  if (data.rendered_products_footer) {
-    $(Theme.selectors.listing.listFooter).replaceWith(
-      data.rendered_products_footer,
-    );
-  }
+  replace(listing.searchFilters, data.rendered_facets);
+  replace(listing.activeSearchFilters, data.rendered_active_filters);
+  replace(listing.listTop, data.rendered_products_top);
+  replace(listing.list, data.rendered_products);
+  replace(listing.listBottom, data.rendered_products_bottom);
+  replace(listing.listHeader, data.rendered_products_header);
+  replace(listing.listFooter, data.rendered_products_footer);
 }
 
-export default () => {
-  const {prestashop} = window;
-  const {Theme} = window;
-  const {events} = Theme;
+export default function initFacetedSearch(): void {
+  const { prestashop } = window as any;
+  const { Theme } = window as any;
+  const { events, selectors } = Theme;
+  const { listing } = selectors;
 
-  $('body').on(
-    'change',
-    `${Theme.selectors.listing.searchFilters} input[data-search-url]`,
-    (event) => {
-      prestashop.emit(events.updateFacets, parseSearchUrl(event));
-    },
-  );
+  const emitUpdate = (url: string) => prestashop.emit(events.updateFacets, url);
 
-  $('body').on(
-    'click',
-    Theme.selectors.listing.searchFiltersClearAll,
-    (event) => {
-      prestashop.emit(events.updateFacets, parseSearchUrl(event));
-    },
-  );
+  // Delegate change events
+  document.body.addEventListener('change', (e) => {
+    const target = e.target as HTMLElement;
 
-  $('body').on('click', Theme.selectors.listing.searchLink, (event) => {
-    event.preventDefault();
-    prestashop.emit(
-      events.updateFacets,
-      $(event.target)?.closest('a')?.get(0)?.getAttribute('href'),
-    );
+    if (target.matches(`${listing.searchFilters} input[data-search-url]`)) {
+      emitUpdate(parseSearchUrl(e));
+    }
   });
 
-  /**
-   * Pager links also scroll up
-   */
-  $('body').on('click', Theme.selectors.listing.pagerLink, (event) => {
-    event.preventDefault();
-    document.querySelector(Theme.selectors.listing.listHeader)?.scrollIntoView({block: 'start', behavior: 'auto'});
-    prestashop.emit(
-      events.updateFacets,
-      $(event.target)?.closest('a')?.get(0)?.getAttribute('href'),
-    );
+  // Delegate click events
+  document.body.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+
+    // Clear all filters
+    if (target.matches(listing.searchFiltersClearAll)) {
+      emitUpdate(parseSearchUrl(e));
+    }
+    // Search links
+    else if (target.matches(listing.searchLink) || target.closest(listing.searchLink)) {
+      e.preventDefault();
+      const a = target.closest('a');
+      const href = a?.getAttribute('href');
+
+      if (href) {
+        emitUpdate(href);
+      }
+    }
+    // Pager links
+    else if (target.matches(listing.pagerLink) || target.closest(listing.pagerLink)) {
+      e.preventDefault();
+      document
+        .querySelector(listing.listHeader)
+        ?.scrollIntoView({ block: 'start', behavior: 'auto' });
+      const a = target.closest('a');
+      const href = a?.getAttribute('href');
+
+      if (href) {
+        emitUpdate(href);
+      }
+    }
   });
 
-  if ($(Theme.selectors.listing.list).length) {
-    window.addEventListener('popstate', (e) => {
-      const {state} = e;
-      window.location.href = state && state.current_url ? state.current_url : history;
+  // popstate handling to sync faceted URL
+  if (document.querySelector(listing.list)) {
+    window.addEventListener('popstate', (e: PopStateEvent) => {
+      const state = e.state as { current_url?: string } | null;
+      if (state?.current_url) {
+        window.location.href = state.current_url;
+      } else {
+        window.location.reload();
+      }
     });
   }
 
-  $('body').on(
-    'change',
-    `${Theme.selectors.listing.searchFilters} select`,
-    (event) => {
-      const form = $(event.target).closest('form');
-      prestashop.emit(events.updateFacets, `?${form.serialize()}`);
-    },
-  );
-
-  prestashop.on(events.updateProductList, (data: Record<string, never>) => {
+  // Listen for Prestashop’s AJAX product-list update
+  prestashop.on(events.updateProductList, (data: Record<string, any>) => {
     updateProductListDOM(data);
     useQuantityInput();
     populateMinQuantityInput();
   });
-};
+}

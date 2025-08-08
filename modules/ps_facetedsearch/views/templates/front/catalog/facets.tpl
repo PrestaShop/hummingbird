@@ -147,7 +147,7 @@
                 <ul class="accordion-body">
                   <li>
                     <div class="{$componentName}__item facet-dropdown dropdown">
-                      <a class="{$componentName}__dropdown-toggle btn btn-outline-tertiary dropdown-toggle" rel="nofollow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="{$componentName}__dropdown-toggle btn btn-outline-tertiary dropdown-toggle" rel="nofollow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {assign var="active_found" value=false}
 
                         {foreach from=$facet.filters item="filter"}
@@ -165,9 +165,9 @@
                         {if !$active_found}
                           {l s='(no filter)' d='Shop.Theme.Global'}
                         {/if}
-                      </a>
+                      </button>
 
-                      <div class="dropdown-menu dropdown-menu-start">
+                      <div class="{$componentName}__dropdown-menu dropdown-menu dropdown-menu-start">
                         {foreach from=$facet.filters item="filter"}
                           {if !$filter.active}
                             <a

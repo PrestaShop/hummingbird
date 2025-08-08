@@ -63,10 +63,10 @@ $component-name: (
   }
 
   &__dropdown-toggle {
-    width: 100%;
-    white-space: normal;
-    text-align: left;
     justify-content: flex-start;
+    width: 100%;
+    text-align: left;
+    white-space: normal;
 
     &::after {
       margin-inline-start: auto;

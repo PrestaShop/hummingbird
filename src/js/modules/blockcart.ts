@@ -17,70 +17,56 @@ export default function initBlockCart() {
   function openModalFromHtml(addToCartModal: string) {
     const modalContainer = getModalContentContainer();
 
-    if (modalContainer) {
-      const template = document.createElement('template');
-      template.innerHTML = addToCartModal;
-      const modalElement = template.content.querySelector(selectorsMap.blockcartModal);
+    modalContainer.innerHTML = addToCartModal;
+    const modalElement = modalContainer.querySelector<HTMLElement>(selectorsMap.blockcartModal);
 
-      if (!modalElement) {
-        throw new Error('Blockcart modal element not found in provided HTML.');
-      }
-
-      const existingModal = modalContainer.querySelector<HTMLElement>(selectorsMap.blockcartModal);
-
-      if (existingModal) {
-        modalContainer.innerHTML = '';
-      }
-
-      // Insert the new modal element
-      modalContainer.appendChild(modalElement);
-
-      // Track how the modal gets dismissed for accessibility reasons
-      let dismissIntent: 'keyboard' | 'pointer' | 'unknown' = 'unknown';
-
-      const onKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' || e.key === 'Esc') {
-          dismissIntent = 'keyboard';
-        }
-
-        const active = document.activeElement as HTMLElement | null;
-
-        if (
-          active
-          && active.closest('[data-bs-dismiss="modal"]')
-          && (e.key === 'Enter' || e.key === ' ' || e.code === 'Space')
-        ) {
-          dismissIntent = 'keyboard';
-        }
-      };
-
-      const onPointerDown = () => {
-        dismissIntent = 'pointer';
-      };
-
-      modalElement.addEventListener('shown.bs.modal', () => {
-        document.addEventListener('keydown', onKeyDown, {capture: true});
-        document.addEventListener('pointerdown', onPointerDown, {capture: true});
-      });
-
-      modalElement.addEventListener('hidden.bs.modal', () => {
-        document.removeEventListener('keydown', onKeyDown, {capture: true});
-        document.removeEventListener('pointerdown', onPointerDown, {capture: true});
-
-        if (dismissIntent === 'keyboard' && lastCartModalOpener && document.contains(lastCartModalOpener)) {
-          lastCartModalOpener.focus();
-          targetProductCard = null;
-        } else if (!lastCartModalOpener) {
-          console.error('Last blockcart opener not found.');
-        }
-
-        modalElement.remove();
-      });
-
-      Modal.getOrCreateInstance(modalElement, {focus: true, keyboard: true}).show();
-    } else {
-      throw new Error('Modal container not found.');
+    if (!modalElement) {
+      throw new Error('Blockcart modal element not found in provided HTML.');
     }
+
+    // Track how the modal gets dismissed for accessibility reasons
+    let dismissIntent: 'keyboard' | 'pointer' | 'unknown' = 'unknown';
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        dismissIntent = 'keyboard';
+      }
+
+      const active = document.activeElement as HTMLElement | null;
+
+      if (
+        active
+        && active.closest('[data-bs-dismiss="modal"]')
+        && (e.key === 'Enter' || e.key === ' ' || e.code === 'Space')
+      ) {
+        dismissIntent = 'keyboard';
+      }
+    };
+
+    const onPointerDown = () => {
+      dismissIntent = 'pointer';
+    };
+
+    modalElement.addEventListener('shown.bs.modal', () => {
+      document.addEventListener('keydown', onKeyDown, {capture: true});
+      document.addEventListener('pointerdown', onPointerDown, {capture: true});
+    });
+
+    modalElement.addEventListener('hidden.bs.modal', () => {
+      document.removeEventListener('keydown', onKeyDown, {capture: true});
+      document.removeEventListener('pointerdown', onPointerDown, {capture: true});
+
+      if (dismissIntent === 'keyboard' && lastCartModalOpener && document.contains(lastCartModalOpener)) {
+        lastCartModalOpener.focus();
+        targetProductCard = null;
+      } else if (!lastCartModalOpener) {
+        console.error('Last blockcart opener not found.');
+      }
+
+      modalElement.remove();
+    });
+
+    Modal.getOrCreateInstance(modalElement, {focus: true, keyboard: true}).show();
   }
 
   prestashop.on(events.clickQuickview, (productMiniature: HTMLElement) => {

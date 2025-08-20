@@ -95,7 +95,7 @@ export default () => {
   if ($(Theme.selectors.listing.list).length) {
     window.addEventListener('popstate', (e) => {
       const {state} = e;
-      window.location.href = state && state.current_url ? state.current_url : history;
+      window.location.href = state?.current_url ?? window.location.href;
     });
   }
 

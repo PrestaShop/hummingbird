@@ -172,8 +172,8 @@
       >
     </picture>
   {/if}
-</div>
 
-{block name='product_images_modal'}
-  {include file='catalog/_partials/product-images-modal.tpl'}
-{/block}
+  {block name='product_images_modal'}
+    {include file='catalog/_partials/product-images-modal.tpl'}
+  {/block}
+</div>

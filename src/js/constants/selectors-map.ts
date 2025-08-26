@@ -31,7 +31,7 @@ export const listing = {
   listFooter: '#js-product-list-footer',
   searchFiltersClearAll: '.js-search-filters-clear-all',
   searchLink: '.js-search-link',
-  pagerLink: '.js-pager-link',
+  paginationLink: '.js-pager-link',
 };
 
 export const cart = {

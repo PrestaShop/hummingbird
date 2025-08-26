@@ -63,7 +63,17 @@ $component-name: (
   }
 
   &__dropdown-toggle {
-    justify-content: space-between;
+    justify-content: flex-start;
+    width: 100%;
+    text-align: left;
+    white-space: normal;
+
+    &::after {
+      margin-inline-start: auto;
+    }
+  }
+
+  &__dropdown-menu {
     width: 100%;
   }
 

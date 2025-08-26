@@ -10,6 +10,7 @@ export const parseSearchUrl = (event: Event): string => {
   const url = target?.dataset.searchUrl;
 
   if (!url) {
+    console.error('No data-search-url found for event:', event);
     throw new Error('Cannot parse search URL');
   }
   return url;
@@ -44,6 +45,12 @@ export function updateProductListDOM(data: Record<string, unknown>): void {
   replace(listing.listFooter, data.rendered_products_footer as string);
 }
 
+function getHrefFromTarget(target: HTMLElement, selector: string): string | null {
+  const link = target.closest(selector)?.getAttribute('href');
+
+  return link || null;
+}
+
 export default function initFacetedSearch(): void {
   const {prestashop} = window;
   const {Theme} = window;
@@ -53,49 +60,59 @@ export default function initFacetedSearch(): void {
   const emitUpdate = (url: string) => prestashop.emit(events.updateFacets, url);
 
   // Delegate change events
-  document.body.addEventListener('change', (e) => {
-    const target = e.target as HTMLElement;
+  document.body.addEventListener('change', (event) => {
+    const target = event.target as HTMLElement;
 
-    if (target.matches(`${listing.searchFilters} input[data-search-url]`)) {
-      emitUpdate(parseSearchUrl(e));
+    if (target.closest(`${listing.searchFilters} input[data-search-url]`)) {
+      emitUpdate(parseSearchUrl(event));
     }
   });
 
   // Delegate click events
-  document.body.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
+  document.body.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
 
-    if (target.matches(listing.searchFiltersClearAll)) {
+    if (target.closest(listing.searchFiltersClearAll)) {
       // Clear all filters
-      emitUpdate(parseSearchUrl(e));
-    } else if (target.matches(listing.searchLink) || target.closest(listing.searchLink)) {
-      // Search links
-      e.preventDefault();
-      const a = target.closest('a');
-      const href = a?.getAttribute('href');
+      emitUpdate(parseSearchUrl(event));
+    } else if (target.closest(listing.searchLink)) {
+      // Click on a facet filter link to trigger filtering
+      event.preventDefault();
 
-      if (href) {
-        emitUpdate(href);
-      }
-    } else if (target.matches(listing.pagerLink) || target.closest(listing.pagerLink)) {
-      // Pager links
-      e.preventDefault();
-      document
-        .querySelector(listing.listHeader)
-        ?.scrollIntoView({block: 'start', behavior: 'auto'});
-      const a = target.closest('a');
-      const href = a?.getAttribute('href');
+      const href = getHrefFromTarget(target, 'a');
 
-      if (href) {
-        emitUpdate(href);
+      if (!href) {
+        console.error(`Cannot find href attribute for the element ${listing.searchLink}`);
+
+        return;
       }
+
+      emitUpdate(href);
+    } else if (target.closest(listing.paginationLink)) {
+      // Pagination link
+      event.preventDefault();
+
+      const listHeader = document.querySelector(listing.listHeader);
+
+      if (listHeader) {
+        listHeader.scrollIntoView({block: 'start', behavior: 'auto'});
+      }
+
+      const href = getHrefFromTarget(target, 'a');
+
+      if (!href) {
+        console.error(`Cannot find href attribute for the element ${listing.paginationLink}`);
+        return;
+      }
+
+      emitUpdate(href);
     }
   });
 
-  // popstate handling to sync faceted URL
+  // Popstate handling to sync faceted URL
   if (document.querySelector(listing.list)) {
-    window.addEventListener('popstate', (e: PopStateEvent) => {
-      const state = e.state as { current_url?: string } | null;
+    window.addEventListener('popstate', (event: PopStateEvent) => {
+      const state = event.state as { current_url: string } | null;
 
       if (state?.current_url) {
         window.location.href = state.current_url;

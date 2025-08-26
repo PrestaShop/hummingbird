@@ -93,7 +93,8 @@
                 <button 
                   data-button-action="add-to-cart" 
                   class="product-miniature__add btn btn-primary btn-square-icon"
-                  aria-label="{l s='Add to cart' d='Shop.Theme.Actions'} {$product.name}"
+                  aria-label="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
+                  title="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
                   data-ps-ref="add-to-cart"
                 >
                   <i class="material-icons" aria-hidden="true">&#xe854;</i>

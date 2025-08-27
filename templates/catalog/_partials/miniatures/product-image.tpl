@@ -1,6 +1,6 @@
 {block name='product_miniature_image'}
   <div class="{$componentName}__image-container thumbnail-container">
-    <a href="{$product.url}" class="{$componentName}__image-link">
+    <a href="{$product.url}" class="{$componentName}__image-link outline outline--rounded">
       {if $product.cover}
         <picture>
           {if isset($product.cover.bySize.default_md.sources.avif)}

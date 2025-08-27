@@ -1,5 +1,5 @@
 {block name='quick_view'}
-  <button class="{$componentName}__quickview-button btn btn-tertiary btn-square-icon js-quickview"
+  <button class="{$componentName}__quickview-button btn btn-tertiary btn-square-icon outline js-quickview"
     data-ps-action="open-quickview"
     data-ps-ref="quickview-button"
     aria-label="{l s='Quick view %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}">

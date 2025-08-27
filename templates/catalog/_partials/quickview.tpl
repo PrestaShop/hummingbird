@@ -8,6 +8,9 @@
       <div class="quickview__header modal-header">
         <p class="h2 modal-title visually-hidden" id="quickview-modal-{$product.id}-title">{$product.name} {l s='quick view' d='Shop.Theme.Catalog'}</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
+
+        {* For screen readers *}
+        <p class="visually-hidden" aria-live="polite" role="status" data-ps-target="quickview-modal-status" data-ps-data="{l s='%product_name% quick view.' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Checkout'}"></p>
       </div>
 
       <div class="quickview__body modal-body page-product page-product--quickview">

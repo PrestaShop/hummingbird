@@ -32,11 +32,11 @@
         {/foreach}
       </div>
 
-      <button class="carousel-control-prev outline outline--onfocus" type="button" data-bs-target="#ps_imageslider" data-bs-slide="prev" aria-label="{l s='Previous' d='Shop.Theme.Actions'}">
+      <button class="carousel-control-prev outline outline--rounded" type="button" data-bs-target="#ps_imageslider" data-bs-slide="prev" aria-label="{l s='Previous' d='Shop.Theme.Actions'}">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       </button>
 
-      <button class="carousel-control-next outline outline--onfocus" type="button" data-bs-target="#ps_imageslider" data-bs-slide="next" aria-label="{l s='Next' d='Shop.Theme.Actions'}">
+      <button class="carousel-control-next outline outline--rounded" type="button" data-bs-target="#ps_imageslider" data-bs-slide="next" aria-label="{l s='Next' d='Shop.Theme.Actions'}">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
       </button>
     </div>

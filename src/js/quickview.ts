@@ -85,6 +85,12 @@ export default function initQuickview() {
       document.addEventListener('keydown', onKeyDown, {capture: true});
       document.addEventListener('pointerdown', onPointerDown, {capture: true});
 
+      const modalStatus = modalElement.querySelector<HTMLElement>(selectorsMap.quickviewModalStatus);
+
+      if (modalStatus) {
+        modalStatus.textContent = modalStatus.getAttribute('data-ps-data') ?? '';
+      }
+
       prestashop.emit(events.quickviewOpened);
     });
 

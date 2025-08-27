@@ -98,7 +98,7 @@ export default function initFacetedSearch(): void {
         listHeader.scrollIntoView({block: 'start', behavior: 'auto'});
       }
 
-      const href = getHrefFromTarget(target, 'a');
+      const href = (event.target as HTMLElement).closest('button')?.getAttribute('data-ps-data');
 
       if (!href) {
         console.error(`Cannot find href attribute for the element ${listing.paginationLink}`);

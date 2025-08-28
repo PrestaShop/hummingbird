@@ -39,10 +39,11 @@
                   <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li>
               {else if $page.type != "prev" && $page.type != "next"}
-                <li class="page-item{if $page.current} active{/if}" {if $page.current}aria-current="page" {/if}>
+                <li class="page-item{if $page.current} active{/if}">
                   <button data-ps-data="{$page.url}"
                     class="page-link {['js-pager-link' => $page.clickable]|classnames}"
                     {if !$page.clickable}aria-disabled="true"{/if}
+                    {if $page.current}aria-current="page"{/if}
                     aria-label="{l s='Go to page %page%' sprintf=['%page%' => $page.page] d='Shop.Theme.Actions'}"
                   >
                     {$page.page}

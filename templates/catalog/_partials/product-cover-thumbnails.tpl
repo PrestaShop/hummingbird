@@ -67,12 +67,12 @@
                   data-full-size-image-url="{$image.bySize.home_default.url}"
                 >
               </picture>
-
-              <div class="product__zoom btn btn-tertiary btn-square-icon" data-bs-toggle="modal" data-bs-target="#product-modal">
-                <i class="material-icons">&#xE8B6;</i>
-              </div>
             </div>
           {/foreach}
+
+          <button class="product__zoom btn btn-tertiary outline outline--rounded btn-square-icon" data-bs-toggle="modal" data-bs-target="#product-modal" aria-label="{l s='Open zoomed product image gallery' d='Shop.Theme.Global'}">
+            <i class="material-icons">&#xE8B6;</i>
+          </button>
         {/block}
       </div>
     </div>

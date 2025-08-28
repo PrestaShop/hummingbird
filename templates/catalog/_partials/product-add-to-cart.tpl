@@ -27,7 +27,7 @@
           {/if}
 
           {** And render the availability message with icon *}
-          <div class="product__availability-status {$availability_class}" role="alert">
+          <div class="product__availability-status {$availability_class}" role="alert" aria-live="polite">
             <i class="product__availability-icon material-icons rtl-no-flip">&#x{$availability_icon};</i>
 
             <div class="product__availability-messages">

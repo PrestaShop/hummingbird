@@ -16,13 +16,20 @@ $component-name: product;
     }
 
     &__thumbnail {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      border-radius: var(--bs-border-radius);
+
       &.active .#{$component-name}__thumbnail-image {
-        outline: 2px solid var(--bs-primary);
+        outline: 0.125rem solid var(--bs-primary);
+        outline-offset: -0.125rem;
       }
 
       &-image {
         border-radius: var(--bs-border-radius);
-        outline: 2px solid transparent;
+        outline: 0.125rem solid transparent;
+        outline-offset: -0.125rem;
       }
     }
 

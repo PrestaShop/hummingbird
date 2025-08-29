@@ -160,7 +160,9 @@ $product-miniature-container-query-width: 13.5rem;
 
   @media (hover: none) and (pointer: coarse) {
     &__quickview {
-      display: none;
+      &-button {
+        display: none;
+      }
 
       &-touch {
         display: inline-flex;

@@ -32,6 +32,7 @@ $product-miniature-container-query-width: 13.5rem;
 
     &-link {
       display: block;
+      outline-offset: -0.125rem;
     }
   }
 
@@ -46,8 +47,15 @@ $product-miniature-container-query-width: 13.5rem;
       margin: auto;
       background-color: var(--bs-body-bg);
       border-radius: 0;
+      outline: revert;
+      outline-offset: -0.125rem;
+      box-shadow: none;
       transition: var(--bs-transition-default);
       transition-delay: 0.1s;
+
+      &:focus {
+        transform: translateY(-100%);
+      }
     }
 
     &-touch {
@@ -132,6 +140,19 @@ $product-miniature-container-query-width: 13.5rem;
 
         .#{$component-name}__image {
           transform: scale(1.1);
+        }
+      }
+
+      &:has(*:focus-visible) {
+        box-shadow: var(--bs-box-shadow-md);
+
+        .#{$component-name}__top {
+          border-end-start-radius: 0;
+          border-end-end-radius: 0;
+        }
+
+        .#{$component-name}__quickview-button {
+          transform: translateY(-100%);
         }
       }
     }

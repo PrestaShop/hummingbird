@@ -23,7 +23,7 @@ import useAlert from './components/useAlert';
 import usePasswordPolicy from './components/usePasswordPolicy';
 import useProgressRing from './components/useProgressRing';
 import useQuantityInput from './components/useQuantityInput';
-import './modules/blockcart';
+import initBlockCart from './modules/blockcart';
 import './modules/facetedsearch';
 import initDesktopMenu from './modules/ps_mainmenu';
 import initFormValidation from './form-validation';
@@ -32,7 +32,7 @@ import initScrollPaddingTop from './helpers/scrollPadding';
 
 initEmitter();
 
-$(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const {prestashop, Theme: {events}} = window;
 
   initProductBehavior();
@@ -54,6 +54,7 @@ $(() => {
   usePasswordPolicy('.field-password-policy');
   initCategoryTree();
   initScrollPaddingTop();
+  initBlockCart();
 
   prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();
@@ -88,4 +89,5 @@ export default {
   initGuestPasswordToggle,
   initVisiblePassword,
   initDesktopMenu,
+  initBlockCart,
 };

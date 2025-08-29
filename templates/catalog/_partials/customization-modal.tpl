@@ -1,10 +1,10 @@
 {$componentName = 'product-customization-modal'}
 
-<div id="product-customizations-modal-{$customization.id_customization}" class="modal fade product-customization-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="product-customizations-modal-{$customization.id_customization}" class="modal fade product-customization-modal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="customizations-modal-{$customization.id_customization}-title">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="h2 modal-title">{l s='Product customization' d='Shop.Theme.Checkout'}</p>
+        <p class="h2 modal-title" id="customizations-modal-{$customization.id_customization}-title">{l s='Product customization' d='Shop.Theme.Checkout'}</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
       </div>
 

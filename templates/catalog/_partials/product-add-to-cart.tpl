@@ -81,6 +81,7 @@
             {if !$product.add_to_cart_url}
               disabled
             {/if}
+            data-ps-ref="add-to-cart"
           >
             <i class="material-icons" aria-hidden="true">&#xE547;</i>
             {l s='Add to cart' d='Shop.Theme.Actions'}

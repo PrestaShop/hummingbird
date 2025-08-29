@@ -2,9 +2,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div class="product-images-modal modal fade js-product-images-modal" id="product-modal">
+<div class="product-images-modal modal fade js-product-images-modal" id="product-modal" aria-labelledby="product-modal-images-title">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
+      <div class="modal-header">
+        <p class="h2 modal-title visually-hidden" id="product-modal-images-title">{$product.name} {l s='images' d='Shop.Theme.Catalog'}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
       <div class="product-images-modal__body modal-body">
         <div
           id="product-images-modal-{$product.id}"
@@ -13,12 +17,12 @@
         >
           <div class="carousel-inner">
             {if $product.images|@count > 1}
-              <button class="carousel-control-prev" type="button" data-bs-target="#product-images-modal-{$product.id}" data-bs-slide="prev">
+              <button class="carousel-control-prev outline outline--onfocus" type="button" data-bs-target="#product-images-modal-{$product.id}" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
 
-              <button class="carousel-control-next" type="button" data-bs-target="#product-images-modal-{$product.id}" data-bs-slide="next">
+              <button class="carousel-control-next outline outline--onfocus" type="button" data-bs-target="#product-images-modal-{$product.id}" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>

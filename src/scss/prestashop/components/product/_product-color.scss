@@ -1,7 +1,10 @@
-$component-name: color;
+$component-name: (
+  color: color,
+  input-color: input-color,
+);
 
 %color-variant {
-  .#{$component-name} {
+  .#{map-get($component-name, color)} {
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
@@ -9,16 +12,42 @@ $component-name: color;
     background-size: contain;
     border: 1px solid var(--bs-border-color);
     border-radius: var(--bs-border-radius-sm);
+    outline: 0.125rem solid transparent;
+    outline-offset: -0.125rem;
     transition: var(--bs-transition-default);
 
-    &.#{$component-name}-sm {
+    &-sm {
       width: 1rem;
       height: 1rem;
     }
 
     &.active,
+    &:focus-visible,
     &:hover {
-      border: 2px solid var(--bs-link-hover-color);
+      outline: 0.125rem solid var(--bs-link-hover-color);
+    }
+  }
+}
+
+.#{map-get($component-name, input-color)} {
+  &__input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+
+    &:focus-visible {
+      + .#{map-get($component-name, input-color)}__label {
+        .#{map-get($component-name, color)} {
+          outline: 0.125rem solid var(--bs-link-hover-color);
+        }
+      }
+    }
+
+    &:checked:focus-visible + .#{map-get($component-name, input-color)}__label {
+      border-radius: var(--bs-border-radius-sm);
+      outline: 0;
+      box-shadow: var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur, 0)
+        var(--bs-focus-ring-width) var(--bs-focus-ring-color);
     }
   }
 }

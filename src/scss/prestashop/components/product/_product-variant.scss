@@ -1,6 +1,19 @@
 $component-name: product-variant;
 
 .#{$component-name} {
+  &__label {
+    margin-block-end: 0.5rem;
+  }
+
+  &__legend,
+  &__selected {
+    display: inline-block;
+    width: auto;
+    margin-block-end: 0;
+    font-size: var(--bs-body-font-size);
+    line-height: var(--bs-body-line-height);
+  }
+
   // Radios
   &__radios {
     display: flex;

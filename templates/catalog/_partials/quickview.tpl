@@ -2,10 +2,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview in" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview in" tabindex="-1" role="dialog" aria-hidden="true" data-id-product="{$product.id}" data-ps-ref="quickview-modal" aria-labelledby="quickview-modal-{$product.id}-title">
   <div class="quickview__dialog modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="quickview__content modal-content">
       <div class="quickview__header modal-header">
+        <p class="h2 modal-title visually-hidden" id="quickview-modal-{$product.id}-title">{$product.name} {l s='quick view' d='Shop.Theme.Catalog'}</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
       </div>
 

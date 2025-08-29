@@ -1,0 +1,10 @@
+$component-name: back-to-top-link;
+
+.#{$component-name} {
+  &:focus {
+    position: fixed;
+    right: 0.375rem;
+    bottom: 0.375rem;
+    z-index: 1090;
+  }
+}

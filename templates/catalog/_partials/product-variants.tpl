@@ -48,14 +48,14 @@
                     class="input-color__label{if $group_attribute.texture} input-color__label--texture{/if}{if $group_attribute.selected} input-color__label--active{/if}"
                     for="{$optionId}"
                   >
-                    <span
+                    <span id="{$labelId}"
                       {if $group_attribute.texture}
                         class="color texture {if $group_attribute.selected}active{/if}" style="background-image: url({$group_attribute.texture})"
                       {elseif $group_attribute.html_color_code}
                         class="color {if $group_attribute.selected}active{/if}" style="background-color: {$group_attribute.html_color_code}"
                       {/if}
                     >
-                      <span id="{$labelId}" class="attribute-name visually-hidden">{$group_attribute.name} - {$product.name}</span>
+                      <span class="visually-hidden">{$group.group_name} - {$group_attribute.name}</span>
                     </span>
                   </label>
                 </div>
@@ -78,7 +78,7 @@
                     {if $group_attribute.selected} checked="checked" aria-checked="true"{/if}
                   >
                   <label for="{$optionId}">
-                    <span class="form-check-label" id="{$labelId}">{$group_attribute.name}<span class="attribute-name visually-hidden"> - {$product.name}</span></span>
+                    <span class="form-check-label" id="{$labelId}"><span class="visually-hidden">{$group.group_name} - </span>{$group_attribute.name}</span>
                   </label>
                 </div>
               {/foreach}

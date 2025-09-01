@@ -69,7 +69,7 @@
       {/if}
 
       {block name='product_images_modal_button'}
-        <button class="product__zoom btn btn-tertiary outline outline--rounded btn-square-icon" data-bs-toggle="modal" data-bs-target="#product-modal" aria-label="{l s='Open zoomed product image gallery' d='Shop.Theme.Global'}">
+        <button class="product__zoom btn btn-tertiary outline outline--rounded btn-square-icon" data-bs-toggle="modal" data-bs-target="#product-modal" aria-label="{l s='Open zoomed product image gallery' d='Shop.Theme.Global'}" title="{l s='Open zoomed product image gallery' d='Shop.Theme.Global'}">
           <i class="material-icons">&#xE8B6;</i>
         </button>
       {/block}

@@ -10,11 +10,11 @@
       <form method="post" action="{$product.url}" enctype="multipart/form-data" class="mb-0">
         {foreach from=$customizations.fields item="field"}
           <div class="product-customization__item">
-            <p class="product-customization__label form-label {if $field.required}required{/if}">{$field.label}</p>
+            <label class="product-customization__label form-label {if $field.required}required{/if}" for="field-{$field.id_customization_field}">{$field.label}</label>
 
             <div class="product-customization__field">
               {if $field.type === 'text'}
-                <textarea placeholder="{l s='Your message here' d='Shop.Forms.Help'}" class="form-control product-message" maxlength="250" {if $field.required} required {/if} name="{$field.input_name}"></textarea>
+                <textarea placeholder="{l s='Your message here' d='Shop.Forms.Help'}" class="form-control product-message" maxlength="250" {if $field.required} required {/if} name="{$field.input_name}" id="field-{$field.id_customization_field}"></textarea>
 
                 {if $field.text !== ''}
                   <div class="product-customization__message">
@@ -22,13 +22,13 @@
                   </div>
                 {/if}
               {elseif $field.type === 'image'}
-                <input class="form-control file-input js-file-input" {if $field.required} required {/if} type="file" name="{$field.input_name}">
+                <input class="form-control file-input js-file-input" {if $field.required} required {/if} type="file" name="{$field.input_name}" id="field-{$field.id_customization_field}">
 
                 {if $field.is_customized}
                   <div class="product-customization__image-wrapper">
                     <img src="{$field.image.small.url}" class="product-customization__image img-fluid" loading="lazy">
 
-                    <a class="product-customization__image-remove link-danger" href="{$field.remove_image_url}" rel="nofollow">
+                    <a class="product-customization__image-remove link-danger" href="{$field.remove_image_url}" rel="nofollow" role="button">
                       {l s='Remove Image' d='Shop.Theme.Actions'}
                     </a>
                   </div>

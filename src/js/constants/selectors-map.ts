@@ -182,6 +182,7 @@ const selectorsMap = {
     productImagesModal: '[data-ps-ref="product-images-modal"]',
     productImagesModalCarousel: '[data-ps-ref="product-images-modal-carousel"]',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
+    productAvailability: '[data-ps-ref="product-availability"]',
   },
   order: {
     returnForm: '.js-order-return-form',

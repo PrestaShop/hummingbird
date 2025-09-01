@@ -3,7 +3,6 @@
  * file that was distributed with this source code.
  */
 
-import {Carousel} from 'bootstrap';
 import SelectorsMap from './constants/selectors-map';
 
 type ProductSlideEvent = Event & {to: number};
@@ -71,47 +70,4 @@ export default () => {
 
   // Call the function to start listening for quantity changes
   detectQuantityChange();
-
-  // Product images sync on open/close modal
-  document.addEventListener('show.bs.modal', (event) => {
-    const modal = event.target as HTMLElement;
-
-    if (!modal.matches(SelectorsMap.product.productImagesModal)) return;
-
-    const modalCarouselElement = modal.querySelector(SelectorsMap.product.productImagesModalCarousel);
-    const mainCarouselElement = document.querySelector(SelectorsMap.product.carousel);
-
-    if (!modalCarouselElement || !mainCarouselElement) return;
-
-    const modalCarousel = Carousel.getOrCreateInstance(modalCarouselElement as HTMLElement);
-    const activeIndex = getActiveSlideIndex(mainCarouselElement as HTMLElement);
-
-    if (activeIndex !== -1) {
-      modalCarousel.to(activeIndex);
-    }
-  });
-
-  document.addEventListener('hide.bs.modal', (event) => {
-    const modal = event.target as HTMLElement;
-
-    if (!modal.matches(SelectorsMap.product.productImagesModal)) return;
-
-    const modalCarouselElement = modal.querySelector(SelectorsMap.product.productImagesModalCarousel);
-    const mainCarouselElement = document.querySelector(SelectorsMap.product.carousel);
-
-    if (!modalCarouselElement || !mainCarouselElement) return;
-
-    const mainCarousel = Carousel.getOrCreateInstance(mainCarouselElement as HTMLElement);
-    const activeIndex = getActiveSlideIndex(modalCarouselElement as HTMLElement);
-
-    if (activeIndex !== -1) {
-      mainCarousel.to(activeIndex);
-    }
-  });
-
-  const getActiveSlideIndex = (carouselEl: HTMLElement): number => {
-    const items = carouselEl.querySelectorAll('.carousel-item');
-
-    return Array.from(items).findIndex((item) => item.classList.contains('active'));
-  };
 };

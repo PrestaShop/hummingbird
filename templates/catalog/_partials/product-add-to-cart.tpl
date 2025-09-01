@@ -27,15 +27,15 @@
           {/if}
 
           {** And render the availability message with icon *}
-          <div class="product__availability-status {$availability_class}" role="alert" aria-live="polite">
+          <div class="product__availability-status {$availability_class}" aria-live="off" data-ps-ref="product-availability">
             <i class="product__availability-icon material-icons rtl-no-flip">&#x{$availability_icon};</i>
 
             <div class="product__availability-messages">
+              <span class="visually-hidden">{l s='Product availability:' d='Shop.Theme.Global'}</span>
               <span>{$product.availability_message}</span>
 
               {if !empty($product.availability_submessage)}
-                <br>
-                <small>{$product.availability_submessage}</small>
+                <small class="d-block">{$product.availability_submessage}</small>
               {/if}
             </div>
           </div>

@@ -79,9 +79,12 @@
             data-button-action="add-to-cart"
             type="submit"
             {if !$product.add_to_cart_url}
+              aria-disabled="true"
               disabled
             {/if}
             data-ps-ref="add-to-cart"
+            aria-label="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
+            title="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
           >
             <i class="material-icons" aria-hidden="true">&#xE547;</i>
             {l s='Add to cart' d='Shop.Theme.Actions'}

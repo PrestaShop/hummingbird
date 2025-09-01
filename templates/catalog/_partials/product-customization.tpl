@@ -29,7 +29,7 @@
                     <img src="{$field.image.small.url}" class="product-customization__image img-fluid" loading="lazy">
 
                     <a class="product-customization__image-remove link-danger" href="{$field.remove_image_url}" rel="nofollow" role="button">
-                      {l s='Remove Image' d='Shop.Theme.Actions'}
+                      {l s='Remove image' d='Shop.Theme.Actions'}
                     </a>
                   </div>
                 {/if}
@@ -51,7 +51,7 @@
         {/foreach}
 
         <div class="product-customization__action">
-          <button class="btn btn-primary" type="submit" name="submitCustomizedData">{l s='Save Customization' d='Shop.Theme.Actions'}</button>
+          <button class="btn btn-primary" type="submit" name="submitCustomizedData">{l s='Save customization' d='Shop.Theme.Actions'}</button>
         </div>
       </form>
     {/block}

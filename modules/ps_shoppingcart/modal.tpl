@@ -12,6 +12,9 @@
           {l s='Added to your cart' d='Shop.Theme.Checkout'}
         </p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
+
+        {* For screen readers *}
+        <p class="visually-hidden" aria-live="polite" role="status" data-ps-target="blockcart-modal-status" data-ps-data="{l s='%product_name% has been added to your cart.' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Checkout'}"></p>
       </div>
 
       <div class="modal-body">

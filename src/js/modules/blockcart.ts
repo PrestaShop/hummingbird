@@ -50,6 +50,12 @@ export default function initBlockCart() {
     modalElement.addEventListener('shown.bs.modal', () => {
       document.addEventListener('keydown', onKeyDown, {capture: true});
       document.addEventListener('pointerdown', onPointerDown, {capture: true});
+
+      const modalStatus = modalElement.querySelector<HTMLElement>(selectorsMap.blockcartModalStatus);
+
+      if (modalStatus) {
+        modalStatus.textContent = modalStatus.getAttribute('data-ps-data') ?? '';
+      }
     });
 
     modalElement.addEventListener('hidden.bs.modal', () => {

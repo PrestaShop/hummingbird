@@ -17,12 +17,12 @@
         >
           <div class="carousel-inner">
             {if $product.images|@count > 1}
-              <button class="carousel-control-prev outline outline--onfocus" type="button" data-bs-target="#product-images-modal-{$product.id}" data-bs-slide="prev">
+              <button class="carousel-control-prev outline outline--rounded" type="button" data-bs-target="#product-images-modal-{$product.id}" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
 
-              <button class="carousel-control-next outline outline--onfocus" type="button" data-bs-target="#product-images-modal-{$product.id}" data-bs-slide="next">
+              <button class="carousel-control-next outline outline--rounded" type="button" data-bs-target="#product-images-modal-{$product.id}" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>

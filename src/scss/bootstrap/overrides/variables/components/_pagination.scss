@@ -1,19 +1,14 @@
 $pagination-padding-y: 0.5rem;
 $pagination-padding-x: 0.625rem;
 
-$pagination-color: var(--bs-secondary-color);
+$pagination-color: var(--bs-link-color);
 $pagination-bg: transparent;
-$pagination-border-radius: 0;
 $pagination-border-width: 0;
 $pagination-margin-start: 0;
 $pagination-border-color: transparent;
 
-$pagination-focus-color: var(--bs-primary);
 $pagination-focus-bg: transparent;
-$pagination-focus-box-shadow: none;
-$pagination-focus-outline: 0;
 
-$pagination-hover-color: var(--bs-primary);
 $pagination-hover-bg: transparent;
 $pagination-hover-border-color: transparent;
 
@@ -21,9 +16,5 @@ $pagination-active-color: var(--bs-primary);
 $pagination-active-bg: transparent;
 $pagination-active-border-color: transparent;
 
-$pagination-disabled-color: var(--bs-tertiary-color);
 $pagination-disabled-bg: transparent;
 $pagination-disabled-border-color: transparent;
-
-$pagination-border-radius-sm: 0;
-$pagination-border-radius-lg: 0;

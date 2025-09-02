@@ -25,7 +25,7 @@
         <div class="{$componentName}__bottom">
           <div class="{$componentName}__infos">
             {block name='product_name'}
-              <a class="{$componentName}__title" href="{$product.url}" aria-label="{l s='View product' d='Shop.Theme.Catalog'} {$product.name}">{$product.name}</a>
+              <a class="{$componentName}__title" href="{$product.url}" aria-label="{l s='View product %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Catalog'}">{$product.name}</a>
             {/block}
 
             {block name='product_variants'}
@@ -102,7 +102,7 @@
                 </button>
               </form>
             {else}
-              <a href="{$product.url}" class="product-miniature__details btn btn-outline-primary">
+              <a href="{$product.url}" class="product-miniature__details btn btn-outline-primary" aria-label="{l s='View product %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Catalog'}">
                 {l s='See details' d='Shop.Theme.Actions'}
               </a>
             {/if}

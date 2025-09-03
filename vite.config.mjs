@@ -113,13 +113,20 @@ export default defineConfig(({ command, mode }) => {
       sourcemap: isDev,
     },
 
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern',
+        }
+      }
+    },
+
     resolve: {
       alias: {
         '@js': resolve(__dirname, 'src/js'),
         '@services': resolve(__dirname, 'src/js/services'),
         '@constants': resolve(__dirname, 'src/js/constants'),
         '@helpers': resolve(__dirname, 'src/js/helpers'),
-        '~': resolve(__dirname, 'node_modules'),
       },
     },
 

@@ -1,32 +1,32 @@
 // Bootstrap required files
-@import "~bootstrap/scss/functions";
+@import "bootstrap/scss/functions";
 
 // Bootstrap variables overrides
 @import "../../bootstrap/overrides/variables/variables";
 @import "../../bootstrap/overrides/variables/variables-dark";
 
 // Bootstrap core imports
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/variables-dark";
-@import "~bootstrap/scss/maps";
-@import "~bootstrap/scss/mixins";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
 @import "../../bootstrap/overrides/mixins";
 
 // Bootstrap CSS variables
-@import "~bootstrap/scss/root";
+@import "bootstrap/scss/root";
 
 // Bootstrap custom CSS variables
 @import "../../bootstrap/root";
 
 // Bootstrap base styles
 @layer bs-base {
-  @import "~bootstrap/scss/reboot";
-  @import "~bootstrap/scss/type";
-  @import "~bootstrap/scss/images";
-  @import "~bootstrap/scss/containers";
-  @import "~bootstrap/scss/grid";
-  @import "~bootstrap/scss/helpers";
-  @import "~bootstrap/scss/transitions";
+  @import "bootstrap/scss/reboot";
+  @import "bootstrap/scss/type";
+  @import "bootstrap/scss/images";
+  @import "bootstrap/scss/containers";
+  @import "bootstrap/scss/grid";
+  @import "bootstrap/scss/helpers";
+  @import "bootstrap/scss/transitions";
 }
 
 // Bootstrap components variables overrides
@@ -34,30 +34,30 @@
 
 // Bootstrap components
 @layer bs-components {
-  @import "~bootstrap/scss/accordion";
-  @import "~bootstrap/scss/alert";
-  @import "~bootstrap/scss/badge";
-  @import "~bootstrap/scss/breadcrumb";
-  @import "~bootstrap/scss/buttons";
-  @import "~bootstrap/scss/button-group";
-  @import "~bootstrap/scss/card";
-  @import "~bootstrap/scss/carousel";
-  @import "~bootstrap/scss/close";
-  @import "~bootstrap/scss/dropdown";
-  @import "~bootstrap/scss/forms";
-  @import "~bootstrap/scss/list-group";
-  @import "~bootstrap/scss/modal";
-  @import "~bootstrap/scss/navbar";
-  @import "~bootstrap/scss/nav";
-  @import "~bootstrap/scss/offcanvas";
-  @import "~bootstrap/scss/pagination";
-  @import "~bootstrap/scss/placeholders";
-  @import "~bootstrap/scss/popover";
-  @import "~bootstrap/scss/progress";
-  @import "~bootstrap/scss/spinners";
-  @import "~bootstrap/scss/tables";
-  @import "~bootstrap/scss/toasts";
-  @import "~bootstrap/scss/tooltip";
+  @import "bootstrap/scss/accordion";
+  @import "bootstrap/scss/alert";
+  @import "bootstrap/scss/badge";
+  @import "bootstrap/scss/breadcrumb";
+  @import "bootstrap/scss/buttons";
+  @import "bootstrap/scss/button-group";
+  @import "bootstrap/scss/card";
+  @import "bootstrap/scss/carousel";
+  @import "bootstrap/scss/close";
+  @import "bootstrap/scss/dropdown";
+  @import "bootstrap/scss/forms";
+  @import "bootstrap/scss/list-group";
+  @import "bootstrap/scss/modal";
+  @import "bootstrap/scss/navbar";
+  @import "bootstrap/scss/nav";
+  @import "bootstrap/scss/offcanvas";
+  @import "bootstrap/scss/pagination";
+  @import "bootstrap/scss/placeholders";
+  @import "bootstrap/scss/popover";
+  @import "bootstrap/scss/progress";
+  @import "bootstrap/scss/spinners";
+  @import "bootstrap/scss/tables";
+  @import "bootstrap/scss/toasts";
+  @import "bootstrap/scss/tooltip";
 }
 
 // Bootstrap override styles components
@@ -67,6 +67,6 @@
 
 // Bootstrap utilities
 @layer utilities {
-  @import "~bootstrap/scss/utilities";
-  @import "~bootstrap/scss/utilities/api";
+  @import "bootstrap/scss/utilities";
+  @import "bootstrap/scss/utilities/api";
 }

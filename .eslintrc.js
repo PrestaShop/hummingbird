@@ -52,7 +52,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['tests/**/*.js', '.webpack/**/*.js'],
+        devDependencies: ['tests/**/*.js', 'vite.config.mjs'],
       },
     ],
     'max-len': ['error', {code: 120}],
@@ -73,7 +73,11 @@ module.exports = {
     '@typescript-eslint/no-shadow': ['error'],
   },
   settings: {
-    'import/resolver': 'webpack',
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts'],
+      },
+    },
   },
   env: {
     'jest/globals': true,

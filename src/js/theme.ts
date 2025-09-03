@@ -2,6 +2,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+import $ from 'jquery';
+
+// Import theme stylesheet
+import '../scss/theme.scss';
+
 import themeSelectors from './constants/selectors-map';
 import EVENTS from './constants/events-map';
 import initEmitter from './prestashop';
@@ -30,6 +35,10 @@ import initFormValidation from './form-validation';
 import initCategoryTree from './modules/ps_categorytree';
 import initScrollPaddingTop from './helpers/scrollPadding';
 import initProductAccessibility from './accessibility/product';
+
+// Expose jQuery globally (equivalent to expose-loader)
+(window as Window).jQuery = $;
+(window as Window).$ = $;
 
 initEmitter();
 

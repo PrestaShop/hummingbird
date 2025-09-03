@@ -56,14 +56,15 @@ export default () => {
   const focusMap = new Map<'quickview' | 'main', { id: string }>();
 
   // Save the element before the update
-  prestashop.on(events.updateProduct, ({ event }: { event: Event }) => {
+  prestashop.on(events.updateProduct, ({event}: { event: Event }) => {
     const target = event?.target as HTMLElement;
+
     if (!target || !target.id) return;
 
     const isInQuickView = !!target.closest(SelectorsMap.quickviewModal);
     const context: 'quickview' | 'main' = isInQuickView ? 'quickview' : 'main';
 
-    focusMap.set(context, { id: target.id });
+    focusMap.set(context, {id: target.id});
   });
 
   // Restore focus after update
@@ -76,9 +77,9 @@ export default () => {
       } else {
         container = document.querySelector(SelectorsMap.product.container);
       }
-    
+
       if (!container) return;
-    
+
       const elementToFocus = container.querySelector<HTMLElement>(`#${focusData.id}`);
 
       if (elementToFocus) {
@@ -87,7 +88,7 @@ export default () => {
         // Emit event to when the focus is restored
         prestashop.emit(events.combinationFocusRestored, {
           context,
-          elementId: focusData.id
+          elementId: focusData.id,
         });
       }
 
@@ -96,7 +97,7 @@ export default () => {
   });
 
   // Product availability messages announcement
-  prestashop.on(events.combinationFocusRestored, ({ context }: { context: 'quickview' | 'main' }) => {
+  prestashop.on(events.combinationFocusRestored, ({context}: { context: 'quickview' | 'main' }) => {
     let container: HTMLElement | null = null;
 
     // Get the container of the context

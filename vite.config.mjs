@@ -9,10 +9,9 @@ import fs from 'fs';
 import cssjanus from 'cssjanus';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
-// Load dotenv and autoprefixer upfront
+// Load dotenv and postcss plugins
 const dotenv = (await import('dotenv')).default;
 const autoprefixer = (await import('autoprefixer')).default;
-const postcssImport = (await import('postcss-import')).default;
 
 // Load environment variables
 const envFilePath = './.env';
@@ -57,12 +56,12 @@ function fontPreloadPlugin() {
           }
         }
       }
-      
+
       // Generate preload HTML
-      const preloadLinks = fontFiles.map(file => 
+      const preloadLinks = fontFiles.map(file =>
         `<link rel="preload" href="../fonts/${file}" as="font" type="font/woff2" crossorigin>`
       ).join('\n');
-      
+
       this.emitFile({
         type: 'asset',
         fileName: 'preload.html',
@@ -74,11 +73,11 @@ function fontPreloadPlugin() {
 
 export default defineConfig(({ command, mode }) => {
   const isDev = mode === 'development';
-  
+
   return {
     root: resolve(__dirname, 'src'),
     base: isDev ? publicPath : './',
-    
+
     build: {
       outDir: resolve(__dirname, 'assets'),
       emptyOutDir: true,
@@ -113,7 +112,7 @@ export default defineConfig(({ command, mode }) => {
       manifest: false,
       sourcemap: isDev,
     },
-    
+
     resolve: {
       alias: {
         '@js': resolve(__dirname, 'src/js'),
@@ -123,40 +122,11 @@ export default defineConfig(({ command, mode }) => {
         '~': resolve(__dirname, 'node_modules'),
       },
     },
-    
-    css: {
-      preprocessorOptions: {
-        scss: {
-          includePaths: [resolve(__dirname, 'src/scss'), resolve(__dirname, 'node_modules')],
-          importer: [
-            (url) => {
-              if (url.startsWith('~')) {
-                return { file: resolve(__dirname, 'node_modules', url.slice(1)) };
-              }
-              return null;
-            }
-          ],
-        },
-      },
-      postcss: {
-        plugins: [
-          postcssImport({
-            resolve: (id, basedir, importOptions) => {
-              if (id.startsWith('~')) {
-                return resolve(__dirname, 'node_modules', id.slice(1));
-              }
-              return null;
-            },
-          }),
-          autoprefixer,
-        ],
-      },
-    },
-    
+
     define: {
       global: 'globalThis',
     },
-    
+
     server: {
       host: serverAddress,
       port: parseInt(port),
@@ -172,7 +142,7 @@ export default defineConfig(({ command, mode }) => {
         ignored: ['**/node_modules/**', '**/assets/**']
       }
     },
-    
+
     plugins: [
       rtlTransformPlugin(),
       fontPreloadPlugin(),
@@ -186,7 +156,7 @@ export default defineConfig(({ command, mode }) => {
         ],
       }),
     ],
-    
+
     // Expose jQuery globally (similar to expose-loader)
     optimizeDeps: {
       include: ['jquery'],

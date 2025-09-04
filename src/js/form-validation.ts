@@ -9,14 +9,18 @@ const initFormValidation = (selector?: string) => {
   const formValidationList = document.querySelectorAll<HTMLFormElement>(selector ?? formValidationMap.default);
 
   formValidationList.forEach((formElement: HTMLFormElement) => {
-    formElement.addEventListener('submit', (event) => {
-      if (!formElement.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
+    const submitButton = formElement.querySelector<HTMLButtonElement>(formValidationMap.submitButton);
 
-      formElement.classList.add('was-validated');
-    }, false);
+    if (submitButton) {
+      submitButton.addEventListener('click', (event) => {
+        formElement.classList.add('was-validated');
+
+        if (!formElement.checkValidity()) {
+          event.preventDefault();
+          formElement.reportValidity();
+        }
+      });
+    }
   });
 };
 

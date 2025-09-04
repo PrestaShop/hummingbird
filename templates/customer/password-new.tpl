@@ -33,7 +33,7 @@
       <div class="mb-3">
         <label class="form-label">{l s='New password' d='Shop.Forms.Labels'}</label>
         <div class="input-group password-field">
-          <input class="form-control" id="field-passwd" type="password" data-validate="isPasswd" name="passwd" value="" autocomplete="new-password">
+          <input class="form-control" id="field-password" type="password" data-validate="isPasswd" name="passwd" value="" autocomplete="new-password">
           <button
             class="btn btn-primary"
             type="button"
@@ -41,7 +41,7 @@
             data-text-show="{l s='Show Password' d='Shop.Theme.Actions'}"
             data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
             aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
-            aria-controls="field-passwd"
+            aria-controls="field-password"
             aria-pressed="false"
           >
             <i class="material-icons">&#xE8F4;</i>

@@ -7,7 +7,7 @@
     {include file='_partials/form-errors.tpl' errors=$errors['']}
   {/block}
 
-<form action="{block name='customer_form_actionurl'}{$action}{/block}" id="customer-form" class="form-validation js-customer-form" method="post" novalidate>
+<form action="{block name='customer_form_actionurl'}{$action}{/block}" id="customer-form" class="form-validation js-customer-form" method="post" data-ps-action="form-validation">
   <section>
     {block "form_fields"}
       {foreach from=$formFields item="field"}
@@ -30,7 +30,7 @@
 
     <footer class="buttons-wrapper buttons-wrapper--end">
       {block "form_buttons"}
-        <button class="btn btn-primary form-control-submit" data-link-action="save-customer" type="submit">
+        <button class="btn btn-primary form-control-submit" data-link-action="save-customer" type="submit" data-ps-action="form-validation-submit">
         {if isset($mode) && $mode === "register"}
           {l s='Create account' d='Shop.Theme.Actions'}
         {else}

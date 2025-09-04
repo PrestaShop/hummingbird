@@ -12,8 +12,8 @@
 
 {block name='page_content'}
   {if count($successes)}
-    <div class="alert alert-success" role="alert">
-      <ul>
+    <div class="alert alert-success" role="alert" tabindex="0">
+      <ul class="mb-0">
         {foreach $successes as $success}
           <li>{$success}</li>
         {/foreach}

@@ -7,7 +7,7 @@
     {include file='_partials/form-errors.tpl' errors=$errors['']}
   {/block}
 
-  <form id="login-form" class="form-validation" action="{block name='login_form_actionurl'}{$action}{/block}" method="post" novalidate>
+  <form id="login-form" action="{block name='login_form_actionurl'}{$action}{/block}" method="post" data-ps-action="form-validation">
     {block name='login_form_fields'}
       {foreach from=$formFields item="field"}
         {block name='form_field'}
@@ -25,7 +25,7 @@
         </a>
 
         {block name='form_buttons'}
-          <button id="submit-login" class="btn btn-primary" data-link-action="sign-in" type="submit">
+          <button id="submit-login" class="btn btn-primary" data-link-action="sign-in" type="submit" data-ps-action="form-validation-submit">
             {l s='Sign in' d='Shop.Theme.Actions'}
           </button>
         {/block}

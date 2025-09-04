@@ -132,15 +132,11 @@
             type="password"
             {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
             value=""
-            {if isset($configuration.password_policy.minimum_length)}
-              minlength="{$configuration.password_policy.minimum_length}"
-              data-minlength="{$configuration.password_policy.minimum_length}"
-            {/if}
-            {if isset($configuration.password_policy.maximum_length)}
-              maxlength="{$configuration.password_policy.maximum_length}"
-              data-maxlength="{$configuration.password_policy.maximum_length}"
-            {/if}
-            {if isset($configuration.password_policy.minimum_score)}data-minscore="{$configuration.password_policy.minimum_score}"{/if}
+            minlength="{$configuration.password_policy.minimum_length|default:8}"
+            maxlength="{$configuration.password_policy.maximum_length|default:20}"
+            data-minlength="{$configuration.password_policy.minimum_length|default:8}"
+            data-maxlength="{$configuration.password_policy.maximum_length|default:20}"
+            data-minscore="{$configuration.password_policy.minimum_score|default:3}"
             data-bs-placement="top"
             data-bs-trigger="manual"
             {if $field.required}required{/if}

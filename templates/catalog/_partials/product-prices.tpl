@@ -10,7 +10,10 @@
           <div class="product__discount-price product__prices-inline product__prices-inline--small-gap">
             {hook h='displayProductPriceBlock' product=$product type="old_price"}
 
-            <span class="product__regular-price">{$product.regular_price}</span>
+            <span class="product__regular-price">
+              <span class="visually-hidden">{l s='Regular price: ' d='Shop.Theme.Catalog'}</span>
+              {$product.regular_price}
+            </span>
 
             {if $product.discount_type === 'percentage'}
               <span class="product__discount-percentage text-primary-emphasis">
@@ -25,19 +28,20 @@
         {/if}
         
         <div class="product__prices-inline product__prices-inline--small-gap">
-          <span class="product__price">
+          <div class="product__price">
             {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='product_sheet'}{/capture}
             {if !empty($smarty.capture.custom_price)}
               {$smarty.capture.custom_price nofilter}
             {else}
+              <span class="visually-hidden">{l s='Price: ' d='Shop.Theme.Catalog'}</span>
               {$product.price}
             {/if}
-          </span>
+          </div>
 
           {block name='product_unit_price'}
             {if $displayUnitPrice}
               <span class="product__unit-price">
-                {l s='(%unit_price%)' d='Shop.Theme.Catalog' sprintf=['%unit_price%' => $product.unit_price_full]}
+                {l s='(%unit_price%)' sprintf=['%unit_price%' => $product.unit_price_full] d='Shop.Theme.Catalog'}
               </span>
             {/if}
           {/block}

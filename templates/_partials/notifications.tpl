@@ -44,7 +44,7 @@
 
     {if $notifications.info}
       {block name='notifications_info'}
-        <article class="alert alert-info" role="alert" data-alert="info">
+        <article class="alert alert-info" role="status" data-alert="info">
           <ul class="mb-0">
             {foreach $notifications.info as $notif}
               <li>{$notif nofilter}</li>

@@ -4,8 +4,11 @@
  *}
 {block name='pack_miniature_item'}
   <article class="product-pack__item">
-    <a href="{$product.url}" title="{$product.name}" class="product-pack__link">
-      <div class="product-pack__image-wrapper">
+    <a href="{$product.url}"
+      class="product-pack__link"
+      aria-labelledby="pack-product-{$product.id_product}"
+    >
+      <span class="product-pack__image-wrapper">
         {if !empty($product.default_image)}
           <picture>
             {if isset($product.default_image.bySize.default_xs.sources.avif)}
@@ -69,21 +72,25 @@
             >
           </picture>
         {/if}
-      </div>
+      </span>
 
-      <p class="product-pack__name">
+      <span class="product-pack__name">
         {$product.name}
-      </p>
+      </span>
 
       {if $showPackProductsPrice}
-        <p class="product-pack__price">
+        <span class="product-pack__price">
           {$product.price}
-        </p>
+        </span>
       {/if}
 
-      <p class="product-pack__quantity">
+      <span class="product-pack__quantity">
         x{$product.pack_quantity}
-      </p>
+      </span>
+
+      <span id="pack-product-{$product.id_product}" class="visually-hidden">
+        {l s='View product %product_name%, part of the pack.' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Catalog'} {l s='Quantity inside the pack: %quantity%.' sprintf=['%quantity%' => $product.pack_quantity] d='Shop.Theme.Catalog'} {if $showPackProductsPrice}{l s='Price: %price%.' sprintf=['%price%' => $product.price] d='Shop.Theme.Catalog'}{/if}
+      </span>
     </a>
   </article>
 {/block}

@@ -8,29 +8,13 @@
     <div
       id="product-images-{$product.id}"
       class="product__carousel carousel slide js-product-carousel"
-      data-bs-ride="carousel"
     >
+      {include file='catalog/_partials/product-flags.tpl'}
+
       <div class="carousel-inner">
-        {include file='catalog/_partials/product-flags.tpl'}
-
-        {if $product.images|@count > 1}
-          <button class="carousel-control-prev outline outline--rounded" type="button" data-bs-target="#product-images-{$product.id}" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">{l s='Previous image' d='Shop.Theme.Global'}</span>
-          </button>
-
-          <button class="carousel-control-next outline outline--rounded" type="button" data-bs-target="#product-images-{$product.id}" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">{l s='Next image' d='Shop.Theme.Global'}</span>
-          </button>
-        {/if}
-
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
-            <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}"
-              data-bs-target="#product-images-modal-{$product.id}"
-              data-bs-slide-to="{$key}"
-            >
+            <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
               <picture>
                 {if isset($image.bySize.default_xl.sources.avif)}
                   <source 
@@ -67,28 +51,42 @@
                   data-full-size-image-url="{$image.bySize.home_default.url}"
                 >
               </picture>
-
-              <div class="product__zoom btn btn-tertiary btn-square-icon" data-bs-toggle="modal" data-bs-target="#product-modal">
-                <i class="material-icons">&#xE8B6;</i>
-              </div>
             </div>
           {/foreach}
         {/block}
       </div>
+
+      {if $product.images|@count > 1}
+        <button class="carousel-control-prev outline outline--rounded" type="button" data-bs-target="#product-images-{$product.id}" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">{l s='Previous image' d='Shop.Theme.Global'}</span>
+        </button>
+
+        <button class="carousel-control-next outline outline--rounded" type="button" data-bs-target="#product-images-{$product.id}" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">{l s='Next image' d='Shop.Theme.Global'}</span>
+        </button>
+      {/if}
+
+      {block name='product_images_modal_button'}
+        <button class="product__zoom btn btn-tertiary outline outline--rounded btn-square-icon" data-bs-toggle="modal" data-bs-target="#product-modal" aria-label="{l s='Open zoomed product image gallery' d='Shop.Theme.Global'}" title="{l s='Open zoomed product image gallery' d='Shop.Theme.Global'}">
+          <i class="material-icons">&#xE8B6;</i>
+        </button>
+      {/block}
     </div>
 
     {block name='product_images'}
       <div class="product__thumbnails">
         <ul class="product__thumbnails-list">
-          {foreach from=$product.images item=image key=key}
-            <li
-              class="product__thumbnail js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
+          {foreach from=$product.images item=image key=key name=productThumbnails}
+            <button
+              class="product__thumbnail focus-ring js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
               data-bs-target="#product-images-{$product.id}"
               data-bs-slide-to="{$key}"
               {if $image.id_image == $product.default_image.id_image}
                 aria-current="true"
               {/if}
-              aria-label="{l s='Product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key]}"
+              aria-label="{l s='Slide to product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key + 1]}"
             >
               <picture>
                 {if isset($image.bySize.default_xs.sources.avif)}
@@ -110,7 +108,7 @@
                 {/if}
 
                 <img
-                  class="product__thumbnail-image img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
+                  class="product__thumbnail-image outline outline--rounded img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
                   srcset="
                     {$image.bySize.default_xs.url},
                     {$image.bySize.default_xl.url} 2x"
@@ -121,7 +119,7 @@
                   title="{$image.legend}"
                 >
               </picture>
-            </li>
+            </button>
           {/foreach}
         </ul>
       </div>
@@ -165,8 +163,8 @@
       >
     </picture>
   {/if}
-</div>
 
-{block name='product_images_modal'}
-  {include file='catalog/_partials/product-images-modal.tpl'}
-{/block}
+  {block name='product_images_modal'}
+    {include file='catalog/_partials/product-images-modal.tpl'}
+  {/block}
+</div>

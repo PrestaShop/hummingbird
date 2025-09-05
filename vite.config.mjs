@@ -71,6 +71,28 @@ function fontPreloadPlugin() {
   };
 }
 
+// Plugin to wrap theme.js in IIFE with global Theme variable
+function themeGlobalPlugin() {
+  return {
+    name: 'theme-global',
+    generateBundle(options, bundle) {
+      const themeFile = bundle['js/theme.js'];
+      if (themeFile && themeFile.type === 'chunk') {
+        // Wrap in IIFE with global Theme variable
+        const wrappedCode = `var Theme = (function() {
+${themeFile.code}
+return {
+  components: typeof components !== 'undefined' ? components : {},
+  selectors: typeof selectors !== 'undefined' ? selectors : {},
+  events: typeof events !== 'undefined' ? events : {}
+};
+})();`;
+        themeFile.code = wrappedCode;
+      }
+    }
+  };
+}
+
 export default defineConfig(({ command, mode }) => {
   const isDev = mode === 'development';
 
@@ -108,6 +130,7 @@ export default defineConfig(({ command, mode }) => {
             return '[name]-[hash][extname]';
           },
         },
+        external: [],
       },
       manifest: false,
       sourcemap: isDev,
@@ -153,6 +176,7 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       rtlTransformPlugin(),
       fontPreloadPlugin(),
+      themeGlobalPlugin(),
       viteStaticCopy({
         targets: [
           {

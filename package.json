@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build --config vite.config2.mjs",
     "build:analyze": "vite build --mode production && npx vite-bundle-analyzer assets",
     "watch": "vite build --watch --mode development",
     "dev": "vite",

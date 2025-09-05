@@ -6,6 +6,7 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import fs from "fs";
+import rtlTransformPlugin from "./vite/rtlTransformPlugin";
 
 const dotenv = (await import('dotenv')).default;
 
@@ -21,22 +22,25 @@ const {
   SITE_URL: siteURL = 'http://localhost',
 } = process.env;
 
-export default defineConfig(
-  {
+export default defineConfig(({ command, mode }) => {
+  const isDev = mode === 'development';
+
+  return {
+    root: resolve(__dirname, 'src'),
+    base: isDev ? publicPath : './',
+
     build: {
+      outDir: resolve(__dirname, 'assets'),
+      assetsDir: '',
+      emptyOutDir: true,
       rollupOptions: {
-        outDir: resolve(__dirname, 'assets'),
-        assetsDir: '',
-        emptyOutDir: true,
         input: {
           // TS entry
           script: resolve(__dirname, 'src/js/theme.ts'),
           // Scss entry
           error: resolve(__dirname, 'src/scss/error.scss'),
-          error_rtl: resolve(__dirname, 'src/scss/error_rtl.scss'),
           rtl: resolve(__dirname, 'src/scss/rtl.scss'),
           theme: resolve(__dirname, 'src/scss/theme.scss'),
-          theme_rtl: resolve(__dirname, 'src/scss/theme_rtl.scss'),
         },
         output: {
           entryFileNames: (chunkInfo) => {
@@ -45,7 +49,7 @@ export default defineConfig(
             }
             return 'js/[name].js'
           },
-          assetFileName: (assetInfo) => {
+          assetFileNames: (assetInfo) => {
             const info = assetInfo.name.split('.');
             const extension = info[info.length - 1];
 
@@ -81,4 +85,9 @@ export default defineConfig(
         '@helpers': resolve(__dirname, 'src/js/helpers'),
       },
     },
-  })
+
+    plugins: [
+      rtlTransformPlugin(),
+    ],
+  }
+});

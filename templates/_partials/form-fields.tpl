@@ -124,33 +124,35 @@
 
       {block name='form_field_item_password'}
 
-        <div class="input-group password-field js-parent-focus">
+        <div class="input-group password-field">
           <input
-            class="form-control js-child-focus js-visible-password"
+            class="form-control"
             name="{$field.name}"
             id="field-{$field.name}"
             type="password"
             {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
             value=""
-            pattern=".{literal}{{/literal}5,{literal}}{/literal}"
-            {if $field.required}required{/if}
-            {if isset($configuration.password_policy.minimum_length)}data-minlength="{$configuration.password_policy.minimum_length}"{/if}
-            {if isset($configuration.password_policy.maximum_length)}data-maxlength="{$configuration.password_policy.maximum_length}"{/if}
-            {if isset($configuration.password_policy.minimum_score)}data-minscore="{$configuration.password_policy.minimum_score}"{/if}
+            minlength="{$configuration.password_policy.minimum_length|default:8}"
+            maxlength="{$configuration.password_policy.maximum_length|default:20}"
+            data-minlength="{$configuration.password_policy.minimum_length|default:8}"
+            data-maxlength="{$configuration.password_policy.maximum_length|default:20}"
+            data-minscore="{$configuration.password_policy.minimum_score|default:3}"
             data-bs-placement="top"
             data-bs-trigger="manual"
+            {if $field.required}required{/if}
           >
 
           <button
             class="btn btn-primary"
             type="button"
-            data-action="show-password"
-            data-text-show="{l s='Show Password' d='Shop.Theme.Actions'}"
-            data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
-            aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
-            aria-expanded="false"
+            data-ps-action="toggle-password"
+            data-text-show="{l s='Show password' d='Shop.Theme.Actions'}"
+            data-text-hide="{l s='Hide password' d='Shop.Theme.Actions'}"
+            aria-label="{l s='Show password' d='Shop.Theme.Actions'}"
+            aria-controls="field-{$field.name}"
+            aria-live="polite"
           >
-            <i class="material-icons">&#xE8F4;</i>
+            <i class="material-icons" aria-hidden="true">&#xE8F4;</i>
           </button>
         </div>
       {/block}

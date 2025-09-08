@@ -116,7 +116,7 @@ export const guestPasswordToggle = {
 };
 
 export const visiblePassword = {
-  visiblePassword: '.js-visible-password',
+  visiblePassword: '[data-ps-action="toggle-password"]',
 };
 
 export const desktopMenu = {
@@ -140,7 +140,8 @@ export const qtyInput = {
 };
 
 export const formValidation = {
-  default: '.form-validation',
+  default: '[data-ps-action="form-validation"]',
+  submitButton: '[data-ps-action="form-validation-submit"]',
 };
 
 export const passwordPolicy = {

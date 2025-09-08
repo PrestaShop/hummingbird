@@ -11,7 +11,7 @@
 {/block}
 
 {block name='page_content'}
-  <form action="{$urls.pages.password}" class="forgotten-password form-validation" method="post" novalidate>
+  <form action="{$urls.pages.password}" class="forgotten-password form-validation" method="post" data-ps-action="form-validation">
     {if count($errors)}
       <div class="alert alert-danger" role="alert">
         <ul class="mb-0">
@@ -33,7 +33,7 @@
       </div>
       
       <div class="buttons-wrapper">
-        <button id="send-reset-link" class="btn btn-primary" name="submit" type="submit">
+        <button id="send-reset-link" class="btn btn-primary" name="submit" type="submit" data-ps-action="form-validation-submit">
           {l s='Send reset link' d='Shop.Theme.Actions'}
         </button>
       </div>

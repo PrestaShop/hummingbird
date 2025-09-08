@@ -14,7 +14,6 @@ const initVisiblePassword = () => {
     button?.addEventListener('click', () => {
       const newType = input.getAttribute('type') === 'text' ? 'password' : 'text';
       input.setAttribute('type', newType);
-      button.setAttribute('aria-pressed', newType === 'text' ? 'true' : 'false');
 
       const icon = button.firstElementChild;
 

@@ -150,7 +150,7 @@
             data-text-hide="{l s='Hide password' d='Shop.Theme.Actions'}"
             aria-label="{l s='Show password' d='Shop.Theme.Actions'}"
             aria-controls="field-{$field.name}"
-            aria-pressed="false"
+            aria-live="polite"
           >
             <i class="material-icons" aria-hidden="true">&#xE8F4;</i>
           </button>

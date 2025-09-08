@@ -42,7 +42,7 @@
             data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
             aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
             aria-controls="field-password"
-            aria-pressed="false"
+            aria-live="polite"
           >
             <i class="material-icons">&#xE8F4;</i>
           </button>

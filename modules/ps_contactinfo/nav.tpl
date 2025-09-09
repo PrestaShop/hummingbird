@@ -2,22 +2,33 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-
 <div id="_desktop_ps_contactinfo">
   <div class="ps-contactinfo">
     {if $contact_infos.phone}
-      {* [1][/1] is for a HTML tag. *}
-      {l
-        s='Call us: [1]%phone%[/1]'
-        sprintf=[
-          '[1]' => '<span>',
-          '[/1]' => '</span>',
-          '%phone%' => $contact_infos.phone
-        ]
-        d='Shop.Theme.Global'
-      }
+      <a href="tel:{$contact_infos.phone}"
+         class="ps-contactinfo__phone"
+         aria-label="{l s='Call %phone%' sprintf=['%phone%' => $contact_infos.phone] d='Shop.Theme.Global'}">
+        <span class="visually-hidden">
+          {l s='Call us:' d='Shop.Theme.Global'}
+        </span>
+        {$contact_infos.phone}
+      </a>
+    {elseif $contact_infos.fax}
+      <div class="ps-contactinfo__fax">
+        <i class="material-icons" aria-hidden="true">&#xE8AD;</i>
+        <a href="fax:{$contact_infos.fax}"
+           aria-label="{l s='Send a fax to %fax%' sprintf=['%fax%' => $contact_infos.fax] d='Shop.Theme.Global'}">
+          {$contact_infos.fax}
+        </a>
+        <span class="visually-hidden">
+          ({l s='Fax number' d='Shop.Theme.Global'})
+        </span>
+      </div>
     {else}
-      <a href="{$urls.pages.contact}">{l s='Contact us' d='Shop.Theme.Global'}</a>
+      <a href="{$urls.pages.contact}"
+         aria-label="{l s='Contact customer service' d='Shop.Theme.Global'}">
+        {l s='Contact us' d='Shop.Theme.Global'}
+      </a>
     {/if}
   </div>
 </div>

@@ -43,6 +43,9 @@ export default defineConfig(({ command, mode }) => {
           theme: resolve(__dirname, 'src/scss/theme.scss'),
         },
         output: {
+          inlineDynamicImports: false,
+          format: 'iife',
+          name: 'Theme',
           entryFileNames: (chunkInfo) => {
             if (chunkInfo.name === 'script') {
               return 'js/theme.js'

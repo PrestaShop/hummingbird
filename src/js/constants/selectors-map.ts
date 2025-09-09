@@ -145,15 +145,23 @@ export const formValidation = {
 };
 
 export const passwordPolicy = {
-  template: '#password-feedback',
-  hint: '.js-hint-password',
-  container: '.password-strength-feedback',
-  strengthText: '.password-strength-text',
-  requirementScore: '.password-requirements__score',
-  requirementLength: '.password-requirements__length',
-  requirementScoreIcon: '.password-requirements__score .password-requirements__icon',
-  requirementLengthIcon: '.password-requirements__length .password-requirements__icon',
-  progressBar: '.progress-bar',
+  template: '[data-ps-ref="password-feedback-template"]',
+  field: '[data-ps-ref="password-field"]',
+  input: '[data-ps-ref="password-policy-input"]',
+  feedbackContainer: '[data-ps-ref="password-feedback-container"]',
+  feedbackTarget: '[data-ps-target="password-feedback-target"]',
+  hint: '[data-ps-ref="password-strength-hints"]',
+  requirementScore: '[data-ps-ref="password-requirements-score"]',
+  requirementLength: '[data-ps-ref="password-requirements-length"]',
+  requirementScoreMessage: '[data-ps-ref="password-requirements-score-message"]',
+  requirementLengthMessage: '[data-ps-ref="password-requirements-length-message"]',
+  requirementScoreIcon: '[data-ps-ref="password-requirements-score-icon"]',
+  requirementLengthIcon: '[data-ps-ref="password-requirements-length-icon"]',
+  progressBar: '[data-ps-ref="password-strength-progress-bar"]',
+  invalidMessage: '[data-ps-ref="password-invalid-message"]',
+  validMessage: '[data-ps-ref="password-valid-message"]',
+  lengthMessage: '[data-ps-ref="password-length-message"]',
+  announceValidity: '[data-ps-target="password-announce-validity"]',
 };
 
 const selectorsMap = {

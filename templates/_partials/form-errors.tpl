@@ -10,7 +10,7 @@
             <p class="mb-1">
               {l s='There are %d% errors:' sprintf=['%d%' => $errors|count] d='Shop.Notifications.Error'}
             </p>
-            <ol>
+            <ol class="mb-0">
               {foreach $errors as $error}
                 <li>{$error|nl2br nofilter}</li>
               {/foreach}

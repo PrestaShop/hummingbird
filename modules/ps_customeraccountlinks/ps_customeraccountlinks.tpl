@@ -71,7 +71,7 @@
         {hook h='displayMyAccountBlock'}
 
         <li>
-          <a class="logout text-danger" href="{$urls.actions.logout}" title="{l s='Log me out' d='Shop.Theme.Customeraccount'}" rel="nofollow">
+          <a class="logout text-danger-dark" href="{$urls.actions.logout}" title="{l s='Log me out' d='Shop.Theme.Customeraccount'}" rel="nofollow">
             {l s='Sign out' d='Shop.Theme.Actions'}
           </a>
         </li>

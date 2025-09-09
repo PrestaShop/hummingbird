@@ -124,7 +124,7 @@
           {/if}
 
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item logout-link" href="{$logout_url}">
+          <a class="dropdown-item" href="{$logout_url}">
             <i class="material-icons me-2" aria-hidden="true">&#xE879;</i>
             {l s='Sign out' d='Shop.Theme.Actions'}
           </a>

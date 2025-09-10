@@ -95,7 +95,7 @@
 
                 <div class="accordion-item border-0">
                   <div class="accordion-header">
-                    <button class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}">
+                    <button class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}" aria-label="{l s='View schedules for %store_name%' sprintf=['%store_name%' => $store.name] d='Shop.Theme.Global'}">
                       {l s='View schedules' d='Shop.Theme.Global'}
                     </button>
                   </div>

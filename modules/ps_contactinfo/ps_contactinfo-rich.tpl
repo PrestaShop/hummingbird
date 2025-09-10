@@ -18,7 +18,7 @@
       <i class="material-icons" aria-hidden="true">&#xE0CD;</i>
       <div class="ps-contactinfo__info">
         <a href="tel:{$contact_infos.phone}"
-           aria-label="{l s='Call %phone%' sprintf=['%phone%' => $contact_infos.phone] d='Shop.Theme.Global'}">
+           aria-label="{l s='Call us at: %phone%' sprintf=['%phone%' => $contact_infos.phone] d='Shop.Theme.Global'}">
           {$contact_infos.phone}
         </a>
       </div>

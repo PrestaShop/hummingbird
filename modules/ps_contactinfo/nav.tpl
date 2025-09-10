@@ -20,8 +20,7 @@
         </span>
       </div>
     {else}
-      <a href="{$urls.pages.contact}"
-         aria-label="{l s='Contact customer service' d='Shop.Theme.Global'}">
+      <a class="ps-contactinfo__email" href="{$urls.pages.contact}">
         {l s='Contact us' d='Shop.Theme.Global'}
       </a>
     {/if}

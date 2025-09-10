@@ -35,7 +35,7 @@
       <div class="ps-contactinfo__fax">
         <i class="material-icons" aria-hidden="true">&#xE8AD;</i>
         <a href="fax:{$contact_infos.fax}"
-           aria-label="{l s='Send a fax to %fax%' sprintf=['%fax%' => $contact_infos.fax] d='Shop.Theme.Global'}">
+           aria-label="{l s='Send us a fax to: %fax%' sprintf=['%fax%' => $contact_infos.fax] d='Shop.Theme.Global'}">
           {$contact_infos.fax}
         </a>
       </div>

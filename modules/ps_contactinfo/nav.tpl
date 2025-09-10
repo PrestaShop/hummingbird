@@ -5,13 +5,8 @@
 <div id="_desktop_ps_contactinfo">
   <div class="ps-contactinfo">
     {if $contact_infos.phone}
-      <a href="tel:{$contact_infos.phone}"
-         class="ps-contactinfo__phone"
-         aria-label="{l s='Call %phone%' sprintf=['%phone%' => $contact_infos.phone] d='Shop.Theme.Global'}">
-        <span class="visually-hidden">
-          {l s='Call us:' d='Shop.Theme.Global'}
-        </span>
-        {$contact_infos.phone}
+      <a class="ps-contactinfo__phone" href="tel:{$contact_infos.phone}" aria-label="{l s='Call us at: %phone%' sprintf=['%phone%' => $contact_infos.phone] d='Shop.Theme.Global'}">
+        {l s='Call us: %phone%' sprintf=['%phone%' => $contact_infos.phone] d='Shop.Theme.Global'}
       </a>
     {elseif $contact_infos.fax}
       <div class="ps-contactinfo__fax">

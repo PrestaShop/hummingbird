@@ -34,9 +34,6 @@
            aria-label="{l s='Send us a fax to: %fax%' sprintf=['%fax%' => $contact_infos.fax] d='Shop.Theme.Global'}">
           {$contact_infos.fax}
         </a>
-        <span class="visually-hidden">
-          ({l s='Fax number' d='Shop.Theme.Global'})
-        </span>
       </div>
     </div>
   {/if}

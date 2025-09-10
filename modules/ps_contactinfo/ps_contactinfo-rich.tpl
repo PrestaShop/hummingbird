@@ -44,7 +44,7 @@
       <i class="material-icons" aria-hidden="true">&#xE158;</i>
       <div class="ps-contactinfo__info ps-contactinfo__info--email">
         <a href="mailto:{$contact_infos.email}"
-           aria-label="{l s='Send an email to %email%' sprintf=['%email%' => $contact_infos.email] d='Shop.Theme.Global'}">
+           aria-label="{l s='Send us an email to: %email%' sprintf=['%email%' => $contact_infos.email] d='Shop.Theme.Global'}">
           {$contact_infos.email}
         </a>
       </div>

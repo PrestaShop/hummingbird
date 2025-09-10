@@ -34,6 +34,7 @@
               srcset="
                 {$product.default_image.bySize.default_xs.url},
                 {$product.default_image.bySize.default_md.url} 2x"
+              src="{$product.default_image.bySize.default_xs.url}"
               loading="lazy"
               width="{$product.default_image.bySize.default_xs.width}"
               height="{$product.default_image.bySize.default_xs.height}"
@@ -66,6 +67,7 @@
               srcset="
                 {$urls.no_picture_image.bySize.default_xs.url},
                 {$urls.no_picture_image.bySize.default_md.url} 2x"
+              src="{$urls.no_picture_image.bySize.default_xs.url}"
               width="{$urls.no_picture_image.bySize.default_xs.width}"
               height="{$urls.no_picture_image.bySize.default_xs.height}"
               loading="lazy"

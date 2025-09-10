@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 <div class="ps-contactinfo">
-  <h2 class="h2 ps-contactinfo__title">{l s='Store information' d='Shop.Theme.Global'}</h2>
+  <p class="h2 ps-contactinfo__title">{l s='Store information' d='Shop.Theme.Global'}</p>
 
   <div class="ps-contactinfo__item">
     <i class="material-icons" aria-hidden="true">&#xF00F;</i>

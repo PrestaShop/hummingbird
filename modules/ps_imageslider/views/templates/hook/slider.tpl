@@ -5,7 +5,7 @@
 
 {if $homeslider.slides}
   <section class="ps-imageslider">
-    <div id="ps_imageslider" class="carousel slide" data-bs-ride="carousel">
+    <div id="ps_imageslider" class="carousel slide">
       <div class="carousel-indicators">
         {foreach from=$homeslider.slides item=slide name='homeslider'}
           <button type="button" data-bs-target="#ps_imageslider" data-bs-slide-to="{$slide@index}" aria-label="{$slide.title}"

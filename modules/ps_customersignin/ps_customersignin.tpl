@@ -115,7 +115,7 @@
               href="{$urls.pages.order_follow}"
               title="{l s='Merchandise returns' d='Shop.Theme.Customeraccount'}"
               class="dropdown-item" rel="nofollow"
-              {if $urls.current_url == $urls.pages.order_follow}aria-current="page"{/if}
+              {if $urls.current_url == $urls.pages.order_follow}aria-current="page" {/if}
             >
               <i class="material-icons me-2" aria-hidden="true">&#xE860;</i>
               {l s='Merchandise returns' d='Shop.Theme.Customeraccount'}

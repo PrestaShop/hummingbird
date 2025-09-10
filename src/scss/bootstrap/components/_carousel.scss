@@ -28,11 +28,7 @@ $carousel-caption-padding-x: $carousel-caption-padding-y;
 
 .carousel-indicators {
   bottom: 0;
-  margin-bottom: 0.75rem;
-
-  [data-bs-target] {
-    border-radius: 50%;
-  }
+  margin-bottom: 0.625rem;
 
   .active {
     background-color: var(--bs-primary);

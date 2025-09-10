@@ -12,7 +12,7 @@
             type="button"
             data-bs-target="#ps_imageslider"
             data-bs-slide-to="{$slide@index}"
-            aria-label="{$slide.title}"
+            aria-label="{l s='Go to slide %slide_index%' sprintf=['%slide_index%'=> $slide@iteration] d='Shop.Theme.Global'}"
             class="outline {if $slide@first}active{/if}"
             {if $slide@first}aria-current="true"{/if}
           ></button>

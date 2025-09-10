@@ -14,7 +14,8 @@
             data-bs-slide-to="{$slide@index}"
             aria-label="{$slide.title}"
             class="outline {if $slide@first}active{/if}"
-          {if $slide@first}aria-current="true"{/if}></button>
+            {if $slide@first}aria-current="true"{/if}
+          ></button>
         {/foreach}
       </div>
 

@@ -90,8 +90,7 @@
               href="{$urls.pages.order_slip}"
               title="{l s='Credit slips' d='Shop.Theme.Customeraccount'}"
               class="dropdown-item" rel="nofollow"
-              {if $urls.current_url == $urls.pages.order_slip}aria-current="page"
-              {/if}
+              {if $urls.current_url == $urls.pages.order_slip}aria-current="page" {/if}
             >
               <i class="material-icons me-2" aria-hidden="true">&#xE8B0;</i>
               {l s='Credit slips' d='Shop.Theme.Customeraccount'}

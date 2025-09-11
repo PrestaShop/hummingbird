@@ -14,6 +14,11 @@ $component-name: ps-searchbar;
   &__input {
     padding-block: 0.5rem;
     padding-inline: 2.5rem;
+
+    &:focus-visible {
+      outline: 2px solid var(--bs-primary);
+      outline-offset: 2px;
+    }
   }
 
   &__magnifier {
@@ -34,6 +39,24 @@ $component-name: ps-searchbar;
     color: var(--bs-body-color);
     cursor: pointer;
     transform: translateY(-50%);
+    border-radius: var(--bs-border-radius);
+    transition: var(--bs-transition-default);
+
+    &:hover {
+      color: var(--bs-primary);
+      background-color: var(--bs-tertiary-bg);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--bs-primary);
+      outline-offset: 2px;
+      background-color: var(--bs-tertiary-bg);
+    }
+
+    &:active {
+      color: var(--bs-primary);
+      background-color: var(--bs-secondary-bg);
+    }
   }
 
   &__offcanvas {
@@ -151,5 +174,13 @@ $component-name: ps-searchbar;
       width: 4rem;
       border-radius: var(--bs-border-radius);
     }
+  }
+}
+
+// Mobile search toggle button focus state
+.header-block__action-btn {
+  &:focus-visible {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
   }
 }

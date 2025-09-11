@@ -51,6 +51,14 @@ const initSearchbar = () => {
 
   searchClear?.addEventListener('click', clearSearch);
 
+  // Add keyboard support for clear button
+  searchClear?.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      clearSearch();
+    }
+  });
+
   // Show clear button when input has value
   searchInput?.addEventListener('focus', () => {
     if (searchInput?.value) {
@@ -60,9 +68,10 @@ const initSearchbar = () => {
 
   // Reset search on mobile canvas close
   searchCanvas?.addEventListener('hidden.bs.offcanvas', () => {
-    if (searchDropdown && searchResults) {
+    if (searchDropdown && searchResults && searchInput) {
       searchResults.innerHTML = '';
       searchDropdown.classList.add('d-none');
+      searchInput.setAttribute('aria-expanded', 'false');
     }
   });
 
@@ -94,28 +103,110 @@ const initSearchbar = () => {
       });
     };
 
-    // Handle search input with debounce
-    searchInput.addEventListener('keydown', debounce(async () => {
-      if (!searchUrl) return;
+    let currentResultIndex = -1;
 
-      const products = await searchProduct(searchUrl, searchInput.value, 10);
+    // Handle keyboard navigation in search results
+    const handleKeyboardNavigation = (e: KeyboardEvent) => {
+      const resultElements = searchResults.querySelectorAll<HTMLAnchorElement>('.ps-searchbar__result-link');
 
-      if (products.length > 0) {
-        renderSearchResults(products);
-        searchClear?.classList.remove('d-none');
-        searchDropdown?.classList.remove('d-none');
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          currentResultIndex = Math.min(currentResultIndex + 1, resultElements.length - 1);
+          updateResultFocus(resultElements, currentResultIndex);
+          break;
 
-        // Close dropdown when clicking outside
-        window.addEventListener('click', (e: Event) => {
-          if (!searchWidget.contains(<Node>e.target)) {
-            searchDropdown.classList.add('d-none');
+        case 'ArrowUp':
+          e.preventDefault();
+          if (currentResultIndex > 0) {
+            currentResultIndex = Math.max(currentResultIndex - 1, 0);
+            updateResultFocus(resultElements, currentResultIndex);
+          } else {
+            currentResultIndex = -1;
+            searchInput.focus();
           }
-        });
-      } else {
-        searchResults.innerHTML = '';
-        searchDropdown.classList.add('d-none');
+          break;
+
+        case 'Enter':
+          if (currentResultIndex >= 0 && resultElements[currentResultIndex]) {
+            e.preventDefault();
+            resultElements[currentResultIndex].click();
+          }
+          break;
+
+        case 'Escape':
+          e.preventDefault();
+          searchDropdown.classList.add('d-none');
+          searchInput.setAttribute('aria-expanded', 'false');
+          searchInput.focus();
+          currentResultIndex = -1;
+          break;
+
+        default:
+          // No action needed for other keys
+          break;
       }
-    }, 250));
+    };
+
+    // Update focus state for search results
+    const updateResultFocus = (resultElements: NodeListOf<HTMLAnchorElement>, index: number) => {
+      resultElements.forEach((element, i) => {
+        if (i === index) {
+          element.focus();
+          element.setAttribute('aria-selected', 'true');
+        } else {
+          element.setAttribute('aria-selected', 'false');
+        }
+      });
+    };
+
+    // Handle search input with debounce and keyboard navigation
+    searchInput.addEventListener('keydown', (e: KeyboardEvent) => {
+      // Handle navigation keys immediately
+      if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape'].includes(e.key)) {
+        handleKeyboardNavigation(e);
+        return;
+      }
+
+      // Debounce search functionality for typing
+      debounce(async () => {
+        if (!searchUrl) return;
+
+        const products = await searchProduct(searchUrl, searchInput.value, 10);
+
+        if (products.length > 0) {
+          renderSearchResults(products);
+          searchClear?.classList.remove('d-none');
+          searchDropdown?.classList.remove('d-none');
+          currentResultIndex = -1; // Reset navigation index
+
+          // Update ARIA expanded state
+          searchInput.setAttribute('aria-expanded', 'true');
+
+          // Add keyboard navigation to result links
+          const resultLinks = searchResults.querySelectorAll<HTMLAnchorElement>('.ps-searchbar__result-link');
+          resultLinks.forEach((link) => {
+            link.setAttribute('role', 'option');
+            link.setAttribute('aria-selected', 'false');
+            link.addEventListener('keydown', handleKeyboardNavigation);
+          });
+
+          // Close dropdown when clicking outside
+          window.addEventListener('click', (event: Event) => {
+            if (!searchWidget.contains(<Node>event.target)) {
+              searchDropdown.classList.add('d-none');
+              searchInput.setAttribute('aria-expanded', 'false');
+              currentResultIndex = -1;
+            }
+          });
+        } else {
+          searchResults.innerHTML = '';
+          searchDropdown.classList.add('d-none');
+          searchInput.setAttribute('aria-expanded', 'false');
+          currentResultIndex = -1;
+        }
+      }, 250)();
+    });
   }
 };
 

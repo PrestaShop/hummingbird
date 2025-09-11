@@ -16,3 +16,10 @@
     }
   }
 }
+
+// Generate color classes for dark backgrounds
+@each $color-name, $color-value in $colors-on-dark {
+  .text-#{$color-name}-on-dark {
+    color: $color-value;
+  }
+}

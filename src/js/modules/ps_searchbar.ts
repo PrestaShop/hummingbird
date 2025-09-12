@@ -89,10 +89,12 @@ const initSearchbar = () => {
 
           if (productLink && productTitle && productImage) {
             productLink.href = product.canonical_url;
+            productLink.id = "result_product_option_" + product.id_product.toString();
             productTitle.innerHTML = product.name;
-
+            
             if (product.cover) {
               productImage.src = product.cover.small.url;
+              productImage.alt = product.cover.legend;
             } else {
               productImage.innerHTML = '';
             }
@@ -154,11 +156,18 @@ const initSearchbar = () => {
         if (i === index) {
           element.focus();
           element.setAttribute('aria-selected', 'true');
+          searchInput.setAttribute('aria-activedescendant', resultElements[index].id);
         } else {
           element.setAttribute('aria-selected', 'false');
         }
       });
     };
+
+    // reset the active descendant when the search input is blurred
+    searchInput.addEventListener('focus', () => {
+      searchInput.removeAttribute('aria-activedescendant');
+      currentResultIndex = -1;
+    });
 
     // Handle search input with debounce and keyboard navigation
     searchInput.addEventListener('keydown', (e: KeyboardEvent) => {

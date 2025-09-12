@@ -34,19 +34,20 @@ jobs:
           rm src/ -rf
           rm stories/ -rf
           rm types/ -rf
+          rm vite/ -rf
           rm .editorconfig
           rm .eslintignore
           rm .eslintrc.js
           rm .gitignore
+          rm .prettierrc.js
           rm .stylelintignore
           rm .stylelintrc
           rm babel.config.js
           rm jest.config.js
           rm package-lock.json
           rm package.json
-          rm postcss.config.js
           rm tsconfig.json
-          rm webpack.config.js
+          rm vite.config.mjs
 
       - name: Create & Upload artifact
         uses: actions/upload-artifact@v4

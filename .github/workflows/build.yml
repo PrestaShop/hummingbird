@@ -21,9 +21,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Copy Webpack config
-        run: cp ./webpack/.env-vhost-example ./webpack/.env
-
       - name: Build assets
         run: npm run build
 
@@ -37,7 +34,6 @@ jobs:
           rm src/ -rf
           rm stories/ -rf
           rm types/ -rf
-          rm webpack/ -rf
           rm .editorconfig
           rm .eslintignore
           rm .eslintrc.js

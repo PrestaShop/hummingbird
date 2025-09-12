@@ -47,6 +47,8 @@ const initSearchbar = () => {
       searchInput.dispatchEvent(new KeyboardEvent('keydown'));
     }
     searchClear?.classList.add('d-none');
+    // Ensure clear button is not tabbable when hidden
+    searchClear?.setAttribute('tabindex', '-1');
   };
 
   searchClear?.addEventListener('click', clearSearch);
@@ -57,12 +59,40 @@ const initSearchbar = () => {
       e.preventDefault();
       clearSearch();
     }
+    // Tab from clear button should go to next element naturally (don't prevent default)
+    // Shift+Tab should go back to search input
+    if (e.key === 'Tab' && e.shiftKey) {
+      e.preventDefault();
+      searchInput?.focus();
+    }
   });
 
   // Show clear button when input has value
   searchInput?.addEventListener('focus', () => {
     if (searchInput?.value) {
       searchClear?.classList.remove('d-none');
+      // Make clear button tabbable when visible
+      searchClear?.setAttribute('tabindex', '0');
+    }
+  });
+
+  // Monitor input changes to show/hide clear button and hide results if empty
+  searchInput?.addEventListener('input', () => {
+    if (searchInput.value.trim() === '') {
+      // Hide clear button when input is empty
+      searchClear?.classList.add('d-none');
+      searchClear?.setAttribute('tabindex', '-1');
+
+      // Hide results when input is empty
+      if (searchDropdown && searchResults) {
+        searchDropdown.classList.add('d-none');
+        searchInput.setAttribute('aria-expanded', 'false');
+        searchResults.innerHTML = '';
+      }
+    } else {
+      // Show clear button when input has content
+      searchClear?.classList.remove('d-none');
+      searchClear?.setAttribute('tabindex', '0');
     }
   });
 
@@ -89,9 +119,9 @@ const initSearchbar = () => {
 
           if (productLink && productTitle && productImage) {
             productLink.href = product.canonical_url;
-            productLink.id = "result_product_option_" + product.id_product.toString();
+            productLink.id = `result_product_option_${product.id_product.toString()}`;
             productTitle.innerHTML = product.name;
-            
+
             if (product.cover) {
               productImage.src = product.cover.small.url;
               productImage.alt = product.cover.legend;
@@ -163,17 +193,89 @@ const initSearchbar = () => {
       });
     };
 
-    // reset the active descendant when the search input is blurred
+    // Variables to track focus state
+    let searchWidgetHasFocus = false;
+    let blurTimeout: number | null = null;
+
+    // Handle focus on search input
     searchInput.addEventListener('focus', () => {
       searchInput.removeAttribute('aria-activedescendant');
       currentResultIndex = -1;
+      searchWidgetHasFocus = true;
+
+      // Clear any pending blur timeout
+      if (blurTimeout) {
+        clearTimeout(blurTimeout);
+        blurTimeout = null;
+      }
+
+      // Show results if they exist and input has value (re-focusing existing search)
+      if (searchInput.value && searchResults && searchResults.children.length > 0) {
+        searchDropdown?.classList.remove('d-none');
+        searchInput.setAttribute('aria-expanded', 'true');
+      }
     });
 
-    // Handle search input with debounce and keyboard navigation
+    // Handle blur - hide results when focus leaves search widget completely
+    const handleBlur = () => {
+      searchWidgetHasFocus = false;
+
+      // Use setTimeout to allow focus to move to other elements in the widget
+      blurTimeout = window.setTimeout(() => {
+        if (!searchWidgetHasFocus && searchDropdown && searchInput) {
+          searchDropdown.classList.add('d-none');
+          searchInput.setAttribute('aria-expanded', 'false');
+          currentResultIndex = -1;
+        }
+      }, 100);
+    };
+
+    searchInput.addEventListener('blur', handleBlur);
+
+    // Add focus/blur handlers to clear button to maintain search widget focus state
+    searchClear?.addEventListener('focus', () => {
+      searchWidgetHasFocus = true;
+
+      // Clear any pending blur timeout
+      if (blurTimeout) {
+        clearTimeout(blurTimeout);
+        blurTimeout = null;
+      }
+
+      // Show results if they exist and input has value (re-focusing existing search)
+      if (searchInput?.value && searchResults && searchResults.children.length > 0) {
+        searchDropdown.classList.remove('d-none');
+        searchInput.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    searchClear?.addEventListener('blur', handleBlur);
+
+    // Handle Tab navigation from search input to clear button
     searchInput.addEventListener('keydown', (e: KeyboardEvent) => {
-      // Handle navigation keys immediately
+      // Handle Tab key specifically for navigation to clear button
+      if (e.key === 'Tab' && !e.shiftKey) {
+        // If clear button is visible and there are search results, focus the clear button
+        if (!searchClear?.classList.contains('d-none') && !searchDropdown?.classList.contains('d-none')) {
+          e.preventDefault();
+          searchClear?.focus();
+          return;
+        }
+      }
+
+      // Handle navigation keys immediately (arrows, enter, escape)
       if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape'].includes(e.key)) {
         handleKeyboardNavigation(e);
+        return;
+      }
+
+      // Ignore navigation keys that shouldn't trigger search
+      if (['Tab', 'Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) {
+        return;
+      }
+
+      // Also ignore modifier key combinations
+      if (e.ctrlKey || e.altKey || e.metaKey) {
         return;
       }
 
@@ -186,26 +288,45 @@ const initSearchbar = () => {
         if (products.length > 0) {
           renderSearchResults(products);
           searchClear?.classList.remove('d-none');
+          // Make clear button tabbable when search results are shown
+          searchClear?.setAttribute('tabindex', '0');
           searchDropdown?.classList.remove('d-none');
           currentResultIndex = -1; // Reset navigation index
 
           // Update ARIA expanded state
           searchInput.setAttribute('aria-expanded', 'true');
 
-          // Add keyboard navigation to result links
+          // Add keyboard navigation to result links and make them non-tabbable
           const resultLinks = searchResults.querySelectorAll<HTMLAnchorElement>('.ps-searchbar__result-link');
           resultLinks.forEach((link) => {
             link.setAttribute('role', 'option');
             link.setAttribute('aria-selected', 'false');
+            link.setAttribute('tabindex', '-1'); // Remove from tab order - only accessible via arrows
             link.addEventListener('keydown', handleKeyboardNavigation);
+
+            // Add focus/blur handlers to maintain search widget focus state
+            link.addEventListener('focus', () => {
+              searchWidgetHasFocus = true;
+              // Clear any pending blur timeout
+              if (blurTimeout) {
+                clearTimeout(blurTimeout);
+                blurTimeout = null;
+              }
+            });
+
+            link.addEventListener('blur', handleBlur);
           });
 
           // Close dropdown when clicking outside
           window.addEventListener('click', (event: Event) => {
-            if (!searchWidget.contains(<Node>event.target)) {
+            const target = <Node>event.target;
+
+            // Check if click is outside both the search widget and the dropdown
+            if (!searchWidget.contains(target) && !searchDropdown.contains(target)) {
               searchDropdown.classList.add('d-none');
               searchInput.setAttribute('aria-expanded', 'false');
               currentResultIndex = -1;
+              searchWidgetHasFocus = false;
             }
           });
         } else {

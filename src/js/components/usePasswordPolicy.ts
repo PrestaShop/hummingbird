@@ -130,7 +130,10 @@ const getProgressBarInfo = (strength: number) => {
     4: {color: 'bg-success', percentage: 100},
   };
 
-  return strengthLevels[strength as keyof typeof strengthLevels] || strengthLevels[0];
+  const validKeys = Object.keys(strengthLevels).map(Number);
+  const safeStrength = validKeys.includes(strength) ? strength : 0;
+  
+  return strengthLevels[safeStrength as keyof typeof strengthLevels];
 };
 
 const passwordValidation = async (
@@ -242,9 +245,9 @@ const validateRequiredElements = (
   feedbackTemplate: HTMLTemplateElement | null,
   feedbackContainer: HTMLElement | null,
   hintElement: Element | null,
-  announceValidity: HTMLElement | null,
+  feedbackTarget: HTMLElement | null,
 ): Error | null => {
-  if (!feedbackTemplate || !element || !elementInput || !feedbackContainer || !hintElement || !announceValidity) {
+  if (!element || !elementInput || !feedbackTemplate || !feedbackContainer || !hintElement || !feedbackTarget) {
     return new Error(PASSWORD_POLICY_ERROR);
   }
   return null;
@@ -283,7 +286,7 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
   const elementInput = element?.querySelector<HTMLInputElement>(PasswordPolicyMap.input);
   const targetElement = document.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
   const feedbackTemplate = document.querySelector<HTMLTemplateElement>(PasswordPolicyMap.template);
-  const announceValidity = document.querySelector<HTMLElement>(PasswordPolicyMap.announceValidity);
+  const feedbackTarget = document.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
 
   // Create feedback container
   let feedbackContainer: HTMLElement | null = null;
@@ -302,7 +305,7 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
     feedbackTemplate,
     feedbackContainer,
     hintElement,
-    announceValidity,
+    feedbackTarget,
   );
 
   if (validationError) {

@@ -42,7 +42,7 @@
         aria-controls="ps_searchbar_results"
         aria-expanded="false"
       >
-      <button type="button" class="ps-searchbar__clear js-search-clear d-none btn" aria-label="{l s='Clear search' d='Shop.Theme.Catalog'}">
+      <button type="button" class="ps-searchbar__clear js-search-clear btn outline outline--rounded d-none" aria-label="{l s='Clear search' d='Shop.Theme.Catalog'}">
         <i class="material-icons">&#xE14C;</i>
       </button>
     </form>

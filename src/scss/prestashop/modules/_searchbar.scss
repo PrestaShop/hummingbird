@@ -14,11 +14,6 @@ $component-name: ps-searchbar;
   &__input {
     padding-block: 0.5rem;
     padding-inline: 2.5rem;
-
-    &:focus-visible {
-      outline: 2px solid var(--bs-primary);
-      outline-offset: 2px;
-    }
   }
 
   &__magnifier {
@@ -174,13 +169,5 @@ $component-name: ps-searchbar;
       width: 4rem;
       border-radius: var(--bs-border-radius);
     }
-  }
-}
-
-// Mobile search toggle button focus state
-.header-block__action-btn {
-  &:focus-visible {
-    outline: 2px solid var(--bs-primary);
-    outline-offset: 2px;
   }
 }

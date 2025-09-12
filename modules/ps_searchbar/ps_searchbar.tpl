@@ -28,25 +28,40 @@
     <form class="ps-searchbar__form" method="get" action="{$search_controller_url}" role="search">
       <input type="hidden" name="controller" value="search">
       <i class="material-icons ps-searchbar__magnifier js-search-icon" aria-hidden="true">&#xE8B6;</i>
-      <input class="js-search-input form-control ps-searchbar__input" type="text" name="s" value="{$search_string}" placeholder="{l s='Search products...' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}" aria-autocomplete="list" aria-expanded="false" aria-owns="ps_searchbar_dropdown">
+      <input 
+        class="js-search-input form-control ps-searchbar__input" 
+        type="text" 
+        name="s" 
+        value="{$search_string}" 
+        placeholder="{l s='Search products...' d='Shop.Theme.Catalog'}" 
+        aria-label="{l s='Search' d='Shop.Theme.Catalog'}"
+        autocomplete="off"
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-autocomplete="list" 
+        aria-controls="ps_searchbar_results"
+        aria-expanded="false"
+      >
       <button type="button" class="ps-searchbar__clear js-search-clear d-none btn" aria-label="{l s='Clear search' d='Shop.Theme.Catalog'}">
         <i class="material-icons">&#xE14C;</i>
       </button>
-    </form>vc
+    </form>
 
-    <div id="ps_searchbar_dropdown" class="ps-searchbar__dropdown js-search-dropdown d-none" role="listbox" aria-label="{l s='Search results' d='Shop.Theme.Catalog'}">
-      <ul class="ps-searchbar__results js-search-results" role="presentation"></ul>
+    <div 
+      class="ps-searchbar__dropdown js-search-dropdown d-none" 
+      id="ps_searchbar_dropdown" 
+      aria-label="{l s='Search results' d='Shop.Theme.Catalog'}"
+    >
+      <div class="ps-searchbar__results js-search-results" id="ps_searchbar_results" role="listbox"></div>
     </div>
   </div>
 </div>
 
 <template id="ps_searchbar_result" class="js-search-template">
-  <li class="ps-searchbar__result">
-    <a class="ps-searchbar__result-link" href="">
-      <img src="" alt="" class="ps-searchbar__result-image">
-      <p class="ps-searchbar__result-name"></p>
-    </a>
-  </li>
+  <a class="ps-searchbar__result-link" id="" href="">
+    <img src="" alt="" class="ps-searchbar__result-image">
+    <p class="ps-searchbar__result-name"></p>
+  </a>
 </template>
 
 {* MOBILE SEARCH BAR *}

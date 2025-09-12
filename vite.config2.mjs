@@ -37,7 +37,7 @@ export default defineConfig(({ command, mode }) => {
         input: {
           // TS entry
           script: resolve(__dirname, 'src/js/theme.ts'),
-          // Scss entry
+          // Scss entries
           error: resolve(__dirname, 'src/scss/error.scss'),
           rtl: resolve(__dirname, 'src/scss/rtl.scss'),
           theme: resolve(__dirname, 'src/scss/theme.scss'),
@@ -72,7 +72,7 @@ export default defineConfig(({ command, mode }) => {
       preprocessorOptions: {
         scss: {
           api: 'modern-compiler',
-          silenceDeprecations: ['mixed-decls', 'color-functions', 'global-builtin', 'import'],
+          silenceDeprecations: ['color-functions', 'global-builtin', 'import'],
         }
       }
     },

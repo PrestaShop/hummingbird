@@ -33,6 +33,19 @@ import initProductAccessibility from './accessibility/product';
 
 initEmitter();
 
+// Set up window.Theme global
+if (typeof window !== 'undefined') {
+  window.Theme = {
+    selectors: themeSelectors,
+    events: EVENTS,
+    components: {
+      useToast,
+      useAlert,
+      useProgressRing,
+      useQuantityInput,
+    },
+  };
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const {prestashop, Theme: {events}} = window;

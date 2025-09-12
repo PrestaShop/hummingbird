@@ -37,20 +37,10 @@ $component-name: ps-searchbar;
     transition: var(--bs-transition-default);
     transform: translateY(-50%);
 
-    &:hover {
-      color: var(--bs-primary);
-      background-color: var(--bs-tertiary-bg);
-    }
-
+    &:hover,
     &:focus-visible {
+      color: var(--bs-link-hover-color);
       background-color: var(--bs-tertiary-bg);
-      outline: 2px solid var(--bs-primary);
-      outline-offset: 2px;
-    }
-
-    &:active {
-      color: var(--bs-primary);
-      background-color: var(--bs-secondary-bg);
     }
   }
 

@@ -51,8 +51,9 @@
       class="ps-searchbar__dropdown js-search-dropdown d-none" 
       id="ps_searchbar_dropdown" 
       aria-label="{l s='Search results' d='Shop.Theme.Catalog'}"
+      tabindex="-1"
     >
-      <div class="ps-searchbar__results js-search-results" id="ps_searchbar_results" role="listbox"></div>
+      <div class="ps-searchbar__results js-search-results" id="ps_searchbar_results" role="listbox" tabindex="-1"></div>
     </div>
   </div>
 </div>

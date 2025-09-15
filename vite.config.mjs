@@ -41,6 +41,15 @@ export default defineConfig(({ command, mode }) => {
           error: resolve(__dirname, 'src/scss/error.scss'),
           rtl: resolve(__dirname, 'src/scss/rtl.scss'),
           theme: resolve(__dirname, 'src/scss/theme.scss'),
+          // Images
+          ...Object.fromEntries(
+            fs.readdirSync(resolve(__dirname, 'src/img'))
+              .filter(file => /\.(png|jpe?g|svg|gif|tiff|bmp|ico)$/i.test(file))
+              .map(file => [
+                `img-${file.split('.')[0]}`,
+                resolve(__dirname, `src/img/${file}`)
+              ])
+          ),
         },
         output: {
           entryFileNames: (chunkInfo) => {
@@ -54,7 +63,7 @@ export default defineConfig(({ command, mode }) => {
             const extension = info[info.length - 1];
 
             if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extension)) {
-              return `img-dist/[name][extname]`;
+              return `img/[name][extname]`;
             }
             if (/woff2?|eot|ttf|otf/i.test(extension)) {
               return `fonts/[name]-[hash][extname]`;

@@ -132,7 +132,7 @@ const getProgressBarInfo = (strength: number) => {
 
   const validKeys = Object.keys(strengthLevels).map(Number);
   const safeStrength = validKeys.includes(strength) ? strength : 0;
-  
+
   return strengthLevels[safeStrength as keyof typeof strengthLevels];
 };
 

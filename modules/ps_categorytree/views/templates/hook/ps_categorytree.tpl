@@ -55,12 +55,14 @@
       </a>
     </p>
 
-    <ul class="accordion accordion-flush accordion--category" role="group">
-      {if !empty($categories.children)}
-        <div class="{$componentName}__child">
-          {categories nodes=$categories.children}
-        </div>
-      {/if}
-    </ul>
+    <div class="accordion accordion-flush accordion--category"">
+      <nav aria-label="{l s='Categories' d='Shop.Theme.Catalog'}">
+        {if !empty($categories.children)}
+          <div class="{$componentName}__child">
+            {categories nodes=$categories.children}
+          </div>
+        {/if}
+      </nav>
+    </div>
   </div>
 {/if}

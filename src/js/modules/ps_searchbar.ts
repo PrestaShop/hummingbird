@@ -142,7 +142,7 @@ const initSearchbar = () => {
 
     // Handle keyboard navigation in search results
     const handleKeyboardNavigation = (e: KeyboardEvent) => {
-      const resultElements = searchResults.querySelectorAll<HTMLAnchorElement>('.ps-searchbar__result-link');
+      const resultElements = searchResults.querySelectorAll<HTMLAnchorElement>(SearchBarMap.searchResultLink);
 
       switch (e.key) {
         case 'ArrowDown':
@@ -300,7 +300,7 @@ const initSearchbar = () => {
           searchInput.setAttribute('aria-expanded', 'true');
 
           // Add keyboard navigation to result links and make them non-tabbable
-          const resultLinks = searchResults.querySelectorAll<HTMLAnchorElement>('.ps-searchbar__result-link');
+          const resultLinks = searchResults.querySelectorAll<HTMLAnchorElement>(SearchBarMap.searchResultLink);
           resultLinks.forEach((link) => {
             link.setAttribute('role', 'option');
             link.setAttribute('aria-selected', 'false');

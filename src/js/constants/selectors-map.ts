@@ -71,6 +71,7 @@ export const searchBar = {
   searchInput: '.js-search-input',
   searchIcon: '.js-search-icon',
   searchClear: '.js-search-clear',
+  searchResultLink: '[data-ps-ref="searchbar-result-link"]'
 };
 
 export const checkout = {

@@ -48,7 +48,7 @@
 {/function}
 
 {if !empty($categories.children)}
-  <div class="ps-categorytree {$componentName} left-block" role="tree" aria-label="Product categories">
+  <div class="ps-categorytree {$componentName} left-block">
     <p class="left-block__title">
       <a class="left-block__title-link" href="{$categories.link nofilter}">
         {$categories.name|escape:'htmlall':'UTF-8'}

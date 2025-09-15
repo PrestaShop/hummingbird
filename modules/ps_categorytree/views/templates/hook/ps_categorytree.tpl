@@ -55,7 +55,7 @@
       </a>
     </p>
 
-    <div class="accordion accordion-flush accordion--category"">
+    <div class="accordion accordion-flush accordion--category">
       <nav aria-label="{l s='Categories' d='Shop.Theme.Catalog'}">
         {if !empty($categories.children)}
           <div class="{$componentName}__child">

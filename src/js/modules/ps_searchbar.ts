@@ -49,6 +49,8 @@ const initSearchbar = () => {
     searchClear?.classList.add('d-none');
     // Ensure clear button is not tabbable when hidden
     searchClear?.setAttribute('tabindex', '-1');
+    // Return focus to search input after clearing
+    searchInput?.focus();
   };
 
   searchClear?.addEventListener('click', clearSearch);
@@ -120,6 +122,7 @@ const initSearchbar = () => {
           if (productLink && productTitle && productImage) {
             productLink.href = product.canonical_url;
             productLink.id = `result_product_option_${product.id_product.toString()}`;
+            productLink.setAttribute('aria-label', product.name);
             productTitle.innerHTML = product.name;
 
             if (product.cover) {

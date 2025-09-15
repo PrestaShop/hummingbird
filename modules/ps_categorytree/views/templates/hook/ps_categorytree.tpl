@@ -34,7 +34,6 @@
               <div
                 class="accordion-collapse collapse"
                 id="category-tree-{$node.id|escape:'htmlall':'UTF-8'}"
-                tabindex="-1"
               >
                 <div class="accordion-body">
                   {categories nodes=$node.children depth=$depth+1}

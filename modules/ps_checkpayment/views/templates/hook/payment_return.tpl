@@ -36,7 +36,7 @@
     {else}
       <div class="alert alert-warning mb-0" role="alert">
         {l s='We have noticed that there is a problem with your order. If you think this is an error, you can contact our' d='Modules.Checkpayment.Shop'}
-        <a class="alert-link" href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='customer service department.' d='Modules.Checkpayment.Shop'}</a>.
+        <a class="alert-link" href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='customer service department.' d='Modules.Checkpayment.Shop'}</a>
       </div>
     {/if}
   </div>
@@ -44,7 +44,7 @@
   {if $status === 'ok'}
     <div class="card-footer p-3 border-1">
       {l s='For any questions or for further information, please contact our' d='Modules.Checkpayment.Shop'}
-      <a href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='customer service department.' d='Modules.Checkpayment.Shop'}</a>.
+      <a href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='customer service department.' d='Modules.Checkpayment.Shop'}</a>
     </div>
   {/if}
 </div>

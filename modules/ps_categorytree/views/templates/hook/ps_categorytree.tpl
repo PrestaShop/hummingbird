@@ -57,9 +57,9 @@
 
     <ul class="accordion accordion-flush accordion--category" role="group">
       {if !empty($categories.children)}
-        <li class="{$componentName}__child" role="treeitem" aria-level="1">
+        <div class="{$componentName}__child">
           {categories nodes=$categories.children}
-        </li>
+        </div>
       {/if}
     </ul>
   </div>

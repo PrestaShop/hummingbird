@@ -8,7 +8,7 @@
 {function name="categories" nodes=[] depth=0}
   {strip}
     {if $nodes|count}
-      <ul class="{$componentName}__list" role="group" data-depth="{$depth|escape:'htmlall':'UTF-8'}">
+      <ul class="{$componentName}__list" role="tree" data-depth="{$depth|escape:'htmlall':'UTF-8'}">
         {foreach from=$nodes item=node name="categories"}
           <li class="{$componentName}__item {if $node.children}accordion-item{/if}">
             <div class="{$componentName}__item-header nosplit {if $node.children} split parent{/if}">

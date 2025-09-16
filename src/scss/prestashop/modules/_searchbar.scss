@@ -33,7 +33,15 @@ $component-name: ps-searchbar;
     padding: 0;
     color: var(--bs-body-color);
     cursor: pointer;
+    border-radius: var(--bs-border-radius);
+    transition: var(--bs-transition-default);
     transform: translateY(-50%);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--bs-link-hover-color);
+      background-color: var(--bs-tertiary-bg);
+    }
   }
 
   &__offcanvas {

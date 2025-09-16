@@ -13,7 +13,7 @@
       {foreach from=$formFields item="field"}
         {block "form_field"}
           {if $field.type === "password"}
-            <div class="field-password-policy">
+            <div data-ps-ref="password-field">
               {form_field field=$field}
             </div>
           {else}

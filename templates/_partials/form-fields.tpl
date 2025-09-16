@@ -48,7 +48,8 @@
     {elseif $field.type === 'radio-buttons'}
 
       {block name='form_field_item_radio'}
-        <div>
+        <div aria-labelledby="field-{$field.name}-label">
+          <p class="visually-hidden" id="field-{$field.name}-label">{$field.label}</p>
           {foreach from=$field.availableValues item="label" key="value"}
             <div class="form-check form-check-inline">
               <input
@@ -133,12 +134,12 @@
             {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
             value=""
             minlength="{$configuration.password_policy.minimum_length|default:8}"
-            maxlength="{$configuration.password_policy.maximum_length|default:20}"
-            data-minlength="{$configuration.password_policy.minimum_length|default:8}"
-            data-maxlength="{$configuration.password_policy.maximum_length|default:20}"
+            maxlength="{$configuration.password_policy.maximum_length|default:72}"
             data-minscore="{$configuration.password_policy.minimum_score|default:3}"
             data-bs-placement="top"
             data-bs-trigger="manual"
+            data-ps-ref="password-policy-input"
+            spellcheck="false"
             {if $field.required}required{/if}
           >
 
@@ -155,6 +156,8 @@
             <i class="material-icons" aria-hidden="true">&#xE8F4;</i>
           </button>
         </div>
+
+        <div data-ps-target="password-feedback-target"></div>
       {/block}
 
     {else}
@@ -169,7 +172,7 @@
           {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
           {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
           {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
-          aria-label="{$field.name}"
+          aria-label="{$field.label}"
           {if $field.required}required{/if}
         >
         {if isset($field.availableValues.comment)}

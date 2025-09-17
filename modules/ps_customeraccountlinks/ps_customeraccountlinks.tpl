@@ -16,7 +16,7 @@
     <button
       class="stretched-link collapsed d-md-none"
       type="button"
-      aria-expanded="true"
+      aria-expanded="false"
       aria-controls="footer_customeraccountlinks"
       data-bs-target="#footer_customeraccountlinks"
       data-bs-toggle="collapse"

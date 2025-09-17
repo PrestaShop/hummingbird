@@ -16,7 +16,7 @@
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#footer_contactinfo"
-      aria-expanded="true"
+      aria-expanded="false"
       aria-controls="footer_contactinfo"
     >
       <span class="visually-hidden">

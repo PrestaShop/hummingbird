@@ -17,7 +17,7 @@
         <button
           class="stretched-link collapsed d-md-none"
           type="button"
-          aria-expanded="true"
+          aria-expanded="false"
           aria-controls="footer_linklist_{$linkBlock.id}"
           data-bs-target="#footer_linklist_{$linkBlock.id}"
           data-bs-toggle="collapse"

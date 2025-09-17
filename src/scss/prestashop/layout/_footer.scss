@@ -3,6 +3,8 @@ $sub-component-name: "footer-block";
 
 // Footer main
 .#{$component-name} {
+  padding-left: 0.25rem;
+
   &__main {
     padding-block: 1.5rem;
     color: var(--bs-gray-300);
@@ -37,6 +39,11 @@ $sub-component-name: "footer-block";
       justify-content: space-between;
 
       .stretched-link {
+        padding: 0;
+        color: inherit;
+        background-color: inherit;
+        border: none;
+
         &:not(.collapsed) {
           i {
             transform: rotate(0.5turn);

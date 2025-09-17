@@ -2,24 +2,37 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div class="ps-contactinfo footer-block col-md-6 col-lg-3">
-  <p class="footer-block__title footer-block__title--toggle">
+<section
+  class="ps-contactinfo footer-block col-md-6 col-lg-3"
+  aria-labelledby="footer_contactinfo_title"
+>
+  <p
+    id="footer_contactinfo_title"
+    class="footer-block__title footer-block__title--toggle"
+  >
     {l s='Store information' d='Shop.Theme.Global'}
-    <span
+    <button
       class="stretched-link collapsed d-md-none"
-      aria-expanded="true"
-      data-bs-target="#footer_contactinfo"
+      type="button"
       data-bs-toggle="collapse"
-      role="button"
+      data-bs-target="#footer_contactinfo"
+      aria-expanded="true"
+      aria-controls="footer_contactinfo"
     >
-      <i class="material-icons" aria-hidden="true">&#xE313;</i>
-    </span>
+      <span class="visually-hidden">
+        {l s='Toggle Store information' d='Shop.Theme.Global'}
+      </span>
+      <i class="material-icons" role="presentation" aria-hidden="true">&#xE313;</i>
+    </button>
   </p>
 
   <div class="footer-block__content collapse" id="footer_contactinfo">
-    <address class="ps-contactinfo__infos">
-      {$contact_infos.address.formatted nofilter}
-    </address>
+
+    {if $contact_infos.address.formatted}
+      <address class="ps-contactinfo__infos">
+        {$contact_infos.address.formatted nofilter}
+      </address>
+    {/if}
 
     {if $contact_infos.phone}
       <div class="ps-contactinfo__phone">
@@ -50,5 +63,6 @@
         </a>
       </div>
     {/if}
+
   </div>
-</div>
+</section>

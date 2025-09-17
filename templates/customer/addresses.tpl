@@ -19,7 +19,12 @@
         {/block}
       {/foreach}
 
-      <a class="address-card address-card--add-address" href="{$urls.pages.address}" data-link-action="add-address">
+      <a 
+        class="address-card address-card--add-address"
+        href="{$urls.pages.address}"
+        data-link-action="add-address"
+        role="button"
+      >
         <span class="address-card__add-text">{l s='Add new address' d='Shop.Theme.Actions'}</span>
 
         <span class="address-card__add-icon btn btn-square btn-square-icon btn-primary">

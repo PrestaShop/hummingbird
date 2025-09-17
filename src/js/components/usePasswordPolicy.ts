@@ -240,12 +240,12 @@ const setupRequirementTexts = (
 
 // Helper function to validate required elements
 const validateRequiredElements = (
-  element: HTMLElement | null,
+  element: HTMLElement | null | undefined,
   elementInput: HTMLInputElement | null | undefined,
-  feedbackTemplate: HTMLTemplateElement | null,
-  feedbackContainer: HTMLElement | null,
-  hintElement: Element | null,
-  feedbackTarget: HTMLElement | null,
+  feedbackTemplate: HTMLTemplateElement | null | undefined,
+  feedbackContainer: HTMLElement | null | undefined,
+  hintElement: Element | null | undefined,
+  feedbackTarget: HTMLElement | null | undefined,
 ): Error | null => {
   if (!element || !elementInput || !feedbackTemplate || !feedbackContainer || !hintElement || !feedbackTarget) {
     return new Error(PASSWORD_POLICY_ERROR);
@@ -284,9 +284,9 @@ const setupValidationListeners = (
 const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
   const element = document.querySelector<HTMLElement>(selector);
   const elementInput = element?.querySelector<HTMLInputElement>(PasswordPolicyMap.input);
-  const targetElement = document.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
-  const feedbackTemplate = document.querySelector<HTMLTemplateElement>(PasswordPolicyMap.template);
-  const feedbackTarget = document.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
+  const targetElement = element?.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
+  const feedbackTemplate = document?.querySelector<HTMLTemplateElement>(PasswordPolicyMap.template);
+  const feedbackTarget = element?.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
 
   // Create feedback container
   let feedbackContainer: HTMLElement | null = null;
@@ -296,7 +296,7 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
     feedbackContainer = targetElement.querySelector<HTMLElement>(PasswordPolicyMap.feedbackContainer);
   }
 
-  const hintElement = document.querySelector(PasswordPolicyMap.hint);
+  const hintElement = element?.querySelector<HTMLElement>(PasswordPolicyMap.hint);
 
   // Validate all required elements
   const validationError = validateRequiredElements(

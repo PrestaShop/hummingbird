@@ -33,7 +33,7 @@ $component-name: grid-table;
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--bs-secondary-color);
-      content: attr(aria-label);
+      content: attr(data-ps-label) / " ";
     }
 
     &-group {
@@ -61,20 +61,22 @@ $component-name: grid-table;
     &--collapse {
       .#{$component-name}__inner {
         gap: 0;
-      }
 
-      .#{$component-name}__row {
-        margin-block-start: -1px;
-        border-radius: 0;
+        .#{$component-name}__row {
+          margin-block-start: -0.0625rem;
+          border-radius: 0;
+        }
 
-        &:first-of-type {
+        .#{$component-name}__header + .#{$component-name}__row {
           border-top-left-radius: var(--bs-border-radius);
           border-top-right-radius: var(--bs-border-radius);
         }
 
-        &:last-of-type {
-          border-bottom-right-radius: var(--bs-border-radius);
-          border-bottom-left-radius: var(--bs-border-radius);
+        .#{$component-name}__row {
+          &:last-child {
+            border-bottom-right-radius: var(--bs-border-radius);
+            border-bottom-left-radius: var(--bs-border-radius);
+          }
         }
       }
     }
@@ -141,6 +143,11 @@ $component-name: grid-table;
       &:last-child {
         border-block-end: none;
       }
+
+      &:has(.#{$component-name}__cell--label-value) {
+        border-block: none;
+        padding-block: 0.25rem;
+      }
     }
 
     &__cell {
@@ -175,7 +182,7 @@ $component-name: grid-table;
           font-size: 1rem;
           font-weight: 600;
           color: var(--bs-body-color);
-          content: attr(aria-label);
+          content: attr(data-ps-label) / " ";
         }
       }
     }

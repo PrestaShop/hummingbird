@@ -22,11 +22,23 @@
 
       {block name='address_block_item_actions'}
         <div class="{$componentName}__actions">
-          <a class="{$componentName}__edit link-body-emphasis" href="{url entity=address id=$address.id}" data-link-action="edit-address">
+          <a 
+            class="{$componentName}__edit link-body-emphasis"
+            href="{url entity=address id=$address.id}"
+            data-link-action="edit-address"
+            aria-label="{l s='Edit %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
+            role="button"
+          >
             {l s='Edit' d='Shop.Theme.Actions'}
           </a>
 
-          <a class="{$componentName}__delete link-danger" href="{url entity=address id=$address.id params=['delete' => 1, 'token' => $token]}" data-link-action="delete-address">
+          <a 
+            class="{$componentName}__delete link-danger"
+            href="{url entity=address id=$address.id params=['delete' => 1, 'token' => $token]}"
+            data-link-action="delete-address"
+            aria-label="{l s='Delete %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
+            role="button"
+          >
             {l s='Delete' d='Shop.Theme.Actions'}
           </a>
         </div>

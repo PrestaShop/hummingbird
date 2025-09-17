@@ -3,20 +3,20 @@
  * file that was distributed with this source code.
  *}
 {block name='order_products_table'}
-  <div class="grid-table grid-table--collapse" data-role="table">
-    <div class="grid-table__inner grid-table__inner--4">
-      <header class="grid-table__header">
-        <div class="grid-table__cell">{l s='Product' d='Shop.Theme.Catalog'}</div>
-        <div class="grid-table__cell grid-table__cell--center">{l s='Quantity' d='Shop.Theme.Catalog'}</div>
-        <div class="grid-table__cell grid-table__cell--center">{l s='Unit price' d='Shop.Theme.Catalog'}</div>
-        <div class="grid-table__cell grid-table__cell--right">{l s='Total price' d='Shop.Theme.Catalog'}</div>
+  <div class="grid-table grid-table--collapse mb-0" role="table" aria-label="{l s='Products details' d='Shop.Theme.Customeraccount'}" aria-describedby="order_products_heading">
+    <div class="grid-table__inner grid-table__inner--4" role="rowgroup">
+      <header class="grid-table__header" role="row">
+        <span class="grid-table__cell" role="columnheader">{l s='Product' d='Shop.Theme.Catalog'}</span>
+        <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
+        <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Unit price' d='Shop.Theme.Catalog'}</span>
+        <span class="grid-table__cell grid-table__cell--right" role="columnheader">{l s='Total price' d='Shop.Theme.Catalog'}</span>
       </header>
 
-      {foreach from=$order.products item=product}
-        <div class="grid-table__row">
-          <div class="grid-table__cell order-product" aria-label="{l s='Product' d='Shop.Theme.Catalog'}">
-            <div class="order-product__infos">
-              <div class="order-product__image">
+      {foreach from=$order.products item=product name=products}
+        <div class="grid-table__row {if $smarty.foreach.products.last}rounded-bottom-0{/if}" role="row">
+          <span class="grid-table__cell order-product" role="cell" data-ps-label="{l s='Product' d='Shop.Theme.Catalog'}">
+            <span class="order-product__infos">
+              <span class="order-product__image">
                 <a href="{$link->getProductLink($product.id_product)}">
                   {if $product.cover}
                     <picture>
@@ -82,9 +82,9 @@
                     </picture>
                   {/if}
                 </a>
-              </div>
+              </span>
 
-              <div class="order-product__content">
+              <span class="order-product__content">
                 <a class="order-product__name" href="{$link->getProductLink($product.id_product)}">
                   {$product.name}
                 </a>
@@ -103,24 +103,24 @@
 
                 {if $product.customizations}
                   {foreach from=$product.customizations item="customization"}
-                    <div id="product_customization_modal_wrapper_{$customization.id_customization}">
+                    <span id="product_customization_modal_wrapper_{$customization.id_customization}">
                       {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
-                    </div>
+                    </span>
 
-                    <div class="customization">
+                    <span class="customization">
                       <a class="btn btn-sm btn-link p-0" href="#" data-bs-toggle="modal"
                         data-bs-target="#product-customizations-modal-{$customization.id_customization}">
                         <i class="material-icons">&#xE8F4;</i>
                         {l s='Product customization' d='Shop.Theme.Catalog'}
                       </a>
-                    </div>
+                    </span>
                   {/foreach}
                 {/if}
-              </div>
-            </div>
-          </div>
+              </span>
+            </span>
+          </span>
 
-          <div class="grid-table__cell grid-table__cell--center" aria-label="{l s='Quantity' d='Shop.Theme.Catalog'}">
+          <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Quantity' d='Shop.Theme.Catalog'}">
             {if $product.customizations}
               {foreach $product.customizations as $customization}
                 {$customization.quantity}
@@ -128,26 +128,38 @@
             {else}
               {$product.quantity}
             {/if}
-          </div>
+          </span>
 
-          <div class="grid-table__cell grid-table__cell--center" aria-label="{l s='Unit price' d='Shop.Theme.Catalog'}">
+          <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Unit price' d='Shop.Theme.Catalog'}">
             {$product.price}
-          </div>
+          </span>
 
-          <div class="grid-table__cell grid-table__cell--right" aria-label="{l s='Total price' d='Shop.Theme.Catalog'}">
+          <span class="grid-table__cell grid-table__cell--right" role="cell" data-ps-label="{l s='Total price' d='Shop.Theme.Catalog'}">
             {$product.total}
-          </div>
+          </span>
         </div>
       {/foreach}
+    </div>
+  </div>
 
-      <div class="grid-table__row">
-        {foreach $order.subtotals as $line}
-          {if $line.value}
-            <div class="grid-table__cell grid-table__cell--label-value" aria-label="{$line.label}">{$line.value}</div>
-          {/if}
-        {/foreach}
+  <div class="grid-table grid-table--collapse" role="table" aria-label="{l s='Order totals' d='Shop.Theme.Customeraccount'}">
+    <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
+      {foreach $order.subtotals as $line}
+        {if $line.value}
+          <div class="grid-table__row" role="row">
+            <span class="grid-table__cell grid-table__cell--label-value" role="cell" data-ps-label="{$line.label}">
+              <span class="visually-hidden">{l s='%label%' d='Shop.Theme.Catalog' sprintf=['%label%' => $line.label]}</span>
+              {$line.value}
+            </span>
+          </div>
+        {/if}
+      {/foreach}
 
-        <div class="grid-table__cell grid-table__cell--label-value" aria-label="{$order.totals.total.label}">{$order.totals.total.value}</div>
+      <div class="grid-table__row" role="row">
+        <span class="grid-table__cell grid-table__cell--label-value" role="cell" data-ps-label="{$order.totals.total.label}">
+          <span class="visually-hidden">{l s='Total price' d='Shop.Theme.Catalog'}</span>
+          {$order.totals.total.value}
+        </span>
       </div>
     </div>
   </div>

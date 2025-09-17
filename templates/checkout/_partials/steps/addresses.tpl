@@ -7,9 +7,11 @@
 {block name='step_content'}
   <div class="js-address-form">
     <form
+      class="form-validation"
       method="POST"
       action="{url entity='order' params=['id_address' => $id_address]}"
       data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm', 'id_address' => $id_address]}"
+      data-ps-action="form-validation"
    >
       {if $use_same_address}
         <p>

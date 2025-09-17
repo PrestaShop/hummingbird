@@ -31,7 +31,7 @@ $component-name: order-history;
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--bs-secondary-color);
-      content: attr(aria-label);
+      content: attr(data-ps-label);
     }
 
     &--reference {

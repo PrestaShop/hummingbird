@@ -91,32 +91,32 @@
       </button>
     </p>
 
-    <div class="grid-table" data-role="table">
-      <div class="grid-table__inner grid-table__inner--3">
-        <div class="grid-table__header">
-          <div class="grid-table__cell">{l s='Delivery Option' d='Shop.Theme.Checkout'}</div>
-          <div class="grid-table__cell">{l s='Price' d='Shop.Theme.Checkout'}</div>
-          <div class="grid-table__cell">{l s='Delivery Information' d='Shop.Theme.Checkout'}</div>
+    <div class="grid-table" role="table" aria-label="{l s='Shipping Method' d='Shop.Theme.Checkout'}">
+      <div class="grid-table__inner grid-table__inner--3" role="rowgroup">
+        <div class="grid-table__header" role="row">
+          <span class="grid-table__cell" role="columnheader">{l s='Delivery Option' d='Shop.Theme.Checkout'}</span>
+          <span class="grid-table__cell" role="columnheader">{l s='Price' d='Shop.Theme.Checkout'}</span>
+          <span class="grid-table__cell" role="columnheader">{l s='Delivery Information' d='Shop.Theme.Checkout'}</span>
         </div>
 
-        <div class="grid-table__row">
-          <div class="grid-table__cell" aria-label="{l s='Delivery Option' d='Shop.Theme.Checkout'}">
-            <div class="grid-table__cell-group grid-table__cell-group--sm grid-table__cell-group--inline">
+        <div class="grid-table__row" role="row">
+          <span class="grid-table__cell" role="cell" data-ps-label="{l s='Delivery Option' d='Shop.Theme.Checkout'}">
+            <span class="grid-table__cell-group grid-table__cell-group--sm grid-table__cell-group--inline">
               {if $selected_delivery_option.logo}
                 <img src="{$selected_delivery_option.logo}" class="rounded img-fluid" width="32" height="auto" alt="{$selected_delivery_option.name}" loading="lazy" />
               {/if}
 
               {$selected_delivery_option.name}
-            </div>
-          </div>
+            </span>
+          </span>
 
-          <div class="grid-table__cell" aria-label="{l s='Price' d='Shop.Theme.Checkout'}">
+          <span class="grid-table__cell" role="cell" data-ps-label="{l s='Price' d='Shop.Theme.Checkout'}">
             {$selected_delivery_option.price}
-          </div>
+          </span>
 
-          <div class="grid-table__cell" aria-label="{l s='Delivery Information' d='Shop.Theme.Checkout'}">
+          <span class="grid-table__cell" role="cell" data-ps-label="{l s='Delivery Information' d='Shop.Theme.Checkout'}">
             {$selected_delivery_option.delay}
-          </div>
+          </span>
         </div>
       </div>
     </div>

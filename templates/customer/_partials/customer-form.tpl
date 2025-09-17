@@ -7,12 +7,23 @@
     {include file='_partials/form-errors.tpl' errors=$errors['']}
   {/block}
 
-<form action="{block name='customer_form_actionurl'}{$action}{/block}" id="customer-form" class="form-validation js-customer-form" method="post" data-ps-action="form-validation">
+<form 
+  action="{block name='customer_form_actionurl'}{$action}{/block}" 
+  class="form-validation js-customer-form" 
+  id="customer-form" 
+  method="post" 
+  data-ps-action="form-validation"
+  aria-label="{l s='Your personal information' d='Shop.Theme.Customeraccount'}"
+>
   <section>
     {block "form_fields"}
       {foreach from=$formFields item="field"}
         {block "form_field"}
-          {if $field.type === "password"}
+          {if $field.name === "new_password" && $page.page_name == "identity"}
+            <div data-ps-ref="password-field">
+              {form_field field=$field}
+            </div>
+          {elseif $field.type === "password" && $page.page_name != "identity"}
             <div data-ps-ref="password-field">
               {form_field field=$field}
             </div>

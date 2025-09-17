@@ -45,7 +45,7 @@
           <div class="order-infos__actions buttons-wrapper {if !$order.details.invoice_url && $order.details.reorder_url}buttons-wrapper--end{else}buttons-wrapper--split{/if}">
             {if $order.details.invoice_url}
               <a class="btn btn-link px-0" href="{$order.details.invoice_url}">
-                <i class="material-icons">&#xE415;</i>
+                <i class="material-icons" aria-hidden="true">&#xE415;</i>
                 {l s='Download your invoice as a PDF file.' d='Shop.Theme.Customeraccount'}
               </a>
             {/if}
@@ -65,25 +65,25 @@
 
   {block name='order_status'}
     <section class="order-status">
-      <h2 class="h3">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
+      <h2 class="h3" id="order_status_heading">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
 
-      <div class="order-status__table grid-table grid-table--collapse" data-role="table">
-        <div class="grid-table__inner grid-table__inner--2">
-          <header class="grid-table__header">
-            <div class="grid-table__cell">{l s='Date' d='Shop.Theme.Global'}</div>
-            <div class="grid-table__cell">{l s='Status' d='Shop.Theme.Global'}</div>
-          </header>
+      <div class="order-status__table grid-table grid-table--collapse" role="table" aria-label="{l s='Order status' d='Shop.Theme.Customeraccount'}" aria-describedby="order_status_heading">
+        <div class="grid-table__inner grid-table__inner--2" role="rowgroup">
+          <div class="grid-table__header" role="row">
+            <span class="grid-table__cell" role="columnheader">{l s='Date' d='Shop.Theme.Global'}</span>
+            <span class="grid-table__cell" role="columnheader">{l s='Status' d='Shop.Theme.Global'}</span>
+          </div>
 
           {foreach from=$order.history item=state}
-            <div class="grid-table__row">
-              <div class="grid-table__cell" aria-label="{l s='Date' d='Shop.Theme.Global'}">
+            <div class="grid-table__row" role="row">
+              <span class="grid-table__cell" role="cell" data-ps-label="{l s='Date' d='Shop.Theme.Global'}">
                 {$state.history_date}
-              </div>
-              <div class="grid-table__cell" aria-label="{l s='Status' d='Shop.Theme.Global'}">
+              </span>
+              <span class="grid-table__cell" role="cell" data-ps-label="{l s='Status' d='Shop.Theme.Global'}">
                 <span class="order-status__badge order-status__badge--{$state.contrast} badge" style="background-color:{$state.color}">
                   {$state.ostate_name}
                 </span>
-              </div>
+              </span>
             </div>
           {/foreach}
         </div>
@@ -96,35 +96,35 @@
   {block name='order_carriers'}
     {if $order.shipping}
       <section class="order-carriers">
-        <h3 class="h3">{l s='Tracking' d='Shop.Theme.Customeraccount'}</h3>
+        <h3 class="h3" id="order_carriers_heading">{l s='Shipment tracking details' d='Shop.Theme.Customeraccount'}</h3>
 
-        <div class="grid-table" data-role="table">
-          <div class="grid-table__inner grid-table__inner--5">
-            <div class="grid-table__header">
-              <div class="grid-table__cell">{l s='Date' d='Shop.Theme.Global'}</div>
-              <div class="grid-table__cell">{l s='Carrier' d='Shop.Theme.Checkout'}</div>
-              <div class="grid-table__cell">{l s='Weight' d='Shop.Theme.Checkout'}</div>
-              <div class="grid-table__cell">{l s='Shipping cost' d='Shop.Theme.Checkout'}</div>
-              <div class="grid-table__cell">{l s='Tracking number' d='Shop.Theme.Checkout'}</div>
+        <div class="grid-table" role="table" aria-label="{l s='Order tracking' d='Shop.Theme.Customeraccount'}" aria-describedby="order_carriers_heading">
+          <div class="grid-table__inner grid-table__inner--5" role="rowgroup">
+            <div class="grid-table__header" role="row">
+              <span class="grid-table__cell" role="columnheader">{l s='Date' d='Shop.Theme.Global'}</span>
+              <span class="grid-table__cell" role="columnheader">{l s='Carrier' d='Shop.Theme.Checkout'}</span>
+              <span class="grid-table__cell" role="columnheader">{l s='Weight' d='Shop.Theme.Checkout'}</span>
+              <span class="grid-table__cell" role="columnheader">{l s='Shipping cost' d='Shop.Theme.Checkout'}</span>
+              <span class="grid-table__cell" role="columnheader">{l s='Tracking number' d='Shop.Theme.Checkout'}</span>
             </div>
 
             {foreach from=$order.shipping item=line}
-              <div class="grid-table__row">
-                <div class="grid-table__cell" aria-label="{l s='Date' d='Shop.Theme.Global'}">
+              <div class="grid-table__row" role="row">
+                <span class="grid-table__cell" role="cell" data-ps-label="{l s='Date' d='Shop.Theme.Global'}">
                   {$line.shipping_date}
-                </div>
-                <div class="grid-table__cell" aria-label="{l s='Carrier' d='Shop.Theme.Checkout'}">
+                </span>
+                <span class="grid-table__cell" role="cell" data-ps-label="{l s='Carrier' d='Shop.Theme.Checkout'}">
                   {$line.carrier_name}
-                </div>
-                <div class="grid-table__cell" aria-label="{l s='Weight' d='Shop.Theme.Checkout'}">
+                </span>
+                <span class="grid-table__cell" role="cell" data-ps-label="{l s='Weight' d='Shop.Theme.Checkout'}">
                   {$line.shipping_weight}
-                </div>
-                <div class="grid-table__cell" aria-label="{l s='Shipping cost' d='Shop.Theme.Checkout'}">
+                </span>
+                <span class="grid-table__cell" role="cell" data-ps-label="{l s='Shipping cost' d='Shop.Theme.Checkout'}">
                   {$line.shipping_cost}
-                </div>
-                <div class="grid-table__cell" aria-label="{l s='Tracking number' d='Shop.Theme.Checkout'}">
+                </span>
+                <span class="grid-table__cell" role="cell" data-ps-label="{l s='Tracking number' d='Shop.Theme.Checkout'}">
                   {$line.tracking nofilter}
-                </div>
+                </span>
               </div>
             {/foreach}
           </div>
@@ -176,7 +176,7 @@
 
   {block name='order_products'}
     <section class="order-products">
-      <h3 class="h3">{l s='Products' d='Shop.Theme.Customeraccount'}</h3>
+      <h3 class="h3" id="order_products_heading">{l s='Products details' d='Shop.Theme.Customeraccount'}</h3>
 
       {block name='order_detail'}
         {if $order.details.is_returnable}

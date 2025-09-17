@@ -5,7 +5,7 @@
 {block name='order_messages_table'}
   {if $order.messages}
     <section class="order-messages">
-      <h3 class="h3">{l s='Messages' d='Shop.Theme.Customeraccount'}</h3>
+      <h3 class="h3">{l s='Customer service messages' d='Shop.Theme.Customeraccount'}</h3>
 
       <div class="order-message__list">
       {foreach from=$order.messages item=message}
@@ -28,7 +28,7 @@
 
 {block name='order_message_form'}
   <section class="order-message-form">
-    <form action="{$urls.pages.order_detail}" method="post">
+    <form action="{$urls.pages.order_detail}" method="post" data-ps-action="form-validation">
       <h3 class="h3">{l s='Add a message' d='Shop.Theme.Customeraccount'}</h3>
 
       <p>
@@ -36,10 +36,10 @@
       </p>
 
       <div class="mb-3">
-        <label class="form-label">{l s='Product' d='Shop.Forms.Labels'}</label>
+        <label class="form-label" for="product_select_message">{l s='Product' d='Shop.Forms.Labels'}</label>
 
-        <select name="id_product" class="form-select">
-          <option value="0">{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
+        <select name="id_product" class="form-select" id="product_select_message">
+          <option value="0">{l s='-- choose a product --' d='Shop.Forms.Labels'}</option>
           {foreach from=$order.products item=product}
             <option value="{$product.id_product}">{$product.name}</option>
           {/foreach}
@@ -47,14 +47,20 @@
       </div>
 
       <div class="mb-3">
-        <label class="form-label">{l s='Message' d='Shop.Forms.Labels'}</label>
-        <textarea rows="3" name="msgText" class="form-control"></textarea>
+        <label class="form-label required" for="message_text">{l s='Message' d='Shop.Forms.Labels'}</label>
+        <textarea 
+          rows="3"
+          name="msgText"
+          id="message_text"
+          class="form-control"
+          required
+        ></textarea>
       </div>
 
       <div class="buttons-wrapper buttons-wrapper--end mt-3">
         <input type="hidden" name="id_order" value="{$order.details.id}">
-        <button type="submit" name="submitMessage" class="btn btn-primary">
-          {l s='Send' d='Shop.Theme.Actions'}
+        <button type="submit" name="submitMessage" class="btn btn-primary" data-ps-action="form-validation-submit">
+          {l s='Send your message' d='Shop.Theme.Actions'}
         </button>
       </footer>
     </form>

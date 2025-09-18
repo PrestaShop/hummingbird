@@ -31,7 +31,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="contact-us-email-input">
+          <label class="form-label required" for="contact-us-email-input">
             {l s='Email address' d='Shop.Forms.Labels'}
           </label>
           <input
@@ -42,6 +42,7 @@
             value="{$contact.email}"
             placeholder="{l s='your@email.com' d='Shop.Forms.Help'}"
             autocomplete="email"
+            required
           >
         </div>
 

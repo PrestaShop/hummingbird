@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 <section class="contact-form">
-  <form action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if}>
+  <form class="form-validation" action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if}  data-ps-action="form-validation">
 
     {if $notifications}
       <div class="alert {if $notifications.nw_error}alert-danger{else}alert-success{/if}" role="alert" tabindex="0">

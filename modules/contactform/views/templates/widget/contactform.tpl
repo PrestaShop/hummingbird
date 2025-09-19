@@ -6,7 +6,7 @@
   <form action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if}>
 
     {if $notifications}
-      <div class="alert {if $notifications.nw_error}alert-danger{else}alert-success{/if}" role="alert">
+      <div class="alert {if $notifications.nw_error}alert-danger{else}alert-success{/if}" role="alert" tabindex="0">
         <ul class="mb-0">
           {foreach $notifications.messages as $notif}
             <li>{$notif}</li>

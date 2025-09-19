@@ -20,7 +20,7 @@
       aria-controls="footer_contactinfo"
     >
       <span class="visually-hidden">
-        {l s='Toggle Store information' d='Shop.Theme.Global'}
+        {l s='Toggle store information' d='Shop.Theme.Global'}
       </span>
       <i class="material-icons" role="presentation" aria-hidden="true">&#xE313;</i>
     </button>

@@ -25,7 +25,7 @@
           <span class="visually-hidden">
             {l s='Toggle %s links' sprintf=[$linkBlock.title|lower] d='Shop.Theme.Global'}
           </span>
-          <i class="material-icons" role="presentation" aria-hidden="true">&#xE313;</i>
+          <i class="material-icons" aria-hidden="true">&#xE313;</i>
         </button>
       </p>
 

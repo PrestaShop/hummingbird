@@ -10,7 +10,7 @@ const initErrorHandler = () => {
   const {prestashop} = window;
 
   prestashop.on(events.handleError, ({resp}: {resp: {errors: string[]}}) => {
-    if(resp.errors) {
+    if (resp.errors) {
       resp.errors.forEach((error) => {
         useToast(error, {type: 'danger'}).show();
       });

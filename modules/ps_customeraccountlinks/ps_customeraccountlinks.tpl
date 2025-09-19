@@ -24,7 +24,7 @@
       <span class="visually-hidden">
         {l s='Toggle your account links' d='Shop.Theme.Customeraccount'}
       </span>
-      <i class="material-icons" role="presentation" aria-hidden="true">&#xE313;</i>
+      <i class="material-icons" aria-hidden="true">&#xE313;</i>
     </button>
   </p>
 

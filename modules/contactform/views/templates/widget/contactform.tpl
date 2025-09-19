@@ -77,7 +77,7 @@
         {/if}
 
         <div class="mb-3">
-          <label class="form-label" for="contact-us-message-textarea">
+          <label class="form-label required" for="contact-us-message-textarea">
             {l s='Message' d='Shop.Forms.Labels'}
           </label>
           <textarea

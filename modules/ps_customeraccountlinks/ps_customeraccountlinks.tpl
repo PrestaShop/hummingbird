@@ -22,7 +22,7 @@
       data-bs-toggle="collapse"
     >
       <span class="visually-hidden">
-        {l s='Toggle Your account links' d='Shop.Theme.Customeraccount'}
+        {l s='Toggle your account links' d='Shop.Theme.Customeraccount'}
       </span>
       <i class="material-icons" role="presentation" aria-hidden="true">&#xE313;</i>
     </button>

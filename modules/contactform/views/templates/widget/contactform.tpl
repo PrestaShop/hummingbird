@@ -85,6 +85,7 @@
             class="form-control"
             name="message"
             placeholder="{l s='How can we help?' d='Shop.Forms.Help'}"
+            required
             rows="3"
           >{if $contact.message}{$contact.message}{/if}</textarea>
         </div>
@@ -100,13 +101,14 @@
       <footer class="buttons-wrapper buttons-wrapper--end">
         <input type="hidden" name="url" value="" />
         <input type="hidden" name="token" value="{$token}" />
-        <input
+        <button
           class="btn btn-primary"
           type="submit"
           name="submitMessage"
-          value="{l s='Send' d='Shop.Theme.Actions'}"
-          aria-label="{l s='Send your message' d='Shop.Theme.Actions'}"
+          data-ps-action="form-validation-submit"
         >
+          {l s='Send your message' d='Shop.Theme.Actions'}
+        </button>
       </footer>
     {/if}
 

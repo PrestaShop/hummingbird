@@ -2,15 +2,30 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div class="ps-customeraccountlinks footer-block col-md-6 col-lg-3">
-  <p class="footer-block__title footer-block__title--toggle">
+<nav
+  class="ps-customeraccountlinks footer-block col-md-6 col-lg-3"
+  role="navigation"
+  aria-labelledby="footer_customeraccount_title">
+  <p
+    id="footer_customeraccount_title"
+    class="footer-block__title footer-block__title--toggle"
+  >
     <a href="{$urls.pages.my_account}" rel="nofollow">
       {l s='Your account' d='Shop.Theme.Customeraccount'}
     </a>
-    <span class="stretched-link collapsed d-md-none" role="button" aria-expanded="true"
-      data-bs-target="#footer_customeraccountlinks" data-bs-toggle="collapse">
+    <button
+      class="stretched-link collapsed d-md-none"
+      type="button"
+      aria-expanded="false"
+      aria-controls="footer_customeraccountlinks"
+      data-bs-target="#footer_customeraccountlinks"
+      data-bs-toggle="collapse"
+    >
+      <span class="visually-hidden">
+        {l s='Toggle your account links' d='Shop.Theme.Customeraccount'}
+      </span>
       <i class="material-icons" aria-hidden="true">&#xE313;</i>
-    </span>
+    </button>
   </p>
 
   <div class="footer-block__content collapse" id="footer_customeraccountlinks">
@@ -97,4 +112,4 @@
       {/if}
     </ul>
   </div>
-</div>
+</nav>

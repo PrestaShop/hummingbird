@@ -4,7 +4,7 @@
  *}
 {block name='order_products_table'}
   <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post" data-ps-action="form-validation">
-    <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Customeraccount'}" aria-describedby="order_products_heading">
+    <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Catalog'}" aria-describedby="order_products_heading">
       <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
         <div class="grid-table__header" role="row">
           <span class="grid-table__cell" role="columnheader" aria-label="{l s='Select product to return' d='Shop.Theme.Catalog'}">
@@ -12,7 +12,7 @@
           </span>
           <span class="grid-table__cell" role="columnheader">{l s='Product' d='Shop.Theme.Catalog'}</span>
           <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
-          <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Returned' d='Shop.Theme.Customeraccount'}</span>
+          <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Returned' d='Shop.Theme.Catalog'}</span>
           <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Unit price' d='Shop.Theme.Catalog'}</span>
           <span class="grid-table__cell grid-table__cell--right" role="columnheader">{l s='Total price' d='Shop.Theme.Catalog'}</span>
         </div>
@@ -185,7 +185,7 @@
               </span>
             </span>
 
-            <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Returned' d='Shop.Theme.Customeraccount'}">{$product.qty_returned}</span>
+            <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Returned' d='Shop.Theme.Catalog'}">{$product.qty_returned}</span>
 
             <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Unit price' d='Shop.Theme.Catalog'}">{$product.price}</span>
 
@@ -195,7 +195,7 @@
       </div>
     </div>
 
-    <div class="grid-table grid-table--collapse" role="table" aria-label="{l s='Order totals' d='Shop.Theme.Customeraccount'}">
+    <div class="grid-table grid-table--collapse" role="table" aria-label="{l s='Order totals' d='Shop.Theme.Catalog'}">
       <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
         {foreach $order.subtotals as $line}
           {if $line.value}

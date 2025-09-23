@@ -48,6 +48,7 @@
 
       <div class="mb-3">
         <label class="form-label required" for="message_text">{l s='Message' d='Shop.Forms.Labels'}</label>
+
         <textarea 
           rows="3"
           name="msgText"

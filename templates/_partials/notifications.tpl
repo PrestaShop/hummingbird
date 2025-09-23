@@ -9,12 +9,12 @@
     {if $notifications.error}
       {block name='notifications_error'}
         <article class="alert alert-danger alert-dismissible" role="alert" data-alert="danger" tabindex="0">
-        {if $notifications.error|count > 1}
-          <ul class="mb-0">
-          {foreach $notifications.error as $notif}
-            <li>{$notif nofilter}</li>
-          {/foreach}
-          </ul>
+          {if $notifications.error|count > 1}
+            <ul class="mb-0">
+              {foreach $notifications.error as $notif}
+                <li>{$notif nofilter}</li>
+              {/foreach}
+            </ul>
           {else}
             {$notifications.error.0 nofilter}
           {/if}

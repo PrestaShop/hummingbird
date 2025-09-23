@@ -17,7 +17,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {$componentName = 'search-filters'}
- 
+
 {if $displayedFacets|count}
   <div id="search-filters" class="{$componentName}">
     {block name='facets_title'}
@@ -29,8 +29,11 @@
     {block name='facets_clearall_button'}
       {if $activeFilters|count}
         <div class="{$componentName}__clear">
-          <button data-search-url="{$clear_all_link}" class="btn btn-outline-tertiary js-search-filters-clear-all">
-            <i class="material-icons">&#xE5CD;</i>
+          <button
+            data-search-url="{$clear_all_link}"
+            class="btn btn-outline-tertiary js-search-filters-clear-all"
+          >
+            <i class="material-icons" aria-hidden="true">&#xE5CD;</i>
             {l s='Clear all' d='Shop.Theme.Actions'}
           </button>
         </div>
@@ -46,11 +49,15 @@
           {foreach from=$facet.filters item="filter"}
             {if $filter.active}{assign var=_collapse value=false}{/if}
           {/foreach}
-
-          <button class="accordion-button {if $_collapse} collapsed{/if}" type="button" data-bs-target="#facet_{$_expand_id}" data-bs-toggle="collapse"{if !$_collapse} aria-expanded="true"{/if}>
+          <button
+            class="accordion-button {if $_collapse} collapsed{/if}"
+            type="button"
+            data-bs-target="#facet_{$_expand_id}"
+            data-bs-toggle="collapse"
+            {if !$_collapse} aria-expanded="true"{/if}
+          >
             {$facet.label}
           </button>
-
           <div id="facet_{$_expand_id}" class="accordion-collapse collapse{if !$_collapse} show{/if}">
             {if in_array($facet.widgetType, ['radio', 'checkbox'])}
               {block name='facet_item_other'}
@@ -66,8 +73,8 @@
                       <div class="{$componentName}__item facet-label{if $filter.active} active {/if}">
                         {if $facet.multipleSelectionAllowed}
                           <div class="{$componentName}__form-check{if $isColorOrTexture} {$componentName}__form-check--color{/if} form-check">
-                            <input 
-                              class="form-check-input{if $isColorOrTexture} d-none{/if}" 
+                            <input
+                              class="form-check-input{if $isColorOrTexture} d-none{/if}"
                               id="facet_input_{$_expand_id}_{$filter_key}"
                               data-search-url="{$filter.nextEncodedFacetsURL}"
                               type="checkbox"
@@ -76,7 +83,17 @@
 
                             <label class="{$componentName}__form-label form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
                               {if isset($filter.properties.color)}
-                                <span class="color color-sm {if $filter.active } active{/if}" style="background-color:{$filter.properties.color}"></span>
+                                <button
+                                  type="button"
+                                  class="color color-sm{if $filter.active} active{/if}"
+                                  style="background-color:{$filter.properties.color}"
+                                  tabindex="0"
+                                  aria-pressed="{if $filter.active}true{else}false{/if}"
+                                  aria-label="{l s='Filter by %1$s' d='Shop.Theme.Catalog' sprintf=[$filter.label]}"
+                                  data-search-url="{$filter.nextEncodedFacetsURL}"
+                                  onclick="window.prestashop.emit(window.Theme.events.updateFacets, this.dataset.searchUrl)"
+                                  onKeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"
+                                ></button>
                                 <span class="{$componentName}__color-label">
                                   {$filter.label}
                                   {if $filter.magnitude and $show_quantities}
@@ -208,12 +225,12 @@
 
                     <div class="{$componentName}__slider-values js-faceted-values"></div>
 
-                    <input 
+                    <input
                       type="hidden"
                       class="form-range-start js-faceted-slider js-faceted-slider-start"
                       id="slider-range_{$_expand_id}-start"
                     >
-                    <input 
+                    <input
                       type="hidden"
                       class="form-range-start js-faceted-slider js-faceted-slider-end"
                       id="slider-range_{$_expand_id}-end"

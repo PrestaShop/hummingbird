@@ -88,6 +88,24 @@ $component-name: (
     }
   }
 
+  .js-search-filters-clear-all:focus-visible {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #b3d4fc;
+  }
+
+  .color:focus-visible {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #b3d4fc;
+  }
+
+  .noUi-handle:focus-visible {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #b3d4fc;
+  }
+
   @include media-breakpoint-up(md) {
     display: block;
 
@@ -109,5 +127,11 @@ $component-name: (
     flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
+  }
+
+  &__link:focus-visible {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #b3d4fc;
   }
 }

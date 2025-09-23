@@ -104,6 +104,11 @@ export const initSliders = () => {
         const showValues = parentFacet.querySelector(Theme.selectors.facetedsearch.rangeValues) as HTMLElement;
         showValues.innerHTML = formattedValues.join(' - ');
       });
+
+      initiatedSlider.target.querySelectorAll('.noUi-handle').forEach(handle => {
+        handle.setAttribute('tabindex', '0');
+        handle.setAttribute('aria-label', 'Adjust filter range');
+      });
     } else {
       container.noUiSlider.updateOptions({
         start: sliderValues ?? [min, max],

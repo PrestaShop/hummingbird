@@ -52,7 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initDesktopMenu();
   initFormValidation();
   initErrorHandler();
-  usePasswordPolicy(themeSelectors.passwordPolicy.field);
+  if (document.querySelector(themeSelectors.passwordPolicy.field)) {
+    usePasswordPolicy(themeSelectors.passwordPolicy.field);
+  }
   initCategoryTree();
   initScrollPaddingTop();
   initBlockCart();

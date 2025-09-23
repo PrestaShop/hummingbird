@@ -247,6 +247,7 @@ const queryElement = <T extends HTMLElement>(
   if (!element) {
     throw new Error(errorMessage);
   }
+
   return element;
 };
 
@@ -298,31 +299,34 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
     `The feedback template "${PasswordPolicyMap.template}" for password policy is not found.`,
   );
 
-  // Create feedback container
-  let feedbackContainer: HTMLElement | null = null;
+  targetElement.innerHTML = feedbackTemplate.innerHTML;
 
-  if (targetElement) {
-    targetElement.innerHTML = feedbackTemplate!.innerHTML;
-    feedbackContainer = targetElement.querySelector<HTMLElement>(PasswordPolicyMap.feedbackContainer);
-  }
-
-  const hintElement = element?.querySelector<HTMLElement>(PasswordPolicyMap.hint);
-  const hints = safeParseJSON(hintElement!.innerHTML);
+  const feedbackContainer = queryElement<HTMLElement>(
+    PasswordPolicyMap.feedbackContainer,
+    `The feedback container element "${PasswordPolicyMap.feedbackContainer}" for password policy is not found.`,
+    targetElement,
+  );
+  const hintElement = queryElement<HTMLElement>(
+    PasswordPolicyMap.hint,
+    `The hint element "${PasswordPolicyMap.hint}" for password policy is not found.`,
+    element,
+  );
+  const hints = safeParseJSON(hintElement.innerHTML);
 
   // Setup requirement texts
-  setupRequirementTexts(feedbackContainer!, elementInput!, hints);
+  setupRequirementTexts(feedbackContainer, elementInput, hints);
 
   // Setup event listeners
-  const {inputHandler, formSubmitHandler, form} = setupValidationListeners(elementInput!, feedbackContainer!, hints);
+  const {inputHandler, formSubmitHandler, form} = setupValidationListeners(elementInput, feedbackContainer, hints);
 
   // Initial validation if field has content
-  if (elementInput!.value !== '') {
-    passwordValidation(elementInput!, feedbackContainer!, hints);
+  if (elementInput.value !== '') {
+    passwordValidation(elementInput, feedbackContainer, hints);
   }
 
   // Return cleanup function
   const cleanup = () => {
-    elementInput!.removeEventListener('input', inputHandler);
+    elementInput.removeEventListener('input', inputHandler);
     if (form && formSubmitHandler) {
       form.removeEventListener('submit', formSubmitHandler);
     }

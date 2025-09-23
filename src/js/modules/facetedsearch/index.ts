@@ -105,7 +105,7 @@ export const initSliders = () => {
         showValues.innerHTML = formattedValues.join(' - ');
       });
 
-      initiatedSlider.target.querySelectorAll('.noUi-handle').forEach(handle => {
+      initiatedSlider.target.querySelectorAll('.noUi-handle').forEach((handle) => {
         handle.setAttribute('tabindex', '0');
         handle.setAttribute('aria-label', 'Adjust filter range');
       });

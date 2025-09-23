@@ -35,8 +35,6 @@ export interface PasswordPolicyReturn {
   cleanup?: () => void
 }
 
-const PASSWORD_POLICY_ERROR = 'The password policy elements are undefined.';
-
 // Utility function to safely parse JSON
 const safeParseJSON = (jsonString: string): Record<string, string> => {
   try {
@@ -238,19 +236,18 @@ const setupRequirementTexts = (
   }
 };
 
-// Helper function to validate required elements
-const validateRequiredElements = (
-  element: HTMLElement | null | undefined,
-  elementInput: HTMLInputElement | null | undefined,
-  feedbackTemplate: HTMLTemplateElement | null | undefined,
-  feedbackContainer: HTMLElement | null | undefined,
-  hintElement: Element | null | undefined,
-  feedbackTarget: HTMLElement | null | undefined,
-): Error | null => {
-  if (!element || !elementInput || !feedbackTemplate || !feedbackContainer || !hintElement || !feedbackTarget) {
-    return new Error(PASSWORD_POLICY_ERROR);
+// Validates and retrieves DOM elements, throwing error if not found
+const queryElement = <T extends HTMLElement>(
+  selector: string,
+  errorMessage: string,
+  parent: Element | null = null,
+): T => {
+  const element = (parent?.querySelector(selector) as T) ?? document.querySelector(selector);
+
+  if (!element) {
+    throw new Error(errorMessage);
   }
-  return null;
+  return element;
 };
 
 // Helper function to setup validation event listeners
@@ -282,11 +279,24 @@ const setupValidationListeners = (
 };
 
 const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
-  const element = document.querySelector<HTMLElement>(selector);
-  const elementInput = element?.querySelector<HTMLInputElement>(PasswordPolicyMap.input);
-  const targetElement = element?.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
-  const feedbackTemplate = document?.querySelector<HTMLTemplateElement>(PasswordPolicyMap.template);
-  const feedbackTarget = element?.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
+  const element = queryElement(
+    selector,
+    `The element "${selector}" for password policy is not found.`,
+  );
+  const elementInput = queryElement<HTMLInputElement>(
+    PasswordPolicyMap.input,
+    `The input element "${PasswordPolicyMap.input}" for password policy is not found.`,
+    element,
+  );
+  const targetElement = queryElement<HTMLElement>(
+    PasswordPolicyMap.feedbackTarget,
+    `The target element "${PasswordPolicyMap.feedbackTarget}" for password policy is not found.`,
+    element,
+  );
+  const feedbackTemplate = queryElement<HTMLTemplateElement>(
+    PasswordPolicyMap.template,
+    `The feedback template "${PasswordPolicyMap.template}" for password policy is not found.`,
+  );
 
   // Create feedback container
   let feedbackContainer: HTMLElement | null = null;
@@ -297,21 +307,6 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
   }
 
   const hintElement = element?.querySelector<HTMLElement>(PasswordPolicyMap.hint);
-
-  // Validate all required elements
-  const validationError = validateRequiredElements(
-    element,
-    elementInput,
-    feedbackTemplate,
-    feedbackContainer,
-    hintElement,
-    feedbackTarget,
-  );
-
-  if (validationError) {
-    return {error: validationError};
-  }
-
   const hints = safeParseJSON(hintElement!.innerHTML);
 
   // Setup requirement texts

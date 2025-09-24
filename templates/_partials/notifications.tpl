@@ -8,7 +8,7 @@
   <div class="container">
     {if $notifications.error}
       {block name='notifications_error'}
-        <div class="alert alert-danger alert-dismissible" role="alert" data-alert="danger" tabindex="0">
+        <div class="alert alert-danger alert-dismissible" role="alert" tabindex="0">
           {if $notifications.error|count > 1}
             <ul class="mb-0">
               {foreach $notifications.error as $notif}
@@ -25,7 +25,7 @@
 
     {if $notifications.warning}
       {block name='notifications_warning'}
-        <div class="alert alert-warning alert-dismissible" role="alert" data-alert="warning" tabindex="0">
+        <div class="alert alert-warning alert-dismissible" role="alert" tabindex="0">
           {if $notifications.warning|count > 1}
             <ul class="mb-0">
               {foreach $notifications.warning as $notif}
@@ -42,7 +42,7 @@
 
     {if $notifications.success}
       {block name='notifications_success'}
-        <div class="alert alert-success alert-dismissible" role="alert" data-alert="success" tabindex="0">
+        <div class="alert alert-success alert-dismissible" role="alert" tabindex="0">
           {if $notifications.success|count > 1}
             <ul class="mb-0">
               {foreach $notifications.success as $notif}
@@ -59,7 +59,7 @@
 
     {if $notifications.info}
       {block name='notifications_info'}
-        <div class="alert alert-info alert-dismissible" role="status" data-alert="info" tabindex="0">
+        <div class="alert alert-info alert-dismissible" role="status" tabindex="0">
           {if $notifications.info|count > 1}
             <ul class="mb-0">
               {foreach $notifications.info as $notif}

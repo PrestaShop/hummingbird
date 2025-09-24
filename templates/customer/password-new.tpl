@@ -11,7 +11,7 @@
 {/block}
 
 {block name='page_content'}
-  <form action="{$urls.pages.password}" method="post" class="form-validation" data-ps-action="form-validation">
+  <form action="{$urls.pages.password}" method="post" data-ps-action="form-validation">
     {if count($errors)}
       <div class="alert alert-danger" role="alert">
         <ul class="mb-0">

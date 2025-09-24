@@ -58,7 +58,7 @@
       </div>
     </div>
   {else}
-    <div class="alert alert-info" role="alert" data-alert="info" tabindex="0">
+    <div class="alert alert-info" role="alert" tabindex="0">
       {l s='You have no merchandise return authorizations.' d='Shop.Notifications.Error'}
     </div>
   {/if}

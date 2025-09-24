@@ -105,7 +105,7 @@
     <section class="order-return-reminder">
       <h3>{l s='Reminder' d='Shop.Theme.Customeraccount'}</h3>
 
-      <p class="alert alert-info" role="alert" data-alert="info">
+      <p class="alert alert-info" role="alert">
         {l
           s='All merchandise must be returned in its original packaging and in its original state.'
           d='Shop.Theme.Customeraccount'

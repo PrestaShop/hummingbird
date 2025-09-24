@@ -29,7 +29,9 @@ import initDesktopMenu from './modules/ps_mainmenu';
 import initFormValidation from './form-validation';
 import initCategoryTree from './modules/ps_categorytree';
 import initScrollPaddingTop from './helpers/scrollPadding';
+import themeState from './state';
 import initProductAccessibility from './accessibility/product';
+import initCartAccessibility from './accessibility/cart';
 
 initEmitter();
 
@@ -58,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBlockCart();
   // Accessibility
   initProductAccessibility();
+  initCartAccessibility();
 
   prestashop.on(events.responsiveUpdate, () => {
     initSearchbar();
@@ -73,6 +76,8 @@ export const components = {
   useProgressRing,
   useQuantityInput,
 };
+
+export const state = themeState;
 
 export const selectors = themeSelectors;
 

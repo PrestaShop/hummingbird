@@ -154,13 +154,16 @@
 
     <div class="product-line__actions">
       {if empty($product.is_gift)}
-        <a class="js-remove-from-cart" rel="nofollow" href="{$product.remove_from_cart_url}"
+        <a class="js-remove-from-cart"
+          rel="nofollow"
+          href="{$product.remove_from_cart_url}"
           data-link-action="delete-from-cart" data-id-product="{$product.id_product|escape:'javascript'}"
           data-id-product-attribute="{$product.id_product_attribute|escape:'javascript'}"
           data-id-customization="{$product.id_customization|escape:'javascript'}"
           data-product-url="{$product.url|escape:'javascript'}"
           data-product-name="{$product.name|escape:'htmlall':'UTF-8'}"
-          >
+          aria-label="{l s='Remove %productName% from cart' sprintf=['%productName%' => $product.name] d='Shop.Theme.Checkout'}"
+        >
           {l s='Remove' d='Shop.Theme.Checkout'}
         </a>
       {/if}

@@ -118,7 +118,7 @@
   {/if}
 
   {if $show_final_summary}
-    <article class="alert alert-danger mb-4 js-alert-payment-conditions" role="alert" data-alert="danger">
+    <article class="alert alert-danger mb-4 js-alert-payment-conditions" role="alert">
       {l
         s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
         sprintf=[

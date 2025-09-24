@@ -8,7 +8,7 @@
 
 {block name='content'}
   {block name='order_confirmation_header'}
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert" tabindex="0">
       {include file='components/page-title-section.tpl' title={l s='Your order is confirmed' d='Shop.Theme.Checkout'}}
 
       <p class="mb-0">

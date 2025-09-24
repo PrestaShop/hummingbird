@@ -48,6 +48,11 @@ export const cart = {
   alertPlaceholder: '.js-cart-update-alert',
   deleteLinkAction: 'delete-from-cart',
   removeVoucherLinkAction: 'remove-voucher',
+  voucherContainer: '[data-ps-ref="voucher-container"]',
+  voucherAccordionButton: '[data-ps-ref="voucher-accordion-button"]',
+  voucherForm: '[data-ps-ref="voucher-form"]',
+  voucherList: '[data-ps-ref="voucher-list"]',
+  voucherError: '[data-ps-ref="voucher-error"]',
 };
 
 export const blockcart = {
@@ -78,6 +83,7 @@ export const checkout = {
   steps: {
     item: '.js-step-item',
     current: '.js-current-step',
+    button: '[data-ps-ref="step-button"]',
     shownResponsiveStep: '.checkout-steps__step-mobile:not(.d-none)',
     specificStep: (param: string | undefined) => `.checkout-steps__step-mobile[data-step="${param}"]`,
     specificStepContent: (param: string | undefined) => `#${param}`,

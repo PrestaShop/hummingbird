@@ -8,6 +8,10 @@ import {qtyInput as quantityInputMap, cart as cartSelectorMap} from '@constants/
 import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
 import useToast from './useToast';
+import A11yHelpers from '../helpers/a11y';
+import state from '../state';
+
+const a11y = new A11yHelpers();
 
 const ENTER_KEY = 'Enter';
 const ESCAPE_KEY = 'Escape';
@@ -67,7 +71,7 @@ const useQuantityInput: Theme.QuantityInput.Function = (
               if (qtyInput.value === '0') {
                 const targetItem = qtyInput.closest(cartSelectorMap.productItem);
                 const removeButton = targetItem?.querySelector(cartSelectorMap.removeFromCart) as HTMLElement
-                    | null;
+                | null;
 
                 if (removeButton) {
                   removeButton.click();
@@ -322,17 +326,42 @@ export const populateMinQuantityInput = (selector = quantityInputMap.default) =>
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const {prestashop, Theme: {events, selectors}} = window;
+  const {prestashop, Theme: {events}} = window;
 
   populateMinQuantityInput();
 
+  // Delegated keydown: store focus only on Enter key press
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    const target = e.target as HTMLElement | null;
+
+    if (!target) return;
+
+    // If Enter key pressed and element is inside productQuantity wrapper, store focus
+    if (e.key === ENTER_KEY && target.closest(cartSelectorMap.productQuantity)) {
+      // Set state.cartUpdateAction to track the cart update action
+      state.set('cartUpdateAction', 'update-product-quantity');
+      a11y.storeFocus();
+    }
+  });
+
+  // Delegated click: store the clicked button inside productQuantity wrapper
+  document.addEventListener('click', (e: KeyboardEvent) => {
+    const target = e.target as HTMLElement | null;
+
+    if (!target) return;
+
+    // nearest button inside the product quantity wrapper
+    const btn = target.closest(`${cartSelectorMap.productQuantity} button`) as HTMLElement | null;
+
+    if (btn && (e.key === ENTER_KEY || e.key === ' ')) {
+      // Set state.cartUpdateAction to track the cart update action
+      state.set('cartUpdateAction', 'update-product-quantity');
+      a11y.storeFocus();
+    }
+  });
+
   prestashop.on(events.updatedCart, () => {
     useQuantityInput(cartSelectorMap.productQuantity);
-
-    const {cart: cartMap} = selectors;
-    const cartOverview = document.querySelector<HTMLElement>(cartMap.overview);
-    cartOverview?.focus();
-
     populateMinQuantityInput();
   });
 

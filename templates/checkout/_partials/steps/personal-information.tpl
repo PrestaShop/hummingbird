@@ -12,7 +12,7 @@
         {l s='Connected as [1]%firstname% %lastname%[/1].'
           d='Shop.Theme.Customeraccount'
           sprintf=[
-            '[1]' => "<a href='{$urls.pages.identity}'>",
+            '[1]' => "<a href='{$urls.pages.identity}' aria-label='{l s='My account (%firstname% %lastname%)' d='Shop.Theme.Customeraccount' sprintf=['%firstname%' => $customer.firstname, '%lastname%' => $customer.lastname]}'>",
             '[/1]' => "</a>",
             '%firstname%' => $customer.firstname,
             '%lastname%' => $customer.lastname

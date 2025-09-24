@@ -5,7 +5,7 @@
 {if $errors|count}
   <div class="help-block">
     {block name='form_errors'}
-      <div class="alert alert-danger mt-3" role="alert" tabindex="0">
+      <div class="alert alert-danger mt-3 alert-dismissible" role="alert" tabindex="0">
           {if $errors|count > 1}
             <p class="mb-1">
               {l s='There are %d% errors:' sprintf=['%d%' => $errors|count] d='Shop.Notifications.Error'}
@@ -18,6 +18,7 @@
           {else}
               {$errors.0|nl2br nofilter}
           {/if}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{l s='Close' d='Shop.Theme.Actions'}"></button>
       </div>
     {/block}
   </div>

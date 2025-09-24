@@ -16,8 +16,9 @@
               name="{$name}"
               value="{$address.id}"
               {if $address.id == $selected}checked{/if}
+              aria-label="{l s='Select address: %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
+              aria-describedby="address-{$address.id}"
             >
-            <i class="form-check-round"></i>
           </span>
 
           <span class="{$componentName}__alias">
@@ -25,7 +26,10 @@
           </span>
         </div>
 
-        <address class="{$componentName}__content">{$address.formatted nofilter}</address>
+        <address class="{$componentName}__content" id="address-{$address.id}">
+          <span class="visually-hidden">{l s='Address details:' d='Shop.Theme.Actions'}</span>
+          {$address.formatted nofilter}
+        </address>
 
         {block name='address_block_item_actions'}
           {if $interactive}
@@ -34,6 +38,7 @@
                 class="{$componentName}__edit link-body-emphasis"
                 data-link-action="edit-address"
                 href="{url entity='order' params=['id_address' => $address.id, 'editAddress' => $type, 'token' => $token]}"
+                aria-label="{l s='Edit address: %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
               >
                 {l s='Edit' d='Shop.Theme.Actions'}
               </a>
@@ -42,6 +47,7 @@
                 class="{$componentName}__delete link-danger"
                 data-link-action="delete-address"
                 href="{url entity='order' params=['id_address' => $address.id, 'deleteAddress' => true, 'token' => $token]}"
+                aria-label="{l s='Delete address: %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
               >
                 {l s='Delete' d='Shop.Theme.Actions'}
               </a>

@@ -25,21 +25,21 @@ $component-name: outline;
     }
   }
 
-  &-outer--focus-visible {
+  &--outer-focus-visible {
     &:focus-visible {
       outline: 0.125rem solid var(--bs-primary);
       outline-offset: 0.125rem;
     }
   }
 
-  &-inner--focus-visible {
+  &--inner-focus-visible {
     &:focus-visible {
       outline: 0.125rem solid var(--bs-primary);
       outline-offset: -0.125rem;
     }
   }
-  
-  &-shadow--focus-visible {
+
+  &--shadow-focus-visible {
     &:focus-visible {
       box-shadow: $form-check-input-focus-box-shadow;
     }

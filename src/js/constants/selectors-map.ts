@@ -13,6 +13,7 @@ export const facetedsearch = {
   rangeValues: '.js-faceted-values',
   filterSlider: '.js-faceted-filter-slider',
   offCanvasFaceted: '#offcanvas-faceted',
+  colorLabel: '[data-ps-ref="color-label"]',
 };
 
 export const pageLoader = '.js-page-loader';

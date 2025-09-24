@@ -19,8 +19,7 @@
               class="{$componentName}__link btn btn-outline-tertiary rounded-pill btn-sm js-search-link"
               href="{$filter.nextEncodedFacetsURL}"
               rel="nofollow"
-              aria-label="{l s='Remove filter: %1$s %2$s' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel, $filter.label]}"
-              tabindex="0"
+              aria-label="{l s='Remove %1$s filter: %2$s' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel|lower, $filter.label]}"
             >
               {l s='%1$s:' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel]} {$filter.label}
               <i class="material-icons" aria-hidden="true">&#xE14C;</i>

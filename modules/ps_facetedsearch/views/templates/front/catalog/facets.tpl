@@ -19,7 +19,7 @@
 {$componentName = 'search-filters'}
 
 {if $displayedFacets|count}
-  <div id="search-filters" class="{$componentName}">
+  <div id="search-filters" class="{$componentName}" role="region" aria-label="{l s='Product filters' d='Shop.Theme.Global'}">
     {block name='facets_title'}
       <p class="left-block__title d-none d-md-block">
         {l s='Filter By' d='Shop.Theme.Actions'}
@@ -49,15 +49,17 @@
           {foreach from=$facet.filters item="filter"}
             {if $filter.active}{assign var=_collapse value=false}{/if}
           {/foreach}
+
           <button
             class="accordion-button {if $_collapse} collapsed{/if}"
             type="button"
             data-bs-target="#facet_{$_expand_id}"
             data-bs-toggle="collapse"
-            {if !$_collapse} aria-expanded="true"{/if}
+            aria-expanded="{if !$_collapse}true{else}false{/if}"
           >
             {$facet.label}
           </button>
+
           <div id="facet_{$_expand_id}" class="accordion-collapse collapse{if !$_collapse} show{/if}">
             {if in_array($facet.widgetType, ['radio', 'checkbox'])}
               {block name='facet_item_other'}
@@ -81,34 +83,44 @@
                               {if $filter.active }checked{/if}
                             >
 
-                            <label class="{$componentName}__form-label form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
+                            <label
+                              class="{$componentName}__form-label form-check-label"
+                              for="facet_input_{$_expand_id}_{$filter_key}"
+                              data-ps-ref="color-label"
+                            >
                               {if isset($filter.properties.color)}
-                                <button
-                                  type="button"
-                                  class="color color-sm{if $filter.active} active{/if}"
+                                <span 
+                                  class="color color-sm{if $filter.active } active{/if}" 
                                   style="background-color:{$filter.properties.color}"
+                                  role="checkbox"
+                                  aria-checked="{if $filter.active}true{else}false{/if}"
                                   tabindex="0"
-                                  aria-pressed="{if $filter.active}true{else}false{/if}"
-                                  aria-label="{l s='Filter by %1$s' d='Shop.Theme.Catalog' sprintf=[$filter.label]}"
-                                  data-search-url="{$filter.nextEncodedFacetsURL}"
-                                  onclick="window.prestashop.emit(window.Theme.events.updateFacets, this.dataset.searchUrl)"
-                                  onKeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"
-                                ></button>
-                                <span class="{$componentName}__color-label">
+                                  aria-labelledby="facet_label_{$_expand_id}_{$filter_key}"
+                                ></span>
+
+                                <span class="{$componentName}__color-label" id="facet_label_{$_expand_id}_{$filter_key}">
                                   {$filter.label}
                                   {if $filter.magnitude and $show_quantities}
                                     <span class="{$componentName}__magnitude">
-                                      ({$filter.magnitude})
+                                      ({$filter.magnitude}<span class="visually-hidden">{if $filter.magnitude == 1}{l s='result' d='Shop.Theme.Global'}{else}{l s='results' d='Shop.Theme.Global'}{/if}</span>)
                                     </span>
                                   {/if}
                                 </span>
                               {elseif isset($filter.properties.texture)}
-                                <span class="color color-sm {if $filter.active } active{/if}" style="background-image:url({$filter.properties.texture})"></span>
-                                <span class="{$componentName}__color-label">
+                                <span
+                                  class="color color-sm{if $filter.active } active{/if}"
+                                  style="background-image:url({$filter.properties.texture})"
+                                  role="checkbox"
+                                  aria-checked="{if $filter.active}true{else}false{/if}"
+                                  tabindex="0"
+                                  aria-labelledby="facet_label_{$_expand_id}_{$filter_key}"
+                                ></span>
+
+                                <span class="{$componentName}__color-label" id="facet_label_{$_expand_id}_{$filter_key}">
                                   {$filter.label}
                                   {if $filter.magnitude and $show_quantities}
                                     <span class="{$componentName}__magnitude">
-                                      ({$filter.magnitude})
+                                      ({$filter.magnitude}<span class="visually-hidden">{if $filter.magnitude == 1}{l s='result' d='Shop.Theme.Global'}{else}{l s='results' d='Shop.Theme.Global'}{/if}</span>)
                                     </span>
                                   {/if}
                                 </span>
@@ -117,11 +129,12 @@
                                   href="{$filter.nextEncodedFacetsURL}"
                                   class="{$componentName}__link search-link js-search-link"
                                   rel="nofollow"
+                                  tabindex="-1"
                                 >
                                   {$filter.label}
                                   {if $filter.magnitude and $show_quantities}
                                     <span class="{$componentName}__magnitude">
-                                      ({$filter.magnitude})
+                                      ({$filter.magnitude}<span class="visually-hidden">{if $filter.magnitude == 1}{l s='result' d='Shop.Theme.Global'}{else}{l s='results' d='Shop.Theme.Global'}{/if}</span>)
                                     </span>
                                   {/if}
                                 </a>
@@ -138,16 +151,18 @@
                               name="filter {$facet.label}"
                               {if $filter.active }checked{/if}
                             >
+
                             <label class="{$componentName}__form-label form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
                               <a
                                 href="{$filter.nextEncodedFacetsURL}"
                                 class="{$componentName}__link search-link js-search-link"
                                 rel="nofollow"
+                                tabindex="-1"
                               >
                                 {$filter.label}
                                 {if $filter.magnitude and $show_quantities}
                                   <span class="{$componentName}__magnitude">
-                                    ({$filter.magnitude})
+                                    ({$filter.magnitude}<span class="visually-hidden">{if $filter.magnitude == 1}{l s='result' d='Shop.Theme.Global'}{else}{l s='results' d='Shop.Theme.Global'}{/if}</span>)
                                   </span>
                                 {/if}
                               </a>
@@ -164,7 +179,7 @@
                 <ul class="accordion-body">
                   <li>
                     <div class="{$componentName}__item facet-dropdown dropdown">
-                      <button class="{$componentName}__dropdown-toggle btn btn-outline-tertiary dropdown-toggle" rel="nofollow" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="{$componentName}__dropdown-toggle btn btn-outline-tertiary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {assign var="active_found" value=false}
 
                         {foreach from=$facet.filters item="filter"}
@@ -172,7 +187,7 @@
                             {$filter.label}
                             {if $filter.magnitude and $show_quantities}
                               <span class="{$componentName}__magnitude">
-                                ({$filter.magnitude})
+                                ({$filter.magnitude}<span class="visually-hidden">{if $filter.magnitude == 1}{l s='result' d='Shop.Theme.Global'}{else}{l s='results' d='Shop.Theme.Global'}{/if}</span>)
                               </span>
                             {/if}
                             {$active_found = true}
@@ -180,7 +195,7 @@
                         {/foreach}
 
                         {if !$active_found}
-                          {l s='(no filter)' d='Shop.Theme.Global'}
+                          {l s='(No option selected)' d='Shop.Theme.Global'}
                         {/if}
                       </button>
 
@@ -195,7 +210,7 @@
                               {$filter.label}
                               {if $filter.magnitude and $show_quantities}
                                 <span class="{$componentName}__magnitude">
-                                  ({$filter.magnitude})
+                                  ({$filter.magnitude}<span class="visually-hidden">{if $filter.magnitude == 1}{l s='result' d='Shop.Theme.Global'}{else}{l s='results' d='Shop.Theme.Global'}{/if}</span>)
                                 </span>
                               {/if}
                             </a>

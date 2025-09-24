@@ -1,7 +1,0 @@
-@import "../variables/colors";
-
-%focus-visible-style {
-  outline: 2px solid $focus-outline-color;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 2px $focus-box-shadow-color;
-}

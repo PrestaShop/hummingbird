@@ -43,7 +43,7 @@
       </div>
     </div>
   {else}
-    <div class="alert alert-info" role="alert" data-alert="info">
+    <div class="alert alert-info" role="alert">
       {l s='You have not received any credit slips.' d='Shop.Notifications.Warning'}
     </div>
   {/if}

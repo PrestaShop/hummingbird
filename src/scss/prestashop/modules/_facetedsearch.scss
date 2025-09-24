@@ -1,3 +1,6 @@
+@import "../../abstract/variables/colors";
+@import "../../abstract/placeholders/index";
+
 $module-name: ps-facetedsearch;
 $component-name: (
   search-filters: search-filters,
@@ -89,21 +92,15 @@ $component-name: (
   }
 
   .js-search-filters-clear-all:focus-visible {
-    outline: 2px solid #005fcc;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px #b3d4fc;
+    @extend %focus-visible-style;
   }
 
   .color:focus-visible {
-    outline: 2px solid #005fcc;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px #b3d4fc;
+    @extend %focus-visible-style;
   }
 
   .noUi-handle:focus-visible {
-    outline: 2px solid #005fcc;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px #b3d4fc;
+    @extend %focus-visible-style;
   }
 
   @include media-breakpoint-up(md) {
@@ -130,8 +127,6 @@ $component-name: (
   }
 
   &__link:focus-visible {
-    outline: 2px solid #005fcc;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px #b3d4fc;
+    @extend %focus-visible-style;
   }
 }

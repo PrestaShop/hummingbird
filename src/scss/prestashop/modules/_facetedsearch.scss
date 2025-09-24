@@ -1,5 +1,3 @@
-@import "../../abstract/placeholders/index";
-
 $module-name: ps-facetedsearch;
 $component-name: (
   search-filters: search-filters,
@@ -40,6 +38,10 @@ $component-name: (
         align-items: center;
         cursor: pointer;
         @extend %color-variant;
+      }
+
+      .color {
+        @extend %outline-shadow--focus-visible;
       }
     }
   }
@@ -90,16 +92,8 @@ $component-name: (
     }
   }
 
-  .js-search-filters-clear-all:focus-visible {
-    @extend %focus-visible-style;
-  }
-
-  .color:focus-visible {
-    @extend %focus-visible-style;
-  }
-
   .noUi-handle:focus-visible {
-    @extend %focus-visible-style;
+    @extend %outline--focus-visible;
   }
 
   @include media-breakpoint-up(md) {
@@ -123,9 +117,5 @@ $component-name: (
     flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
-  }
-
-  &__link:focus-visible {
-    @extend %focus-visible-style;
   }
 }

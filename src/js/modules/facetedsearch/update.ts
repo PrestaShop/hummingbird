@@ -128,4 +128,22 @@ export default function initFacetedSearch(): void {
     useQuantityInput();
     populateMinQuantityInput();
   });
+
+  // Listen for color label space key press
+  document.body.addEventListener('keydown', (event: KeyboardEvent) => {
+    const target = event.target as HTMLElement;
+
+    if (target.closest(selectors.facetedsearch.colorLabel)) {
+      if (event.key === ' ') {
+        event.preventDefault();
+
+        const label = target.closest(selectors.facetedsearch.colorLabel);
+        const input = document.getElementById(label.getAttribute('for'));
+
+        if (input) {
+          input.click();
+        }
+      }
+    }
+  });
 }

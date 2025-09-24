@@ -279,11 +279,17 @@ const setupValidationListeners = (
   return {inputHandler, formSubmitHandler, form};
 };
 
-const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
-  const element = queryElement(
-    selector,
-    `The element "${selector}" for password policy is not found.`,
-  );
+const usePasswordPolicy = (selector: string): PasswordPolicyReturn | false => {
+  let element;
+  try {
+    element = queryElement(
+      selector,
+      `The element "${selector}" for password policy is not found.`,
+    );
+  } catch {
+    return false;
+  }
+
   const elementInput = queryElement<HTMLInputElement>(
     PasswordPolicyMap.input,
     `The input element "${PasswordPolicyMap.input}" for password policy is not found.`,

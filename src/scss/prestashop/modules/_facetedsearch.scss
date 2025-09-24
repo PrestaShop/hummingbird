@@ -41,7 +41,7 @@ $component-name: (
       }
 
       .color {
-        @extend %outline-shadow--focus-visible;
+        @extend %outline--shadow-focus-visible;
       }
     }
   }

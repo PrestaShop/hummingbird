@@ -30,9 +30,8 @@ import {sprintf} from 'sprintf-js';
 const {passwordPolicy: PasswordPolicyMap} = selectorsMap;
 
 export interface PasswordPolicyReturn {
-  element?: HTMLElement
-  error?: Error
-  cleanup?: () => void
+  element: HTMLElement
+  cleanup: () => void
 }
 
 // Utility function to safely parse JSON
@@ -279,15 +278,15 @@ const setupValidationListeners = (
   return {inputHandler, formSubmitHandler, form};
 };
 
-const usePasswordPolicy = (selector: string): PasswordPolicyReturn | false => {
+const usePasswordPolicy = (): PasswordPolicyReturn | undefined => {
   let element;
   try {
     element = queryElement(
-      selector,
-      `The element "${selector}" for password policy is not found.`,
+      PasswordPolicyMap.field,
+      `The element "${PasswordPolicyMap.field}" for password policy is not found.`,
     );
   } catch {
-    return false;
+    return undefined;
   }
 
   const elementInput = queryElement<HTMLInputElement>(
@@ -338,7 +337,7 @@ const usePasswordPolicy = (selector: string): PasswordPolicyReturn | false => {
     }
   };
 
-  return {element: element || undefined, cleanup};
+  return {element, cleanup};
 };
 
 export default usePasswordPolicy;

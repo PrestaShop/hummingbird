@@ -26,7 +26,7 @@
             class="{$componentName}__edit link-body-emphasis"
             href="{url entity=address id=$address.id}"
             data-link-action="edit-address"
-            aria-label="{l s='Edit %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
+            aria-label="{l s='Edit address: %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
             role="button"
           >
             {l s='Edit' d='Shop.Theme.Actions'}
@@ -36,7 +36,7 @@
             class="{$componentName}__delete link-danger"
             href="{url entity=address id=$address.id params=['delete' => 1, 'token' => $token]}"
             data-link-action="delete-address"
-            aria-label="{l s='Delete %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
+            aria-label="{l s='Delete address: %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
             role="button"
           >
             {l s='Delete' d='Shop.Theme.Actions'}

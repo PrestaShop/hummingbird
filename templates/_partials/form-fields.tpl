@@ -22,7 +22,7 @@
     {if $field.type === 'select'}
 
       {block name='form_field_item_select'}
-        <select class="form-select" name="{$field.name}" {if $field.required}required{/if}>
+        <select class="form-select" name="{$field.name}" id="field-{$field.name}" {if $field.required}required{/if}>
           <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
           {foreach from=$field.availableValues item="label" key="value"}
             <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
@@ -36,6 +36,7 @@
         <select
         class="form-select js-country"
         name="{$field.name}"
+        id="field-{$field.name}"
         {if $field.required}required{/if}
         >
           <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
@@ -91,7 +92,7 @@
     {elseif $field.type === 'date'}
 
       {block name='form_field_item_date'}
-        <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
+        <input name="{$field.name}" class="form-control" type="date" id="field-{$field.name}" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
         {if isset($field.availableValues.comment)}
           <span class="form-text">
             {$field.availableValues.comment}

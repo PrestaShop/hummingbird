@@ -67,6 +67,68 @@ const initDesktopMenu = () => {
       }
     });
   });
+
+  // Keyboard navigation for top-level menu
+  const menuLinks = document.querySelectorAll('.ps-mainmenu__tree__link');
+  menuLinks.forEach((link, idx) => {
+    link.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const next = menuLinks[idx + 1] || menuLinks[0];
+        (next as HTMLElement).focus();
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prev = menuLinks[idx - 1] || menuLinks[menuLinks.length - 1];
+        (prev as HTMLElement).focus();
+      }
+      if (e.key === 'ArrowDown') {
+        // Focus first submenu item if exists
+        const submenu = link.parentElement?.querySelector('.submenu__left-item');
+        if (submenu) {
+          // Open submenu
+          link.setAttribute('aria-expanded', 'true');
+          const submenuContainer = link.parentElement?.querySelector('.js-sub-menu') as HTMLElement;
+          if (submenuContainer) submenuContainer.setAttribute('aria-hidden', 'false');
+          (submenu as HTMLElement).focus();
+        }
+      }
+      if (e.key === 'Escape') {
+        // Close submenu if open
+        link.setAttribute('aria-expanded', 'false');
+        const submenuContainer = link.parentElement?.querySelector('.js-sub-menu') as HTMLElement;
+        if (submenuContainer) submenuContainer.setAttribute('aria-hidden', 'true');
+        (link as HTMLElement).focus();
+      }
+    });
+  });
+
+  // Keyboard navigation for submenu items
+  const submenuItems = document.querySelectorAll('.submenu__left-item');
+  submenuItems.forEach((item, idx) => {
+    item.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const next = submenuItems[idx + 1] || submenuItems[0];
+        (next as HTMLElement).focus();
+      }
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prev = submenuItems[idx - 1] || submenuItems[submenuItems.length - 1];
+        (prev as HTMLElement).focus();
+      }
+      if (e.key === 'Escape') {
+        // Close submenu and return focus to parent menu link
+        const parentLink = item.closest('li')?.querySelector('.ps-mainmenu__tree__link') as HTMLElement;
+        if (parentLink) {
+          parentLink.setAttribute('aria-expanded', 'false');
+          const submenuContainer = parentLink.parentElement?.querySelector('.js-sub-menu') as HTMLElement;
+          if (submenuContainer) submenuContainer.setAttribute('aria-hidden', 'true');
+          parentLink.focus();
+        }
+      }
+    });
+  });
 };
 
 export default initDesktopMenu;

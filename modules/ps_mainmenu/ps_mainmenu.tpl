@@ -156,10 +156,41 @@
   {/if}
 {/function}
 
-<div class="ps-mainmenu ps-mainmenu--desktop col-xl col-auto">
-  {* DESKTOP MENU *}
+<nav class="ps-mainmenu ps-mainmenu--desktop col-xl col-auto" aria-label="{l s='Main menu' d='Shop.Theme.Global'}">
   <div class="ps-mainmenu__desktop d-none d-xl-block position-static js-menu-desktop">
-    {desktopMenu nodes=$menu.children}
+    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0" role="menubar">
+      {foreach from=$menu.children item=menuItem}
+        <li class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}" role="none">
+          <a
+            class="ps-mainmenu__tree__link{if $menuItem.children|count} dropdown-toggle{/if}"
+            href="{$menuItem.url}"
+            data-depth="0"
+            {if $menuItem.open_in_new_window}target="_blank"{/if}
+            role="menuitem"
+            aria-haspopup="{if $menuItem.children|count}true{else}false{/if}"
+            aria-expanded="false"
+            {if $menuItem.children|count}aria-controls="submenu-{$menuItem.page_identifier}"{/if}
+            tabindex="0"
+          >
+            {$menuItem.label}
+          </a>
+          {if $menuItem.children|count}
+            <div
+              class="js-sub-menu submenu"
+              id="submenu-{$menuItem.page_identifier}"
+              role="menu"
+              aria-label="{l s='Submenu for %s' sprintf=[$menuItem.label] d='Shop.Theme.Global'}"
+              aria-hidden="true"
+            >
+              {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
+            </div>
+          {/if}
+          {if !$menuItem.children|count}
+            {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
+          {/if}
+        </li>
+      {/foreach}
+    </ul>
   </div>
 
   {* MOBILE MENU *}
@@ -175,7 +206,7 @@
       <span class="material-icons">&#xE5D2;</span>
     </a>
   </div>
-</div>
+</nav>
 
 <div
   class="ps-mainmenu ps-mainmenu--mobile offcanvas offcanvas-start js-menu-canvas"

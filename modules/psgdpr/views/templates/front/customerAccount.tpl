@@ -17,7 +17,12 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
-<a class="account-menu__link {if $urls.current_url === $front_controller} account-menu__link--active{/if}" id="psgdpr_link" href="{$front_controller}">
+<a
+  class="account-menu__link {if $urls.current_url === $front_controller} account-menu__link--active{/if}"
+  id="psgdpr_link"
+  href="{$front_controller}"
+  {if $urls.current_url === $front_controller}aria-current="page"{/if}
+>
   <i class="account-menu__icon material-icons" aria-hidden="true">&#xE853;</i>
   {l s='GDPR - Personal data' d='Modules.Psgdpr.Shop'}
 </a>

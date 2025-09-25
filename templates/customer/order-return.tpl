@@ -26,17 +26,17 @@
 
         <h2 class="h3">{l s='List of items to be returned:' d='Shop.Theme.Customeraccount'}</h2>
 
-        <div class="grid-table grid-table--collapse" data-role="table">
-          <div class="grid-table__inner grid-table__inner--2">
-            <header class="grid-table__header">
-              <div class="grid-table__cell">{l s='Product' d='Shop.Theme.Catalog'}</div>
-              <div class="grid-table__cell grid-table__cell--right">{l s='Quantity' d='Shop.Theme.Checkout'}</div>
-            </header>
+        <div class="grid-table grid-table--collapse" role="table" aria-label="{l s='Return details' d='Shop.Theme.Customeraccount'}">
+          <div class="grid-table__inner grid-table__inner--2" role="rowgroup">
+            <div class="grid-table__header" role="row">
+              <span class="grid-table__cell" role="columnheader">{l s='Product' d='Shop.Theme.Catalog'}</span>
+              <span class="grid-table__cell grid-table__cell--right" role="columnheader">{l s='Quantity' d='Shop.Theme.Checkout'}</span>
+            </div>
 
             {foreach from=$products item=product}
-              <div class="grid-table__row">
-                <div class="grid-table__cell" aria-label="{l s='Product' d='Shop.Theme.Catalog'}">
-                  <div class="grid-table__cell-group grid-table__cell-group--sm">
+              <div class="grid-table__row" role="row">
+                <span class="grid-table__cell" role="cell" data-ps-label="{l s='Product' d='Shop.Theme.Catalog'}">
+                  <span class="grid-table__cell-group grid-table__cell-group--sm">
                     <strong>{$product.product_name}</strong>
 
                     {if $product.product_reference}
@@ -47,24 +47,25 @@
 
                     {if $product.customizations}
                       {foreach from=$product.customizations item="customization"}
-                        <div id="product_customization_modal_wrapper_{$customization.id_customization}">
+                        <span id="product_customization_modal_wrapper_{$customization.id_customization}">
                           {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
-                        </div>
+                        </span>
 
-                        <div class="customization">
+                        <span class="customization">
                           <a class="btn btn-sm btn-link p-0" href="#" data-bs-toggle="modal"
                             data-bs-target="#product-customizations-modal-{$customization.id_customization}">
                             <i class="material-icons">&#xE8F4;</i>
                             {l s='Product customization' d='Shop.Theme.Catalog'}
                           </a>
-                        </div>
+                        </span>
                       {/foreach}
                     {/if}
-                  </div>
-                </div>
-                <div class="grid-table__cell grid-table__cell--right" aria-label="{l s='Quantity' d='Shop.Theme.Checkout'}">
+                  </span>
+                </span>
+
+                <span class="grid-table__cell grid-table__cell--right" role="cell" data-ps-label="{l s='Quantity' d='Shop.Theme.Checkout'}">
                   {$product.product_quantity}
-                </div>
+                </span>
               </div>
             {/foreach}
           </div>

@@ -3,39 +3,57 @@
  * file that was distributed with this source code.
  *}
 {block name='order_products_table'}
-  <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post">
-    <div class="grid-table grid-table--collapse" data-ps-ref="order-return-products-table" data-role="table">
-      <div class="grid-table__inner grid-table__inner--6">
-        <header class="grid-table__header">
-          <div class="grid-table__cell"><input class="form-check-input" type="checkbox" data-ps-ref="select-all-products"></div>
-          <div class="grid-table__cell">{l s='Product' d='Shop.Theme.Catalog'}</div>
-          <div class="grid-table__cell grid-table__cell--center">{l s='Quantity' d='Shop.Theme.Catalog'}</div>
-          <div class="grid-table__cell grid-table__cell--center">{l s='Returned' d='Shop.Theme.Customeraccount'}</div>
-          <div class="grid-table__cell grid-table__cell--center">{l s='Unit price' d='Shop.Theme.Catalog'}</div>
-          <div class="grid-table__cell grid-table__cell--right">{l s='Total price' d='Shop.Theme.Catalog'}</div>
-        </header>
+  <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post" data-ps-action="form-validation">
+    <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Catalog'}" aria-describedby="order_products_heading">
+      <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
+        <div class="grid-table__header" role="row">
+          <span class="grid-table__cell" role="columnheader" aria-label="{l s='Select product to return' d='Shop.Theme.Catalog'}">
+            <input class="form-check-input" type="checkbox" data-ps-ref="select-all-products" aria-label="{l s='Select all products' d='Shop.Theme.Catalog'}">
+          </span>
+          <span class="grid-table__cell" role="columnheader">{l s='Product' d='Shop.Theme.Catalog'}</span>
+          <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
+          <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Returned' d='Shop.Theme.Catalog'}</span>
+          <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Unit price' d='Shop.Theme.Catalog'}</span>
+          <span class="grid-table__cell grid-table__cell--right" role="columnheader">{l s='Total price' d='Shop.Theme.Catalog'}</span>
+        </div>
 
         {foreach from=$order.products item=product name=products}
-          <div class="grid-table__row">
-            <div class="grid-table__cell" aria-label="{l s='Select' d='Shop.Theme.Catalog'}">
+          <div class="grid-table__row {if $smarty.foreach.products.last}rounded-bottom-0{/if}" role="row">
+            <span class="grid-table__cell" role="cell" data-ps-label="{l s='Select' d='Shop.Theme.Catalog'}">
               {if !$product.customizations}
                 <span id="_desktop_product_line_{$product.id_order_detail}">
-                  <input class="form-check-input" type="checkbox" id="cb_{$product.id_order_detail}" data-ps-ref="select-product"
-                    name="ids_order_detail[{$product.id_order_detail}]" value="{$product.id_order_detail}" {if $product.qty_returned >= $product.quantity}disabled{/if}>
+                  <input 
+                    class="form-check-input"
+                    type="checkbox"
+                    id="cb_{$product.id_order_detail}"
+                    data-ps-ref="select-product"
+                    name="ids_order_detail[{$product.id_order_detail}]"
+                    value="{$product.id_order_detail}"
+                    {if $product.qty_returned >= $product.quantity}disabled{/if}
+                    aria-label="{$product.name}"
+                  >
                 </span>
               {else}
                 {foreach $product.customizations  as $customization}
                   <span id="_desktop_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}">
-                    <input class="form-check-input" type="checkbox" id="cb_{$product.id_order_detail}" data-ref="select-product"
-                      name="customization_ids[{$product.id_order_detail}][]" value="{$customization.id_customization}" {if $product.qty_returned >= $product.quantity}disabled{/if}>
+                    <input 
+                      class="form-check-input"
+                      type="checkbox"
+                      id="cb_{$product.id_order_detail}"
+                      data-ps-ref="select-product"
+                      name="customization_ids[{$product.id_order_detail}][]"
+                      value="{$customization.id_customization}"
+                      {if $product.qty_returned >= $product.quantity}disabled{/if}
+                      aria-label="{$product.name}"
+                    >
                   </span>
                 {/foreach}
               {/if}
-            </div>
+            </span>
 
-            <div class="grid-table__cell order-product" aria-label="{l s='Product' d='Shop.Theme.Catalog'}">
-              <div class="order-product__infos">
-                <div class="order-product__image">
+            <span class="grid-table__cell order-product" role="cell" data-ps-label="{l s='Product' d='Shop.Theme.Catalog'}">
+              <span class="order-product__infos">
+                <span class="order-product__image">
                   <a href="{$link->getProductLink($product.id_product)}">
                     {if $product.cover}
                       <picture>
@@ -101,9 +119,9 @@
                       </picture>
                     {/if}
                   </a>
-                </div>
+                </span>
 
-                <div class="order-product__content">
+                <span class="order-product__content">
                   <a class="order-product__name" href="{$link->getProductLink($product.id_product)}">
                     {$product.name}
                   </a>
@@ -129,58 +147,72 @@
                       </div>
                     {/foreach}
                   {/if}
-                </div>
-              </div>
-            </div>
+                </span>
+              </span>
+            </span>
 
-            <div class="grid-table__cell grid-table__cell--center" aria-label="{l s='Quantity' d='Shop.Theme.Catalog'}">
-              <div class="grid-table__cell-group grid-table__cell-group--sm grid-table__cell-group--inline">
+            <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Quantity' d='Shop.Theme.Catalog'}">
+              <span class="grid-table__cell-group grid-table__cell-group--sm grid-table__cell-group--inline">
                 {if !$product.customizations}
-                  <div class="current">
+                  <span class="current">
+                    <span class="visually-hidden">{l s='Available quantity to return:' d='Shop.Theme.Catalog'}</span>
                     {$product.quantity}
-                  </div>
+                  </span>
                   {if $product.quantity > $product.qty_returned}
-                    <div class="select" id="_desktop_return_qty_{$product.id_order_detail}">
-                      <select name="order_qte_input[{$product.id_order_detail}]" class="form-select">
+                    <span class="select" id="_desktop_return_qty_{$product.id_order_detail}">
+                      <select name="order_qte_input[{$product.id_order_detail}]" class="form-select" aria-label="{l s='Select quantity to return' d='Shop.Theme.Catalog'}">
                         {section name=quantity start=1 loop=$product.quantity+1-$product.qty_returned}
                           <option value="{$smarty.section.quantity.index}">{$smarty.section.quantity.index}</option>
                         {/section}
                       </select>
-                    </div>
+                    </span>
                   {/if}
                 {else}
                   {foreach $product.customizations as $customization}
-                    <div class="current">
+                    <span class="current">
+                      <span class="visually-hidden">{l s='Available quantity to return:' d='Shop.Theme.Catalog'}</span>
                       {$customization.quantity}
-                    </div>
-                    <div class="select" id="_desktop_return_qty_{$product.id_order_detail}_{$customization.id_customization}">
-                      <select name="customization_qty_input[{$customization.id_customization}]" class="form-select">
+                    </span>
+                    <span class="select" id="_desktop_return_qty_{$product.id_order_detail}_{$customization.id_customization}">
+                      <select name="customization_qty_input[{$customization.id_customization}]" class="form-select" aria-label="{l s='Select quantity to return' d='Shop.Theme.Catalog'}">
                         {section name=quantity start=1 loop=$customization.quantity+1}
                           <option value="{$smarty.section.quantity.index}">{$smarty.section.quantity.index}</option>
                         {/section}
                       </select>
-                    </div>
+                    </span>
                   {/foreach}
                 {/if}
-              </div>
-            </div>
+              </span>
+            </span>
 
-            <div class="grid-table__cell grid-table__cell--center" aria-label="{l s='Returned' d='Shop.Theme.Customeraccount'}">{$product.qty_returned}</div>
+            <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Returned' d='Shop.Theme.Catalog'}">{$product.qty_returned}</span>
 
-            <div class="grid-table__cell grid-table__cell--center" aria-label="{l s='Unit price' d='Shop.Theme.Catalog'}">{$product.price}</div>
+            <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Unit price' d='Shop.Theme.Catalog'}">{$product.price}</span>
 
-            <div class="grid-table__cell grid-table__cell--right" aria-label="{l s='Total price' d='Shop.Theme.Catalog'}">{$product.total}</div>
+            <span class="grid-table__cell grid-table__cell--right" role="cell" data-ps-label="{l s='Total price' d='Shop.Theme.Catalog'}">{$product.total}</span>
           </div>
         {/foreach}
+      </div>
+    </div>
 
-        <div class="grid-table__row">
-          {foreach $order.subtotals as $line}
-            {if $line.value}
-              <div class="grid-table__cell grid-table__cell--label-value" aria-label="{$line.label}">{$line.value}</div>
-            {/if}
-          {/foreach}
+    <div class="grid-table grid-table--collapse" role="table" aria-label="{l s='Order totals' d='Shop.Theme.Catalog'}">
+      <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
+        {foreach $order.subtotals as $line}
+          {if $line.value}
+            <div class="grid-table__row" role="row">
+              <span class="grid-table__cell grid-table__cell--label-value" role="cell" data-ps-label="{$line.label}">
+                <span class="visually-hidden">{l s='%label%' d='Shop.Theme.Catalog' sprintf=['%label%' => $line.label]}</span>
+                {$line.value}
+              </span>
+            </div>
+          {/if}
+        {/foreach}
 
-          <div class="grid-table__cell grid-table__cell--label-value" aria-label="{$order.totals.total.label}">{$order.totals.total.value}</div>
+        <div class="grid-table__row" role="row">
+          <span class="grid-table__cell grid-table__cell--label-value" role="cell" data-ps-label="{$order.totals.total.label}">
+            <span class="visually-hidden">{l s='Total price' d='Shop.Theme.Catalog'}</span>
+            {$order.totals.total.value}
+          </span>
         </div>
       </div>
     </div>
@@ -190,15 +222,24 @@
     <section class="order-merchandise-return">
       <h3 class="h3">{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h3>
 
-      <p>
+      <label class="form-label required" for="return_notes">{l s='Return notes' d='Shop.Forms.Labels'}</label>
+
+      <textarea
+        rows="3"
+        name="returnText"
+        id="return_notes"
+        class="form-control required"
+        aria-describedby="order_merchandise_return"
+        required
+      ></textarea>
+
+      <p class="form-text" id="order_merchandise_return">
         {l s='If you wish to return one or more products, please mark the corresponding boxes and provide an explanation for the return. When complete, click the button below.' d='Shop.Theme.Customeraccount'}
       </p>
 
-      <textarea rows="3" name="returnText" class="form-control" required></textarea>
-
       <div class="buttons-wrapper buttons-wrapper--end mt-3">
         <input type="hidden" name="id_order" value="{$order.details.id}">
-        <button class="btn btn-primary" type="submit" name="submitReturnMerchandise">
+        <button class="btn btn-primary" type="submit" name="submitReturnMerchandise" data-ps-action="form-validation-submit">
           {l s='Request a return' d='Shop.Theme.Customeraccount'}
         </button>
       </footer>

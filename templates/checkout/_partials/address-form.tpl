@@ -10,10 +10,12 @@
 
 {block name='address_form_url'}
     <form
+      class="form-validation"
       method="POST"
       action="{url entity='order' params=['id_address' => $id_address]}"
       data-id-address="{$id_address}"
       data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm', 'id_address' => $id_address]}"
+      data-ps-action="form-validation"
    >
 {/block}
 
@@ -40,7 +42,7 @@
         <a class="js-cancel-address btn btn-basic" href="{url entity='order' params=['cancelAddress' => {$type}]}">{l s='Cancel' d='Shop.Theme.Actions'}</a>
       {/if}
 
-      <button type="submit" class="btn btn-primary" name="confirm-addresses" value="1">
+      <button type="submit" class="btn btn-primary" name="confirm-addresses" value="1" data-ps-action="form-validation-submit">
         {l s='Continue' d='Shop.Theme.Actions'}
         <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</i>
       </button>

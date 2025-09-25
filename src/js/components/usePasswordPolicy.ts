@@ -30,12 +30,9 @@ import {sprintf} from 'sprintf-js';
 const {passwordPolicy: PasswordPolicyMap} = selectorsMap;
 
 export interface PasswordPolicyReturn {
-  element?: HTMLElement
-  error?: Error
-  cleanup?: () => void
+  element: HTMLElement
+  cleanup: () => void
 }
-
-const PASSWORD_POLICY_ERROR = 'The password policy elements are undefined.';
 
 // Utility function to safely parse JSON
 const safeParseJSON = (jsonString: string): Record<string, string> => {
@@ -238,19 +235,19 @@ const setupRequirementTexts = (
   }
 };
 
-// Helper function to validate required elements
-const validateRequiredElements = (
-  element: HTMLElement | null,
-  elementInput: HTMLInputElement | null | undefined,
-  feedbackTemplate: HTMLTemplateElement | null,
-  feedbackContainer: HTMLElement | null,
-  hintElement: Element | null,
-  feedbackTarget: HTMLElement | null,
-): Error | null => {
-  if (!element || !elementInput || !feedbackTemplate || !feedbackContainer || !hintElement || !feedbackTarget) {
-    return new Error(PASSWORD_POLICY_ERROR);
+// Validates and retrieves DOM elements, throwing error if not found
+const queryElement = <T extends HTMLElement>(
+  selector: string,
+  errorMessage: string,
+  parent: Element | null = null,
+): T => {
+  const element = (parent?.querySelector(selector) as T) ?? document.querySelector(selector);
+
+  if (!element) {
+    throw new Error(errorMessage);
   }
-  return null;
+
+  return element;
 };
 
 // Helper function to setup validation event listeners
@@ -281,59 +278,66 @@ const setupValidationListeners = (
   return {inputHandler, formSubmitHandler, form};
 };
 
-const usePasswordPolicy = (selector: string): PasswordPolicyReturn => {
-  const element = document.querySelector<HTMLElement>(selector);
-  const elementInput = element?.querySelector<HTMLInputElement>(PasswordPolicyMap.input);
-  const targetElement = document.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
-  const feedbackTemplate = document.querySelector<HTMLTemplateElement>(PasswordPolicyMap.template);
-  const feedbackTarget = document.querySelector<HTMLElement>(PasswordPolicyMap.feedbackTarget);
-
-  // Create feedback container
-  let feedbackContainer: HTMLElement | null = null;
-
-  if (targetElement) {
-    targetElement.innerHTML = feedbackTemplate!.innerHTML;
-    feedbackContainer = targetElement.querySelector<HTMLElement>(PasswordPolicyMap.feedbackContainer);
+const usePasswordPolicy = (): PasswordPolicyReturn | undefined => {
+  let element;
+  try {
+    element = queryElement(
+      PasswordPolicyMap.field,
+      `The element "${PasswordPolicyMap.field}" for password policy is not found.`,
+    );
+  } catch {
+    return undefined;
   }
 
-  const hintElement = document.querySelector(PasswordPolicyMap.hint);
-
-  // Validate all required elements
-  const validationError = validateRequiredElements(
+  const elementInput = queryElement<HTMLInputElement>(
+    PasswordPolicyMap.input,
+    `The input element "${PasswordPolicyMap.input}" for password policy is not found.`,
     element,
-    elementInput,
-    feedbackTemplate,
-    feedbackContainer,
-    hintElement,
-    feedbackTarget,
+  );
+  const targetElement = queryElement<HTMLElement>(
+    PasswordPolicyMap.feedbackTarget,
+    `The target element "${PasswordPolicyMap.feedbackTarget}" for password policy is not found.`,
+    element,
+  );
+  const feedbackTemplate = queryElement<HTMLTemplateElement>(
+    PasswordPolicyMap.template,
+    `The feedback template "${PasswordPolicyMap.template}" for password policy is not found.`,
   );
 
-  if (validationError) {
-    return {error: validationError};
-  }
+  targetElement.innerHTML = feedbackTemplate.innerHTML;
 
-  const hints = safeParseJSON(hintElement!.innerHTML);
+  const feedbackContainer = queryElement<HTMLElement>(
+    PasswordPolicyMap.feedbackContainer,
+    `The feedback container element "${PasswordPolicyMap.feedbackContainer}" for password policy is not found.`,
+    targetElement,
+  );
+  const hintElement = queryElement<HTMLElement>(
+    PasswordPolicyMap.hint,
+    `The hint element "${PasswordPolicyMap.hint}" for password policy is not found.`,
+    element,
+  );
+  const hints = safeParseJSON(hintElement.innerHTML);
 
   // Setup requirement texts
-  setupRequirementTexts(feedbackContainer!, elementInput!, hints);
+  setupRequirementTexts(feedbackContainer, elementInput, hints);
 
   // Setup event listeners
-  const {inputHandler, formSubmitHandler, form} = setupValidationListeners(elementInput!, feedbackContainer!, hints);
+  const {inputHandler, formSubmitHandler, form} = setupValidationListeners(elementInput, feedbackContainer, hints);
 
   // Initial validation if field has content
-  if (elementInput!.value !== '') {
-    passwordValidation(elementInput!, feedbackContainer!, hints);
+  if (elementInput.value !== '') {
+    passwordValidation(elementInput, feedbackContainer, hints);
   }
 
   // Return cleanup function
   const cleanup = () => {
-    elementInput!.removeEventListener('input', inputHandler);
+    elementInput.removeEventListener('input', inputHandler);
     if (form && formSubmitHandler) {
       form.removeEventListener('submit', formSubmitHandler);
     }
   };
 
-  return {element: element || undefined, cleanup};
+  return {element, cleanup};
 };
 
 export default usePasswordPolicy;

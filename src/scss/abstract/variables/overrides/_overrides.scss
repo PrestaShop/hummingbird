@@ -1,4 +1,35 @@
 // Bootstrap variables, maps overrides
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+
+// Custom color palette
+$royal-purple: #7300ff;
+$neon-blue: #00f2ff;
+$toxic-green: #9eff00;
+$dark-background: #1a1a2e;
+
+// Override Bootstrap default colors
+$primary: $royal-purple;
+$secondary: $neon-blue;
+$success: $toxic-green;
+$body-bg: $dark-background;
+$body-color: #ffffff;
+
+// Update theme colors map
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $neon-blue,
+  "warning": #ffc107,
+  "danger": #dc3545,
+  "light": #f8f9fa,
+  "dark": #212529
+);
+
+// Font overrides
+$font-family-sans-serif: 'Orbitron', sans-serif;
+$headings-font-family: 'Orbitron', sans-serif;
+$display-font-family: 'Orbitron', sans-serif;
 
 // Breakpoints
 $grid-breakpoints: (

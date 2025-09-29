@@ -1,6 +1,7 @@
 {* PrestaShop license placeholder *}
-{function name="generateLinks" links=[] class="menu-item" parent=null}
+
 {* GENERATE LINKS *}
+{function name="generateLinks" links=[] class="menu-item" parent=null}
   {if $parent.depth === 1}
     {foreach from=$links item=link}
       {if $link.depth === 3 && $link.children|count}
@@ -30,7 +31,7 @@
 {function name="desktopSubMenu" nodes=[] depth=0 parent=null}
   {if $nodes|count}
     {if $depth === 1}
-      <div class="js-sub-menu submenu">
+      <div class="submenu js-sub-menu hidden" id="submenu-{$parent.page_identifier}" aria-hidden="true">
         <div class="container">
           <div class="submenu__row row gx-5">
     {/if}
@@ -78,19 +79,35 @@
 {* GENERATE DESKTOP FIRST LEVEL *}
 {function name="desktopFirstLevel" itemsFirstLevel=[]}
   {if $itemsFirstLevel|count}
-    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0">
+    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0" role="menubar">
       {foreach from=$itemsFirstLevel item=menuItem}
-        <li class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}">
+        <li class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}" role="none">
           <a
             class="ps-mainmenu__tree__link{if $menuItem.children|count} dropdown-toggle{/if}"
             href="{$menuItem.url}"
             data-depth="0"
             {if $menuItem.open_in_new_window}target="_blank"{/if}
+            role="menuitem"
+            aria-haspopup="{if $menuItem.children|count}true{else}false{/if}"
+            aria-expanded="false"
+            {if $menuItem.children|count}aria-controls="submenu-{$menuItem.page_identifier}"{/if}
+            tabindex="0"
           >
             {$menuItem.label}
           </a>
 
-          {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
+          {if $menuItem.children|count}
+            <button
+              class="btn btn-link ps-mainmenu__toggle-dropdown"
+              type="button"
+              aria-label="{l s='Toggle submenu' d='Shop.Theme.Global'}"
+              aria-expanded="false"
+              aria-controls="submenu-{$menuItem.page_identifier}"
+            >
+              <span class="material-icons">&#xE5CF;</span>
+            </button>
+            {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
+          {/if}
         </li>
       {/foreach}
     </ul>
@@ -158,39 +175,7 @@
 
 <nav class="ps-mainmenu ps-mainmenu--desktop col-xl col-auto" aria-label="{l s='Main menu' d='Shop.Theme.Global'}">
   <div class="ps-mainmenu__desktop d-none d-xl-block position-static js-menu-desktop">
-    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0" role="menubar">
-      {foreach from=$menu.children item=menuItem}
-        <li class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}" role="none">
-          <a
-            class="ps-mainmenu__tree__link{if $menuItem.children|count} dropdown-toggle{/if}"
-            href="{$menuItem.url}"
-            data-depth="0"
-            {if $menuItem.open_in_new_window}target="_blank"{/if}
-            role="menuitem"
-            aria-haspopup="{if $menuItem.children|count}true{else}false{/if}"
-            aria-expanded="false"
-            {if $menuItem.children|count}aria-controls="submenu-{$menuItem.page_identifier}"{/if}
-            tabindex="0"
-          >
-            {$menuItem.label}
-          </a>
-          {if $menuItem.children|count}
-            <div
-              class="js-sub-menu submenu"
-              id="submenu-{$menuItem.page_identifier}"
-              role="menu"
-              aria-label="{l s='Submenu for %s' sprintf=[$menuItem.label] d='Shop.Theme.Global'}"
-              aria-hidden="true"
-            >
-              {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
-            </div>
-          {/if}
-          {if !$menuItem.children|count}
-            {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
-          {/if}
-        </li>
-      {/foreach}
-    </ul>
+    {desktopMenu nodes=$menu.children}
   </div>
 
   {* MOBILE MENU *}

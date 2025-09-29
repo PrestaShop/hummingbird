@@ -35,7 +35,6 @@ $component-name: ps-mainmenu;
       // Menu Tree
       &__tree {
         display: flex;
-        //height: 100%;
         flex-wrap: wrap;
         align-items: stretch;
         margin: 0;
@@ -68,13 +67,6 @@ $component-name: ps-mainmenu;
             }
           }
 
-          &:hover {
-            .submenu,
-            .menu-container {
-              display: block;
-            }
-          }
-
           .submenu,
           .menu-container {
             position: absolute;
@@ -82,7 +74,6 @@ $component-name: ps-mainmenu;
             right: 0;
             left: 0;
             z-index: 1060;
-            display: none;
             background-color: var(--bs-body-bg);
             border-top: 1px solid var(--bs-border-color);
 

@@ -19,6 +19,7 @@ export const initSliders = () => {
     // Init basic slider data
     let unitPosition = 'suffix';
     let unitSymbol = container.dataset.sliderUnit;
+    let unitCurrency = container.dataset.sliderCurrency;
     let decimalCount = 2;
     let decimalSeparator = '.';
     let thousandsSeparator = '';
@@ -107,7 +108,10 @@ export const initSliders = () => {
 
       initiatedSlider.target.querySelectorAll('.noUi-handle').forEach((handle) => {
         handle.setAttribute('tabindex', '0');
-        handle.setAttribute('aria-label', 'Adjust filter range');
+        const ariaLabel = unitCurrency
+          ? `Adjust filter range in ${unitCurrency}`
+          : `Adjust filter range' in ${unitSymbol}`;
+        handle.setAttribute('aria-label', ariaLabel);
       });
     } else {
       container.noUiSlider.updateOptions({

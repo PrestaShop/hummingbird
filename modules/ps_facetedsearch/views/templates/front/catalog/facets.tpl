@@ -232,6 +232,9 @@
                       data-slider-id="{$_expand_id}"
                       data-slider-values="{$filter.value|@json_encode}"
                       data-slider-unit="{$facet.properties.unit}"
+                      {if isset($facet.properties.specifications.currencyCode) && $facet.properties.specifications.currencyCode != ''}
+                        data-slider-currency="{$facet.properties.specifications.currencyCode}"
+                      {/if}
                       data-slider-label="{$facet.label}"
                       data-slider-specifications="{$facet.properties.specifications|@json_encode}"
                       data-slider-encoded-url="{$filter.nextEncodedFacetsURL}"

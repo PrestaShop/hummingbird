@@ -17,9 +17,9 @@ export const initSliders = () => {
     const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
 
     // Init basic slider data
+    const unitCurrency = container.dataset.sliderCurrency;
     let unitPosition = 'suffix';
     let unitSymbol = container.dataset.sliderUnit;
-    let unitCurrency = container.dataset.sliderCurrency;
     let decimalCount = 2;
     let decimalSeparator = '.';
     let thousandsSeparator = '';

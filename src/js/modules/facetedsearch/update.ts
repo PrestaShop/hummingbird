@@ -114,10 +114,8 @@ export default function initFacetedSearch(): void {
     window.addEventListener('popstate', (event: PopStateEvent) => {
       const state = event.state as { current_url: string } | null;
 
-      if (state?.current_url) {
+      if (state?.current_url && state.current_url.trim() !== '' && state.current_url !== '#') {
         window.location.href = state.current_url;
-      } else {
-        window.location.reload();
       }
     });
   }

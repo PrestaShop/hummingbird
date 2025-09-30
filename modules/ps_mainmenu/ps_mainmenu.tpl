@@ -83,7 +83,7 @@
       {foreach from=$itemsFirstLevel item=menuItem}
         <li class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}" role="none">
           <a
-            class="ps-mainmenu__tree__link{if $menuItem.children|count} dropdown-toggle{/if}"
+            class="ps-mainmenu__tree__link"
             href="{$menuItem.url}"
             data-depth="0"
             {if $menuItem.open_in_new_window}target="_blank"{/if}
@@ -104,10 +104,11 @@
               aria-expanded="false"
               aria-controls="submenu-{$menuItem.page_identifier}"
             >
-              <span class="material-icons">&#xE5CF;</span>
+                <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
             </button>
             {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
           {/if}
+
         </li>
       {/foreach}
     </ul>

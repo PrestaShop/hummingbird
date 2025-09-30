@@ -1,40 +1,49 @@
 const initDesktopMenu = () => {
   /**
-   * Handle submenu display on hover (mouse)
-   */
-  const menuItems = document.querySelectorAll<HTMLLIElement>('.ps-mainmenu__tree__item');
-  menuItems.forEach((li) => {
-    li.addEventListener('mouseenter', () => {
-      const submenu = li.querySelector<HTMLElement>('.js-sub-menu');
-      if (submenu) {
-        submenu.setAttribute('aria-hidden', 'false');
-        submenu.classList.remove('hidden');
-      }
-    });
-    li.addEventListener('mouseleave', () => {
-      const submenu = li.querySelector<HTMLElement>('.js-sub-menu');
-      if (submenu) {
-        submenu.setAttribute('aria-hidden', 'true');
-        submenu.classList.add('hidden');
-      }
-    });
-  });
-
-  /**
    * Toggle button click (desktop)
    */
   const toggles = document.querySelectorAll<HTMLButtonElement>('.ps-mainmenu__toggle-dropdown');
+
   toggles.forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+
       const submenuId = btn.getAttribute('aria-controls');
       if (!submenuId) return;
       const submenu = document.getElementById(submenuId);
       if (!submenu) return;
 
       const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all other submenus before toggling this one
+      toggles.forEach((otherBtn) => {
+        const otherId = otherBtn.getAttribute('aria-controls');
+        if (!otherId) return;
+        const otherSubmenu = document.getElementById(otherId);
+        if (!otherSubmenu) return;
+
+        otherBtn.setAttribute('aria-expanded', 'false');
+        otherSubmenu.setAttribute('aria-hidden', 'true');
+        otherSubmenu.classList.add('hidden');
+
+        const icon = otherBtn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+        if (icon) {
+          icon.classList.remove('ps-mainmenu_dropdown-up');
+          icon.classList.add('ps-mainmenu_dropdown-down');
+        }
+      });
+
+      // Toggle clicked submenu
       btn.setAttribute('aria-expanded', String(!expanded));
       submenu.setAttribute('aria-hidden', String(expanded));
       submenu.classList.toggle('hidden', expanded);
+
+      // Rotate chevron icon
+      const icon = btn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+      if (icon) {
+        icon.classList.toggle('ps-mainmenu_dropdown-up', !expanded);
+        icon.classList.toggle('ps-mainmenu_dropdown-down', expanded);
+      }
     });
 
     // Keyboard accessibility for toggle button
@@ -47,7 +56,27 @@ const initDesktopMenu = () => {
   });
 
   /**
-   * Keyboard navigation for top-level menu
+   * Close submenu on click outside
+   */
+  document.addEventListener('click', (e) => {
+    const isClickInsideMenu = (e.target as HTMLElement).closest('.ps-mainmenu');
+    if (!isClickInsideMenu) {
+      closeAllSubmenus();
+    }
+  });
+
+  /**
+   * Close submenu if focus leaves menu (Tab / Shift+Tab)
+   */
+  document.addEventListener('focusin', (e) => {
+    const isFocusInsideMenu = (e.target as HTMLElement).closest('.ps-mainmenu');
+    if (!isFocusInsideMenu) {
+      closeAllSubmenus();
+    }
+  });
+
+  /**
+   * Keyboard navigation for main menu links
    */
   const menuLinks = document.querySelectorAll<HTMLElement>('.ps-mainmenu__tree__link');
   menuLinks.forEach((link, idx) => {
@@ -103,6 +132,28 @@ const initDesktopMenu = () => {
       }
     });
   });
+
+  /**
+   * Helper: close all submenus
+   */
+  function closeAllSubmenus() {
+    toggles.forEach((btn) => {
+      const submenuId = btn.getAttribute('aria-controls');
+      if (!submenuId) return;
+      const submenu = document.getElementById(submenuId);
+      if (!submenu) return;
+
+      btn.setAttribute('aria-expanded', 'false');
+      submenu.setAttribute('aria-hidden', 'true');
+      submenu.classList.add('hidden');
+
+      const icon = btn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+      if (icon) {
+        icon.classList.remove('ps-mainmenu_dropdown-up');
+        icon.classList.add('ps-mainmenu_dropdown-down');
+      }
+    });
+  }
 };
 
 export default initDesktopMenu;

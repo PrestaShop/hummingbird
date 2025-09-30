@@ -44,7 +44,7 @@ $component-name: ps-mainmenu;
           align-items: center;
 
           &.current {
-            > a {
+            > a, .#{$component-name}_dropdown {
               color: var(--bs-link-color);
             }
           }
@@ -99,14 +99,25 @@ $component-name: ps-mainmenu;
                     color: var(--bs-link-color);
                   }
                 }
-
-                &::after {
-                  display: none;
-                }
               }
             }
           }
         }
+      }
+
+      // Dropdown chevron animations
+      &_dropdown {
+        display: inline-block;
+        color: var(--bs-secondary-color);
+        transition: transform 0.25s ease-in-out;
+      }
+
+      &_dropdown-down {
+        transform: rotate(0deg);
+      }
+
+      &_dropdown-up {
+        transform: rotate(-180deg);
       }
     }
 

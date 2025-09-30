@@ -39,6 +39,10 @@ $component-name: (
         cursor: pointer;
         @extend %color-variant;
       }
+
+      .color {
+        @extend %outline--shadow-focus-visible;
+      }
     }
   }
 
@@ -86,6 +90,10 @@ $component-name: (
       font-size: 0.875rem;
       color: var(--bs-tertiary-color);
     }
+  }
+
+  .noUi-handle:focus-visible {
+    @extend %outline--focus-visible;
   }
 
   @include media-breakpoint-up(md) {

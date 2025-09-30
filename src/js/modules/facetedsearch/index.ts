@@ -17,6 +17,7 @@ export const initSliders = () => {
     const container = <target>filter.querySelector(Theme.selectors.facetedsearch.rangeContainer);
 
     // Init basic slider data
+    const unitCurrency = container.dataset.sliderCurrency;
     let unitPosition = 'suffix';
     let unitSymbol = container.dataset.sliderUnit;
     let decimalCount = 2;
@@ -103,6 +104,14 @@ export const initSliders = () => {
         const parentFacet = initiatedSlider.target.closest(Theme.selectors.facetedsearch.filterSlider) as HTMLElement;
         const showValues = parentFacet.querySelector(Theme.selectors.facetedsearch.rangeValues) as HTMLElement;
         showValues.innerHTML = formattedValues.join(' - ');
+      });
+
+      initiatedSlider.target.querySelectorAll('.noUi-handle').forEach((handle) => {
+        handle.setAttribute('tabindex', '0');
+        const ariaLabel = unitCurrency
+          ? `Adjust filter range in ${unitCurrency}`
+          : `Adjust filter range' in ${unitSymbol}`;
+        handle.setAttribute('aria-label', ariaLabel);
       });
     } else {
       container.noUiSlider.updateOptions({

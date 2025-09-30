@@ -17,3 +17,31 @@ $component-name: outline;
     }
   }
 }
+
+%#{$component-name} {
+  &--focus-visible {
+    &:focus-visible {
+      outline: 0.125rem solid var(--bs-primary);
+    }
+  }
+
+  &--outer-focus-visible {
+    &:focus-visible {
+      outline: 0.125rem solid var(--bs-primary);
+      outline-offset: 0.125rem;
+    }
+  }
+
+  &--inner-focus-visible {
+    &:focus-visible {
+      outline: 0.125rem solid var(--bs-primary);
+      outline-offset: -0.125rem;
+    }
+  }
+
+  &--shadow-focus-visible {
+    &:focus-visible {
+      box-shadow: $form-check-input-focus-box-shadow;
+    }
+  }
+}

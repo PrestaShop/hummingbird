@@ -18,6 +18,7 @@
     "value-list-comma-newline-after": null,
     "value-list-comma-space-after": null,
     "scss/dollar-variable-default": null,
-    "scss/operator-no-newline-after": null
+    "scss/operator-no-newline-after": null,
+    "scss/percent-placeholder-pattern": null
   }
 }

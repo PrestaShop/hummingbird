@@ -1,54 +1,89 @@
 {* PrestaShop license placeholder *}
 
-{* GENERATE LINKS *}
+{* GENERATE LINKS FOR SUBMENU CHILDREN *}
 {function name="generateLinks" links=[] class="menu-item" parent=null}
-  {if $parent.depth === 1}
-    {foreach from=$links item=link}
-      {if $link.depth === 3 && $link.children|count}
-      <div class="{$class}__group--child">
-      {elseif $link.depth === 3 && !$link.children|count}
-      <div class="{$class}__group--nochild">
-      {/if}
+  {foreach from=$links item=link}
+    <div class="{$class} {if $link.children|count}has-child{/if}">
+      <a
+        class="{$class}__link"
+        href="{$link.url}"
+        data-depth="{$link.depth}"
+        {if $link.open_in_new_window}target="_blank"{/if}
+      >
+        {$link.label}
+      </a>
 
-        <a
-          class="{$class} {if $link.depth === 3}{$class}__group-main-item{/if}"
-          href="{$link.url}"
-          data-depth="{$link.depth}"
-          {if $link.open_in_new_window}target="_blank"{/if}
-        >
-          {$link.label}
-        </a>
-        {call name=generateLinks links=$link.children parent=$parent}
-
-      {if ($link.depth === 3 && $link.children|count) || ($link.depth === 3 && !$link.children|count)}
-      </div>
+      {if $link.children|count}
+        {generateLinks links=$link.children class=$class parent=$link}
       {/if}
-    {/foreach}
-  {/if}
+    </div>
+  {/foreach}
 {/function}
 
-{* GENERATE SUBMENU *}
-{function name="desktopSubMenu" nodes=[] depth=0 parent=null}
+{* RECURSIVE DESKTOP SUBMENU *}
+{function name="desktopSubMenu" nodes=[] parent=null depth=1}
   {if $nodes|count}
     {if $depth === 1}
       <div class="submenu d-none" id="submenu-{$parent.page_identifier}" aria-hidden="true">
         <div class="container">
           <div class="submenu__row row gx-5">
-    {/if}
+            <ul class="submenu__left col-sm-3">
+              {foreach from=$nodes item=node}
+                <li class="submenu__left-item-wrapper">
+                  <a
+                    class="submenu__left-item {if $node.children|count}has-child{/if}"
+                    href="{$node.url}"
+                    data-depth="{$node.depth}"
+                    {if $node.children|count}data-open-tab="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}"{/if}
+                    {if $node.open_in_new_window}target="_blank"{/if}
+                  >
+                    {$node.label}
+                  </a>
 
-    {if $depth === 1 }
-      <ul class="submenu__left col-sm-3">
+                  {if $node.children|count}
+                    <button
+                      class="btn btn-link ps-mainmenu__toggle-dropdown"
+                      type="button"
+                      aria-label="{l s='Toggle submenu' d='Shop.Theme.Global'}"
+                      aria-expanded="false"
+                      aria-controls="submenu-{$node.page_identifier}"
+                    >
+                      <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
+                    </button>
+                  {/if}
+                </li>
+              {/foreach}
+            </ul>
+
+            <div class="submenu__right col-sm-9">
+              {foreach from=$nodes item=node}
+                <div class="submenu__right-items" data-id="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}">
+                  {if $node.children|count}
+                    {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
+                  {/if}
+                </div>
+              {/foreach}
+            </div>
+          </div>
+        </div>
+      </div>
+    {else}
+      <ul class="submenu__level level-{$depth}">
         {foreach from=$nodes item=node}
-          <li class="submenu__left-item-wrapper">
+          <li class="submenu__item {if $node.children|count}has-child{/if}">
             <a
-              class="submenu__left-item {if $node.children|count}has-child{/if}"
+              class="submenu__link"
               href="{$node.url}"
               data-depth="{$node.depth}"
-              {if $node.children|count}data-open-tab="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}"{/if}
               {if $node.open_in_new_window}target="_blank"{/if}
+              role="menuitem"
+              aria-haspopup="{if $node.children|count}true{else}false{/if}"
+              aria-expanded="false"
+              {if $node.children|count}aria-controls="submenu-{$node.page_identifier}"{/if}
             >
               {$node.label}
             </a>
+
             {if $node.children|count}
               <button
                 class="btn btn-link ps-mainmenu__toggle-dropdown"
@@ -57,34 +92,14 @@
                 aria-expanded="false"
                 aria-controls="submenu-{$node.page_identifier}"
               >
-                  <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
+                <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
               </button>
+
+              {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
             {/if}
           </li>
         {/foreach}
       </ul>
-    {/if}
-
-    {if $depth === 1 }
-      <div class="submenu__right col-sm-9">
-        {foreach from=$nodes item=node}
-          <div class="submenu__right-items" data-id="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}">
-            {generateLinks links=$node.children parent=$parent}
-          </div>
-        {/foreach}
-      </div>
-    {/if}
-
-    {foreach from=$nodes item=node}
-      {if $node.children|count}
-        {desktopSubMenu nodes=$node.children depth=$node.depth parent=$node}
-      {/if}
-    {/foreach}
-
-    {if $depth === 1}
-          </div>
-        </div>
-      </div>
     {/if}
   {/if}
 {/function}
@@ -117,19 +132,19 @@
               aria-expanded="false"
               aria-controls="submenu-{$menuItem.page_identifier}"
             >
-                <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
+              <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
             </button>
-            {desktopSubMenu nodes=$menuItem.children depth=$menuItem.depth parent=$menuItem}
-          {/if}
 
+            {desktopSubMenu nodes=$menuItem.children parent=$menuItem depth=1}
+          {/if}
         </li>
       {/foreach}
     </ul>
   {/if}
 {/function}
 
-{* GENERATE DESKTOP MENU *}
-{function name="desktopMenu" nodes=[] depth=0 parent=null}
+{* DESKTOP MENU ENTRY *}
+{function name="desktopMenu" nodes=[]}
   {desktopFirstLevel itemsFirstLevel=$nodes}
 {/function}
 

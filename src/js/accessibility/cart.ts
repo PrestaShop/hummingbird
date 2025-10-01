@@ -14,15 +14,13 @@ export default () => {
 
   // Once PrestaShop finishes updating the cart set aria-live on alerts to announce it to screen readers
   prestashop.on(events.updatedCart, () => {
-    console.log(state.get('cartUpdateAction'));
-    
     if (state.get('cartUpdateAction') === 'delete-from-cart') {
       const alertPlaceholder = document.querySelector<HTMLElement>(SelectorsMap.cart.alertPlaceholder);
 
       if (alertPlaceholder) {
         Array.from(alertPlaceholder.children).forEach((child) => {
           const childElement = child as HTMLElement;
-          
+
           if (childElement.getAttribute('data-ps-action') === 'to-be-announced') {
             childElement.removeAttribute('data-ps-action');
             childElement.setAttribute('tabindex', '-1');
@@ -36,7 +34,7 @@ export default () => {
           a11y.setFocus(cartOverview);
         }
       }
-    } 
+    }
 
     if (state.get('cartUpdateAction') === 'update-product-quantity') {
       a11y.restoreFocus(document.querySelector<HTMLElement>(SelectorsMap.cart.overview));

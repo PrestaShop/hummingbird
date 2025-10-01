@@ -36,61 +36,61 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
     method: 'POST',
     body: formData,
   })
-  .then((resp: Response) => {
+    .then((resp: Response) => {
     // Refresh cart preview
-    prestashop.emit(events.updateCart, {
-      reason: dataset,
-      resp,
-    });
+      prestashop.emit(events.updateCart, {
+        reason: dataset,
+        resp,
+      });
 
-    // Show product removal success alert
-    if (target && target.getAttribute('data-link-action') === SelectorsMap.cart.deleteLinkAction) {
+      // Show product removal success alert
+      if (target && target.getAttribute('data-link-action') === SelectorsMap.cart.deleteLinkAction) {
       // Set state.cartUpdateAction to track the cart update action
-      state.set('cartUpdateAction', 'delete-from-cart');
+        state.set('cartUpdateAction', 'delete-from-cart');
 
-      const alertPlaceholder = document.querySelector(SelectorsMap.cart.alertPlaceholder);
-      const productUrl = target.getAttribute('data-product-url');
-      const productName = target.getAttribute('data-product-name');
+        const alertPlaceholder = document.querySelector(SelectorsMap.cart.alertPlaceholder);
+        const productUrl = target.getAttribute('data-product-url');
+        const productName = target.getAttribute('data-product-name');
 
-      if (alertPlaceholder && productUrl && productName) {
-        const alertText = alertPlaceholder.getAttribute('data-ps-data');
-        const alertCloseText = alertPlaceholder.getAttribute('data-ps-data-close');
+        if (alertPlaceholder && productUrl && productName) {
+          const alertText = alertPlaceholder.getAttribute('data-ps-data');
+          const alertCloseText = alertPlaceholder.getAttribute('data-ps-data-close');
 
-        // Create the product link element
-        const productLink = document.createElement('a');
-        productLink.classList.add('alert-link');
-        productLink.setAttribute('href', productUrl);
-        productLink.textContent = productName;
+          // Create the product link element
+          const productLink = document.createElement('a');
+          productLink.classList.add('alert-link');
+          productLink.setAttribute('href', productUrl);
+          productLink.textContent = productName;
 
-        // Create the alert message container
-        const alertMessage = document.createElement('span');
-        alertMessage.appendChild(productLink);
-        alertMessage.append(` ${alertText}`);
+          // Create the alert message container
+          const alertMessage = document.createElement('span');
+          alertMessage.appendChild(productLink);
+          alertMessage.append(` ${alertText}`);
 
-        const alertMessageContainer = document.createElement('div');
-        alertMessageContainer.appendChild(alertMessage);
-        
-        const alert = useAlert(alertMessageContainer.innerHTML, {
-          type: 'success',
-          selector: SelectorsMap.cart.alertPlaceholder,
-        });
+          const alertMessageContainer = document.createElement('div');
+          alertMessageContainer.appendChild(alertMessage);
 
-        if (alert.element) {
-          alert.element.setAttribute('data-ps-action', `to-be-announced`);
-          alert.element.querySelector('.btn-close')?.setAttribute('aria-label', `${alertCloseText}`);
+          const alert = useAlert(alertMessageContainer.innerHTML, {
+            type: 'success',
+            selector: SelectorsMap.cart.alertPlaceholder,
+          });
+
+          if (alert.element) {
+            alert.element.setAttribute('data-ps-action', 'to-be-announced');
+            alert.element.querySelector('.btn-close')?.setAttribute('aria-label', `${alertCloseText}`);
+          }
+
+          alert.show();
         }
-
-        alert.show();
       }
-    }
-  })
-  .catch((err) => {
-    const errorData = err as Response;
-    prestashop.emit(events.handleError, {
-      eventType: 'updateProductInCart',
-      errorData,
+    })
+    .catch((err) => {
+      const errorData = err as Response;
+      prestashop.emit(events.handleError, {
+        eventType: 'updateProductInCart',
+        errorData,
+      });
     });
-  })
 };
 
 export default handleCartAction;

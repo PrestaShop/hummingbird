@@ -25,7 +25,7 @@ class ThemeState {
   }
 
   merge(newState: Partial<ThemeStateType>) {
-    this.state = { ...this.state, ...newState };
+    this.state = {...this.state, ...newState};
   }
 }
 

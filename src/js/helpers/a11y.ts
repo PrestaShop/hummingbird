@@ -67,40 +67,6 @@ class A11yHelpers {
 
     return success;
   }
-
-  // Screen Reader Announcements based on data-ps-announce attribute
-  announce(element: HTMLElement, priority: 'polite' | 'assertive' = 'polite', role: 'alert' | 'status' = 'alert', delay: number = 250): void {
-    // Remove any existing announcement container
-    const announcementContainer = document.getElementById('announcement_container');
-
-    if (announcementContainer) {
-      announcementContainer.remove();
-    }
-
-    // Create a temporary element for the announcement
-    const announcement = document.createElement('div');
-    announcement.id = 'announcement_container';
-    announcement.setAttribute('role', role);
-    announcement.setAttribute('aria-atomic', 'true');
-    announcement.setAttribute('aria-live', priority);
-    announcement.className = 'visually-hidden';
-
-    // Get the announcement text from data-ps-announce attribute
-    const text = element.getAttribute('data-ps-announce');
-    
-    if (!text) {
-      console.warn('No data-ps-announce attribute found on element');
-      return;
-    }
-    
-    // Add to DOM
-    document.body.appendChild(announcement);
-    
-    // Set the text content to trigger the announcement
-    setTimeout(() => {
-      announcement.textContent = text;
-    }, delay);
-  }
 }
 
 export default A11yHelpers;

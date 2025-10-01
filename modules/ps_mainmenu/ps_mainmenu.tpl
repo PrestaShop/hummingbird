@@ -20,11 +20,12 @@
   {/foreach}
 {/function}
 
-{* RECURSIVE DESKTOP SUBMENU *}
+{* RECURSIVE DESKTOP SUBMENU FUNCTION *}
 {function name="desktopSubMenu" nodes=[] parent=null depth=1}
   {if $nodes|count}
     {if $depth === 1}
-      <div class="submenu d-none" id="submenu-{$parent.page_identifier}" aria-hidden="true">
+      {* First level submenu container *}
+      <div class="submenu d-none" id="submenu-{$parent.page_identifier}" aria-hidden="true" data-depth="{$depth}">
         <div class="container">
           <div class="submenu__row row gx-5">
             <ul class="submenu__left col-sm-3">
@@ -36,6 +37,11 @@
                     data-depth="{$node.depth}"
                     {if $node.children|count}data-open-tab="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}"{/if}
                     {if $node.open_in_new_window}target="_blank"{/if}
+                    role="menuitem"
+                    aria-haspopup="{if $node.children|count}true{else}false{/if}"
+                    aria-expanded="false"
+                    {if $node.children|count}aria-controls="submenu-{$node.page_identifier}"{/if}
+                    tabindex="0"
                   >
                     {$node.label}
                   </a>
@@ -57,18 +63,19 @@
 
             <div class="submenu__right col-sm-9">
               {foreach from=$nodes item=node}
-                <div class="submenu__right-items" data-id="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}">
-                  {if $node.children|count}
+                {if $node.children|count}
+                  <div class="d-none" id="submenu-{$node.page_identifier}" aria-hidden="true">
                     {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
-                  {/if}
-                </div>
+                  </div>
+                {/if}
               {/foreach}
             </div>
           </div>
         </div>
       </div>
     {else}
-      <ul class="submenu__level level-{$depth}">
+      {* Nested submenu levels *}
+      <ul class="submenu__level level-{$depth} d-none" aria-hidden="true">
         {foreach from=$nodes item=node}
           <li class="submenu__item {if $node.children|count}has-child{/if}">
             <a
@@ -80,6 +87,7 @@
               aria-haspopup="{if $node.children|count}true{else}false{/if}"
               aria-expanded="false"
               {if $node.children|count}aria-controls="submenu-{$node.page_identifier}"{/if}
+              tabindex="0"
             >
               {$node.label}
             </a>
@@ -95,7 +103,9 @@
                 <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
               </button>
 
-              {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
+              <div class="d-none" id="submenu-{$node.page_identifier}" aria-hidden="true">
+                {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
+              </div>
             {/if}
           </li>
         {/foreach}
@@ -142,6 +152,7 @@
     </ul>
   {/if}
 {/function}
+
 
 {* DESKTOP MENU ENTRY *}
 {function name="desktopMenu" nodes=[]}

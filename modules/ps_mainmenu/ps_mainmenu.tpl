@@ -31,25 +31,38 @@
 {function name="desktopSubMenu" nodes=[] depth=0 parent=null}
   {if $nodes|count}
     {if $depth === 1}
-      <div class="submenu js-sub-menu d-none" id="submenu-{$parent.page_identifier}" aria-hidden="true">
+      <div class="submenu d-none" id="submenu-{$parent.page_identifier}" aria-hidden="true">
         <div class="container">
           <div class="submenu__row row gx-5">
     {/if}
 
     {if $depth === 1 }
-      <div class="submenu__left col-sm-3">
+      <ul class="submenu__left col-sm-3">
         {foreach from=$nodes item=node}
-          <a
-            class="submenu__left-item {if $node.children|count}has-child{/if}"
-            href="{$node.url}"
-            data-depth="{$node.depth}"
-            {if $node.children|count}data-open-tab="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}"{/if}
-            {if $node.open_in_new_window}target="_blank"{/if}
-          >
-            {$node.label}
-          </a>
+          <li class="submenu__left-item-wrapper">
+            <a
+              class="submenu__left-item {if $node.children|count}has-child{/if}"
+              href="{$node.url}"
+              data-depth="{$node.depth}"
+              {if $node.children|count}data-open-tab="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}"{/if}
+              {if $node.open_in_new_window}target="_blank"{/if}
+            >
+              {$node.label}
+            </a>
+            {if $node.children|count}
+              <button
+                class="btn btn-link ps-mainmenu__toggle-dropdown"
+                type="button"
+                aria-label="{l s='Toggle submenu' d='Shop.Theme.Global'}"
+                aria-expanded="false"
+                aria-controls="submenu-{$node.page_identifier}"
+              >
+                  <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
+              </button>
+            {/if}
+          </li>
         {/foreach}
-      </div>
+      </ul>
     {/if}
 
     {if $depth === 1 }

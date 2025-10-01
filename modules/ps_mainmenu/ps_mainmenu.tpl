@@ -31,7 +31,7 @@
 {function name="desktopSubMenu" nodes=[] depth=0 parent=null}
   {if $nodes|count}
     {if $depth === 1}
-      <div class="submenu js-sub-menu hidden" id="submenu-{$parent.page_identifier}" aria-hidden="true">
+      <div class="submenu js-sub-menu d-none" id="submenu-{$parent.page_identifier}" aria-hidden="true">
         <div class="container">
           <div class="submenu__row row gx-5">
     {/if}

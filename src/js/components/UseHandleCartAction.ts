@@ -5,7 +5,7 @@
 
 import SelectorsMap from '@constants/selectors-map';
 import useAlert from '@js/components/useAlert';
-import {state} from '@js/theme';
+import {state} from '@js/state';
 
 const handleCartAction = (event: Event): void => {
   event.stopPropagation();

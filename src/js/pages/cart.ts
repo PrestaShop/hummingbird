@@ -7,7 +7,7 @@ import {Collapse} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
 import handleCartAction from '@js/components/UseHandleCartAction';
 import SelectorsMap from '@constants/selectors-map';
-import {state} from '@js/theme';
+import {state} from '@js/state';
 
 export default () => {
   // Event delegation for voucher code clicks

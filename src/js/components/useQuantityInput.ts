@@ -6,12 +6,12 @@
 import Quantity from '@constants/useQuantityInput-data';
 import {qtyInput as quantityInputMap, cart as cartSelectorMap} from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
-import useAlert from './useAlert';
-import useToast from './useToast';
-import A11yHelpers from '../helpers/a11y';
-import {state} from '../theme';
+import useAlert from '@js/components/useAlert';
+import useToast from '@js/components/useToast';
+import A11yHelpers from '@helpers/a11y';
+import {state} from '@js/state';
 
-const a11y = new A11yHelpers();
+const a11y = new A11yHelpers(state);
 
 const ENTER_KEY = 'Enter';
 const ESCAPE_KEY = 'Escape';

@@ -5,12 +5,13 @@
 import {Modal} from 'bootstrap';
 import useProgressRing from '@js/components/useProgressRing';
 import A11yHelpers from '@helpers/a11y';
+import {state} from '@js/state';
 
 const initCheckout = () => {
   const {prestashop} = window;
   const {Theme: {selectors, events}} = window;
   const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectors;
-  const a11y = new A11yHelpers();
+  const a11y = new A11yHelpers(state);
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);
   const actionButtons = document.querySelectorAll<HTMLElement>(CheckoutMap.actionsButtons);
   const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: steps.length});

@@ -29,7 +29,6 @@ import initDesktopMenu from '@js/modules/ps_mainmenu';
 import initFormValidation from '@js/form-validation';
 import initCategoryTree from '@js/modules/ps_categorytree';
 import initScrollPaddingTop from '@helpers/scrollPadding';
-import themeState from '@js/state';
 import initProductAccessibility from '@js/accessibility/product';
 import initCartAccessibility from '@js/accessibility/cart';
 
@@ -77,10 +76,7 @@ export const components = {
   useQuantityInput,
 };
 
-export const state = themeState;
-
 export const selectors = themeSelectors;
-
 export const events = EVENTS;
 
 export default {

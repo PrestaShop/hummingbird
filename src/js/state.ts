@@ -29,5 +29,7 @@ class ThemeState {
   }
 }
 
-const themeState = new ThemeState();
-export default themeState;
+export default ThemeState;
+
+// Create and export a single instance of ThemeState that can be shared across the theme
+export const state = new ThemeState();

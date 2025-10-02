@@ -5,7 +5,7 @@
 import {Modal} from 'bootstrap';
 
 import {events} from '@js/theme';
-import getModalContentContainer from '@js/helpers/modal';
+import getModalContentContainer from '@helpers/modal';
 import selectorsMap from '@constants/selectors-map';
 
 export default function initBlockCart() {

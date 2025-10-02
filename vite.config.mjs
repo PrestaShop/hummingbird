@@ -92,6 +92,7 @@ export default defineConfig(({ command, mode }) => {
         '@services': resolve(__dirname, 'src/js/services'),
         '@constants': resolve(__dirname, 'src/js/constants'),
         '@helpers': resolve(__dirname, 'src/js/helpers'),
+        '@img': resolve(__dirname, 'src/img'),
       },
     },
 

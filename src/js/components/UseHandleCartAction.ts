@@ -4,8 +4,8 @@
  */
 
 import SelectorsMap from '@constants/selectors-map';
-import useAlert from './useAlert';
-import {state} from '../theme';
+import useAlert from '@js/components/useAlert';
+import {state} from '@js/theme';
 
 const handleCartAction = (event: Event): void => {
   event.stopPropagation();
@@ -37,7 +37,7 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
     body: formData,
   })
     .then((resp: Response) => {
-    // Refresh cart preview
+      // Refresh cart preview
       prestashop.emit(events.updateCart, {
         reason: dataset,
         resp,
@@ -45,7 +45,7 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
 
       // Show product removal success alert
       if (target && target.getAttribute('data-link-action') === SelectorsMap.cart.deleteLinkAction) {
-      // Set state.cartUpdateAction to track the cart update action
+        // Set state.cartUpdateAction to track the cart update action
         state.set('cartUpdateAction', 'delete-from-cart');
 
         const alertPlaceholder = document.querySelector(SelectorsMap.cart.alertPlaceholder);

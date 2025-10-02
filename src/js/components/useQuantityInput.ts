@@ -9,7 +9,7 @@ import debounce from '@helpers/debounce';
 import useAlert from './useAlert';
 import useToast from './useToast';
 import A11yHelpers from '../helpers/a11y';
-import state from '../state';
+import {state} from '../theme';
 
 const a11y = new A11yHelpers();
 

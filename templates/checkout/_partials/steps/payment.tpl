@@ -95,10 +95,6 @@
     <form id="conditions-to-approve" class="js-conditions-to-approve" method="GET">
         {foreach from=$conditions_to_approve item="condition" key="condition_name"}
           <div class="my-3 form-check">
-            <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
-              {$condition nofilter}
-            </label>
-
             <input  id    = "conditions_to_approve[{$condition_name}]"
                     name  = "conditions_to_approve[{$condition_name}]"
                     required
@@ -106,6 +102,10 @@
                     value = "1"
                     class = "ps-shown-by-js form-check-input"
             >
+
+            <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
+              {$condition nofilter}
+            </label>
           </div>
         {/foreach}
     </form>

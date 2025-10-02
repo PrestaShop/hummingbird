@@ -4,10 +4,10 @@
  */
 
 import SelectorsMap from '@constants/selectors-map';
-import A11yHelpers from '@js/helpers/a11y';
-import {state} from '@js/theme';
+import A11yHelpers from '@helpers/a11y';
+import {state} from '@js/state';
 
-const a11y = new A11yHelpers();
+const a11y = new A11yHelpers(state);
 
 export default () => {
   const {prestashop, Theme: {events}} = window;

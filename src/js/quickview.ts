@@ -4,8 +4,8 @@
  */
 import {Modal} from 'bootstrap';
 
-import getModalContentContainer from '@js/helpers/modal';
-import selectorsMap from '@js/constants/selectors-map';
+import getModalContentContainer from '@helpers/modal';
+import selectorsMap from '@constants/selectors-map';
 
 import type {QuickviewResponse} from '../../types/quickview';
 

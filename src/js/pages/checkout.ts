@@ -4,7 +4,7 @@
  */
 import {Modal} from 'bootstrap';
 import useProgressRing from '@js/components/useProgressRing';
-import A11yHelpers from '@js/helpers/a11y';
+import A11yHelpers from '@helpers/a11y';
 
 const initCheckout = () => {
   const {prestashop} = window;

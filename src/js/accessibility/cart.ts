@@ -3,9 +3,9 @@
  * file that was distributed with this source code.
  */
 
-import SelectorsMap from '../constants/selectors-map';
-import A11yHelpers from '../helpers/a11y';
-import state from '../state';
+import SelectorsMap from '@constants/selectors-map';
+import A11yHelpers from '@js/helpers/a11y';
+import {state} from '@js/theme';
 
 const a11y = new A11yHelpers();
 

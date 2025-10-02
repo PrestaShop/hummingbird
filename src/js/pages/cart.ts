@@ -5,9 +5,9 @@
 
 import {Collapse} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
-import handleCartAction from '../components/UseHandleCartAction';
-import SelectorsMap from '../constants/selectors-map';
-import state from '../state';
+import handleCartAction from '@js/components/UseHandleCartAction';
+import SelectorsMap from '@constants/selectors-map';
+import {state} from '@js/theme';
 
 export default () => {
   // Event delegation for voucher code clicks
@@ -81,7 +81,7 @@ export default () => {
 
       event.preventDefault();
 
-      const syntheticClick = new Event('click', {bubbles: false});
+      const syntheticClick = new Event('click', {bubbles: true});
       Object.defineProperty(syntheticClick, 'target', {value: target});
 
       handleCartAction(syntheticClick);

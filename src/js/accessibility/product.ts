@@ -4,7 +4,7 @@
  */
 
 import {Carousel} from 'bootstrap';
-import SelectorsMap from '../constants/selectors-map';
+import SelectorsMap from '@constants/selectors-map';
 
 export default () => {
   const {prestashop, Theme: {events}} = window;

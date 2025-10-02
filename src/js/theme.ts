@@ -2,36 +2,36 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import themeSelectors from './constants/selectors-map';
-import EVENTS from './constants/events-map';
-import initEmitter from './prestashop';
-import initResponsiveToggler from './responsive-toggler';
-import initQuickview from './quickview';
-import initCart from './pages/cart';
-import initCheckout from './pages/checkout';
-import initCustomer from './pages/customer';
-import initProductBehavior from './product';
-import initMobileMenu from './mobile-menu';
-import initSearchbar from './modules/ps_searchbar';
-import initLanguageSelector from './modules/ps_languageselector';
-import initCurrencySelector from './modules/ps_currencyselector';
-import initGuestPasswordToggle from './guest-password-toggle';
-import initVisiblePassword from './visible-password';
-import initErrorHandler from './errors';
-import useToast from './components/useToast';
-import useAlert from './components/useAlert';
-import usePasswordPolicy from './components/usePasswordPolicy';
-import useProgressRing from './components/useProgressRing';
-import useQuantityInput from './components/useQuantityInput';
-import initBlockCart from './modules/blockcart';
-import './modules/facetedsearch';
-import initDesktopMenu from './modules/ps_mainmenu';
-import initFormValidation from './form-validation';
-import initCategoryTree from './modules/ps_categorytree';
-import initScrollPaddingTop from './helpers/scrollPadding';
-import themeState from './state';
-import initProductAccessibility from './accessibility/product';
-import initCartAccessibility from './accessibility/cart';
+import themeSelectors from '@constants/selectors-map';
+import EVENTS from '@constants/events-map';
+import initEmitter from '@js/prestashop';
+import initResponsiveToggler from '@js/responsive-toggler';
+import initQuickview from '@js/quickview';
+import initCart from '@js/pages/cart';
+import initCheckout from '@js/pages/checkout';
+import initCustomer from '@js/pages/customer';
+import initProductBehavior from '@js/product';
+import initMobileMenu from '@js/mobile-menu';
+import initSearchbar from '@js/modules/ps_searchbar';
+import initLanguageSelector from '@js/modules/ps_languageselector';
+import initCurrencySelector from '@js/modules/ps_currencyselector';
+import initGuestPasswordToggle from '@js/guest-password-toggle';
+import initVisiblePassword from '@js/visible-password';
+import initErrorHandler from '@js/errors';
+import useToast from '@js/components/useToast';
+import useAlert from '@js/components/useAlert';
+import usePasswordPolicy from '@js/components/usePasswordPolicy';
+import useProgressRing from '@js/components/useProgressRing';
+import useQuantityInput from '@js/components/useQuantityInput';
+import initBlockCart from '@js/modules/blockcart';
+import '@js/modules/facetedsearch';
+import initDesktopMenu from '@js/modules/ps_mainmenu';
+import initFormValidation from '@js/form-validation';
+import initCategoryTree from '@js/modules/ps_categorytree';
+import initScrollPaddingTop from '@helpers/scrollPadding';
+import themeState from '@js/state';
+import initProductAccessibility from '@js/accessibility/product';
+import initCartAccessibility from '@js/accessibility/cart';
 
 initEmitter();
 

@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  */
 
-import useToast from './components/useToast';
+import useToast from '@js/components/useToast';
 
 const initErrorHandler = () => {
   const {Theme: {events}} = window;

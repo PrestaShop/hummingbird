@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 
-<div id="checkout-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="checkout-modal" aria-hidden="true">
+<div id="checkout-modal" class="modal fade" tabindex="-1" role="dialog" aria-label="{l s='Terms and conditions' d='Shop.Theme.Checkout'}" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">

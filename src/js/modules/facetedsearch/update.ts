@@ -20,20 +20,19 @@ export function updateProductListDOM(data: Record<string, unknown>): void {
   const {Theme} = window;
   const {listing} = Theme.selectors;
 
-  const replace = (selector: string, html: string | undefined) => {
-    const element = document.querySelector(selector);
+  const replace = (selector: string, html: string): void => {
+    const element = document.querySelector<HTMLElement>(selector);
 
-    if (!element) {
-      throw new Error(`Cannot find element with selector "${selector}".`);
-    }
-    if (!html) {
-      throw new Error(`No HTML content provided to be replaced in element "${selector}".`);
-    }
+    if (!element || !html) return;
 
-    const tmpWrapper = document.createElement('div');
-    tmpWrapper.innerHTML = html;
-    const newElement = tmpWrapper.firstElementChild as HTMLElement;
-    element.replaceWith(newElement);
+    const template = document.createElement('template');
+    template.innerHTML = html.trim();
+
+    const newElement = template.content.firstElementChild as HTMLElement | null;
+
+    if (newElement) {
+      element.replaceWith(newElement);
+    }
   };
 
   replace(listing.searchFilters, data.rendered_facets as string);

@@ -122,41 +122,39 @@ $component-name: ps-mainmenu;
       box-shadow: var(--bs-box-shadow-md);
 
       &__row {
-        align-items: stretch;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 1.5rem;
+        border-right: 1px solid var(--bs-border-color);
+        border-left: 1px solid var(--bs-border-color);
       }
 
-      &__row.level-1 {
-        padding: 1rem 0;
-        transform: translateX(-1rem);
+      &__level {
+        background-color: var(--bs-body-bg);
+      }
+
+      &__level.level-1  {
+        max-height: calc(100vh - 200px);
+        overflow-x: auto;
+
+        > .submenu__item-wrapper {
+          >  .submenu__link-wrapper {
+            padding: 0;
+          }
+        }
       }
 
       &__link-wrapper {
         display: flex;
+        flex-grow: 1;
         align-items: center;
         justify-content: space-between;
         min-width: max-content;
         min-height: 38px;
+        padding: 0;
       }
 
-      &__level {
-        position: absolute;
-        padding: 0.75rem;
-        background-color: var(--bs-body-bg);
-        border: 1px solid var(--bs-border-color);
-        border-radius: 4px;
-        box-shadow: var(--bs-box-shadow-md);
-      }
-
-      &__level:not(.level-1) {
-        .submenu__link-wrapper {
-          flex-grow: 1;
-        }
-      }
-
-      &__item-wrapper {
-        display: flex;
-        align-items: flex-start;
-      }
 
       &__link {
         display: flex;

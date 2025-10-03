@@ -5,7 +5,7 @@
 
 import SelectorsMap from '@constants/selectors-map';
 import useAlert from '@js/components/useAlert';
-import {state} from '@js/state';
+import {state, availableLastUpdateAction} from '@js/state';
 
 const handleCartAction = (event: Event): void => {
   event.stopPropagation();
@@ -45,8 +45,8 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
 
       // Show product removal success alert
       if (target && target.getAttribute('data-link-action') === SelectorsMap.cart.deleteLinkAction) {
-        // Set state.cartUpdateAction to track the cart update action
-        state.set('cartUpdateAction', 'delete-from-cart');
+        // Set state.lastUpdateAction to track the last update action
+        state.set('lastUpdateAction', availableLastUpdateAction.DELETE_FROM_CART);
 
         const alertPlaceholder = document.querySelector(SelectorsMap.cart.alertPlaceholder);
         const productUrl = target.getAttribute('data-product-url');

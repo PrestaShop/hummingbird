@@ -7,7 +7,7 @@ import {Collapse} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
 import handleCartAction from '@js/components/UseHandleCartAction';
 import SelectorsMap from '@constants/selectors-map';
-import {state} from '@js/state';
+import {state, availableLastUpdateAction} from '@js/state';
 
 export default () => {
   // Event delegation for voucher code clicks
@@ -34,7 +34,7 @@ export default () => {
 
   // Event delegation for voucher form submit
   const handleVoucherSubmit = () => {
-    state.set('cartUpdateAction', 'submit-voucher');
+    state.set('lastUpdateAction', availableLastUpdateAction.SUBMIT_VOUCHER);
   };
 
   // Event delegation for cart container (handles item removal, quantity change, etc.)
@@ -76,8 +76,8 @@ export default () => {
     );
 
     if (target) {
-      // Set state.cartUpdateAction to track the cart update action
-      state.set('cartUpdateAction', 'remove-voucher');
+      // Set state.lastUpdateAction to track the last update action
+      state.set('lastUpdateAction', availableLastUpdateAction.REMOVE_VOUCHER);
 
       event.preventDefault();
 

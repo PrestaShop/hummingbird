@@ -1,45 +1,38 @@
-// Accessibility Helpers Class
-import ThemeState from '@js/state';
+import {state} from '@js/state';
 
 class A11yHelpers {
-  private state: ThemeState;
-
-  constructor(state: ThemeState) {
-    this.state = state;
-  }
-
   // Focus Management
   getStoredFocus(): HTMLElement | null {
-    return this.state.get('storedFocusElement');
+    return state.get('storedFocusElement');
   }
 
   getStoredFocusId(): string | null {
-    return this.state.get('storedFocusElementId');
+    return state.get('storedFocusElementId');
   }
 
   setFocus(element: HTMLElement): void {
     element.focus();
-    this.state.set('storedFocusElement', element);
-    this.state.set('storedFocusElementId', element.id);
+    state.set('storedFocusElement', element);
+    state.set('storedFocusElementId', element.id);
   }
 
   storeFocus(): void {
     const activeElement = document.activeElement as HTMLElement;
-    this.state.set('storedFocusElement', activeElement);
-    this.state.set('storedFocusElementId', activeElement.id);
+    state.set('storedFocusElement', activeElement);
+    state.set('storedFocusElementId', activeElement.id);
   }
 
   clearStoredFocus(): void {
-    this.state.set('storedFocusElement', null);
-    this.state.set('storedFocusElementId', null);
+    state.set('storedFocusElement', null);
+    state.set('storedFocusElementId', null);
   }
 
   restoreFocus(fallbackElement: HTMLElement | null = null): boolean {
     let success = false;
 
     try {
-      const storedFocusElementId = this.state.get('storedFocusElementId');
-      const storedFocusElement = this.state.get('storedFocusElement');
+      const storedFocusElementId = state.get('storedFocusElementId');
+      const storedFocusElement = state.get('storedFocusElement');
 
       if (storedFocusElementId) {
         const elementToFocus = document.getElementById(storedFocusElementId);

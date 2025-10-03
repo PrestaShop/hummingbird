@@ -1,17 +1,22 @@
-type CartState = {
-  cartUpdateAction?: 'delete-from-cart' | 'update-product-quantity' | 'submit-voucher' | 'remove-voucher' | null;
+export const availableLastUpdateAction = {
+  DELETE_FROM_CART: 'delete-from-cart',
+  UPDATE_PRODUCT_QUANTITY: 'update-product-quantity',
+  SUBMIT_VOUCHER: 'submit-voucher',
+  REMOVE_VOUCHER: 'remove-voucher',
 };
 
-type FocusState = {
+type LastUpdateActionKey = keyof typeof availableLastUpdateAction;
+type LastUpdateActionValue = typeof availableLastUpdateAction[LastUpdateActionKey] | null;
+
+type ThemeStateType = {
+  lastUpdateAction: LastUpdateActionValue;
   storedFocusElement: HTMLElement | null;
   storedFocusElementId: string | null;
 };
 
-type ThemeStateType = CartState & FocusState;
-
 class ThemeState {
   private state: ThemeStateType = {
-    cartUpdateAction: null,
+    lastUpdateAction: null,
     storedFocusElement: null,
     storedFocusElementId: null,
   };

@@ -5,16 +5,16 @@
 
 import SelectorsMap from '@constants/selectors-map';
 import A11yHelpers from '@helpers/a11y';
-import {state} from '@js/state';
+import {state, availableLastUpdateAction} from '@js/state';
 
-const a11y = new A11yHelpers(state);
+const a11y = new A11yHelpers();
 
 export default () => {
   const {prestashop, Theme: {events}} = window;
 
   // Once PrestaShop finishes updating the cart set aria-live on alerts to announce it to screen readers
   prestashop.on(events.updatedCart, () => {
-    if (state.get('cartUpdateAction') === 'delete-from-cart') {
+    if (state.get('lastUpdateAction') === availableLastUpdateAction.DELETE_FROM_CART) {
       const alertPlaceholder = document.querySelector<HTMLElement>(SelectorsMap.cart.alertPlaceholder);
 
       if (alertPlaceholder) {
@@ -36,11 +36,11 @@ export default () => {
       }
     }
 
-    if (state.get('cartUpdateAction') === 'update-product-quantity') {
+    if (state.get('lastUpdateAction') === availableLastUpdateAction.UPDATE_PRODUCT_QUANTITY) {
       a11y.restoreFocus(document.querySelector<HTMLElement>(SelectorsMap.cart.overview));
     }
 
-    if (state.get('cartUpdateAction') === 'submit-voucher') {
+    if (state.get('lastUpdateAction') === availableLastUpdateAction.SUBMIT_VOUCHER) {
       const voucherError = document.querySelector<HTMLElement>(SelectorsMap.cart.voucherError);
       const voucherList = document.querySelector<HTMLElement>(SelectorsMap.cart.voucherList);
       const voucherContainer = document.querySelector<HTMLElement>(SelectorsMap.cart.voucherContainer);
@@ -54,7 +54,7 @@ export default () => {
       }
     }
 
-    if (state.get('cartUpdateAction') === 'remove-voucher') {
+    if (state.get('lastUpdateAction') === availableLastUpdateAction.REMOVE_VOUCHER) {
       const voucherAccordionButton = document.querySelector<HTMLElement>(SelectorsMap.cart.voucherAccordionButton);
 
       if (voucherAccordionButton) {
@@ -62,7 +62,7 @@ export default () => {
       }
     }
 
-    // Reset the cart update action
-    state.set('cartUpdateAction', null);
+    // Reset the last update action
+    state.set('lastUpdateAction', null);
   });
 };

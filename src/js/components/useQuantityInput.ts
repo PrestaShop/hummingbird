@@ -9,9 +9,9 @@ import debounce from '@helpers/debounce';
 import useAlert from '@js/components/useAlert';
 import useToast from '@js/components/useToast';
 import A11yHelpers from '@helpers/a11y';
-import {state} from '@js/state';
+import {state, availableLastUpdateAction} from '@js/state';
 
-const a11y = new A11yHelpers(state);
+const a11y = new A11yHelpers();
 
 const ENTER_KEY = 'Enter';
 const ESCAPE_KEY = 'Escape';
@@ -338,8 +338,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // If Enter key pressed and element is inside productQuantity wrapper, store focus
     if (e.key === ENTER_KEY && target.closest(cartSelectorMap.productQuantity)) {
-      // Set state.cartUpdateAction to track the cart update action
-      state.set('cartUpdateAction', 'update-product-quantity');
+      // Set state.lastUpdateAction to track the last update action
+      state.set('lastUpdateAction', availableLastUpdateAction.UPDATE_PRODUCT_QUANTITY);
       a11y.storeFocus();
     }
   });
@@ -354,8 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = target.closest(`${cartSelectorMap.productQuantity} button`) as HTMLElement | null;
 
     if (btn && (e.key === ENTER_KEY || e.key === ' ')) {
-      // Set state.cartUpdateAction to track the cart update action
-      state.set('cartUpdateAction', 'update-product-quantity');
+      // Set state.lastUpdateAction to track the last update action
+      state.set('lastUpdateAction', availableLastUpdateAction.UPDATE_PRODUCT_QUANTITY);
       a11y.storeFocus();
     }
   });

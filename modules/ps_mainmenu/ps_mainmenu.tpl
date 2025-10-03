@@ -27,12 +27,13 @@
       {* First level submenu container *}
       <div class="submenu d-none" id="submenu-{$parent.page_identifier}" aria-hidden="true" data-depth="{$depth}">
         <div class="container">
-          <div class="submenu__row row gx-5">
-            <ul class="submenu__left col-sm-3">
-              {foreach from=$nodes item=node}
-                <li class="submenu__left-item-wrapper">
+          <ul class="submenu__row level-{$depth}" role="menu">
+            {* First level submenu items *}
+            {foreach from=$nodes item=node}
+              <li class="submenu__item-wrapper">
+                <div class="submenu__link-wrapper">
                   <a
-                    class="submenu__left-item {if $node.children|count}has-child{/if}"
+                    class="submenu__link {if $node.children|count}has-child{/if}"
                     href="{$node.url}"
                     data-depth="{$node.depth}"
                     {if $node.children|count}data-open-tab="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}"{/if}
@@ -48,7 +49,7 @@
 
                   {if $node.children|count}
                     <button
-                      class="btn btn-link ps-mainmenu__toggle-dropdown"
+                      class="btn ps-mainmenu__toggle-dropdown"
                       type="button"
                       aria-label="{l s='Toggle submenu' d='Shop.Theme.Global'}"
                       aria-expanded="false"
@@ -56,58 +57,53 @@
                     >
                       <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
                     </button>
-                  {/if}
-                </li>
-              {/foreach}
-            </ul>
-
-            <div class="submenu__right col-sm-9">
-              {foreach from=$nodes item=node}
-                {if $node.children|count}
-                  <div class="d-none" id="submenu-{$node.page_identifier}" aria-hidden="true">
+                  </div>
+                  <div class="submenu__level-container d-none" id="submenu-{$node.page_identifier}" aria-hidden="true">
                     {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
                   </div>
-                {/if}
-              {/foreach}
-            </div>
-          </div>
+                  {/if}
+                </li>
+            {/foreach}
+          </ul>
         </div>
       </div>
     {else}
       {* Nested submenu levels *}
       <ul class="submenu__level level-{$depth} d-none" aria-hidden="true">
         {foreach from=$nodes item=node}
-          <li class="submenu__item {if $node.children|count}has-child{/if}">
-            <a
-              class="submenu__link"
-              href="{$node.url}"
-              data-depth="{$node.depth}"
-              {if $node.open_in_new_window}target="_blank"{/if}
-              role="menuitem"
-              aria-haspopup="{if $node.children|count}true{else}false{/if}"
-              aria-expanded="false"
-              {if $node.children|count}aria-controls="submenu-{$node.page_identifier}"{/if}
-              tabindex="0"
-            >
-              {$node.label}
-            </a>
-
-            {if $node.children|count}
-              <button
-                class="btn btn-link ps-mainmenu__toggle-dropdown"
-                type="button"
-                aria-label="{l s='Toggle submenu' d='Shop.Theme.Global'}"
+          <li class="submenu__item-wrapper {if $node.children|count}has-child{/if}">
+            <div class="submenu__link-wrapper">
+              <a
+                class="submenu__item"
+                href="{$node.url}"
+                data-depth="{$node.depth}"
+                {if $node.open_in_new_window}target="_blank"{/if}
+                role="menuitem"
+                aria-haspopup="{if $node.children|count}true{else}false{/if}"
                 aria-expanded="false"
-                aria-controls="submenu-{$node.page_identifier}"
+                {if $node.children|count}aria-controls="submenu-{$node.page_identifier}"{/if}
+                tabindex="0"
               >
-                <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
-              </button>
+                {$node.label}
+              </a>
 
-              <div class="d-none" id="submenu-{$node.page_identifier}" aria-hidden="true">
+              {if $node.children|count}
+                <button
+                  class="btn btn-link ps-mainmenu__toggle-dropdown"
+                  type="button"
+                  aria-label="{l s='Toggle submenu' d='Shop.Theme.Global'}"
+                  aria-expanded="false"
+                  aria-controls="submenu-{$node.page_identifier}"
+                >
+                  <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
+                </button>
+              </div>
+              <div class="submenu__level-container d-none" id="submenu-{$node.page_identifier}" aria-hidden="true">
                 {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
               </div>
-            {/if}
-          </li>
+              {/if}
+            </li>
+
         {/foreach}
       </ul>
     {/if}

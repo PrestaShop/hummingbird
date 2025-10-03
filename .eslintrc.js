@@ -55,7 +55,7 @@ module.exports = {
         devDependencies: ['tests/**/*.js', '.webpack/**/*.js'],
       },
     ],
-    'max-len': ['error', {code: 120}],
+    'max-len': ['error', {code: 140}],
     'no-alert': 0,
     'no-bitwise': 0,
     'no-new': 0,

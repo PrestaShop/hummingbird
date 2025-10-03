@@ -6,8 +6,10 @@ const initDesktopMenu = () => {
       e.stopPropagation();
 
       const submenuId = btn.getAttribute('aria-controls');
+
       if (!submenuId) return;
       const submenuDiv = document.getElementById(submenuId);
+
       if (!submenuDiv) return;
 
       const submenuUL = submenuDiv.querySelector<HTMLUListElement>('.submenu__level');
@@ -17,11 +19,14 @@ const initDesktopMenu = () => {
       // Close other sibling submenus at the same level
       const parentLi = btn.closest('li');
       const siblingToggles = parentLi?.parentElement?.querySelectorAll<HTMLButtonElement>('.ps-mainmenu__toggle-dropdown');
+
       siblingToggles?.forEach((otherBtn) => {
         if (otherBtn === btn) return;
         const otherId = otherBtn.getAttribute('aria-controls');
+
         if (!otherId) return;
         const otherDiv = document.getElementById(otherId);
+
         if (!otherDiv) return;
 
         const otherUL = otherDiv.querySelector<HTMLUListElement>('.submenu__level');
@@ -35,6 +40,7 @@ const initDesktopMenu = () => {
 
         otherBtn.setAttribute('aria-expanded', 'false');
         const icon = otherBtn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+
         if (icon) {
           icon.classList.remove('ps-mainmenu_dropdown-up');
           icon.classList.add('ps-mainmenu_dropdown-down');
@@ -53,6 +59,7 @@ const initDesktopMenu = () => {
 
       // Rotate chevron icon
       const icon = btn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+
       if (icon) {
         icon.classList.toggle('ps-mainmenu_dropdown-up', !expanded);
         icon.classList.toggle('ps-mainmenu_dropdown-down', expanded);
@@ -72,8 +79,10 @@ const initDesktopMenu = () => {
   const closeAllSubmenus = () => {
     toggles.forEach((btn) => {
       const submenuId = btn.getAttribute('aria-controls');
+
       if (!submenuId) return;
       const submenuDiv = document.getElementById(submenuId);
+
       if (!submenuDiv) return;
 
       const submenuUL = submenuDiv.querySelector<HTMLUListElement>('.submenu__level');
@@ -88,6 +97,7 @@ const initDesktopMenu = () => {
 
       btn.setAttribute('aria-expanded', 'false');
       const icon = btn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+
       if (icon) {
         icon.classList.remove('ps-mainmenu_dropdown-up');
         icon.classList.add('ps-mainmenu_dropdown-down');
@@ -97,11 +107,13 @@ const initDesktopMenu = () => {
 
   document.addEventListener('click', (e) => {
     const isClickInsideMenu = (e.target as HTMLElement).closest('.ps-mainmenu');
+
     if (!isClickInsideMenu) closeAllSubmenus();
   });
 
   document.addEventListener('focusin', (e) => {
     const isFocusInsideMenu = (e.target as HTMLElement).closest('.ps-mainmenu');
+
     if (!isFocusInsideMenu) closeAllSubmenus();
   });
 
@@ -123,23 +135,27 @@ const initDesktopMenu = () => {
         case 'ArrowDown': {
           e.preventDefault();
           const submenu = item.closest('li')?.querySelector<HTMLElement>('.submenu__level li .submenu__link');
+
           if (submenu) submenu.focus();
           break;
         }
         case 'ArrowUp': {
           e.preventDefault();
           const prev = item.closest('li')?.previousElementSibling?.querySelector<HTMLElement>('.submenu__link');
+
           if (prev) prev.focus();
           break;
         }
         case 'Escape': {
           const parentSubmenu = item.closest<HTMLElement>('.submenu__level');
           const parentToggle = parentSubmenu?.closest('li')?.querySelector<HTMLButtonElement>('.ps-mainmenu__toggle-dropdown');
+
           if (parentToggle && parentSubmenu) {
             parentSubmenu.setAttribute('aria-hidden', 'true');
             parentSubmenu.classList.add('d-none');
             parentToggle.setAttribute('aria-expanded', 'false');
             const icon = parentToggle.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+
             if (icon) {
               icon.classList.remove('ps-mainmenu_dropdown-up');
               icon.classList.add('ps-mainmenu_dropdown-down');
@@ -148,6 +164,8 @@ const initDesktopMenu = () => {
           }
           break;
         }
+        default:
+          break;
       }
     });
   });

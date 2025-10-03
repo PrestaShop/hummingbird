@@ -44,7 +44,8 @@ $component-name: ps-mainmenu;
           align-items: center;
 
           &.current {
-            > a, .#{$component-name}_dropdown {
+            > a,
+            .#{$component-name}_dropdown {
               color: var(--bs-link-color);
             }
           }
@@ -67,8 +68,7 @@ $component-name: ps-mainmenu;
             }
           }
 
-          .submenu,
-          .menu-container {
+          .submenu {
             position: absolute;
             top: 100%;
             right: 0;
@@ -83,11 +83,7 @@ $component-name: ps-mainmenu;
             }
 
             a {
-              &[data-depth="1"],
-              &[data-depth="2"] {
-                overflow-wrap: break-word;
-                white-space: normal;
-              }
+              color: var(--bs-body-color);
 
               &[data-depth="1"] {
                 font-weight: 600;
@@ -129,95 +125,60 @@ $component-name: ps-mainmenu;
         align-items: stretch;
       }
 
-      &__left {
+      &__row.level-1 {
+        padding: 1rem 0;
+        transform: translateX(-1rem);
+      }
+
+      &__link-wrapper {
         display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-        padding-block: 1.5rem;
-        border-right: 1px solid var(--bs-border-color);
+        align-items: center;
+        justify-content: space-between;
+        min-width: max-content;
+        min-height: 38px;
+      }
 
-        &-item-wrapper {
-          display: flex;
-        }
+      &__level {
+        position: absolute;
+        padding: 0.75rem;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 4px;
+        box-shadow: var(--bs-box-shadow-md);
+      }
 
-        &-item {
-          display: flex;
-          align-items: center;
-          padding: 0.75rem 1rem;
-          color: var(--bs-body-color);
-          background-color: transparent;
-          border-radius: var(--bs-border-radius);
-
-          &:hover {
-            color: var(--bs-link-hover-color);
-            background-color: var(--bs-tertiary-bg);
-          }
-
-          &.active {
-            color: var(--bs-link-color);
-            background-color: var(--bs-tertiary-bg);
-
-            &:active,
-            &:focus {
-              color: var(--bs-link-hover-color);
-              background-color: var(--bs-tertiary-bg);
-            }
-          }
-
+      &__level:not(.level-1) {
+        .submenu__link-wrapper {
+          flex-grow: 1;
         }
       }
 
-      &__right {
-        padding-block: 1.5rem;
+      &__item-wrapper {
+        display: flex;
+        align-items: flex-start;
+      }
 
-        &-items {
-          grid-template-columns: repeat(3, 1fr);
-          row-gap: 2rem;
-          column-gap: 1.25rem;
+      &__link {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        color: var(--bs-body-color);
+        background-color: transparent;
+        border-radius: var(--bs-border-radius);
 
-          &:first-child {
-            display: grid;
-          }
+        &:hover {
+          color: var(--bs-link-hover-color);
+          background-color: var(--bs-tertiary-bg);
+        }
 
-          &.active {
-            display: grid;
-          }
+        &.active {
+          color: var(--bs-link-color);
+          background-color: var(--bs-tertiary-bg);
 
-          &.not-active {
-            display: none;
-          }
-
-          .menu-item {
-            display: block;
-            color: var(--bs-body-color);
-
-            &:hover {
-              color: var(--bs-link-hover-color);
-            }
-
-            &__group--child,
-            &__group--nochild {
-              .menu-item__group-main-item {
-                margin-bottom: 0.5rem;
-                font-size: 1.25rem;
-                font-weight: 600;
-              }
-            }
-
-            &__group--child {
-              display: flex;
-              flex-direction: column;
-
-              .menu-item {
-                display: flex;
-                gap: 0.25rem;
-                align-items: center;
-              }
-            }
-          }
-
-          @include media-breakpoint-up(xxl) {
-            grid-template-columns: repeat(4, 1fr);
+          &:active,
+          &:focus {
+            color: var(--bs-link-hover-color);
+            background-color: var(--bs-tertiary-bg);
           }
         }
       }

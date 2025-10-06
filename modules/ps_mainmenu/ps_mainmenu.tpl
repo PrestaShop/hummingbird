@@ -26,9 +26,12 @@
     {if $depth === 1}
       {* First level submenu container *}
       <div
-        class="submenu submenu__level-container level-{$depth} d-none" id="submenu-{$parent.page_identifier}"
+        class="submenu submenu__level-container level-{$depth} d-none"
+        id="submenu-{$parent.page_identifier}"
         data-depth="{$depth}"
         aria-hidden="true"
+        aria-labelledby="submenu-trigger-{$parent.page_identifier}"
+        role="group"
       >
         <div class="container">
           <ul
@@ -36,18 +39,81 @@
             data-depth="{$depth}"
             role="menu"
           >
-          {foreach from=$nodes item=node}
+            {foreach from=$nodes item=node}
+              <li
+                class="submenu__item-wrapper{if $node.children|count} has-child{/if}"
+                data-depth="{$depth}"
+                role="none"
+              >
+                <div class="submenu__link-wrapper">
+                  <a
+                    class="submenu__link {if $node.children|count} has-child{/if}"
+                    id="submenu-trigger-{$node.page_identifier}"
+                    href="{$node.url}"
+                    data-depth="{$depth}"
+                    {if $node.open_in_new_window}target="_blank"{/if}
+                    role="menuitem"
+                    {if $node.current}aria-current="page"{/if}
+                  >
+                    {$node.label}
+                  </a>
+
+                  {if $node.children|count}
+                    <button
+                      class="btn btn-link ps-mainmenu__toggle-dropdown"
+                      id="submenu-button-{$node.page_identifier}"
+                      type="button"
+                      aria-label="{l s='Display submenu %label%' sprintf=['%label%' => $node.label] d='Shop.Theme.Global'}"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
+                      aria-controls="submenu-{$node.page_identifier}"
+                    >
+                      <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
+                    </button>
+                  {/if}
+                </div>
+              </li>
+
+              {if $node.children|count}
+                <div
+                  class="submenu__level-container level-{$depth + 1} d-none"
+                  id="submenu-{$node.page_identifier}"
+                  data-depth="{$depth + 1}"
+                  aria-hidden="true"
+                  aria-labelledby="submenu-button-{$node.page_identifier}"
+                  role="group"
+                >
+                  {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
+                </div>
+              {/if}
+            {/foreach}
+          </ul>
+        </div>
+      </div>
+    {else}
+      {* Nested submenus *}
+      <ul
+        class="nested-submenu submenu__level level-{$depth} d-none"
+        data-depth="{$depth}"
+        aria-hidden="true"
+        role="menu"
+        aria-labelledby="submenu-button-{$parent.page_identifier}"
+      >
+        {foreach from=$nodes item=node}
           <li
             class="submenu__item-wrapper{if $node.children|count} has-child{/if}"
             data-depth="{$depth}"
+            role="none"
           >
             <div class="submenu__link-wrapper">
               <a
                 class="submenu__link {if $node.children|count} has-child{/if}"
+                id="submenu-trigger-{$node.page_identifier}"
                 href="{$node.url}"
                 data-depth="{$depth}"
                 {if $node.open_in_new_window}target="_blank"{/if}
                 role="menuitem"
+                {if $node.current}aria-current="page"{/if}
               >
                 {$node.label}
               </a>
@@ -55,6 +121,7 @@
               {if $node.children|count}
                 <button
                   class="btn btn-link ps-mainmenu__toggle-dropdown"
+                  id="submenu-button-{$node.page_identifier}"
                   type="button"
                   aria-label="{l s='Display submenu %label%' sprintf=['%label%' => $node.label] d='Shop.Theme.Global'}"
                   aria-haspopup="menu"
@@ -69,67 +136,16 @@
 
           {if $node.children|count}
             <div
-              class="submenu__level-container level-{$depth + 1} d-none"
+              class="nested-submenu__container submenu__level-container level-{$depth + 1} d-none"
               id="submenu-{$node.page_identifier}"
               data-depth="{$depth + 1}"
               aria-hidden="true"
+              role="group"
+              aria-labelledby="submenu-button-{$node.page_identifier}"
             >
-              {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
+              {desktopSubMenu nodes=$node.children parent=$node depth=$depth + 1}
             </div>
           {/if}
-          {/foreach}
-          </ul>
-        </div>
-      </div>
-    {else}
-      {* Nested submenus *}
-      <ul
-        class="nested-submenu submenu__level level-{$depth} d-none"
-        data-depth="{$depth}"
-        aria-hidden="true"
-      >
-        {foreach from=$nodes item=node}
-        <li
-          class="submenu__item-wrapper{if $node.children|count} has-child{/if}"
-          data-depth="{$depth}"
-        >
-          <div class="submenu__link-wrapper">
-            <a
-              class="submenu__link {if $node.children|count} has-child{/if}"
-              href="{$node.url}"
-              data-depth="{$depth}"
-              {if $node.open_in_new_window}target="_blank"{/if}
-              role="menuitem"
-            >
-              {$node.label}
-            </a>
-
-            {if $node.children|count}
-              <button
-                class="btn btn-link ps-mainmenu__toggle-dropdown"
-                type="button"
-                aria-label="{l s='Display submenu %label%' sprintf=['%label%' => $node.label] d='Shop.Theme.Global'}"
-                aria-haspopup="menu"
-                aria-expanded="false"
-                aria-controls="submenu-{$node.page_identifier}"
-              >
-                <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
-              </button>
-            {/if}
-          </div>
-        </li>
-
-        {if $node.children|count}
-          <div
-            class="nested-submenu__container submenu__level-container level-{$depth + 1} d-none"
-            id="submenu-{$node.page_identifier}"
-            data-depth="{$depth + 1}"
-            aria-hidden="true"
-          >
-            {desktopSubMenu nodes=$node.children parent=$node depth=$depth + 1}
-          </div>
-        {/if}
-
         {/foreach}
       </ul>
     {/if}
@@ -154,10 +170,12 @@
         >
           <a
             class="ps-mainmenu__tree__link"
+            id="submenu-trigger-{$menuItem.page_identifier}"
             href="{$menuItem.url}"
             data-depth="0"
             {if $menuItem.open_in_new_window}target="_blank"{/if}
             role="menuitem"
+            {if $menuItem.current}aria-current="page"{/if}
           >
             {$menuItem.label}
           </a>
@@ -165,6 +183,7 @@
           {if $menuItem.children|count}
             <button
               class="btn btn-link ps-mainmenu__toggle-dropdown"
+              id="submenu-button-{$menuItem.page_identifier}"
               type="button"
               aria-label="{l s='Display submenu %label%' sprintf=['%label%' => $menuItem.label] d='Shop.Theme.Global'}"
               aria-haspopup="menu"
@@ -174,10 +193,11 @@
               <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
             </button>
           {/if}
-          </li>
-          {if $menuItem.children|count}
-            {desktopSubMenu nodes=$menuItem.children parent=$menuItem depth=1}
-          {/if}
+        </li>
+
+        {if $menuItem.children|count}
+          {desktopSubMenu nodes=$menuItem.children parent=$menuItem depth=1}
+        {/if}
       {/foreach}
     </ul>
   {/if}

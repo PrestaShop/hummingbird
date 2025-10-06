@@ -36,7 +36,10 @@ $component-name: cart-voucher;
   }
 
   &__code-value {
+    padding: 0;
     color: var(--bs-link-color);
+    background: none;
+    border: none;
 
     &:hover {
       color: var(--bs-link-hover-color);

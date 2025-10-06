@@ -25,12 +25,11 @@
                   <div class="delivery-option__left">
                     <span class="delivery-option__check form-check">
                       <input type="radio" class="form-check-input" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
-                      <i class="form-check-round"></i>
                     </span>
 
                     <div class="delivery-option__carrier {if $carrier.logo} delivery-option__carrier--hasLogo{/if}">
                       {if $carrier.logo}
-                        <img class="delivery-option__carrier-logo" src="{$carrier.logo}" class="img-fluid" alt="{$carrier.name}" loading="lazy" />
+                        <img class="delivery-option__carrier-logo" src="{$carrier.logo}" class="img-fluid" alt="{$carrier.name}" loading="lazy" aria-hidden="true" />
                       {/if}
 
                       <span class="delivery-option__carrier-name">{$carrier.name}</span>

@@ -91,6 +91,7 @@
   <button type="button" class="btn btn-sm btn-outline-primary"
     data-bs-toggle="modal"
     data-bs-target="#{$customization_modal_id}"
+    aria-label="{l s='View my customization' d='Shop.Theme.Checkout'}"
   >
     {l s='Customized' d='Shop.Theme.Checkout'}
   </button>

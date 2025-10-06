@@ -9,7 +9,7 @@
 
 <form 
   action="{block name='customer_form_actionurl'}{$action}{/block}" 
-  class="form-validation js-customer-form" 
+  class="js-customer-form" 
   id="customer-form" 
   method="post" 
   data-ps-action="form-validation"

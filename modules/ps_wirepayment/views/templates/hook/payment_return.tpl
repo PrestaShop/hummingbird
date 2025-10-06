@@ -11,7 +11,7 @@
 
     {if $status === 'ok'}
       <p>
-        {l s='You have chosen payment by bank transfer.' d='Modules.Wirepayment.Shop'}<br/>
+        {l s='You have chosen payment by bank transfer.' d='Modules.Wirepayment.Shop'}<br aria-hidden="true">
         {l s='Please send us a bank transfer with following details:' d='Modules.Wirepayment.Shop'}
       </p>
 
@@ -27,8 +27,8 @@
       </dl>
 
       <p class="mb-0">
-        {l s='Please specify your order reference %s in the bankwire description.' sprintf=[$reference] d='Modules.Wirepayment.Shop'}<br/>
-        {l s='We\'ve also sent you this information by e-mail.' d='Modules.Wirepayment.Shop'}<br/>
+        {l s='Please specify your order reference %s in the bankwire description.' sprintf=[$reference] d='Modules.Wirepayment.Shop'}<br aria-hidden="true">
+        {l s='We\'ve also sent you this information by e-mail.' d='Modules.Wirepayment.Shop'}<br aria-hidden="true">
         {l s='Your order will be sent as soon as we receive payment.' d='Modules.Wirepayment.Shop'}
       </p>
     {else}

@@ -11,9 +11,9 @@
     <hr>
 
     {if $cart.products}
-      <div class="cart__list js-cart-list">
+      <div class="cart__list js-cart-list" role="list" aria-label="{l s='Products in cart' d='Shop.Theme.Checkout'}">
         {foreach from=$cart.products item=product}
-          <div class="cart__item js-cart-item">
+          <div class="cart__item js-cart-item" role="listitem">
             {block name='cart_detailed_product_line'}
               {include file='checkout/_partials/cart-detailed-product-line.tpl' product=$product}
             {/block}

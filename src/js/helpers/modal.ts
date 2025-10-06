@@ -1,4 +1,4 @@
-import selectorsMap from '@js/constants/selectors-map';
+import selectorsMap from '@constants/selectors-map';
 
 export default function getModalContentContainer(): HTMLElement {
   const container = document.querySelector<HTMLElement>(selectorsMap.modalContainer);

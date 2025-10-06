@@ -10,7 +10,7 @@
 
   <div class="cart-summary__products-accordion accordion accordion-flush accordion--small">
     <div class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-target="#cart-summary-product-list" data-bs-toggle="collapse" aria-expanded="false">
+      <button class="accordion-button collapsed" type="button" data-bs-target="#cart-summary-product-list" data-bs-toggle="collapse" aria-expanded="false" aria-label="{l s='Show cart details' d='Shop.Theme.Actions'}">
         {l s='Show details' d='Shop.Theme.Actions'}
       </button>
     </div>

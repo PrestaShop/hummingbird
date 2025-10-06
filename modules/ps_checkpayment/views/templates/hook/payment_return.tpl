@@ -26,11 +26,11 @@
 
       <p class="mb-0">
         {if !isset($reference)}
-            {l s='Do not forget to insert your order number #%d.' sprintf=[$id_order] d='Modules.Checkpayment.Shop'}<br/>
+            {l s='Do not forget to insert your order number #%d.' sprintf=[$id_order] d='Modules.Checkpayment.Shop'}<br aria-hidden="true">
         {else}
-            {l s='Do not forget to insert your order reference %s.' sprintf=[$reference] d='Modules.Checkpayment.Shop'}<br/>
+            {l s='Do not forget to insert your order reference %s.' sprintf=[$reference] d='Modules.Checkpayment.Shop'}<br aria-hidden="true">
         {/if}
-        {l s='An email has been sent to you with this information.' d='Modules.Checkpayment.Shop'}<br/>
+        {l s='An email has been sent to you with this information.' d='Modules.Checkpayment.Shop'}<br aria-hidden="true">
         {l s='Your order will be sent as soon as we receive your payment.' d='Modules.Checkpayment.Shop'}
       </p>
     {else}

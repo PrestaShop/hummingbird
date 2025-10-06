@@ -9,14 +9,13 @@
 {/block}
 
 {block name='address_form_url'}
-    <form
-      class="form-validation"
-      method="POST"
-      action="{url entity='order' params=['id_address' => $id_address]}"
-      data-id-address="{$id_address}"
-      data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm', 'id_address' => $id_address]}"
-      data-ps-action="form-validation"
-   >
+  <form
+    method="POST"
+    action="{url entity='order' params=['id_address' => $id_address]}"
+    data-id-address="{$id_address}"
+    data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm', 'id_address' => $id_address]}"
+    data-ps-action="form-validation"
+  >
 {/block}
 
 {block name='form_fields' append}

@@ -13,6 +13,7 @@
     data-bs-toggle="tab" 
     data-bs-target="#{$step}"
     role="tab"
+    data-ps-ref="step-button"
   >
     {$title}
   </button>

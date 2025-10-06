@@ -10,10 +10,12 @@
     <div class="cart-grid__content col-lg-8">
       {include file='components/page-title-section.tpl' title={l s='Shopping Cart' d='Shop.Theme.Checkout'}}
 
+      {block name="cart_update_alert"}
+        <div class="js-cart-update-alert" data-ps-data="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}" data-ps-data-close="{l s='Close' d='Shop.Theme.Actions' js=1}" aria-atomic="true"></div>
+      {/block}
+
       <!-- cart products detailed -->
       <div class="cart-grid__products-details js-cart-container">
-        <div class="js-cart-update-alert" data-alert="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}"></div>
-        
         {block name='cart_overview'}
           {include file='checkout/_partials/cart-detailed.tpl' cart=$cart}
         {/block}
@@ -31,7 +33,6 @@
         {/block}
       </div>
     </div>
-
 
     <!-- Right Block: cart subtotal & cart total -->
     <div class="cart-grid__aside col-lg-4">

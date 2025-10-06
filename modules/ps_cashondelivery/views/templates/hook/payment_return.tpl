@@ -10,8 +10,8 @@
     <p class="h3 card-subtitle text-secondary mb-3">{l s='Pay by Cash on Delivery' d='Modules.Cashondelivery.Shop'}</p>
 
     <p class="mb-0">
-      {l s='Your order on %s is complete.' sprintf=[$shop_name] d='Modules.Cashondelivery.Shop'}<br>
-      {l s='You have chosen the cash on delivery method.' d='Modules.Cashondelivery.Shop'}<br>
+      {l s='Your order on %s is complete.' sprintf=[$shop_name] d='Modules.Cashondelivery.Shop'}<br aria-hidden="true">
+      {l s='You have chosen the cash on delivery method.' d='Modules.Cashondelivery.Shop'}<br aria-hidden="true">
       {l s='Your order will be sent very soon.' d='Modules.Cashondelivery.Shop'}
     </p>
   </div>

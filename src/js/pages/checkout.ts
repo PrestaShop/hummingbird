@@ -4,12 +4,13 @@
  */
 import {Modal} from 'bootstrap';
 import useProgressRing from '@js/components/useProgressRing';
+import A11yHelpers from '@helpers/a11y';
 
 const initCheckout = () => {
   const {prestashop} = window;
   const {Theme: {selectors, events}} = window;
   const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectors;
-
+  const a11y = new A11yHelpers();
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);
   const actionButtons = document.querySelectorAll<HTMLElement>(CheckoutMap.actionsButtons);
   const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: steps.length});
@@ -20,6 +21,8 @@ const initCheckout = () => {
   // A thing we handle manually is the .active class on the toggling buttons
   const toggleStep = (content: HTMLElement, step?: HTMLElement) => {
     const currentContent = document.querySelector(CheckoutMap.steps.current);
+    const currentButton = step?.querySelector<HTMLButtonElement>(CheckoutMap.steps.button);
+    currentButton?.focus();
     currentContent?.classList.remove('step--current', 'js-current-step');
 
     if (step) {
@@ -110,6 +113,7 @@ const initCheckout = () => {
 
   termsLink?.addEventListener('click', (event) => {
     event.preventDefault();
+    a11y.storeFocus();
 
     if (termsModalElement) {
       const termsModal = new Modal(termsModalElement);
@@ -139,6 +143,11 @@ const initCheckout = () => {
         })();
       }
     }
+  });
+
+  // Restore focus when terms modal is closed
+  termsModalElement?.addEventListener('hidden.bs.modal', () => {
+    a11y.restoreFocus();
   });
 
   // Prestashop event triggers after selecting different carrier

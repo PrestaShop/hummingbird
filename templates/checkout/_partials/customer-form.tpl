@@ -33,6 +33,7 @@
     data-link-action="register-new-customer"
     type="submit"
     value="1"
+    data-ps-action="form-validation-submit"
   >
     {l s='Continue' d='Shop.Theme.Actions'}
     <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</i>

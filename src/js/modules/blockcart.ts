@@ -5,8 +5,8 @@
 import {Modal} from 'bootstrap';
 
 import {events} from '@js/theme';
-import getModalContentContainer from '@js/helpers/modal';
-import selectorsMap from '@js/constants/selectors-map';
+import getModalContentContainer from '@helpers/modal';
+import selectorsMap from '@constants/selectors-map';
 
 export default function initBlockCart() {
   const {prestashop} = window;

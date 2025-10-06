@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  */
 
-import SelectorsMap from './constants/selectors-map';
+import SelectorsMap from '@constants/selectors-map';
 
 type ProductSlideEvent = Event & {to: number};
 

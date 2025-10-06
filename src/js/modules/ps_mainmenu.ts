@@ -8,37 +8,47 @@ const initDesktopMenu = () => {
       const submenuId = btn.getAttribute('aria-controls');
 
       if (!submenuId) return;
+
       const submenuDiv = document.getElementById(submenuId);
 
       if (!submenuDiv) return;
 
-      const submenuUL = submenuDiv.querySelector<HTMLUListElement>('.submenu__level');
-
       const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const newExpanded = !expanded;
 
-      // Close other sibling submenus at the same level
+      // Synchronize linked menu item (anchor) if aria-labelledby is defined
+      const linkedMenuItemId = btn.getAttribute('aria-labelledby');
+      const linkedMenuItem = linkedMenuItemId ? document.getElementById(linkedMenuItemId) : null;
+
+      if (linkedMenuItem) {
+        linkedMenuItem.setAttribute('aria-expanded', String(newExpanded));
+      }
+
+      // Close sibling submenus at the same hierarchy level
       const parentLi = btn.closest('li');
-      const siblingToggles = parentLi?.parentElement?.querySelectorAll<HTMLButtonElement>('.ps-mainmenu__toggle-dropdown');
+      const siblingToggles = parentLi?.parentElement?.querySelectorAll<HTMLButtonElement>(
+        '.ps-mainmenu__toggle-dropdown',
+      );
 
       siblingToggles?.forEach((otherBtn) => {
         if (otherBtn === btn) return;
-        const otherId = otherBtn.getAttribute('aria-controls');
 
-        if (!otherId) return;
-        const otherDiv = document.getElementById(otherId);
+        const otherId = otherBtn.getAttribute('aria-controls');
+        const otherDiv = otherId ? document.getElementById(otherId) : null;
 
         if (!otherDiv) return;
 
-        const otherUL = otherDiv.querySelector<HTMLUListElement>('.submenu__level');
-
-        if (otherUL) {
-          otherUL.classList.add('d-none');
-          otherUL.setAttribute('aria-hidden', 'true');
-        }
         otherDiv.classList.add('d-none');
         otherDiv.setAttribute('aria-hidden', 'true');
-
         otherBtn.setAttribute('aria-expanded', 'false');
+
+        const otherLinkedItemId = otherBtn.getAttribute('aria-labelledby');
+        const otherLinkedItem = otherLinkedItemId ? document.getElementById(otherLinkedItemId) : null;
+
+        if (otherLinkedItem) {
+          otherLinkedItem.setAttribute('aria-expanded', 'false');
+        }
+
         const icon = otherBtn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
 
         if (icon) {
@@ -47,26 +57,30 @@ const initDesktopMenu = () => {
         }
       });
 
-      // Toggle submenu
-      btn.setAttribute('aria-expanded', String(!expanded));
-      submenuDiv.setAttribute('aria-hidden', String(expanded));
+      // Toggle visibility for submenu container
       submenuDiv.classList.toggle('d-none', expanded);
+      submenuDiv.setAttribute('aria-hidden', String(expanded));
+
+      // Toggle visibility for inner <ul> if present
+      const submenuUL = submenuDiv.querySelector<HTMLUListElement>('.submenu__level');
 
       if (submenuUL) {
         submenuUL.classList.toggle('d-none', expanded);
         submenuUL.setAttribute('aria-hidden', String(expanded));
       }
 
-      // Rotate chevron icon
+      btn.setAttribute('aria-expanded', String(newExpanded));
+
+      // Toggle chevron icon direction
       const icon = btn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
 
       if (icon) {
-        icon.classList.toggle('ps-mainmenu_dropdown-up', !expanded);
-        icon.classList.toggle('ps-mainmenu_dropdown-down', expanded);
+        icon.classList.toggle('ps-mainmenu_dropdown-up', newExpanded);
+        icon.classList.toggle('ps-mainmenu_dropdown-down', !newExpanded);
       }
     });
 
-    // Keyboard accessibility
+    // Keyboard accessibility: Enter or Space triggers the toggle
     btn.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -75,27 +89,30 @@ const initDesktopMenu = () => {
     });
   });
 
-  // Close all submenus on outside click/focus
+  /**
+   * Closes all open submenus and resets ARIA attributes
+   */
   const closeAllSubmenus = () => {
     toggles.forEach((btn) => {
       const submenuId = btn.getAttribute('aria-controls');
 
       if (!submenuId) return;
+
       const submenuDiv = document.getElementById(submenuId);
 
       if (!submenuDiv) return;
 
-      const submenuUL = submenuDiv.querySelector<HTMLUListElement>('.submenu__level');
-
-      // Close <ul> and parent div
-      if (submenuUL) {
-        submenuUL.classList.add('d-none');
-        submenuUL.setAttribute('aria-hidden', 'true');
-      }
       submenuDiv.classList.add('d-none');
       submenuDiv.setAttribute('aria-hidden', 'true');
-
       btn.setAttribute('aria-expanded', 'false');
+
+      const linkedMenuItemId = btn.getAttribute('aria-labelledby');
+      const linkedMenuItem = linkedMenuItemId ? document.getElementById(linkedMenuItemId) : null;
+
+      if (linkedMenuItem) {
+        linkedMenuItem.setAttribute('aria-expanded', 'false');
+      }
+
       const icon = btn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
 
       if (icon) {
@@ -105,20 +122,24 @@ const initDesktopMenu = () => {
     });
   };
 
+  /**
+   * Closes all submenus when clicking or focusing outside the main menu
+   */
   document.addEventListener('click', (e) => {
-    const isClickInsideMenu = (e.target as HTMLElement).closest('.ps-mainmenu');
-
-    if (!isClickInsideMenu) closeAllSubmenus();
+    if (!(e.target as HTMLElement).closest('.ps-mainmenu')) {
+      closeAllSubmenus();
+    }
   });
 
   document.addEventListener('focusin', (e) => {
-    const isFocusInsideMenu = (e.target as HTMLElement).closest('.ps-mainmenu');
-
-    if (!isFocusInsideMenu) closeAllSubmenus();
+    if (!(e.target as HTMLElement).closest('.ps-mainmenu')) {
+      closeAllSubmenus();
+    }
   });
 
   // Keyboard navigation
   const focusableItems = document.querySelectorAll<HTMLElement>('.ps-mainmenu__tree__link, .submenu__link');
+
   focusableItems.forEach((item, idx) => {
     item.addEventListener('keydown', (e) => {
       const total = focusableItems.length;
@@ -128,10 +149,12 @@ const initDesktopMenu = () => {
           e.preventDefault();
           focusableItems[(idx + 1) % total].focus();
           break;
+
         case 'ArrowLeft':
           e.preventDefault();
           focusableItems[(idx - 1 + total) % total].focus();
           break;
+
         case 'ArrowDown': {
           e.preventDefault();
           const submenu = item.closest('li')?.querySelector<HTMLElement>('.submenu__level li .submenu__link');
@@ -139,6 +162,7 @@ const initDesktopMenu = () => {
           if (submenu) submenu.focus();
           break;
         }
+
         case 'ArrowUp': {
           e.preventDefault();
           const prev = item.closest('li')?.previousElementSibling?.querySelector<HTMLElement>('.submenu__link');
@@ -146,24 +170,31 @@ const initDesktopMenu = () => {
           if (prev) prev.focus();
           break;
         }
+
         case 'Escape': {
+          // Close current submenu and return focus to parent toggle
           const parentSubmenu = item.closest<HTMLElement>('.submenu__level');
-          const parentToggle = parentSubmenu?.closest('li')?.querySelector<HTMLButtonElement>('.ps-mainmenu__toggle-dropdown');
+          const parentToggle = parentSubmenu?.closest('li')?.querySelector<HTMLButtonElement>(
+            '.ps-mainmenu__toggle-dropdown',
+          );
 
           if (parentToggle && parentSubmenu) {
             parentSubmenu.setAttribute('aria-hidden', 'true');
             parentSubmenu.classList.add('d-none');
             parentToggle.setAttribute('aria-expanded', 'false');
+
             const icon = parentToggle.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
 
             if (icon) {
               icon.classList.remove('ps-mainmenu_dropdown-up');
               icon.classList.add('ps-mainmenu_dropdown-down');
             }
+
             parentToggle.focus();
           }
           break;
         }
+
         default:
           break;
       }

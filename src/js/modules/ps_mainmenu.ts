@@ -87,7 +87,7 @@ const initDesktopMenu = () => {
 
       const submenuUL = submenuDiv.querySelector<HTMLUListElement>('.submenu__level');
 
-      // Ferme <ul> et div parent
+      // Close <ul> and parent div
       if (submenuUL) {
         submenuUL.classList.add('d-none');
         submenuUL.setAttribute('aria-hidden', 'true');

@@ -72,7 +72,8 @@
             </li>
             {if $node.children|count}
               <div
-                class="submenu__level-container level-{$depth + 1} d-none" id="submenu-{$node.page_identifier}"
+                class="submenu__level-container level-{$depth + 1} d-none"
+                id="submenu-{$node.page_identifier}"
                 data-depth="{$depth + 1}"
                 aria-hidden="true"
               >
@@ -85,9 +86,16 @@
       </div>
     {else}
       {* Nested submenus *}
-      <ul class="nested-submenu submenu__level level-{$depth} d-none" aria-hidden="true" data-depth="{$depth}">
+      <ul
+        class="nested-submenu submenu__level level-{$depth} d-none"
+        data-depth="{$depth}"
+        aria-hidden="true"
+      >
         {foreach from=$nodes item=node}
-          <li class="submenu__item-wrapper{if $node.children|count} has-child{/if}" data-depth="{$depth}">
+          <li
+            class="submenu__item-wrapper{if $node.children|count} has-child{/if}"
+            data-depth="{$depth}"
+          >
             <div class="submenu__link-wrapper">
               <a
                 class="submenu__link {if $node.children|count}has-child{/if}"
@@ -119,8 +127,8 @@
             {if $node.children|count}
               <div
                 class="nested-submenu__container submenu__level-container level-{$depth + 1} d-none" id="submenu-{$node.page_identifier}"
-                aria-hidden="true"
                 data-depth="{$depth + 1}"
+                aria-hidden="true"
               >
                 {desktopSubMenu nodes=$node.children parent=$node depth=$depth + 1}
               </div>
@@ -134,9 +142,19 @@
 {* GENERATE DESKTOP FIRST LEVEL *}
 {function name="desktopFirstLevel" itemsFirstLevel=[]}
   {if $itemsFirstLevel|count}
-    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0" role="menubar">
+    <ul
+      class="ps-mainmenu__tree"
+      id="top-menu"
+      data-depth="0"
+      role="menubar"
+    >
       {foreach from=$itemsFirstLevel item=menuItem}
-        <li class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-depth="0" data-id="{$menuItem.page_identifier}" role="none">
+        <li
+          class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}"
+          data-id="{$menuItem.page_identifier}"
+          data-depth="0"
+          role="none"
+        >
           <a
             class="ps-mainmenu__tree__link"
             href="{$menuItem.url}"

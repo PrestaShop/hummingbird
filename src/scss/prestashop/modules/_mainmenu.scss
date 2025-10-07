@@ -136,8 +136,9 @@ $component-name: ps-mainmenu;
       gap: 0.5rem;
       padding: 1rem;
       margin: 0 1rem;
-      background-color: rgba(240, 248, 255, 0.67);
+      background-color: rgb(248 249 250);;
       border-radius: var(--bs-border-radius);
+      box-shadow: var(--bs-box-shadow-sm);
     }
   }
 

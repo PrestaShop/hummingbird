@@ -1,6 +1,6 @@
 {* PrestaShop license placeholder *}
 
-{* categoryInfos *}
+{* GENERATE CATEGORY INFOS *}
 {function name="categoryInfos" node=[]}
   <div class="ps-mainmenu__category-infos" data-type="{$node.type|default:''}" data-depth="{$node.depth|default:''}">
     <h4 class="ps-mainmenu__category-infos__title">

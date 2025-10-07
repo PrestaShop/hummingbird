@@ -1,5 +1,49 @@
 {* PrestaShop license placeholder *}
 
+{* categoryInfos *}
+{function name="categoryInfos" node=[]}
+  <div class="ps-mainmenu__category-infos" data-type="{$node.type|default:''}" data-depth="{$node.depth|default:''}">
+    <h4 class="ps-mainmenu__category-infos__title">
+      {$node.label|default:'(no label)'}
+      {if $node.current|default:false}
+        <span class="ps-mainmenu__category-infos__current">(active)</span>
+      {/if}
+    </h4>
+
+    <ul class="ps-mainmenu__category-infos__details">
+      {foreach from=$node key=key item=value}
+        {if is_array($value)}
+          <li>
+            <strong>{$key}</strong> :
+            {if $value|@count == 0}
+              <em>empty</em>
+            {elseif $key == 'image_urls'}
+              <ul>
+                {foreach from=$value item=imageUrl}
+                  <li><img src="{$imageUrl}" alt="Image de {$node.label}" width="80" /></li>
+                {/foreach}
+              </ul>
+            {elseif $key == 'children'}
+              <ul class="ps-mainmenu__category-infos__children">
+                {foreach from=$value item=child}
+                  <li>{call name=categoryInfos node=$child}</li>
+                {/foreach}
+              </ul>
+            {else}
+              <pre><code>{$value|@json_encode:JSON_PRETTY_PRINT}</code></pre>
+            {/if}
+          </li>
+        {else if $key == 'url'}
+          <li><strong>{$key}</strong> : <a href="{$value}">{$value}</a></li>
+        {else}
+          <li><strong>{$key}</strong> : {$value}</li>
+        {/if}
+      {/foreach}
+    </ul>
+  </div>
+{/function}
+
+
 {* RECURSIVE MEGAMENU *}
 {function name="desktopSubMenu" nodes=[] parent=null depth=1}
   {if $nodes|count}
@@ -82,33 +126,15 @@
                             {* RECURSIVE SUBMENU *}
                             {desktopSubMenu nodes=$subnode.children parent=$subnode depth=$depth+1}
                           {else}
-                          {* CATEGORY PRESENTATION *}
-                          <div class="ps-mainmenu__category-content">
-                              <a
-                                href="{$subnode.url}"
-                                class="text-decoration-none fw-semibold"
-                                {if $subnode.open_in_new_window}target="_blank"{/if}
-                              >
-                                {$subnode.label}
-                              </a>
-                              <pre><code>{$subnode|@var_dump}</code></pre>
-                            </div>
+                            {* CATEGORY INFOS *}
+                            {call name=categoryInfos node=$subnode}
                           {/if}
                         </div>
                       {/foreach}
                     </div>
                 {else}
-                  {* CATEGORY PRESENTATION *}
-                  <div class="ps-mainmenu__category-content">
-                    <a
-                      href="{$node.url}"
-                      class="text-decoration-none fw-semibold"
-                      {if $node.open_in_new_window}target="_blank"{/if}
-                    >
-                      {$node.label}
-                    </a>
-                    <pre><code>{$node|@var_dump}</code></pre>
-                  </div>
+                  {* CATEGORY INFOS *}
+                  {call name=categoryInfos node=$node}
                 {/if}
 
               </div>

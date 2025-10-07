@@ -125,10 +125,11 @@ $component-name: ps-mainmenu;
     }
 
     .tab-content {
+      display: flex;
       border-left: 1px solid var(--bs-border-color);
     }
 
-    .ps-mainmenu__category-content {
+    .ps-mainmenu__category-infos {
       display: flex;
       flex-direction: column;
       flex-grow: 1;

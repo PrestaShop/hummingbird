@@ -1,180 +1,140 @@
 {* PrestaShop license placeholder *}
 
-{* GENERATE LINKS FOR SUBMENU CHILDREN
-{function name="generateLinks" links=[] class="menu-item" parent=null}
-  {foreach from=$links item=link}
-    <div class="{$class} {if $link.children|count}has-child{/if}">
-      <a
-        class="{$class}__link"
-        href="{$link.url}"
-        data-depth="{$link.depth}"
-        {if $link.open_in_new_window}target="_blank"{/if}
-      >
-        {$link.label}
-      </a>
-
-      {if $link.children|count}
-        {generateLinks links=$link.children class=$class parent=$link}
-      {/if}
-    </div>
-  {/foreach}
-{/function} *}
-
-{* RECURSIVE DESKTOP SUBMENU FUNCTION *}
+{* RECURSIVE MEGAMENU *}
 {function name="desktopSubMenu" nodes=[] parent=null depth=1}
   {if $nodes|count}
-    {if $depth === 1}
-      {* First level submenu container *}
-      <div
-        class="submenu submenu__level-container level-{$depth} d-none"
-        id="submenu-{$parent.page_identifier}"
-        data-depth="{$depth}"
-        aria-hidden="true"
-        aria-labelledby="submenu-trigger-{$parent.page_identifier}"
-        role="group"
-      >
-        <div class="container">
-          <ul
-            class="submenu__level level-{$depth} submenu__row"
-            data-depth="{$depth}"
-            role="menu"
-          >
-            {foreach from=$nodes item=node}
-              <li
-                class="submenu__item-wrapper{if $node.children|count} has-child{/if}"
-                data-depth="{$depth}"
-                role="none"
-              >
-                <div class="submenu__link-wrapper">
-                  <a
-                    class="submenu__link {if $node.children|count} has-child{/if}"
-                    id="submenu-trigger-{$node.page_identifier}"
-                    href="{$node.url}"
-                    data-depth="{$depth}"
-                    {if $node.open_in_new_window}target="_blank"{/if}
-                    role="menuitem"
-                    {if $node.current}aria-current="page"{/if}
-                  >
-                    {$node.label}
-                  </a>
+    <div
+      class="submenu submenu__level-container level-{$depth} {if $depth === 1 }d-none{/if}"
+      id="submenu-{$parent.page_identifier}"
+      aria-labelledby="submenu-trigger-{$parent.page_identifier}"
+      role="group"
+    >
 
-                  {if $node.children|count}
-                    <button
-                      class="btn btn-link ps-mainmenu__toggle-dropdown"
-                      id="submenu-button-{$node.page_identifier}"
-                      type="button"
-                      aria-label="{l s='Display submenu %label%' sprintf=['%label%' => $node.label] d='Shop.Theme.Global'}"
-                      aria-haspopup="menu"
-                      aria-expanded="false"
-                      aria-controls="submenu-{$node.page_identifier}"
-                    >
-                      <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
-                    </button>
-                  {/if}
-                </div>
-              </li>
-
-              {if $node.children|count}
-                <div
-                  class="submenu__level-container level-{$depth + 1} d-none"
-                  id="submenu-{$node.page_identifier}"
-                  data-depth="{$depth + 1}"
-                  aria-hidden="true"
-                  aria-labelledby="submenu-button-{$node.page_identifier}"
-                  role="group"
-                >
-                  {desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
-                </div>
-              {/if}
-            {/foreach}
-          </ul>
-        </div>
-      </div>
-    {else}
-      {* Nested submenus *}
-      <ul
-        class="nested-submenu submenu__level level-{$depth} d-none"
-        data-depth="{$depth}"
-        aria-hidden="true"
-        role="menu"
-        aria-labelledby="submenu-button-{$parent.page_identifier}"
-      >
-        {foreach from=$nodes item=node}
-          <li
-            class="submenu__item-wrapper{if $node.children|count} has-child{/if}"
-            data-depth="{$depth}"
-            role="none"
+          {* MAIN NAV PILLS (left column) *}
+          <div
+            class="nav flex-column nav-pills"
+            id="v-pills-{$parent.page_identifier}-tab"
+            role="tablist"
+            aria-orientation="vertical"
           >
-            <div class="submenu__link-wrapper">
-              <a
-                class="submenu__link {if $node.children|count} has-child{/if}"
-                id="submenu-trigger-{$node.page_identifier}"
-                href="{$node.url}"
-                data-depth="{$depth}"
-                {if $node.open_in_new_window}target="_blank"{/if}
-                role="menuitem"
-                {if $node.current}aria-current="page"{/if}
+            {foreach from=$nodes item=node name=tabs}
+              <button
+                class="nav-link {if $smarty.foreach.tabs.first}active{/if}"
+                id="v-pills-{$node.page_identifier}-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-{$node.page_identifier}"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-{$node.page_identifier}"
+                aria-selected="{if $smarty.foreach.tabs.first}true{else}false{/if}"
               >
                 {$node.label}
-              </a>
+              </button>
+            {/foreach}
+          </div>
 
-              {if $node.children|count}
-                <button
-                  class="btn btn-link ps-mainmenu__toggle-dropdown"
-                  id="submenu-button-{$node.page_identifier}"
-                  type="button"
-                  aria-label="{l s='Display submenu %label%' sprintf=['%label%' => $node.label] d='Shop.Theme.Global'}"
-                  aria-haspopup="menu"
-                  aria-expanded="false"
-                  aria-controls="submenu-{$node.page_identifier}"
-                >
-                  <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
-                </button>
-              {/if}
-            </div>
-          </li>
+          {* CONTENTS OF PILLS (right column) *}
+          <div class="tab-content" id="v-pills-{$parent.page_identifier}-content">
+            {foreach from=$nodes item=node name=subcontent}
+              <div
+                class="tab-pane{if $smarty.foreach.subcontent.first} show active{/if}"
+                id="v-pills-{$node.page_identifier}"
+                role="tabpanel"
+                aria-labelledby="v-pills-{$node.page_identifier}-tab"
+                tabindex="0"
+              >
 
-          {if $node.children|count}
-            <div
-              class="nested-submenu__container submenu__level-container level-{$depth + 1} d-none"
-              id="submenu-{$node.page_identifier}"
-              data-depth="{$depth + 1}"
-              aria-hidden="true"
-              role="group"
-              aria-labelledby="submenu-button-{$node.page_identifier}"
-            >
-              {desktopSubMenu nodes=$node.children parent=$node depth=$depth + 1}
-            </div>
-          {/if}
-        {/foreach}
-      </ul>
-    {/if}
+                {if $node.children|count}
+
+                    {* SUB-LEVEL: Children also become nav-pills *}
+                      <div
+                        class="nav flex-column nav-pills"
+                        id="v-pills-{$node.page_identifier}-sub-tab"
+                        role="tablist"
+                        aria-orientation="vertical"
+                      >
+                        {foreach from=$node.children item=subnode name=subtabs}
+                          <button
+                            class="nav-link {if $smarty.foreach.subtabs.first}active{/if}"
+                            id="v-pills-{$subnode.page_identifier}-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-{$subnode.page_identifier}"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-{$subnode.page_identifier}"
+                            aria-selected="{if $smarty.foreach.subtabs.first}true{else}false{/if}"
+                          >
+                            {$subnode.label}
+                          </button>
+                        {/foreach}
+                      </div>
+
+                    {* SUB-LEVEL CONTENTS (right column) *}
+                    <div class="tab-content" id="v-pills-{$node.page_identifier}-sub-content">
+                      {foreach from=$node.children item=subnode name=subcontent2}
+                        <div
+                          class="tab-pane {if $smarty.foreach.subcontent2.first}show active{/if}"
+                          id="v-pills-{$subnode.page_identifier}"
+                          role="tabpanel"
+                          aria-labelledby="v-pills-{$subnode.page_identifier}-tab"
+                        >
+                          {if $subnode.children|count}
+                            {* RECURSIVE SUBMENU *}
+                            {desktopSubMenu nodes=$subnode.children parent=$subnode depth=$depth+1}
+                          {else}
+                          {* CATEGORY PRESENTATION *}
+                          <div class="ps-mainmenu__category-content">
+                              <a
+                                href="{$subnode.url}"
+                                class="text-decoration-none fw-semibold"
+                                {if $subnode.open_in_new_window}target="_blank"{/if}
+                              >
+                                {$subnode.label}
+                              </a>
+                              <pre><code>{$subnode|@var_dump}</code></pre>
+                            </div>
+                          {/if}
+                        </div>
+                      {/foreach}
+                    </div>
+                {else}
+                  {* CATEGORY PRESENTATION *}
+                  <div class="ps-mainmenu__category-content">
+                    <a
+                      href="{$node.url}"
+                      class="text-decoration-none fw-semibold"
+                      {if $node.open_in_new_window}target="_blank"{/if}
+                    >
+                      {$node.label}
+                    </a>
+                    <pre><code>{$node|@var_dump}</code></pre>
+                  </div>
+                {/if}
+
+              </div>
+            {/foreach}
+          </div>
+    </div>
   {/if}
 {/function}
 
-{* GENERATE DESKTOP FIRST LEVEL *}
+
+{* FIRST LEVEL : top menu *}
 {function name="desktopFirstLevel" itemsFirstLevel=[]}
   {if $itemsFirstLevel|count}
-    <ul
-      class="ps-mainmenu__tree"
-      id="top-menu"
-      data-depth="0"
-      role="menubar"
-    >
+    <ul class="ps-mainmenu__tree" id="top-menu" role="menubar">
       {foreach from=$itemsFirstLevel item=menuItem}
         <li
           class="ps-mainmenu__tree__item type-{$menuItem.type} {if $menuItem.current} current{/if}"
           data-id="{$menuItem.page_identifier}"
-          data-depth="0"
           role="none"
         >
           <a
             class="ps-mainmenu__tree__link"
             id="submenu-trigger-{$menuItem.page_identifier}"
             href="{$menuItem.url}"
-            data-depth="0"
-            {if $menuItem.open_in_new_window}target="_blank"{/if}
             role="menuitem"
+            {if $menuItem.open_in_new_window}target="_blank"{/if}
             {if $menuItem.current}aria-current="page"{/if}
           >
             {$menuItem.label}
@@ -190,16 +150,19 @@
               aria-expanded="false"
               aria-controls="submenu-{$menuItem.page_identifier}"
             >
-              <span class="material-icons ps-mainmenu_dropdown ps-mainmenu_dropdown-down">&#xE5CF;</span>
+              <span class="material-icons ps-mainmenu_dropdown">&#xE5CF;</span>
             </button>
           {/if}
         </li>
-
-        {if $menuItem.children|count}
-          {desktopSubMenu nodes=$menuItem.children parent=$menuItem depth=1}
-        {/if}
       {/foreach}
     </ul>
+
+    {* RECURSIVE SUBMENUS *}
+    {foreach from=$itemsFirstLevel item=menuItem}
+      {if $menuItem.children|count}
+        {desktopSubMenu nodes=$menuItem.children parent=$menuItem depth=1}
+      {/if}
+    {/foreach}
   {/if}
 {/function}
 
@@ -233,10 +196,9 @@
               data-depth="{$depth}"
               {if $node.open_in_new_window}target="_blank"{/if}
             >
-            {$node.label}
+              {$node.label}
             </a>
             {if $node.children|count}
-              {* Cannot use page identifier as we can have the same page several times *}
               {assign var=_expand_id value=10|mt_rand:100000}
               <button class="menu__toggle-child btn btn-link js-menu-open-child" data-target="{$_expand_id}">
                 <i class="material-icons rtl-flip">&#xE5CC;</i>
@@ -255,12 +217,14 @@
       {mobileMenu
         nodes=$child.children
         depth=$child.children[0].depth
-        parent=$child backTitle=$child.parent.label
+        parent=$child
+        backTitle=$child.parent.label
         expandId=$child.expandId
       }
     {/foreach}
   {/if}
 {/function}
+
 
 <nav class="ps-mainmenu ps-mainmenu--desktop col-xl col-auto" aria-label="{l s='Main menu' d='Shop.Theme.Global'}">
   <div class="ps-mainmenu__desktop d-none d-xl-block position-static js-menu-desktop">
@@ -310,4 +274,3 @@
     <div id="_mobile_ps_contactinfo"></div>
   </div>
 </div>
-

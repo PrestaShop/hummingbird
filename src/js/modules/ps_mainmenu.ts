@@ -138,7 +138,7 @@ const initDesktopMenu = () => {
   });
 
   // Keyboard navigation
-  const focusableItems = document.querySelectorAll<HTMLElement>('.ps-mainmenu__tree__link, .submenu__link');
+  const focusableItems = document.querySelectorAll<HTMLElement>('.ps-mainmenu__tree__link, .submenu__link, ps-mainmenu__toggle-dropdown');
 
   focusableItems.forEach((item, idx) => {
     item.addEventListener('keydown', (e) => {

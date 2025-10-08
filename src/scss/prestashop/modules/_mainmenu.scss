@@ -45,18 +45,20 @@ $component-name: ps-mainmenu;
           align-items: center;
 
           &.current {
-            > a {
+            .#{$component-name}__tree-link {
               color: var(--bs-link-color);
             }
           }
 
-          > a {
+          .#{$component-name}__tree-item-wrapper {
+            display: flex;
+            align-items: center;
+          }
+
+          .#{$component-name}__tree-link {
             padding: 1.25rem 0.75rem;
             color: var(--bs-secondary-color);
-
-            &.dropdown-toggle {
-              gap: 0.5rem;
-            }
+            text-decoration: none;
 
             &:hover {
               color: var(--bs-link-hover-color);
@@ -65,6 +67,54 @@ $component-name: ps-mainmenu;
 
             &:active {
               color: var(--bs-link-hover-color);
+            }
+
+            &:focus {
+              outline: 2px solid var(--bs-link-color);
+              outline-offset: 2px;
+              border-radius: var(--bs-border-radius);
+              color: var(--bs-link-hover-color);
+            }
+          }
+
+          .#{$component-name}__tree-dropdown-toggle {
+            padding: 1.25rem 0.5rem;
+            color: var(--bs-secondary-color);
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            align-self: stretch;
+            justify-content: center;
+
+            &:hover {
+              color: var(--bs-link-hover-color);
+            }
+
+            &:focus {
+              outline: 2px solid var(--bs-link-color);
+              outline-offset: 2px;
+              border-radius: var(--bs-border-radius);
+              color: var(--bs-link-hover-color);
+            }
+
+            .material-icons {
+              font-size: 1.25rem;
+              transition: transform 0.2s ease;
+            }
+
+            &[aria-expanded="true"] .material-icons {
+              transform: rotate(180deg);
+            }
+          }
+
+          // Remove any existing dropdown arrow pseudo-elements
+          .#{$component-name}__tree-link,
+          .#{$component-name}__tree-dropdown-toggle {
+            &::after,
+            &::before {
+              display: none !important;
             }
           }
 
@@ -141,8 +191,16 @@ $component-name: ps-mainmenu;
           color: var(--bs-body-color);
           background-color: transparent;
           border-radius: var(--bs-border-radius);
+          text-decoration: none;
 
           &:hover {
+            color: var(--bs-link-hover-color);
+            background-color: var(--bs-tertiary-bg);
+          }
+
+          &:focus {
+            outline: 2px solid var(--bs-link-color);
+            outline-offset: 2px;
             color: var(--bs-link-hover-color);
             background-color: var(--bs-tertiary-bg);
           }
@@ -158,11 +216,11 @@ $component-name: ps-mainmenu;
             }
           }
 
-          &.has-child {
+          &[data-ps-has-child="true"] {
             &::after {
               @extend .material-icons;
               margin: 0 0 0 auto;
-              content: "\e315";
+              content: "\e315" / " ";
             }
           }
         }

@@ -128,10 +128,16 @@ export const visiblePassword = {
 };
 
 export const desktopMenu = {
-  dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
-  dropdownItemAnchor: (depth: number) => `.js-menu-desktop a[data-depth="${depth}"]`,
-  menuItemsLvl0: '.js-menu-item-lvl-0',
-  subMenu: '.js-sub-menu',
+  container: '[data-ps-ref="desktop-menu-container"]',
+  menuTree: '[data-ps-ref="desktop-menu-tree"]',
+  menuItem: '[data-ps-ref="desktop-menu-item"]',
+  menuLink: '[data-ps-ref="desktop-menu-link"]',
+  dropdownToggle: '[data-ps-ref="desktop-menu-dropdown-toggle"]',
+  subMenu: '[data-ps-ref="desktop-submenu"]',
+  subMenuLeft: '[data-ps-ref="desktop-submenu-left"]',
+  subMenuLeftItem: '[data-ps-ref="desktop-submenu-left-item"]',
+  subMenuRight: '[data-ps-ref="desktop-submenu-right"]',
+  subMenuRightItems: '[data-ps-ref="desktop-submenu-right-items"]',
 };
 
 export const qtyInput = {

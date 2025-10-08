@@ -101,8 +101,16 @@ declare type visiblePassword = {
 };
 
 declare type desktopMenu = {
-  dropdownToggles: string,
-  dropdownItemAnchor: (depth: number) => string,
+  container: string,
+  menuTree: string,
+  menuItem: string,
+  menuLink: string,
+  dropdownToggle: string,
+  subMenu: string,
+  subMenuLeft: string,
+  subMenuLeftItem: string,
+  subMenuRight: string,
+  subMenuRightItems: string,
 };
 
 declare type quantityInput = {

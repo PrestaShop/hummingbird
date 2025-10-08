@@ -1,5 +1,8 @@
 const initDesktopMenu = () => {
+  const headerBottom = document.querySelector<HTMLElement>('.header-bottom');
   const toggles = document.querySelectorAll<HTMLButtonElement>('.ps-mainmenu__toggle-dropdown');
+  const menuItemsFirstLevel = document.querySelectorAll<HTMLElement>('.ps-mainmenu__tree__item');
+  const navLinksBtn = document.querySelectorAll<HTMLElement>('.nav-link');
 
   toggles.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -89,6 +92,103 @@ const initDesktopMenu = () => {
     });
   });
 
+  menuItemsFirstLevel.forEach((menuItem) => {
+    const menuItemBtn = menuItem.querySelector<HTMLButtonElement>('.ps-mainmenu__toggle-dropdown');
+
+    menuItem.addEventListener('mouseenter', (e: Event) => {
+      e.stopPropagation();
+
+      if (!menuItemBtn) return;
+
+      const submenuId = menuItemBtn.getAttribute('aria-controls');
+
+      if (!submenuId) return;
+
+      const submenuDiv = document.getElementById(submenuId);
+
+      if (!submenuDiv) return;
+
+      // const expanded = menuItemBtn.getAttribute('aria-expanded') === 'true';
+      const newExpanded = true;
+
+      // Synchronize linked menu item (anchor) if aria-labelledby is defined
+      const linkedMenuItemId = menuItemBtn.getAttribute('aria-labelledby');
+      const linkedMenuItem = linkedMenuItemId ? document.getElementById(linkedMenuItemId) : null;
+
+      if (linkedMenuItem) {
+        linkedMenuItem.setAttribute('aria-expanded', String(newExpanded));
+      }
+
+      // Close sibling submenus at the same hierarchy level
+      const siblingToggles = menuItem.parentElement?.querySelectorAll<HTMLButtonElement>(
+        '.ps-mainmenu__toggle-dropdown',
+      );
+
+      siblingToggles?.forEach((otherBtn) => {
+        if (otherBtn === menuItemBtn) return;
+
+        const otherId = otherBtn.getAttribute('aria-controls');
+        const otherDiv = otherId ? document.getElementById(otherId) : null;
+
+        if (!otherDiv) return;
+
+        otherDiv.classList.add('d-none');
+        otherDiv.setAttribute('aria-hidden', 'true');
+        otherBtn.setAttribute('aria-expanded', 'false');
+
+        const otherLinkedItemId = otherBtn.getAttribute('aria-labelledby');
+        const otherLinkedItem = otherLinkedItemId ? document.getElementById(otherLinkedItemId) : null;
+
+        if (otherLinkedItem) {
+          otherLinkedItem.setAttribute('aria-expanded', 'false');
+        }
+
+        const icon = otherBtn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+
+        if (icon) {
+          icon.classList.remove('ps-mainmenu_dropdown-up');
+          icon.classList.add('ps-mainmenu_dropdown-down');
+        }
+      });
+
+      // Toggle visibility for submenu container
+      submenuDiv.classList.remove('d-none');
+      submenuDiv.setAttribute('aria-hidden', String(!newExpanded));
+
+      // Toggle visibility for inner <ul> if present
+      const submenuUL = submenuDiv.querySelector<HTMLUListElement>('.submenu__level');
+
+      if (submenuUL) {
+        submenuUL.classList.remove('d-none');
+        submenuUL.setAttribute('aria-hidden', String(!newExpanded));
+      }
+
+      menuItemBtn.setAttribute('aria-expanded', String(newExpanded));
+
+      // Toggle chevron icon direction
+      const icon = menuItemBtn.querySelector<HTMLElement>('.ps-mainmenu_dropdown');
+
+      if (icon) {
+        icon.classList.add('ps-mainmenu_dropdown-up');
+        icon.classList.remove('ps-mainmenu_dropdown-down');
+      }
+    });
+
+    // Keyboard accessibility: Enter or Space triggers the toggle
+    menuItemBtn?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        menuItemBtn.click();
+      }
+    });
+  });
+
+  navLinksBtn.forEach((btn) => {
+    btn.addEventListener('mouseover', () => {
+      btn.click();
+    });
+  });
+
   /**
    * Closes all open submenus and resets ARIA attributes
    */
@@ -135,6 +235,10 @@ const initDesktopMenu = () => {
     if (!(e.target as HTMLElement).closest('.ps-mainmenu')) {
       closeAllSubmenus();
     }
+  });
+
+  headerBottom?.addEventListener('mouseleave', () => {
+    closeAllSubmenus();
   });
 
   // Keyboard navigation

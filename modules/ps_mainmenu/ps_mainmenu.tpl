@@ -1,6 +1,9 @@
 {* PrestaShop license placeholder *}
 
-{* GENERATE CATEGORY INFOS *}
+{* ================================================
+   FUNCTION: categoryInfos
+   Displays structured infos for a category node
+   ================================================= *}
 {function name="categoryInfos" node=[]}
   <div class="ps-mainmenu__category-infos" data-type="{$node.type|default:''}" data-depth="{$node.depth|default:''}">
     <h4 class="ps-mainmenu__category-infos__title">
@@ -20,7 +23,7 @@
             {elseif $key == 'image_urls'}
               <ul>
                 {foreach from=$value item=imageUrl}
-                  <li><img src="{$imageUrl}" alt="Image de {$node.label}" width="80" /></li>
+                  <li><img src="{$imageUrl}" alt="Image of {$node.label}" width="80" /></li>
                 {/foreach}
               </ul>
             {elseif $key == 'children'}
@@ -44,108 +47,113 @@
 {/function}
 
 
-{* RECURSIVE MEGAMENU *}
+{* =======================================================
+   FUNCTION: desktopSubMenu
+   Recursive submenu with Bootstrap tabs navigation
+   ======================================================= *}
 {function name="desktopSubMenu" nodes=[] parent=null depth=1}
   {if $nodes|count}
     <div
       class="submenu submenu__level-container level-{$depth} {if $depth === 1 }d-none{/if}"
       id="submenu-{$parent.page_identifier}"
-      aria-labelledby="submenu-trigger-{$parent.page_identifier}"
+      aria-labelledby="submenu-button-{$parent.page_identifier}"
       role="group"
     >
 
-          {* MAIN NAV PILLS (left column) *}
-          <div
-            class="nav flex-column nav-pills"
-            id="v-pills-{$parent.page_identifier}-tab"
-            role="tablist"
-            aria-orientation="vertical"
+      {* LEFT COLUMN: vertical nav-pills *}
+      <div
+        class="nav flex-column nav-pills"
+        id="v-pills-{$parent.page_identifier}-tab"
+        role="tablist"
+        aria-orientation="vertical"
+      >
+        {foreach from=$nodes item=node name=tabs}
+          <button
+            class="nav-link {if $smarty.foreach.tabs.first}active{/if}"
+            id="v-pills-{$node.page_identifier}-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-{$node.page_identifier}"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-{$node.page_identifier}"
+            aria-selected="{if $smarty.foreach.tabs.first}true{else}false{/if}"
           >
-            {foreach from=$nodes item=node name=tabs}
-              <button
-                class="nav-link {if $smarty.foreach.tabs.first}active{/if}"
-                id="v-pills-{$node.page_identifier}-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#v-pills-{$node.page_identifier}"
-                type="button"
-                role="tab"
-                aria-controls="v-pills-{$node.page_identifier}"
-                aria-selected="{if $smarty.foreach.tabs.first}true{else}false{/if}"
-              >
-                {$node.label}
-              </button>
-            {/foreach}
-          </div>
+            {$node.label}
+          </button>
+        {/foreach}
+      </div>
 
-          {* CONTENTS OF PILLS (right column) *}
-          <div class="tab-content" id="v-pills-{$parent.page_identifier}-content">
-            {foreach from=$nodes item=node name=subcontent}
+      {* RIGHT COLUMN: tab content for each pill *}
+      <div class="tab-content" id="v-pills-{$parent.page_identifier}-content">
+        {foreach from=$nodes item=node name=subcontent}
+          <div
+            class="tab-pane{if $smarty.foreach.subcontent.first} show active{/if}"
+            id="v-pills-{$node.page_identifier}"
+            role="tabpanel"
+            aria-labelledby="v-pills-{$node.page_identifier}-tab"
+            tabindex="0"
+          >
+
+            {if $node.children|count}
+
+              {* SUBLEVEL: recursive tabbed submenu *}
               <div
-                class="tab-pane{if $smarty.foreach.subcontent.first} show active{/if}"
-                id="v-pills-{$node.page_identifier}"
-                role="tabpanel"
-                aria-labelledby="v-pills-{$node.page_identifier}-tab"
-                tabindex="0"
+                class="nav flex-column nav-pills"
+                id="v-pills-{$node.page_identifier}-sub-tab"
+                role="tablist"
+                aria-orientation="vertical"
               >
-
-                {if $node.children|count}
-
-                    {* SUB-LEVEL: Children also become nav-pills *}
-                      <div
-                        class="nav flex-column nav-pills"
-                        id="v-pills-{$node.page_identifier}-sub-tab"
-                        role="tablist"
-                        aria-orientation="vertical"
-                      >
-                        {foreach from=$node.children item=subnode name=subtabs}
-                          <button
-                            class="nav-link {if $smarty.foreach.subtabs.first}active{/if}"
-                            id="v-pills-{$subnode.page_identifier}-tab"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-{$subnode.page_identifier}"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-{$subnode.page_identifier}"
-                            aria-selected="{if $smarty.foreach.subtabs.first}true{else}false{/if}"
-                          >
-                            {$subnode.label}
-                          </button>
-                        {/foreach}
-                      </div>
-
-                    {* SUB-LEVEL CONTENTS (right column) *}
-                    <div class="tab-content" id="v-pills-{$node.page_identifier}-sub-content">
-                      {foreach from=$node.children item=subnode name=subcontent2}
-                        <div
-                          class="tab-pane {if $smarty.foreach.subcontent2.first}show active{/if}"
-                          id="v-pills-{$subnode.page_identifier}"
-                          role="tabpanel"
-                          aria-labelledby="v-pills-{$subnode.page_identifier}-tab"
-                        >
-                          {if $subnode.children|count}
-                            {* RECURSIVE SUBMENU *}
-                            {desktopSubMenu nodes=$subnode.children parent=$subnode depth=$depth+1}
-                          {else}
-                            {* CATEGORY INFOS *}
-                            {call name=categoryInfos node=$subnode}
-                          {/if}
-                        </div>
-                      {/foreach}
-                    </div>
-                {else}
-                  {* CATEGORY INFOS *}
-                  {call name=categoryInfos node=$node}
-                {/if}
-
+                {foreach from=$node.children item=subnode name=subtabs}
+                  <button
+                    class="nav-link {if $smarty.foreach.subtabs.first}active{/if}"
+                    id="v-pills-{$subnode.page_identifier}-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-{$subnode.page_identifier}"
+                    type="button"
+                    role="tab"
+                    aria-controls="v-pills-{$subnode.page_identifier}"
+                    aria-selected="{if $smarty.foreach.subtabs.first}true{else}false{/if}"
+                  >
+                    {$subnode.label}
+                  </button>
+                {/foreach}
               </div>
-            {/foreach}
+
+              <div class="tab-content" id="v-pills-{$node.page_identifier}-sub-content">
+                {foreach from=$node.children item=subnode name=subcontent2}
+                  <div
+                    class="tab-pane {if $smarty.foreach.subcontent2.first}show active{/if}"
+                    id="v-pills-{$subnode.page_identifier}"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-{$subnode.page_identifier}-tab"
+                  >
+                    {if $subnode.children|count}
+                      {desktopSubMenu nodes=$subnode.children parent=$subnode depth=$depth+1}
+                    {else}
+                      {call name=categoryInfos node=$subnode}
+                    {/if}
+                  </div>
+                {/foreach}
+              </div>
+
+            {else}
+              {call name=categoryInfos node=$node}
+            {/if}
+
           </div>
+        {/foreach}
+      </div>
     </div>
   {/if}
 {/function}
 
 
-{* FIRST LEVEL : top menu *}
+{* ===================================================
+   FUNCTION: desktopFirstLevel
+   First level (top menu bar)
+   - Link stays a real <a>
+   - Button is the submenu toggle
+   =================================================== *}
 {function name="desktopFirstLevel" itemsFirstLevel=[]}
   {if $itemsFirstLevel|count}
     <ul class="ps-mainmenu__tree" id="top-menu" role="menubar">
@@ -155,6 +163,7 @@
           data-id="{$menuItem.page_identifier}"
           role="none"
         >
+          {* Link keeps its native behavior *}
           <a
             class="ps-mainmenu__tree__link"
             id="submenu-trigger-{$menuItem.page_identifier}"
@@ -166,12 +175,13 @@
             {$menuItem.label}
           </a>
 
+          {* Button explicitly controls submenu open/close *}
           {if $menuItem.children|count}
             <button
               class="btn btn-link ps-mainmenu__toggle-dropdown"
               id="submenu-button-{$menuItem.page_identifier}"
               type="button"
-              aria-label="{l s='Display submenu %label%' sprintf=['%label%' => $menuItem.label] d='Shop.Theme.Global'}"
+              aria-label="{l s='Toggle submenu for %label%' sprintf=['%label%' => $menuItem.label] d='Shop.Theme.Global'}"
               aria-haspopup="menu"
               aria-expanded="false"
               aria-controls="submenu-{$menuItem.page_identifier}"
@@ -183,7 +193,7 @@
       {/foreach}
     </ul>
 
-    {* RECURSIVE SUBMENUS *}
+    {* Recursive rendering of submenus *}
     {foreach from=$itemsFirstLevel item=menuItem}
       {if $menuItem.children|count}
         {desktopSubMenu nodes=$menuItem.children parent=$menuItem depth=1}
@@ -192,12 +202,18 @@
   {/if}
 {/function}
 
-{* DESKTOP MENU ENTRY *}
+
+{* ===================================================
+   FUNCTION: desktopMenu (entry point)
+   =================================================== *}
 {function name="desktopMenu" nodes=[]}
   {desktopFirstLevel itemsFirstLevel=$nodes}
 {/function}
 
-{* GENERATE MOBILE MENU *}
+
+{* ===================================================
+   FUNCTION: mobileMenu
+   =================================================== *}
 {function name="mobileMenu" nodes=[] depth=0 parent=null}
   {$children = []}
   {if $nodes|count}
@@ -252,12 +268,15 @@
 {/function}
 
 
+{* ===================================================
+   DESKTOP AND MOBILE MENU ENTRY
+   =================================================== *}
 <nav class="ps-mainmenu ps-mainmenu--desktop col-xl col-auto" aria-label="{l s='Main menu' d='Shop.Theme.Global'}">
   <div class="ps-mainmenu__desktop d-none d-xl-block position-static js-menu-desktop">
     {desktopMenu nodes=$menu.children}
   </div>
 
-  {* MOBILE MENU *}
+  {* Mobile toggle button *}
   <div class="ps-mainmenu__mobile-toggle">
     <a
       class="menu-toggle btn btn-link"

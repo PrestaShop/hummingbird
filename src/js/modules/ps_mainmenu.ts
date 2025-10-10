@@ -65,8 +65,7 @@ const initDesktopMenu = () => {
   };
 
   /**
-   * Move focus horizontally (left/right) among top-level items,
-   * including both links and toggle buttons
+   * Move focus horizontally (left/right) among top-level items
    */
   const moveHorizontalFocus = (current: HTMLElement, direction: 'left' | 'right') => {
     const focusableElements: HTMLElement[] = [];
@@ -126,7 +125,6 @@ const initDesktopMenu = () => {
       const submenuDiv = submenuId ? document.getElementById(submenuId) : null;
       const isExpanded = btn.getAttribute('aria-expanded') === 'true';
 
-      // Enter / Space / ArrowDown = open submenu and focus first item
       if (e.key === 'ArrowDown' || isActivationKey(e)) {
         if (submenuDiv) {
           e.preventDefault();
@@ -141,17 +139,16 @@ const initDesktopMenu = () => {
             btn.focus();
           }
         }
-      } else if (e.key === 'ArrowUp' && isExpanded) { // ✅ FIXED brace-style
-        e.preventDefault();
+      } else if (e.key === 'ArrowUp' && isExpanded) {
         btn.click();
         btn.focus();
-      } else if (e.key === 'ArrowRight') { // ✅ FIXED brace-style
+      } else if (e.key === 'ArrowRight') {
         e.preventDefault();
         moveHorizontalFocus(btn, 'right');
-      } else if (e.key === 'ArrowLeft') { // ✅ FIXED brace-style
+      } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
         moveHorizontalFocus(btn, 'left');
-      } else if (e.key === 'Escape' && submenuDiv) { // ✅ FIXED brace-style
+      } else if (e.key === 'Escape' && submenuDiv) {
         e.preventDefault();
         setSubmenuState(submenuDiv, btn, false);
         btn.focus();

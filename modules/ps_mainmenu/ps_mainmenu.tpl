@@ -2,7 +2,7 @@
 
 {* ================================================
    FUNCTION: categoryInfos
-   Displays structured infos for a category node
+   Displays infos for a category node
    ================================================= *}
 {function name="categoryInfos" node=[]}
   <div class="ps-mainmenu__category-infos" data-type="{$node.type|default:''}" data-depth="{$node.depth|default:''}">
@@ -151,8 +151,6 @@
 {* ===================================================
    FUNCTION: desktopFirstLevel
    First level (top menu bar)
-   - Link stays a real <a>
-   - Button is the submenu toggle
    =================================================== *}
 {function name="desktopFirstLevel" itemsFirstLevel=[]}
   {if $itemsFirstLevel|count}
@@ -163,7 +161,6 @@
           data-id="{$menuItem.page_identifier}"
           role="none"
         >
-          {* Link keeps its native behavior *}
           <a
             class="ps-mainmenu__tree__link"
             id="submenu-trigger-{$menuItem.page_identifier}"
@@ -175,7 +172,6 @@
             {$menuItem.label}
           </a>
 
-          {* Button explicitly controls submenu open/close *}
           {if $menuItem.children|count}
             <button
               class="btn btn-link ps-mainmenu__toggle-dropdown"
@@ -204,7 +200,7 @@
 
 
 {* ===================================================
-   FUNCTION: desktopMenu (entry point)
+   FUNCTION: desktopMenu
    =================================================== *}
 {function name="desktopMenu" nodes=[]}
   {desktopFirstLevel itemsFirstLevel=$nodes}

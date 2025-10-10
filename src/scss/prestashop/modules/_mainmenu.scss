@@ -35,8 +35,8 @@ $component-name: ps-mainmenu;
       // Menu Tree
       &__tree {
         display: flex;
-        //height: 100%;
         flex-wrap: wrap;
+        gap: 0.5rem;
         align-items: stretch;
         margin: 0;
 
@@ -56,7 +56,7 @@ $component-name: ps-mainmenu;
           }
 
           .#{$component-name}__tree-link {
-            padding: 1.25rem 0.75rem;
+            padding: 1.25rem 0.5rem;
             color: var(--bs-secondary-color);
             text-decoration: none;
 
@@ -82,7 +82,7 @@ $component-name: ps-mainmenu;
             align-items: center;
             align-self: stretch;
             justify-content: center;
-            padding: 1.25rem 0.5rem;
+            padding: 1.25rem 0.125rem;
             color: var(--bs-secondary-color);
             cursor: pointer;
             background: none;

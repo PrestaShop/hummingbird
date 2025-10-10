@@ -122,9 +122,7 @@
                 aria-controls="submenu-{$menuItem.page_identifier}"
                 aria-label="{l s='Open %s submenu' sprintf=[$menuItem.label] d='Shop.Theme.Menu'}"
                 data-ps-ref="desktop-menu-dropdown-toggle"
-              >
-                <span class="material-icons" aria-hidden="true">&#xE5CF;</span>
-              </button>
+              ></button>
             {/if}
           </div>
 

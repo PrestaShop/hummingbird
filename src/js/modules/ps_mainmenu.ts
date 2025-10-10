@@ -92,6 +92,7 @@ class MenuElementQueries {
       elements.push(link);
       const liElement = link.closest(desktopMenu.menuItem);
       const dropdownButton = liElement?.querySelector(desktopMenu.dropdownToggle) as HTMLElement;
+
       if (dropdownButton) {
         elements.push(dropdownButton);
       }
@@ -128,11 +129,11 @@ class AccessibilityManager {
     const allSubMenus = MenuElementQueries.getAllSubMenus();
     const allDropdownButtons = MenuElementQueries.getDropdownButtons();
 
-    allSubMenus.forEach(subMenu => {
+    allSubMenus.forEach((subMenu) => {
       this.setSubMenuVisibility(subMenu, false);
     });
 
-    allDropdownButtons.forEach(button => {
+    allDropdownButtons.forEach((button) => {
       this.setDropdownButtonState(button, false);
     });
   }
@@ -141,41 +142,42 @@ class AccessibilityManager {
 // Navigation utilities
 class NavigationManager {
   static navigateMainMenu(
-    currentElement: HTMLElement, 
-    direction: NavigationDirection, 
-    rootMenuElements: HTMLElement[]
+    currentElement: HTMLElement,
+    direction: NavigationDirection,
+    rootMenuElements: HTMLElement[],
   ): void {
     const currentIndex = rootMenuElements.indexOf(currentElement);
+
     if (currentIndex < 0) return;
 
     const targetIndex = this.calculateTargetIndex(currentIndex, direction, rootMenuElements.length);
     const targetElement = rootMenuElements[targetIndex];
-    
+
     if (targetElement) {
       targetElement.focus();
     }
   }
 
   static navigateSubMenuTabs(
-    currentItem: HTMLElement, 
-    direction: NavigationDirection, 
-    subMenu: HTMLElement
+    currentItem: HTMLElement,
+    direction: NavigationDirection,
+    subMenu: HTMLElement,
   ): HTMLElement | null {
     const subMenuLeftLinks = subMenu.querySelectorAll(desktopMenu.subMenuLeftItem) as NodeListOf<HTMLElement>;
     const currentIndex = Array.from(subMenuLeftLinks).indexOf(currentItem);
-    
+
     if (currentIndex < 0) return null;
 
     const targetIndex = this.calculateTargetIndex(currentIndex, direction, subMenuLeftLinks.length);
+
     return subMenuLeftLinks[targetIndex] as HTMLElement;
   }
 
   private static calculateTargetIndex(currentIndex: number, direction: NavigationDirection, totalLength: number): number {
     if (direction === 'next') {
       return (currentIndex + 1) % totalLength;
-    } else {
-      return currentIndex === 0 ? totalLength - 1 : currentIndex - 1;
     }
+    return currentIndex === 0 ? totalLength - 1 : currentIndex - 1;
   }
 }
 
@@ -183,8 +185,9 @@ class NavigationManager {
 class SubMenuManager {
   constructor(
     private stateManager: MenuStateManager,
-    private allMainMenuElements: HTMLElement[]
-  ) {}
+  ) {
+    // Empty constructor with parameters
+  }
 
   showSubMenu(dropdownButton: HTMLElement, subMenu: HTMLElement): void {
     this.closeAllSubMenus();
@@ -209,11 +212,11 @@ class SubMenuManager {
   switchSubMenuTab(item: HTMLElement, subMenu: HTMLElement): void {
     const subMenuLeftLinks = subMenu.querySelectorAll(desktopMenu.subMenuLeftItem) as NodeListOf<HTMLElement>;
     const subMenuRightTabs = subMenu.querySelectorAll(`${desktopMenu.subMenuRight} ${desktopMenu.subMenuRightItems}`) as NodeListOf<HTMLElement>;
-    
+
     subMenuLeftLinks.forEach((leftLink) => {
       AccessibilityManager.setTabSelection(leftLink, false);
     });
-    
+
     if (item.hasAttribute(MENU_ATTRIBUTES.HAS_CHILD)) {
       AccessibilityManager.setTabSelection(item, true);
     }
@@ -227,8 +230,9 @@ class SubMenuManager {
 
   private positionSubMenu(dropdownButton: HTMLElement, subMenu: HTMLElement): void {
     const liElement = dropdownButton.closest(desktopMenu.menuItem) as HTMLElement;
+
     if (!liElement) return;
-    
+
     const liPosition = liElement.offsetHeight + liElement.offsetTop;
     subMenu.style.top = `${liPosition}px`;
   }
@@ -236,7 +240,7 @@ class SubMenuManager {
   private updateSubMenuState(dropdownButton: HTMLElement, subMenu: HTMLElement, isOpen: boolean): void {
     AccessibilityManager.setSubMenuVisibility(subMenu, isOpen);
     AccessibilityManager.setDropdownButtonState(dropdownButton, isOpen);
-    
+
     this.stateManager.setSubMenuOpen(isOpen);
     this.stateManager.setCurrentSubMenu(subMenu);
     this.stateManager.setCurrentDropdownButton(dropdownButton);
@@ -252,7 +256,7 @@ class SubMenuManager {
 
     leftLinks.forEach((leftLink, index) => {
       AccessibilityManager.setTabSelection(leftLink, index === 0);
-      
+
       if (index === 0) {
         this.showCorrespondingRightTab(leftLink, subMenu);
       }
@@ -261,9 +265,11 @@ class SubMenuManager {
 
   private showCorrespondingRightTab(item: HTMLElement, subMenu: HTMLElement): void {
     const toggleTab = item.getAttribute(MENU_ATTRIBUTES.OPEN_TAB);
+
     if (!toggleTab) return;
 
     const targetTab = subMenu.querySelector(`#${toggleTab}`) as HTMLElement;
+
     if (targetTab) {
       AccessibilityManager.setTabPanelVisibility(targetTab, true);
     }
@@ -275,53 +281,63 @@ class EventHandlers {
   constructor(
     private stateManager: MenuStateManager,
     private subMenuManager: SubMenuManager,
-    private allMainMenuElements: HTMLElement[]
-  ) {}
+    private allMainMenuElements: HTMLElement[],
+  ) {
+    // Empty constructor with parameters
+  }
 
   // Handle main menu link keyboard events
   handleMainMenuLinkKeydown = (event: KeyboardEvent): void => {
     const link = event.target as HTMLElement;
-    
+
     switch (event.key) {
       case 'ArrowRight':
       case 'ArrowDown':
         event.preventDefault();
         NavigationManager.navigateMainMenu(link, 'next', this.allMainMenuElements);
         break;
-        
+
       case 'ArrowLeft':
       case 'ArrowUp':
         event.preventDefault();
         NavigationManager.navigateMainMenu(link, 'prev', this.allMainMenuElements);
         break;
+
+      default:
+        // No action needed for other keys
+        break;
     }
   };
 
   // Handle dropdown button keyboard events
-  handleDropdownButtonKeydown = (dropdownButton: HTMLElement, subMenu: HTMLElement, mainIndex: number) => (event: KeyboardEvent): void => {
+  handleDropdownButtonKeydown = (dropdownButton: HTMLElement, subMenu: HTMLElement) => (event: KeyboardEvent): void => {
     switch (event.key) {
       case 'Enter':
       case ' ':
         event.preventDefault();
         this.toggleSubMenu(dropdownButton, subMenu);
         break;
-        
+
       case 'Escape':
         event.preventDefault();
         this.subMenuManager.hideSubMenu(dropdownButton, subMenu);
         dropdownButton.focus();
         break;
-          
+
       case 'ArrowRight':
       case 'ArrowDown':
         event.preventDefault();
         NavigationManager.navigateMainMenu(dropdownButton, 'next', this.allMainMenuElements);
         break;
-        
+
       case 'ArrowLeft':
       case 'ArrowUp':
         event.preventDefault();
         NavigationManager.navigateMainMenu(dropdownButton, 'prev', this.allMainMenuElements);
+        break;
+
+      default:
+        // No action needed for other keys
         break;
     }
   };
@@ -329,6 +345,7 @@ class EventHandlers {
   // Handle subMenu tab keyboard events
   handleSubMenuTabKeydown = (item: HTMLElement) => (event: KeyboardEvent): void => {
     const subMenu = item.closest(desktopMenu.subMenu) as HTMLElement;
+
     if (!subMenu) return;
 
     switch (event.key) {
@@ -336,7 +353,7 @@ class EventHandlers {
         event.preventDefault();
         this.navigateToSubMenuTab(item, 'next', subMenu);
         break;
-        
+
       case 'ArrowUp':
         event.preventDefault();
         this.navigateToSubMenuTab(item, 'prev', subMenu);
@@ -346,10 +363,14 @@ class EventHandlers {
         event.preventDefault();
         this.subMenuManager.switchSubMenuTab(item, subMenu);
         break;
-        
+
       case 'Escape':
         event.preventDefault();
         this.handleSubMenuEscape(subMenu);
+        break;
+
+      default:
+        // No action needed for other keys
         break;
     }
   };
@@ -357,6 +378,7 @@ class EventHandlers {
   // Handle click outside menu
   handleClickOutside = (event: MouseEvent): void => {
     const target = event.target as HTMLElement;
+
     if (!target.closest(desktopMenu.container)) {
       this.subMenuManager.closeAllSubMenus();
     }
@@ -366,7 +388,7 @@ class EventHandlers {
   handleFocusOut = (event: FocusEvent): void => {
     const target = event.target as HTMLElement;
     const relatedTarget = event.relatedTarget as HTMLElement;
-    
+
     if (target && target.closest(desktopMenu.container)) {
       if (!relatedTarget || !relatedTarget.closest(desktopMenu.container)) {
         this.subMenuManager.closeAllSubMenus();
@@ -378,7 +400,7 @@ class EventHandlers {
   handleRightSubMenuKeydown = (event: KeyboardEvent): void => {
     const target = event.target as HTMLElement;
     const subMenu = target.closest(desktopMenu.subMenu) as HTMLElement;
-    
+
     if (!subMenu) return;
 
     switch (event.key) {
@@ -386,13 +408,19 @@ class EventHandlers {
         event.preventDefault();
         this.handleSubMenuEscape(subMenu);
         break;
-        
-      case 'ArrowLeft':
+
+      case 'ArrowLeft': {
         event.preventDefault();
         const activeLeftTab = MenuElementQueries.getActiveSubMenuLeftItem(subMenu);
+
         if (activeLeftTab) {
           activeLeftTab.focus();
         }
+        break;
+      }
+
+      default:
+        // No action needed for other keys
         break;
     }
   };
@@ -407,11 +435,12 @@ class EventHandlers {
   }
 
   private navigateToSubMenuTab(
-    item: HTMLElement, 
-    direction: NavigationDirection, 
-    subMenu: HTMLElement
+    item: HTMLElement,
+    direction: NavigationDirection,
+    subMenu: HTMLElement,
   ): void {
     const targetItem = NavigationManager.navigateSubMenuTabs(item, direction, subMenu);
+
     if (targetItem) {
       targetItem.focus();
       this.subMenuManager.switchSubMenuTab(targetItem, subMenu);
@@ -420,6 +449,7 @@ class EventHandlers {
 
   private handleSubMenuEscape(subMenu: HTMLElement): void {
     const parentDropdownButton = subMenu.closest(desktopMenu.menuItem)?.querySelector(desktopMenu.dropdownToggle) as HTMLElement;
+
     if (parentDropdownButton) {
       parentDropdownButton.focus();
       this.subMenuManager.closeAllSubMenus();
@@ -430,28 +460,26 @@ class EventHandlers {
 // Component setup
 class MenuComponentSetup {
   constructor(
-    private stateManager: MenuStateManager,
     private subMenuManager: SubMenuManager,
-    private eventHandlers: EventHandlers
-  ) {}
+    private eventHandlers: EventHandlers,
+  ) {
+    // Empty constructor with parameters
+  }
 
   // Setup dropdown button functionality
-  setupDropdownButton(dropdownButton: HTMLElement, mainIndex: number): void {
+  setupDropdownButton(dropdownButton: HTMLElement): void {
     const liElement = dropdownButton.closest(desktopMenu.menuItem);
     const subMenu = liElement?.querySelector(desktopMenu.subMenu) as HTMLElement;
+
     if (!subMenu) return;
 
     // Mouse events
-    liElement?.addEventListener('mouseenter', () => 
-      this.subMenuManager.showSubMenu(dropdownButton, subMenu)
-    );
-    liElement?.addEventListener('mouseleave', () => 
-      this.subMenuManager.hideSubMenu(dropdownButton, subMenu)
-    );
+    liElement?.addEventListener('mouseenter', () => this.subMenuManager.showSubMenu(dropdownButton, subMenu));
+    liElement?.addEventListener('mouseleave', () => this.subMenuManager.hideSubMenu(dropdownButton, subMenu));
 
     // Keyboard navigation
-    dropdownButton.addEventListener('keydown', 
-      this.eventHandlers.handleDropdownButtonKeydown(dropdownButton, subMenu, mainIndex)
+    dropdownButton.addEventListener('keydown',
+      this.eventHandlers.handleDropdownButtonKeydown(dropdownButton, subMenu),
     );
   }
 
@@ -464,10 +492,11 @@ class MenuComponentSetup {
   setupSubMenuNavigation(): void {
     const leftLinks = MenuElementQueries.getSubMenuLeftItems();
     const rightTabs = MenuElementQueries.getSubMenuRightTabs();
-    
+
     leftLinks.forEach((item) => {
       item.addEventListener('mouseenter', () => {
         const subMenu = item.closest(desktopMenu.subMenu) as HTMLElement;
+
         if (subMenu) {
           this.subMenuManager.switchSubMenuTab(item, subMenu);
         }
@@ -479,6 +508,7 @@ class MenuComponentSetup {
       // Focus management
       item.addEventListener('focus', () => {
         const subMenu = item.closest(desktopMenu.subMenu) as HTMLElement;
+
         if (subMenu) {
           this.subMenuManager.switchSubMenuTab(item, subMenu);
         }
@@ -509,21 +539,17 @@ const initDesktopMenu = (): void => {
     mainMenuItems: MenuElementQueries.getMainMenuItems(),
     dropdownButtons: MenuElementQueries.getDropdownButtons(),
     allMainMenuElements: MenuElementQueries.createMainMenuElementsArray(
-      MenuElementQueries.getMainMenuItems()
+      MenuElementQueries.getMainMenuItems(),
     ),
   };
-  
-  const subMenuManager = new SubMenuManager(stateManager, elements.allMainMenuElements);
+
+  const subMenuManager = new SubMenuManager(stateManager);
   const eventHandlers = new EventHandlers(stateManager, subMenuManager, elements.allMainMenuElements);
-  const componentSetup = new MenuComponentSetup(stateManager, subMenuManager, eventHandlers);
+  const componentSetup = new MenuComponentSetup(subMenuManager, eventHandlers);
 
   // Setup menu features
-  elements.dropdownButtons.forEach((button, index) => 
-    componentSetup.setupDropdownButton(button, index)
-  );
-  elements.mainMenuItems.forEach(link => 
-    componentSetup.setupMainMenuLink(link)
-  );
+  elements.dropdownButtons.forEach((button) => componentSetup.setupDropdownButton(button));
+  elements.mainMenuItems.forEach((link) => componentSetup.setupMainMenuLink(link));
   componentSetup.setupSubMenuNavigation();
   componentSetup.setupGlobalEventListeners();
 };

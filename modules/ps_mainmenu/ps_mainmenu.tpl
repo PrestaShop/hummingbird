@@ -4,42 +4,36 @@
    FUNCTION: categoryInfos
    Displays infos for a category node
    ================================================= *}
-{function name="categoryInfos" node=[]}
+{function name="categoryInfos" node=[] seed=1}
   <div class="ps-mainmenu__category-infos" data-type="{$node.type|default:''}" data-depth="{$node.depth|default:''}">
-    <h4 class="ps-mainmenu__category-infos__title">
-      {$node.label|default:'(no label)'}
-      {if $node.current|default:false}
-        <span class="ps-mainmenu__category-infos__current">(active)</span>
-      {/if}
-    </h4>
-
+    <a class="ps-mainmenu__category-infos__link" href="{$node.url}" aria-label="go to {$node.label} page">
+      <div class="ps-mainmenu__category-infos__header">
+        <img class="ps-mainmenu__category-infos__thumbnail" src="https://picsum.photos/60?random={$seed}" alt="category thumbnail">
+        <h4 class="ps-mainmenu__category-infos__title">
+          {$node.label}
+          <span class="material-icons ps-mainmenu__category-infos__link-icon">&#xe157;</span>
+        </h4>
+      </div>
+    </a>
+    <hr>
     <ul class="ps-mainmenu__category-infos__details">
       {foreach from=$node key=key item=value}
         {if is_array($value)}
-          <li>
+          {* <li>
             <strong>{$key}</strong> :
-            {if $value|@count == 0}
-              <em>empty</em>
-            {elseif $key == 'image_urls'}
-              <ul>
-                {foreach from=$value item=imageUrl}
-                  <li><img src="{$imageUrl}" alt="Image of {$node.label}" width="80" /></li>
-                {/foreach}
-              </ul>
-            {elseif $key == 'children'}
-              <ul class="ps-mainmenu__category-infos__children">
-                {foreach from=$value item=child}
-                  <li>{call name=categoryInfos node=$child}</li>
-                {/foreach}
-              </ul>
-            {else}
-              <pre><code>{$value|@json_encode:JSON_PRETTY_PRINT}</code></pre>
-            {/if}
-          </li>
-        {else if $key == 'url'}
-          <li><strong>{$key}</strong> : <a href="{$value}">{$value}</a></li>
+            <pre style="max-width: 300px; max-height: 100px; overflow:auto"><code class="text-danger">{$value|var_dump}</code></pre>
+          </li> *}
         {else}
-          <li><strong>{$key}</strong> : {$value}</li>
+        <li>
+          <strong>{$key}</strong> :
+          {if $value === false}
+            false
+          {else if $value === true}
+            true
+          {else}
+            {$value}
+          {/if}
+        </li>
         {/if}
       {/foreach}
     </ul>
@@ -54,7 +48,7 @@
 {function name="desktopSubMenu" nodes=[] parent=null depth=1}
   {if $nodes|count}
     <div
-      class="submenu submenu__level-container level-{$depth} {if $depth === 1 }d-none{/if}"
+      class="submenu level-{$depth} {if $depth === 1 }d-none{/if}"
       id="submenu-{$parent.page_identifier}"
       aria-labelledby="submenu-button-{$parent.page_identifier}"
       role="group"
@@ -67,6 +61,7 @@
         role="tablist"
         aria-orientation="vertical"
       >
+        {call name=categoryInfos node=$parent}
         {foreach from=$nodes item=node name=tabs}
           <button
             class="nav-link {if $smarty.foreach.tabs.first}active{/if}"
@@ -79,6 +74,7 @@
             aria-selected="{if $smarty.foreach.tabs.first}true{else}false{/if}"
           >
             {$node.label}
+            <span class="material-icons">&#xe5cc;</span>
           </button>
         {/foreach}
       </div>
@@ -87,15 +83,13 @@
       <div class="tab-content" id="v-pills-{$parent.page_identifier}-content">
         {foreach from=$nodes item=node name=subcontent}
           <div
-            class="tab-pane{if $smarty.foreach.subcontent.first} show active{/if}"
+            class="tab-pane fade{if $smarty.foreach.subcontent.first} show active{/if}"
             id="v-pills-{$node.page_identifier}"
             role="tabpanel"
             aria-labelledby="v-pills-{$node.page_identifier}-tab"
             tabindex="0"
           >
-
             {if $node.children|count}
-
               {* SUBLEVEL: recursive tabbed submenu *}
               <div
                 class="nav flex-column nav-pills"
@@ -103,7 +97,10 @@
                 role="tablist"
                 aria-orientation="vertical"
               >
-                {foreach from=$node.children item=subnode name=subtabs}
+              {foreach from=$node.children item=subnode name=subtabs}
+                  {if $node.children[0] &&  $node.children[0] === $subnode}
+                    {call name=categoryInfos node=$node seed=2}
+                  {/if}
                   <button
                     class="nav-link {if $smarty.foreach.subtabs.first}active{/if}"
                     id="v-pills-{$subnode.page_identifier}-tab"
@@ -115,6 +112,7 @@
                     aria-selected="{if $smarty.foreach.subtabs.first}true{else}false{/if}"
                   >
                     {$subnode.label}
+                    <span class="material-icons">&#xe5cc;</span>
                   </button>
                 {/foreach}
               </div>
@@ -122,7 +120,7 @@
               <div class="tab-content" id="v-pills-{$node.page_identifier}-sub-content">
                 {foreach from=$node.children item=subnode name=subcontent2}
                   <div
-                    class="tab-pane {if $smarty.foreach.subcontent2.first}show active{/if}"
+                    class="tab-pane fade {if $smarty.foreach.subcontent2.first}show active{/if}"
                     id="v-pills-{$subnode.page_identifier}"
                     role="tabpanel"
                     aria-labelledby="v-pills-{$subnode.page_identifier}-tab"
@@ -130,14 +128,14 @@
                     {if $subnode.children|count}
                       {desktopSubMenu nodes=$subnode.children parent=$subnode depth=$depth+1}
                     {else}
-                      {call name=categoryInfos node=$subnode}
+                      {call name=categoryInfos node=$subnode seed=$smarty.foreach.subcontent2.index+3}
                     {/if}
                   </div>
                 {/foreach}
               </div>
 
             {else}
-              {call name=categoryInfos node=$node}
+              {call name=categoryInfos node=$node seed=4}
             {/if}
 
           </div>
@@ -190,11 +188,13 @@
     </ul>
 
     {* Recursive rendering of submenus *}
+    <div class="submenu__level-container">
     {foreach from=$itemsFirstLevel item=menuItem}
       {if $menuItem.children|count}
         {desktopSubMenu nodes=$menuItem.children parent=$menuItem depth=1}
       {/if}
     {/foreach}
+    </div>
   {/if}
 {/function}
 

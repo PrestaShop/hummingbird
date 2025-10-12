@@ -48,7 +48,7 @@
 {function name="desktopSubMenu" nodes=[] parent=null depth=1}
   {if $nodes|count}
     <div
-      class="submenu level-{$depth} {if $depth === 1 }d-none{/if}"
+      class="submenu level-{$depth} {if $depth === 1}d-none{/if}"
       id="submenu-{$parent.page_identifier}"
       aria-labelledby="submenu-button-{$parent.page_identifier}"
       role="group"
@@ -57,20 +57,21 @@
       {* LEFT COLUMN: vertical nav-pills *}
       <div
         class="nav flex-column nav-pills"
-        id="v-pills-{$parent.page_identifier}-tab"
+        id="nav-pills-{$parent.page_identifier}-tab"
         role="tablist"
         aria-orientation="vertical"
       >
-        {call name=categoryInfos node=$parent}
+        {call name=categoryInfos node=$parent seed=$depth}
+
         {foreach from=$nodes item=node name=tabs}
           <button
             class="nav-link {if $smarty.foreach.tabs.first}active{/if}"
-            id="v-pills-{$node.page_identifier}-tab"
+            id="nav-pills-{$node.page_identifier}-tab"
             data-bs-toggle="pill"
-            data-bs-target="#v-pills-{$node.page_identifier}"
+            data-bs-target="#nav-pills-{$node.page_identifier}"
             type="button"
             role="tab"
-            aria-controls="v-pills-{$node.page_identifier}"
+            aria-controls="nav-pills-{$node.page_identifier}"
             aria-selected="{if $smarty.foreach.tabs.first}true{else}false{/if}"
           >
             {$node.label}
@@ -80,71 +81,27 @@
       </div>
 
       {* RIGHT COLUMN: tab content for each pill *}
-      <div class="tab-content" id="v-pills-{$parent.page_identifier}-content">
+      <div class="tab-content" id="nav-pills-{$parent.page_identifier}-content">
         {foreach from=$nodes item=node name=subcontent}
           <div
             class="tab-pane fade{if $smarty.foreach.subcontent.first} show active{/if}"
-            id="v-pills-{$node.page_identifier}"
+            id="nav-pills-{$node.page_identifier}"
             role="tabpanel"
-            aria-labelledby="v-pills-{$node.page_identifier}-tab"
+            aria-labelledby="nav-pills-{$node.page_identifier}-tab"
             tabindex="0"
           >
             {if $node.children|count}
               {* SUBLEVEL: recursive tabbed submenu *}
-              <div
-                class="nav flex-column nav-pills"
-                id="v-pills-{$node.page_identifier}-sub-tab"
-                role="tablist"
-                aria-orientation="vertical"
-              >
-              {foreach from=$node.children item=subnode name=subtabs}
-                  {if $node.children[0] &&  $node.children[0] === $subnode}
-                    {call name=categoryInfos node=$node seed=2}
-                  {/if}
-                  <button
-                    class="nav-link {if $smarty.foreach.subtabs.first}active{/if}"
-                    id="v-pills-{$subnode.page_identifier}-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#v-pills-{$subnode.page_identifier}"
-                    type="button"
-                    role="tab"
-                    aria-controls="v-pills-{$subnode.page_identifier}"
-                    aria-selected="{if $smarty.foreach.subtabs.first}true{else}false{/if}"
-                  >
-                    {$subnode.label}
-                    <span class="material-icons">&#xe5cc;</span>
-                  </button>
-                {/foreach}
-              </div>
-
-              <div class="tab-content" id="v-pills-{$node.page_identifier}-sub-content">
-                {foreach from=$node.children item=subnode name=subcontent2}
-                  <div
-                    class="tab-pane fade {if $smarty.foreach.subcontent2.first}show active{/if}"
-                    id="v-pills-{$subnode.page_identifier}"
-                    role="tabpanel"
-                    aria-labelledby="v-pills-{$subnode.page_identifier}-tab"
-                  >
-                    {if $subnode.children|count}
-                      {desktopSubMenu nodes=$subnode.children parent=$subnode depth=$depth+1}
-                    {else}
-                      {call name=categoryInfos node=$subnode seed=$smarty.foreach.subcontent2.index+3}
-                    {/if}
-                  </div>
-                {/foreach}
-              </div>
-
+              {call name=desktopSubMenu nodes=$node.children parent=$node depth=$depth+1}
             {else}
-              {call name=categoryInfos node=$node seed=4}
+              {call name=categoryInfos node=$node seed=$depth + $smarty.foreach.subcontent.index + 1}
             {/if}
-
           </div>
         {/foreach}
       </div>
     </div>
   {/if}
 {/function}
-
 
 {* ===================================================
    FUNCTION: desktopFirstLevel

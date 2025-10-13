@@ -32,7 +32,7 @@
 {function name="desktopSubMenu" nodes=[] depth=0 parent=null}
   {if $nodes|count}
     {if $depth === 1}
-      <div class="js-sub-menu submenu" role="menu" aria-label="{l s='%s submenu' sprintf=[$parent.label] d='Shop.Theme.Menu'}" id="submenu-{$parent.page_identifier}" aria-hidden="true" data-ps-ref="desktop-submenu">
+      <div class="js-sub-menu submenu" role="menu" aria-label="{l s='%s submenu' sprintf=[$parent.label] d='Shop.Theme.Menu'}" id="submenu-{$parent.page_identifier}" data-ps-ref="desktop-submenu">
         <div class="container">
           <div class="submenu__row row gx-5">
     {/if}
@@ -98,15 +98,14 @@
 {* GENERATE DESKTOP FIRST LEVEL *}
 {function name="desktopFirstLevel" itemsFirstLevel=[]}
   {if $itemsFirstLevel|count}
-    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0" role="menubar" aria-label="{l s='Main navigation' d='Shop.Theme.Menu'}" data-ps-ref="desktop-menu-tree">
+    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0" data-ps-ref="desktop-menu-tree">
       {foreach from=$itemsFirstLevel item=menuItem}
-        <li class="ps-mainmenu__tree-item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}" role="none" data-ps-ref="desktop-menu-item">
+        <li class="ps-mainmenu__tree-item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}" data-ps-ref="desktop-menu-item">
           <div class="ps-mainmenu__tree-item-wrapper">
             <a
               class="ps-mainmenu__tree-link"
               href="{$menuItem.url}"
               data-depth="0"
-              role="menuitem"
               data-ps-ref="desktop-menu-link"
               {if $menuItem.current}aria-current="page"{/if}
               {if $menuItem.open_in_new_window}target="_blank" rel="noopener noreferrer"{/if}

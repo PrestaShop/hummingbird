@@ -1,7 +1,7 @@
 {
-  "name": "prestashop-hummingbird-dev-tools",
-  "version": "0.1.7",
-  "description": "Tools to help while developing the Hummingbird theme",
+  "name": "hummingbird",
+  "version": "2.0.0",
+  "description": "Hummingbird development theme for PrestaShop",
   "engines": {
     "node": ">= 20"
   },

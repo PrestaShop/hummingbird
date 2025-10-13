@@ -5,12 +5,12 @@ jobs:
     name: TypeScript type check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Build and check types
-        run: touch ./webpack/.env && npm ci && npm run build
+        run: npm ci && npm run build

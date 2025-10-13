@@ -199,17 +199,15 @@
 
   {* MOBILE MENU *}
   <div class="ps-mainmenu__mobile-toggle">
-    <a
+    <button
       class="menu-toggle btn btn-link"
-      href="#"
-      role="button"
       data-bs-toggle="offcanvas"
       data-bs-target="#mobileMenu"
       aria-controls="mobileMenu"
       aria-label="{l s='Open mobile menu' d='Shop.Theme.Menu'}"
     >
       <span class="material-icons" aria-hidden="true">&#xE5D2;</span>
-    </a>
+    </button>
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 name: hummingbird
 display_name: Hummingbird
-version: 1.0.1
+version: 2.0.0
 author:
   name: "PrestaShop Team and Contributors"
   email: "pub@prestashop.com"
@@ -8,9 +8,9 @@ author:
 
 meta:
   compatibility:
-      from: 8.1.0
-      to: ~
-      framework: 'bootstrap-v5.3.3'
+    from: 9.0.0
+    to: ~
+    framework: bootstrap-v5.3.3
 
   available_layouts:
     layout-full-width:
@@ -26,28 +26,6 @@ meta:
       name: Two Columns, small right column
       description: Two columns with a small right column
 
-assets:
-  # If you're using this theme as child and you want to load
-  # the parent theme assets, uncomment this line.
-#  use_parent_assets: true
-
-  # The following lines are showing how to load assets in your page
-  # Uncomment and change value to start loading css or js files
-#  css:
-#    all:
-#      - id: custom-lib-style
-#        path: assets/css/custom-lib.css
-#    product:
-#      - id: product-style
-#        path: assets/css/product.css
-#        media: all
-#        priority: 200
-#  js:
-#    cart:
-#      - id: cat-extra-lib
-#        path: assets/js/cart-lib.js
-
-
 global_settings:
   configuration:
     PS_IMAGE_QUALITY: png
@@ -55,20 +33,17 @@ global_settings:
     NEW_PRODUCTS_NBR: 4
     BLOCKSPECIALS_SPECIALS_NBR: 4
     PS_BLOCK_BESTSELLERS_TO_DISPLAY: 4
-    PSR_ICON_COLOR: "#0d6efd"
+    PSR_ICON_COLOR: "#0b69f6"
     PSR_TEXT_COLOR: "#212529"
   modules:
-   to_enable:
-     - ps_linklist
+    to_enable:
+      - ps_linklist
+    to_disable:
+      - blockwishlist
   hooks:
     modules_to_hook:
-      displayAdminCustomers:
-        - blockwishlist
       displayCustomerAccount:
-        - blockwishlist
         - psgdpr
-      displayMyAccountBlock:
-        - blockwishlist
       displayNav1:
         - ps_contactinfo
       displayNav2:
@@ -93,7 +68,6 @@ global_settings:
         - ps_linklist
         - ps_customeraccountlinks
         - ps_contactinfo
-        - blockwishlist
       displayFooterProduct:
         - productcomments
       displayLeftColumn:
@@ -116,8 +90,6 @@ global_settings:
         - ps_featuredproducts
       displayCrossSellingShoppingCart:
         - ps_featuredproducts
-      displayProductActions:
-        - blockwishlist
 
   image_types:
     cart_default:
@@ -184,7 +156,6 @@ global_settings:
       width: 2000
       height: 400
       scope: [categories]
-
 
 theme_settings:
   rtl_generation: false

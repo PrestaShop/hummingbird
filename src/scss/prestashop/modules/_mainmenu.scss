@@ -104,19 +104,11 @@ $component-name: ps-mainmenu;
             }
 
             &[aria-expanded="true"]::after {
-              transform: rotate(-180deg);
+              transform: rotate(-0.5turn);
             }
           }
 
-          &:hover {
-            .submenu,
-            .menu-container {
-              display: block;
-            }
-          }
-
-          .submenu,
-          .menu-container {
+          .submenu {
             position: absolute;
             top: 100%;
             right: 0;
@@ -125,35 +117,6 @@ $component-name: ps-mainmenu;
             display: none;
             background-color: var(--bs-body-bg);
             border-top: 0.0625rem solid var(--bs-border-color);
-
-            &.focusing,
-            &:focus-within {
-              display: block;
-            }
-
-            a {
-              &[data-depth="1"],
-              &[data-depth="2"] {
-                overflow-wrap: break-word;
-                white-space: normal;
-              }
-
-              &[data-depth="1"] {
-                font-weight: 600;
-                color: var(--bs-body-color);
-
-                &:hover {
-                  &,
-                  i {
-                    color: var(--bs-link-color);
-                  }
-                }
-
-                &::after {
-                  display: none;
-                }
-              }
-            }
           }
         }
       }
@@ -174,7 +137,7 @@ $component-name: ps-mainmenu;
         padding-block: 1.5rem;
         border-right: 0.0625rem solid var(--bs-border-color);
 
-        .submenu__left-item {
+        &-item {
           display: flex;
           align-items: center;
           padding: 0.75rem 1rem;

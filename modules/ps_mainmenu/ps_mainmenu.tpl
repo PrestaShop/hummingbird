@@ -98,14 +98,14 @@
 {* GENERATE DESKTOP FIRST LEVEL *}
 {function name="desktopFirstLevel" itemsFirstLevel=[]}
   {if $itemsFirstLevel|count}
-    <ul class="ps-mainmenu__tree" id="top-menu" data-depth="0" data-ps-ref="desktop-menu-tree">
+    <ul class="ps-mainmenu__tree" id="top-menu" data-ps-ref="desktop-menu-tree">
       {foreach from=$itemsFirstLevel item=menuItem}
         <li class="ps-mainmenu__tree-item type-{$menuItem.type} {if $menuItem.current} current{/if}" data-id="{$menuItem.page_identifier}" data-ps-ref="desktop-menu-item">
           <div class="ps-mainmenu__tree-item-wrapper">
             <a
               class="ps-mainmenu__tree-link"
               href="{$menuItem.url}"
-              data-depth="0"
+              data-depth="1"
               data-ps-ref="desktop-menu-link"
               {if $menuItem.current}aria-current="page"{/if}
               {if $menuItem.open_in_new_window}target="_blank" rel="noopener noreferrer"{/if}

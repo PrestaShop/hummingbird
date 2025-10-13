@@ -105,7 +105,6 @@ class MenuElementQueries {
 // Accessibility utilities
 class AccessibilityManager {
   static setSubMenuVisibility(subMenu: HTMLElement, isVisible: boolean): void {
-    subMenu.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
     subMenu.style.display = isVisible ? 'block' : 'none';
   }
 
@@ -120,7 +119,6 @@ class AccessibilityManager {
   }
 
   static setTabPanelVisibility(panel: HTMLElement, isVisible: boolean): void {
-    panel.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
     panel.classList.toggle('active', isVisible);
     panel.classList.toggle('not-active', !isVisible);
   }
@@ -325,9 +323,21 @@ class EventHandlers {
         break;
 
       case 'ArrowRight':
-      case 'ArrowDown':
         event.preventDefault();
         NavigationManager.navigateMainMenu(dropdownButton, 'next', this.allMainMenuElements);
+        break;
+
+      case 'ArrowDown':
+        event.preventDefault();
+        // If submenu is open, navigate to first submenu item
+        if (this.stateManager.isSubMenuOpen && this.stateManager.currentSubMenu === subMenu) {
+          const firstSubMenuItem = subMenu.querySelector(desktopMenu.subMenuLeftItem) as HTMLElement;
+          if (firstSubMenuItem) {
+            firstSubMenuItem.focus();
+          }
+        } else {
+          NavigationManager.navigateMainMenu(dropdownButton, 'next', this.allMainMenuElements);
+        }
         break;
 
       case 'ArrowLeft':

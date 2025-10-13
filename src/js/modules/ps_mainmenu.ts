@@ -332,6 +332,7 @@ class EventHandlers {
         // If submenu is open, navigate to first submenu item
         if (this.stateManager.isSubMenuOpen && this.stateManager.currentSubMenu === subMenu) {
           const firstSubMenuItem = subMenu.querySelector(desktopMenu.subMenuLeftItem) as HTMLElement;
+
           if (firstSubMenuItem) {
             firstSubMenuItem.focus();
           }

@@ -200,6 +200,7 @@ const selectorsMap = {
     productImagesModalCarousel: '[data-ps-ref="product-images-modal-carousel"]',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
     productAvailability: '[data-ps-ref="product-availability"]',
+    rightSection: '[data-ps-ref="product-right"]',
   },
   order: {
     returnForm: '.js-order-return-form',

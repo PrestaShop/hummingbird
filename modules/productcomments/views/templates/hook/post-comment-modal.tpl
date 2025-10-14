@@ -9,11 +9,11 @@
   var ratingChosen = false;
 </script>
 
-<div id="post-product-comment-modal" class="modal fade product-comment-modal" role="dialog" aria-hidden="true">
+<div id="post-product-comment-modal" class="modal fade product-comment-modal" tabindex="-1" aria-labelledby="product-post-review-modal-title" aria-hidden="true" data-ps-ref="product-post-review-modal">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-    <form class="modal-content" id="post-product-comment-form" action="{$post_comment_url nofilter}" method="POST">
+    <form class="modal-content" id="post-product-comment-form" action="{$post_comment_url nofilter}" method="POST" data-ps-ref="product-post-review-form" data-ps-action="form-validation">
       <div class="modal-header">
-        <p class="h2 modal-title">{l s='Write your review' d='Modules.Productcomments.Shop'}</p>
+        <p class="h2 modal-title" id="product-post-review-modal-title">{l s='Write your review' d='Modules.Productcomments.Shop'}</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -84,18 +84,22 @@
 
           <div class="col-12">
             {if $criterions|@count > 0}
-              <ul id="criterions_list">
+              <ul id="criterions_list" data-ps-ref="criterions-list">
                 {foreach from=$criterions item='criterion'}
                   <li class="mb-2">
                     <div class="criterion-rating">
-                      <label class="form-label">{$criterion.name|escape:'html':'UTF-8'}<sup class="required text-danger">*</sup></label>
-                      <div class="grade-stars" data-grade="3"
+                      <label class="form-label required">{$criterion.name|escape:'html':'UTF-8'} </label>
+                      <div class="grade-stars" data-ps-ref="grade-stars" data-grade="3"
                         data-input="criterion[{$criterion.id_product_comment_criterion}]">
                       </div>
                     </div>
                   </li>
                 {/foreach}
               </ul>
+
+              <div class="alert alert-danger d-none" data-ps-ref="no-rating-info">
+                {l s='Please choose a rating for your review.' d='Modules.Productcomments.Shop'}
+              </div>
             {/if}
           </div>
         </div>
@@ -103,28 +107,25 @@
         <div class="row">
           {if !$logged}
             <div class="col-sm-8 mb-3">
-              <label class="form-label" for="comment_title">{l s='Title' d='Modules.Productcomments.Shop'}<sup
-                  class="required text-danger">*</sup></label>
-              <input class="form-control" name="comment_title" type="text" value="" />
+              <label class="form-label required" for="comment_title">{l s='Title' d='Modules.Productcomments.Shop'} </label>
+              <input class="form-control" name="comment_title" id="comment_title" type="text" value="" required>
             </div>
+
             <div class="col-sm-4 mb-3">
-              <label class="form-label" for="customer_name">{l s='Your name' d='Modules.Productcomments.Shop'}<sup
-                  class="required text-danger">*</sup></label>
-              <input class="form-control" name="customer_name" type="text" value="" />
+              <label class="form-label required" for="customer_name">{l s='Your name' d='Modules.Productcomments.Shop'} </label>
+              <input class="form-control" name="customer_name" id="customer_name" type="text" value="" required>
             </div>
           {else}
             <div class="mb-3">
-              <label class="form-label" for="comment_title">{l s='Title' d='Modules.Productcomments.Shop'}<sup
-                  class="required text-danger">*</sup></label>
-              <input class="form-control" name="comment_title" type="text" value="" />
+              <label class="form-label required" for="comment_title">{l s='Title' d='Modules.Productcomments.Shop'} </label>
+              <input class="form-control" name="comment_title" id="comment_title" type="text" value="" required>
             </div>
           {/if}
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="comment_content">{l s='Review' d='Modules.Productcomments.Shop'}<sup
-              class="required text-danger">*</sup></label>
-          <textarea class="form-control" name="comment_content"></textarea>
+          <label class="form-label required" for="comment_content">{l s='Review' d='Modules.Productcomments.Shop'} </label>
+          <textarea class="form-control" name="comment_content" id="comment_content" required></textarea>
         </div>
 
         {capture name='gdprContent'}{hook h='displayGDPRConsent' mod='psgdpr' id_module=$id_module}{/capture}
@@ -146,7 +147,7 @@
             {l s='Cancel' d='Modules.Productcomments.Shop'}
           </button>
 
-          <button type="submit" class="btn btn-primary w-100 w-md-auto order-first order-md-last">
+          <button type="submit" class="btn btn-primary w-100 w-md-auto order-first order-md-last" data-ps-action="form-validation-submit">
             {l s='Send' d='Modules.Productcomments.Shop'}
           </button>
         </div>
@@ -163,14 +164,14 @@
 {/if}
 
 {include file='module:productcomments/views/templates/hook/alert-modal.tpl'
-  modal_id='product-comment-posted-modal'
+  modal_id='product-post-review-posted-modal'
   modal_title={l s='Review sent' d='Modules.Productcomments.Shop'}
   modal_message=$comment_posted_message
 }
 
 {* Comment post error modal *}
 {include file='module:productcomments/views/templates/hook/alert-modal.tpl'
-  modal_id='product-comment-post-error'
+  modal_id='product-post-review-error-modal'
   modal_title={l s='Your review cannot be sent' d='Modules.Productcomments.Shop'}
   icon='error'
 }

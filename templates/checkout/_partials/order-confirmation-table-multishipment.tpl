@@ -7,7 +7,10 @@
 <div class="{$componentName}__table{block name='order-confirmation-classes'}{/block}">
   <div class="{$componentName}__items">
   {foreach from=$selected_carriers item=carrier key=carrierId}
-
+      <div class="carrier-info">
+        <span><b>Delivery option</b>: {$carrier.name}</span>
+        <p>{$carrier.delay}</p>
+      </div>
     {foreach from=$products item=product}
       {if in_array($carrierId, $product.carriers)}
     <div class="item row gx-3">

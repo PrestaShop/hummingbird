@@ -55,33 +55,35 @@
     >
 
       {* LEFT COLUMN: vertical nav-pills *}
-      <div
-        class="nav flex-column nav-pills"
-        id="nav-pills-{$parent.page_identifier}-tab"
-        role="tablist"
-        aria-orientation="vertical"
-      >
-        {call name=categoryInfos node=$parent seed=$depth}
+      {if $nodes[0] != $parent}
+        <div
+          class="nav flex-column nav-pills"
+          id="nav-pills-{$parent.page_identifier}-tab"
+          role="tablist"
+          aria-orientation="vertical"
+        >
+          {call name=categoryInfos node=$parent seed=$depth}
 
-        {foreach from=$nodes item=node name=tabs}
-          <button
-            class="nav-link {if $smarty.foreach.tabs.first}active{/if}"
-            id="nav-pills-{$node.page_identifier}-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#nav-pills-{$node.page_identifier}"
-            type="button"
-            role="tab"
-            aria-controls="nav-pills-{$node.page_identifier}"
-            aria-selected="{if $smarty.foreach.tabs.first}true{else}false{/if}"
-          >
-            {$node.label}
-            <span class="material-icons">&#xe5cc;</span>
-          </button>
-        {/foreach}
-      </div>
+          {foreach from=$nodes item=node name=tabs}
+            <button
+              class="nav-link {if $smarty.foreach.tabs.first}active{/if}"
+              id="nav-pills-{$node.page_identifier}-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#nav-pills-{$node.page_identifier}"
+              type="button"
+              role="tab"
+              aria-controls="nav-pills-{$node.page_identifier}"
+              aria-selected="{if $smarty.foreach.tabs.first}true{else}false{/if}"
+            >
+              {$node.label}
+              <span class="material-icons">&#xe5cc;</span>
+            </button>
+          {/foreach}
+        </div>
+      {/if}
 
       {* RIGHT COLUMN: tab content for each pill *}
-      <div class="tab-content" id="nav-pills-{$parent.page_identifier}-content">
+      <div class="tab-content {if $nodes[0] == $parent}parent{/if}" id="nav-pills-{$parent.page_identifier}-content">
         {foreach from=$nodes item=node name=subcontent}
           <div
             class="tab-pane fade{if $smarty.foreach.subcontent.first} show active{/if}"
@@ -127,19 +129,17 @@
             {$menuItem.label}
           </a>
 
-          {if $menuItem.children|count}
-            <button
-              class="btn btn-link ps-mainmenu__toggle-dropdown"
-              id="submenu-button-{$menuItem.page_identifier}"
-              type="button"
-              aria-label="{l s='Toggle submenu for %label%' sprintf=['%label%' => $menuItem.label] d='Shop.Theme.Global'}"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              aria-controls="submenu-{$menuItem.page_identifier}"
-            >
-              <span class="material-icons ps-mainmenu_dropdown">&#xE5CF;</span>
-            </button>
-          {/if}
+          <button
+            class="btn btn-link ps-mainmenu__toggle-dropdown"
+            id="submenu-button-{$menuItem.page_identifier}"
+            type="button"
+            aria-label="{l s='Toggle submenu for %label%' sprintf=['%label%' => $menuItem.label] d='Shop.Theme.Global'}"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="submenu-{$menuItem.page_identifier}"
+          >
+            <span class="material-icons ps-mainmenu_dropdown">&#xE5CF;</span>
+          </button>
         </li>
       {/foreach}
     </ul>
@@ -149,6 +149,8 @@
     {foreach from=$itemsFirstLevel item=menuItem}
       {if $menuItem.children|count}
         {desktopSubMenu nodes=$menuItem.children parent=$menuItem depth=1}
+      {else}
+        {desktopSubMenu nodes=[$menuItem] parent=$menuItem  depth=1}
       {/if}
     {/foreach}
     </div>

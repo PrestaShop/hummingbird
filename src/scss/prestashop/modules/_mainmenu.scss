@@ -175,6 +175,10 @@ $component-name: ps-mainmenu;
       border-left: 1px solid var(--bs-border-color);
     }
 
+    .tab-content.parent {
+      border-left: none;
+    }
+
     .ps-mainmenu__category-infos {
       display: flex;
       flex-direction: column;

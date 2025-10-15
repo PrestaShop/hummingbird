@@ -82,7 +82,7 @@
     </div>
   </div>
 
-  {if !$cart.is_virtual}
+  {if !$cart.is_virtual && !multishipment_is_enabled}
     <p class="final-summary__header">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
 
@@ -133,14 +133,26 @@
 
     <div class="final-summary__order-table card border-1 mb-4">
       <div class="card-body">
-        {include file='checkout/_partials/order-final-summary-table.tpl'
-          products=$cart.products
-          products_count=$cart.products_count
-          subtotals=$cart.subtotals
-          totals=$cart.totals
-          labels=$cart.labels
-          add_product_link=true
-        }
+        {if $multishipment_is_enabled}
+          {include file='checkout/_partials/order-final-summary-table-multishipment.tpl'
+            products=$cart.products
+            products_count=$cart.products_count
+            selected_carriers=$selected_carriers
+            subtotals=$cart.subtotals
+            totals=$cart.totals
+            labels=$cart.labels
+            add_product_link=true
+          }
+        {else}
+          {include file='checkout/_partials/order-final-summary-table.tpl'
+            products=$cart.products
+            products_count=$cart.products_count
+            subtotals=$cart.subtotals
+            totals=$cart.totals
+            labels=$cart.labels
+            add_product_link=true
+          }
+        {/if}
       </div>
     </div>
   {/block}

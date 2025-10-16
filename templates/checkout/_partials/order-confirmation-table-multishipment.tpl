@@ -6,33 +6,30 @@
 
 <div class="{$componentName}__table{block name='order-confirmation-classes'}{/block}">
   <div class="{$componentName}__items">
-  {foreach from=$selected_carriers item=carrier key=carrierId}
-      <div class="carrier-info">
-        <span><b>Delivery option</b>: {$carrier.name}</span>
-        <p>{$carrier.delay}</p>
-      </div>
     {foreach from=$products item=product}
-      {if in_array($carrierId, $product.carriers)}
+      <div class="carrier-info">
+        <span><b>Delivery option</b>: {$product.carrier.name}</span>
+        <p>{$product.carrier.delay}</p>
+      </div>
+    {foreach from=$product['products'] item=productDetail}
     <div class="item row gx-3">
-      <span><b>Delivery option</b>: {$carrier.name}</span>
-        <p>{$carrier.delay}</p>
       <div class="item__image col-lg-1 col-md-2 col-sm-2 col-3 mb-2 mb-md-0">
-          {if !empty($product.default_image)}
+          {if !empty($productDetail.default_image)}
             <picture>
-              {if isset($product.default_image.bySize.default_xs.sources.avif)}
+              {if isset($productDetail.default_image.bySize.default_xs.sources.avif)}
                 <source
                   srcset="
-                    {$product.default_image.bySize.default_xs.sources.avif},
-                    {$product.default_image.bySize.default_m.sources.avif} 2x"
+                    {$productDetail.default_image.bySize.default_xs.sources.avif},
+                    {$productDetail.default_image.bySize.default_m.sources.avif} 2x"
                   type="image/avif"
                 >
               {/if}
 
-              {if isset($product.default_image.bySize.default_xs.sources.webp)}
+              {if isset($productDetail.default_image.bySize.default_xs.sources.webp)}
                 <source
                   srcset="
-                    {$product.default_image.bySize.default_xs.sources.webp},
-                    {$product.default_image.bySize.default_m.sources.webp} 2x"
+                    {$productDetail.default_image.bySize.default_xs.sources.webp},
+                    {$productDetail.default_image.bySize.default_m.sources.webp} 2x"
                   type="image/webp"
                 >
               {/if}
@@ -40,13 +37,13 @@
               <img
                 class="img-fluid"
                 srcset="
-                  {$product.default_image.bySize.default_xs.url},
-                  {$product.default_image.bySize.default_m.url} 2x"
+                  {$productDetail.default_image.bySize.default_xs.url},
+                  {$productDetail.default_image.bySize.default_m.url} 2x"
                 loading="lazy"
-                width="{$product.default_image.bySize.default_xs.width}"
-                height="{$product.default_image.bySize.default_xs.height}"
-                alt="{$product.default_image.legend}"
-                title="{$product.default_image.legend}"
+                width="{$productDetail.default_image.bySize.default_xs.width}"
+                height="{$productDetail.default_image.bySize.default_xs.height}"
+                alt="{$productDetail.default_image.legend}"
+                title="{$productDetail.default_image.legend}"
               >
             </picture>
           {else}
@@ -83,28 +80,27 @@
       </div>
 
       <div class="item__details col-lg-9 col-md-8 col-sm-10 col-7">
-        {if $add_product_link}<a href="{$product.url}" target="_blank">{/if}
-          <p class="item__title">{$product.name}</p>
+        {if $add_product_link}<a href="{$productDetail.url}" target="_blank">{/if}
+          <p class="item__title">{$productDetail.name}</p>
         {if $add_product_link}</a>{/if}
 
-        {if !empty($product.reference)}
-          {foreach from=$product.attributes key=key item=value}
+        {if !empty($productDetail.reference)}
+          {foreach from=$productDetail.attributes key=key item=value}
             <span>{$key}: {$value} </span>{if !$smarty.foreach.attr.last} *{/if}
           {/foreach}
-          {l s='Reference' d='Shop.Theme.Catalog'} {$product.reference}
+          {l s='Reference' d='Shop.Theme.Catalog'} {$productDetail.reference}
         {/if}
 
-        {if is_array($product.customizations) && $product.customizations|count}
+        {if is_array($productDetail.customizations) && $productDetail.customizations|count}
           {include file='catalog/_partials/product-customization-modal.tpl' product=$product}
         {/if}
 
-        <p>{$product.total}</p>
+        <p>{$productDetail.total}</p>
 
-        {hook h='displayProductPriceBlock' product=$product type="unit_price"}
+        {hook h='displayProductPriceBlock' product=$productDetail type="unit_price"}
       </div>
 
     </div>
-    {/if}
     {/foreach}
   {/foreach}
   </div>

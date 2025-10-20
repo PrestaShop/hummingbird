@@ -5,7 +5,7 @@
 
 {$componentName = 'email-subscription'}
 
-<div class="{$componentName} px-0 py-4">
+<div id="blockEmailSubscription_{$hookName}" class="{$componentName} px-0 py-4">
   <div class="container px-1">
     <div class="{$componentName}__content row">
       <div class="{$componentName}__content__left col-md-5">

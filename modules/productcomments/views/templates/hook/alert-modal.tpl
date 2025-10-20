@@ -27,9 +27,8 @@
       </div>
 
       <div class="modal-footer post-comment-buttons">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-          aria-label="{l s='OK' d='Modules.Productcomments.Shop'}">
-          {l s='OK' d='Modules.Productcomments.Shop'}
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          {l s='Ok' d='Modules.Productcomments.Shop'}
         </button>
       </div>
     </div>

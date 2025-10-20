@@ -34,22 +34,27 @@
     data-report-comment-url="{$report_comment_url nofilter}"
     data-comment-item-prototype="{$comment_prototype}"
     data-current-page="1"
-    data-total-pages="{$list_total_pages}"></div>
+    data-total-pages="{$list_total_pages}"
+    aria-live="polite"></div>
 
   {if $list_total_pages > 1}
     <div id="product-comments-list-footer">
-      <nav id="product-comments-list-pagination" data-ps-ref="product-comments-pagination">
+      <nav id="product-comments-list-pagination" data-ps-ref="product-comments-pagination" aria-label="{l s='Product comments pagination' d='Modules.Productcomments.Shop'}">
         <ul class="pagination justify-content-center">
           <li class="page-item disabled" data-ps-ref="pagination-item" data-ps-action="prev">
-            <button class="page-link btn prev" aria-label="{l s='Previous' d='Shop.Theme.Actions'}"><i class="material-icons">chevron_left</i></button>
+            <button class="page-link btn prev" aria-label="{l s='Go to previous page' d='Shop.Theme.Actions'}">
+              <i class="material-icons" aria-hidden="true">&#xE5CB;</i>
+            </button>
           </li>
           {for $pageCount = 1 to $list_total_pages}
             <li class="page-item {if $pageCount == 1}active{/if}" data-ps-ref="pagination-item" data-ps-action="page" data-ps-data="{$pageCount}">
-              <button class="page-link btn" {if $pageCount == 1}aria-current="page"{/if}>{$pageCount}</button>
+              <button class="page-link btn" {if $pageCount == 1}aria-current="page"{/if} aria-label="{l s='Go to page %pageCount%' d='Modules.Productcomments.Shop' sprintf=['%pageCount%' => $pageCount]}">{$pageCount}</button>
             </li>
           {/for}
           <li class="page-item" data-ps-ref="pagination-item" data-ps-action="next">
-            <button class="page-link btn next" aria-label="{l s='Next' d='Shop.Theme.Actions'}"><i class="material-icons">chevron_right</i></button>
+            <button class="page-link btn next" aria-label="{l s='Go to next page' d='Shop.Theme.Actions'}">
+              <i class="material-icons" aria-hidden="true">&#xE5CC;</i>
+            </button>
           </li>
         </ul>
       </nav>

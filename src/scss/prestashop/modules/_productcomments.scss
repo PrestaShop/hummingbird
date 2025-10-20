@@ -42,26 +42,22 @@
 
 .average-grade {
   color: var(--bs-secondary-color);
+  padding-block-start: 0.125rem;
 }
 
 // Specific product miniature styles
 .product-miniature {
-  .product-list-reviews {
+  .product-list-review {
     display: none;
     justify-content: start;
+    align-items: center;
     padding: 0;
-    transition: var(--bs-transition-default);
 
-    &--show {
-      display: flex;
-      align-items: center;
-      font-size: 0.875rem;
-      color: var(--bs-secondary-color);
-      visibility: visible;
-    }
-
-    .comments-nb {
+    .product-list-comments-number {
       line-height: 1;
+      font-size: 0.75rem;
+      color: var(--bs-secondary-color);
+      padding-block-start: 0.125rem;
     }
   }
 }

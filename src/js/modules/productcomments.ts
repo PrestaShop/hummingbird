@@ -5,8 +5,10 @@
 import {Modal} from 'bootstrap';
 import selectorsMap from '@constants/selectors-map';
 import A11yHelpers from '@helpers/a11y';
+import {events} from '@js/theme';
 
 const a11y = new A11yHelpers();
+const {prestashop} = window;
 
 // Global variables from template (these should be set in the template)
 declare global {
@@ -65,12 +67,18 @@ const SELECTORS = {
   // Comments listing selectors
   COMMENTS_LIST: "[data-ps-ref='product-comments-list']",
   EMPTY_PRODUCT_COMMENT: "[data-ps-ref='empty-product-comment']",
+  // Product list reviews selectors
+  PRODUCT_LIST_REVIEW: "[data-ps-ref='product-list-review']",
+  PRODUCT_LIST_COMMENTS_NUMBER: "[data-ps-ref='product-list-comments-number'] [data-ps-ref='number-value']",
+  // Pagination selectors
   PAGINATION: "[data-ps-ref='product-comments-pagination']",
   PAGINATION_ITEM: "[data-ps-ref='pagination-item']",
   PAGINATION_PREV: "[data-ps-ref='pagination-item'][data-ps-action='prev']",
   PAGINATION_NEXT: "[data-ps-ref='pagination-item'][data-ps-action='next']",
   PAGINATION_PAGE: "[data-ps-ref='pagination-item'][data-ps-action='page']",
+  // Grade stars selectors
   GRADE_STARS: "[data-ps-ref='grade-stars']",
+  // Comments note selectors
   COMMENTS_NOTE: "[data-ps-ref='comments-note']",
   COMMENTS_NUMBER: "[data-ps-ref='comments-number']",
   AVERAGE_GRADE: "[data-ps-ref='average-grade']",
@@ -144,10 +152,6 @@ class ProductCommentsQueries {
     return document.querySelector(SELECTORS.PAGINATION);
   }
 
-  static getPagesList(): HTMLElement | null {
-    return document.querySelector(SELECTORS.PAGINATION);
-  }
-
   static getPaginationItems(): NodeListOf<Element> {
     return document.querySelectorAll(SELECTORS.PAGINATION_ITEM);
   }
@@ -189,6 +193,14 @@ class ProductCommentsQueries {
     return document.querySelector(SELECTORS.AVERAGE_GRADE);
   }
 
+  // Product list reviews queries
+  static getProductListReviews(): NodeListOf<Element> {
+    return document.querySelectorAll(SELECTORS.PRODUCT_LIST_REVIEW);
+  }
+
+  static getProductListCommentsNumber(element: HTMLElement): HTMLElement | null {
+    return element.querySelector(SELECTORS.PRODUCT_LIST_COMMENTS_NUMBER);
+  }
 
   // Comment interaction queries
   static getUsefulReviewButtons(commentElement: HTMLElement): NodeListOf<Element> {
@@ -383,9 +395,9 @@ class ProductCommentsListing {
   }
 
   private static initPagination(): void {
-    const pagesList = ProductCommentsQueries.getPagesList();
+    const pagination = ProductCommentsQueries.getPagination();
 
-    if (!pagesList || this.totalPages <= 1) {
+    if (!pagination || this.totalPages <= 1) {
       this.loadInitialComments();
       return;
     }
@@ -752,6 +764,101 @@ class ProductCommentsInteractions {
   }
 }
 
+// Product List Reviews Handler
+class ProductListReviews {
+  static init(): void {    
+    this.loadProductListReviews();
+    this.setupUpdateListener();
+  }
+
+  private static setupUpdateListener(): void {
+    prestashop.on(events.updateProductList, () => {
+      this.loadProductListReviews();
+    });
+
+    prestashop.on(events.updatedProduct, () => {
+      this.loadProductListReviews();
+    });
+  }
+
+  private static async loadProductListReviews(): Promise<void> {
+    const productListReviews = ProductCommentsQueries.getProductListReviews();
+    if (!productListReviews) return;
+
+    const productIds: Array<number> = [];
+    productListReviews.forEach(review => {
+      const productId = parseInt(review.getAttribute('data-id') || '0');
+
+      if (productId > 0) {
+        productIds.push(productId);
+      }
+    });
+
+    if (productIds.length === 0) return;
+
+    try {
+      const productListReview = document.querySelector(SELECTORS.PRODUCT_LIST_REVIEW);
+      const url = productListReview?.getAttribute('data-url');
+      if (!url) return;
+
+      const response = await fetch(`${url}?id_products[]=${productIds.join('&id_products[]=')}`);
+      if (response.status === 200) {
+        const data = await response.json();
+        this.updateProductListReviews(data);
+      }
+    } catch (error) {
+      console.error('Error loading product list reviews:', error);
+    }
+  }
+
+  private static updateProductListReviews(
+    data: { products: Array<{ id_product: number; comments_nb: string; average_grade: number | null }> }
+  ): void {
+    const productListReviews = ProductCommentsQueries.getProductListReviews();
+
+    productListReviews.forEach(review => {
+      const productId = parseInt(review.getAttribute('data-id') || '0');
+      const productData = data.products.find(p => p.id_product === productId);
+
+      if (productData && productData.comments_nb !== '0' && productData.average_grade !== null) {
+        this.updateSingleProductReview(review as HTMLElement, {
+          grade: Math.round(productData.average_grade),
+          comments_nb: parseInt(productData.comments_nb)
+        });
+        review.classList.add('d-flex');
+      }
+    });
+  }
+
+  private static updateSingleProductReview(
+    reviewElement: HTMLElement, data: { grade: number; comments_nb: number }
+  ): void {
+    const starsContainer = reviewElement.querySelector(SELECTORS.GRADE_STARS);
+    if (starsContainer) {
+      this.updateStarsWithRating(starsContainer, data.grade);
+    }
+
+    const productListCommentsNumber = ProductCommentsQueries.getProductListCommentsNumber(reviewElement);
+    if (productListCommentsNumber) {
+      productListCommentsNumber.textContent = data.comments_nb.toString();
+    }
+  }
+
+  private static updateStarsWithRating(container: Element, grade: number): void {
+    if (this.isRatingPluginAvailable()) {
+      (window as any).jQuery(container).rating('destroy');
+      (window as any).jQuery(container).rating({
+        grade: grade,
+        readOnly: true
+      });
+    }
+  }
+
+  private static isRatingPluginAvailable(): boolean {
+    return !!(window as any).jQuery && typeof (window as any).jQuery.fn.rating === 'function';
+  }
+}
+
 // Main Product Comments
 class ProductComments {
   static init(): void {
@@ -760,6 +867,7 @@ class ProductComments {
     this.initReviewPostedModal();
     this.initReviewErrorModal();
     this.initCommentsListing();
+    this.initProductListReviews();
     this.initConfirmationModals();
     this.initCommentsModalHandler();
   }
@@ -806,6 +914,10 @@ class ProductComments {
 
   private static initCommentsListing(): void {
     ProductCommentsListing.init();
+  }
+
+  private static initProductListReviews(): void {
+    ProductListReviews.init();
   }
 
   private static initConfirmationModals(): void {

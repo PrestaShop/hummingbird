@@ -3,10 +3,8 @@
 {* GENERATE LINKS *}
   {if $parent.depth === 1}
     {foreach from=$links item=link}
-      {if $link.depth === 3 && $link.children|count}
-        <ul class="{$class}__group--child">
-      {elseif $link.depth === 3 && !$link.children|count}
-        <ul class="{$class}__group--nochild">
+      {if $link.depth === 3}
+        <ul class="{$class}__group--{($link.children|count) ? 'child' : 'nochild'}">
       {/if}
       <li>
         <a
@@ -21,7 +19,7 @@
       
       {call name=generateLinks links=$link.children parent=$parent}
 
-      {if ($link.depth === 3 && $link.children|count) || ($link.depth === 3 && !$link.children|count)}
+      {if $link.depth === 3}
         </ul>
       {/if}
     {/foreach}

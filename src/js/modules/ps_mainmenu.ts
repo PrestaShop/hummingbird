@@ -156,7 +156,7 @@ class NavigationManager {
     }
   }
 
-  static navigateSubMenuTabs(
+  static getNextSubMenuTab(
     currentItem: HTMLElement,
     direction: NavigationDirection,
     subMenu: HTMLElement,
@@ -303,7 +303,6 @@ class EventHandlers {
 
       default:
         // No action needed for other keys
-        break;
     }
   };
 
@@ -349,7 +348,6 @@ class EventHandlers {
 
       default:
         // No action needed for other keys
-        break;
     }
   };
 
@@ -382,7 +380,6 @@ class EventHandlers {
 
       default:
         // No action needed for other keys
-        break;
     }
   };
 
@@ -432,7 +429,6 @@ class EventHandlers {
 
       default:
         // No action needed for other keys
-        break;
     }
   };
 
@@ -450,7 +446,7 @@ class EventHandlers {
     direction: NavigationDirection,
     subMenu: HTMLElement,
   ): void {
-    const targetItem = NavigationManager.navigateSubMenuTabs(item, direction, subMenu);
+    const targetItem = NavigationManager.getNextSubMenuTab(item, direction, subMenu);
 
     if (targetItem) {
       targetItem.focus();

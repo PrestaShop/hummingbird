@@ -69,6 +69,7 @@ const SELECTORS = {
   EMPTY_PRODUCT_COMMENT: "[data-ps-ref='empty-product-comment']",
   // Product list reviews selectors
   PRODUCT_LIST_REVIEW: "[data-ps-ref='product-list-review']",
+  PRODUCT_LIST_GRADE_NUMBER: "[data-ps-ref='product-list-comments-number'] [data-ps-ref='grade-value']",
   PRODUCT_LIST_COMMENTS_NUMBER: "[data-ps-ref='product-list-comments-number'] [data-ps-ref='number-value']",
   // Pagination selectors
   PAGINATION: "[data-ps-ref='product-comments-pagination']",
@@ -196,6 +197,10 @@ class ProductCommentsQueries {
   // Product list reviews queries
   static getProductListReviews(): NodeListOf<Element> {
     return document.querySelectorAll(SELECTORS.PRODUCT_LIST_REVIEW);
+  }
+
+  static getProductListGradeNumber(element: HTMLElement): HTMLElement | null {
+    return element.querySelector(SELECTORS.PRODUCT_LIST_GRADE_NUMBER);
   }
 
   static getProductListCommentsNumber(element: HTMLElement): HTMLElement | null {
@@ -839,8 +844,10 @@ class ProductListReviews {
     }
 
     const productListCommentsNumber = ProductCommentsQueries.getProductListCommentsNumber(reviewElement);
-    if (productListCommentsNumber) {
+    const productListGradeNUmber = ProductCommentsQueries.getProductListGradeNumber(reviewElement);
+    if (productListCommentsNumber && productListGradeNUmber) {
       productListCommentsNumber.textContent = data.comments_nb.toString();
+      productListGradeNUmber.textContent = data.grade.toString();
     }
   }
 

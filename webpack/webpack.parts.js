@@ -19,7 +19,7 @@ exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
   },
   devMiddleware: {
     publicPath,
-    writeToDisk: (filePath) => !(/hot-update/.test(filePath)),
+    writeToDisk: (filePath) => !(/\.hot-update\./.test(filePath)),
   },
   headers: {
     'Access-Control-Allow-Origin': '*',

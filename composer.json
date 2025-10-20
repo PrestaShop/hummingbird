@@ -1,6 +1,6 @@
 {
   "name": "prestashop/hummingbird",
-  "description": "Hummingbird theme for develop PrestaShop version",
+  "description": "Hummingbird development theme for PrestaShop",
   "type": "prestashop-theme",
   "license": "AFL-3.0",
   "authors": [

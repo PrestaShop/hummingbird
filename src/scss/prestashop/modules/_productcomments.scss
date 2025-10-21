@@ -41,23 +41,23 @@
 }
 
 .average-grade {
-  color: var(--bs-secondary-color);
   padding-block-start: 0.125rem;
+  color: var(--bs-secondary-color);
 }
 
 // Specific product miniature styles
 .product-miniature {
   .product-list-review {
     display: none;
-    justify-content: start;
     align-items: center;
+    justify-content: start;
     padding: 0;
 
     .product-list-comments-number {
-      line-height: 1;
-      font-size: 0.75rem;
-      color: var(--bs-secondary-color);
       padding-block-start: 0.125rem;
+      font-size: 0.75rem;
+      line-height: 1;
+      color: var(--bs-secondary-color);
     }
   }
 }
@@ -119,19 +119,6 @@
     text-align: left;
   }
 
-  // Product comment loader
-  #product-comments-list {
-    &.has-comments:empty {
-      &::before {
-        @extend .spinner-border;
-        @extend .text-primary-emphasis;
-        content: "";
-        display: block;
-        margin: 1rem auto;
-      }
-    }
-  }
-
   // Product comment list item
   .product-comment-list-item {
     padding: 0;
@@ -171,6 +158,16 @@
   // Comments list
   #product-comments-list {
     margin-block-end: 1rem;
+
+    &.has-comments:empty {
+      &::before {
+        @extend .spinner-border;
+        @extend .text-primary-emphasis;
+        display: block;
+        margin: 1rem auto;
+        content: "";
+      }
+    }
 
     .comment {
       padding: 1rem 0;

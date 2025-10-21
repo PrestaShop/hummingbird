@@ -249,17 +249,16 @@ class ProductCommentsQueries {
 // Form validation utility class
 class ProductCommentsForm {
   static validateRatingChosen(): boolean {
-    const ratingChosen = window.ratingChosen;
+    const {ratingChosen} = window;
     const noRatingInfo = ProductCommentsQueries.getNoRatingInfo();
 
     if (noRatingInfo) {
       if (ratingChosen) {
         noRatingInfo.classList.add('d-none');
         return true;
-      } else {
-        noRatingInfo.classList.remove('d-none');
-        return false;
       }
+      noRatingInfo.classList.remove('d-none');
+      return false;
     }
 
     return ratingChosen;
@@ -288,7 +287,7 @@ class ProductCommentsForm {
     try {
       const response = await fetch(form.action, {
         method: 'POST',
-        body: formData
+        body: formData,
       });
 
       const jsonData = await response.json();
@@ -303,19 +302,18 @@ class ProductCommentsForm {
       } else {
         ProductCommentsModals.showReviewErrorModal(window.productCommentPostErrorMessage);
       }
-    } catch (error) {
+    } catch {
       ProductCommentsModals.showReviewErrorModal(window.productCommentPostErrorMessage);
     }
   }
 
-  private static handleSubmissionError(jsonData: any): void {
-    if (jsonData.errors) {
+  private static handleSubmissionError(jsonData: { errors?: string[]; error?: string }): void {
+    if (jsonData.errors && Array.isArray(jsonData.errors)) {
       const errorList = `<ul>${jsonData.errors.map((error: string) => `<li>${error}</li>`).join('')}</ul>`;
       ProductCommentsModals.showReviewErrorModal(errorList);
     } else {
-      const errorMessage = document.createElement('div');
-      errorMessage.innerHTML = jsonData.error;
-      ProductCommentsModals.showReviewErrorModal(errorMessage.textContent || '');
+      const errorMessage = jsonData.error || window.productCommentPostErrorMessage;
+      ProductCommentsModals.showReviewErrorModal(errorMessage);
     }
   }
 }
@@ -373,16 +371,20 @@ class ProductCommentsModals {
 // Comments listing utility class
 class ProductCommentsListing {
   private static currentPage: number = 1;
+
   private static totalPages: number = 0;
+
   private static commentsListUrl: string | null = null;
+
   private static commentPrototype: string | null = null;
 
   static init(): void {
     const commentsList = ProductCommentsQueries.getCommentsList();
+
     if (!commentsList) return;
 
-    this.currentPage = parseInt(commentsList.dataset.currentPage || '1');
-    this.totalPages = parseInt(commentsList.dataset.totalPages || '0');
+    this.currentPage = parseInt(commentsList.dataset.currentPage || '1', 10);
+    this.totalPages = parseInt(commentsList.dataset.totalPages || '0', 10);
     this.commentsListUrl = commentsList.dataset.listCommentsUrl || '';
     this.commentPrototype = commentsList.dataset.commentItemPrototype || '';
 
@@ -418,13 +420,13 @@ class ProductCommentsListing {
       item.addEventListener('click', (event) => {
         event.preventDefault();
 
-        if (item.classList.contains('disabled')){
+        if (item.classList.contains('disabled')) {
           return;
         }
-        
+
         const action = item.getAttribute('data-ps-action');
         const pageNumber = item.getAttribute('data-ps-data');
-        
+
         this.handlePageClick(action, pageNumber);
       });
     });
@@ -453,13 +455,15 @@ class ProductCommentsListing {
 
   private static updatePaginationUI(): void {
     // Update all page items
-    for (let i = 1; i <= this.totalPages; i++) {
+    for (let i = 1; i <= this.totalPages; i += 1) {
       const pageItem = ProductCommentsQueries.getPaginationPage(i);
+
       if (pageItem) {
         const isActive = i === this.currentPage;
         pageItem.classList.toggle('active', isActive);
-        
+
         const button = pageItem.querySelector('button');
+
         if (button) {
           if (isActive) {
             button.setAttribute('aria-current', 'page');
@@ -472,8 +476,10 @@ class ProductCommentsListing {
 
     // Update prev button
     const prevItem = ProductCommentsQueries.getPaginationPrev();
+
     if (prevItem) {
       const prevButton = prevItem.querySelector('button');
+
       if (prevButton) {
         const isDisabled = this.currentPage === 1;
         prevItem.classList.toggle('disabled', isDisabled);
@@ -483,8 +489,10 @@ class ProductCommentsListing {
 
     // Update next button
     const nextItem = ProductCommentsQueries.getPaginationNext();
+
     if (nextItem) {
       const nextButton = nextItem.querySelector('button');
+
       if (nextButton) {
         const isDisabled = this.currentPage === this.totalPages;
         nextItem.classList.toggle('disabled', isDisabled);
@@ -496,6 +504,7 @@ class ProductCommentsListing {
   private static async fetchComments(page: number): Promise<void> {
     try {
       const response = await fetch(`${this.commentsListUrl}&page=${page}`);
+
       if (response.status === 200) {
         const data = await response.text();
         const commentsData: CommentsResponse = JSON.parse(data);
@@ -508,6 +517,7 @@ class ProductCommentsListing {
 
   private static populateComments(comments: CommentData[]): void {
     const commentsList = ProductCommentsQueries.getCommentsList();
+
     if (!commentsList) return;
 
     commentsList.innerHTML = '';
@@ -518,9 +528,11 @@ class ProductCommentsListing {
 
   private static addComment(comment: CommentData): void {
     const commentsList = ProductCommentsQueries.getCommentsList();
+
     if (!commentsList) return;
 
     let commentTemplate = this.commentPrototype;
+
     if (!commentTemplate) return;
 
     const customerName = comment.customer_name || `${comment.firstname} ${comment.lastname}`;
@@ -534,7 +546,10 @@ class ProductCommentsListing {
     commentTemplate = commentTemplate.replace(/@COMMENT_COMMENT@/g, comment.content);
     commentTemplate = commentTemplate.replace(/@COMMENT_USEFUL_ADVICES@/g, comment.usefulness.toString());
     commentTemplate = commentTemplate.replace(/@COMMENT_GRADE@/g, comment.grade.toString());
-    commentTemplate = commentTemplate.replace(/@COMMENT_NOT_USEFUL_ADVICES@/g, (comment.total_usefulness - comment.usefulness).toString());
+    commentTemplate = commentTemplate.replace(
+      /@COMMENT_NOT_USEFUL_ADVICES@/g,
+      (comment.total_usefulness - comment.usefulness).toString(),
+    );
     commentTemplate = commentTemplate.replace(/@COMMENT_TOTAL_ADVICES@/g, comment.total_usefulness.toString());
 
     const commentElement = document.createElement('div');
@@ -555,21 +570,21 @@ class ProductCommentsListing {
     const notUsefulButtons = ProductCommentsQueries.getNotUsefulReviewButtons(commentElement);
     const reportButtons = ProductCommentsQueries.getReportAbuseButtons(commentElement);
 
-    usefulButtons.forEach(button => {
+    usefulButtons.forEach((button) => {
       button.addEventListener('click', () => {
         ProductCommentsInteractions.updateCommentUsefulness(commentElement, comment.id_product_comment, 1);
         a11y.storeFocus();
       });
     });
 
-    notUsefulButtons.forEach(button => {
+    notUsefulButtons.forEach((button) => {
       button.addEventListener('click', () => {
         ProductCommentsInteractions.updateCommentUsefulness(commentElement, comment.id_product_comment, 0);
         a11y.storeFocus();
       });
     });
 
-    reportButtons.forEach(button => {
+    reportButtons.forEach((button) => {
       button.addEventListener('click', () => {
         ProductCommentsInteractions.confirmCommentAbuse(comment.id_product_comment);
         a11y.storeFocus();
@@ -590,6 +605,7 @@ class ProductCommentsListing {
 
     try {
       const response = await fetch(`${this.commentsListUrl}&page=1`);
+
       if (response.status === 200) {
         const data = await response.text();
         const commentsData: CommentsResponse = JSON.parse(data);
@@ -603,23 +619,30 @@ class ProductCommentsListing {
 
 // Rating system utility class
 class ProductCommentsRating {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static getJQueryRating(element: Element): any {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (window as any).jQuery(element);
+  }
+
   static initRatingSystem(): void {
     const gradeStars = ProductCommentsQueries.getGradeStars();
-    gradeStars.forEach(star => {
+    gradeStars.forEach((star) => {
       if (this.isRatingPluginAvailable()) {
-        (window as any).jQuery(star).rating();
+        this.getJQueryRating(star).rating();
       }
     });
   }
 
   static resetModalStars(): void {
     const modal = ProductCommentsQueries.getModalReview();
+
     if (modal) {
       const starsInModal = modal.querySelectorAll(SELECTORS.GRADE_STARS);
-      starsInModal.forEach(star => {
+      starsInModal.forEach((star) => {
         if (this.isRatingPluginAvailable()) {
-          (window as any).jQuery(star).rating('destroy');
-          (window as any).jQuery(star).rating();
+          this.getJQueryRating(star).rating('destroy');
+          this.getJQueryRating(star).rating();
         }
       });
     }
@@ -627,26 +650,30 @@ class ProductCommentsRating {
 
   static initCommentRating(commentElement: HTMLElement, grade: number): void {
     const gradeStars = commentElement.querySelectorAll(SELECTORS.GRADE_STARS);
-    gradeStars.forEach(star => {
+    gradeStars.forEach((star) => {
       if (this.isRatingPluginAvailable()) {
-        (window as any).jQuery(star).rating({ grade });
+        this.getJQueryRating(star).rating({grade});
       }
     });
   }
 
   static isRatingPluginAvailable(): boolean {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return !!(window as any).jQuery && typeof (window as any).jQuery.fn.rating === 'function';
   }
 }
 
-
 // Comment interactions utility class
 class ProductCommentsInteractions {
-  static async updateCommentUsefulness(commentElement: HTMLElement, commentId: number, usefulness: number): Promise<void> {
+  static async updateCommentUsefulness(
+    commentElement: HTMLElement, commentId: number, usefulness: number,
+  ): Promise<void> {
     const commentsList = ProductCommentsQueries.getCommentsList();
+
     if (!commentsList) return;
 
     const updateUrl = commentsList.dataset.updateCommentUsefulnessUrl;
+
     if (!updateUrl) return;
 
     try {
@@ -660,6 +687,7 @@ class ProductCommentsInteractions {
 
       if (response.status === 200) {
         const jsonData: UsefulnessResponse = await response.json();
+
         if (jsonData.success && jsonData.usefulness !== undefined && jsonData.total_usefulness !== undefined) {
           this.updateUsefulnessValues(commentElement, jsonData.usefulness, jsonData.total_usefulness);
         } else {
@@ -673,7 +701,11 @@ class ProductCommentsInteractions {
     }
   }
 
-  private static updateUsefulnessValues(commentElement: HTMLElement, usefulness: number, totalUsefulness: number): void {
+  private static updateUsefulnessValues(
+    commentElement: HTMLElement,
+    usefulness: number,
+    totalUsefulness: number,
+  ): void {
     const usefulValue = ProductCommentsQueries.getUsefulReviewValue(commentElement);
     const notUsefulValue = ProductCommentsQueries.getNotUsefulReviewValue(commentElement);
 
@@ -687,6 +719,7 @@ class ProductCommentsInteractions {
 
   static confirmCommentAbuse(commentId: number): void {
     const confirmModal = ProductCommentsQueries.getReportCommentConfirmationModal();
+
     if (!confirmModal) return;
 
     const modalInstance = Modal.getOrCreateInstance(confirmModal);
@@ -700,14 +733,16 @@ class ProductCommentsInteractions {
       }
     };
 
-    confirmModal.addEventListener('modal:confirm', handleConfirm, { once: true });
+    confirmModal.addEventListener('modal:confirm', handleConfirm, {once: true});
   }
 
   private static async confirmCommentAbuseFetch(commentId: number): Promise<void> {
     const commentsList = ProductCommentsQueries.getCommentsList();
+
     if (!commentsList) return;
 
     const reportUrl = commentsList.dataset.reportCommentUrl;
+
     if (!reportUrl) return;
 
     try {
@@ -721,6 +756,7 @@ class ProductCommentsInteractions {
 
       if (response.status === 200) {
         const jsonData: ReportResponse = await response.json();
+
         if (jsonData.success) {
           this.showReportCommentPostedModal();
         } else {
@@ -736,9 +772,11 @@ class ProductCommentsInteractions {
 
   private static showUpdatePostCommentErrorModal(errorMessage: string): void {
     const modal = ProductCommentsQueries.getUpdateCommentUsefulnessPostErrorModal();
+
     if (!modal) return;
 
     const messageElement = modal.querySelector('.modal-body');
+
     if (messageElement) {
       messageElement.innerHTML = errorMessage;
     }
@@ -749,9 +787,11 @@ class ProductCommentsInteractions {
 
   private static showReportCommentErrorModal(errorMessage: string): void {
     const modal = ProductCommentsQueries.getReportCommentPostErrorModal();
+
     if (!modal) return;
 
     const messageElement = modal.querySelector('#report-comment-post-error-message');
+
     if (messageElement) {
       messageElement.innerHTML = errorMessage;
     }
@@ -762,6 +802,7 @@ class ProductCommentsInteractions {
 
   private static showReportCommentPostedModal(): void {
     const modal = ProductCommentsQueries.getReportCommentPostSuccessModal();
+
     if (!modal) return;
 
     const modalInstance = Modal.getOrCreateInstance(modal);
@@ -771,7 +812,7 @@ class ProductCommentsInteractions {
 
 // Product List Reviews Handler
 class ProductListReviews {
-  static init(): void {    
+  static init(): void {
     this.loadProductListReviews();
     this.setupUpdateListener();
   }
@@ -788,11 +829,12 @@ class ProductListReviews {
 
   private static async loadProductListReviews(): Promise<void> {
     const productListReviews = ProductCommentsQueries.getProductListReviews();
+
     if (!productListReviews) return;
 
     const productIds: Array<number> = [];
-    productListReviews.forEach(review => {
-      const productId = parseInt(review.getAttribute('data-id') || '0');
+    productListReviews.forEach((review) => {
+      const productId = parseInt(review.getAttribute('data-id') || '0', 10);
 
       if (productId > 0) {
         productIds.push(productId);
@@ -804,9 +846,11 @@ class ProductListReviews {
     try {
       const productListReview = document.querySelector(SELECTORS.PRODUCT_LIST_REVIEW);
       const url = productListReview?.getAttribute('data-url');
+
       if (!url) return;
 
       const response = await fetch(`${url}?id_products[]=${productIds.join('&id_products[]=')}`);
+
       if (response.status === 200) {
         const data = await response.json();
         this.updateProductListReviews(data);
@@ -817,18 +861,18 @@ class ProductListReviews {
   }
 
   private static updateProductListReviews(
-    data: { products: Array<{ id_product: number; comments_nb: string; average_grade: number | null }> }
+    data: { products: Array<{ id_product: number; comments_nb: string; average_grade: number | null }> },
   ): void {
     const productListReviews = ProductCommentsQueries.getProductListReviews();
 
-    productListReviews.forEach(review => {
-      const productId = parseInt(review.getAttribute('data-id') || '0');
-      const productData = data.products.find(p => p.id_product === productId);
+    productListReviews.forEach((review) => {
+      const productId = parseInt(review.getAttribute('data-id') || '0', 10);
+      const productData = data.products.find((p) => p.id_product === productId);
 
       if (productData && productData.comments_nb !== '0' && productData.average_grade !== null) {
         this.updateSingleProductReview(review as HTMLElement, {
           grade: Math.round(productData.average_grade),
-          comments_nb: parseInt(productData.comments_nb)
+          comments_nb: parseInt(productData.comments_nb, 10),
         });
         review.classList.add('d-flex');
       }
@@ -836,15 +880,17 @@ class ProductListReviews {
   }
 
   private static updateSingleProductReview(
-    reviewElement: HTMLElement, data: { grade: number; comments_nb: number }
+    reviewElement: HTMLElement, data: { grade: number; comments_nb: number },
   ): void {
     const starsContainer = reviewElement.querySelector(SELECTORS.GRADE_STARS);
+
     if (starsContainer) {
       this.updateStarsWithRating(starsContainer, data.grade);
     }
 
     const productListCommentsNumber = ProductCommentsQueries.getProductListCommentsNumber(reviewElement);
     const productListGradeNUmber = ProductCommentsQueries.getProductListGradeNumber(reviewElement);
+
     if (productListCommentsNumber && productListGradeNUmber) {
       productListCommentsNumber.textContent = data.comments_nb.toString();
       productListGradeNUmber.textContent = data.grade.toString();
@@ -853,15 +899,16 @@ class ProductListReviews {
 
   private static updateStarsWithRating(container: Element, grade: number): void {
     if (this.isRatingPluginAvailable()) {
-      (window as any).jQuery(container).rating('destroy');
-      (window as any).jQuery(container).rating({
-        grade: grade,
-        readOnly: true
+      ProductCommentsRating.getJQueryRating(container).rating('destroy');
+      ProductCommentsRating.getJQueryRating(container).rating({
+        grade,
+        readOnly: true,
       });
     }
   }
 
   private static isRatingPluginAvailable(): boolean {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return !!(window as any).jQuery && typeof (window as any).jQuery.fn.rating === 'function';
   }
 }
@@ -933,35 +980,38 @@ class ProductComments {
 
   private static initReportCommentConfirmationModal(): void {
     const confirmModal = ProductCommentsQueries.getReportCommentConfirmationModal();
+
     if (!confirmModal) {
       return;
     }
 
     confirmModal.addEventListener('hidden.bs.modal', () => {
       const customEvent = new CustomEvent('modal:confirm', {
-        detail: { confirm: false },
-        bubbles: true
+        detail: {confirm: false},
+        bubbles: true,
       });
       confirmModal.dispatchEvent(customEvent);
     });
 
     const confirmButton = confirmModal.querySelector(SELECTORS.CONFIRM_BUTTON);
+
     if (confirmButton) {
       confirmButton.addEventListener('click', () => {
         const customEvent = new CustomEvent('modal:confirm', {
-          detail: { confirm: true },
-          bubbles: true
+          detail: {confirm: true},
+          bubbles: true,
         });
         confirmModal.dispatchEvent(customEvent);
       });
     }
 
     const refuseButton = confirmModal.querySelector(SELECTORS.REFUSE_BUTTON);
+
     if (refuseButton) {
       refuseButton.addEventListener('click', () => {
         const customEvent = new CustomEvent('modal:confirm', {
-          detail: { confirm: false },
-          bubbles: true
+          detail: {confirm: false},
+          bubbles: true,
         });
         confirmModal.dispatchEvent(customEvent);
       });
@@ -997,7 +1047,9 @@ class ProductComments {
         const storedFocus = a11y.getStoredFocus();
 
         setTimeout(() => {
-          if (storedFocus && !reportCommentPostErrorModal?.classList.contains('show') && !reportCommentPostSuccessModal?.classList.contains('show')) {
+          if (storedFocus
+            && !reportCommentPostErrorModal?.classList.contains('show')
+            && !reportCommentPostSuccessModal?.classList.contains('show')) {
             a11y.setFocus(storedFocus);
           }
         }, 250);

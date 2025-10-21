@@ -40,7 +40,7 @@
           <div id="promo-code" class="accordion-collapse collapse">
             <div class="accordion-body px-0">
               {block name='cart_voucher_form'}
-                <form action="{$urls.pages.cart}?action=show" data-link-action="add-voucher" class="d-flex" method="post">
+                <form action="{url entity='cart' params=['action' => 'show']}" data-link-action="add-voucher" class="d-flex" method="post">
                   <input type="hidden" name="token" value="{$static_token}">
                   <input type="hidden" name="addDiscount" value="1">
                   <input class="form-control" type="text" name="discount_name" placeholder="{l s='Paste your voucher here' d='Shop.Theme.Checkout'}">

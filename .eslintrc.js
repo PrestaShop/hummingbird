@@ -55,7 +55,7 @@ module.exports = {
         devDependencies: ['tests/**/*.js', '.webpack/**/*.js'],
       },
     ],
-    'max-len': ['error', {code: 120}],
+    'max-len': ['error', {code: 150}],
     'no-alert': 0,
     'no-bitwise': 0,
     'no-new': 0,
@@ -70,6 +70,7 @@ module.exports = {
     ],
     'prefer-destructuring': ['error', {object: true, array: false}],
     'no-shadow': 'off',
+    'no-useless-constructor': 'off',
     '@typescript-eslint/no-shadow': ['error'],
   },
   settings: {

@@ -5,17 +5,17 @@
 <div id="js-product-list-header">
     {if $listing.pagination.items_shown_from == 1}
         <div class="block-category">
-          {include file='components/page-title-section.tpl' title={$category.name}}
+          {include file='components/page-title-section.tpl' title={$category.name nofilter}}
             {if $category.description}
               <div id="category-description" class="rich-text mb-4">{$category.description nofilter}</div>
             {/if}
             {if !empty($category.cover.large.url)}
               <div class="category-cover mb-4">
-                <img src="{$category.cover.large.url}" 
-                  alt="{if !empty($category.cover.legend)}{$category.cover.legend}{else}{$category.name}{/if}" 
-                  fetchpriority="high" 
+                <img src="{$category.cover.large.url}"
+                  alt="{if !empty($category.cover.legend)}{$category.cover.legend}{else}{$category.name}{/if}"
+                  fetchpriority="high"
                   class="img-fluid"
-                  width="{$category.cover.large.width}" 
+                  width="{$category.cover.large.width}"
                   height="{$category.cover.large.height}">
               </div>
             {/if}

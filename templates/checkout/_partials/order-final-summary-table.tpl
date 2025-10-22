@@ -3,5 +3,3 @@
  * file that was distributed with this source code.
  *}
 {extends file='checkout/_partials/order-confirmation-table.tpl'}
-
-{block name='order-confirmation-classes'}{/block}

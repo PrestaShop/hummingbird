@@ -5,6 +5,10 @@ $component-name: product-line;
   gap: 1.5rem;
   align-items: flex-start;
 
+  &__image {
+    flex-shrink: 0;
+  }
+
   &__img {
     width: 6rem;
     border-radius: var(--bs-border-radius);

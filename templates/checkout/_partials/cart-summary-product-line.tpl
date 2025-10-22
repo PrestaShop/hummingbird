@@ -99,7 +99,7 @@
 
       <div class="{$componentName}__content-right">
         <div class="{$componentName}__prices">
-          <div class="{$componentName}__price">{$product.price}</div>
+          <div class="{$componentName}__price">{$product.total}</div>
 
           {if $product.unit_price_full}
             <div class="{$componentName}__unit-price">{$product.unit_price_full}</div>

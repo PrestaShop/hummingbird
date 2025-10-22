@@ -59,14 +59,11 @@ const SELECTORS = {
   MODAL_REVIEW_FORM: "[data-ps-ref='product-post-review-form']",
   MODAL_REVIEW_ERROR: "[data-ps-ref='product-post-review-error-modal']",
   MODAL_REVIEW_POSTED: "[data-ps-ref='product-post-review-posted-modal']",
-  CRITERIONS_LIST: "[data-ps-ref='criterions-list']",
-  CRITERIONS_INPUT: "[data-ps-ref='criterions-list'] input",
   NO_RATING_INFO: "[data-ps-ref='no-rating-info']",
   FORM_VALIDATION_BUTTON: "[data-ps-action='form-validation-submit']",
   FORM_FIELD: "[data-ps-ref='product-post-review-form'] [name]",
   // Comments listing selectors
   COMMENTS_LIST: "[data-ps-ref='product-comments-list']",
-  EMPTY_PRODUCT_COMMENT: "[data-ps-ref='empty-product-comment']",
   // Product list reviews selectors
   PRODUCT_LIST_REVIEW: "[data-ps-ref='product-list-review']",
   PRODUCT_LIST_GRADE_NUMBER: "[data-ps-ref='product-list-comments-number'] [data-ps-ref='grade-value']",
@@ -76,19 +73,14 @@ const SELECTORS = {
   PAGINATION_ITEM: "[data-ps-ref='pagination-item']",
   PAGINATION_PREV: "[data-ps-ref='pagination-item'][data-ps-action='prev']",
   PAGINATION_NEXT: "[data-ps-ref='pagination-item'][data-ps-action='next']",
-  PAGINATION_PAGE: "[data-ps-ref='pagination-item'][data-ps-action='page']",
   // Grade stars selectors
   GRADE_STARS: "[data-ps-ref='grade-stars']",
-  // Comments note selectors
-  COMMENTS_NOTE: "[data-ps-ref='comments-note']",
-  COMMENTS_NUMBER: "[data-ps-ref='comments-number']",
-  AVERAGE_GRADE: "[data-ps-ref='average-grade']",
   // Comment interaction selectors
   USEFUL_REVIEW: "[data-ps-ref='useful-review']",
   NOT_USEFUL_REVIEW: "[data-ps-ref='not-useful-review']",
-  REPORT_ABUSE: "[data-ps-ref='report-abuse']",
   USEFUL_REVIEW_VALUE: "[data-ps-ref='useful-review-value']",
   NOT_USEFUL_REVIEW_VALUE: "[data-ps-ref='not-useful-review-value']",
+  REPORT_ABUSE: "[data-ps-ref='report-abuse']",
   CONFIRM_BUTTON: "[data-ps-ref='confirm-button']",
   REFUSE_BUTTON: "[data-ps-ref='refuse-button']",
   // Error modals
@@ -96,40 +88,37 @@ const SELECTORS = {
   REPORT_COMMENT_CONFIRMATION: "[data-ps-ref='report-comment-confirmation']",
   REPORT_COMMENT_POST_ERROR: "[data-ps-ref='report-comment-post-error']",
   REPORT_COMMENT_POST_SUCCESS: "[data-ps-ref='report-comment-post-success']",
+  BS_MODAL_BODY: '.modal-body',
 } as const;
 
 // DOM queries utility class following theme patterns
-class ProductCommentsQueries {
-  static getPostReviewButtons(): NodeListOf<Element> {
-    return document.querySelectorAll(SELECTORS.POST_REVIEW_BUTTON);
+class ProductCommentsElements {
+  static get postReviewButtons(): HTMLButtonElement[] {
+    return Array.from(document.querySelectorAll(SELECTORS.POST_REVIEW_BUTTON));
   }
 
-  static getModalReview(): HTMLElement | null {
+  static get modalReview(): HTMLElement | null {
     return document.querySelector(SELECTORS.MODAL_REVIEW);
   }
 
-  static getModalReviewForm(): HTMLFormElement | null {
+  static get modalReviewForm(): HTMLFormElement | null {
     return document.querySelector(SELECTORS.MODAL_REVIEW_FORM);
   }
 
-  static getModalReviewError(): HTMLElement | null {
+  static get modalReviewError(): HTMLElement | null {
     return document.querySelector(SELECTORS.MODAL_REVIEW_ERROR);
   }
 
-  static getModalReviewPosted(): HTMLElement | null {
+  static get modalReviewPosted(): HTMLElement | null {
     return document.querySelector(SELECTORS.MODAL_REVIEW_POSTED);
   }
 
-  static getCriterionsList(): HTMLElement | null {
-    return document.querySelector(SELECTORS.CRITERIONS_LIST);
-  }
-
-  static getRatings(): NodeListOf<HTMLInputElement> {
-    return document.querySelectorAll(SELECTORS.CRITERIONS_INPUT);
-  }
-
-  static getNoRatingInfo(): HTMLElement | null {
+  static get noRatingInfo(): HTMLElement | null {
     return document.querySelector(SELECTORS.NO_RATING_INFO);
+  }
+
+  static get gradeStars(): NodeListOf<Element> {
+    return document.querySelectorAll(SELECTORS.GRADE_STARS);
   }
 
   static getFormValidationButton(form: HTMLFormElement): HTMLElement | null {
@@ -141,61 +130,32 @@ class ProductCommentsQueries {
   }
 
   // Comments listing queries
-  static getCommentsList(): HTMLElement | null {
+  static get commentsList(): HTMLElement | null {
     return document.querySelector(SELECTORS.COMMENTS_LIST);
   }
 
-  static getEmptyProductComment(): HTMLElement | null {
-    return document.querySelector(SELECTORS.EMPTY_PRODUCT_COMMENT);
-  }
-
-  static getPagination(): HTMLElement | null {
+  static get pagination(): HTMLElement | null {
     return document.querySelector(SELECTORS.PAGINATION);
   }
 
-  static getPaginationItems(): NodeListOf<Element> {
+  static get paginationItems(): NodeListOf<Element> {
     return document.querySelectorAll(SELECTORS.PAGINATION_ITEM);
   }
 
-  static getPaginationPrev(): HTMLElement | null {
+  static get paginationPrev(): HTMLElement | null {
     return document.querySelector(SELECTORS.PAGINATION_PREV);
   }
 
-  static getPaginationNext(): HTMLElement | null {
+  static get paginationNext(): HTMLElement | null {
     return document.querySelector(SELECTORS.PAGINATION_NEXT);
-  }
-
-  static getPaginationPages(): NodeListOf<Element> {
-    return document.querySelectorAll(SELECTORS.PAGINATION_PAGE);
   }
 
   static getPaginationPage(pageNumber: number): HTMLElement | null {
     return document.querySelector(`${SELECTORS.PAGINATION_ITEM}[data-ps-data="${pageNumber}"]`);
   }
 
-  // Comment-specific queries
-  static getCommentById(commentId: number): HTMLElement | null {
-    return document.querySelector(`[data-product-comment-id="${commentId}"]`);
-  }
-
-  static getGradeStars(): NodeListOf<Element> {
-    return document.querySelectorAll(SELECTORS.GRADE_STARS);
-  }
-
-  static getCommentsNote(): HTMLElement | null {
-    return document.querySelector(SELECTORS.COMMENTS_NOTE);
-  }
-
-  static getCommentsNumber(): HTMLElement | null {
-    return document.querySelector(SELECTORS.COMMENTS_NUMBER);
-  }
-
-  static getAverageGrade(): HTMLElement | null {
-    return document.querySelector(SELECTORS.AVERAGE_GRADE);
-  }
-
   // Product list reviews queries
-  static getProductListReviews(): NodeListOf<Element> {
+  static get productListReviews(): NodeListOf<Element> {
     return document.querySelectorAll(SELECTORS.PRODUCT_LIST_REVIEW);
   }
 
@@ -228,20 +188,20 @@ class ProductCommentsQueries {
     return commentElement.querySelector(SELECTORS.NOT_USEFUL_REVIEW_VALUE);
   }
 
-  // Error modal queries
-  static getUpdateCommentUsefulnessPostErrorModal(): HTMLElement | null {
+  // Modals interactions
+  static get updateCommentUsefulnessPostErrorModal(): HTMLElement | null {
     return document.querySelector(SELECTORS.UPDATE_COMMENT_USEFULNESS_POST_ERROR);
   }
 
-  static getReportCommentConfirmationModal(): HTMLElement | null {
+  static get reportCommentConfirmationModal(): HTMLElement | null {
     return document.querySelector(SELECTORS.REPORT_COMMENT_CONFIRMATION);
   }
 
-  static getReportCommentPostErrorModal(): HTMLElement | null {
+  static get reportCommentPostErrorModal(): HTMLElement | null {
     return document.querySelector(SELECTORS.REPORT_COMMENT_POST_ERROR);
   }
 
-  static getReportCommentPostSuccessModal(): HTMLElement | null {
+  static get reportCommentPostSuccessModal(): HTMLElement | null {
     return document.querySelector(SELECTORS.REPORT_COMMENT_POST_SUCCESS);
   }
 }
@@ -250,7 +210,7 @@ class ProductCommentsQueries {
 class ProductCommentsForm {
   static validateRatingChosen(): boolean {
     const {ratingChosen} = window;
-    const noRatingInfo = ProductCommentsQueries.getNoRatingInfo();
+    const {noRatingInfo} = {noRatingInfo: ProductCommentsElements.noRatingInfo};
 
     if (noRatingInfo) {
       if (ratingChosen) {
@@ -269,7 +229,7 @@ class ProductCommentsForm {
   }
 
   static clearReviewForm(): void {
-    const form = ProductCommentsQueries.getModalReviewForm();
+    const form = ProductCommentsElements.modalReviewForm;
 
     if (form) {
       form.reset();
@@ -309,8 +269,13 @@ class ProductCommentsForm {
 
   private static handleSubmissionError(jsonData: { errors?: string[]; error?: string }): void {
     if (jsonData.errors && Array.isArray(jsonData.errors)) {
-      const errorList = `<ul>${jsonData.errors.map((error: string) => `<li>${error}</li>`).join('')}</ul>`;
-      ProductCommentsModals.showReviewErrorModal(errorList);
+      const errorList = document.createElement('ul');
+      jsonData.errors.forEach((error: string) => {
+        const errorItem = document.createElement('li');
+        errorItem.textContent = error;
+        errorList.appendChild(errorItem);
+      });
+      ProductCommentsModals.showReviewErrorModal(errorList.outerHTML);
     } else {
       const errorMessage = jsonData.error || window.productCommentPostErrorMessage;
       ProductCommentsModals.showReviewErrorModal(errorMessage);
@@ -323,7 +288,7 @@ class ProductCommentsModals {
   static showReviewPostedModal(): void {
     this.closeReviewRelatedModals();
 
-    const modal = ProductCommentsQueries.getModalReviewPosted();
+    const modal = ProductCommentsElements.modalReviewPosted;
 
     if (modal) {
       const modalInstance = Modal.getOrCreateInstance(modal);
@@ -335,10 +300,10 @@ class ProductCommentsModals {
   static showReviewErrorModal(errorMessage: string): void {
     this.closeReviewRelatedModals();
 
-    const modal = ProductCommentsQueries.getModalReviewError();
+    const modal = ProductCommentsElements.modalReviewError;
 
     if (modal) {
-      const errorContent = modal.querySelector('.modal-body');
+      const errorContent = modal.querySelector(SELECTORS.BS_MODAL_BODY);
       const modalInstance = Modal.getOrCreateInstance(modal);
 
       if (errorContent) {
@@ -351,9 +316,9 @@ class ProductCommentsModals {
 
   static closeReviewRelatedModals(): void {
     const modals = [
-      ProductCommentsQueries.getModalReview(),
-      ProductCommentsQueries.getModalReviewPosted(),
-      ProductCommentsQueries.getModalReviewError(),
+      ProductCommentsElements.modalReview,
+      ProductCommentsElements.modalReviewPosted,
+      ProductCommentsElements.modalReviewError,
     ];
 
     modals.forEach((modal) => {
@@ -379,7 +344,7 @@ class ProductCommentsListing {
   private static commentPrototype: string | null = null;
 
   static init(): void {
-    const commentsList = ProductCommentsQueries.getCommentsList();
+    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
 
     if (!commentsList) return;
 
@@ -402,7 +367,7 @@ class ProductCommentsListing {
   }
 
   private static initPagination(): void {
-    const pagination = ProductCommentsQueries.getPagination();
+    const {pagination} = {pagination: ProductCommentsElements.pagination};
 
     if (!pagination || this.totalPages <= 1) {
       this.loadInitialComments();
@@ -414,7 +379,7 @@ class ProductCommentsListing {
   }
 
   private static initPaginationListeners(): void {
-    const paginationItems = ProductCommentsQueries.getPaginationItems();
+    const {paginationItems} = {paginationItems: ProductCommentsElements.paginationItems};
 
     paginationItems.forEach((item) => {
       item.addEventListener('click', (event) => {
@@ -456,7 +421,7 @@ class ProductCommentsListing {
   private static updatePaginationUI(): void {
     // Update all page items
     for (let i = 1; i <= this.totalPages; i += 1) {
-      const pageItem = ProductCommentsQueries.getPaginationPage(i);
+      const pageItem = ProductCommentsElements.getPaginationPage(i);
 
       if (pageItem) {
         const isActive = i === this.currentPage;
@@ -475,7 +440,7 @@ class ProductCommentsListing {
     }
 
     // Update prev button
-    const prevItem = ProductCommentsQueries.getPaginationPrev();
+    const prevItem = ProductCommentsElements.paginationPrev;
 
     if (prevItem) {
       const prevButton = prevItem.querySelector('button');
@@ -488,7 +453,7 @@ class ProductCommentsListing {
     }
 
     // Update next button
-    const nextItem = ProductCommentsQueries.getPaginationNext();
+    const nextItem = ProductCommentsElements.paginationNext;
 
     if (nextItem) {
       const nextButton = nextItem.querySelector('button');
@@ -516,7 +481,7 @@ class ProductCommentsListing {
   }
 
   private static populateComments(comments: CommentData[]): void {
-    const commentsList = ProductCommentsQueries.getCommentsList();
+    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
 
     if (!commentsList) return;
 
@@ -527,7 +492,7 @@ class ProductCommentsListing {
   }
 
   private static addComment(comment: CommentData): void {
-    const commentsList = ProductCommentsQueries.getCommentsList();
+    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
 
     if (!commentsList) return;
 
@@ -566,9 +531,9 @@ class ProductCommentsListing {
     // Initialize comment rating
     ProductCommentsRating.initCommentRating(commentElement, comment.grade);
 
-    const usefulButtons = ProductCommentsQueries.getUsefulReviewButtons(commentElement);
-    const notUsefulButtons = ProductCommentsQueries.getNotUsefulReviewButtons(commentElement);
-    const reportButtons = ProductCommentsQueries.getReportAbuseButtons(commentElement);
+    const usefulButtons = ProductCommentsElements.getUsefulReviewButtons(commentElement);
+    const notUsefulButtons = ProductCommentsElements.getNotUsefulReviewButtons(commentElement);
+    const reportButtons = ProductCommentsElements.getReportAbuseButtons(commentElement);
 
     usefulButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -626,7 +591,7 @@ class ProductCommentsRating {
   }
 
   static initRatingSystem(): void {
-    const gradeStars = ProductCommentsQueries.getGradeStars();
+    const {gradeStars} = {gradeStars: ProductCommentsElements.gradeStars};
     gradeStars.forEach((star) => {
       if (this.isRatingPluginAvailable()) {
         this.getJQueryRating(star).rating();
@@ -635,7 +600,7 @@ class ProductCommentsRating {
   }
 
   static resetModalStars(): void {
-    const modal = ProductCommentsQueries.getModalReview();
+    const modal = ProductCommentsElements.modalReview;
 
     if (modal) {
       const starsInModal = modal.querySelectorAll(SELECTORS.GRADE_STARS);
@@ -668,7 +633,7 @@ class ProductCommentsInteractions {
   static async updateCommentUsefulness(
     commentElement: HTMLElement, commentId: number, usefulness: number,
   ): Promise<void> {
-    const commentsList = ProductCommentsQueries.getCommentsList();
+    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
 
     if (!commentsList) return;
 
@@ -706,8 +671,8 @@ class ProductCommentsInteractions {
     usefulness: number,
     totalUsefulness: number,
   ): void {
-    const usefulValue = ProductCommentsQueries.getUsefulReviewValue(commentElement);
-    const notUsefulValue = ProductCommentsQueries.getNotUsefulReviewValue(commentElement);
+    const usefulValue = ProductCommentsElements.getUsefulReviewValue(commentElement);
+    const notUsefulValue = ProductCommentsElements.getNotUsefulReviewValue(commentElement);
 
     if (usefulValue) {
       usefulValue.textContent = usefulness.toString();
@@ -718,7 +683,7 @@ class ProductCommentsInteractions {
   }
 
   static confirmCommentAbuse(commentId: number): void {
-    const confirmModal = ProductCommentsQueries.getReportCommentConfirmationModal();
+    const confirmModal = ProductCommentsElements.reportCommentConfirmationModal;
 
     if (!confirmModal) return;
 
@@ -737,7 +702,7 @@ class ProductCommentsInteractions {
   }
 
   private static async confirmCommentAbuseFetch(commentId: number): Promise<void> {
-    const commentsList = ProductCommentsQueries.getCommentsList();
+    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
 
     if (!commentsList) return;
 
@@ -771,11 +736,11 @@ class ProductCommentsInteractions {
   }
 
   private static showUpdatePostCommentErrorModal(errorMessage: string): void {
-    const modal = ProductCommentsQueries.getUpdateCommentUsefulnessPostErrorModal();
+    const modal = ProductCommentsElements.updateCommentUsefulnessPostErrorModal;
 
     if (!modal) return;
 
-    const messageElement = modal.querySelector('.modal-body');
+    const messageElement = modal.querySelector(SELECTORS.BS_MODAL_BODY);
 
     if (messageElement) {
       messageElement.innerHTML = errorMessage;
@@ -786,7 +751,7 @@ class ProductCommentsInteractions {
   }
 
   private static showReportCommentErrorModal(errorMessage: string): void {
-    const modal = ProductCommentsQueries.getReportCommentPostErrorModal();
+    const modal = ProductCommentsElements.reportCommentPostErrorModal;
 
     if (!modal) return;
 
@@ -801,7 +766,7 @@ class ProductCommentsInteractions {
   }
 
   private static showReportCommentPostedModal(): void {
-    const modal = ProductCommentsQueries.getReportCommentPostSuccessModal();
+    const modal = ProductCommentsElements.reportCommentPostSuccessModal;
 
     if (!modal) return;
 
@@ -828,7 +793,7 @@ class ProductListReviews {
   }
 
   private static async loadProductListReviews(): Promise<void> {
-    const productListReviews = ProductCommentsQueries.getProductListReviews();
+    const {productListReviews} = {productListReviews: ProductCommentsElements.productListReviews};
 
     if (!productListReviews) return;
 
@@ -863,7 +828,7 @@ class ProductListReviews {
   private static updateProductListReviews(
     data: { products: Array<{ id_product: number; comments_nb: string; average_grade: number | null }> },
   ): void {
-    const productListReviews = ProductCommentsQueries.getProductListReviews();
+    const {productListReviews} = {productListReviews: ProductCommentsElements.productListReviews};
 
     productListReviews.forEach((review) => {
       const productId = parseInt(review.getAttribute('data-id') || '0', 10);
@@ -888,8 +853,8 @@ class ProductListReviews {
       this.updateStarsWithRating(starsContainer, data.grade);
     }
 
-    const productListCommentsNumber = ProductCommentsQueries.getProductListCommentsNumber(reviewElement);
-    const productListGradeNUmber = ProductCommentsQueries.getProductListGradeNumber(reviewElement);
+    const productListCommentsNumber = ProductCommentsElements.getProductListCommentsNumber(reviewElement);
+    const productListGradeNUmber = ProductCommentsElements.getProductListGradeNumber(reviewElement);
 
     if (productListCommentsNumber && productListGradeNUmber) {
       productListCommentsNumber.textContent = data.comments_nb.toString();
@@ -927,9 +892,9 @@ class ProductComments {
   }
 
   private static initReviewModal(): void {
-    const modal = ProductCommentsQueries.getModalReview();
-    const form = ProductCommentsQueries.getModalReviewForm();
-    const formValidationButton = form ? ProductCommentsQueries.getFormValidationButton(form) : null;
+    const modal = ProductCommentsElements.modalReview;
+    const form = ProductCommentsElements.modalReviewForm;
+    const formValidationButton = form ? ProductCommentsElements.getFormValidationButton(form) : null;
 
     if (modal && form && formValidationButton) {
       formValidationButton.addEventListener('click', () => {
@@ -943,7 +908,7 @@ class ProductComments {
   }
 
   private static initReviewPostedModal(): void {
-    const modal = ProductCommentsQueries.getModalReviewPosted();
+    const modal = ProductCommentsElements.modalReviewPosted;
 
     if (modal) {
       modal.addEventListener('hidden.bs.modal', () => {
@@ -956,7 +921,7 @@ class ProductComments {
   }
 
   private static initReviewErrorModal(): void {
-    const modal = ProductCommentsQueries.getModalReviewError();
+    const modal = ProductCommentsElements.modalReviewError;
 
     if (modal) {
       modal.addEventListener('hidden.bs.modal', () => {
@@ -979,7 +944,7 @@ class ProductComments {
   }
 
   private static initReportCommentConfirmationModal(): void {
-    const confirmModal = ProductCommentsQueries.getReportCommentConfirmationModal();
+    const confirmModal = ProductCommentsElements.reportCommentConfirmationModal;
 
     if (!confirmModal) {
       return;
@@ -1019,7 +984,7 @@ class ProductComments {
   }
 
   private static initPostReviewButton(): void {
-    const buttons = ProductCommentsQueries.getPostReviewButtons();
+    const buttons = ProductCommentsElements.postReviewButtons;
 
     if (buttons) {
       buttons.forEach((button) => {
@@ -1031,10 +996,18 @@ class ProductComments {
   }
 
   static initCommentsModalHandler(): void {
-    const updateCommentUsefulnessPostErrorModal = ProductCommentsQueries.getUpdateCommentUsefulnessPostErrorModal();
-    const reportCommentConfirmationModal = ProductCommentsQueries.getReportCommentConfirmationModal();
-    const reportCommentPostErrorModal = ProductCommentsQueries.getReportCommentPostErrorModal();
-    const reportCommentPostSuccessModal = ProductCommentsQueries.getReportCommentPostSuccessModal();
+    const {updateCommentUsefulnessPostErrorModal} = {
+      updateCommentUsefulnessPostErrorModal: ProductCommentsElements.updateCommentUsefulnessPostErrorModal,
+    };
+    const {reportCommentConfirmationModal} = {
+      reportCommentConfirmationModal: ProductCommentsElements.reportCommentConfirmationModal,
+    };
+    const {reportCommentPostErrorModal} = {
+      reportCommentPostErrorModal: ProductCommentsElements.reportCommentPostErrorModal,
+    };
+    const {reportCommentPostSuccessModal} = {
+      reportCommentPostSuccessModal: ProductCommentsElements.reportCommentPostSuccessModal,
+    };
 
     if (updateCommentUsefulnessPostErrorModal) {
       updateCommentUsefulnessPostErrorModal.addEventListener('hidden.bs.modal', () => {

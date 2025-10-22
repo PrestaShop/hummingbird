@@ -10,8 +10,9 @@
   </script>
 
   <div id="product-comments-list-header">
-    <h2 class="section-title">{l s='Comments' d='Modules.Productcomments.Shop'}
-      ({$nb_comments})</h2>
+    <h2 class="section-title">
+      {l s='Comments' d='Modules.Productcomments.Shop'} ({$nb_comments})
+    </h2>
     {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade showGradeAverage=true showNbComments=false}
   </div>
 

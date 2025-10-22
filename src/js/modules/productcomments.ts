@@ -210,7 +210,7 @@ class ProductCommentsElements {
 class ProductCommentsForm {
   static validateRatingChosen(): boolean {
     const {ratingChosen} = window;
-    const {noRatingInfo} = {noRatingInfo: ProductCommentsElements.noRatingInfo};
+    const {noRatingInfo} = ProductCommentsElements;
 
     if (noRatingInfo) {
       if (ratingChosen) {
@@ -344,7 +344,7 @@ class ProductCommentsListing {
   private static commentPrototype: string | null = null;
 
   static init(): void {
-    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
+    const {commentsList} = ProductCommentsElements;
 
     if (!commentsList) return;
 
@@ -367,7 +367,7 @@ class ProductCommentsListing {
   }
 
   private static initPagination(): void {
-    const {pagination} = {pagination: ProductCommentsElements.pagination};
+    const {pagination} = ProductCommentsElements;
 
     if (!pagination || this.totalPages <= 1) {
       this.loadInitialComments();
@@ -379,7 +379,7 @@ class ProductCommentsListing {
   }
 
   private static initPaginationListeners(): void {
-    const {paginationItems} = {paginationItems: ProductCommentsElements.paginationItems};
+    const {paginationItems} = ProductCommentsElements;
 
     paginationItems.forEach((item) => {
       item.addEventListener('click', (event) => {
@@ -481,7 +481,7 @@ class ProductCommentsListing {
   }
 
   private static populateComments(comments: CommentData[]): void {
-    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
+    const {commentsList} = ProductCommentsElements;
 
     if (!commentsList) return;
 
@@ -492,7 +492,7 @@ class ProductCommentsListing {
   }
 
   private static addComment(comment: CommentData): void {
-    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
+    const {commentsList} = ProductCommentsElements;
 
     if (!commentsList) return;
 
@@ -591,7 +591,8 @@ class ProductCommentsRating {
   }
 
   static initRatingSystem(): void {
-    const {gradeStars} = {gradeStars: ProductCommentsElements.gradeStars};
+    const {gradeStars} = ProductCommentsElements;
+
     gradeStars.forEach((star) => {
       if (this.isRatingPluginAvailable()) {
         this.getJQueryRating(star).rating();
@@ -633,7 +634,7 @@ class ProductCommentsInteractions {
   static async updateCommentUsefulness(
     commentElement: HTMLElement, commentId: number, usefulness: number,
   ): Promise<void> {
-    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
+    const {commentsList} = ProductCommentsElements;
 
     if (!commentsList) return;
 
@@ -702,7 +703,7 @@ class ProductCommentsInteractions {
   }
 
   private static async confirmCommentAbuseFetch(commentId: number): Promise<void> {
-    const {commentsList} = {commentsList: ProductCommentsElements.commentsList};
+    const {commentsList} = ProductCommentsElements;
 
     if (!commentsList) return;
 
@@ -793,7 +794,7 @@ class ProductListReviews {
   }
 
   private static async loadProductListReviews(): Promise<void> {
-    const {productListReviews} = {productListReviews: ProductCommentsElements.productListReviews};
+    const {productListReviews} = ProductCommentsElements;
 
     if (!productListReviews) return;
 
@@ -828,7 +829,7 @@ class ProductListReviews {
   private static updateProductListReviews(
     data: { products: Array<{ id_product: number; comments_nb: string; average_grade: number | null }> },
   ): void {
-    const {productListReviews} = {productListReviews: ProductCommentsElements.productListReviews};
+    const {productListReviews} = ProductCommentsElements;
 
     productListReviews.forEach((review) => {
       const productId = parseInt(review.getAttribute('data-id') || '0', 10);
@@ -996,18 +997,10 @@ class ProductComments {
   }
 
   static initCommentsModalHandler(): void {
-    const {updateCommentUsefulnessPostErrorModal} = {
-      updateCommentUsefulnessPostErrorModal: ProductCommentsElements.updateCommentUsefulnessPostErrorModal,
-    };
-    const {reportCommentConfirmationModal} = {
-      reportCommentConfirmationModal: ProductCommentsElements.reportCommentConfirmationModal,
-    };
-    const {reportCommentPostErrorModal} = {
-      reportCommentPostErrorModal: ProductCommentsElements.reportCommentPostErrorModal,
-    };
-    const {reportCommentPostSuccessModal} = {
-      reportCommentPostSuccessModal: ProductCommentsElements.reportCommentPostSuccessModal,
-    };
+    const {updateCommentUsefulnessPostErrorModal} = ProductCommentsElements;
+    const {reportCommentConfirmationModal} = ProductCommentsElements;
+    const {reportCommentPostErrorModal} = ProductCommentsElements;
+    const {reportCommentPostSuccessModal} = ProductCommentsElements;
 
     if (updateCommentUsefulnessPostErrorModal) {
       updateCommentUsefulnessPostErrorModal.addEventListener('hidden.bs.modal', () => {

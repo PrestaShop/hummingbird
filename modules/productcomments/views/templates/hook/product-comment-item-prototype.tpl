@@ -25,13 +25,15 @@
 
   <div class="comment__buttons">
     {if $usefulness_enabled}
-      <button class="useful-review btn btn-sm btn-outline-primary" data-ps-ref="useful-review" aria-label="{l s='Mark this review as useful'}">
+      <button class="useful-review btn btn-sm btn-outline-primary" data-ps-ref="useful-review">
         <i class="material-icons fs-6" aria-hidden="true">&#xE8DC;</i>
         <span class="useful-review-value" data-ps-ref="useful-review-value">@COMMENT_USEFUL_ADVICES@</span>
+        <span class="visually-hidden">{l s='useful review(s). Mark this review as useful.' d='Modules.Productcomments.Shop'}</span>
       </button>
-      <button class="not-useful-review btn btn-sm btn-outline-primary" data-ps-ref="not-useful-review" aria-label="{l s='Mark this review as not useful'}">
+      <button class="not-useful-review btn btn-sm btn-outline-primary" data-ps-ref="not-useful-review">
         <i class="material-icons fs-6" aria-hidden="true">&#xE8DB;</i>
         <span class="not-useful-review-value" data-ps-ref="not-useful-review-value">@COMMENT_NOT_USEFUL_ADVICES@</span>
+        <span class="visually-hidden">{l s='not useful review(s). Mark this review as not useful.' d='Modules.Productcomments.Shop'}</span>
       </button>
     {/if}
     <button class="report-abuse btn btn-sm btn-outline-primary" data-ps-ref="report-abuse">

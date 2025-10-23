@@ -37,7 +37,7 @@
       {/block}
     </div>
 
-    <div class="product__right">
+    <div class="product__right" data-ps-ref="product-right" tabindex="-1">
       {block name='product_header'}
         <h1 class="h2 product__name">{block name='page_title'}{$product.name}{/block}</h1>
       {/block}

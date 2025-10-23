@@ -31,6 +31,7 @@ import initCategoryTree from '@js/modules/ps_categorytree';
 import initScrollPaddingTop from '@helpers/scrollPadding';
 import initProductAccessibility from '@js/accessibility/product';
 import initCartAccessibility from '@js/accessibility/cart';
+import initProductComments from '@js/modules/productcomments';
 
 initEmitter();
 
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCategoryTree();
   initScrollPaddingTop();
   initBlockCart();
+  initProductComments();
   // Accessibility
   initProductAccessibility();
   initCartAccessibility();

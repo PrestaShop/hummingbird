@@ -86,7 +86,7 @@
     </div>
   </div>
 
-  {if !$cart.is_virtual && isset($multishipment_is_enabled) && !$multishipment_is_enabled}
+  {if !$cart.is_virtual && isset($is_multishipment_enabled) && !$is_multishipment_enabled}
     <p class="final-summary__header">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
 
@@ -137,7 +137,7 @@
 
     <div class="final-summary__order-table card border-1 mb-4">
       <div class="card-body">
-        {if isset($multishipment_is_enabled) && $multishipment_is_enabled}
+        {if isset($is_multishipment_enabled) && $is_multishipment_enabled}
           {include file='checkout/_partials/order-final-summary-table-multishipment.tpl'
             products=$products_carrier_mapping
             products_count=$cart.products_count

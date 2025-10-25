@@ -5,6 +5,7 @@
 
 import {searchProduct, Result} from '@services/search';
 import debounce from '@helpers/debounce';
+import {Offcanvas} from 'bootstrap';
 
 /**
  * Initialize search bar functionality including:
@@ -27,6 +28,29 @@ const initSearchbar = () => {
   const searchIcon = document.querySelector<HTMLElement>(SearchBarMap.searchIcon);
   const searchClear = document.querySelector<HTMLElement>(SearchBarMap.searchClear);
   const searchUrl = searchWidget?.dataset.searchControllerUrl;
+
+  // For powerusers `/` goes to search :)
+  // TODO: this should probably be in a totally new "shortcuts" module that does
+  // other shortcuts and even a `?` to show a small cheatsheet on the screen :)
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    // Ignore if user is already typing in an input, textarea, or contenteditable element
+    const active = document.activeElement as HTMLElement | null;
+    const isTyping = active
+      && (active.tagName === 'INPUT'
+        || active.tagName === 'TEXTAREA'
+        || active.isContentEditable);
+
+    if (!isTyping && e.key === '/') {
+      e.preventDefault();
+      if (searchCanvas && !searchCanvas.classList.contains('show')) {
+        const offcanvas = Offcanvas.getOrCreateInstance(searchCanvas);
+        offcanvas.show();
+        setTimeout(() => searchInput?.focus(), 400);
+      } else {
+        searchInput?.focus();
+      }
+    }
+  });
 
   // Focus input on widget click (better touch UX)
   searchWidget?.addEventListener('click', () => {

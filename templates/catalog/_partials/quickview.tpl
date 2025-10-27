@@ -21,7 +21,19 @@
         </div>
 
         <div class="product__right">
-          <p class="product__name h2">{$product.name}</p>
+          <p class="product__name h2 {if !empty($product_manufacturer->name) && !empty($product_brand_url)}mb-1{/if}">
+            {$product.name}
+          </p>
+
+          {block name='product_manufacturer'}
+            {if !empty($product_manufacturer->name) && !empty($product_brand_url)}
+              <div class="product__manufacturer">
+                <a href="{$product_brand_url}" aria-label="{l s='Product brand: %brand_name%' sprintf=['%brand_name%' => $product_manufacturer->name] d='Shop.Theme.Catalog'}">
+                  {$product_manufacturer->name}
+                </a>
+              </div>
+            {/if}
+          {/block}
 
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}

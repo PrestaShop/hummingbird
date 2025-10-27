@@ -39,7 +39,19 @@
 
     <div class="product__right" data-ps-ref="product-right" tabindex="-1">
       {block name='product_header'}
-        <h1 class="h2 product__name">{block name='page_title'}{$product.name}{/block}</h1>
+        <h1 class="product__name h2 {if !empty($product_manufacturer->name) && !empty($product_brand_url)}mb-1{/if}">
+          {block name='page_title'}{$product.name}{/block}
+        </h1>
+      {/block}
+
+      {block name='product_manufacturer'}
+        {if !empty($product_manufacturer->name) && !empty($product_brand_url)}
+          <div class="product__manufacturer">
+            <a href="{$product_brand_url}" aria-label="{l s='Product brand: %brand_name%' sprintf=['%brand_name%' => $product_manufacturer->name] d='Shop.Theme.Catalog'}">
+              {$product_manufacturer->name}
+            </a>
+          </div>
+        {/if}
       {/block}
 
       {block name='product_prices'}

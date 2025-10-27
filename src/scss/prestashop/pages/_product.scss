@@ -184,6 +184,7 @@ $component-name: product;
 
     // Spacings
     &__name,
+    &__manufacturer,
     &__prices,
     &__description-short,
     &__actions,
@@ -271,6 +272,7 @@ $component-name: product;
 
       // Spacings
       &__name,
+      &__manufacturer,
       &__prices,
       &__description-short,
       &__actions,
@@ -310,6 +312,8 @@ $component-name: product;
       }
 
       // Quickview spacings
+      &__name,
+      &__manufacturer,
       &__prices,
       &__description-short,
       &__actions,

@@ -22,7 +22,7 @@
 
         {* Shipping method *}
         {include file='checkout/_partials/checkout-navigation-step.tpl' number="{l s='3' d='Shop.Theme.Checkout'}"
-        step="checkout-delivery-step" title="{l s='Shipping method' d='Shop.Theme.Checkout'}"}
+        step="checkout-delivery-step" title="{l s='Shipping method' d='Shop.Theme.Checkout'}" virtual=$cart.is_virtual}
 
         {* Payment *}
         {include file='checkout/_partials/checkout-navigation-step.tpl' number="{l s='4' d='Shop.Theme.Checkout'}"

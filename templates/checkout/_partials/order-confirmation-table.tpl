@@ -4,8 +4,6 @@
  *}
 {$componentName = 'order-confirmation'}
 
-{block name='order-items-table-head'}{/block}
-
 <div class="{$componentName}__table {block name='order-confirmation-classes'}{/block}">
   <div class="{$componentName}__products">
     {foreach from=$products item=product}
@@ -36,6 +34,7 @@
                 srcset="
                   {$product.default_image.bySize.default_xs.url},
                   {$product.default_image.bySize.default_md.url} 2x"
+                src="{$product.default_image.bySize.default_xs.url}"
                 loading="lazy"
                 width="{$product.default_image.bySize.default_xs.width}"
                 height="{$product.default_image.bySize.default_xs.height}"
@@ -68,11 +67,16 @@
                 srcset="
                   {$urls.no_picture_image.bySize.default_xs.url},
                   {$urls.no_picture_image.bySize.default_md.url} 2x"
+                src="{$urls.no_picture_image.bySize.default_xs.url}"
+                loading="lazy"
                 width="{$urls.no_picture_image.bySize.default_xs.width}"
                 height="{$urls.no_picture_image.bySize.default_xs.height}"
-                loading="lazy"
               >
             </picture>
+          {/if}
+
+          {if !empty($product.quantity) && $product.quantity > 1}
+            <p class="{$componentName}__product-quantity">{l s='x%quantity%' sprintf=['%quantity%' => $product.quantity] d='Shop.Theme.Global'}</p>
           {/if}
         </div>
 
@@ -86,8 +90,25 @@
               </a>
             {/if}
 
+            {if !empty($product.attributes)}
+              <div class="{$componentName}__product-attributes">
+                {foreach from=$product.attributes key="attribute" item="value"}
+                  <div class="{$componentName}__product-attribute">
+                    <span class="label">{$attribute}:</span>
+                    <span class="value">{$value}</span>
+                  </div>
+                {/foreach}
+              </div>
+            {/if}
+
             {if !empty($product.reference)}
               <p class="{$componentName}__product-reference">{l s='Reference:' d='Shop.Theme.Catalog'} {$product.reference}</p>
+            {/if}
+
+            {if $product.price}
+              <div class="{$componentName}__product-price">
+                {$product.price}
+              </div>
             {/if}
 
             {if is_array($product.customizations) && $product.customizations|count}
@@ -98,13 +119,6 @@
           </div>
           
           <div class="{$componentName}__product-prices">
-            {if $product.quantity > 1}
-              <div class="{$componentName}__product-price">
-                {$product.price}
-                <span class="{$componentName}__product-price-unit">(x{$product.quantity})</span>
-              </div>
-            {/if}
-
             <div class="{$componentName}__product-total">
               {$product.total}
             </div>

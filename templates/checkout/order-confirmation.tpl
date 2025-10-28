@@ -66,14 +66,25 @@
         <hr>
 
         {block name='order_confirmation_table'}
-          {include
-            file='checkout/_partials/order-confirmation-table.tpl'
-            products=$order.products
-            subtotals=$order.subtotals
-            totals=$order.totals
-            labels=$order.labels
-            add_product_link=false
-          }
+          {if isset($is_multishipment_enabled) && $is_multishipment_enabled}
+            {include
+              file='checkout/_partials/order-confirmation-table-multishipment.tpl'
+              products=$order.carriers_products
+              subtotals=$order.subtotals
+              totals=$order.totals
+              labels=$order.labels
+              add_product_link=false
+            }
+          {else}
+            {include
+              file='checkout/_partials/order-confirmation-table.tpl'
+              products=$order.products
+              subtotals=$order.subtotals
+              totals=$order.totals
+              labels=$order.labels
+              add_product_link=false
+            }
+          {/if}
         {/block}
       </div>
     </div>

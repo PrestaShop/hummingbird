@@ -13,9 +13,11 @@
           <p class="{$componentName}__carrier-info-delay">{$product.carrier.delay}</p>
         </div>
 
-        <button class="{$componentName}__carrier-info-edit-button btn btn-outline-primary btn-sm js-edit-shipping" data-step="checkout-delivery-step" aria-label="{l s='Edit your shipping method' d='Shop.Theme.Actions'}">
-          <i class="material-icons" aria-hidden="true">&#xE254;</i> {l s='Edit' d='Shop.Theme.Actions'}
-        </button>
+        {if empty($hide_multishipment_edit_buttons)}
+          <button class="{$componentName}__carrier-info-edit-button btn btn-outline-primary btn-sm js-edit-shipping" data-step="checkout-delivery-step" aria-label="{l s='Edit your shipping method' d='Shop.Theme.Actions'}">
+            <i class="material-icons" aria-hidden="true">&#xE254;</i> {l s='Edit' d='Shop.Theme.Actions'}
+          </button>
+        {/if}
       </div>
 
       {foreach from=$product['products'] item=product}

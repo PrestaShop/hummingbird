@@ -86,7 +86,7 @@
     </div>
   </div>
 
-  {if !$cart.is_virtual && isset($is_multishipment_enabled) && !$is_multishipment_enabled}
+  {if !$cart.is_virtual && !($is_multishipment_enabled|default:false)}
     <p class="final-summary__header">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
 

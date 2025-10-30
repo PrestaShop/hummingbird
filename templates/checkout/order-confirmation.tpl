@@ -69,7 +69,7 @@
           {if isset($is_multishipment_enabled) && $is_multishipment_enabled}
             {include
               file='checkout/_partials/order-confirmation-table-multishipment.tpl'
-              products=$order.carriers_products
+              products=$order.order_shipments
               subtotals=$order.subtotals
               totals=$order.totals
               labels=$order.labels

@@ -21,19 +21,19 @@
                 </div>
 
                 <div class="details__right">
-                  {if isset($manufacturer_image_url)}
-                    <a href="{$product_brand_url}">
-                      <img src="{$manufacturer_image_url}" 
-                        class="img-fluid details__manufacturer-logo" 
-                        alt="{$product_manufacturer->name}" 
-                        loading="lazy" 
-                        width="98" 
-                        height="50"
+                  {if isset($product_manufacturer.image.bySize.small_default.url)}
+                    <a href="{$product_manufacturer->url}">
+                      <img src="{$product_manufacturer.image.bySize.small_default.url}"
+                        class="img-fluid details__manufacturer-logo"
+                        alt="{$product_manufacturer->name}"
+                        loading="lazy"
+                        width="{$product_manufacturer.image.bySize.small_default.width}"
+                        height="{$product_manufacturer.image.bySize.small_default.height}"
                         aria-label="{l s='Brand: %brand_name%' sprintf=['%brand_name%' => $product_manufacturer->name] d='Shop.Theme.Catalog'}"
                       >
                     </a>
                   {else}
-                    <a href="{$product_brand_url}">{$product_manufacturer->name}</a>
+                    <a href="{$product_manufacturer->url}">{$product_manufacturer->name}</a>
                   {/if}
                 </div>
               </li>

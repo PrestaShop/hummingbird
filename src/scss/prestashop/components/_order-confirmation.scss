@@ -24,7 +24,23 @@ $component-name: order-confirmation;
       margin-block-start: 0;
     }
 
+    &:last-child {
+      margin-block-end: 2rem;
+    }
+
     &-delay {
+      margin-block-end: 0;
+    }
+  }
+
+  &__virtual-info {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-block-start: 2rem;
+
+    &-value {
       margin-block-end: 0;
     }
   }

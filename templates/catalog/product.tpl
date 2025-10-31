@@ -45,9 +45,9 @@
       {/block}
 
       {block name='product_manufacturer'}
-        {if !empty($product_manufacturer->name) && !empty($product_brand_url)}
+        {if !empty($product_manufacturer->name) && !empty($product_manufacturer->url)}
           <div class="product__manufacturer">
-            <a href="{$product_brand_url}" aria-label="{l s='Product brand: %brand_name%' sprintf=['%brand_name%' => $product_manufacturer->name] d='Shop.Theme.Catalog'}">
+            <a href="{$product_manufacturer->url}" aria-label="{l s='Product brand: %brand_name%' sprintf=['%brand_name%' => $product_manufacturer->name] d='Shop.Theme.Catalog'}">
               {$product_manufacturer->name}
             </a>
           </div>

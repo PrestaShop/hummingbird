@@ -86,20 +86,36 @@
             {if $criterions|@count > 0}
               <ul id="criterions_list" data-ps-ref="criterions-list">
                 {foreach from=$criterions item='criterion'}
-                  <li class="mb-2">
-                    <div class="criterion-rating">
-                      <label class="form-label required">{$criterion.name|escape:'html':'UTF-8'} </label>
-                      <div class="grade-stars" data-ps-ref="grade-stars" data-grade="3"
-                        data-input="criterion[{$criterion.id_product_comment_criterion}]">
+                  <li {if !$criterion@last}class="mb-2"{/if}>
+                    <fieldset class="star-rating-group" aria-labelledby="rating-label-{$criterion.id_product_comment_criterion}">
+                      <legend id="rating-label-{$criterion.id_product_comment_criterion}" class="form-label required">
+                        <span class="visually-hidden">{l s='Rating for ' d='Modules.Productcomments.Shop'}</span>
+                        {$criterion.name|escape:'html':'UTF-8'}
+                      </legend>
+
+                      <div class="form-check stars-selector" aria-labelledby="rating-label-{$criterion.id_product_comment_criterion}">
+                        {for $i=1 to 5 step 1}
+                          <input
+                            class="stars-selector__input visually-hidden"
+                            type="radio"
+                            id="star-{$i}-criterion-{$criterion.id_product_comment_criterion}" 
+                            name="criterion[{$criterion.id_product_comment_criterion}]"
+                            value="{$i}"
+                            {if $i == 1}
+                              aria-label="{l s='%s star out of 5' sprintf=[$i] d='Modules.Productcomments.Shop'}"
+                            {else}
+                              aria-label="{l s='%s stars out of 5' sprintf=[$i] d='Modules.Productcomments.Shop'}"
+                            {/if}
+                            required
+                          >
+                          <label class="stars-selector__input-label" for="star-{$i}-criterion-{$criterion.id_product_comment_criterion}" aria-hidden="true"></label>
+                        {/for}
+                        <div class="invalid-feedback">{l s='Please choose a rating for your review.' d='Modules.Productcomments.Shop'}</div>
                       </div>
-                    </div>
+                    </fieldset>
                   </li>
                 {/foreach}
               </ul>
-
-              <div class="alert alert-danger d-none" data-ps-ref="no-rating-info">
-                {l s='Please choose a rating for your review.' d='Modules.Productcomments.Shop'}
-              </div>
             {/if}
           </div>
         </div>
@@ -107,7 +123,7 @@
         <div class="row">
           {if !$logged}
             <div class="col-sm-8 mb-3">
-              <label class="form-label required" for="comment_title">{l s='Title' d='Modules.Productcomments.Shop'} </label>
+              <label class="form-label required" for="comment_title">{l s='Title of your review' d='Modules.Productcomments.Shop'} </label>
               <input class="form-control" name="comment_title" id="comment_title" type="text" value="" required>
             </div>
 
@@ -117,14 +133,14 @@
             </div>
           {else}
             <div class="mb-3">
-              <label class="form-label required" for="comment_title">{l s='Title' d='Modules.Productcomments.Shop'} </label>
+              <label class="form-label required" for="comment_title">{l s='Title of your review' d='Modules.Productcomments.Shop'} </label>
               <input class="form-control" name="comment_title" id="comment_title" type="text" value="" required>
             </div>
           {/if}
         </div>
 
         <div class="mb-3">
-          <label class="form-label required" for="comment_content">{l s='Review' d='Modules.Productcomments.Shop'} </label>
+          <label class="form-label required" for="comment_content">{l s='Your review' d='Modules.Productcomments.Shop'} </label>
           <textarea class="form-control" name="comment_content" id="comment_content" required></textarea>
         </div>
 
@@ -147,7 +163,7 @@
             {l s='Cancel' d='Modules.Productcomments.Shop'}
           </button>
 
-          <button type="submit" class="btn btn-primary w-100 w-md-auto order-first order-md-last" data-ps-action="form-validation-submit">
+          <button type="submit" class="btn btn-primary w-100 w-md-auto order-first order-md-last" aria-label="{l s='Send review' d='Modules.Productcomments.Shop'}" data-ps-action="form-validation-submit">
             {l s='Send' d='Modules.Productcomments.Shop'}
           </button>
         </div>

@@ -59,7 +59,6 @@ const SELECTORS = {
   MODAL_REVIEW_FORM: "[data-ps-ref='product-post-review-form']",
   MODAL_REVIEW_ERROR: "[data-ps-ref='product-post-review-error-modal']",
   MODAL_REVIEW_POSTED: "[data-ps-ref='product-post-review-posted-modal']",
-  NO_RATING_INFO: "[data-ps-ref='no-rating-info']",
   FORM_VALIDATION_BUTTON: "[data-ps-action='form-validation-submit']",
   FORM_FIELD: "[data-ps-ref='product-post-review-form'] [name]",
   // Comments listing selectors
@@ -75,6 +74,8 @@ const SELECTORS = {
   PAGINATION_NEXT: "[data-ps-ref='pagination-item'][data-ps-action='next']",
   // Grade stars selectors
   GRADE_STARS: "[data-ps-ref='grade-stars']",
+  PRODUCT_LIST_GRADE_STARS: "[data-ps-ref='product-list-review'] [data-ps-ref='grade-stars']",
+  COMMENT_LIST_GRADE_STARS: "[data-ps-ref='product-comments-list'] [data-ps-ref='grade-stars']",
   // Comment interaction selectors
   USEFUL_REVIEW: "[data-ps-ref='useful-review']",
   NOT_USEFUL_REVIEW: "[data-ps-ref='not-useful-review']",
@@ -113,12 +114,16 @@ class ProductCommentsElements {
     return document.querySelector(SELECTORS.MODAL_REVIEW_POSTED);
   }
 
-  static get noRatingInfo(): HTMLElement | null {
-    return document.querySelector(SELECTORS.NO_RATING_INFO);
-  }
-
   static get gradeStars(): NodeListOf<Element> {
     return document.querySelectorAll(SELECTORS.GRADE_STARS);
+  }
+
+  static get productListGradeStars(): NodeListOf<Element> {
+    return document.querySelectorAll(SELECTORS.PRODUCT_LIST_GRADE_STARS);
+  }
+
+  static get commentListGradeStars(): NodeListOf<Element> {
+    return document.querySelectorAll(SELECTORS.COMMENT_LIST_GRADE_STARS);
   }
 
   static getFormValidationButton(form: HTMLFormElement): HTMLElement | null {
@@ -208,22 +213,6 @@ class ProductCommentsElements {
 
 // Form validation utility class
 class ProductCommentsForm {
-  static validateRatingChosen(): boolean {
-    const {ratingChosen} = window;
-    const {noRatingInfo} = ProductCommentsElements;
-
-    if (noRatingInfo) {
-      if (ratingChosen) {
-        noRatingInfo.classList.add('d-none');
-        return true;
-      }
-      noRatingInfo.classList.remove('d-none');
-      return false;
-    }
-
-    return ratingChosen;
-  }
-
   static validateForm(form: HTMLFormElement): boolean {
     return form.checkValidity();
   }
@@ -242,7 +231,7 @@ class ProductCommentsForm {
 
     const formData = new FormData(form);
 
-    if (!this.validateForm(form) || !this.validateRatingChosen()) return;
+    if (!this.validateForm(form)) return;
 
     try {
       const response = await fetch(form.action, {
@@ -358,11 +347,11 @@ class ProductCommentsListing {
   }
 
   private static initCommentsListingRatingSystem(): void {
-    ProductCommentsRating.initRatingSystem();
+    ProductCommentsRating.initCommentListRatingSystem();
 
     // Listen for rating updates from the CORE
     document.addEventListener('updateRating', () => {
-      ProductCommentsRating.initRatingSystem();
+      ProductCommentsRating.initCommentListRatingSystem();
     });
   }
 
@@ -590,10 +579,30 @@ class ProductCommentsRating {
     return (window as any).jQuery(element);
   }
 
-  static initRatingSystem(): void {
+  static initProductRatingSystem(): void {
     const {gradeStars} = ProductCommentsElements;
 
     gradeStars.forEach((star) => {
+      if (this.isRatingPluginAvailable()) {
+        this.getJQueryRating(star).rating();
+      }
+    });
+  }
+
+  static initProductListRatingSystem(): void {
+    const {productListGradeStars} = ProductCommentsElements;
+
+    productListGradeStars.forEach((star) => {
+      if (this.isRatingPluginAvailable()) {
+        this.getJQueryRating(star).rating();
+      }
+    });
+  }
+
+  static initCommentListRatingSystem(): void {
+    const {commentListGradeStars} = ProductCommentsElements;
+
+    commentListGradeStars.forEach((star) => {
       if (this.isRatingPluginAvailable()) {
         this.getJQueryRating(star).rating();
       }
@@ -890,6 +899,13 @@ class ProductComments {
     this.initProductListReviews();
     this.initConfirmationModals();
     this.initCommentsModalHandler();
+    this.initProductRatingSystem();
+  }
+
+  private static initProductRatingSystem(): void {
+    ProductCommentsRating.initProductRatingSystem();
+    ProductCommentsRating.initProductListRatingSystem();
+    ProductCommentsRating.initCommentListRatingSystem();
   }
 
   private static initReviewModal(): void {
@@ -898,10 +914,6 @@ class ProductComments {
     const formValidationButton = form ? ProductCommentsElements.getFormValidationButton(form) : null;
 
     if (modal && form && formValidationButton) {
-      formValidationButton.addEventListener('click', () => {
-        ProductCommentsForm.validateRatingChosen();
-      });
-
       form.addEventListener('submit', (event) => {
         ProductCommentsForm.submitReviewForm(form, event);
       });

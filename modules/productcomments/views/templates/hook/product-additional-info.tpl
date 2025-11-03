@@ -7,7 +7,7 @@
   {if $nb_comments > 0}
     <div class="product-comments-additional-info">
       <a href="#product-comments-list-header"
-        aria-label="{l s='Rated %average_grade% out of 5 stars. Go to reviews section.' sprintf=['%average_grade%' => {$average_grade|round:1}] d='Modules.Productcomments.Shop'}">
+        aria-label="{l s='Rated %average_grade% out of 5 stars. Go to reviews section' sprintf=['%average_grade%' => {$average_grade|round:1}] d='Modules.Productcomments.Shop'}">
         {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade showGradeAverage=true}
       </a>
     </div>

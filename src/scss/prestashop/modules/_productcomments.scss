@@ -77,6 +77,47 @@
   }
 }
 
+// Stars selector
+.stars-selector {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  align-items: center;
+  padding: 0;
+
+  &:has(.stars-selector__input:focus-visible) {
+    border-radius: var(--bs-border-radius-sm);
+    box-shadow: $form-check-input-focus-box-shadow;
+  }
+
+  &:not(:has(.stars-selector__input:checked)) {
+    .stars-selector__input-label {
+      background-position: 0 0;
+    }
+  }
+
+  .stars-selector__input {
+    &:focus-visible + .stars-selector__input-label {
+      border-radius: var(--bs-border-radius-sm);
+      outline: 0.125rem solid var(--bs-primary);
+    }
+
+    &:checked {
+      + .stars-selector__input-label ~ .stars-selector__input-label {
+        background-position: 0 0;
+      }
+    }
+  }
+
+  .stars-selector__input-label {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    background: url("../img/stars.png") no-repeat 100% 0 transparent;
+  }
+}
+
 // Specific product page styles
 .page-product {
   .product-comments-additional-info {

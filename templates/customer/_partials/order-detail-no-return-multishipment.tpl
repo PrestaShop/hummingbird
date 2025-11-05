@@ -12,7 +12,13 @@
         <span class="grid-table__cell grid-table__cell--right" role="columnheader">{l s='Total price' d='Shop.Theme.Catalog'}</span>
       </header>
 
-      {foreach from=$order.products item=product name=products}
+      {foreach $order->order_shipments['virtual_products'] item=product}
+        {include file='./order-detail-product-line-no-return.tpl' product=$product}
+      {/foreach}
+      {foreach $order->order_shipments['physical_products'] item=shipment}
+        {foreach from=$shipment['products'] item=product}
+          {include file='./order-detail-product-line-no-return.tpl' product=$product carrier_name=$shipment['carrier']['name']}
+        {/foreach}
       {/foreach}
     </div>
   </div>

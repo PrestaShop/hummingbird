@@ -81,6 +81,12 @@
           </small>
         {/if}
 
+        {if isset($carrier_name)}
+          <small class="text-secondary">
+            {l s='Carrier' d='Shop.Theme.Catalog'}: {$carrier_name}
+          </small>
+        {/if}
+
         {if isset($product.download_link)}
           <a href="{$product.download_link}">
             <i class="material-icons" aria-hidden="true">&#xF090;</i> {l s='Download' d='Shop.Theme.Actions'}

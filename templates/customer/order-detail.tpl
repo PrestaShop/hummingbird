@@ -20,9 +20,11 @@
           }
         </p>
 
-        <p class="order-infos__carrier">
-          {l s='Carrier: %carrierName%' d='Shop.Theme.Checkout' sprintf=['%carrierName%' => $order.carrier.name]}
-        </p>
+        {if not $is_multishipment_enabled|default:false}
+          <p class="order-infos__carrier">
+            {l s='Carrier: %carrierName%' d='Shop.Theme.Checkout' sprintf=['%carrierName%' => $order.carrier.name]}
+          </p>
+        {/if}
 
         <p class="order-infos__payment">
           {l s='Payment method: %paymentMethod%' d='Shop.Theme.Checkout' sprintf=['%paymentMethod%' => $order.details.payment]}
@@ -166,7 +168,7 @@
   {/block}
 
   <hr class="order-separator">
-  
+
   {capture name='displayOrderDetail'}{hook h='displayOrderDetail'}{/capture}
   {if $smarty.capture.displayOrderDetail}
     {$smarty.capture.displayOrderDetail nofilter}
@@ -180,10 +182,17 @@
 
       {block name='order_detail'}
         {if $order.details.is_returnable}
-          {include file='customer/_partials/order-detail-return.tpl'}
+          {if $is_multishipment_enabled|default:false}
+            {include file='customer/_partials/order-detail-return-multishipment.tpl'}
+          {else}
+            {include file='customer/_partials/order-detail-return.tpl'}
+          {/if}
         {else}
-          {include file='customer/_partials/order-detail-no-return.tpl'}
-        {/if}
+          {if $is_multishipment_enabled|default:false}
+            {include file='customer/_partials/order-detail-no-return-multishipment.tpl'}
+          {else}
+            {include file='customer/_partials/order-detail-no-return.tpl'}
+          {/if}
       {/block}
     </section>
   {/block}

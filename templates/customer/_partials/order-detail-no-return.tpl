@@ -5,12 +5,12 @@
 {block name='order_products_table'}
   <div class="grid-table grid-table--collapse mb-0" role="table" aria-label="{l s='Products details' d='Shop.Theme.Customeraccount'}" aria-describedby="order_products_heading">
     <div class="grid-table__inner grid-table__inner--4" role="rowgroup">
-      <header class="grid-table__header" role="row">
+      <div class="grid-table__header" role="row">
         <span class="grid-table__cell" role="columnheader">{l s='Product' d='Shop.Theme.Catalog'}</span>
         <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
         <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Unit price' d='Shop.Theme.Catalog'}</span>
         <span class="grid-table__cell grid-table__cell--right" role="columnheader">{l s='Total price' d='Shop.Theme.Catalog'}</span>
-      </header>
+      </div>
 
       {foreach from=$order.products item=product name=products}
         <div class="grid-table__row {if $smarty.foreach.products.last}rounded-bottom-0{/if}" role="row">
@@ -91,7 +91,7 @@
 
                 {if $product.product_reference}
                   <small class="text-secondary">
-                    {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
+                    {l s='Reference: %reference%' sprintf=['%reference%' => $product.product_reference] d='Shop.Theme.Catalog'}
                   </small>
                 {/if}
 

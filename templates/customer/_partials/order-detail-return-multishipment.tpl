@@ -17,13 +17,21 @@
           <span class="grid-table__cell grid-table__cell--right" role="columnheader">{l s='Total price' d='Shop.Theme.Catalog'}</span>
         </div>
 
-        {foreach $order->order_shipments['virtual_products'] item=product}
-          {include file='./order-detail-product-line-return.tpl' product=$product}
-        {/foreach}
         {foreach $order->order_shipments['physical_products'] item=shipment}
           {foreach from=$shipment['products'] item=product}
-            {include file='./order-detail-product-line-return.tpl' product=$product carrier_name=$shipment['carrier']['name']}
+            {assign var="is_last_product" value=($product@last && empty($order->order_shipments['virtual_products']))}
+            
+            {include 
+              file='./order-detail-product-line-return.tpl' 
+              product=$product 
+              carrier_name=$shipment['carrier']['name']
+              is_last_product=$is_last_product
+            }
           {/foreach}
+        {/foreach}
+
+        {foreach $order->order_shipments['virtual_products'] item=product}
+          {include file='./order-detail-product-line-return.tpl' product=$product is_last_product=$product@last}
         {/foreach}
       </div>
     </div>

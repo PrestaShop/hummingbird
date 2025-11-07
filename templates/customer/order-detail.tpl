@@ -22,12 +22,12 @@
 
         {if not $is_multishipment_enabled|default:false}
           <p class="order-infos__carrier">
-            {l s='Carrier: %carrierName%' d='Shop.Theme.Checkout' sprintf=['%carrierName%' => $order.carrier.name]}
+            {l s='Carrier: %carrier_name%' sprintf=['%carrier_name%' => $order.carrier.name] d='Shop.Theme.Catalog'}
           </p>
         {/if}
 
         <p class="order-infos__payment">
-          {l s='Payment method: %paymentMethod%' d='Shop.Theme.Checkout' sprintf=['%paymentMethod%' => $order.details.payment]}
+          {l s='Payment method: %payment_method%' sprintf=['%payment_method%' => $order.details.payment] d='Shop.Theme.Catalog'}
         </p>
 
         {if $order.details.recyclable}
@@ -193,6 +193,7 @@
           {else}
             {include file='customer/_partials/order-detail-no-return.tpl'}
           {/if}
+        {/if}
       {/block}
     </section>
   {/block}

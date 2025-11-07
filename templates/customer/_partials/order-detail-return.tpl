@@ -21,32 +21,28 @@
           <div class="grid-table__row {if $smarty.foreach.products.last}rounded-bottom-0{/if}" role="row">
             <span class="grid-table__cell" role="cell" data-ps-label="{l s='Select' d='Shop.Theme.Catalog'}">
               {if !$product.customizations}
-                <span id="_desktop_product_line_{$product.id_order_detail}">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="cb_{$product.id_order_detail}"
+                  data-ps-ref="select-product"
+                  name="ids_order_detail[{$product.id_order_detail}]"
+                  value="{$product.id_order_detail}"
+                  {if $product.qty_returned >= $product.quantity}disabled{/if}
+                  aria-label="{$product.name}"
+                >
+              {else}
+                {foreach $product.customizations  as $customization}
                   <input
                     class="form-check-input"
                     type="checkbox"
                     id="cb_{$product.id_order_detail}"
                     data-ps-ref="select-product"
-                    name="ids_order_detail[{$product.id_order_detail}]"
-                    value="{$product.id_order_detail}"
+                    name="customization_ids[{$product.id_order_detail}][]"
+                    value="{$customization.id_customization}"
                     {if $product.qty_returned >= $product.quantity}disabled{/if}
                     aria-label="{$product.name}"
                   >
-                </span>
-              {else}
-                {foreach $product.customizations  as $customization}
-                  <span id="_desktop_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="cb_{$product.id_order_detail}"
-                      data-ps-ref="select-product"
-                      name="customization_ids[{$product.id_order_detail}][]"
-                      value="{$customization.id_customization}"
-                      {if $product.qty_returned >= $product.quantity}disabled{/if}
-                      aria-label="{$product.name}"
-                    >
-                  </span>
                 {/foreach}
               {/if}
             </span>

@@ -6,12 +6,14 @@
 
 {block name='form_buttons'}
   <button
-    class="continue btn btn-primary"
+    class="btn btn-primary"
     name="continue"
     data-link-action="sign-in"
     type="submit"
     value="1"
- >
+    data-ps-action="form-validation-submit"
+  >
     {l s='Continue' d='Shop.Theme.Actions'}
+    <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</i>
   </button>
 {/block}

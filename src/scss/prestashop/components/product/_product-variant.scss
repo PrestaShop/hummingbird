@@ -1,0 +1,47 @@
+$component-name: product-variant;
+
+.#{$component-name} {
+  &__label {
+    margin-block-end: 0.5rem;
+  }
+
+  &__legend,
+  &__selected {
+    display: inline-block;
+    width: auto;
+    margin-block-end: 0;
+    font-size: var(--bs-body-font-size);
+    line-height: var(--bs-body-line-height);
+  }
+
+  // Radios
+  &__radios {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    column-gap: 0.875rem;
+    margin-bottom: 0;
+  }
+
+  &__radio {
+    margin: 0;
+
+    label {
+      cursor: pointer;
+    }
+  }
+
+  // Colors
+  &__colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block-end: 0;
+    @extend %color-variant;
+
+    label {
+      display: block;
+      line-height: 0;
+    }
+  }
+}

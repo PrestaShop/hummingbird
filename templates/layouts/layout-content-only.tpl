@@ -6,10 +6,12 @@
 
 {block name='header'}{/block}
 
+{block name='breadcrumb'}{/block}
+
 {block name='content_columns'}
   {block name='left_column'}{/block}
   {block name='content_wrapper'}
-    <div id="content-wrapper" class="wrapper__content wrapper__content-content-only">
+    <div id="center-column" class="center-column page page--content-only">
       {hook h='displayContentWrapperTop'}
       {block name='content'}
         <p>Hello world! This is HTML5 Boilerplate.</p>

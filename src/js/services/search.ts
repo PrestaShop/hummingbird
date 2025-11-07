@@ -6,11 +6,13 @@
 export interface Result {
   // eslint-disable-next-line camelcase
   canonical_url: string;
+  id_product: number;
   name: string;
   cover: {
     small: {
       url: string;
     };
+    legend: string;
   };
 }
 

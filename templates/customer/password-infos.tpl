@@ -12,8 +12,8 @@
 
 {block name='page_content'}
   {if count($successes)}
-    <div class="alert alert-success" role="alert">
-      <ul>
+    <div class="alert alert-success" role="alert" tabindex="0">
+      <ul class="mb-0">
         {foreach $successes as $success}
           <li>{$success}</li>
         {/foreach}
@@ -24,8 +24,11 @@
 
 {block name='page_footer'}
   <hr>
-  <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-unstyle btn-with-icon">
-    <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
-    <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
-  </a>
+
+  <div class="buttons-wrapper">
+    <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-basic">
+      <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
+      <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
+    </a>
+  </div>
 {/block}

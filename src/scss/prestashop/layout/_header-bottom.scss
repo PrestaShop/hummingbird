@@ -1,0 +1,40 @@
+// @TODO: refacto
+$component-name: header-bottom;
+
+.#{$component-name} {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--bs-border-color);
+
+  &__h1 {
+    font-size: unset;
+  }
+
+  .navbar-brand {
+    max-width: 250px;
+    max-height: max(50px, 10vh);
+    padding: 0;
+
+    .logo {
+      width: auto;
+      max-width: 8rem;
+      max-height: 3rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      .logo {
+        max-width: 9rem;
+      }
+    }
+  }
+
+  .nav-link {
+    &:active,
+    &.active {
+      color: var(--bs-white);
+    }
+
+    &:active:hover {
+      color: var(--bs-white);
+    }
+  }
+}

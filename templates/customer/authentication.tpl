@@ -18,15 +18,15 @@
       <section class="{$componentName}__form-wrapper">
         {render file='customer/_partials/login-form.tpl' ui=$login_form}
       </section>
-      
-      <hr/>
+
+      <hr>
 
       {block name='display_after_login_form'}
         {hook h='displayCustomerLoginFormAfter'}
       {/block}
 
       <div class="{$componentName}__register-prompt">
-        <h2 class="h4 mb-3">{l s='No account?' d='Shop.Theme.Customeraccount'}</h2>
+        <h2 class="h4">{l s='No account?' d='Shop.Theme.Customeraccount'}</h2>
 
         <div class="d-grid">
           <a href="{$urls.pages.register}" class="btn btn-outline-primary" data-link-action="display-register-form">

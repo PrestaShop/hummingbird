@@ -6,21 +6,23 @@
 
 {block name='content'}
   <div class="cart-grid row">
-    <!-- Left Block: cart product informations & shpping -->
-    <div class="cart-grid__body col-lg-8">
-      <h1 class="h4">{l s='Shopping Cart' d='Shop.Theme.Checkout'}</h1>
+    <!-- Left Block: cart product informations & shipping -->
+    <div class="cart-grid__content col-lg-8">
+      {include file='components/page-title-section.tpl' title={l s='Shopping Cart' d='Shop.Theme.Checkout'}}
+
+      {block name="cart_update_alert"}
+        <div class="js-cart-update-alert" data-ps-data="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}" data-ps-data-close="{l s='Close' d='Shop.Theme.Actions' js=1}" aria-atomic="true"></div>
+      {/block}
 
       <!-- cart products detailed -->
-      <div class="cart-container mb-3">
-        <div class="js-cart-update-alert" data-alert="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}"></div>
-        
+      <div class="cart-grid__products-details js-cart-container">
         {block name='cart_overview'}
           {include file='checkout/_partials/cart-detailed.tpl' cart=$cart}
         {/block}
 
         {block name='continue_shopping'}
-          <a class="btn btn-outline-primary btn-with-icon" href="{$urls.pages.index}">
-            <i class="material-icons rtl-flip" aria-hidden="true">chevron_left</i>
+          <a class="cart__continue-shopping btn btn-outline-primary" href="{$urls.pages.index}">
+            <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
             {l s='Continue shopping' d='Shop.Theme.Actions'}
           </a>
         {/block}
@@ -32,12 +34,12 @@
       </div>
     </div>
 
-
     <!-- Right Block: cart subtotal & cart total -->
-    <div class="cart-grid__right col-lg-4">
-      <h2 class="h4">{l s='Order summary' d='Shop.Theme.Checkout'}</h2>
+    <div class="cart-grid__aside col-lg-4">
+      <h2>{l s='Order summary' d='Shop.Theme.Checkout'}</h2>
+
       {block name='cart_summary'}
-        <div class="card cart-summary">
+        <div class="cart-summary js-cart-summary">
           {block name='hook_shopping_cart'}
             {hook h='displayShoppingCart'}
           {/block}
@@ -45,14 +47,10 @@
           {block name='cart_totals'}
             {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
           {/block}
-
-          {block name='cart_actions'}
-            {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
-          {/block}
         </div>
       {/block}
 
-      <hr />
+      <hr>
 
       {block name='hook_reassurance'}
         {hook h='displayReassurance'}
@@ -60,5 +58,7 @@
     </div>
   </div>
 
-  {hook h='displayCrossSellingShoppingCart'}
+  <div class="cart-grid__footer row">
+    {hook h='displayCrossSellingShoppingCart'}
+  </div>
 {/block}

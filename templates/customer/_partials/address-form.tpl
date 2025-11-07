@@ -8,12 +8,11 @@
 
     {block name='address_form_url'}
     <form
-      class="form-validation"
       method="POST"
       action="{url entity='address' params=['id_address' => $id_address]}"
       data-id-address="{$id_address}"
       data-refresh-url="{url entity='address' params=['ajax' => 1, 'action' => 'addressForm', 'id_address' => $id_address]}"
-      novalidate
+      data-ps-action="form-validation"
     >
     {/block}
 
@@ -29,17 +28,14 @@
         </section>
       {/block}
 
-      {block name='address_form_footer'}
-      <footer class="form-footer">
-        <input type="hidden" name="submitAddress" value="1">
-        {block name='form_buttons'}
-          <button class="btn btn-primary form-control-submit" type="submit">
+      {block name='form_buttons'}
+        <footer class="buttons-wrapper buttons-wrapper--end">
+          <input type="hidden" name="submitAddress" value="1">
+          <button class="btn btn-primary form-control-submit" type="submit" data-ps-action="form-validation-submit">
             {l s='Save' d='Shop.Theme.Actions'}
           </button>
-        {/block}
-      </footer>
+        </footer>
       {/block}
-
     </form>
   </div>
 {/block}

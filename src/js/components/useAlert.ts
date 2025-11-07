@@ -116,6 +116,7 @@ const cloneAlertElement = (options?: Theme.Alert.Options): HTMLElement | null =>
             ? alertOptions.icon
             : Alerter.Codepoint[alertOptions.type];
 
+          alertElementIcon.setAttribute('aria-hidden', 'true');
           alertElementIcon.innerHTML = `&#x${codepoint};`;
         } else {
           alertElement.classList.add('flex-wrap');

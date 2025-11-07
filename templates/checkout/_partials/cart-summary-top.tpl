@@ -3,6 +3,6 @@
  * file that was distributed with this source code.
  *}
 
-<div class="cart-summary-top js-cart-summary-top">
+<div class="cart-summary__top js-cart-summary-top">
   {hook h='displayCheckoutSummaryTop'}
 </div>

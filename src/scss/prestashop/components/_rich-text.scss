@@ -1,0 +1,18 @@
+.rich-text {
+  line-height: 1.5;
+
+  table {
+    @extend .table;
+    @extend .table-bordered;
+  }
+
+  ul {
+    padding-left: 1.2rem;
+    list-style: disc;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

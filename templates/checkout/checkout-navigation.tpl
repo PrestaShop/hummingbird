@@ -2,124 +2,54 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{$componentName = 'checkout__steps'}
+{$componentName = 'checkout-steps'}
 
-{if isset($notifications)}
+{if !isset($notifications)}
   {$hasNotifications = $notifications.warning|@count > 0 || $notifications.error|@count > 0 || $notifications.success|@count > 0 || $notifications.info|@count > 0}
 {/if}
 
 {block name='checkout_steps'}
-<div class="{$componentName} bg-light py-2 {if isset($notifications) && $hasNotifications}mb-2 mb-lg-4{else}mb-3 mb-lg-5{/if} py-md-4">
-    <ul class="{$componentName}__list nav nav-tabs border-0 row mb-0 d-none d-md-flex" role="tablist">
-      <li 
-        class="{$componentName}__item nav-item js-step-item text-center col-3" 
-        data-step="checkout-personal-information-step" 
-        role="presentation" 
-      >
-        <span class="{$componentName}__number mb-1">
-          {l s='1' d='Shop.Theme.Checkout'}
-        </span> 
-        <button 
-          class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
-          data-bs-toggle="tab" 
-          data-bs-target="#checkout-personal-information-step"
-          role="tab"
-        >
-          {l s='Personal Information' d='Shop.Theme.Checkout'}
-        </button>
-      </li>
+  <div class="{$componentName} {if isset($notifications) && isset($hasNotifications) && $hasNotifications} {$componentName}--has-notifications{/if}">
+    <div class="{$componentName}__desktop">
+      <ul class="{$componentName}__list" role="tablist">
+        {* Personal Information *}
+        {include file='checkout/_partials/checkout-navigation-step.tpl' number="{l s='1' d='Shop.Theme.Checkout'}"
+        step="checkout-personal-information-step" title="{l s='Personal Information' d='Shop.Theme.Checkout'}"}
 
-      <li 
-        class="{$componentName}__item nav-item js-step-item text-center col-3" 
-        data-step="checkout-addresses-step"
-        role="presentation" 
-      >
-        <span class="{$componentName}__number mb-1">
-          {l s='2' d='Shop.Theme.Checkout'}
-        </span> 
-        <button 
-          class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
-          data-bs-toggle="tab" 
-          data-bs-target="#checkout-addresses-step"
-          role="tab"
-        >
-          {l s='Addresses' d='Shop.Theme.Checkout'}
-        </button>
-      </li>
+        {* Addresses *}
+        {include file='checkout/_partials/checkout-navigation-step.tpl' number="{l s='2' d='Shop.Theme.Checkout'}"
+        step="checkout-addresses-step" title="{l s='Addresses' d='Shop.Theme.Checkout'}"}
 
-      <li 
-        class="{$componentName}__item nav-item js-step-item text-center col-3" 
-        data-step="checkout-delivery-step"
-        role="presentation" 
-      >
-        <span class="{$componentName}__number mb-1">
-          {l s='3' d='Shop.Theme.Checkout'}
-        </span> 
-        <button 
-          class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
-          data-bs-toggle="tab" 
-          data-bs-target="#checkout-delivery-step"
-          role="tab"
-        >
-          {l s='Shipping method' d='Shop.Theme.Checkout'}
-        </button>
-      </li>
+        {* Shipping method *}
+        {include file='checkout/_partials/checkout-navigation-step.tpl' number="{l s='3' d='Shop.Theme.Checkout'}"
+        step="checkout-delivery-step" title="{l s='Shipping method' d='Shop.Theme.Checkout'}" virtual=$cart.is_virtual}
 
-      <li 
-        class="{$componentName}__item nav-item js-step-item text-center col-3" 
-        data-step="checkout-payment-step"
-        role="presentation" 
-      >
-        <span class="{$componentName}__number mb-1">
-          {l s='4' d='Shop.Theme.Checkout'}
-        </span> 
-        <button 
-          class="{$componentName}__text nav-link w-100 bg-transparent btn p-0 border-0 mb-0"
-          data-bs-toggle="tab" 
-          data-bs-target="#checkout-payment-step"
-          role="tab"
-        >
-          {l s='Payment' d='Shop.Theme.Checkout'}
-        </button>
-      </li>
-    </ul>
+        {* Payment *}
+        {include file='checkout/_partials/checkout-navigation-step.tpl' number="{l s='4' d='Shop.Theme.Checkout'}"
+        step="checkout-payment-step" title="{l s='Payment' d='Shop.Theme.Checkout'}"}
+      </ul>
+    </div>
 
-    <div class="{$componentName}__mobile mb-0 d-flex align-items-center d-md-none">
-      <div class="{$componentName}__left mx-3">
-        {include file='components/progress-circle.tpl' classes="text-success col-4" size=74 stroke=4}
+    <div class="{$componentName}__mobile">
+      <div class="{$componentName}__left">
+        {include file='components/progress-circle.tpl' classes="text-success" size=74 stroke=4}
       </div>
 
-      <div class="{$componentName}__step d-none" data-step="checkout-personal-information-step">
-        <p class="fw-bold fs-5 mb-0">
-          {l s='Personal Information' d='Shop.Theme.Checkout'}
-        </p>
-        <p class="{$componentName}__subtitle mb-0 mt-1">
-          {l s='Next: Addresses' d='Shop.Theme.Checkout'}
-        </p>
-      </div>
+      <div class="{$componentName}__right">
+        {* Personal Information *}
+        {include file='checkout/_partials/checkout-navigation-step-mobile.tpl' step="checkout-personal-information-step" title="{l s='Personal Information' d='Shop.Theme.Checkout'}"
+        subtitle="{l s='Next: Addresses' d='Shop.Theme.Checkout'}"}
 
-      <div class="{$componentName}__step d-none" data-step="checkout-addresses-step">
-        <p class="fw-bold fs-5 mb-0">
-          {l s='Addresses' d='Shop.Theme.Checkout'}
-        </p>
-        <p class="{$componentName}__subtitle mb-0 mt-1">
-          {l s='Next: Shipping Method' d='Shop.Theme.Checkout'}
-        </p>
-      </div>
+        {* Addresses *}
+        {include file='checkout/_partials/checkout-navigation-step-mobile.tpl' step="checkout-addresses-step" title="{l s='Addresses' d='Shop.Theme.Checkout'}"
+        subtitle="{l s='Next: Shipping Method' d='Shop.Theme.Checkout'}"}
 
-      <div class="{$componentName}__step d-none" data-step="checkout-delivery-step">
-        <p class="fw-bold fs-5 mb-0">
-          {l s='Shipping Method' d='Shop.Theme.Checkout'}
-        </p>
-        <p class="{$componentName}__subtitle mb-0 mt-1">
-          {l s='Next: Payment' d='Shop.Theme.Checkout'}
-        </p>
-      </div>
+        {* Shipping Method *}
+        {include file='checkout/_partials/checkout-navigation-step-mobile.tpl' step="checkout-delivery-step" title="{l s='Shipping Method' d='Shop.Theme.Checkout'}"
+        subtitle="{l s='Next: Payment' d='Shop.Theme.Checkout'}"}
 
-      <div class="{$componentName}__step d-none" data-step="checkout-payment-step">
-        <p class="fw-bold fs-5 mb-0">
-          {l s='Payment' d='Shop.Theme.Checkout'}
-        </p>
+        {* Payment *}
+        {include file='checkout/_partials/checkout-navigation-step-mobile.tpl' step="checkout-payment-step" title="{l s='Payment' d='Shop.Theme.Checkout'}"}
       </div>
     </div>
   </div>

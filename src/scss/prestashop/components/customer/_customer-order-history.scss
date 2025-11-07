@@ -1,0 +1,137 @@
+$component-name: order-history;
+
+.#{$component-name} {
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  &__header {
+    display: none;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+    padding: 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+  }
+
+  &__cell {
+    display: grid;
+    grid-template-columns: 1fr 66.666666%;
+    gap: 0.5rem;
+    line-height: 1.5;
+
+    &::before {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--bs-secondary-color);
+      content: attr(data-ps-label);
+    }
+
+    &--reference {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    &--date {
+      font-size: 0.875rem;
+      color: var(--bs-secondary-color);
+    }
+
+    &--total {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    &--payment {
+      font-size: 0.875rem;
+      color: var(--bs-secondary-color);
+    }
+
+    &--actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &__status {
+    white-space: normal;
+
+    &--bright {
+      color: var(--bs-white);
+    }
+
+    &--dark {
+      color: var(--bs-dark);
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &__inner {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, auto));
+      gap: 0 1rem;
+      overflow-x: auto;
+    }
+
+    &__header {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: span 7;
+      padding-block: 0.5rem;
+      font-weight: 600;
+      border-block-end: 1px solid var(--bs-border-color);
+    }
+
+    &__row {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: span 7;
+      padding-block: 0.5rem;
+      padding-inline: 0;
+      border: none;
+      border-block-end: 1px solid var(--bs-border-color);
+      border-radius: 0;
+
+      &:last-child {
+        border-block-end: none;
+      }
+    }
+
+    &__cell {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      align-items: center;
+      justify-self: start;
+
+      &::before {
+        display: none;
+      }
+
+      &--payment {
+        font-size: 0.75rem;
+      }
+
+      &--date {
+        font-size: 0.75rem;
+      }
+
+      &--actions {
+        display: grid;
+        gap: 0.5rem;
+      }
+    }
+  }
+}

@@ -7,13 +7,24 @@
     {include file='_partials/form-errors.tpl' errors=$errors['']}
   {/block}
 
-<form action="{block name='customer_form_actionurl'}{$action}{/block}" id="customer-form" class="form-validation js-customer-form" method="post" novalidate>
+<form 
+  action="{block name='customer_form_actionurl'}{$action}{/block}" 
+  class="js-customer-form" 
+  id="customer-form" 
+  method="post" 
+  data-ps-action="form-validation"
+  aria-label="{l s='Your personal information' d='Shop.Theme.Customeraccount'}"
+>
   <section>
     {block "form_fields"}
       {foreach from=$formFields item="field"}
         {block "form_field"}
-          {if $field.type === "password"}
-            <div class="field-password-policy">
+          {if $field.name === "new_password" && $page.page_name == "identity"}
+            <div data-ps-ref="password-field">
+              {form_field field=$field}
+            </div>
+          {elseif $field.type === "password" && $page.page_name != "identity"}
+            <div data-ps-ref="password-field">
               {form_field field=$field}
             </div>
           {else}
@@ -26,10 +37,11 @@
   </section>
 
   {block name='customer_form_footer'}
-    <footer class="form-footer">
-      <input type="hidden" name="submitCreate" value="1">
+    <input type="hidden" name="submitCreate" value="1">
+
+    <footer class="buttons-wrapper buttons-wrapper--end">
       {block "form_buttons"}
-        <button class="btn btn-primary form-control-submit" data-link-action="save-customer" type="submit">
+        <button class="btn btn-primary form-control-submit" data-link-action="save-customer" type="submit" data-ps-action="form-validation-submit">
         {if isset($mode) && $mode === "register"}
           {l s='Create account' d='Shop.Theme.Actions'}
         {else}

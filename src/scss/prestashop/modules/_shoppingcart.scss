@@ -1,0 +1,84 @@
+$module-name: ps-shoppingcart;
+$component-name: blockcart;
+$modal-name: blockcart-modal;
+
+.#{$modal-name} {
+  &__name {
+    font-weight: 600;
+  }
+
+  &__title {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--bs-success);
+  }
+
+  &__title-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--bs-success);
+  }
+
+  &__name,
+  &__price,
+  &__nb-products,
+  &__total,
+  &__property {
+    margin-bottom: 0.25rem;
+  }
+
+  &__name,
+  &__price {
+    font-weight: 600;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+
+    &--bold {
+      font-weight: 600;
+    }
+  }
+
+  &__image {
+    margin-block-end: 2rem;
+    border-radius: var(--bs-border-radius);
+  }
+
+  &__cart-footer-extra {
+    width: 100%;
+  }
+
+  @include media-breakpoint-up(xs) {
+    &__image {
+      margin-block-end: 0;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    &__title {
+      gap: 1rem;
+      font-size: 1.5rem;
+      color: var(--bs-body-color);
+    }
+
+    &__title-icon {
+      font-size: 2rem;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    &__price {
+      font-weight: 400;
+    }
+  }
+}
+
+// Specific styles for mobile
+#_mobile_ps_shoppingcart {
+  display: flex;
+  align-items: center;
+}

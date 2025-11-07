@@ -1,0 +1,15 @@
+@import "~@fontsource/inter/100.css";
+@import "~@fontsource/inter/300.css";
+@import "~@fontsource/inter/400.css";
+@import "~@fontsource/inter/600.css";
+@import "~@fontsource/inter/700.css";
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("~material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2") format("woff2"),
+    url("~material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff") format("woff");
+  font-display: swap;
+}

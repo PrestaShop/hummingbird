@@ -1,0 +1,40 @@
+.quantity-button {
+  input {
+    max-width: 4rem;
+    text-align: center;
+  }
+
+  button {
+    --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb);
+    border: 1px solid var(--bs-border-color);
+
+    &.increment {
+      .confirmation {
+        color: var(--bs-success);
+      }
+    }
+
+    &.decrement {
+      .confirmation {
+        color: var(--bs-danger);
+      }
+    }
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &:disabled {
+      opacity: 1;
+    }
+
+    .material-icons {
+      font-size: 1.25rem;
+      pointer-events: none;
+    }
+
+    .spinner-border {
+      border-width: 0.125rem;
+    }
+  }
+}

@@ -17,100 +17,86 @@
         method="post"
         class="delivery-options__form"
       >
-        <div class="delivery-options__container">
-          {block name='delivery_options'}
-            <div class="delivery-options__list bg-light rounded-3 p-3 mb-4">
-              {foreach from=$delivery_options item=carrier key=carrier_id name=delivery_options}
-                <div class="delivery-options__item js-delivery-option">
-                  <label for="delivery_option_{$carrier.id}" class="col-12">
-                    <div class="row">
-                      <div class="delivery-option__left col-6 col-sm-4 mb-2 mb-sm-0 order-0">
-                        <div class="row align-items-center">
-                          <span class="custom-radio col-2">
-                            <input type="radio" class="form-check-input" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
-                            <i class="form-check-round"></i>
-                          </span>
+        {block name='delivery_options'}
+          <div class="delivery-options__list">
+            {foreach from=$delivery_options item=carrier key=carrier_id name=delivery_options}
+              <div class="delivery-option__item js-delivery-option">
+                <label class="delivery-option__label" for="delivery_option_{$carrier.id}">
+                  <div class="delivery-option__left">
+                    <span class="delivery-option__check form-check">
+                      <input type="radio" class="form-check-input" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
+                    </span>
 
-                          <div class="carrier col-10{if $carrier.logo} carrier--hasLogo{/if}">
-                            <div class="row align-items-center">
-                              {if $carrier.logo}
-                                <div class="col-md-4 carrier__logo">
-                                    <img src="{$carrier.logo}" class="rounded img-fluid" alt="{$carrier.name}" loading="lazy" />
-                                </div>
-                              {/if}
+                    <div class="delivery-option__carrier {if $carrier.logo} delivery-option__carrier--hasLogo{/if}">
+                      {if $carrier.logo}
+                        <img class="delivery-option__carrier-logo" src="{$carrier.logo}" class="img-fluid" alt="{$carrier.name}" loading="lazy" aria-hidden="true" />
+                      {/if}
 
-                              <div class="carriere-name-container{if $carrier.logo} col-md-8{else}col{/if}">
-                                <span class="h6 carrier-name">{$carrier.name}</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div> 
-                      </div>
-
-                      <span class="delivery-option__center col-6 col-sm-4 order-2 order-sm-1 d-flex align-items-center">
-                        {$carrier.delay}
-                      </span>
-
-                      <span class="delivery-option__right col-6 col-sm-4 order-1 order-sm-2 d-flex align-items-center">
-                        {$carrier.price}
-                      </span>
-                    </div>
-                  </label>
-
-                  <div class="carrier__extra-content-wrapper {if $delivery_option == $carrier_id} carrier__extra-content-wrapper--active {/if} js-carrier-extra-content" {if $delivery_option !== $carrier_id}style="max-height:0px"{/if}>
-                    <div class="carrier__extra-content">
-                      {$carrier.extraContent nofilter}
+                      <span class="delivery-option__carrier-name">{$carrier.name}</span>
                     </div>
                   </div>
 
-                  {if !$smarty.foreach.delivery_options.last}
-                    <hr />
+                  <div class="delivery-option__content">
+                    {$carrier.delay}
+                  </div>
+
+                  <div class="delivery-option__price">
+                    {$carrier.price}
+                  </div>
+                </label>
+
+                <div class="delivery-option__extra js-carrier-extra" {if $delivery_option == $carrier_id}data-active{/if}>
+                  {capture name='delivery_option_extra_content'}{$carrier.extraContent nofilter}{/capture}
+                  {if !empty($smarty.capture.delivery_option_extra_content)}
+                    <div class="delivery-option__extra-content js-carrier-extra-content">
+                      {$smarty.capture.delivery_option_extra_content nofilter}
+                    </div>
                   {/if}
                 </div>
-              {/foreach}
-            </div>
-          {/block}
-
-        <div class="order-options{if $recyclablePackAllowed || $gift.allowed} mb-4{/if}">
-            <div id="delivery" class="mb-4">
-              <label for="delivery_message" class="form-label fw-bold">{l s='Write a comment about this order' d='Shop.Theme.Checkout'}</label>
-              <textarea class="form-control" rows="2" cols="120" id="delivery_message" placeholder="{l s='Write your comment...' d='Shop.Theme.Checkout'}" name="delivery_message">{$delivery_message}</textarea>
-            </div>
-
-            {if $recyclablePackAllowed}
-              <div class="form-check" for="input_recyclable">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="input_recyclable" name="recyclable" value="1" {if $recyclable} checked {/if}/>
-                  {l s='I would like to receive my order in recycled packaging.' d='Shop.Theme.Checkout'}
-                </label>
               </div>
-            {/if}
-
-            {if $gift.allowed}
-              <div class="form-check mb-3">
-                <label class="form-check-label" for="input_gift" data-bs-toggle="collapse" data-bs-target="#gift">
-                  <input class="form-check-input js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1" {if $gift.isGift}checked="checked"{/if}/>
-                  {$gift.label}
-                </label>
-              </div>
-
-              <div id="gift" class="collapse{if $gift.isGift} show{/if}">
-                <label for="gift_message" class="form-label fw-bold">{l s='If you\'d like, you can add a note to the gift:' d='Shop.Theme.Checkout'}</label>
-                <textarea class="form-control" rows="2" cols="120" id="gift_message" name="gift_message">{$gift.message}</textarea>
-              </div>
-            {/if}
+            {/foreach}
           </div>
+        {/block}
+
+        <div class="order-options">
+          <div id="delivery" class="mb-4">
+            <label for="delivery_message" class="form-label">{l s='Write a comment about this order' d='Shop.Theme.Checkout'}</label>
+            <textarea class="form-control" rows="2" cols="120" id="delivery_message" placeholder="{l s='Write your comment...' d='Shop.Theme.Checkout'}" name="delivery_message">{$delivery_message}</textarea>
+          </div>
+
+          {if $recyclablePackAllowed}
+            <div class="form-check" for="input_recyclable">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="input_recyclable" name="recyclable" value="1" {if $recyclable} checked {/if}/>
+                {l s='I would like to receive my order in recycled packaging.' d='Shop.Theme.Checkout'}
+              </label>
+            </div>
+          {/if}
+
+          {if $gift.allowed}
+            <div class="form-check mb-4">
+              <label class="form-check-label" for="input_gift" data-bs-toggle="collapse" data-bs-target="#gift">
+                <input class="form-check-input js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1" {if $gift.isGift}checked="checked"{/if}/>
+                {$gift.label}
+              </label>
+            </div>
+
+            <div id="gift" class="collapse{if $gift.isGift} show{/if}">
+              <label for="gift_message" class="form-label">{l s='If you\'d like, you can add a note to the gift:' d='Shop.Theme.Checkout'}</label>
+              <textarea class="form-control" rows="2" cols="120" id="gift_message" name="gift_message">{$gift.message}</textarea>
+            </div>
+          {/if}
         </div>
 
-        <div class="shipping__actions d-flex flex-wrap justify-content-between">
-          <button class="btn btn-outline-primary btn-with-icon w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
-            <div class="material-icons rtl-flip" aria-hidden="true">arrow_backward</div>
+        <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
+          <button class="btn btn-outline-primary w-100 w-md-auto mb-3 mb-md-0 js-back" data-step="checkout-addresses-step">
+            <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
             {l s='Back to Addresses' d='Shop.Theme.Actions'}
           </button>
 
-          <button type="submit" class="btn btn-primary btn-with-icon w-100 w-md-auto" name="confirmDeliveryOption" value="1">
+          <button type="submit" class="btn btn-primary w-100 w-md-auto" name="confirmDeliveryOption" value="1">
             {l s='Continue to Payment' d='Shop.Theme.Actions'}
-            <div class="material-icons rtl-flip" aria-hidden="true">arrow_forward</div>
+            <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
           </button>
         </div>
       </form>
@@ -119,9 +105,9 @@
     {/if}
   </div>
 
-  <div id="hook-display-after-carrier">
+  <div class="delivery-options__display-after-carrier" id="hook-display-after-carrier">
     {$hookDisplayAfterCarrier nofilter}
   </div>
 
-  <div id="extra_carrier"></div>
+  <div class="delivery-options__extra-carrier" id="extra_carrier"></div>
 {/block}

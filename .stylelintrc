@@ -4,16 +4,21 @@
   ],
   "customSyntax": "postcss-scss",
   "rules": {
-    "selector-id-pattern": null,
-    "selector-max-id": null,
-    "selector-max-class": null,
-    "selector-max-type": null,
-    "selector-max-compound-selectors": null,
-    "selector-no-qualifying-type": null,
-    "selector-max-combinators": null,
-    "selector-class-pattern": null,
+    "declaration-colon-newline-after": null,
     "function-disallowed-list": null,
+    "property-disallowed-list": null,
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "selector-max-class": null,
+    "selector-max-combinators": null,
+    "selector-max-compound-selectors": null,
+    "selector-max-id": null,
+    "selector-max-type": null,
+    "selector-no-qualifying-type": null,
+    "value-list-comma-newline-after": null,
+    "value-list-comma-space-after": null,
     "scss/dollar-variable-default": null,
-    "property-disallowed-list": null
+    "scss/operator-no-newline-after": null,
+    "scss/percent-placeholder-pattern": null
   }
 }

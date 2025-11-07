@@ -15,4 +15,5 @@ declare type EVENTS = {
   updatedProduct: string,
   updateFacets: string,
   updatedDeliveryForm: string,
+  combinationFocusRestored: string,
 }

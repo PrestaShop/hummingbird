@@ -13,6 +13,7 @@ export const facetedsearch = {
   rangeValues: '.js-faceted-values',
   filterSlider: '.js-faceted-filter-slider',
   offCanvasFaceted: '#offcanvas-faceted',
+  colorLabel: '[data-ps-ref="color-label"]',
 };
 
 export const pageLoader = '.js-page-loader';
@@ -28,23 +29,31 @@ export const listing = {
   list: '#js-product-list',
   listBottom: '#js-product-list-bottom',
   listHeader: '#js-product-list-header',
+  listFooter: '#js-product-list-footer',
   searchFiltersClearAll: '.js-search-filters-clear-all',
   searchLink: '.js-search-link',
-  pagerLink: '.js-pager-link',
+  paginationLink: '.js-pager-link',
 };
 
 export const cart = {
-  container: '.cart-container',
-  overview: '.cart-overview',
-  discountCode: '.js-discount .js-code',
-  discountName: '[name=discount_name]',
-  displayPromo: '.display-promo',
-  promoCode: '#promo-code',
-  deleteLinkAction: 'delete-from-cart',
-  productQuantity: '.cart__items .js-quantity-button',
-  productItem: '.cart__item',
-  removeFromCartLink: '.remove-from-cart',
+  container: '.js-cart-container',
+  summaryContainer: '.js-cart-summary',
+  overview: '.js-cart',
+  voucherCode: '.js-voucher-code',
+  voucherInput: '.js-voucher-input',
+  voucherAccordion: '.js-voucher-accordion',
+  productQuantity: '.js-cart-list .js-quantity-button',
+  productItem: '.js-cart-item',
+  productItemQuantityInput: '.js-cart-line-product-quantity',
+  removeFromCart: '.js-remove-from-cart',
   alertPlaceholder: '.js-cart-update-alert',
+  deleteLinkAction: 'delete-from-cart',
+  removeVoucherLinkAction: 'remove-voucher',
+  voucherContainer: '[data-ps-ref="voucher-container"]',
+  voucherAccordionButton: '[data-ps-ref="voucher-accordion-button"]',
+  voucherForm: '[data-ps-ref="voucher-form"]',
+  voucherList: '[data-ps-ref="voucher-list"]',
+  voucherError: '[data-ps-ref="voucher-error"]',
 };
 
 export const blockcart = {
@@ -67,23 +76,27 @@ export const searchBar = {
   searchTemplate: '.js-search-template',
   searchInput: '.js-search-input',
   searchIcon: '.js-search-icon',
+  searchClear: '.js-search-clear',
+  searchResultLink: '[data-ps-ref="searchbar-result-link"]',
 };
 
 export const checkout = {
   steps: {
     item: '.js-step-item',
     current: '.js-current-step',
-    shownResponsiveStep: '.checkout__steps__step:not(.d-none)',
-    specificStep: (param: string | undefined) => `.checkout__steps__step[data-step="${param}"]`,
+    button: '[data-ps-ref="step-button"]',
+    shownResponsiveStep: '.checkout-steps__step-mobile:not(.d-none)',
+    specificStep: (param: string | undefined) => `.checkout-steps__step-mobile[data-step="${param}"]`,
     specificStepContent: (param: string | undefined) => `#${param}`,
     backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
   },
   actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
   termsLink: '.js-terms a',
   checkoutModal: '#checkout-modal',
-  carrierExtraContentWrapper: '.carrier__extra-content-wrapper',
-  carrierExtraContent: '.carrier__extra-content',
-  carrierExtraContentActive: '.carrier__extra-content-wrapper--active',
+  carrierExtraContentWrapper: '.js-carrier-extra',
+  carrierExtraContentWrapperActive: '.js-carrier-extra[data-active]',
+  carrierExtraContent: '.js-carrier-extra-content',
+  summaryContainer: '.js-checkout-summary',
 };
 
 export const progressRing = {
@@ -111,14 +124,20 @@ export const guestPasswordToggle = {
 };
 
 export const visiblePassword = {
-  visiblePassword: '.js-visible-password',
+  visiblePassword: '[data-ps-action="toggle-password"]',
 };
 
 export const desktopMenu = {
-  dropdownToggles: '.js-menu-desktop .dropdown .dropdown-toggle[data-depth]',
-  dropdownItemAnchor: (depth: number) => `.js-menu-desktop a[data-depth="${depth}"]`,
-  menuItemsLvl0: '.js-menu-item-lvl-0',
-  subMenu: '.js-sub-menu',
+  container: '[data-ps-ref="desktop-menu-container"]',
+  menuTree: '[data-ps-ref="desktop-menu-tree"]',
+  menuItem: '[data-ps-ref="desktop-menu-item"]',
+  menuLink: '[data-ps-ref="desktop-menu-link"]',
+  dropdownToggle: '[data-ps-ref="desktop-menu-dropdown-toggle"]',
+  subMenu: '[data-ps-ref="desktop-submenu"]',
+  subMenuLeft: '[data-ps-ref="desktop-submenu-left"]',
+  subMenuLeftItem: '[data-ps-ref="desktop-submenu-left-item"]',
+  subMenuRight: '[data-ps-ref="desktop-submenu-right"]',
+  subMenuRightItems: '[data-ps-ref="desktop-submenu-right-items"]',
 };
 
 export const qtyInput = {
@@ -135,19 +154,28 @@ export const qtyInput = {
 };
 
 export const formValidation = {
-  default: '.form-validation',
+  default: '[data-ps-action="form-validation"]',
+  submitButton: '[data-ps-action="form-validation-submit"]',
 };
 
 export const passwordPolicy = {
-  template: '#password-feedback',
-  hint: '.js-hint-password',
-  container: '.password-strength-feedback',
-  strengthText: '.password-strength-text',
-  requirementScore: '.password-requirements-score',
-  requirementLength: '.password-requirements-length',
-  requirementScoreIcon: '.password-requirements-score i',
-  requirementLengthIcon: '.password-requirements-length i',
-  progressBar: '.progress-bar',
+  template: '[data-ps-ref="password-feedback-template"]',
+  field: '[data-ps-ref="password-field"]',
+  input: '[data-ps-ref="password-policy-input"]',
+  feedbackContainer: '[data-ps-ref="password-feedback-container"]',
+  feedbackTarget: '[data-ps-target="password-feedback-target"]',
+  hint: '[data-ps-ref="password-strength-hints"]',
+  requirementScore: '[data-ps-ref="password-requirements-score"]',
+  requirementLength: '[data-ps-ref="password-requirements-length"]',
+  requirementScoreMessage: '[data-ps-ref="password-requirements-score-message"]',
+  requirementLengthMessage: '[data-ps-ref="password-requirements-length-message"]',
+  requirementScoreIcon: '[data-ps-ref="password-requirements-score-icon"]',
+  requirementLengthIcon: '[data-ps-ref="password-requirements-length-icon"]',
+  progressBar: '[data-ps-ref="password-strength-progress-bar"]',
+  invalidMessage: '[data-ps-ref="password-invalid-message"]',
+  validMessage: '[data-ps-ref="password-valid-message"]',
+  lengthMessage: '[data-ps-ref="password-length-message"]',
+  announceValidity: '[data-ps-target="password-announce-validity"]',
 };
 
 const selectorsMap = {
@@ -169,20 +197,33 @@ const selectorsMap = {
     close: '.btn-close',
   },
   product: {
+    container: '[data-ps-ref="product-container"]',
+    images: '.js-images-container',
     carousel: '.js-product-carousel',
     miniature: '.js-product-miniature',
     thumbnail: '.js-thumb-container',
+    productImagesModal: '[data-ps-ref="product-images-modal"]',
+    productImagesModalCarousel: '[data-ps-ref="product-images-modal-carousel"]',
     activeThumbail: (id: number): string => `.js-thumb-container:nth-child(${id + 1})`,
+    productAvailability: '[data-ps-ref="product-availability"]',
+    rightSection: '[data-ps-ref="product-right"]',
   },
   order: {
     returnForm: '.js-order-return-form',
-    returnFormMainCheckbox: '.js-order-return-form table thead input[type=checkbox]',
-    returnFormItemCheckbox: '.js-order-return-form table tbody input[type=checkbox]',
+    returnFormSelectAll: '[data-ps-ref="select-all-products"]',
+    returnFormProductsTable: '[data-ps-ref="order-return-products-table"]',
+    returnFormProductCheckbox: '[data-ps-ref="select-product"]',
   },
   modalBody: '.modal-body',
-  pageCms: '.page-cms',
-  quickview: '.js-quickview',
-  quickviewModal: '.quickview',
+  pageCms: '.js-page-content-cms',
+  quickview: '[data-ps-action="open-quickview"]',
+  quickviewModal: '[data-ps-ref="quickview-modal"]',
+  quickviewModalStatus: '[data-ps-target="quickview-modal-status"]',
+  quickviewButton: '[data-ps-ref="quickview-button"]',
+  modalContainer: '[data-ps-target="modal-container"]',
+  blockcartModal: '[data-ps-ref="blockcart-modal"]',
+  blockcartModalStatus: '[data-ps-target="blockcart-modal-status"]',
+  addToCartButton: '[data-ps-ref="add-to-cart"]',
   facetedsearch,
   pageLoader,
   listing,

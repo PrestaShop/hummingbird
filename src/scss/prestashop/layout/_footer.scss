@@ -1,0 +1,89 @@
+$component-name: "footer";
+$sub-component-name: "footer-block";
+
+// Footer main
+.#{$component-name} {
+  &__main {
+    padding-block: 1.5rem;
+    color: var(--bs-gray-300);
+    background: var(--bs-dark);
+  }
+
+  @include media-breakpoint-up(md) {
+    &__main {
+      padding-block: 2.5rem 1.25rem;
+    }
+  }
+}
+
+// Footer block
+.#{$sub-component-name} {
+  margin-block-end: 0.75rem;
+
+  &__title {
+    position: relative;
+    margin-block-end: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--bs-white);
+
+    a {
+      color: var(--bs-white);
+    }
+
+    &--toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .stretched-link {
+        padding: 0;
+        color: inherit;
+        background-color: inherit;
+        border: none;
+
+        &:not(.collapsed) {
+          i {
+            transform: rotate(0.5turn);
+          }
+        }
+      }
+
+      i {
+        transition: var(--bs-transition-default);
+      }
+    }
+  }
+
+  &__list {
+    margin-block-end: 0;
+
+    a {
+      display: block;
+      padding-block: 0.25rem;
+      line-height: 1.5;
+    }
+  }
+
+  a {
+    color: var(--bs-gray-300);
+
+    &:hover {
+      color: var(--bs-white);
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-block-end: 2.5rem;
+
+    &__title {
+      margin-block-end: 1.5rem;
+    }
+
+    &__content {
+      &.collapse {
+        display: block;
+      }
+    }
+  }
+}

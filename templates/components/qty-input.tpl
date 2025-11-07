@@ -7,6 +7,9 @@
 {assign var="decrement_icon" value="E15B"}
 {assign var="submit_icon" value="E5CA"}
 {assign var="cancel_icon" value="E5CD"}
+{assign var="increment_label" value={l s='Increase quantity of %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}}
+{assign var="decrement_label" value={l s='Decrease quantity of %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}}
+{assign var="quantity_label" value={l s='Change quantity of %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}}
 
 {* The spin button placement for RTL should be same as LTR *}
 {* To fix mirroring by CSS need to place them in reverse for RTL *}
@@ -18,8 +21,8 @@
   {assign var="append" value=["button"=>"increment", "icon"=>$increment_icon, "confirm_icon"=>$submit_icon]}
 {/if}
 
-<div class="input-group flex-nowrap{if isset($marginHelper)} {$marginHelper}{else} mb-3{/if}">
-  <button role="button" aria-label="{$prepend.button}" class="btn {$prepend.button} js-{$prepend.button}-button" type="button">
+<div class="quantity-button__group input-group">
+  <button aria-label="{$decrement_label}" class="btn {$prepend.button} btn-square-icon js-{$prepend.button}-button" type="button" id="decrement_button_{$product.id_product}">
     <i class="material-icons" aria-hidden="true">&#x{$prepend.icon};</i>
     <i class="material-icons confirmation d-none">&#x{$prepend.confirm_icon};</i>
     <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
@@ -29,19 +32,18 @@
     {foreach $attributes as $key=>$value}
       {$key}="{$value}"
     {/foreach}
-    {* The default attributes, will be used if not defined *}
-      class="form-control"
-      name="qty"
-      aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
-      type="text"
-      inputmode="numeric"
-      pattern="[0-9]*"
-      value="1"
-      min="1"
-    {* End of default attributes *}
+    {if !isset($attributes.id)}id="quantity_input_{$product.id_product}"{/if}
+    {if !isset($attributes.class)}class="form-control"{/if}
+    {if !isset($attributes.name)}name="qty"{/if}
+    {if !isset($attributes['aria-label'])}aria-label="{$quantity_label}"{/if}
+    {if !isset($attributes.type)}type="text"{/if}
+    {if !isset($attributes.inputmode)}inputmode="numeric"{/if}
+    {if !isset($attributes.pattern)}pattern="[0-9]*"{/if}
+    {if !isset($attributes.value)}value="1"{/if}
+    {if !isset($attributes.min)}min="1"{/if}
   />
 
-  <button role="button" aria-label="{$append.button}" class="btn {$append.button} js-{$append.button}-button" type="button">
+  <button aria-label="{$increment_label}" class="btn {$append.button} btn-square-icon js-{$append.button}-button" type="button" id="increment_button_{$product.id_product}">
     <i class="material-icons" aria-hidden="true">&#x{$append.icon};</i>
     <i class="material-icons confirmation d-none">&#x{$append.confirm_icon};</i>
     <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>

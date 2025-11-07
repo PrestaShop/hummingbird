@@ -1,0 +1,37 @@
+// @TODO: refacto
+$component-name: header-top;
+
+.#{$component-name} {
+  padding: 0.25rem 0;
+
+  &__right,
+  &__left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  &__right {
+    justify-content: flex-end;
+  }
+
+  a {
+    &:not(.dropdown-item) {
+      color: var(--header-top-color);
+
+      &:hover {
+        color: var(--header-top-color-hover);
+      }
+    }
+  }
+
+  .form-select {
+    cursor: pointer;
+    border: none;
+  }
+
+  @include media-breakpoint-up(md) {
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+}

@@ -3,14 +3,17 @@
  * file that was distributed with this source code.
  *}
 
-<section class="new-products mt-3">
-    <div class="container">
-        {include file='components/section-title.tpl' title={l s='New products' d='Shop.Theme.Catalog'}}
-        {include file='catalog/_partials/productlist.tpl' products=$products productClass='col-12 col-xs-6 col-lg-4 col-xl-3'}
-        <div class="new-products-footer text-center">
-            <a class="all-product-link btn btn-outline-primary" href="{$allNewProductsLink}">
-                {l s='All new products' d='Shop.Theme.Catalog'}<i class="material-icons rtl-flip" aria-hidden="true">&#xE315;</i>
-            </a>
-        </div>
-    </div>
-</section>
+{extends file="components/module-products.tpl"}
+
+{block name='module_products_name'}ps-newproducts{/block}
+
+{block name='module_products_title'}
+  {include file='components/section-title.tpl' title={l s='Latest arrivals' d='Shop.Theme.Catalog'}}
+{/block}
+
+{block name='module_products_footer'}
+  <a class="btn btn-outline-primary" href="{$allNewProductsLink}">
+    {l s='All new products' d='Shop.Theme.Catalog'}
+    <i class="material-icons" aria-hidden="true">&#xE315;</i>
+  </a>
+{/block}

@@ -22,7 +22,7 @@
     {if $field.type === 'select'}
 
       {block name='form_field_item_select'}
-        <select class="form-select" name="{$field.name}" {if $field.required}required{/if}>
+        <select class="form-select" name="{$field.name}" id="field-{$field.name}" {if $field.required}required{/if}>
           <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
           {foreach from=$field.availableValues item="label" key="value"}
             <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
@@ -36,6 +36,7 @@
         <select
         class="form-select js-country"
         name="{$field.name}"
+        id="field-{$field.name}"
         {if $field.required}required{/if}
         >
           <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
@@ -48,7 +49,8 @@
     {elseif $field.type === 'radio-buttons'}
 
       {block name='form_field_item_radio'}
-        <div>
+        <div aria-labelledby="field-{$field.name}-label">
+          <p class="visually-hidden" id="field-{$field.name}-label">{$field.label}</p>
           {foreach from=$field.availableValues item="label" key="value"}
             <div class="form-check form-check-inline">
               <input
@@ -90,7 +92,7 @@
     {elseif $field.type === 'date'}
 
       {block name='form_field_item_date'}
-        <input name="{$field.name}" class="form-control" type="date" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
+        <input name="{$field.name}" class="form-control" type="date" id="field-{$field.name}" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
         {if isset($field.availableValues.comment)}
           <span class="form-text">
             {$field.availableValues.comment}
@@ -124,55 +126,59 @@
 
       {block name='form_field_item_password'}
 
-        <div class="input-group password-field js-parent-focus">
+        <div class="input-group password-field">
           <input
-            class="form-control js-child-focus js-visible-password"
+            class="form-control"
             name="{$field.name}"
             id="field-{$field.name}"
             type="password"
             {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
             value=""
-            pattern=".{literal}{{/literal}5,{literal}}{/literal}"
-            {if $field.required}required{/if}
-            {if isset($configuration.password_policy.minimum_length)}data-minlength="{$configuration.password_policy.minimum_length}"{/if}
-            {if isset($configuration.password_policy.maximum_length)}data-maxlength="{$configuration.password_policy.maximum_length}"{/if}
-            {if isset($configuration.password_policy.minimum_score)}data-minscore="{$configuration.password_policy.minimum_score}"{/if}
+            minlength="{$configuration.password_policy.minimum_length|default:8}"
+            maxlength="{$configuration.password_policy.maximum_length|default:72}"
+            data-minscore="{$configuration.password_policy.minimum_score|default:3}"
             data-bs-placement="top"
             data-bs-trigger="manual"
+            data-ps-ref="password-policy-input"
+            spellcheck="false"
+            {if $field.required}required{/if}
           >
 
           <button
             class="btn btn-primary"
             type="button"
-            data-action="show-password"
-            data-text-show="{l s='Show Password' d='Shop.Theme.Actions'}"
-            data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
-            aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
-            aria-expanded="false"
+            data-ps-action="toggle-password"
+            data-text-show="{l s='Show password' d='Shop.Theme.Actions'}"
+            data-text-hide="{l s='Hide password' d='Shop.Theme.Actions'}"
+            aria-label="{l s='Show password' d='Shop.Theme.Actions'}"
+            aria-controls="field-{$field.name}"
+            aria-live="polite"
           >
-            <i class="material-icons">visibility</i>
+            <i class="material-icons" aria-hidden="true">&#xE8F4;</i>
           </button>
         </div>
+
+        <div data-ps-target="password-feedback-target"></div>
       {/block}
 
     {elseif $field.type === 'textarea'}
 
       {block name='form_field_item_textarea'}
-          <textarea
-            id="field-{$field.name}"
-            class="form-control"
-            name="{$field.name}"
-            {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
-            {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
-            {if $field.required}required{/if}
-            {if isset($field.availableValues.rows)}rows="{$field.availableValues.rows}"{/if}
-            {if isset($field.availableValues.cols)}cols="{$field.availableValues.cols}"{/if}
-          >{$field.value|default}</textarea>
-          {if isset($field.availableValues.comment)}
-            <span class="form-text">
-              {$field.availableValues.comment}
-            </span>
-          {/if}
+        <textarea
+          id="field-{$field.name}"
+          class="form-control"
+          name="{$field.name}"
+          {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
+          {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
+          {if $field.required}required{/if}
+          {if isset($field.availableValues.rows)}rows="{$field.availableValues.rows}"{/if}
+          {if isset($field.availableValues.cols)}cols="{$field.availableValues.cols}"{/if}
+        >{$field.value|default}</textarea>
+        {if isset($field.availableValues.comment)}
+          <span class="form-text">
+            {$field.availableValues.comment}
+          </span>
+        {/if}
       {/block}
 
     {else}
@@ -188,7 +194,7 @@
           {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
           {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
           {if !empty($field.minLength)}minlength="{$field.minLength}"{/if}
-          aria-label="{$field.name}"
+          aria-label="{$field.label}"
           {if $field.required}required{/if}
         >
         {if isset($field.availableValues.comment)}

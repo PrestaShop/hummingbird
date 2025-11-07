@@ -8,12 +8,13 @@
   {l s='Guest Tracking' d='Shop.Theme.Customeraccount'}
 {/block}
 
+{block name='account_link'}{/block}
+
 {block name='order_detail'}
   {include file='customer/_partials/order-detail-no-return.tpl'}
 {/block}
 
-{block name='order_messages'}
-{/block}
+{block name='order_messages'}{/block}
 
 {if !$registered_customer_exists}
   {block name='page_content' append}

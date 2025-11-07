@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  */
 
-import SelectorsMap from './constants/selectors-map';
+import SelectorsMap from '@constants/selectors-map';
 
 type ProductSlideEvent = Event & {to: number};
 
@@ -11,12 +11,19 @@ export default () => {
   const {prestashop, Theme: {events}} = window;
 
   const initProductSlide = () => {
-    document.querySelector(SelectorsMap.product.carousel)?.addEventListener('slide.bs.carousel', onProductSlide);
+    document.querySelectorAll(SelectorsMap.product.carousel)?.forEach((carousel) => {
+      carousel.addEventListener('slide.bs.carousel', onProductSlide);
+    });
   };
 
   function onProductSlide(event: ProductSlideEvent): void {
-    document.querySelectorAll(SelectorsMap.product.thumbnail).forEach((e) => e.classList.remove('active'));
-    document.querySelector(SelectorsMap.product.activeThumbail(event.to))?.classList.add('active');
+    const carousel = event.target as HTMLElement;
+    const parent = carousel.closest(SelectorsMap.product.images);
+
+    if (parent) {
+      parent.querySelectorAll(SelectorsMap.product.thumbnail).forEach((e) => e.classList.remove('active'));
+      parent.querySelector(SelectorsMap.product.activeThumbail(event.to))?.classList.add('active');
+    }
   }
 
   initProductSlide();

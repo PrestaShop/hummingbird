@@ -1,0 +1,23 @@
+$component-name: "page";
+
+.#{$component-name} {
+  padding-bottom: 2rem;
+
+  &-header {
+    margin-bottom: 2rem;
+  }
+
+  &-content {
+    &--home {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.5rem;
+    }
+  }
+
+  &-category {
+    .wrapper__left-column {
+      padding-inline-end: 2rem;
+    }
+  }
+}

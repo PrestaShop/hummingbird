@@ -44,7 +44,7 @@
     }
     {elseif $shop.name},
     "brand": {
-      "@type": "Thing",
+      "@type": "Organization",
       "name": "{$shop.name}"
     }
     {/if}

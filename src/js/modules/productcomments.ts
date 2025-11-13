@@ -799,6 +799,7 @@ class ProductListReviews {
 
     prestashop.on(events.updatedProduct, () => {
       this.loadProductListReviews();
+      ProductCommentsRating.initProductRatingSystem();
     });
   }
 

@@ -30,25 +30,32 @@ $component-name: cart-summary-product;
 
   &__attributes {
     font-size: 0.875rem;
-    color: var(--bs-secondary-color);
+    color: var(--bs-tertiary-color);
   }
 
   &__quantity {
     font-size: 0.875rem;
   }
 
-  &__prices {
-    text-align: right;
+  &__price {
+    font-size: 0.875rem;
+
+    .value {
+      color: var(--bs-tertiary-color);
+      text-decoration: line-through;
+    }
   }
 
   &__unit-price {
     font-size: 0.875rem;
-    color: var(--bs-gray-500);
+    color: var(--bs-tertiary-color);
   }
 
-  &__regular-price {
-    font-size: 0.875rem;
-    color: var(--bs-tertiary-color);
-    text-decoration: line-through;
+  &__prices {
+    text-align: right;
+  }
+
+  &__total {
+    font-weight: 600;
   }
 }

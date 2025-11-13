@@ -150,7 +150,7 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
               const errors = data.errors as string;
 
               if (errors) {
-                useToast(errors, {type: 'danger', autohide: false}).show();
+                useToast(errors, {type: 'danger'}).show();
               }
             }
 

@@ -8,3 +8,12 @@ $component-name: form-label;
     }
   }
 }
+
+.form-check-label {
+  &.required {
+    &::before {
+      color: var(--bs-danger);
+      content: "*" / " ";
+    }
+  }
+}

@@ -83,7 +83,7 @@
             value="1" {if $field.value}checked="checked"{/if}
             {if $field.required}required{/if}
           >
-          <label class="form-check-label" for="field-{$field.name}">
+          <label class="form-check-label{if $field.required} required{/if}" for="field-{$field.name}">
             {$field.label nofilter}
           </label>
         </div>

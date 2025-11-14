@@ -91,6 +91,19 @@
           </div>
         {/if}
 
+        {if $product.has_discount}
+          <div class="{$componentName}__price">
+            <span class="label">{$product.price}</span>
+            <span class="value">{$product.regular_price}</span>
+          </div>
+        {/if}
+
+        {if $product.unit_price_full}
+          <div class="{$componentName}__unit-price">
+            <span class="value">{$product.unit_price_full}</span>
+          </div>
+        {/if}
+
         <div class="{$componentName}__quantity">
           <span class="label">{l s='Quantity:' d='Shop.Theme.Checkout'}</span>
           <span class="value">x{$product.quantity}</span>
@@ -99,15 +112,7 @@
 
       <div class="{$componentName}__content-right">
         <div class="{$componentName}__prices">
-          <div class="{$componentName}__price">{$product.total}</div>
-
-          {if $product.unit_price_full}
-            <div class="{$componentName}__unit-price">{$product.unit_price_full}</div>
-          {/if}
-
-          {if $product.has_discount}
-            <div class="{$componentName}__regular-price">{$product.regular_price}</div>
-          {/if}
+          <div class="{$componentName}__total">{$product.total}</div>
 
           {hook h='displayProductPriceBlock' product=$product type="unit_price"}
         </div>

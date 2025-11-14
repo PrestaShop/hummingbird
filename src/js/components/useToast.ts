@@ -222,10 +222,12 @@ const setCloseButtonVisible = (toastElement: HTMLElement): void => {
   if (closeButton) {
     const colorClass = toastElement.classList.toString().match(/(?:text-bg-)\w+/)?.[0];
     const color = colorClass?.split('-').pop();
-    const darkColors = ['dark', 'primary', 'secondary', 'success', 'danger'];
+    const darkColors = ['dark', 'primary', 'secondary', 'success'];
 
     if (color && darkColors.includes(color)) {
       closeButton.classList.add('btn-close-white');
+    } else {
+      closeButton.classList.add('btn-close-black');
     }
 
     closeButton.classList.remove('d-none');

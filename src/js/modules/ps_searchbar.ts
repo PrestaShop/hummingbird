@@ -29,9 +29,9 @@ const initSearchbar = () => {
   const searchClear = document.querySelector<HTMLElement>(SearchBarMap.searchClear);
   const searchUrl = searchWidget?.dataset.searchControllerUrl;
 
-  // For powerusers `/` goes to search :)
-  // TODO: this should probably be in a totally new "shortcuts" module that does
-  // other shortcuts and even a `?` to show a small cheatsheet on the screen :)
+  // For powerusers `ctrl+k` goes to search :)
+  // TODO: this should probably be in a totally new "shortcuts" module that does this
+  // and other shortcuts with a `?` to show a small cheatsheet on the screen :)
   document.addEventListener('keydown', (e: KeyboardEvent) => {
     // Ignore if user is already typing in an input, textarea, or contenteditable element
     const active = document.activeElement as HTMLElement | null;
@@ -40,7 +40,7 @@ const initSearchbar = () => {
         || active.tagName === 'TEXTAREA'
         || active.isContentEditable);
 
-    if (!isTyping && e.key === '/') {
+    if (!isTyping && e.ctrlKey && e.key === 'k') {
       e.preventDefault();
       if (searchCanvas && !searchCanvas.classList.contains('show')) {
         const offcanvas = Offcanvas.getOrCreateInstance(searchCanvas);

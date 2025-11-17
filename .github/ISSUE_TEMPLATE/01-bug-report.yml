@@ -1,0 +1,71 @@
+name: 🐛 Bug Report
+description: Report an issue in Hummingbird. DO NOT disclose security issues here, contact security@prestashop.com instead!
+type: 'Bug'
+projects: ['PrestaShop/11']
+title: '[BUG] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### ❗️ Read this before submitting your bug report:
+        - **Make sure that the problem is indeed related to Hummingbird.** To ensure your issue is dealt with as quickly as possible by QA and the community, it is important to make sure that the issue you create is in the right place!
+        - **Write in English.** Reports in all other languages will be closed.
+        - **Provide as much detail as possible** - error logs, screenshots, your exact configuration. If the issue cannot be reproduced, it cannot be fixed.
+        - **Follow the [bug report guidelines](https://devdocs.prestashop-project.org/9/contribute/contribute-reporting-issues/#best-practices-for-writing-an-issue).** This will help issue managers qualify your report faster.
+        - As explained [in this page](https://www.prestashop-project.org/security/sharing-third-party-distributions/), the team behind the project only maintains distribution under the official PrestaShop or PrestaShopCorp GitHub organizations. Please mention how you installed PrestaShop. If you used a third-party distribution and experience issues not reproducible with the official version, we might redirect you to that distribution's maintainers.
+        - **Avoid reporting "error 500" or "white page" errors** - this is a universal error message that does not provide enough information to qualify the issue. Enable debug mode in the Performance section of PrestaShop or manually in `/config/defines.inc.php` and try again. You should get a proper error message.
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      options:
+        - label: I understand and accept the project's [code of conduct](https://github.com/PrestaShop/PrestaShop/blob/develop/CODE_OF_CONDUCT.md).
+          required: true
+        - label: I have already [searched in existing issues](https://github.com/PrestaShop/hummingbird/issues?q=is%3Aissue+type%3ABug) and found no previous report of this bug.
+          required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Describe the bug and add attachments
+      description: What went wrong? If possible, add screenshots, error logs or screen recordings to help explain your problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: Explain what you expected to happen instead.
+    validations:
+      required: false
+  - type: textarea
+    id: steps-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: List the exact steps to reproduce the issue.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: input
+    id: prestashop-version
+    attributes:
+      label: PrestaShop version(s) where the bug happened
+      description: If the issue concerns upgrade, specify which versions you upgrading FROM and upgrading TO
+      placeholder: "e.g., 9.0.0"
+    validations:
+      required: true
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP version(s) where the bug happened
+      placeholder: "e.g., 7.1 or 8.0"
+    validations:
+      required: false
+  - type: input
+    id: sponsor-company
+    attributes:
+      label: Your company or customer's name goes here (if applicable).
+    validations:
+      required: false

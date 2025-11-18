@@ -22,11 +22,11 @@ To work on Hummingbird, you'll need:
 - npm **v8**.
 
 ## 📑 Table of Contents
-- Want to help develop the theme? Start with [🧑‍💻 Develop on Hummingbird](#-develop-on-hummingbird).
+- Want to help develop the theme? Start with [⌨️ Develop on Hummingbird](#-develop-on-hummingbird).
 - Want to preview or test it? Jump to [🐳 Run Hummingbird with Docker](#-run-hummingbird-with-docker).
 - Having issues with caching during development? Jump to [🥵 Troubleshooting](#-troubleshooting).
 
-## 🧑‍💻 Develop on Hummingbird
+## ⌨️ Develop on Hummingbird
 
 ### 🧰 Installation / Setup
 

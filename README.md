@@ -10,7 +10,7 @@ Hummingbird is a modern, in-development theme for PrestaShop built to be compati
 
 ## 🔍 Theme Previews
 
-| [<img src="https://github.com/user-attachments/assets/66c2611c-f10e-4371-8495-212c4522705e">](https://github.com/user-attachments/assets/59828a32-462d-437b-b137-3c78ce057bb6) | [<img src="https://github.com/user-attachments/assets/345a4813-33c3-45d8-92c7-18a34db81786">](https://github.com/user-attachments/assets/77e5e3ec-1004-4f69-bda6-c51a140c812f) | [<img src="https://github.com/user-attachments/assets/b27625ec-ff08-40a2-8ef8-f63392254c43">](https://github.com/user-attachments/assets/31a1966b-6e73-44af-9735-874666ae486a) |
+| [<img src="docs/thumb-homepage.png">](docs/homepage.png) | [<img src="docs/thumb-category.png">](docs/category.png) | [<img src="docs/thumb-product.png">](docs/product.png) |
 | --- | --- | --- |
 | Homepage | Category | Product |
 

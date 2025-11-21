@@ -19,7 +19,7 @@
         <div class="category__cover">
           <img src="{$category.image.large.url}"
             alt="{if !empty($category.image.legend)}{$category.image.legend}{else}{$category.name}{/if}"
-            loading="lazy"
+            fetchpriority="high"
             class="category__cover-image img-fluid" width="{$category.image.large.width}"
             height="{$category.image.large.height}">
         </div>

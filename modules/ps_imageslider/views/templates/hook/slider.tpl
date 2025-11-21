@@ -24,7 +24,7 @@
           <div class="carousel-item {if $slide@first} active{/if}" role="listitem">
             {if !empty($slide.url)}<a class="ps-imageslider__link outline d-block h-100 text-body" href="{$slide.url}">{/if}
               <figure class="ps-imageslider__figure">
-                <img class="w-100" src="{$slide.image_url}" alt="{$slide.legend|escape}" {if $slide@first}loading="eager"{else}loading="lazy"{/if} width="{$slide.sizes[0]}" height="{$slide.sizes[1]}">
+                <img class="w-100" src="{$slide.image_url}" alt="{$slide.legend|escape}" {if $slide@first}fetchpriority="high"{else}loading="lazy"{/if} width="{$slide.sizes[0]}" height="{$slide.sizes[1]}">
 
                 {if $slide.title || $slide.description}
                   <figcaption class="ps-imageslider__figcaption carousel-caption d-none d-lg-block fs-5">

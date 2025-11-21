@@ -45,7 +45,11 @@
                   src="{$image.bySize.product_main.url}" 
                   width="{$image.bySize.product_main.width}"
                   height="{$image.bySize.product_main.height}"
-                  loading="{if $smarty.foreach.productImages.first}eager{else}lazy{/if}"
+                  {if $smarty.foreach.productImages.first}
+                    fetchpriority="high"
+                  {else}
+                    loading="lazy"
+                  {/if}
                   alt="{$image.legend}"
                   title="{$image.legend}"
                   data-full-size-image-url="{$image.bySize.home_default.url}"

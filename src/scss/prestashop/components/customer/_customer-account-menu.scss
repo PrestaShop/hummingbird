@@ -70,13 +70,11 @@ $component-name: account-menu;
     }
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     &__back {
       display: none;
     }
-  }
 
-  @include media-breakpoint-up(lg) {
     &--main {
       grid-template-columns: repeat(3, minmax(0, 1fr));
 

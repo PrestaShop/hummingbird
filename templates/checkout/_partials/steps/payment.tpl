@@ -133,7 +133,7 @@
   {/if}
 
   <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
-    <button class="btn btn-outline-primary js-back" data-step="checkout-delivery-step">
+    <button class="btn btn-outline-primary js-back" type="button" data-step="checkout-delivery-step">
       <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
       {l s='Back to Shipping' d='Shop.Theme.Actions'}
     </button>

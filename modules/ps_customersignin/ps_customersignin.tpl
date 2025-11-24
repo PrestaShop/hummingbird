@@ -135,6 +135,7 @@
           href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
           class="header-block__action-btn"
           rel="nofollow"
+          aria-label="{l s='Sign in' d='Shop.Theme.Actions'}"
         >
           <i class="material-icons header-block__icon" aria-hidden="true">&#xE853;</i>
           <span class="d-none d-md-inline header-block__title">

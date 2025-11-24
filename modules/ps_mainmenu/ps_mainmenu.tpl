@@ -66,7 +66,6 @@
           <div 
             class="submenu__right-items" 
             role="tabpanel"
-            aria-hidden="{if $smarty.foreach.node.first}false{else}true{/if}"
             data-ps-ref="desktop-submenu-right-items"
             {if $node.children|count}
               id="submenu_{$node.label|lower|classname}_{$node.depth}_{$node.page_identifier}"

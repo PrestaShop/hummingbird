@@ -59,7 +59,7 @@
 
     {if $notifications.info}
       {block name='notifications_info'}
-        <div class="alert alert-info alert-dismissible" role="status" tabindex="0">
+        <div class="alert alert-info alert-dismissible" role="alert" tabindex="0">
           {if $notifications.info|count > 1}
             <ul class="mb-0">
               {foreach $notifications.info as $notif}

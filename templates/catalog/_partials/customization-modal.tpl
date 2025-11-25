@@ -33,7 +33,6 @@
                   "id"=>$image_modal_id,
                   "title"=>$field.label,
                   "image_url"=>$field.image.large.url,
-                  "image_info"=>getimagesize($field.image.large.url),
                   "back_id"=>$customization_modal_id
                 ]
               }

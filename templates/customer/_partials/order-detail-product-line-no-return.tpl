@@ -85,9 +85,15 @@
             </small>
           {/if}
 
-          {if isset($carrier_name)}
+          {if $product.is_virtual}
             <small class="text-secondary">
-              {l s='Carrier: %carrier_name%' sprintf=['%carrier_name%' => $carrier_name] d='Shop.Theme.Catalog'}
+            {l s='Virtual product(s)' d='Shop.Theme.Global'}: {l s='No delivery service' d='Shop.Theme.Global'}
+            </small>
+          {/if}
+
+          {if !$product.is_virtual && isset($carrier_name)}
+            <small class="text-secondary">
+              {l s='Carrier' d='Shop.Theme.Catalog'}: {$carrier_name}
             </small>
           {/if}
 

@@ -121,7 +121,7 @@
 
           {if !$product.is_virtual && isset($carrier_name)}
             <small class="text-secondary">
-              {l s='Carrier' d='Shop.Theme.Catalog'}: {$carrier_name}
+              {l s='Carrier: %carrier_name%' sprintf=['%carrier_name%' => $carrier_name] d='Shop.Theme.Catalog'}
             </small>
           {/if}
 

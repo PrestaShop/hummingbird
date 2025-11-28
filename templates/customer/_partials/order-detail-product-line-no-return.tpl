@@ -87,7 +87,7 @@
 
           {if $product.is_virtual}
             <small class="text-secondary">
-            {l s='Virtual product(s)' d='Shop.Theme.Global'}: {l s='No delivery service' d='Shop.Theme.Global'}
+              {l s='Virtual product(s): No delivery service' d='Shop.Theme.Global'}
             </small>
           {/if}
 

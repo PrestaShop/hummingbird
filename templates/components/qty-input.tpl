@@ -38,7 +38,7 @@
     {if !isset($attributes['aria-label'])}aria-label="{$quantity_label}"{/if}
     {if !isset($attributes.type)}type="text"{/if}
     {if !isset($attributes.inputmode)}inputmode="numeric"{/if}
-    {if !isset($attributes.pattern)}pattern="[0-9]*"{/if}
+    {if !isset($attributes.pattern)}pattern="[0-9]+"{/if}
     {if !isset($attributes.value)}value="1"{/if}
     {if !isset($attributes.min)}min="1"{/if}
   />

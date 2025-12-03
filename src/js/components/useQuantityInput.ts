@@ -47,6 +47,24 @@ const useQuantityInput: Theme.QuantityInput.Function = (
           }
         });
 
+        qtyInput.addEventListener('input', (event: Event) => {
+          const input = event.target as HTMLInputElement;
+          const minQuantity = getMinValue(input);
+          const sanitizedValue = sanitizeInputToNumber(input.value);
+          const clampedValue = clampToMin(sanitizedValue, minQuantity);
+
+          if (input.value !== clampedValue.toString()) {
+            input.value = clampedValue.toString();
+          }
+        });
+
+        qtyInput.addEventListener('blur', (event: Event) => {
+          const input = event.target as HTMLInputElement;
+          const minQuantity = getMinValue(input);
+          const sanitizedValue = sanitizeInputToNumber(input.value);
+          input.value = clampToMin(sanitizedValue, minQuantity).toString();
+        });
+
         // The updateQuantity() will be called after timeout and send the update request with current input value
         if (qtyInput.hasAttribute('data-update-url')) {
           incrementButton.addEventListener('click', debounce(async () => {
@@ -94,6 +112,12 @@ const useQuantityInput: Theme.QuantityInput.Function = (
 };
 
 const isValidInputNum = (inputNum: number) => !Number.isNaN(inputNum) && Number.isInteger(inputNum);
+
+const getMinValue = (input: HTMLInputElement): number => Number(input.getAttribute('min')) || 1;
+
+const sanitizeInputToNumber = (value: string): number => Number(value.replace(/[^\d]/g, '')) || 0;
+
+const clampToMin = (value: number, min: number): number => Math.max(value, min);
 
 const changeQuantity = (qtyInput: HTMLInputElement, change: number, keyboard = false) => {
   const {mode} = qtyInput.dataset;

@@ -1,3 +1,7 @@
+{**
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *}
 {$componentName = 'product-customization-modal'}
 
 <div id="product-customizations-modal-{$customization.id_customization}" class="modal fade product-customization-modal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="customizations-modal-{$customization.id_customization}-title">

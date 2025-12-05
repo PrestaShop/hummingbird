@@ -21,32 +21,28 @@
           <div class="grid-table__row {if $smarty.foreach.products.last}rounded-bottom-0{/if}" role="row">
             <span class="grid-table__cell" role="cell" data-ps-label="{l s='Select' d='Shop.Theme.Catalog'}">
               {if !$product.customizations}
-                <span id="_desktop_product_line_{$product.id_order_detail}">
-                  <input 
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="cb_{$product.id_order_detail}"
+                  data-ps-ref="select-product"
+                  name="ids_order_detail[{$product.id_order_detail}]"
+                  value="{$product.id_order_detail}"
+                  {if $product.qty_returned >= $product.quantity}disabled{/if}
+                  aria-label="{$product.name}"
+                >
+              {else}
+                {foreach $product.customizations  as $customization}
+                  <input
                     class="form-check-input"
                     type="checkbox"
                     id="cb_{$product.id_order_detail}"
                     data-ps-ref="select-product"
-                    name="ids_order_detail[{$product.id_order_detail}]"
-                    value="{$product.id_order_detail}"
+                    name="customization_ids[{$product.id_order_detail}][]"
+                    value="{$customization.id_customization}"
                     {if $product.qty_returned >= $product.quantity}disabled{/if}
                     aria-label="{$product.name}"
                   >
-                </span>
-              {else}
-                {foreach $product.customizations  as $customization}
-                  <span id="_desktop_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}">
-                    <input 
-                      class="form-check-input"
-                      type="checkbox"
-                      id="cb_{$product.id_order_detail}"
-                      data-ps-ref="select-product"
-                      name="customization_ids[{$product.id_order_detail}][]"
-                      value="{$customization.id_customization}"
-                      {if $product.qty_returned >= $product.quantity}disabled{/if}
-                      aria-label="{$product.name}"
-                    >
-                  </span>
                 {/foreach}
               {/if}
             </span>
@@ -58,7 +54,7 @@
                     {if $product.cover}
                       <picture>
                         {if isset($product.cover.bySize.default_xs.sources.avif)}
-                          <source 
+                          <source
                             srcset="
                               {$product.cover.bySize.default_xs.sources.avif},
                               {$product.cover.bySize.default_md.sources.avif} 2x",
@@ -67,7 +63,7 @@
                         {/if}
 
                         {if isset($product.cover.bySize.default_xs.sources.webp)}
-                          <source 
+                          <source
                             srcset="
                               {$product.cover.bySize.default_xs.sources.webp},
                               {$product.cover.bySize.default_md.sources.webp} 2x"
@@ -90,7 +86,7 @@
                     {else}
                       <picture>
                         {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
-                          <source 
+                          <source
                             srcset="
                               {$urls.no_picture_image.bySize.default_xs.sources.avif},
                               {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
@@ -99,7 +95,7 @@
                         {/if}
 
                         {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
-                          <source 
+                          <source
                             srcset="
                               {$urls.no_picture_image.bySize.default_xs.sources.webp},
                               {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
@@ -128,7 +124,7 @@
 
                   {if $product.product_reference}
                     <small class="text-secondary">
-                      {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
+                      {l s='Reference: %reference%' sprintf=['%reference%' => $product.product_reference] d='Shop.Theme.Catalog'}
                     </small>
                   {/if}
 

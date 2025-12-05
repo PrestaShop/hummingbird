@@ -41,7 +41,7 @@
 
                     {if $product.product_reference}
                       <small class="text-secondary">
-                        {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}
+                        {l s='Reference: %reference%' sprintf=['%reference%' => $product.product_reference] d='Shop.Theme.Catalog'}
                       </small>
                     {/if}
 

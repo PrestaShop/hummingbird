@@ -84,6 +84,8 @@ export default () => {
         if (input.value !== clampedValue.toString()) {
           input.value = clampedValue.toString();
         }
+
+        triggerEmit();
       });
 
       quantityInput.addEventListener('blur', () => {
@@ -93,9 +95,9 @@ export default () => {
 
         if (quantityInput.value !== clampedValue.toString()) {
           quantityInput.value = clampedValue.toString();
-          // Trigger change event to ensure triggerEmit() is called after auto-correction
-          quantityInput.dispatchEvent(new Event('change', {bubbles: true}));
         }
+
+        triggerEmit();
       });
 
       quantityInput.addEventListener('change', triggerEmit);

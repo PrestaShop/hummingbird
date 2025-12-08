@@ -58,7 +58,16 @@ export default function initBlockCart() {
       }
     });
 
-    modalElement.addEventListener('hidden.bs.modal', () => {
+    modalElement.addEventListener('hidden.bs.modal', (event: Event) => {
+      const target = event.currentTarget as HTMLElement;
+
+      if (target) {
+        prestashop.emit(events.updateProduct, {
+          reason: target.dataset,
+          event,
+        });
+      }
+
       document.removeEventListener('keydown', onKeyDown, {capture: true});
       document.removeEventListener('pointerdown', onPointerDown, {capture: true});
 

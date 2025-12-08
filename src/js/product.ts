@@ -4,6 +4,7 @@
  */
 
 import SelectorsMap from '@constants/selectors-map';
+import debounce from '@helpers/debounce';
 
 type ProductSlideEvent = Event & {to: number};
 
@@ -75,6 +76,10 @@ export default () => {
         });
       };
 
+      const debouncedTriggerEmit = debounce(async () => {
+        triggerEmit();
+      }, 500);
+
       quantityInput.addEventListener('input', (event: Event) => {
         const input = event.target as HTMLInputElement;
         const minQuantity = getMinValue(input);
@@ -85,7 +90,7 @@ export default () => {
           input.value = clampedValue.toString();
         }
 
-        triggerEmit();
+        debouncedTriggerEmit();
       });
 
       quantityInput.addEventListener('blur', () => {

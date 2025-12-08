@@ -9,24 +9,17 @@ body:
     attributes:
       label: The problem
       description: Describe what problem you would like to see solved.
-      placeholder: I'm always frustrated when...
+      placeholder: A problem I’d love to see solved is...
     validations:
       required: false
   - type: textarea
     id: solution
     attributes:
       label: The solution
-      description: Describe the solution(s) that you imagine for the aforementioned problem.
-      placeholder: Changing XYZ would help because...
+      description: Describe the solution(s) you have in mind for this problem.
+      placeholder: A solution that would help is...
     validations:
       required: true
-  - type: textarea
-    id: alternative
-    attributes:
-      label: Alternatives
-      description: Are there any other solutions to that problem that you have considered?
-    validations:
-      required: false
   - type: textarea
     id: additional-context
     attributes:

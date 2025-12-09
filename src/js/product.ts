@@ -4,6 +4,7 @@
  */
 
 import SelectorsMap from '@constants/selectors-map';
+import debounce from '@helpers/debounce';
 
 type ProductSlideEvent = Event & {to: number};
 
@@ -59,7 +60,7 @@ export default () => {
 
     if (quantityInput && incrementButton && decrementButton) {
       // Function to trigger emit
-      const triggerEmit = () => {
+      const triggerEmit = async () => {
         const inputValue = parseInt(quantityInput.value, 10);
         const minQuantity = getMinValue(quantityInput);
 
@@ -75,6 +76,8 @@ export default () => {
         });
       };
 
+      const debouncedTriggerEmit = debounce(triggerEmit, 500);
+
       quantityInput.addEventListener('input', (event: Event) => {
         const input = event.target as HTMLInputElement;
         const minQuantity = getMinValue(input);
@@ -85,7 +88,7 @@ export default () => {
           input.value = clampedValue.toString();
         }
 
-        triggerEmit();
+        debouncedTriggerEmit();
       });
 
       quantityInput.addEventListener('blur', () => {

@@ -20,7 +20,7 @@
           }
         </p>
 
-        {if not $is_multishipment_enabled|default:false}
+        {if not $is_multishipment_enabled|default:false && $order.carrier.name}
           <p class="order-infos__carrier">
             {l s='Carrier: %carrier_name%' sprintf=['%carrier_name%' => $order.carrier.name] d='Shop.Theme.Catalog'}
           </p>

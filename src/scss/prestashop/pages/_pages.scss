@@ -1,7 +1,9 @@
 $component-name: "page";
 
 .#{$component-name} {
-  padding-bottom: 2rem;
+  &:not(body) {
+    padding-bottom: 2rem;
+  }
 
   &-header {
     margin-bottom: 2rem;

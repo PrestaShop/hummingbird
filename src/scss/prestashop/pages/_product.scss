@@ -119,7 +119,10 @@ $component-name: product;
     &__availability {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+
+      &:has(+ .#{$component-name}__delivery-infos) {
+        margin-block-end: 0.25rem;
+      }
     }
 
     &__availability-status {
@@ -190,6 +193,7 @@ $component-name: product;
     &__actions,
     &__variants,
     &__availability,
+    &__delivery-infos,
     &__add-to-cart-container,
     &__minimal-quantity,
     &__customization,
@@ -278,6 +282,7 @@ $component-name: product;
       &__actions,
       &__variants,
       &__availability,
+      &__delivery-infos,
       &__add-to-cart-container,
       &__minimal-quantity,
       &__customization,

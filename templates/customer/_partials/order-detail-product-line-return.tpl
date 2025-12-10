@@ -5,31 +5,16 @@
 {block name='order_products_table_line_return'}
   <div class="grid-table__row {if isset($is_last_product) && $is_last_product}rounded-bottom-0{/if}" role="row">
     <span class="grid-table__cell" role="cell" data-ps-label="{l s='Select' d='Shop.Theme.Catalog'}">
-      {if !$product.customizations}
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="cb_{$product.id_order_detail}"
-          data-ps-ref="select-product"
-          name="ids_order_detail[{$product.id_order_detail}]"
-          value="{$product.id_order_detail}"
-          {if $product.qty_returned >= $product.quantity}disabled{/if}
-          aria-label="{$product.name}"
-        >
-      {else}
-        {foreach $product.customizations  as $customization}
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="cb_{$product.id_order_detail}"
-            data-ps-ref="select-product"
-            name="customization_ids[{$product.id_order_detail}][]"
-            value="{$customization.id_customization}"
-            {if $product.qty_returned >= $product.quantity}disabled{/if}
-            aria-label="{$product.name}"
-          >
-        {/foreach}
-      {/if}
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="cb_{$product.id_order_detail}"
+        data-ps-ref="select-product"
+        name="ids_order_detail[{$product.id_order_detail}]"
+        value="{$product.id_order_detail}"
+        {if $product.qty_returned >= $product.quantity}disabled{/if}
+        aria-label="{$product.name}"
+      >
     </span>
 
     <span class="grid-table__cell order-product" role="cell" data-ps-label="{l s='Product' d='Shop.Theme.Catalog'}">
@@ -146,34 +131,18 @@
 
     <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Quantity' d='Shop.Theme.Catalog'}">
       <span class="grid-table__cell-group grid-table__cell-group--sm grid-table__cell-group--inline">
-        {if !$product.customizations}
-          <span class="current">
-            <span class="visually-hidden">{l s='Available quantity to return:' d='Shop.Theme.Catalog'}</span>
-            {$product.quantity}
+        <span class="current">
+          <span class="visually-hidden">{l s='Available quantity to return:' d='Shop.Theme.Catalog'}</span>
+          {$product.quantity}
+        </span>
+        {if $product.quantity > $product.qty_returned}
+          <span class="select" id="order_return_qty_{$product.id_order_detail}">
+            <select name="order_qte_input[{$product.id_order_detail}]" class="form-select" aria-label="{l s='Select quantity to return' d='Shop.Theme.Catalog'}">
+              {section name=quantity start=1 loop=$product.quantity+1-$product.qty_returned}
+                <option value="{$smarty.section.quantity.index}">{$smarty.section.quantity.index}</option>
+              {/section}
+            </select>
           </span>
-          {if $product.quantity > $product.qty_returned}
-            <span class="select" id="order_return_qty_{$product.id_order_detail}">
-              <select name="order_qte_input[{$product.id_order_detail}]" class="form-select" aria-label="{l s='Select quantity to return' d='Shop.Theme.Catalog'}">
-                {section name=quantity start=1 loop=$product.quantity+1-$product.qty_returned}
-                  <option value="{$smarty.section.quantity.index}">{$smarty.section.quantity.index}</option>
-                {/section}
-              </select>
-            </span>
-          {/if}
-        {else}
-          {foreach $product.customizations as $customization}
-            <span class="current">
-              <span class="visually-hidden">{l s='Available quantity to return:' d='Shop.Theme.Catalog'}</span>
-              {$customization.quantity}
-            </span>
-            <span class="select" id="order_return_qty_{$product.id_order_detail}_{$customization.id_customization}">
-              <select name="customization_qty_input[{$customization.id_customization}]" class="form-select" aria-label="{l s='Select quantity to return' d='Shop.Theme.Catalog'}">
-                {section name=quantity start=1 loop=$customization.quantity+1}
-                  <option value="{$smarty.section.quantity.index}">{$smarty.section.quantity.index}</option>
-                {/section}
-              </select>
-            </span>
-          {/foreach}
         {/if}
       </span>
     </span>

@@ -36,8 +36,7 @@
                 value=[
                   "id"=>$image_modal_id,
                   "title"=>$field.label,
-                  "image_url"=>$field.image.large.url,
-                  "back_id"=>$customization_modal_id
+                  "image_url"=>$field.image.large.url
                 ]
               }
             {/if}

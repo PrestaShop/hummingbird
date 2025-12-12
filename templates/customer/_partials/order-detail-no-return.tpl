@@ -121,13 +121,7 @@
           </span>
 
           <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Quantity' d='Shop.Theme.Catalog'}">
-            {if $product.customizations}
-              {foreach $product.customizations as $customization}
-                {$customization.quantity}
-              {/foreach}
-            {else}
-              {$product.quantity}
-            {/if}
+            {$product.quantity}
           </span>
 
           <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Unit price' d='Shop.Theme.Catalog'}">

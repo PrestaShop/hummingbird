@@ -145,6 +145,11 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
     const baseValue = Number(qtyInput.getAttribute('value'));
     const quantity = targetValue - baseValue;
 
+    // Skip update if value is 0 and min is 1 (item is being removed)
+    if (targetValue === 0 && qtyInput.getAttribute('min') === '1') {
+      return;
+    }
+
     if (isValidInputNum(targetValue) && quantity !== 0) {
       const requestUrl = qtyInput.dataset.updateUrl;
 

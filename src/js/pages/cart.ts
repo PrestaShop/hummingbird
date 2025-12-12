@@ -8,8 +8,18 @@ import {isHTMLElement} from '@helpers/typeguards';
 import handleCartAction from '@js/components/UseHandleCartAction';
 import SelectorsMap from '@constants/selectors-map';
 import {state, availableLastUpdateAction} from '@js/state';
+import debounce from '@helpers/debounce';
 
 export default () => {
+  // Debounced function to trigger remove action, preventing multiple rapid clicks
+  const debouncedRemoveAction = debounce(async (...args) => {
+    const removeButton = args[0] as HTMLElement;
+
+    if (removeButton) {
+      removeButton.click();
+    }
+  }, 500);
+
   // Event delegation for voucher code clicks
   const handleVoucherClick = (event: Event) => {
     event.stopPropagation();
@@ -50,15 +60,12 @@ export default () => {
     ) as HTMLElement | null;
 
     if (targetValue) {
-      if (eventTarget.classList.contains('js-increment-button')) {
-        if (targetValue.dataset.mode === 'confirmation' && Number(targetValue.value) < 1) {
-          removeButton?.click();
-        }
-      }
+      const isDecrement = eventTarget.classList.contains('js-decrement-button');
 
-      if (eventTarget.classList.contains('js-decrement-button')) {
-        if (targetValue.value === '0' && targetValue.getAttribute('min') === '1') {
-          removeButton?.click();
+      // Debounce remove action to prevent multiple rapid clicks
+      if (isDecrement && targetValue.value === '0' && targetValue.getAttribute('min') === '1') {
+        if (removeButton) {
+          debouncedRemoveAction(removeButton);
         }
       }
     }

@@ -4,9 +4,6 @@
  *}
 
 <div class="product-line">
-  {assign var=product_line_alert_id value=10|mt_rand:100000}
-  <div class="visually-hidden" id="js-product-line-alert--{$product_line_alert_id}"></div>
-
   <div class="product-line__image">
     <a class="product-line__title product-line__item" href="{$product.url}"
       data-id_customization="{$product.id_customization|intval}">
@@ -129,7 +126,6 @@
               "name"=>"product-quantity-spin",
               "data-update-url"=>"{$product.update_quantity_url}",
               "data-product-id"=>"{$product.id_product}",
-              "data-alert-id"=>"{$product_line_alert_id}",
               "value"=>"{$product.quantity}",
               "min"=>"{$product.minimal_quantity}"
             ]

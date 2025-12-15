@@ -168,11 +168,11 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
 
             if (data.hasError) {
               const errors = data.errors as Array<string>;
-              const productAlertSelector = resetAlertContainer(qtyInput);
+              const cartAlertSelector = cartSelectorMap.alertPlaceholder;
 
-              if (errors && productAlertSelector) {
+              if (errors && cartAlertSelector) {
                 errors.forEach((error: string) => {
-                  useAlert(error, {type: 'danger', selector: productAlertSelector}).show();
+                  useAlert(error, {type: 'danger', selector: cartAlertSelector}).show();
                 });
               }
             } else {

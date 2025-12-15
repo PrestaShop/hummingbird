@@ -91,12 +91,12 @@
           </div>
         {/if}
 
-        {if $product.has_discount}
-          <div class="{$componentName}__price">
-            <span class="label">{$product.price}</span>
+        <div class="{$componentName}__price">
+          <span class="label">{$product.price}</span>
+          {if $product.has_discount}
             <span class="value">{$product.regular_price}</span>
-          </div>
-        {/if}
+          {/if}
+        </div>
 
         {if $product.unit_price_full}
           <div class="{$componentName}__unit-price">

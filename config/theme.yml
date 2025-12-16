@@ -113,7 +113,7 @@ global_settings:
       height: 250
       scope: [products]
     category_default:
-      width: 141
+      width: 180
       height: 180
       scope: [categories]
     stores_default:

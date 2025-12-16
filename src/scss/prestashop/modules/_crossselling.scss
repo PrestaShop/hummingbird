@@ -1,0 +1,9 @@
+$module-name: ps-crossselling;
+
+.#{$module-name} {
+  margin-block-end: 2rem;
+
+  @include media-breakpoint-up(xl) {
+    margin-block-end: 3rem;
+  }
+}

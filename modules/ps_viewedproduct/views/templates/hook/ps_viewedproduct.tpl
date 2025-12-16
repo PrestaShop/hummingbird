@@ -5,7 +5,7 @@
 
 {extends file="components/module-products.tpl"}
 
-{block name='module_products_name'}ps-viewedproducts{/block}
+{block name='module_products_name'}ps-viewedproduct{/block}
 
 {block name='module_products_title'}
   {include file='components/section-title.tpl' title={l s='Viewed products' d='Shop.Theme.Catalog'}}

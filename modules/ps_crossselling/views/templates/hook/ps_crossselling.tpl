@@ -3,9 +3,10 @@
  * file that was distributed with this source code.
  *}
 
-<section class="featured-products mt-3">
-  <div class="container">
-    {include file='components/section-title.tpl' title={l s='Customers who bought this product also bought:' d='Shop.Theme.Catalog'}}
-    {include file='catalog/_partials/productlist.tpl' products=$products productClass='col-12 col-xs-6 col-lg-4 col-xl-3'}
-  </div>
-</section>
+{extends file="components/module-products.tpl"}
+
+{block name='module_products_name'}ps-crossselling{/block}
+
+{block name='module_products_title'}
+  {include file='components/section-title.tpl' title={l s='Clients also bought' d='Shop.Theme.Catalog'}}
+{/block}

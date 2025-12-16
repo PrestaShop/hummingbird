@@ -37,7 +37,7 @@
     {if $product.ean13},"gtin13": "{$product.ean13}"
     {elseif $product.upc},"gtin13": "{$product.upc}"
     {/if}
-    {if $product_manufacturer->name},
+    {if isset($product_manufacturer) && $product_manufacturer->name},
     "brand": {
       "@type": "Brand",
       "name": "{$product_manufacturer->name|escape:'html':'UTF-8'}"

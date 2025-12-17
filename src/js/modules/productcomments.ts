@@ -480,6 +480,17 @@ class ProductCommentsListing {
     });
   }
 
+  private static formatCommentContent(content: string): string {
+    if (!content) return '';
+
+    const div = document.createElement('div');
+    div.textContent = content;
+    const commentContent = div.innerHTML;
+
+    // Convert line breaks to <br> tags
+    return commentContent.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\r/g, '<br>');
+  }
+
   private static addComment(comment: CommentData): void {
     const {commentsList} = ProductCommentsElements;
 
@@ -497,7 +508,7 @@ class ProductCommentsListing {
     commentTemplate = commentTemplate.replace(/@CUSTOMER_NAME@/g, customerName);
     commentTemplate = commentTemplate.replace(/@COMMENT_DATE@/g, comment.date_add);
     commentTemplate = commentTemplate.replace(/@COMMENT_TITLE@/g, comment.title);
-    commentTemplate = commentTemplate.replace(/@COMMENT_COMMENT@/g, comment.content);
+    commentTemplate = commentTemplate.replace(/@COMMENT_COMMENT@/g, this.formatCommentContent(comment.content));
     commentTemplate = commentTemplate.replace(/@COMMENT_USEFUL_ADVICES@/g, comment.usefulness.toString());
     commentTemplate = commentTemplate.replace(/@COMMENT_GRADE@/g, comment.grade.toString());
     commentTemplate = commentTemplate.replace(

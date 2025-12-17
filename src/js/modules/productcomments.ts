@@ -485,10 +485,9 @@ class ProductCommentsListing {
 
     const div = document.createElement('div');
     div.textContent = content;
-    const commentContent = div.innerHTML;
 
     // Convert line breaks to <br> tags
-    return commentContent.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\r/g, '<br>');
+    return div.innerHTML.replace(/\r\n|\r|\n/g, '<br>');
   }
 
   private static addComment(comment: CommentData): void {

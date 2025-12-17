@@ -78,7 +78,7 @@
             {if $product.add_to_cart_url}
               <form class="{$componentName}__form" action="{$urls.pages.cart}" method="post">
                 <input type="hidden" value="{$product.id_product}" name="id_product">
-                <input type="hidden" name="token" value="{$static_token}" />
+                <input type="hidden" name="token" value="{$static_token}">
 
                 <div class="quantity-button js-quantity-button">
                   {include file='components/qty-input.tpl'

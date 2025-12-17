@@ -38,7 +38,7 @@
                 <li class="page-item disabled">
                   <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li>
-              {else if $page.type != "prev" && $page.type != "next"}
+              {elseif $page.type != "prev" && $page.type != "next"}
                 <li class="page-item{if $page.current} active{/if}">
                   <button data-ps-data="{$page.url}"
                     class="page-link {['js-pager-link' => $page.clickable]|classnames}"

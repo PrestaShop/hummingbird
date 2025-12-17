@@ -19,7 +19,7 @@
             <span class="cart-summary__value">
               {if $subtotal.type === 'discount'}
                 -{$subtotal.value}
-              {else if $subtotal.type === 'shipping'}
+              {elseif $subtotal.type === 'shipping'}
                 {$subtotal.value}
                 <small class="cart-summary__value-inner">{hook h='displayCheckoutSubtotalDetails' subtotal=$subtotal}</small>
               {else}

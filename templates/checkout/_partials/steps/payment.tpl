@@ -29,7 +29,7 @@
               data-module-name="{$option.module_name}"
               id="{$option.id}"
               {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
-            />
+            >
 
             <label class="payment-option__label form-check-label" for="{$option.id}">
               {if $option.logo}

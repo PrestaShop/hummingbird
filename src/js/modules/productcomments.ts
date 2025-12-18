@@ -483,11 +483,8 @@ class ProductCommentsListing {
   private static formatCommentContent(content: string): string {
     if (!content) return '';
 
-    const div = document.createElement('div');
-    div.textContent = content;
-
-    // Convert line breaks to <br> tags
-    return div.innerHTML.replace(/\r\n|\r|\n/g, '<br>');
+    // Convert line breaks to <br> tags without HTML encoding special characters
+    return content.replace(/\r\n|\r|\n/g, '<br>');
   }
 
   private static addComment(comment: CommentData): void {

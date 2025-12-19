@@ -16,7 +16,7 @@ exports.developmentConfig = ({ port, publicPath, serverAddress, siteURL, entries
   }
 
   return {
-    devtool: "cheap-source-map",
+    devtool: "source-map",
     devServer: isDevServer ? configureDevServer(serverAddress, publicPath, port, siteURL) : undefined,
     watchOptions: {
       ignored: /node_modules/,

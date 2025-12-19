@@ -29,7 +29,7 @@
 
                     <div class="delivery-option__carrier {if $carrier.logo} delivery-option__carrier--hasLogo{/if}">
                       {if $carrier.logo}
-                        <img class="delivery-option__carrier-logo" src="{$carrier.logo}" class="img-fluid" alt="{$carrier.name}" loading="lazy" aria-hidden="true" />
+                        <img class="delivery-option__carrier-logo" src="{$carrier.logo}" class="img-fluid" alt="{$carrier.name}" loading="lazy" aria-hidden="true">
                       {/if}
 
                       <span class="delivery-option__carrier-name">{$carrier.name}</span>
@@ -67,7 +67,7 @@
           {if $recyclablePackAllowed}
             <div class="form-check" for="input_recyclable">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="input_recyclable" name="recyclable" value="1" {if $recyclable} checked {/if}/>
+                <input class="form-check-input" type="checkbox" id="input_recyclable" name="recyclable" value="1"{if $recyclable} checked{/if}>
                 {l s='I would like to receive my order in recycled packaging.' d='Shop.Theme.Checkout'}
               </label>
             </div>
@@ -76,7 +76,7 @@
           {if $gift.allowed}
             <div class="form-check mb-4">
               <label class="form-check-label" for="input_gift" data-bs-toggle="collapse" data-bs-target="#gift">
-                <input class="form-check-input js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1" {if $gift.isGift}checked="checked"{/if}/>
+                <input class="form-check-input js-gift-checkbox" id="input_gift" name="gift" type="checkbox" value="1"{if $gift.isGift} checked="checked"{/if}>
                 {$gift.label}
               </label>
             </div>

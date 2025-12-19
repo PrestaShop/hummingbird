@@ -107,7 +107,7 @@
           <span class="grid-table__cell" role="cell" data-ps-label="{l s='Delivery Option' d='Shop.Theme.Checkout'}">
             <span class="grid-table__cell-group grid-table__cell-group--sm grid-table__cell-group--inline">
               {if $selected_delivery_option.logo}
-                <img src="{$selected_delivery_option.logo}" class="rounded img-fluid" width="32" height="auto" alt="{$selected_delivery_option.name}" loading="lazy" />
+                <img src="{$selected_delivery_option.logo}" class="rounded img-fluid" width="32" height="auto" alt="{$selected_delivery_option.name}" loading="lazy">
               {/if}
 
               {$selected_delivery_option.name}

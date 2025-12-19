@@ -12,7 +12,7 @@
 
         <label class="form-check-label" for="password-form__check">
           <span class="fw-bold">{l s='Create an account' d='Shop.Theme.Checkout'}</span> <small class="fw-normal">{l s='(optional)' d='Shop.Theme.Checkout'}</small>
-          <br />
+          <br>
           <em>{l s='And save time on your next order!' d='Shop.Theme.Checkout'}</em>
         </label>
       </div>

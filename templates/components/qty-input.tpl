@@ -41,7 +41,7 @@
     {if !isset($attributes.pattern)}pattern="[0-9]+"{/if}
     {if !isset($attributes.value)}value="1"{/if}
     {if !isset($attributes.min)}min="1"{/if}
-  />
+  >
 
   <button aria-label="{$increment_label}" class="btn {$append.button} btn-square-icon js-{$append.button}-button" type="button" id="increment_button_{$product.id_product}">
     <i class="material-icons" aria-hidden="true">&#x{$append.icon};</i>

@@ -5,9 +5,11 @@
 {extends file=$layout}
 
 {block name='content'}
-  {block name='brand_and_suppliers_header'}{/block}
+  {block name='brand_header'}
+    {include file='components/page-title-section.tpl' title={l s='Brands' d='Shop.Theme.Catalog'}}
+  {/block}
 
-  {block name='brand_and_suppliers_miniature'}
+  {block name='brand_miniature'}
     <ul class="brand__list">
       {foreach from=$brands item=brand}
         {include file='catalog/_partials/miniatures/brand.tpl' brand=$brand}

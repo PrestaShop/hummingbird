@@ -72,7 +72,7 @@
             {if $product.availability_date}
               <li class="details__item">
                 <div class="details__left">
-                  <span class="details__title">{l s='Availability date:' d='Shop.Theme.Catalog'}</span>
+                  <span class="details__title">{l s='Availability date' d='Shop.Theme.Catalog'}</span>
                 </div>
 
                 <div class="details__right">

@@ -119,16 +119,27 @@
 
   {if $show_final_summary}
     <article class="alert alert-danger mb-4 js-alert-payment-conditions" role="alert">
-      {l
-        s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
-        sprintf=[
-          '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
-          '[/1]' => '</a>',
-          '[2]' => '<a href="#conditions-to-approve" class="alert-link">',
-          '[/2]' => '</a>'
-        ]
-        d='Shop.Theme.Checkout'
-      }
+      {if isset($tos_cms) && $tos_cms}
+        {l
+          s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
+          sprintf=[
+            '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
+            '[/1]' => '</a>',
+            '[2]' => '<a href="#conditions-to-approve" class="alert-link">',
+            '[/2]' => '</a>'
+          ]
+          d='Shop.Theme.Checkout'
+        }
+      {else}
+        {l
+          s='Please make sure you\'ve chosen a [1]payment method[/1].'
+          sprintf=[
+            '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
+            '[/1]' => '</a>'
+          ]
+          d='Shop.Theme.Checkout'
+        }
+      {/if}
     </article>
   {/if}
 

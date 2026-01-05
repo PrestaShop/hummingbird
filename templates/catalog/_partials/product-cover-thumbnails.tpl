@@ -131,41 +131,45 @@
 
     {hook h='displayAfterProductThumbs' product=$product}
   {else}
-    <picture>
-      {if isset($urls.no_picture_image.bySize.default_xl.sources.avif)}
-        <source 
-          srcset="
-            {$urls.no_picture_image.bySize.default_xl.sources.avif} 400w,
-            {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
-          sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
-          type="image/avif"
-        >
-      {/if}
+    <div class="product__no-image">
+      {include file='catalog/_partials/product-flags.tpl'}
 
-      {if isset($urls.no_picture_image.bySize.default_xl.sources.webp)}
-        <source 
-          srcset="
-            {$urls.no_picture_image.bySize.default_xl.sources.webp} 400w,
-            {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
-          sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
-          type="image/webp"
-        >
-      {/if}
+      <picture>
+        {if isset($urls.no_picture_image.bySize.default_xl.sources.avif)}
+          <source 
+            srcset="
+              {$urls.no_picture_image.bySize.default_xl.sources.avif} 400w,
+              {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
+            sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
+            type="image/avif"
+          >
+        {/if}
 
-      <img
-        class="img-fluid"
-        srcset="
-          {$urls.no_picture_image.bySize.default_xl.url} 400w,
-          {$urls.no_picture_image.bySize.product_main.url} 720w"
-        sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
-        width="{$urls.no_picture_image.bySize.product_main.width}"
-        height="{$urls.no_picture_image.bySize.product_main.height}"
-        src="{$urls.no_picture_image.bySize.default_xl.url}" 
-        loading="lazy"
-        alt="{l s='No image available' d='Shop.Theme.Catalog'}"
-        title="{l s='No image available' d='Shop.Theme.Catalog'}"
-      >
-    </picture>
+        {if isset($urls.no_picture_image.bySize.default_xl.sources.webp)}
+          <source 
+            srcset="
+              {$urls.no_picture_image.bySize.default_xl.sources.webp} 400w,
+              {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
+            sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
+            type="image/webp"
+          >
+        {/if}
+
+        <img
+          class="img-fluid"
+          srcset="
+            {$urls.no_picture_image.bySize.default_xl.url} 400w,
+            {$urls.no_picture_image.bySize.product_main.url} 720w"
+          sizes="(min-width: 992px) 50vw, (min-width: 360px) 33vw, 100vw"
+          width="{$urls.no_picture_image.bySize.product_main.width}"
+          height="{$urls.no_picture_image.bySize.product_main.height}"
+          src="{$urls.no_picture_image.bySize.default_xl.url}" 
+          loading="lazy"
+          alt="{l s='No image available' d='Shop.Theme.Catalog'}"
+          title="{l s='No image available' d='Shop.Theme.Catalog'}"
+        >
+      </picture>
+    </div>
   {/if}
 
   {block name='product_images_modal'}

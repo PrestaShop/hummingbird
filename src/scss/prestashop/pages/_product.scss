@@ -50,6 +50,10 @@ $component-name: product;
       box-shadow: var(--bs-box-shadow-sm);
     }
 
+    &__no-image {
+      position: relative;
+    }
+
     &__description-short {
       margin-block-end: 1rem;
     }

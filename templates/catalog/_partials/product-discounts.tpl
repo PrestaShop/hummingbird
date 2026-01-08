@@ -2,8 +2,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{if $product.quantity_discounts}
-  <section class="product__discounts js-product-discounts">
+<section class="product__discounts js-product-discounts"
+  {if !$product.show_price}
+    hidden
+  {/if}
+>
+  {if $product.quantity_discounts}
     {block name='product_discount_table'}
       <table class="discounts-table">
         <thead>
@@ -25,5 +29,5 @@
         </tbody>
       </table>
     {/block}
-  </section>
-{/if}
+  {/if}
+</section>

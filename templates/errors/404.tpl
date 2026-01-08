@@ -21,10 +21,10 @@
 
   <p>
     {l
-      s='If this is a recurring problem, please [1]contact us[/1]'
+      s='If this is a recurring problem, please [1]contact us[/1].'
       d='Shop.Theme.Catalog'
       sprintf=[
-        '[1]' => '<a href="{$urls.pages.contact}">',
+        '[1]' => '<a href="'|cat:{$urls.pages.contact|escape:'htmlall'}|cat:'">',
         '[/1]' => '</a>'
       ]
     }

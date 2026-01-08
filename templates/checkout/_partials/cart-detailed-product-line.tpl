@@ -103,11 +103,11 @@
           <span class="product-line__item-regular-price">{$product.regular_price}</span>
 
           {if $product.discount_type === 'percentage'}
-            <span class="product-line__item-discount badge bg-primary">
+            <span class="product-line__item-discount product-line__item-discount--percentage badge bg-primary">
               -{$product.discount_percentage_absolute}
             </span>
           {else}
-            <span class="product-line__item-discount badge bg-primary">
+            <span class="product-line__item-discount product-line__item-discount--amount badge bg-primary">
               -{$product.discount_to_display}
             </span>
           {/if}

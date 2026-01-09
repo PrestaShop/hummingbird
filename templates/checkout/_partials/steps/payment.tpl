@@ -92,22 +92,22 @@
       {l s='By confirming the order, you certify that you have read and agree with all of the conditions below:' d='Shop.Theme.Checkout'}
     </p>
 
-    <form id="conditions-to-approve" class="js-conditions-to-approve" method="GET">
-        {foreach from=$conditions_to_approve item="condition" key="condition_name"}
-          <div class="my-3 form-check">
-            <input  id    = "conditions_to_approve[{$condition_name}]"
-                    name  = "conditions_to_approve[{$condition_name}]"
-                    required
-                    type  = "checkbox"
-                    value = "1"
-                    class = "ps-shown-by-js form-check-input"
-            >
+    <form id="conditions-to-approve" class="js-conditions-to-approve mt-3" method="GET">
+      {foreach from=$conditions_to_approve item="condition" key="condition_name"}
+        <div class="my-2 form-check">
+          <input  id    = "conditions_to_approve[{$condition_name}]"
+                  name  = "conditions_to_approve[{$condition_name}]"
+                  required
+                  type  = "checkbox"
+                  value = "1"
+                  class = "ps-shown-by-js form-check-input"
+          >
 
-            <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
-              {$condition nofilter}
-            </label>
-          </div>
-        {/foreach}
+          <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
+            {$condition nofilter}
+          </label>
+        </div>
+      {/foreach}
     </form>
   {/if}
 
@@ -119,16 +119,35 @@
 
   {if $show_final_summary}
     <article class="alert alert-danger mb-4 js-alert-payment-conditions" role="alert">
-      {l
-        s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
-        sprintf=[
-          '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
-          '[/1]' => '</a>',
-          '[2]' => '<a href="#conditions-to-approve" class="alert-link">',
-          '[/2]' => '</a>'
-        ]
-        d='Shop.Theme.Checkout'
-      }
+      {if isset($tos_cms) && $tos_cms && $conditions_to_approve|count == 1}
+        {l
+          s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
+          sprintf=[
+            '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
+            '[/1]' => '</a>',
+            '[2]' => '<a href="#conditions-to-approve" class="alert-link">',
+            '[/2]' => '</a>'
+          ]
+          d='Shop.Theme.Checkout'
+        }
+      {elseif !empty($conditions_to_approve)}
+        {l
+          s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the required condition(s).'
+          sprintf=[
+            '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
+            '[/1]' => '</a>'
+          ]
+          d='Shop.Theme.Checkout'
+        }
+      {else}
+        {l s='Please make sure you\'ve chosen a [1]payment method[/1].'
+          sprintf=[
+            '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
+            '[/1]' => '</a>'
+          ]
+          d='Shop.Theme.Checkout'
+        }
+      {/if}
     </article>
   {/if}
 

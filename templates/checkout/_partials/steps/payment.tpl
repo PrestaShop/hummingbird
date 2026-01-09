@@ -92,22 +92,22 @@
       {l s='By confirming the order, you certify that you have read and agree with all of the conditions below:' d='Shop.Theme.Checkout'}
     </p>
 
-    <form id="conditions-to-approve" class="js-conditions-to-approve" method="GET">
-        {foreach from=$conditions_to_approve item="condition" key="condition_name"}
-          <div class="my-3 form-check">
-            <input  id    = "conditions_to_approve[{$condition_name}]"
-                    name  = "conditions_to_approve[{$condition_name}]"
-                    required
-                    type  = "checkbox"
-                    value = "1"
-                    class = "ps-shown-by-js form-check-input"
-            >
+    <form id="conditions-to-approve" class="js-conditions-to-approve mt-3" method="GET">
+      {foreach from=$conditions_to_approve item="condition" key="condition_name"}
+        <div class="my-2 form-check">
+          <input  id    = "conditions_to_approve[{$condition_name}]"
+                  name  = "conditions_to_approve[{$condition_name}]"
+                  required
+                  type  = "checkbox"
+                  value = "1"
+                  class = "ps-shown-by-js form-check-input"
+          >
 
-            <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
-              {$condition nofilter}
-            </label>
-          </div>
-        {/foreach}
+          <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
+            {$condition nofilter}
+          </label>
+        </div>
+      {/foreach}
     </form>
   {/if}
 

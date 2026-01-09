@@ -4,14 +4,14 @@
  */
 
 export const Theme = {
-  light: 'text-bg-light',
-  dark: 'text-bg-dark',
-  primary: 'text-bg-primary',
-  secondary: 'text-bg-secondary',
-  info: 'text-bg-info',
-  success: 'text-bg-success',
-  warning: 'text-bg-warning',
-  danger: 'text-bg-danger',
+  light: 'bg-light-subtle border-light-subtle',
+  dark: 'bg-dark-subtle border-dark-subtle',
+  primary: 'bg-primary-subtle border-primary-subtle',
+  secondary: 'bg-secondary-subtle border-secondary-subtle',
+  info: 'bg-info-subtle border-info-subtle',
+  success: 'bg-success-subtle border-success-subtle',
+  warning: 'bg-warning-subtle border-warning-subtle',
+  danger: 'bg-danger-subtle border-danger-subtle',
 };
 
 export const Fallback = `

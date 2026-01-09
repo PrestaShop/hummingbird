@@ -119,7 +119,7 @@
 
   {if $show_final_summary}
     <article class="alert alert-danger mb-4 js-alert-payment-conditions" role="alert">
-      {if isset($tos_cms) && $tos_cms}
+      {if isset($tos_cms) && $tos_cms && $conditions_to_approve|count == 1}
         {l
           s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the [2]terms and conditions[/2].'
           sprintf=[
@@ -130,9 +130,17 @@
           ]
           d='Shop.Theme.Checkout'
         }
-      {else}
+      {elseif !empty($conditions_to_approve)}
         {l
-          s='Please make sure you\'ve chosen a [1]payment method[/1].'
+          s='Please make sure you\'ve chosen a [1]payment method[/1] and accepted the required condition(s).'
+          sprintf=[
+            '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
+            '[/1]' => '</a>'
+          ]
+          d='Shop.Theme.Checkout'
+        }
+      {else}
+        {l s='Please make sure you\'ve chosen a [1]payment method[/1].'
           sprintf=[
             '[1]' => '<a href="#checkout-payment-step" class="alert-link">',
             '[/1]' => '</a>'

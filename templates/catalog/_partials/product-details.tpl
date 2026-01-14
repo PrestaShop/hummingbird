@@ -15,7 +15,7 @@
         <ul class="details__list">
           {block name='product_manufacturer'}
             {if isset($product_manufacturer->id)}
-              <li class="details__item">
+              <li class="details__item details__item--manufacturer">
                 <div class="details__left">
                   <span class="details__title">{l s='Brand' d='Shop.Theme.Catalog'}</span>
                 </div>
@@ -42,7 +42,7 @@
 
           {block name='product_reference'}
             {if !empty($product.reference_to_display)}
-              <li class="details__item">
+              <li class="details__item details__item--reference">
                 <div class="details__left">
                   <span class="details__title">{l s='Reference' d='Shop.Theme.Catalog'}</span>
                 </div>
@@ -56,7 +56,7 @@
 
           {block name='product_quantities'}
             {if $product.show_quantities}
-              <li class="details__item">
+              <li class="details__item details__item--quantities">
                 <div class="details__left">
                   <span class="details__title">{l s='In stock' d='Shop.Theme.Catalog'}</span>
                 </div>
@@ -70,7 +70,7 @@
 
           {block name='product_availability_date'}
             {if $product.availability_date}
-              <li class="details__item">
+              <li class="details__item details__item--availability-date">
                 <div class="details__left">
                   <span class="details__title">{l s='Availability date' d='Shop.Theme.Catalog'}</span>
                 </div>
@@ -85,7 +85,7 @@
           {* if product have specific references, a table will be added to product details section *}
           {block name='product_condition'}
             {if $product.condition}
-              <li class="details__item">
+              <li class="details__item details__item--condition">
                 <div class="details__left">
                   <span class="details__title">{l s='Condition' d='Shop.Theme.Catalog'}</span>
                 </div>
@@ -100,7 +100,7 @@
           {block name='product_specific_references'}
             {if !empty($product.specific_references)}
               {foreach from=$product.specific_references item=reference key=key}
-                <li class="details__item">
+                <li class="details__item details__item--{$key|classname}">
                   <div class="details__left">
                     <span class="details__title">{$key}</span>
                   </div>
@@ -130,7 +130,7 @@
           <div class="accordion-body">
             <ul class="details__list">
               {foreach from=$product.grouped_features item=feature}
-                <li class="details__item">
+                <li class="details__item details__item--feature">
                   <div class="details__left">
                     <span class="details__title">{$feature.name}</span>
                   </div>

@@ -44,16 +44,24 @@ global_settings:
     modules_to_hook:
       displayCustomerAccount:
         - psgdpr
+        # Keep existing hooks and append them after
+        - ~
       displayNav1:
         - ps_contactinfo
+        # Keep existing hooks and append them after
+        - ~
       displayNav2:
         - ps_languageselector
         - ps_currencyselector
         - ps_customersignin
         - ps_shoppingcart
+        # Keep existing hooks and append them after
+        - ~
       displayTop:
         - ps_mainmenu
         - ps_searchbar
+        # Keep existing hooks and append them after
+        - ~
       displayHome:
         - ps_imageslider
         - ps_customtext
@@ -61,35 +69,61 @@ global_settings:
         - ps_banner
         - ps_newproducts
         - ps_bestsellers
+        # Keep existing hooks and append them after
+        - ~
       displayFooterBefore:
         - ps_socialfollow
         - ps_emailsubscription
+        # Keep existing hooks and append them after
+        - ~
       displayFooter:
         - ps_linklist
         - ps_customeraccountlinks
         - ps_contactinfo
+        # Keep existing hooks and append them after
+        - ~
       displayFooterProduct:
         - productcomments
+        # Keep existing hooks and append them after
+        - ~
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch
+        # Keep existing hooks and append them after
+        - ~
       displayContactLeftColumn:
         - ps_contactinfo
+        # Keep existing hooks and append them after
+        - ~
       displayContactRightColumn:
         - ps_contactinfo
+        # Keep existing hooks and append them after
+        - ~
       displayContactContent:
         - contactform
+        # Keep existing hooks and append them after
+        - ~
       displaySearch:
         - ps_searchbar
+        # Keep existing hooks and append them after
+        - ~
       displayProductAdditionalInfo:
         - ps_sharebuttons
         - productcomments
+        # Keep existing hooks and append them after
+        - ~
       displayProductListReviews:
         - productcomments
+        # Keep existing hooks and append them after
+        - ~
       displayOrderConfirmation2:
         - ps_featuredproducts
+        # Keep existing hooks and append them after
+        - ~
       displayCrossSellingShoppingCart:
         - ps_featuredproducts
+        # Keep existing hooks and append them after
+        - ~
 
   image_types:
     cart_default:

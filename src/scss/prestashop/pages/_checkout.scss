@@ -34,8 +34,8 @@ $step-name: (
 
     &__aside-wrapper {
       position: sticky;
-      z-index: 99;
       top: var(--scroll-padding-top);
+      z-index: 99;
     }
   }
 }

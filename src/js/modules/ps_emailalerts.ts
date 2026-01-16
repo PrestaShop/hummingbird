@@ -13,45 +13,37 @@ interface MailAlertResponse {
 }
 
 /**
- * Add a mail alert notification for a product
+ * Subscribe to a mail alert notification for a product
  */
-const addNotification = async (
-  wrapper: HTMLElement,
-  productId: string,
-  productAttributeId: string,
-): Promise<void> => {
+const subscribe = async (wrapper: HTMLElement, productId: string, productAttributeId: string): Promise<void> => {
   const {url} = wrapper.dataset as {url: string};
 
   if (!url) return;
 
   const emailInput = wrapper.querySelector<HTMLInputElement>(emailAlerts.emailInput);
-  const customerEmail = emailInput ? emailInput.value : '';
   const alertsContainer = wrapper.querySelector<HTMLElement>(emailAlerts.alertsContainer);
 
   const formData = new URLSearchParams({
     id_product: productId,
     id_product_attribute: productAttributeId,
-    customer_email: customerEmail,
+    customer_email: emailInput?.value ?? '',
   });
 
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData.toString(),
     });
 
     const data: MailAlertResponse = await response.json();
-    const alertType: Theme.Alert.Type = data.error ? 'danger' : 'success';
 
     if (alertsContainer) {
       alertsContainer.innerHTML = '';
       alertsContainer.classList.remove('d-none');
 
       const alert = useAlert(data.message, {
-        type: alertType,
+        type: data.error ? 'danger' : 'success',
         selector: emailAlerts.alertsContainer,
       });
 
@@ -59,39 +51,25 @@ const addNotification = async (
     }
 
     if (!data.error) {
-      const content = wrapper.querySelector<HTMLElement>(emailAlerts.content);
-
-      if (content) {
-        content.classList.add('d-none');
-      }
+      wrapper.querySelector<HTMLElement>(emailAlerts.content)?.classList.add('d-none');
     }
   } catch (error) {
-    console.error('Mail alert error:', error);
+    console.error('[EmailAlerts] Subscribe error:', error);
   }
 };
 
 /**
- * Show the "no alerts" message and hide the product list
+ * Remove a mail alert subscription
  */
-const showNoAlertsMessage = (): void => {
-  const productList = document.querySelector<HTMLElement>(emailAlerts.productList);
-  const noAlertsMessage = document.querySelector<HTMLElement>(emailAlerts.noAlerts);
-
-  productList?.classList.add('d-none');
-  noAlertsMessage?.classList.remove('d-none');
-};
-
-/**
- * Remove a mail alert for a product
- */
-const removeAlert = async (button: HTMLElement): Promise<void> => {
+const unsubscribe = async (button: HTMLElement): Promise<void> => {
   const {url, productId, productAttributeId} = button.dataset;
 
   if (!url || !productId || !productAttributeId) return;
 
-  const parentItem = button.closest<HTMLElement>(emailAlerts.product)?.closest('li');
+  const productElement = button.closest<HTMLElement>(emailAlerts.product);
+  const listItem = productElement?.closest('li');
 
-  if (!parentItem) return;
+  if (!listItem) return;
 
   const formData = new URLSearchParams({
     id_product: productId,
@@ -101,26 +79,56 @@ const removeAlert = async (button: HTMLElement): Promise<void> => {
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData.toString(),
     });
 
     const result = await response.text();
 
     if (result === '0') {
-      parentItem.remove();
+      listItem.remove();
 
-      // Check if there are remaining products
+      // Show "no alerts" message if list is empty
       const remainingProducts = document.querySelectorAll(emailAlerts.product);
 
       if (remainingProducts.length === 0) {
-        showNoAlertsMessage();
+        document.querySelector<HTMLElement>(emailAlerts.productList)?.classList.add('d-none');
+        document.querySelector<HTMLElement>(emailAlerts.noAlerts)?.classList.remove('d-none');
       }
     }
   } catch (error) {
-    console.error('Remove alert error:', error);
+    console.error('[EmailAlerts] Unsubscribe error:', error);
+  }
+};
+
+/**
+ * Handle click events (delegated)
+ */
+const handleClick = (event: MouseEvent): void => {
+  const target = event.target as HTMLElement;
+
+  // Handle subscribe button
+  const subscribeButton = target.closest<HTMLButtonElement>(emailAlerts.submitButton);
+
+  if (subscribeButton) {
+    event.preventDefault();
+
+    const wrapper = subscribeButton.closest<HTMLElement>(emailAlerts.wrapper);
+    const {product, productAttribute} = subscribeButton.dataset;
+
+    if (wrapper && product && productAttribute) {
+      subscribe(wrapper, product, productAttribute);
+    }
+
+    return;
+  }
+
+  // Handle remove button
+  const removeButton = target.closest<HTMLElement>(emailAlerts.removeButton);
+
+  if (removeButton) {
+    event.preventDefault();
+    unsubscribe(removeButton);
   }
 };
 
@@ -128,34 +136,7 @@ const removeAlert = async (button: HTMLElement): Promise<void> => {
  * Initialize email alerts module
  */
 const initEmailalerts = (): void => {
-  // Handle submit button click (delegated)
-  document.addEventListener('click', (event: MouseEvent) => {
-    const target = event.target as HTMLElement;
-    const submitButton = target.closest<HTMLButtonElement>(emailAlerts.submitButton);
-
-    if (submitButton) {
-      event.preventDefault();
-
-      const alertWrapper = submitButton.closest<HTMLElement>(emailAlerts.wrapper);
-      const productId = submitButton.dataset.product;
-      const productAttributeId = submitButton.dataset.productAttribute;
-
-      if (alertWrapper && productId && productAttributeId) {
-        addNotification(alertWrapper, productId, productAttributeId);
-      }
-    }
-  });
-
-  // Handle remove button click (delegated)
-  document.addEventListener('click', (event: MouseEvent) => {
-    const target = event.target as HTMLElement;
-    const removeButton = target.closest<HTMLElement>(emailAlerts.removeButton);
-
-    if (removeButton) {
-      event.preventDefault();
-      removeAlert(removeButton);
-    }
-  });
+  document.addEventListener('click', handleClick);
 };
 
 export default initEmailalerts;

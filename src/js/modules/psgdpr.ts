@@ -15,7 +15,7 @@ interface GdprConfig {
 }
 
 /**
- * Get GDPR configuration from the consent element
+ * Extract GDPR configuration from consent element dataset
  */
 const getConfig = (consentElement: HTMLElement): GdprConfig | null => {
   const {
@@ -38,36 +38,33 @@ const getConfig = (consentElement: HTMLElement): GdprConfig | null => {
 };
 
 /**
- * Find the submit button for a consent element
+ * Find the submit button associated with a consent element
+ * Looks in custom wrapper first, then falls back to parent form
  */
 const findSubmitButton = (consentElement: HTMLElement): HTMLButtonElement | null => {
-  // First, try to find a custom wrapper
-  const customWrapper = consentElement.closest<HTMLElement>(gdpr.consentWrapper);
+  // Try custom wrapper (data-ps-component="gdpr")
+  const wrapper = consentElement.closest<HTMLElement>(gdpr.consentWrapper);
 
-  if (customWrapper) {
-    return customWrapper.querySelector<HTMLButtonElement>(gdpr.submitButton)
-      ?? customWrapper.querySelector<HTMLButtonElement>('[type="submit"]');
+  if (wrapper) {
+    return wrapper.querySelector<HTMLButtonElement>(gdpr.submitButton)
+      ?? wrapper.querySelector<HTMLButtonElement>('[type="submit"]');
   }
 
   // Fall back to form
   const form = consentElement.closest<HTMLFormElement>('form');
 
-  if (form) {
-    return form.querySelector<HTMLButtonElement>('[type="submit"]');
-  }
-
-  return null;
+  return form?.querySelector<HTMLButtonElement>('[type="submit"]') ?? null;
 };
 
 /**
- * Toggle the submit button state based on checkbox
+ * Update submit button disabled state based on checkbox
  */
-const toggleSubmitButton = (checkbox: HTMLInputElement, submitButton: HTMLButtonElement): void => {
-  submitButton.disabled = !checkbox.checked;
+const updateButtonState = (checkbox: HTMLInputElement, button: HTMLButtonElement): void => {
+  button.disabled = !checkbox.checked;
 };
 
 /**
- * Log consent to the GDPR module
+ * Log consent to GDPR module backend
  */
 const logConsent = async (config: GdprConfig, moduleId: string): Promise<void> => {
   const formData = new URLSearchParams({
@@ -83,54 +80,51 @@ const logConsent = async (config: GdprConfig, moduleId: string): Promise<void> =
   try {
     await fetch(config.frontController, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData.toString(),
     });
   } catch (error) {
-    console.error('GDPR consent log error:', error);
+    console.error('[GDPR] Log consent error:', error);
   }
 };
 
 /**
- * Handle checkbox change event (delegated)
+ * Initialize button states for all GDPR consent elements
+ */
+const initButtonStates = (): void => {
+  document.querySelectorAll<HTMLElement>(gdpr.consent).forEach((consentElement) => {
+    const checkbox = consentElement.querySelector<HTMLInputElement>(gdpr.checkbox);
+    const button = findSubmitButton(consentElement);
+
+    if (checkbox && button) {
+      updateButtonState(checkbox, button);
+    }
+  });
+};
+
+/**
+ * Handle checkbox change (delegated)
  */
 const handleCheckboxChange = (event: Event): void => {
   const checkbox = event.target as HTMLInputElement;
 
-  // Check if the changed element is a GDPR checkbox
   if (!checkbox.matches(gdpr.checkbox)) return;
 
   const consentElement = checkbox.closest<HTMLElement>(gdpr.consent);
 
   if (!consentElement) return;
 
-  const submitButton = findSubmitButton(consentElement);
+  const button = findSubmitButton(consentElement);
 
-  if (submitButton) {
-    toggleSubmitButton(checkbox, submitButton);
+  if (button) {
+    updateButtonState(checkbox, button);
   }
 };
 
 /**
- * Handle submit button click for consent logging (delegated)
+ * Handle submit for consent logging (delegated)
  */
-const handleSubmitClick = (event: Event): void => {
-  const target = event.target as HTMLElement;
-  const submitButton = target.closest<HTMLButtonElement>(gdpr.submitButton);
-
-  if (!submitButton) return;
-
-  // Find the associated consent element within the wrapper
-  const wrapper = submitButton.closest<HTMLElement>(gdpr.consentWrapper);
-
-  if (!wrapper) return;
-
-  const consentElement = wrapper.querySelector<HTMLElement>(gdpr.consent);
-
-  if (!consentElement) return;
-
+const handleSubmit = (consentElement: HTMLElement): void => {
   const {moduleId} = consentElement.dataset;
   const checkbox = consentElement.querySelector<HTMLInputElement>(gdpr.checkbox);
   const config = getConfig(consentElement);
@@ -141,7 +135,24 @@ const handleSubmitClick = (event: Event): void => {
 };
 
 /**
- * Handle form submit for consent logging (delegated)
+ * Handle click on custom submit button (delegated)
+ */
+const handleClick = (event: Event): void => {
+  const target = event.target as HTMLElement;
+  const button = target.closest<HTMLButtonElement>(gdpr.submitButton);
+
+  if (!button) return;
+
+  const wrapper = button.closest<HTMLElement>(gdpr.consentWrapper);
+  const consentElement = wrapper?.querySelector<HTMLElement>(gdpr.consent);
+
+  if (consentElement) {
+    handleSubmit(consentElement);
+  }
+};
+
+/**
+ * Handle form submit (delegated)
  */
 const handleFormSubmit = (event: Event): void => {
   const form = event.target as HTMLFormElement;
@@ -150,55 +161,29 @@ const handleFormSubmit = (event: Event): void => {
 
   const consentElement = form.querySelector<HTMLElement>(gdpr.consent);
 
-  if (!consentElement) return;
-
-  const {moduleId} = consentElement.dataset;
-  const checkbox = consentElement.querySelector<HTMLInputElement>(gdpr.checkbox);
-  const config = getConfig(consentElement);
-
-  if (config && moduleId && checkbox?.checked) {
-    logConsent(config, moduleId);
+  if (consentElement) {
+    handleSubmit(consentElement);
   }
 };
 
 /**
- * Disable submit buttons for unchecked GDPR consents
- */
-const initSubmitButtonsState = (): void => {
-  const consentElements = document.querySelectorAll<HTMLElement>(gdpr.consent);
-
-  consentElements.forEach((consentElement) => {
-    const checkbox = consentElement.querySelector<HTMLInputElement>(gdpr.checkbox);
-    const submitButton = findSubmitButton(consentElement);
-
-    if (checkbox && submitButton) {
-      toggleSubmitButton(checkbox, submitButton);
-    }
-  });
-};
-
-/**
- * Initialize GDPR consent module with event delegation
+ * Initialize GDPR consent module
  */
 const initGdpr = (): void => {
-  // Set initial state for all submit buttons
-  initSubmitButtonsState();
+  // Set initial button states
+  initButtonStates();
 
-  // Use event delegation for checkbox changes - works with dynamically added content
+  // Event delegation for dynamic content support
   document.addEventListener('change', handleCheckboxChange);
-
-  // Use event delegation for submit button clicks (custom wrappers)
-  document.addEventListener('click', handleSubmitClick);
-
-  // Use event delegation for form submits
+  document.addEventListener('click', handleClick);
   document.addEventListener('submit', handleFormSubmit);
 
   // Re-initialize after PrestaShop AJAX updates
   const {prestashop} = window;
 
   if (prestashop) {
-    prestashop.on('updatedProduct', initSubmitButtonsState);
-    prestashop.on('updatedCart', initSubmitButtonsState);
+    prestashop.on('updatedProduct', initButtonStates);
+    prestashop.on('updatedCart', initButtonStates);
   }
 };
 

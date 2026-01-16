@@ -14,6 +14,7 @@ import initProductBehavior from '@js/product';
 import initMobileMenu from '@js/mobile-menu';
 import initSearchbar from '@js/modules/ps_searchbar';
 import initEmailalerts from '@js/modules/ps_emailalerts';
+import initGdpr from '@js/modules/psgdpr';
 import initLanguageSelector from '@js/modules/ps_languageselector';
 import initCurrencySelector from '@js/modules/ps_currencyselector';
 import initGuestPasswordToggle from '@js/guest-password-toggle';
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   useQuantityInput();
   initSearchbar();
   initEmailalerts();
+  initGdpr();
   initLanguageSelector();
   initCurrencySelector();
   initMobileMenu();

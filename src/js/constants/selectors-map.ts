@@ -127,15 +127,19 @@ export const visiblePassword = {
   visiblePassword: '[data-ps-action="toggle-password"]',
 };
 
+export const gdpr = {
+  consent: '[data-ps-ref="gdpr-consent"]',
+  consentWrapper: '[data-ps-component="gdpr"]',
+  checkbox: '[data-ps-ref="gdpr-checkbox"]',
+  submitButton: '[data-ps-ref="gdpr-submit"]',
+};
+
 export const emailAlerts = {
   wrapper: '[data-ps-ref="emailalerts"]',
   content: '[data-ps-ref="emailalerts-content"]',
   submitButton: '[data-ps-action="emailalerts-subscribe"]',
   emailInput: '[data-ps-ref="emailalerts-email"]',
   alertsContainer: '[data-ps-target="emailalerts-alerts"]',
-  gdprConsentWrapper: '[data-ps-ref="emailalerts-gdpr-wrapper"]',
-  gdprConsent: '[data-ps-ref="emailalerts-gdpr"]',
-  gdprCheckbox: '[name="psgdpr_consent_checkbox"]',
   removeButton: '[data-ps-action="emailalerts-remove"]',
   product: '[data-ps-ref="emailalerts-product"]',
   productList: '[data-ps-ref="emailalerts-product-list"]',
@@ -254,6 +258,7 @@ const selectorsMap = {
   visiblePassword,
   desktopMenu,
   emailAlerts,
+  gdpr,
   formValidation,
   passwordPolicy,
 };

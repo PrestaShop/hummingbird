@@ -125,40 +125,9 @@ const removeAlert = async (button: HTMLElement): Promise<void> => {
 };
 
 /**
- * Setup GDPR consent checkbox handler
- */
-const setupGdprConsent = (wrapper: HTMLElement): void => {
-  const gdprConsent = wrapper.querySelector(emailAlerts.gdprConsent);
-
-  if (!gdprConsent) return;
-
-  const submitButton = wrapper.querySelector<HTMLButtonElement>(emailAlerts.submitButton);
-  const gdprCheckbox = wrapper.querySelector<HTMLInputElement>(emailAlerts.gdprCheckbox);
-
-  if (!submitButton || !gdprCheckbox) return;
-
-  // Use setTimeout to execute after GDPR module initialization
-  setTimeout(() => {
-    submitButton.disabled = true;
-
-    gdprCheckbox.addEventListener('change', (event: Event) => {
-      event.stopPropagation();
-      const checkbox = event.target as HTMLInputElement;
-      submitButton.disabled = !checkbox.checked;
-    });
-  }, 0);
-};
-
-/**
  * Initialize email alerts module
  */
 const initEmailalerts = (): void => {
-  const wrapper = document.querySelector<HTMLElement>(emailAlerts.wrapper);
-
-  if (wrapper) {
-    setupGdprConsent(wrapper);
-  }
-
   // Handle submit button click (delegated)
   document.addEventListener('click', (event: MouseEvent) => {
     const target = event.target as HTMLElement;

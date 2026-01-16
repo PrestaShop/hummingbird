@@ -25,6 +25,7 @@
 
 <div class="ps-emailalerts ps-emailalerts--product"
   data-ps-ref="emailalerts"
+  data-ps-component="gdpr"
   data-url="{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'add']}">
   <div class="ps-emailalerts__content" data-ps-ref="emailalerts-content">
     <p class="h4 mb-0">
@@ -52,20 +53,20 @@
 
     {if !empty($id_module)}
       {capture name='gdprContent'}{hook h='displayGDPRConsent' id_module=$id_module}{/capture}
-
       {if $smarty.capture.gdprContent != ''}
-        <div data-ps-ref="emailalerts-gdpr-wrapper">
-          <div data-ps-ref="emailalerts-gdpr">{$smarty.capture.gdprContent nofilter}</div>
-        </div>
+        {$smarty.capture.gdprContent nofilter}
       {/if}
     {/if}
 
     <button data-product="{$product.id_product}"
       data-product-attribute="{$product.id_product_attribute}"
       data-ps-action="emailalerts-subscribe"
+      data-ps-ref="gdpr-submit"
       class="btn btn-primary"
       rel="nofollow"
-      role="button">
+      role="button"
+      {if $smarty.capture.gdprContent != ''}disabled{/if}
+    >
       {l s='Notify me when available' d='Modules.Emailalerts.Shop'}
     </button>
   </div>

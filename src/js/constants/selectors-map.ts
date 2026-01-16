@@ -127,6 +127,21 @@ export const visiblePassword = {
   visiblePassword: '[data-ps-action="toggle-password"]',
 };
 
+export const emailAlerts = {
+  wrapper: '[data-ps-ref="emailalerts"]',
+  content: '[data-ps-ref="emailalerts-content"]',
+  submitButton: '[data-ps-action="emailalerts-subscribe"]',
+  emailInput: '[data-ps-ref="emailalerts-email"]',
+  alertsContainer: '[data-ps-target="emailalerts-alerts"]',
+  gdprConsentWrapper: '[data-ps-ref="emailalerts-gdpr-wrapper"]',
+  gdprConsent: '[data-ps-ref="emailalerts-gdpr"]',
+  gdprCheckbox: '[name="psgdpr_consent_checkbox"]',
+  removeButton: '[data-ps-action="emailalerts-remove"]',
+  product: '[data-ps-ref="emailalerts-product"]',
+  productList: '[data-ps-ref="emailalerts-product-list"]',
+  noAlerts: '[data-ps-ref="emailalerts-account-no-alerts"]',
+};
+
 export const desktopMenu = {
   container: '[data-ps-ref="desktop-menu-container"]',
   menuTree: '[data-ps-ref="desktop-menu-tree"]',
@@ -238,6 +253,7 @@ const selectorsMap = {
   guestPasswordToggle,
   visiblePassword,
   desktopMenu,
+  emailAlerts,
   formValidation,
   passwordPolicy,
 };

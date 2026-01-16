@@ -38,16 +38,3 @@ $module-name: ps-sharebuttons;
     }
   }
 }
-
-// Specific styles
-.product__additional-info {
-  .#{$module-name} {
-    margin-block-end: 1.25rem;
-  }
-
-  @include media-breakpoint-up(xl) {
-    .#{$module-name} {
-      margin-block-end: 2rem;
-    }
-  }
-}

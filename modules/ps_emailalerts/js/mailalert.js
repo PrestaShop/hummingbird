@@ -1,0 +1,1 @@
+/* mailalert.js */

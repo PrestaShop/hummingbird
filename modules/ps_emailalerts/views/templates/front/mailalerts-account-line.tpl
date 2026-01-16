@@ -2,23 +2,31 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-{$componentName = 'mailalerts-account-line'}
+<div class="ps-emailalerts__product" data-ps-ref="emailalerts-product"> 
+  <a href="{$mailAlert.link}" class="ps-emailalerts__product-image-link" rel="nofollow">
+    <img class="ps-emailalerts__product-image img-fluid" src="{$mailAlert.cover_url}" alt="{$mailAlert.name}" loading="lazy">
+  </a>
 
-<div class="{$componentName} d-flex flex-column position-relative"> 
-  <a href="{$mailAlert.link}" class="text-center">
-    <img src="{$mailAlert.cover_url}" alt="" />
-  </a>
-  <a class="mt-2" href="{$mailAlert.link}">
-    <div class="{$componentName}__product d-flex flex-column">
-      <span class="{$componentName}__product__name">{$mailAlert.name}</span>
-      <span class="{$componentName}__product__attributes mt-1">{$mailAlert.attributes_small}</span>
-    </div>
-  </a>
-  <a href="#"
-    title="{l s='Remove mail alert' d='Modules.Emailalerts.Shop'}"
-    class="js-remove-email-alert btn btn-link {$componentName}__remove"
-    rel="js-id-emailalerts-{$mailAlert.id_product|intval}-{$mailAlert.id_product_attribute|intval}"
-    data-url="{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'remove']}">
-    <i class="material-icons" aria-label="{l s='Delete' d='Modules.Emailalerts.Shop'}">&#xE872;</i>
-  </a>
+  <div class="ps-emailalerts__product-content">
+    <a href="{$mailAlert.link}">
+      <span class="ps-emailalerts__product-name">{$mailAlert.name}</span>
+    </a>
+
+    {if $mailAlert.attributes_small}
+      <span class="ps-emailalerts__product-attributes">
+        {l s='Attributes: %attributes%' sprintf=['%attributes%' => $mailAlert.attributes_small] d='Modules.Emailalerts.Shop'}
+      </span>
+    {/if}
+
+    <button type="button"
+      aria-label="{l s='Delete %productName% mail alert' sprintf=['%productName%' => $mailAlert.name] d='Modules.Emailalerts.Shop'}"
+      class="link-danger ps-emailalerts__product-remove"
+      data-ps-action="emailalerts-remove"
+      data-product-id="{$mailAlert.id_product|intval}"
+      data-product-attribute-id="{$mailAlert.id_product_attribute|intval}"
+      data-url="{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'remove']}"
+    >
+      {l s='Delete' d='Modules.Emailalerts.Shop'}
+    </button>
+  </div>
 </div>

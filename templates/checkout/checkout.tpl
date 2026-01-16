@@ -29,23 +29,25 @@
         </div>
 
         <div class="checkout-grid__aside col-lg-4">
-          <div class="checkout__summary-accordion accordion">
-            <div class="checkout__summary-accordion-item accordion-item">
-              <div class="checkout__summary-accordion-header accordion-header">
-                <button class="accordion-button" type="button" data-bs-target="#js-checkout-summary" data-bs-toggle="collapse" aria-expanded="true">
-                  {l s='Order summary' d='Shop.Theme.Checkout'}
-                </button>
-              </div>
-
-              {block name='cart_summary'}
-                <div class="checkout__summary-accordion-wrapper cart-summary js-checkout-summary">
-                  {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
+          <div class="checkout-grid__aside-wrapper">
+            <div class="checkout__summary-accordion accordion">
+              <div class="checkout__summary-accordion-item accordion-item">
+                <div class="checkout__summary-accordion-header accordion-header">
+                  <button class="accordion-button" type="button" data-bs-target="#js-checkout-summary" data-bs-toggle="collapse" aria-expanded="true">
+                    {l s='Order summary' d='Shop.Theme.Checkout'}
+                  </button>
                 </div>
-              {/block}
-            </div>
-          </div>
 
-          {hook h='displayReassurance'}
+                {block name='cart_summary'}
+                  <div class="checkout__summary-accordion-wrapper cart-summary js-checkout-summary">
+                    {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
+                  </div>
+                {/block}
+              </div>
+            </div>
+
+            {hook h='displayReassurance'}
+          </div>
         </div>
       </div>
     </div>

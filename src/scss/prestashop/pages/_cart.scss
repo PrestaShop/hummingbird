@@ -17,5 +17,11 @@ $component-name: cart-grid;
     &__aside {
       margin-block-end: 2rem;
     }
+
+    &__aside-wrapper {
+      position: sticky;
+      z-index: 99;
+      top: var(--scroll-padding-top);
+    }
   }
 }

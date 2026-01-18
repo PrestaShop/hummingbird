@@ -64,8 +64,8 @@
             attributes=[
               "id" => "quantity_wanted",
               "class" => "form-control js-quantity-wanted",
-              "value" => "{$product.minimal_quantity}",
-              "min" => "{$product.minimal_quantity}"
+              "value" => "{$product.quantity_wanted}",
+              "min" => "{$product.quantity_required}"
             ]
           }
         </div>

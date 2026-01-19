@@ -3,7 +3,7 @@ $component-name: ps-emailalerts;
 .#{$component-name} {
   &__content {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.5rem;
     padding: 1rem;
     margin-block-end: 1rem;
@@ -28,6 +28,10 @@ $component-name: ps-emailalerts;
 
     &:hover {
       background-color: var(--bs-tertiary-bg);
+    }
+
+    &-image-link {
+      flex-shrink: 0;
     }
 
     &-image {

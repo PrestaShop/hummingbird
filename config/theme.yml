@@ -44,6 +44,7 @@ global_settings:
     modules_to_hook:
       displayCustomerAccount:
         - psgdpr
+        - ps_emailalerts
         # Keep existing hooks and append them after
         - ~
       displayNav1:
@@ -60,13 +61,15 @@ global_settings:
       displayTop:
         - ps_mainmenu
         - ps_searchbar
+        - pagesnotfound
         # Keep existing hooks and append them after
         - ~
       displayHome:
         - ps_imageslider
-        - ps_customtext
         - ps_featuredproducts
         - ps_banner
+        - ps_customtext
+        - ps_specials
         - ps_newproducts
         - ps_bestsellers
         # Keep existing hooks and append them after
@@ -74,21 +77,30 @@ global_settings:
       displayFooterBefore:
         - ps_socialfollow
         - ps_emailsubscription
+        - blockreassurance
         # Keep existing hooks and append them after
         - ~
       displayFooter:
         - ps_linklist
         - ps_customeraccountlinks
         - ps_contactinfo
+        - ps_socialfollow
         # Keep existing hooks and append them after
         - ~
       displayFooterProduct:
         - productcomments
+        - ps_categoryproducts
+        - ps_crossselling
+        - ps_googleanalytics
+        - ps_viewedproduct
         # Keep existing hooks and append them after
         - ~
       displayLeftColumn:
         - ps_categorytree
         - ps_facetedsearch
+        - ps_brandlist
+        - ps_contactinfo
+        - ps_supplierlist
         # Keep existing hooks and append them after
         - ~
       displayContactLeftColumn:
@@ -101,6 +113,7 @@ global_settings:
         - ~
       displayContactContent:
         - contactform
+        - ps_contactinfo
         # Keep existing hooks and append them after
         - ~
       displaySearch:
@@ -110,6 +123,8 @@ global_settings:
       displayProductAdditionalInfo:
         - ps_sharebuttons
         - productcomments
+        - ps_emailalerts
+        - ps_viewedproduct
         # Keep existing hooks and append them after
         - ~
       displayProductListReviews:

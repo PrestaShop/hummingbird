@@ -55,9 +55,14 @@
       {capture name='gdprContent'}{hook h='displayGDPRConsent' id_module=$id_module}{/capture}
     {/if}
 
+    {capture name='subscribeData'}{strip}{ldelim}
+      "productId": "{$product.id_product}",
+      "productAttributeId": "{$product.id_product_attribute}"
+    {rdelim}{/strip}{/capture}
+
     <button data-ps-action="emailalerts-subscribe"
       data-ps-ref="gdpr-submit"
-      data-ps-data='{ldelim}"productId":"{$product.id_product}","productAttributeId":"{$product.id_product_attribute}"{rdelim}'
+      data-ps-data="{$smarty.capture.subscribeData}"
       class="btn btn-primary"
       rel="nofollow"
       role="button"

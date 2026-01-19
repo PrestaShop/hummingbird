@@ -5,6 +5,7 @@
 
 import {emailAlerts} from '@constants/selectors-map';
 import useAlert from '@js/components/useAlert';
+import parseData from '@helpers/parseData';
 
 // Types
 interface MailAlertResponse {
@@ -12,10 +13,21 @@ interface MailAlertResponse {
   message: string;
 }
 
+interface SubscribeData {
+  productId: string;
+  productAttributeId: string;
+}
+
+interface UnsubscribeData {
+  productId: string;
+  productAttributeId: string;
+  url: string;
+}
+
 /**
  * Subscribe to a mail alert notification for a product
  */
-const subscribe = async (wrapper: HTMLElement, productId: string, productAttributeId: string): Promise<void> => {
+const subscribe = async (wrapper: HTMLElement, data: SubscribeData): Promise<void> => {
   const {url} = wrapper.dataset as {url: string};
 
   if (!url) return;
@@ -24,8 +36,8 @@ const subscribe = async (wrapper: HTMLElement, productId: string, productAttribu
   const alertsContainer = wrapper.querySelector<HTMLElement>(emailAlerts.alertsContainer);
 
   const formData = new URLSearchParams({
-    id_product: productId,
-    id_product_attribute: productAttributeId,
+    id_product: data.productId,
+    id_product_attribute: data.productAttributeId,
     customer_email: emailInput?.value ?? '',
   });
 
@@ -36,21 +48,21 @@ const subscribe = async (wrapper: HTMLElement, productId: string, productAttribu
       body: formData.toString(),
     });
 
-    const data: MailAlertResponse = await response.json();
+    const result: MailAlertResponse = await response.json();
 
     if (alertsContainer) {
       alertsContainer.innerHTML = '';
       alertsContainer.classList.remove('d-none');
 
-      const alert = useAlert(data.message, {
-        type: data.error ? 'danger' : 'success',
+      const alert = useAlert(result.message, {
+        type: result.error ? 'danger' : 'success',
         selector: emailAlerts.alertsContainer,
       });
 
       alert.show();
     }
 
-    if (!data.error) {
+    if (!result.error) {
       wrapper.querySelector<HTMLElement>(emailAlerts.content)?.classList.add('d-none');
     }
   } catch (error) {
@@ -61,23 +73,18 @@ const subscribe = async (wrapper: HTMLElement, productId: string, productAttribu
 /**
  * Remove a mail alert subscription
  */
-const unsubscribe = async (button: HTMLElement): Promise<void> => {
-  const {url, productId, productAttributeId} = button.dataset;
-
-  if (!url || !productId || !productAttributeId) return;
-
+const unsubscribe = async (button: HTMLElement, data: UnsubscribeData): Promise<void> => {
   const productElement = button.closest<HTMLElement>(emailAlerts.product);
-  const listItem = productElement?.closest('li');
 
-  if (!listItem) return;
+  if (!productElement) return;
 
   const formData = new URLSearchParams({
-    id_product: productId,
-    id_product_attribute: productAttributeId,
+    id_product: data.productId,
+    id_product_attribute: data.productAttributeId,
   });
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(data.url, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData.toString(),
@@ -86,7 +93,7 @@ const unsubscribe = async (button: HTMLElement): Promise<void> => {
     const result = await response.text();
 
     if (result === '0') {
-      listItem.remove();
+      productElement.remove();
 
       // Show "no alerts" message if list is empty
       const remainingProducts = document.querySelectorAll(emailAlerts.product);
@@ -114,10 +121,10 @@ const handleClick = (event: MouseEvent): void => {
     event.preventDefault();
 
     const wrapper = subscribeButton.closest<HTMLElement>(emailAlerts.wrapper);
-    const {product, productAttribute} = subscribeButton.dataset;
+    const data = parseData<SubscribeData>(subscribeButton);
 
-    if (wrapper && product && productAttribute) {
-      subscribe(wrapper, product, productAttribute);
+    if (wrapper && data) {
+      subscribe(wrapper, data);
     }
 
     return;
@@ -128,7 +135,12 @@ const handleClick = (event: MouseEvent): void => {
 
   if (removeButton) {
     event.preventDefault();
-    unsubscribe(removeButton);
+
+    const data = parseData<UnsubscribeData>(removeButton);
+
+    if (data) {
+      unsubscribe(removeButton, data);
+    }
   }
 };
 

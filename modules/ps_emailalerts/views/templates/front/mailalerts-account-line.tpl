@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<div class="ps-emailalerts__product" data-ps-ref="emailalerts-product"> 
+<li class="ps-emailalerts__product" data-ps-ref="emailalerts-product"> 
   <a href="{$mailAlert.link}" class="ps-emailalerts__product-image-link" rel="nofollow">
     <img class="ps-emailalerts__product-image img-fluid" src="{$mailAlert.cover_url}" alt="{$mailAlert.name}" loading="lazy">
   </a>
@@ -22,11 +22,9 @@
       aria-label="{l s='Delete %productName% mail alert' sprintf=['%productName%' => $mailAlert.name] d='Modules.Emailalerts.Shop'}"
       class="link-danger ps-emailalerts__product-remove"
       data-ps-action="emailalerts-remove"
-      data-product-id="{$mailAlert.id_product|intval}"
-      data-product-attribute-id="{$mailAlert.id_product_attribute|intval}"
-      data-url="{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'remove']}"
+      data-ps-data='{ldelim}"productId":"{$mailAlert.id_product|intval}","productAttributeId":"{$mailAlert.id_product_attribute|intval}","url":"{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'remove']}"{rdelim}'
     >
       {l s='Delete' d='Modules.Emailalerts.Shop'}
     </button>
   </div>
-</div>
+</li>

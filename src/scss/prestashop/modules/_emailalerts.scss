@@ -2,13 +2,13 @@ $component-name: ps-emailalerts;
 
 .#{$component-name} {
   &__content {
-    padding: 1rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.5rem;
+    padding: 1rem;
+    margin-block-end: 1rem;
     background-color: var(--bs-tertiary-bg);
     border-radius: var(--bs-border-radius);
-    margin-block-end: 1rem;
   }
 
   &__product-list {
@@ -19,12 +19,12 @@ $component-name: ps-emailalerts;
 
   &__product {
     display: flex;
-    align-items: flex-start;
     gap: 1rem;
+    align-items: flex-start;
     padding: 0.5rem;
     border: 1px solid var(--bs-border-color);
-    transition: var(--bs-transition-default);
     border-radius: var(--bs-border-radius);
+    transition: var(--bs-transition-default);
 
     &:hover {
       background-color: var(--bs-tertiary-bg);
@@ -37,20 +37,20 @@ $component-name: ps-emailalerts;
     }
 
     &-content {
-      flex-grow: 1;
       display: flex;
-      align-items: flex-start;
       flex-direction: column;
+      flex-grow: 1;
       gap: 0.25rem;
+      align-items: flex-start;
     }
 
     &-remove {
+      padding: 0;
+      margin: 0;
       font-size: 0.875rem;
       text-decoration: underline;
       background-color: transparent;
       border: none;
-      padding: 0;
-      margin: 0;
     }
 
     &-attributes {

@@ -18,14 +18,18 @@
  *}
 
 {block name='gdpr_checkbox'}
+  {capture name='gdprData'}{strip}{ldelim}
+    "moduleId": "{$psgdpr_id_module|escape:'htmlall':'UTF-8'}",
+    "frontController": "{$psgdpr_front_controller|escape:'htmlall':'UTF-8'}",
+    "idCustomer": "{$psgdpr_id_customer|escape:'htmlall':'UTF-8'}",
+    "customerToken": "{$psgdpr_customer_token|escape:'htmlall':'UTF-8'}",
+    "idGuest": "{$psgdpr_id_guest|escape:'htmlall':'UTF-8'}",
+    "guestToken": "{$psgdpr_guest_token|escape:'htmlall':'UTF-8'}"
+  {rdelim}{/strip}{/capture}
+
   <div class="gdpr-consent"
     data-ps-ref="gdpr-consent"
-    data-module-id="{$psgdpr_id_module|escape:'htmlall':'UTF-8'}"
-    data-front-controller="{$psgdpr_front_controller|escape:'htmlall':'UTF-8'}"
-    data-id-customer="{$psgdpr_id_customer|escape:'htmlall':'UTF-8'}"
-    data-customer-token="{$psgdpr_customer_token|escape:'htmlall':'UTF-8'}"
-    data-id-guest="{$psgdpr_id_guest|escape:'htmlall':'UTF-8'}"
-    data-guest-token="{$psgdpr_guest_token|escape:'htmlall':'UTF-8'}"
+    data-ps-data="{$smarty.capture.gdprData}"
   >
     <span class="form-check">
       <input id="psgdpr_consent_checkbox_{$psgdpr_id_module|escape:'htmlall':'UTF-8'}"

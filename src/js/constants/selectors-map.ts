@@ -257,10 +257,10 @@ const selectorsMap = {
   guestPasswordToggle,
   visiblePassword,
   desktopMenu,
-  emailAlerts,
-  gdpr,
   formValidation,
   passwordPolicy,
+  emailAlerts,
+  gdpr,
 };
 
 export default selectorsMap;

@@ -14,7 +14,7 @@
   {if $mailAlerts}
     <ul class="ps-emailalerts__product-list" data-ps-ref="emailalerts-product-list">
       {foreach from=$mailAlerts item=mailAlert}
-        <li>{include 'module:ps_emailalerts/views/templates/front/mailalerts-account-line.tpl' mailAlert=$mailAlert}</li>
+        {include 'module:ps_emailalerts/views/templates/front/mailalerts-account-line.tpl' mailAlert=$mailAlert}
       {/foreach}
     </ul>
 

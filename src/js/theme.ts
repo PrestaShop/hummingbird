@@ -34,6 +34,7 @@ import initScrollPaddingTop from '@helpers/scrollPadding';
 import initProductAccessibility from '@js/accessibility/product';
 import initCartAccessibility from '@js/accessibility/cart';
 import initProductComments from '@js/modules/productcomments';
+import parseData from '@helpers/parseData';
 
 initEmitter();
 
@@ -82,6 +83,10 @@ export const components = {
   useQuantityInput,
 };
 
+export const helpers = {
+  parseData,
+};
+
 export const selectors = themeSelectors;
 export const events = EVENTS;
 
@@ -93,7 +98,6 @@ export default {
   initCart,
   useQuantityInput,
   initSearchbar,
-  initEmailalerts,
   initLanguageSelector,
   initCurrencySelector,
   initMobileMenu,

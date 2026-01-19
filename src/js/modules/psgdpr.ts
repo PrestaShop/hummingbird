@@ -4,9 +4,11 @@
  */
 
 import {gdpr} from '@constants/selectors-map';
+import parseData from '@helpers/parseData';
 
 // Types
-interface GdprConfig {
+interface GdprData {
+  moduleId: string;
   frontController: string;
   idCustomer: string;
   customerToken: string;
@@ -15,26 +17,19 @@ interface GdprConfig {
 }
 
 /**
- * Extract GDPR configuration from consent element dataset
+ * Get GDPR data from element and clean up URL encoding
  */
-const getConfig = (consentElement: HTMLElement): GdprConfig | null => {
-  const {
-    frontController,
-    idCustomer,
-    customerToken,
-    idGuest,
-    guestToken,
-  } = consentElement.dataset;
+const getGdprData = (element: HTMLElement): GdprData | null => {
+  const data = parseData<GdprData>(element);
 
-  if (!frontController) return null;
+  if (!data) return null;
 
-  return {
-    frontController: frontController.replace(/&amp;/g, '&'),
-    idCustomer: idCustomer ?? '',
-    customerToken: customerToken ?? '',
-    idGuest: idGuest ?? '',
-    guestToken: guestToken ?? '',
-  };
+  // Clean up frontController URL encoding
+  if (data.frontController) {
+    data.frontController = data.frontController.replace(/&amp;/g, '&');
+  }
+
+  return data;
 };
 
 /**
@@ -66,19 +61,19 @@ const updateButtonState = (checkbox: HTMLInputElement, button: HTMLButtonElement
 /**
  * Log consent to GDPR module backend
  */
-const logConsent = async (config: GdprConfig, moduleId: string): Promise<void> => {
+const logConsent = async (data: GdprData): Promise<void> => {
   const formData = new URLSearchParams({
     ajax: 'true',
     action: 'AddLog',
-    id_customer: config.idCustomer,
-    customer_token: config.customerToken,
-    id_guest: config.idGuest,
-    guest_token: config.guestToken,
-    id_module: moduleId,
+    id_customer: data.idCustomer,
+    customer_token: data.customerToken,
+    id_guest: data.idGuest,
+    guest_token: data.guestToken,
+    id_module: data.moduleId,
   });
 
   try {
-    await fetch(config.frontController, {
+    await fetch(data.frontController, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData.toString(),
@@ -122,15 +117,14 @@ const handleCheckboxChange = (event: Event): void => {
 };
 
 /**
- * Handle submit for consent logging (delegated)
+ * Handle submit for consent logging
  */
 const handleSubmit = (consentElement: HTMLElement): void => {
-  const {moduleId} = consentElement.dataset;
   const checkbox = consentElement.querySelector<HTMLInputElement>(gdpr.checkbox);
-  const config = getConfig(consentElement);
+  const data = getGdprData(consentElement);
 
-  if (config && moduleId && checkbox?.checked) {
-    logConsent(config, moduleId);
+  if (data && checkbox?.checked) {
+    logConsent(data);
   }
 };
 

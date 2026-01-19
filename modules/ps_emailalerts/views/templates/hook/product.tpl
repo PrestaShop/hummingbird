@@ -51,10 +51,13 @@
       </p>
     {/if}
 
-    <button data-product="{$product.id_product}"
-      data-product-attribute="{$product.id_product_attribute}"
-      data-ps-action="emailalerts-subscribe"
+    {if !empty($id_module)}
+      {capture name='gdprContent'}{hook h='displayGDPRConsent' id_module=$id_module}{/capture}
+    {/if}
+
+    <button data-ps-action="emailalerts-subscribe"
       data-ps-ref="gdpr-submit"
+      data-ps-data='{ldelim}"productId":"{$product.id_product}","productAttributeId":"{$product.id_product_attribute}"{rdelim}'
       class="btn btn-primary"
       rel="nofollow"
       role="button"
@@ -63,13 +66,10 @@
       {l s='Notify me when available' d='Modules.Emailalerts.Shop'}
     </button>
 
-    {if !empty($id_module)}
-      {capture name='gdprContent'}{hook h='displayGDPRConsent' id_module=$id_module}{/capture}
-      {if $smarty.capture.gdprContent != ''}
-        <div class="fs-6 text-body-secondary">
-          {$smarty.capture.gdprContent nofilter}
-        </div>
-      {/if}
+    {if $smarty.capture.gdprContent != ''}
+      <div class="fs-6 text-body-secondary">
+        {$smarty.capture.gdprContent nofilter}
+      </div>
     {/if}
   </div>
 

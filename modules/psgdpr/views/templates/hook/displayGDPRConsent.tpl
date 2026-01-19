@@ -27,7 +27,8 @@
     "guestToken": "{$psgdpr_guest_token|escape:'htmlall':'UTF-8'}"
   {rdelim}{/strip}{/capture}
 
-  <div class="gdpr-consent"
+  <div id="gdpr_consent_{$psgdpr_id_module|escape:'htmlall':'UTF-8'}"
+    class="gdpr-consent"
     data-ps-ref="gdpr-consent"
     data-ps-data="{$smarty.capture.gdprData}"
   >

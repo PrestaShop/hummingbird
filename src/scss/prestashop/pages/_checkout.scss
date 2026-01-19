@@ -31,11 +31,13 @@ $step-name: (
     &__aside {
       margin-block-end: 2rem;
     }
+  }
 
+  @include media-breakpoint-up(lg) {
     &__aside-wrapper {
       position: sticky;
       top: var(--scroll-padding-top);
-      z-index: 99;
+      z-index: $zindex-sticky;
     }
   }
 }

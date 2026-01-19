@@ -66,7 +66,6 @@
       class="btn btn-primary"
       rel="nofollow"
       role="button"
-      {if $smarty.capture.gdprContent != ''}disabled{/if}
     >
       {l s='Notify me when available' d='Modules.Emailalerts.Shop'}
     </button>

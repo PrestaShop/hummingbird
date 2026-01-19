@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  *}
 <section class="product__discounts js-product-discounts"
-  {if !$product.show_price}
+  {if !$product.show_price || !$product.quantity_discounts|count}
     hidden
   {/if}
 >

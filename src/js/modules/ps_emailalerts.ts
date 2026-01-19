@@ -131,15 +131,15 @@ const handleClick = (event: MouseEvent): void => {
   }
 
   // Handle remove button
-  const removeButton = target.closest<HTMLElement>(emailAlerts.removeButton);
+  const deleteButton = target.closest<HTMLElement>(emailAlerts.deleteButton);
 
-  if (removeButton) {
+  if (deleteButton) {
     event.preventDefault();
 
-    const data = parseData<UnsubscribeData>(removeButton);
+    const data = parseData<UnsubscribeData>(deleteButton);
 
     if (data) {
-      unsubscribe(removeButton, data);
+      unsubscribe(deleteButton, data);
     }
   }
 };

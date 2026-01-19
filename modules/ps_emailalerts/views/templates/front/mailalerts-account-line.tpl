@@ -20,8 +20,8 @@
 
     <button type="button"
       aria-label="{l s='Delete %productName% mail alert' sprintf=['%productName%' => $mailAlert.name] d='Modules.Emailalerts.Shop'}"
-      class="link-danger ps-emailalerts__product-remove"
-      data-ps-action="emailalerts-remove"
+      class="link-danger ps-emailalerts__product-delete"
+      data-ps-action="emailalerts-delete"
       data-ps-data='{ldelim}"productId":"{$mailAlert.id_product|intval}","productAttributeId":"{$mailAlert.id_product_attribute|intval}","url":"{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'remove']}"{rdelim}'
     >
       {l s='Delete' d='Modules.Emailalerts.Shop'}

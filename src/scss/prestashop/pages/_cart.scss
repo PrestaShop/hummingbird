@@ -18,4 +18,12 @@ $component-name: cart-grid;
       margin-block-end: 2rem;
     }
   }
+
+  @include media-breakpoint-up(lg) {
+    &__aside-wrapper {
+      position: sticky;
+      top: var(--scroll-padding-top);
+      z-index: $zindex-sticky;
+    }
+  }
 }

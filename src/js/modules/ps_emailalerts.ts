@@ -7,7 +7,7 @@ import {emailAlerts} from '@constants/selectors-map';
 import useAlert from '@js/components/useAlert';
 import parseData from '@helpers/parseData';
 
-// Types
+// Types and validators
 interface MailAlertResponse {
   error: boolean;
   message: string;
@@ -23,6 +23,21 @@ interface UnsubscribeData {
   productAttributeId: string;
   url: string;
 }
+
+const subscribeValidator: Validator<SubscribeData> = (data): data is SubscribeData => (
+  typeof data === 'object'
+    && data !== null
+    && typeof (data as SubscribeData).productId === 'string'
+    && typeof (data as SubscribeData).productAttributeId === 'string'
+);
+
+const unsubscribeValidator: Validator<UnsubscribeData> = (data): data is UnsubscribeData => (
+  typeof data === 'object'
+    && data !== null
+    && typeof (data as UnsubscribeData).productId === 'string'
+    && typeof (data as UnsubscribeData).productAttributeId === 'string'
+    && typeof (data as UnsubscribeData).url === 'string'
+);
 
 /**
  * Subscribe to a mail alert notification for a product
@@ -121,10 +136,10 @@ const handleClick = (event: MouseEvent): void => {
     event.preventDefault();
 
     const wrapper = subscribeButton.closest<HTMLElement>(emailAlerts.wrapper);
-    const data = parseData<SubscribeData>(subscribeButton);
+    const result = parseData<SubscribeData>(subscribeButton, subscribeValidator);
 
-    if (wrapper && data) {
-      subscribe(wrapper, data);
+    if (result && wrapper) {
+      subscribe(wrapper, result);
     }
 
     return;
@@ -136,10 +151,10 @@ const handleClick = (event: MouseEvent): void => {
   if (deleteButton) {
     event.preventDefault();
 
-    const data = parseData<UnsubscribeData>(deleteButton);
+    const result = parseData<UnsubscribeData>(deleteButton, unsubscribeValidator);
 
-    if (data) {
-      unsubscribe(deleteButton, data);
+    if (result) {
+      unsubscribe(deleteButton, result);
     }
   }
 };

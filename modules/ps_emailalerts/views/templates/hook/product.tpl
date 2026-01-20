@@ -51,10 +51,6 @@
       </p>
     {/if}
 
-    {if !empty($id_module)}
-      {capture name='gdprContent'}{hook h='displayGDPRConsent' id_module=$id_module}{/capture}
-    {/if}
-
     {capture name='subscribeData'}{strip}{ldelim}
       "productId": "{$product.id_product}",
       "productAttributeId": "{$product.id_product_attribute}"
@@ -70,10 +66,14 @@
       {l s='Notify me when available' d='Modules.Emailalerts.Shop'}
     </button>
 
-    {if $smarty.capture.gdprContent != ''}
-      <div class="fs-6 text-body-secondary">
-        {$smarty.capture.gdprContent nofilter}
-      </div>
+    {if !empty($id_module)}
+      {capture name='gdprContent'}{hook h='displayGDPRConsent' id_module=$id_module}{/capture}
+
+      {if $smarty.capture.gdprContent}
+        <div class="fs-6 text-body-secondary">
+          {$smarty.capture.gdprContent nofilter}
+        </div>
+      {/if}
     {/if}
   </div>
 

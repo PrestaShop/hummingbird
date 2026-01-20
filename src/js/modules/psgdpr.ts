@@ -6,7 +6,7 @@
 import {gdpr} from '@constants/selectors-map';
 import parseData from '@helpers/parseData';
 
-// Types
+// Types and validators
 interface GdprData {
   moduleId: string;
   frontController: string;
@@ -16,20 +16,33 @@ interface GdprData {
   guestToken: string;
 }
 
+const gdprDataValidator: Validator<GdprData> = (data): data is GdprData => (
+  typeof data === 'object'
+    && data !== null
+    && typeof (data as GdprData).moduleId === 'string'
+    && typeof (data as GdprData).frontController === 'string'
+    && typeof (data as GdprData).idCustomer === 'string'
+    && typeof (data as GdprData).customerToken === 'string'
+    && typeof (data as GdprData).idGuest === 'string'
+    && typeof (data as GdprData).guestToken === 'string'
+);
+
 /**
  * Get GDPR data from element and clean up URL encoding
  */
 const getGdprData = (element: HTMLElement): GdprData | null => {
-  const data = parseData<GdprData>(element);
+  const result = parseData<GdprData>(element, gdprDataValidator);
 
-  if (!data) return null;
-
-  // Clean up frontController URL encoding
-  if (data.frontController) {
-    data.frontController = data.frontController.replace(/&amp;/g, '&');
+  if (!result) {
+    return null;
   }
 
-  return data;
+  // Clean up frontController URL encoding
+  if (result.frontController) {
+    result.frontController = result.frontController.replace(/&amp;/g, '&');
+  }
+
+  return result;
 };
 
 /**

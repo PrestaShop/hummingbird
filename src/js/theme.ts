@@ -34,7 +34,7 @@ import initScrollPaddingTop from '@helpers/scrollPadding';
 import initProductAccessibility from '@js/accessibility/product';
 import initCartAccessibility from '@js/accessibility/cart';
 import initProductComments from '@js/modules/productcomments';
-import parseData from '@helpers/parseData';
+import {parseData} from '@helpers/parseData';
 
 initEmitter();
 

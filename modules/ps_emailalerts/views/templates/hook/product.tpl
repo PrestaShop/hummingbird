@@ -52,8 +52,8 @@
     {/if}
 
     {capture name='subscribeData'}{strip}{ldelim}
-      "product_id": "{$product.id_product|intval}",
-      "product_attribute_id": "{$product.id_product_attribute|intval}"
+      "id_product": "{$product.id_product|intval}",
+      "id_product_attribute": "{$product.id_product_attribute|intval}"
     {rdelim}{/strip}{/capture}
 
     <button data-ps-action="emailalerts-subscribe"

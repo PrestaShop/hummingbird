@@ -19,8 +19,8 @@
     {/if}
 
     {capture name='deleteData'}{strip}{ldelim}
-      "product_id": "{$mailAlert.id_product|intval}",
-      "product_attribute_id": "{$mailAlert.id_product_attribute|intval}",
+      "id_product": "{$mailAlert.id_product|intval}",
+      "id_product_attribute": "{$mailAlert.id_product_attribute|intval}",
       "url": "{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'remove']}"
     {rdelim}{/strip}{/capture}
 

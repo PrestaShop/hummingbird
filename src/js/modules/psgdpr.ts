@@ -75,7 +75,7 @@ const updateButtonState = (checkbox: HTMLInputElement, button: HTMLButtonElement
  * Log consent to GDPR module backend
  */
 const logConsent = async (data: GdprData): Promise<void> => {
-  const {front_controller, ...params} = data;
+  const {front_controller: frontController, ...params} = data;
   const formData = new URLSearchParams({
     ajax: 'true',
     action: 'AddLog',
@@ -83,7 +83,7 @@ const logConsent = async (data: GdprData): Promise<void> => {
   });
 
   try {
-    await fetch(front_controller, {
+    await fetch(frontController, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData.toString(),

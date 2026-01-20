@@ -19,12 +19,12 @@
 
 {block name='gdpr_checkbox'}
   {capture name='gdprData'}{strip}{ldelim}
-    "moduleId": "{$psgdpr_id_module|escape:'htmlall':'UTF-8'}",
-    "frontController": "{$psgdpr_front_controller|escape:'htmlall':'UTF-8'}",
-    "idCustomer": "{$psgdpr_id_customer|escape:'htmlall':'UTF-8'}",
-    "customerToken": "{$psgdpr_customer_token|escape:'htmlall':'UTF-8'}",
-    "idGuest": "{$psgdpr_id_guest|escape:'htmlall':'UTF-8'}",
-    "guestToken": "{$psgdpr_guest_token|escape:'htmlall':'UTF-8'}"
+    "id_module": "{$psgdpr_id_module|escape:'htmlall':'UTF-8'}",
+    "front_controller": "{$psgdpr_front_controller|escape:'htmlall':'UTF-8'}",
+    "id_customer": "{$psgdpr_id_customer|escape:'htmlall':'UTF-8'}",
+    "customer_token": "{$psgdpr_customer_token|escape:'htmlall':'UTF-8'}",
+    "id_guest": "{$psgdpr_id_guest|escape:'htmlall':'UTF-8'}",
+    "guest_token": "{$psgdpr_guest_token|escape:'htmlall':'UTF-8'}"
   {rdelim}{/strip}{/capture}
 
   <div id="gdpr_consent_{$psgdpr_id_module|escape:'htmlall':'UTF-8'}"

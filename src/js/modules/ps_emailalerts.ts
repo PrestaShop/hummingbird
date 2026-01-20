@@ -14,28 +14,28 @@ interface MailAlertResponse {
 }
 
 interface SubscribeData {
-  productId: string;
-  productAttributeId: string;
+  product_id: string;
+  product_attribute_id: string;
 }
 
 interface UnsubscribeData {
-  productId: string;
-  productAttributeId: string;
+  product_id: string;
+  product_attribute_id: string;
   url: string;
 }
 
 const subscribeValidator: Validator<SubscribeData> = (data): data is SubscribeData => (
   typeof data === 'object'
     && data !== null
-    && typeof (data as SubscribeData).productId === 'string'
-    && typeof (data as SubscribeData).productAttributeId === 'string'
+    && typeof (data as SubscribeData).product_id === 'string'
+    && typeof (data as SubscribeData).product_attribute_id === 'string'
 );
 
 const unsubscribeValidator: Validator<UnsubscribeData> = (data): data is UnsubscribeData => (
   typeof data === 'object'
     && data !== null
-    && typeof (data as UnsubscribeData).productId === 'string'
-    && typeof (data as UnsubscribeData).productAttributeId === 'string'
+    && typeof (data as UnsubscribeData).product_id === 'string'
+    && typeof (data as UnsubscribeData).product_attribute_id === 'string'
     && typeof (data as UnsubscribeData).url === 'string'
 );
 
@@ -51,8 +51,8 @@ const subscribe = async (wrapper: HTMLElement, data: SubscribeData): Promise<voi
   const alertsContainer = wrapper.querySelector<HTMLElement>(emailAlerts.alertsContainer);
 
   const formData = new URLSearchParams({
-    id_product: data.productId,
-    id_product_attribute: data.productAttributeId,
+    id_product: data.product_id,
+    id_product_attribute: data.product_attribute_id,
     customer_email: emailInput?.value ?? '',
   });
 
@@ -94,8 +94,8 @@ const unsubscribe = async (button: HTMLElement, data: UnsubscribeData): Promise<
   if (!productElement) return;
 
   const formData = new URLSearchParams({
-    id_product: data.productId,
-    id_product_attribute: data.productAttributeId,
+    id_product: data.product_id,
+    id_product_attribute: data.product_attribute_id,
   });
 
   try {

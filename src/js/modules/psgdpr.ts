@@ -8,23 +8,23 @@ import parseData from '@helpers/parseData';
 
 // Types and validators
 interface GdprData {
-  moduleId: string;
-  frontController: string;
-  idCustomer: string;
-  customerToken: string;
-  idGuest: string;
-  guestToken: string;
+  id_module: string;
+  front_controller: string;
+  id_customer: string;
+  customer_token: string;
+  id_guest: string;
+  guest_token: string;
 }
 
 const gdprDataValidator: Validator<GdprData> = (data): data is GdprData => (
   typeof data === 'object'
     && data !== null
-    && typeof (data as GdprData).moduleId === 'string'
-    && typeof (data as GdprData).frontController === 'string'
-    && typeof (data as GdprData).idCustomer === 'string'
-    && typeof (data as GdprData).customerToken === 'string'
-    && typeof (data as GdprData).idGuest === 'string'
-    && typeof (data as GdprData).guestToken === 'string'
+    && typeof (data as GdprData).id_module === 'string'
+    && typeof (data as GdprData).front_controller === 'string'
+    && typeof (data as GdprData).id_customer === 'string'
+    && typeof (data as GdprData).customer_token === 'string'
+    && typeof (data as GdprData).id_guest === 'string'
+    && typeof (data as GdprData).guest_token === 'string'
 );
 
 /**
@@ -37,9 +37,9 @@ const getGdprData = (element: HTMLElement): GdprData | null => {
     return null;
   }
 
-  // Clean up frontController URL encoding
-  if (result.frontController) {
-    result.frontController = result.frontController.replace(/&amp;/g, '&');
+  // Clean up front_controller URL encoding
+  if (result.front_controller) {
+    result.front_controller = result.front_controller.replace(/&amp;/g, '&');
   }
 
   return result;
@@ -75,18 +75,15 @@ const updateButtonState = (checkbox: HTMLInputElement, button: HTMLButtonElement
  * Log consent to GDPR module backend
  */
 const logConsent = async (data: GdprData): Promise<void> => {
+  const {front_controller, ...params} = data;
   const formData = new URLSearchParams({
     ajax: 'true',
     action: 'AddLog',
-    id_customer: data.idCustomer,
-    customer_token: data.customerToken,
-    id_guest: data.idGuest,
-    guest_token: data.guestToken,
-    id_module: data.moduleId,
+    ...params,
   });
 
   try {
-    await fetch(data.frontController, {
+    await fetch(front_controller, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData.toString(),

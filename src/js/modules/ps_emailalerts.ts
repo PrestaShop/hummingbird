@@ -14,28 +14,28 @@ interface MailAlertResponse {
 }
 
 interface SubscribeData {
-  product_id: string;
-  product_attribute_id: string;
+  id_product: string;
+  id_product_attribute: string;
 }
 
 interface UnsubscribeData {
-  product_id: string;
-  product_attribute_id: string;
+  id_product: string;
+  id_product_attribute: string;
   url: string;
 }
 
 const subscribeValidator: Validator<SubscribeData> = (data): data is SubscribeData => (
   typeof data === 'object'
     && data !== null
-    && typeof (data as SubscribeData).product_id === 'string'
-    && typeof (data as SubscribeData).product_attribute_id === 'string'
+    && typeof (data as SubscribeData).id_product === 'string'
+    && typeof (data as SubscribeData).id_product_attribute === 'string'
 );
 
 const unsubscribeValidator: Validator<UnsubscribeData> = (data): data is UnsubscribeData => (
   typeof data === 'object'
     && data !== null
-    && typeof (data as UnsubscribeData).product_id === 'string'
-    && typeof (data as UnsubscribeData).product_attribute_id === 'string'
+    && typeof (data as UnsubscribeData).id_product === 'string'
+    && typeof (data as UnsubscribeData).id_product_attribute === 'string'
     && typeof (data as UnsubscribeData).url === 'string'
 );
 
@@ -51,8 +51,7 @@ const subscribe = async (wrapper: HTMLElement, data: SubscribeData): Promise<voi
   const alertsContainer = wrapper.querySelector<HTMLElement>(emailAlerts.alertsContainer);
 
   const formData = new URLSearchParams({
-    id_product: data.product_id,
-    id_product_attribute: data.product_attribute_id,
+    ...data,
     customer_email: emailInput?.value ?? '',
   });
 
@@ -93,13 +92,11 @@ const unsubscribe = async (button: HTMLElement, data: UnsubscribeData): Promise<
 
   if (!productElement) return;
 
-  const formData = new URLSearchParams({
-    id_product: data.product_id,
-    id_product_attribute: data.product_attribute_id,
-  });
+  const {url, ...params} = data;
+  const formData = new URLSearchParams(params);
 
   try {
-    const response = await fetch(data.url, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: formData.toString(),

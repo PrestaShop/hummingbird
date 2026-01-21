@@ -13,6 +13,8 @@ import initCustomer from '@js/pages/customer';
 import initProductBehavior from '@js/product';
 import initMobileMenu from '@js/mobile-menu';
 import initSearchbar from '@js/modules/ps_searchbar';
+import initEmailalerts from '@js/modules/ps_emailalerts';
+import initGdpr from '@js/modules/psgdpr';
 import initLanguageSelector from '@js/modules/ps_languageselector';
 import initCurrencySelector from '@js/modules/ps_currencyselector';
 import initGuestPasswordToggle from '@js/guest-password-toggle';
@@ -32,6 +34,7 @@ import initScrollPaddingTop from '@helpers/scrollPadding';
 import initProductAccessibility from '@js/accessibility/product';
 import initCartAccessibility from '@js/accessibility/cart';
 import initProductComments from '@js/modules/productcomments';
+import parseData from '@helpers/parseData';
 
 initEmitter();
 
@@ -46,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initCart();
   useQuantityInput();
   initSearchbar();
+  initEmailalerts();
+  initGdpr();
   initLanguageSelector();
   initCurrencySelector();
   initMobileMenu();
@@ -76,6 +81,10 @@ export const components = {
   useAlert,
   useProgressRing,
   useQuantityInput,
+};
+
+export const helpers = {
+  parseData,
 };
 
 export const selectors = themeSelectors;

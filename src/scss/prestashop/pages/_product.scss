@@ -171,6 +171,12 @@ $component-name: product;
       color: var(--bs-tertiary-color);
     }
 
+    &__additional-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
     // Bottom section
     &__bottom {
       &-left {
@@ -265,6 +271,10 @@ $component-name: product;
         &-list {
           grid-template-columns: repeat(6, minmax(0, 1fr));
         }
+      }
+
+      &__additional-info {
+        gap: 2rem;
       }
 
       // Bottom section

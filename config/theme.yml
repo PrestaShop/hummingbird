@@ -8,7 +8,7 @@ author:
 
 meta:
   compatibility:
-    from: 9.0.0
+    from: 9.1.0
     to: ~
     framework: bootstrap-v5.3.3
 
@@ -36,14 +36,19 @@ global_settings:
     PSR_ICON_COLOR: "#0b69f6"
     PSR_TEXT_COLOR: "#212529"
   modules:
-    to_enable:
-      - ps_linklist
     to_disable:
       - blockwishlist
+      - ps_brandlist
+      - ps_supplierlist
   hooks:
+    modules_to_unhook:
+      displayFooter:
+        - ps_socialfollow
+      displaySearch:
+        - ps_searchbar
     modules_to_hook:
-      displayCustomerAccount:
-        - psgdpr
+      displayAfterBodyOpeningTag:
+        - blockreassurance
         # Keep existing hooks and append them after
         - ~
       displayNav1:
@@ -55,6 +60,10 @@ global_settings:
         - ps_currencyselector
         - ps_customersignin
         - ps_shoppingcart
+        # Keep existing hooks and append them after
+        - ~
+      displayNavFullWidth:
+        - blockreassurance
         # Keep existing hooks and append them after
         - ~
       displayTop:
@@ -74,6 +83,7 @@ global_settings:
       displayFooterBefore:
         - ps_socialfollow
         - ps_emailsubscription
+        - blockreassurance
         # Keep existing hooks and append them after
         - ~
       displayFooter:
@@ -82,8 +92,8 @@ global_settings:
         - ps_contactinfo
         # Keep existing hooks and append them after
         - ~
-      displayFooterProduct:
-        - productcomments
+      displayFooterAfter:
+        - blockreassurance
         # Keep existing hooks and append them after
         - ~
       displayLeftColumn:
@@ -103,10 +113,6 @@ global_settings:
         - contactform
         # Keep existing hooks and append them after
         - ~
-      displaySearch:
-        - ps_searchbar
-        # Keep existing hooks and append them after
-        - ~
       displayProductAdditionalInfo:
         - ps_sharebuttons
         - productcomments
@@ -116,12 +122,29 @@ global_settings:
         - productcomments
         # Keep existing hooks and append them after
         - ~
-      displayOrderConfirmation2:
-        - ps_featuredproducts
+      displayFooterProduct:
+        - productcomments
         # Keep existing hooks and append them after
         - ~
       displayCrossSellingShoppingCart:
         - ps_featuredproducts
+        # Keep existing hooks and append them after
+        - ~
+      displayOrderConfirmation2:
+        - ps_featuredproducts
+        # Keep existing hooks and append them after
+        - ~
+      displayReassurance:
+        - blockreassurance
+        # Keep existing hooks and append them after
+        - ~
+      displayCustomerAccount:
+        - ps_emailalerts
+        - psgdpr
+        # Keep existing hooks and append them after
+        - ~
+      displayGDPRConsent:
+        - psgdpr
         # Keep existing hooks and append them after
         - ~
 

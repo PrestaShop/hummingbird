@@ -20,7 +20,7 @@
           }
         </p>
 
-        {if not $is_multishipment_enabled|default:false && $order.carrier.name}
+        {if not $order.shipments && $order.carrier.name}
           <p class="order-infos__carrier">
             {l s='Carrier: %carrier_name%' sprintf=['%carrier_name%' => $order.carrier.name] d='Shop.Theme.Catalog'}
           </p>
@@ -97,7 +97,7 @@
 
   {block name='order_carriers'}
     {if $order.shipping}
-      {if $is_multishipment_enabled|default:false}
+      {if $order.shipments}
         {include file='customer/_partials/order-shipments.tpl'}
       {else}
         {include file='customer/_partials/order-carrier.tpl'}
@@ -152,13 +152,13 @@
 
       {block name='order_detail'}
         {if $order.details.is_returnable}
-          {if $is_multishipment_enabled|default:false}
+          {if $order.shipments}
             {include file='customer/_partials/order-detail-return-multishipment.tpl'}
           {else}
             {include file='customer/_partials/order-detail-return.tpl'}
           {/if}
         {else}
-          {if $is_multishipment_enabled|default:false}
+          {if $order.shipments}
             {include file='customer/_partials/order-detail-no-return-multishipment.tpl'}
           {else}
             {include file='customer/_partials/order-detail-no-return.tpl'}

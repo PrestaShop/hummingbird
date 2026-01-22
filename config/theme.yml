@@ -118,6 +118,7 @@ global_settings:
       displayProductAdditionalInfo:
         - ps_sharebuttons
         - productcomments
+        - ps_emailalerts
         # Keep existing hooks and append them after
         - ~
       displayProductListReviews:

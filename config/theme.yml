@@ -119,6 +119,7 @@ global_settings:
         - ps_sharebuttons
         - productcomments
         - ps_emailalerts
+        - ps_viewedproduct
         # Keep existing hooks and append them after
         - ~
       displayProductListReviews:

@@ -42,7 +42,7 @@
 
     <div class="accordion accordion-flush accordion--small">
       {foreach from=$displayedFacets item="facet" name="facets"}
-        <section class="accordion-item">
+        <section class="accordion-item" data-type="{$facet.type}" data-name="{$facet.label}">
           {assign var=_expand_id value=10|mt_rand:100000}
           {assign var=_collapse value=true}
 

@@ -9,7 +9,7 @@ author:
 meta:
   compatibility:
     from: 9.1.0
-    to: ^9.1.0
+    to: ~9.1.0
     framework: bootstrap-v5.3.3
 
   available_layouts:

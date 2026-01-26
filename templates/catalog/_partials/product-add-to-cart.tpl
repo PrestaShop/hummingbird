@@ -58,7 +58,8 @@
     {/block}
 
     {block name='product_quantity'}
-      <div class="product__actions-qty-add">
+      {* .product-quantity needed for JS *}
+      <div class="product__actions-qty-add product-quantity">
         <div class="product-actions__quantity product__quantity quantity-button js-quantity-button">
           {include file='components/qty-input.tpl'
             attributes=[

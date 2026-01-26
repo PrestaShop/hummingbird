@@ -128,6 +128,8 @@ global_settings:
         - ~
       displayFooterProduct:
         - productcomments
+        - ps_categoryproducts
+        - ps_viewedproduct
         # Keep existing hooks and append them after
         - ~
       displayCrossSellingShoppingCart:

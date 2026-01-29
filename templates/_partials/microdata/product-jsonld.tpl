@@ -67,7 +67,6 @@
     "offers": {
       "@type": "Offer",
       "priceCurrency": "{$currency.iso_code}",
-      "name": "{$product.name|strip_tags:false}",
       "price": "{$product.price_amount}",
       "url": "{$product.url}",
       "priceValidUntil": "{($smarty.now + (int) (60*60*24*15))|date_format:"%Y-%m-%d"}",

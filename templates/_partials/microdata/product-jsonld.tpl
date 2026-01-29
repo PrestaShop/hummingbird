@@ -36,7 +36,6 @@
     "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}"
     {if $product.ean13},"gtin13": "{$product.ean13}"{/if}
     {if $product.upc},"gtin12": "{$product.upc}"{/if}
-    {/if}
     {if isset($product_manufacturer) && $product_manufacturer->name},
     "brand": {
       "@type": "Brand",

@@ -34,8 +34,8 @@
     {if !empty($product.cover)}"image" :"{$product.cover.bySize.home_default.url}",{/if}
     "sku": "{if $product.reference}{$product.reference}{else}{$product.id}{/if}",
     "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}"
-    {if $product.ean13},"gtin13": "{$product.ean13}"
-    {elseif $product.upc},"gtin12": "{$product.upc}"
+    {if $product.ean13},"gtin13": "{$product.ean13}"{/if}
+    {if $product.upc},"gtin12": "{$product.upc}"{/if}
     {/if}
     {if isset($product_manufacturer) && $product_manufacturer->name},
     "brand": {
@@ -78,9 +78,6 @@
           {/foreach}
         ]{/strip},
       {/if}
-      "sku": "{if $product.reference}{$product.reference}{else}{$product.id}{/if}",
-      "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}",
-      {if $product.ean13}"gtin13": "{$product.ean13}",{elseif $product.upc}"gtin12": "{$product.upc}",{/if}
       {if !empty($product.show_condition) && !empty($product.condition)}"itemCondition": "{$product.condition.schema_url}",{/if}
       "availability": "{$product.seo_availability}",
       "seller": {

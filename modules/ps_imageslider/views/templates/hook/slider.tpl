@@ -8,9 +8,9 @@
     <div
       id="ps_imageslider"
       class="carousel slide"
-      {if $homeslider.speed > 0} data-bs-ride="carousel"{/if}
-      {if $homeslider.pause !== "hover"} data-bs-pause="false"{/if}
-      {if $homeslider.wrap === "false"} data-bs-wrap="false"{/if}
+      {if $homeslider.speed > 0}data-bs-ride="carousel"{/if}
+      {if $homeslider.pause !== "hover"}data-bs-pause="false"{/if}
+      {if $homeslider.wrap === "false"}data-bs-wrap="false"{/if}
     >
       <div class="carousel-indicators">
         {foreach from=$homeslider.slides item=slide name='homeslider'}
@@ -27,7 +27,7 @@
 
       <div class="carousel-inner" role="list" aria-label="{l s='Carousel container' d='Shop.Theme.Global'}">
         {foreach from=$homeslider.slides item=slide name='homeslider'}
-          <div class="carousel-item {if $slide@first} active{/if}" role="listitem"{if $homeslider.speed > 0} data-bs-interval="{$homeslider.speed}"{/if}>
+          <div class="carousel-item{if $slide@first} active{/if}" role="listitem"{if $homeslider.speed > 0} data-bs-interval="{$homeslider.speed}"{/if}>
             {if !empty($slide.url)}<a class="ps-imageslider__link outline d-block h-100 text-body" href="{$slide.url}">{/if}
               <figure class="ps-imageslider__figure">
                 <img class="w-100" src="{$slide.image_url}" alt="{$slide.legend|escape}" {if $slide@first}fetchpriority="high"{else}loading="lazy"{/if} width="{$slide.sizes[0]}" height="{$slide.sizes[1]}">

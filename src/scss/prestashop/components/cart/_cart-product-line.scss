@@ -42,6 +42,24 @@ $component-name: product-line;
   }
 
   &__item {
+    &-availability-icon {
+      flex-shrink: 0;
+      font-size: 0.875rem;
+    }
+
+    &-availability-message {
+      display: inline-flex;
+      gap: 0.25rem;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+
+    &-availability-submessage {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--bs-tertiary-color);
+    }
+
     &-price {
       width: 100%;
       font-weight: 600;
@@ -67,6 +85,12 @@ $component-name: product-line;
       flex-wrap: wrap;
       gap: 0.25rem;
       align-items: center;
+    }
+
+    &--availability {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
     }
 
     &--prices {

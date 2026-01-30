@@ -11,7 +11,6 @@
         <span class="grid-table__cell" role="columnheader">{l s='Date' d='Shop.Theme.Global'}</span>
         <span class="grid-table__cell" role="columnheader">{l s='Carrier' d='Shop.Theme.Checkout'}</span>
         <span class="grid-table__cell" role="columnheader">{l s='Weight' d='Shop.Theme.Checkout'}</span>
-        <span class="grid-table__cell" role="columnheader">{l s='Shipping cost' d='Shop.Theme.Checkout'}</span>
         <span class="grid-table__cell" role="columnheader">{l s='Tracking number' d='Shop.Theme.Checkout'}</span>
       </div>
 
@@ -25,9 +24,6 @@
           </span>
           <span class="grid-table__cell" role="cell" data-ps-label="{l s='Weight' d='Shop.Theme.Checkout'}">
             {$line.package_weight}
-          </span>
-          <span class="grid-table__cell" role="cell" data-ps-label="{l s='Shipping cost' d='Shop.Theme.Checkout'}">
-            {$line.package_cost}
           </span>
           <span class="grid-table__cell" role="cell" data-ps-label="{l s='Tracking number' d='Shop.Theme.Checkout'}">
             {if $line.carrier_tracking_url}

@@ -112,8 +112,16 @@
             {$product.availability_message}
           </div>
 
-          {if !empty($product.availability_submessage)}
-            <small class="product-line__item-availability-submessage">{$product.availability_submessage}</small>
+          {if !$product.is_virtual}
+            {if $product.additional_delivery_times == 1 && $product.delivery_information}
+              <small class="product-line__item-availability-submessage">{$product.delivery_information}</small>
+            {elseif $product.additional_delivery_times == 2}
+              {if $product.quantity > 0 && $product.delivery_in_stock}
+                <small class="product-line__item-availability-submessage">{$product.delivery_in_stock}</small>
+              {elseif $product.quantity <= 0 && $product.add_to_cart_url && $product.delivery_out_stock}
+                <small class="product-line__item-availability-submessage">{$product.delivery_out_stock}</small>
+              {/if}
+            {/if}
           {/if}
         </div>
       {/if}

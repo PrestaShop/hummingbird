@@ -5,11 +5,14 @@
 {if !$configuration.is_catalog}
   <div class="product__add-to-cart-container product-add-to-cart js-product-add-to-cart">
     {block name='product_availability'}
-      {if $product.show_availability && $product.availability_message}
-        <div
-          id="product-availability"
-          class="product__availability js-product-availability"
-        >
+      <div
+        id="product-availability"
+        class="product__availability js-product-availability"
+        {if empty($product.availability_message) && empty($product.delivery_information)}
+          hidden
+        {/if}
+      >
+        {if $product.show_availability && $product.availability_message}
           {** First, we prepare the icons and colors we want to use *}
           {if $product.availability == 'in_stock'}
             {assign 'availability_icon' 'E5CA'}
@@ -38,23 +41,15 @@
               {/if}
             </div>
           </div>
-        </div>
-      {/if}
 
-      {block name='product_delivery_times'}
-        {if !$product.is_virtual}
-          {if $product.additional_delivery_times == 1 && $product.delivery_information}
-            <div class="product__delivery-infos">{$product.delivery_information}</div>
-          {elseif $product.additional_delivery_times == 2}
-            {if $product.quantity > 0 && $product.delivery_in_stock}
-              <div class="product__delivery-infos">{$product.delivery_in_stock}</div>
-            {* Out of stock message should not be displayed if customer can't order the product. *}
-            {elseif $product.quantity <= 0 && $product.add_to_cart_url && $product.delivery_out_stock}
-              <div class="product__delivery-infos">{$product.delivery_out_stock}</div>
-            {/if}
-          {/if}
         {/if}
-      {/block}
+
+        {block name='product_delivery_times'}
+          {if !empty($product.delivery_information)}
+            <div class="product__delivery-infos">{$product.delivery_information}</div>
+          {/if}
+        {/block}
+      </div>
     {/block}
 
     {block name='product_quantity'}

@@ -112,10 +112,8 @@
             {$product.availability_message}
           </div>
 
-          {if !$product.is_virtual}
-            {if !empty($product.delivery_information)}
-              <small class="product-line__item-availability-submessage">{$product.delivery_information}</small>
-            {/if}
+          {if !empty($product.delivery_information)}
+            <small class="product-line__item-availability-delivery-information">{$product.delivery_information}</small>
           {/if}
         </div>
       {/if}

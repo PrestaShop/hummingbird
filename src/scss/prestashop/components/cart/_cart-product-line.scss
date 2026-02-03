@@ -54,12 +54,6 @@ $component-name: product-line;
       font-size: 0.75rem;
     }
 
-    &-availability-delivery-information {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--bs-tertiary-color);
-    }
-
     &-price {
       width: 100%;
       font-weight: 600;
@@ -85,6 +79,11 @@ $component-name: product-line;
       flex-wrap: wrap;
       gap: 0.25rem;
       align-items: center;
+    }
+
+    &--small-info {
+      font-size: 0.75rem;
+      color: var(--bs-tertiary-color);
     }
 
     &--availability {

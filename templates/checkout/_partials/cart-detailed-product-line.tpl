@@ -111,10 +111,12 @@
             <i class="product-line__item-availability-icon material-icons rtl-no-flip">&#x{$availability_icon};</i>
             {$product.availability_message}
           </div>
+        </div>
+      {/if}
 
-          {if !empty($product.delivery_information)}
-            <small class="product-line__item-availability-delivery-information">{$product.delivery_information}</small>
-          {/if}
+      {if !empty($product.delivery_information)}
+        <div class="product-line__item product-line__item--small-info">
+          {$product.delivery_information}
         </div>
       {/if}
 

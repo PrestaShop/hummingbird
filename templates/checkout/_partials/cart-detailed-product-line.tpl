@@ -96,7 +96,7 @@
       <div class="product-line__item product-line__item--prices">
         <span class="product-line__item-price">{$product.price}</span>
         {if $product.unit_price_full}
-          <div class="product-line__item-unit-price">{$product.unit_price_full}</div>
+          <span class="product-line__item-unit-price">{$product.unit_price_full}</span>
         {/if}
 
         {if $product.has_discount}
@@ -111,6 +111,13 @@
               -{$product.discount_to_display}
             </span>
           {/if}
+        {/if}
+
+        {capture name='product_price_block'}{hook h='displayProductPriceBlock' product=$product type="unit_price"}{/capture}
+        {if $smarty.capture.product_price_block}
+          <div class="product-line__item-price-block">
+            {$smarty.capture.product_price_block}
+          </div>
         {/if}
       </div>
     </div>
@@ -146,8 +153,6 @@
           <div class="product-line__price">{$product.total}</div>
         {/if}
       {/if}
-
-      {hook h='displayProductPriceBlock' product=$product type="unit_price"}
     </div>
 
     <div class="product-line__actions">

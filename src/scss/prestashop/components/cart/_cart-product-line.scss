@@ -62,6 +62,10 @@ $component-name: product-line;
       font-size: 0.875rem;
     }
 
+    &-price-block {
+      width: 100%;
+    }
+
     &--info {
       display: flex;
       flex-wrap: wrap;

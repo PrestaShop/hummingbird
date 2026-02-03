@@ -12,7 +12,7 @@
           hidden
         {/if}
       >
-        {if $product.show_availability && $product.availability_message}
+        {if !empty($product.availability_message)}
           {** First, we prepare the icons and colors we want to use *}
           {if $product.availability == 'in_stock'}
             {assign 'availability_icon' 'E5CA'}

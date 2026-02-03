@@ -55,6 +55,18 @@ $component-name: cart-summary-product;
     text-align: right;
   }
 
+  &__gift {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    &-icon {
+      font-size: 1rem;
+    }
+  }
+
   &__total {
     font-weight: 600;
   }

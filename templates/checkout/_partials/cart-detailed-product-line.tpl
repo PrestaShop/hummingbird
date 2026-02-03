@@ -118,7 +118,9 @@
     <div class="product-line__content-right">
       <div class="product-line__quantity-button quantity-button js-quantity-button">
         {if !empty($product.is_gift)}
-          <span class="product-line__gift-quantity">{$product.quantity} {l s='Gift(s)' d='Shop.Theme.Checkout'}</span>
+          <span class="product-line__gift">
+            <i class="product-line__gift-icon material-icons" aria-hidden="true">&#xE8B1;</i>{$product.quantity} {l s='Gift(s)' d='Shop.Theme.Checkout'}
+          </span>
         {else}
           {include file='components/qty-input.tpl'
             attributes=[
@@ -133,18 +135,8 @@
         {/if}
       </div>
 
-      {if $product.has_discount}
-        {if !empty($product.is_gift)}
-          <div class="product-line__gift">{l s='Gift' d='Shop.Theme.Checkout'}</div>
-        {else}
-          <div class="product-line__price">{$product.total}</div>
-        {/if}
-      {else}
-        {if !empty($product.is_gift)}
-          <div class="product-line__gift">{l s='Gift' d='Shop.Theme.Checkout'}</div>
-        {else}
-          <div class="product-line__price">{$product.total}</div>
-        {/if}
+      {if empty($product.is_gift)}
+        <div class="product-line__price">{$product.total}</div>
       {/if}
 
       {hook h='displayProductPriceBlock' product=$product type="unit_price"}

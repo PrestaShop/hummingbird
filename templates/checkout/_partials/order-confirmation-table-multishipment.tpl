@@ -132,9 +132,15 @@
             </div>
             
             <div class="{$componentName}__product-prices">
-              <div class="{$componentName}__product-total">
-                {$product.total}
-              </div>
+              {if !empty($product.is_gift)}
+                <div class="{$componentName}__product-gift">
+                  <i class="{$componentName}__product-gift-icon material-icons" aria-hidden="true">&#xE8B1;</i>{$product.quantity} {l s='Gift(s)' d='Shop.Theme.Checkout'}
+                </div>
+              {else}
+                <div class="{$componentName}__product-total">
+                  {$product.total}
+                </div>
+              {/if}
             </div>
           </div>
         </div>

@@ -116,7 +116,7 @@
         {capture name='product_price_block'}{hook h='displayProductPriceBlock' product=$product type="unit_price"}{/capture}
         {if $smarty.capture.product_price_block}
           <div class="product-line__item-price-block">
-            {$smarty.capture.product_price_block}
+            {$smarty.capture.product_price_block nofilter}
           </div>
         {/if}
       </div>

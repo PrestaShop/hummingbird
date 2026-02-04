@@ -3,7 +3,7 @@
  * file that was distributed with this source code.
  */
 
-import useQuantityInput, {populateMinQuantityInput} from '@js/components/useQuantityInput';
+import useQuantityInput from '@js/components/useQuantityInput';
 
 export const parseSearchUrl = (event: Event): string => {
   const target = (event.target as HTMLElement).closest<HTMLElement>('[data-search-url]');
@@ -123,7 +123,6 @@ export default function initFacetedSearch(): void {
   prestashop.on(events.updateProductList, (data: Record<string, unknown>) => {
     updateProductListDOM(data);
     useQuantityInput();
-    populateMinQuantityInput();
   });
 
   // Listen for color label space key press

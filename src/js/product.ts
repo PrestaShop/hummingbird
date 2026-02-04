@@ -31,22 +31,6 @@ export default () => {
   prestashop.on(events.updatedProduct, initProductSlide);
   prestashop.on(events.quickviewOpened, initProductSlide);
 
-  prestashop.on(events.updateCart, (event: UpdateCartEvent) => {
-    const quantityInput = document.querySelector(
-      SelectorsMap.qtyInput.quantityWanted,
-    ) as HTMLInputElement;
-
-    if (quantityInput) {
-      const minQuantity = getMinValue(quantityInput);
-      const quantityInCart = Number(event.resp.quantity) || 0;
-
-      if (quantityInCart >= minQuantity) {
-        quantityInput.setAttribute('min', '1');
-        quantityInput.setAttribute('value', '1');
-      }
-    }
-  });
-
   function detectQuantityChange() {
     const quantityInput = document.querySelector(
       SelectorsMap.qtyInput.quantityWanted,
@@ -78,28 +62,11 @@ export default () => {
 
       const debouncedTriggerEmit = debounce(triggerEmit, 500);
 
-      quantityInput.addEventListener('input', (event: Event) => {
-        const input = event.target as HTMLInputElement;
-        const minQuantity = getMinValue(input);
-        const sanitizedValue = sanitizeInputToNumber(input.value);
-        const clampedValue = clampToMin(sanitizedValue, minQuantity);
-
-        if (input.value !== clampedValue.toString()) {
-          input.value = clampedValue.toString();
-        }
-
+      quantityInput.addEventListener('input', () => {
         debouncedTriggerEmit();
       });
 
       quantityInput.addEventListener('blur', () => {
-        const minQuantity = getMinValue(quantityInput);
-        const sanitizedValue = sanitizeInputToNumber(quantityInput.value);
-        const clampedValue = clampToMin(sanitizedValue, minQuantity);
-
-        if (quantityInput.value !== clampedValue.toString()) {
-          quantityInput.value = clampedValue.toString();
-        }
-
         triggerEmit();
       });
 
@@ -110,10 +77,6 @@ export default () => {
   }
 
   const getMinValue = (input: HTMLInputElement): number => Number(input.getAttribute('min')) || 1;
-
-  const sanitizeInputToNumber = (value: string): number => Number(value.replace(/[^\d]/g, '')) || 0;
-
-  const clampToMin = (value: number, min: number): number => Math.max(value, min);
 
   // Call the function to start listening for quantity changes
   detectQuantityChange();

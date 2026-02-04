@@ -108,6 +108,12 @@
           <span class="label">{l s='Quantity:' d='Shop.Theme.Checkout'}</span>
           <span class="value">x{$product.quantity}</span>
         </div>
+
+        <div class="{$componentName}__gift">
+          {if !empty($product.is_gift)}
+            <i class="{$componentName}__gift-icon material-icons" aria-hidden="true">&#xE8B1;</i> {l s='Gift(s)' d='Shop.Theme.Checkout'}
+          {/if}
+        </div>
       </div>
 
       <div class="{$componentName}__content-right">

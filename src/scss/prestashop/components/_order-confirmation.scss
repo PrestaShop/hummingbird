@@ -117,6 +117,17 @@ $component-name: order-confirmation;
       color: var(--bs-tertiary-color);
     }
 
+    &-gift {
+      display: inline-flex;
+      gap: 0.25rem;
+      align-items: center;
+      font-weight: 600;
+
+      &-icon {
+        font-size: 1.25rem;
+      }
+    }
+
     &-total {
       font-size: 1rem;
       font-weight: 600;

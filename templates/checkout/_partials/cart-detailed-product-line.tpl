@@ -91,21 +91,21 @@
         </div>
       {/foreach}
 
-      {if $product.availability == 'in_stock'}
-        {assign 'availability_icon' 'E5CA'}
-        {assign 'availability_class' 'text-success'}
-      {elseif $product.availability == 'available'}
-        {assign 'availability_icon' 'E002'}
-        {assign 'availability_class' 'text-warning'}
-      {elseif $product.availability == 'last_remaining_items'}
-        {assign 'availability_icon' 'E002'}
-        {assign 'availability_class' 'text-warning'}
-      {else}
-        {assign 'availability_icon' 'E14B'}
-        {assign 'availability_class' 'text-danger'}
-      {/if}
+      {if !empty($product.availability_message)}
+        {if $product.availability == 'in_stock'}
+          {assign 'availability_icon' 'E5CA'}
+          {assign 'availability_class' 'text-success'}
+        {elseif $product.availability == 'available'}
+          {assign 'availability_icon' 'E002'}
+          {assign 'availability_class' 'text-warning'}
+        {elseif $product.availability == 'last_remaining_items'}
+          {assign 'availability_icon' 'E002'}
+          {assign 'availability_class' 'text-warning'}
+        {else}
+          {assign 'availability_icon' 'E14B'}
+          {assign 'availability_class' 'text-danger'}
+        {/if}
 
-      {if $product.show_availability && $product.availability_message}
         <div class="product-line__item product-line__item--availability">
           <div class="product-line__item-availability-message {$availability_class}">
             <i class="product-line__item-availability-icon material-icons rtl-no-flip">&#x{$availability_icon};</i>

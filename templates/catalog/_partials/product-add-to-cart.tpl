@@ -41,7 +41,6 @@
               {/if}
             </div>
           </div>
-
         {/if}
 
         {block name='product_delivery_times'}

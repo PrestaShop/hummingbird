@@ -84,7 +84,7 @@
                   {include file='components/qty-input.tpl'
                     attributes=[
                       "id" => "quantity_wanted_{$product.id_product}",
-                      "value" => "{$product.quantity_required}",
+                      "value" => "{$product.quantity_wanted}",
                       "min" => "{$product.quantity_required}"
                     ]
                   }

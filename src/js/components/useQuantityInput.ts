@@ -322,41 +322,8 @@ const sendUpdateCartRequest = async (updateUrl: string, quantity: number) => {
   return response;
 };
 
-export const populateMinQuantityInput = (selector = quantityInputMap.default) => {
-  const qtyInputNodeList = document.querySelectorAll<HTMLElement>(selector);
-
-  const products = window.prestashop?.cart?.products;
-
-  if (!Array.isArray(products) || products.length === 0) {
-    return;
-  }
-
-  qtyInputNodeList.forEach((qtyInputWrapper: HTMLElement) => {
-    const form = qtyInputWrapper.closest('form');
-    const idProductInput = form?.querySelector<HTMLInputElement>(quantityInputMap.idProductInput);
-    const qtyInput = qtyInputWrapper.querySelector<HTMLInputElement>('input');
-
-    if (!idProductInput || !qtyInput) return;
-
-    const idProduct = parseInt(idProductInput.value, 10);
-    const minAttr = qtyInput.getAttribute('min');
-
-    if (!minAttr) return;
-
-    const min = parseInt(minAttr, 10);
-    const productInCart = products.find((p: { id: number }) => p.id === idProduct);
-
-    const minimalQuantity = productInCart && productInCart.quantity_wanted >= min ? 1 : min;
-
-    qtyInput.setAttribute('min', minimalQuantity.toString());
-    qtyInput.setAttribute('value', minimalQuantity.toString());
-  });
-};
-
 document.addEventListener('DOMContentLoaded', () => {
   const {prestashop, Theme: {events}} = window;
-
-  populateMinQuantityInput();
 
   // Delegated keydown: store focus only on Enter key press
   document.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -365,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!target) return;
 
     // If Enter key pressed and element is inside productQuantity wrapper, store focus
-    if (e.key === ENTER_KEY && target.closest(cartSelectorMap.productQuantity)) {
+    if ((e.key === ENTER_KEY || e.key === ' ' || e.code === 'Space') && target.closest(cartSelectorMap.productQuantity)) {
       // Set state.lastUpdateAction to track the last update action
       state.set('lastUpdateAction', availableLastUpdateAction.UPDATE_PRODUCT_QUANTITY);
       a11y.storeFocus();
@@ -381,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // nearest button inside the product quantity wrapper
     const btn = target.closest(`${cartSelectorMap.productQuantity} button`) as HTMLElement | null;
 
-    if (btn && (e.key === ENTER_KEY || e.key === ' ')) {
+    if (btn && (e.key === ENTER_KEY || e.key === ' ' || e.code === 'Space')) {
       // Set state.lastUpdateAction to track the last update action
       state.set('lastUpdateAction', availableLastUpdateAction.UPDATE_PRODUCT_QUANTITY);
       a11y.storeFocus();
@@ -390,16 +357,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   prestashop.on(events.updatedCart, () => {
     useQuantityInput(cartSelectorMap.productQuantity);
-    populateMinQuantityInput();
-  });
-
-  prestashop.on(events.updateProduct, () => {
-    populateMinQuantityInput();
   });
 
   prestashop.on(events.quickviewOpened, () => {
     useQuantityInput(quantityInputMap.modal);
-    populateMinQuantityInput(quantityInputMap.modal);
   });
 });
 

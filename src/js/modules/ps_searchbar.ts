@@ -57,7 +57,7 @@ const initSearchbar = () => {
 
   // Add keyboard support for clear button
   searchClear?.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === 'Enter' || e.key === ' ' || e.code === 'Space') {
       e.preventDefault();
       clearSearch();
     }

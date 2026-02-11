@@ -4,7 +4,8 @@
  */
 
 import SelectorsMap from '@constants/selectors-map';
-import useAlert from './useAlert';
+import useAlert from '@js/components/useAlert';
+import {state, availableLastUpdateAction} from '@js/state';
 
 const handleCartAction = (event: Event): void => {
   event.stopPropagation();
@@ -44,12 +45,16 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
 
       // Show product removal success alert
       if (target && target.getAttribute('data-link-action') === SelectorsMap.cart.deleteLinkAction) {
+        // Set state.lastUpdateAction to track the last update action
+        state.set('lastUpdateAction', availableLastUpdateAction.DELETE_FROM_CART);
+
         const alertPlaceholder = document.querySelector(SelectorsMap.cart.alertPlaceholder);
         const productUrl = target.getAttribute('data-product-url');
         const productName = target.getAttribute('data-product-name');
 
         if (alertPlaceholder && productUrl && productName) {
-          const alertText = alertPlaceholder.getAttribute('data-alert');
+          const alertText = alertPlaceholder.getAttribute('data-ps-data');
+          const alertCloseText = alertPlaceholder.getAttribute('data-ps-data-close');
 
           // Create the product link element
           const productLink = document.createElement('a');
@@ -69,6 +74,11 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
             type: 'success',
             selector: SelectorsMap.cart.alertPlaceholder,
           });
+
+          if (alert.element) {
+            alert.element.setAttribute('data-ps-action', 'to-be-announced');
+            alert.element.querySelector('.btn-close')?.setAttribute('aria-label', `${alertCloseText}`);
+          }
 
           alert.show();
         }

@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🚀 Idea / Feature request
+    url: https://github.com/PrestaShop/hummingbird/discussions/new?category=ideas
+    about: Suggest an idea to improve Hummingbird theme
+  - name: 🙏 I need help
+    url: https://github.com/PrestaShop/hummingbird/discussions/new?category=q-a
+    about: If you have questions or need help
+

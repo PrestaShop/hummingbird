@@ -4,12 +4,13 @@
  */
 import {Modal} from 'bootstrap';
 import useProgressRing from '@js/components/useProgressRing';
+import A11yHelpers from '@helpers/a11y';
 
 const initCheckout = () => {
   const {prestashop} = window;
   const {Theme: {selectors, events}} = window;
   const {progressRing: ProgressRingMap, checkout: CheckoutMap} = selectors;
-
+  const a11y = new A11yHelpers();
   const steps = document.querySelectorAll<HTMLElement>(CheckoutMap.steps.item);
   const actionButtons = document.querySelectorAll<HTMLElement>(CheckoutMap.actionsButtons);
   const {setProgress} = useProgressRing(ProgressRingMap.checkout.element, {steps: steps.length});
@@ -20,6 +21,8 @@ const initCheckout = () => {
   // A thing we handle manually is the .active class on the toggling buttons
   const toggleStep = (content: HTMLElement, step?: HTMLElement) => {
     const currentContent = document.querySelector(CheckoutMap.steps.current);
+    const currentButton = step?.querySelector<HTMLButtonElement>(CheckoutMap.steps.button);
+    currentButton?.focus();
     currentContent?.classList.remove('step--current', 'js-current-step');
 
     if (step) {
@@ -65,12 +68,12 @@ const initCheckout = () => {
     if (stepContent) {
       // If step is finished, we mark it green
       if (stepContent.classList.contains('step--complete')) {
-        step.classList.add('checkout__steps--success');
+        step.classList.add('checkout-steps__step--success');
       }
 
       // Current step will get an active property
       if (stepContent.classList.contains('step--current')) {
-        step.classList.add('checkout__steps--current');
+        step.classList.add('checkout-steps__step--current');
         stepButton?.classList.add('active');
         const responsiveStep = document.querySelector<HTMLElement>(
           CheckoutMap.steps.specificStep(step.dataset.step),
@@ -89,8 +92,6 @@ const initCheckout = () => {
 
       // If the step can be navigated
       if (stepContent.classList.contains('step--reachable')) {
-        stepButton?.classList.add('btn-link');
-
         stepButton?.addEventListener('click', () => {
           if (setProgress) {
             setProgress(index + 1);
@@ -112,10 +113,10 @@ const initCheckout = () => {
 
   termsLink?.addEventListener('click', (event) => {
     event.preventDefault();
+    a11y.storeFocus();
 
     if (termsModalElement) {
       const termsModal = new Modal(termsModalElement);
-
       const linkElement = event.target as HTMLLinkElement;
       let url = linkElement.getAttribute('href');
 
@@ -144,52 +145,31 @@ const initCheckout = () => {
     }
   });
 
-  // Prestashop event triggers after selecting different carrier
-  prestashop.on(events.updatedDeliveryForm, (params: Theme.DeliveryOptionForm.DeliveryOptionItem): void => {
-    if (typeof params.deliveryOption === 'undefined' || Object.keys(params.deliveryOption).length === 0) {
-      return;
-    }
-
-    // Hide all extra content in delivery step
-    const extraContentElements = document.querySelectorAll(CheckoutMap.carrierExtraContentWrapper);
-    extraContentElements.forEach((content: HTMLElement) => {
-      content.style.maxHeight = '0';
-    });
-    const extraContentElementToShow = params.deliveryOption[0]
-      ?.querySelector(CheckoutMap.carrierExtraContentWrapper) as HTMLElement;
-
-    // Show selected delivery method extra content
-    if (extraContentElementToShow != null) {
-      const content = extraContentElementToShow.querySelector(CheckoutMap.carrierExtraContent);
-
-      if (content != null) {
-        extraContentElementToShow.style.maxHeight = `${content.clientHeight}px`;
-      }
-    }
+  // Restore focus when terms modal is closed
+  termsModalElement?.addEventListener('hidden.bs.modal', () => {
+    a11y.restoreFocus();
   });
 
-  const setMaxHeightToActiveCarrierExtraContent = () => {
-    const activeExtraContent = document.querySelector(`${CheckoutMap.carrierExtraContentActive}`) as HTMLElement;
+  // Prestashop event triggers after selecting different carrier
+  prestashop.on(events.updatedDeliveryForm, (params: Theme.DeliveryOptionForm.DeliveryOptionItem): void => {
+    const selectedOption = params.deliveryOption?.[0];
 
-    if (activeExtraContent === null) {
-      return;
-    }
+    if (!selectedOption) return;
 
-    const content = activeExtraContent.querySelector(CheckoutMap.carrierExtraContent) as HTMLElement;
+    const selectedWrapper = selectedOption.querySelector(CheckoutMap.carrierExtraContentWrapper);
 
-    if (content != null) {
-      activeExtraContent.style.maxHeight = `${content.clientHeight}px`;
-    }
-  };
+    if (!(selectedWrapper instanceof HTMLElement)) return;
 
-  // Initiate active carrier extra content height
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(() => { setMaxHeightToActiveCarrierExtraContent(); }, 1);
-  } else {
-    document.addEventListener('DOMContentLoaded', () => {
-      setMaxHeightToActiveCarrierExtraContent();
+    const allWrappers = document.querySelectorAll(CheckoutMap.carrierExtraContentWrapper);
+
+    // Reset all wrappers
+    allWrappers.forEach((wrapper: HTMLElement) => {
+      wrapper.removeAttribute('data-active');
     });
-  }
+
+    // Activate the selected wrapper
+    selectedWrapper.setAttribute('data-active', '');
+  });
 };
 
 export default initCheckout;

@@ -1,0 +1,10 @@
+$component-name: form-check-label;
+
+.#{$component-name} {
+  &.required {
+    &::before {
+      color: var(--bs-danger);
+      content: "*" / " ";
+    }
+  }
+}

@@ -17,9 +17,12 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 
-<a class="col-md-6 col-lg-4{if $urls.current_url === $url} active{/if}" id="wishlist-link" href="{$url}">
-  <span class="link-item">
-    <i class="material-icons" aria-hidden="true">favorite</i>
-    {$wishlistsTitlePage}
-  </span>
+<a
+  class="account-menu__link {if $urls.current_url === $url} account-menu__link--active{/if}"
+  id="wishlist_link"
+  href="{$url}"
+  {if $urls.current_url === $url}aria-current="page"{/if}
+>
+  <i class="account-menu__icon material-icons" aria-hidden="true">&#xE87D;</i>
+  {$wishlistsTitlePage}
 </a>

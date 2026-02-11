@@ -1,0 +1,48 @@
+$component-name: product-pack;
+
+.#{$component-name} {
+  &__list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+
+  &__link {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    border: 1px var(--bs-border-color) solid;
+    border-radius: var(--bs-border-radius);
+
+    &:hover {
+      background-color: var(--bs-tertiary-bg);
+    }
+  }
+
+  &__image {
+    border-radius: var(--bs-border-radius-sm);
+
+    &-wrapper {
+      flex-basis: 4rem;
+      flex-shrink: 0;
+    }
+  }
+
+  &__name {
+    flex-grow: 1;
+    margin-block-end: 0;
+    line-height: 1.2;
+  }
+
+  &__price {
+    margin-block-end: 0;
+    font-weight: 600;
+    color: var(--bs-body-color);
+  }
+
+  &__quantity {
+    margin-block-end: 0;
+    color: var(--bs-body-color);
+  }
+}

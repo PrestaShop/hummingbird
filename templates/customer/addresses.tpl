@@ -9,21 +9,27 @@
 {/block}
 
 {block name='page_content'}
-  <div class="row addresses">
-    {foreach $customer.addresses as $address}
-      <div class="col-lg-4 col-md-6 mb-3 address__wrapper">
+  <p>{l s='Manage your addresses for billing and delivery to streamline your future orders.' d='Shop.Theme.Customeraccount'}</p>
+
+  <div class="addresses">
+    <div class="addresses__list">
+      {foreach $customer.addresses as $address}
         {block name='customer_address'}
           {include file='customer/_partials/block-address.tpl' address=$address}
         {/block}
-      </div>
-    {/foreach}
+      {/foreach}
 
-    <div class="col-lg-4 col-md-6 mb-3">
-      <a class="addresses__new-address" href="{$urls.pages.address}" data-link-action="add-address">
-        <span class="new-address__text">{l s='Add new address' d='Shop.Theme.Actions'}</span>
-        <div class="new-address__icon">
+      <a 
+        class="address-card address-card--add-address"
+        href="{$urls.pages.address}"
+        data-link-action="add-address"
+        role="button"
+      >
+        <span class="address-card__add-text">{l s='Add new address' d='Shop.Theme.Actions'}</span>
+
+        <span class="address-card__add-icon btn btn-square btn-square-icon btn-primary">
           <i class="material-icons" aria-hidden="true">&#xE145;</i>
-        </div>
+        </span>
       </a>
     </div>
   </div>

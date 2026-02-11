@@ -8,13 +8,12 @@ const initVisiblePassword = () => {
   const {visiblePassword: visiblePasswordMap} = Theme.selectors;
   const visiblePasswordList = document.querySelectorAll(visiblePasswordMap.visiblePassword);
 
-  visiblePasswordList.forEach((input: HTMLInputElement) => {
-    const button = input?.nextElementSibling as HTMLElement;
+  visiblePasswordList.forEach((button: HTMLButtonElement) => {
+    const input = button?.previousElementSibling as HTMLElement;
 
     button?.addEventListener('click', () => {
       const newType = input.getAttribute('type') === 'text' ? 'password' : 'text';
       input.setAttribute('type', newType);
-      button.setAttribute('aria-expanded', newType === 'text' ? 'true' : 'false');
 
       const icon = button.firstElementChild;
 

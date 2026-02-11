@@ -1,0 +1,15 @@
+$component-name: ps-customersignin;
+
+.#{$component-name} {
+  @include media-breakpoint-down(lg) {
+    .dropdown-toggle {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+#_mobile_ps_customersignin {
+  align-items: center;
+}

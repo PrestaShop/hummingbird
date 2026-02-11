@@ -1,0 +1,40 @@
+$component-name: (
+  left: left-block,
+  right: right-block,
+);
+
+.#{map-get($component-name, left)},
+.#{map-get($component-name, right)} {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--bs-border-color);
+
+  &__title {
+    @extend .h3;
+  }
+
+  &__title-link {
+    color: var(--bs-body-color);
+
+    &:hover {
+      color: var(--bs-link-hover-color);
+    }
+  }
+
+  &__content {
+    &--list {
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 0.25rem 0;
+    font-weight: 600;
+    color: var(--bs-body-color);
+
+    &:hover {
+      color: var(--bs-link-hover-color);
+    }
+  }
+}

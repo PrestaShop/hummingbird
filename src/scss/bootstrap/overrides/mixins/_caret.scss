@@ -1,0 +1,58 @@
+@mixin caret-down($width: $caret-width) {
+  content: "\e313";
+}
+
+@mixin caret-up($width: $caret-width) {
+  content: "\e316";
+}
+
+@mixin caret-end($width: $caret-width) {
+  content: "\e5cc";
+}
+
+@mixin caret-start($width: $caret-width) {
+  content: "\e5cb";
+}
+
+@mixin caret(
+  $direction: down,
+  $width: $caret-width,
+  $spacing: $caret-spacing,
+  $vertical-align: $caret-vertical-align
+) {
+  @if $enable-caret {
+    &::after {
+      @include material-icon($width);
+      margin: 0;
+      vertical-align: $vertical-align;
+      content: "";
+      border: none;
+      @if $direction == down {
+        @include caret-down($width);
+      } @else if $direction == up {
+        @include caret-up($width);
+      } @else if $direction == end {
+        @include caret-end($width);
+      }
+    }
+
+    @if $direction == start {
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        @include material-icon($width);
+        margin: 0;
+        vertical-align: $vertical-align;
+        content: "";
+        border: none;
+        @include caret-start($width);
+      }
+    }
+
+    &:empty::after {
+      margin-left: 0;
+    }
+  }
+}

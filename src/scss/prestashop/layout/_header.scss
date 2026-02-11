@@ -1,0 +1,11 @@
+// @TODO: refacto
+$component-name: header;
+
+.#{$component-name} {
+  position: sticky;
+  top: 0;
+  z-index: calc($zindex-sticky + 1);
+  width: 100%;
+  max-width: 100vw;
+  background-color: var(--bs-body-bg);
+}

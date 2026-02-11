@@ -15,4 +15,5 @@ export default {
   updatedProduct: 'updatedProduct',
   updateFacets: 'updateFacets',
   updatedDeliveryForm: 'updatedDeliveryForm',
+  combinationFocusRestored: 'combinationFocusRestored',
 };

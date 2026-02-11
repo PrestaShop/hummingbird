@@ -3,10 +3,11 @@
  * file that was distributed with this source code.
  *}
 <section class="contact-form">
-  <form action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if}>
+  <form class="form-validation" action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if}  data-ps-action="form-validation">
+
     {if $notifications}
-      <div class="alert {if $notifications.nw_error}alert-danger{else}alert-success{/if}">
-        <ul>
+      <div class="alert {if $notifications.nw_error}alert-danger{else}alert-success{/if}" role="alert" tabindex="0">
+        <ul class="mb-0">
           {foreach $notifications.messages as $notif}
             <li>{$notif}</li>
           {/foreach}
@@ -16,12 +17,13 @@
 
     {if !$notifications || $notifications.nw_error}
       <section class="form-fields">
-
-        <h1 class="h2 mb-4">{l s='Contact us' d='Shop.Theme.Global'}</h1>
+        {include file='components/page-title-section.tpl' title={l s='Contact us' d='Shop.Theme.Global'}}
 
         <div class="mb-3">
-          <label class="form-label">{l s='Subject' d='Shop.Forms.Labels'}</label>
-          <select name="id_contact" class="form-select">
+          <label class="form-label" for="contact-us-subject-select">
+            {l s='Subject' d='Shop.Forms.Labels'}
+          </label>
+          <select id="contact-us-subject-select" name="id_contact" class="form-select">
             {foreach from=$contact.contacts item=contact_elt}
               <option value="{$contact_elt.id_contact}">{$contact_elt.name}</option>
             {/foreach}
@@ -29,47 +31,61 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">{l s='Email address' d='Shop.Forms.Labels'}</label>
+          <label class="form-label required" for="contact-us-email-input">
+            {l s='Email address' d='Shop.Forms.Labels'}
+          </label>
           <input
+            id="contact-us-email-input"
             class="form-control"
             name="from"
             type="email"
             value="{$contact.email}"
             placeholder="{l s='your@email.com' d='Shop.Forms.Help'}"
+            autocomplete="email"
+            required
           >
         </div>
 
         {if $contact.orders}
           <div class="mb-3">
-            <label class="form-label">{l s='Order reference' d='Shop.Forms.Labels'}</label>
-            <select name="id_order" class="form-select">
+            <label class="form-label" for="contact-us-id-order-select">
+              {l s='Order reference' d='Shop.Forms.Labels'}
+            </label>
+            <select id="contact-us-id-order-select" name="id_order" class="form-select">
               <option value="">{l s='Select reference' d='Shop.Forms.Help'}</option>
               {foreach from=$contact.orders item=order}
                 <option value="{$order.id_order}">{$order.reference}</option>
               {/foreach}
             </select>
-            <span class="form-text">
-              {l s='optional' d='Shop.Forms.Help'}
-            </span>
+            <span class="form-text">{l s='optional' d='Shop.Forms.Help'}</span>
           </div>
         {/if}
 
         {if $contact.allow_file_upload}
           <div class="mb-3">
-            <label class="form-label" for="fileUpload">{l s='Attachment' d='Shop.Forms.Labels'}</label>
-            <input type="file" name="fileUpload" class="form-control">
-            <span class="form-text">
-              {l s='optional' d='Shop.Forms.Help'}
-            </span>
+            <label class="form-label" for="contact-us-attachment-input">
+              {l s='Attachment' d='Shop.Forms.Labels'}
+            </label>
+            <input
+              id="contact-us-attachment-input"
+              type="file"
+              name="fileUpload"
+              class="form-control"
+            >
+            <span class="form-text">{l s='optional' d='Shop.Forms.Help'}</span>
           </div>
         {/if}
 
         <div class="mb-3">
-          <label class="form-label">{l s='Message' d='Shop.Forms.Labels'}</label>
+          <label class="form-label required" for="contact-us-message-textarea">
+            {l s='Message' d='Shop.Forms.Labels'}
+          </label>
           <textarea
+            id="contact-us-message-textarea"
             class="form-control"
             name="message"
             placeholder="{l s='How can we help?' d='Shop.Forms.Help'}"
+            required
             rows="3"
           >{if $contact.message}{$contact.message}{/if}</textarea>
         </div>
@@ -82,15 +98,17 @@
 
       </section>
 
-      <footer class="form-footer">
-        <style>
-          input[name=url] {
-            display: none !important;
-          }
-        </style>
-        <input type="text" name="url" value=""/>
+      <footer class="buttons-wrapper buttons-wrapper--end">
+        <input type="hidden" name="url" value="" />
         <input type="hidden" name="token" value="{$token}" />
-        <input class="btn btn-primary" type="submit" name="submitMessage" value="{l s='Send' d='Shop.Theme.Actions'}">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          name="submitMessage"
+          data-ps-action="form-validation-submit"
+        >
+          {l s='Send your message' d='Shop.Theme.Actions'}
+        </button>
       </footer>
     {/if}
 

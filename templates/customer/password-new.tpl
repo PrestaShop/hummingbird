@@ -11,10 +11,10 @@
 {/block}
 
 {block name='page_content'}
-  <form action="{$urls.pages.password}" method="post" class="form-validation" novalidate>
+  <form action="{$urls.pages.password}" method="post" data-ps-action="form-validation">
     {if count($errors)}
       <div class="alert alert-danger" role="alert">
-        <ul>
+        <ul class="mb-0">
           {foreach $errors as $error}
             <li>{$error}</li>
           {/foreach}
@@ -32,36 +32,38 @@
       </div>
       <div class="mb-3">
         <label class="form-label">{l s='New password' d='Shop.Forms.Labels'}</label>
-        <div class="input-group password-field js-parent-focus">
-          <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="passwd" value="" autocomplete="new-password">
+        <div class="input-group password-field">
+          <input class="form-control" id="field-password" type="password" data-validate="isPasswd" name="passwd" value="" autocomplete="new-password">
           <button
             class="btn btn-primary"
             type="button"
-            data-action="show-password"
+            data-ps-action="toggle-password"
             data-text-show="{l s='Show Password' d='Shop.Theme.Actions'}"
             data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
             aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
-            aria-expanded="false"
+            aria-controls="field-password"
+            aria-live="polite"
           >
-            <i class="material-icons">visibility</i>
+            <i class="material-icons">&#xE8F4;</i>
           </button>
         </div>
       </div>
       <div class="mb-3">
         <label class="form-label">{l s='Confirmation' d='Shop.Forms.Labels'}</label>
-        <div class="input-group password-field js-parent-focus">
-        <input class="form-control js-child-focus js-visible-password" type="password" data-validate="isPasswd" name="confirmation" value="" autocomplete="new-password">
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-action="show-password"
-            data-text-show="{l s='Show Password' d='Shop.Theme.Actions'}"
-            data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
-            aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
-            aria-expanded="false"
-          >
-            <i class="material-icons">visibility</i>
-          </button>
+        <div class="input-group password-field">
+        <input class="form-control" id="field-confirmation-passwd" type="password" data-validate="isPasswd" name="confirmation" value="" autocomplete="new-password">
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-ps-action="toggle-password"
+          data-text-show="{l s='Show Password' d='Shop.Theme.Actions'}"
+          data-text-hide="{l s='Hide Password' d='Shop.Theme.Actions'}"
+          aria-label="{l s='Show Password' d='Shop.Theme.Actions'}"
+          aria-controls="field-confirmation-passwd"
+          aria-pressed="false"
+        >
+          <i class="material-icons">&#xE8F4;</i>
+        </button>
         </div>
       </div>
 
@@ -69,7 +71,7 @@
       <input type="hidden" name="id_customer" id="id_customer" value="{$id_customer}">
       <input type="hidden" name="reset_token" id="reset_token" value="{$reset_token}">
 
-      <button class="btn btn-primary" type="submit" name="submit">
+      <button class="btn btn-primary" type="submit" name="submit" data-ps-action="form-validation-submit">
         {l s='Change Password' d='Shop.Theme.Actions'}
       </button>
     </section>
@@ -79,8 +81,10 @@
 {block name='page_footer'}
   <hr>
 
-  <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-unstyle btn-with-icon">
-    <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</i>
-    <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
-  </a>
+  <div class="buttons-wrapper">
+    <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-basic">
+      <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
+      <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
+    </a>
+  </div>
 {/block}

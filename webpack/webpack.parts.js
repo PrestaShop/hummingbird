@@ -19,12 +19,18 @@ exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
   },
   devMiddleware: {
     publicPath,
-    writeToDisk: (filePath) => !(/hot-update/.test(filePath)),
+    writeToDisk: (filePath) => !(/\.hot-update\./.test(filePath)),
   },
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+
+    // 🚫 Disable browser caching
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0',
+    'Surrogate-Control': 'no-store',
   },
   hot: true,
   liveReload: true,
@@ -34,13 +40,12 @@ exports.configureDevServer = (serverAddress, publicPath, port, siteURL) => ({
     '../../modules/**/*.css',
   ],
   port,
-  proxy: {
-    '**': {
-      target: siteURL,
-      secure: false,
-      changeOrigin: true,
-    },
-  },
+  proxy: [{
+    context: '**',
+    target: siteURL,
+    secure: false,
+    changeOrigin: true,
+  }],
   static: {
     publicPath,
   },

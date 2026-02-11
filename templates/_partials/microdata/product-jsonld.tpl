@@ -34,17 +34,16 @@
     {if !empty($product.cover)}"image" :"{$product.cover.bySize.home_default.url}",{/if}
     "sku": "{if $product.reference}{$product.reference}{else}{$product.id}{/if}",
     "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}"
-    {if $product.ean13},"gtin13": "{$product.ean13}"
-    {elseif $product.upc},"gtin13": "{$product.upc}"
-    {/if}
-    {if $product_manufacturer->name},
+    {if $product.ean13},"gtin": "{$product.ean13}"{/if}
+    {if $product.upc},"gtin12": "{$product.upc}"{/if}
+    {if isset($product_manufacturer) && $product_manufacturer->name},
     "brand": {
       "@type": "Brand",
       "name": "{$product_manufacturer->name|escape:'html':'UTF-8'}"
     }
     {elseif $shop.name},
     "brand": {
-      "@type": "Thing",
+      "@type": "Organization",
       "name": "{$shop.name}"
     }
     {/if}
@@ -67,7 +66,6 @@
     "offers": {
       "@type": "Offer",
       "priceCurrency": "{$currency.iso_code}",
-      "name": "{$product.name|strip_tags:false}",
       "price": "{$product.price_amount}",
       "url": "{$product.url}",
       "priceValidUntil": "{($smarty.now + (int) (60*60*24*15))|date_format:"%Y-%m-%d"}",
@@ -78,14 +76,7 @@
           {/foreach}
         ]{/strip},
       {/if}
-      "sku": "{if $product.reference}{$product.reference}{else}{$product.id}{/if}",
-      "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}",
-      {if $product.ean13}"gtin13": "{$product.ean13}",{elseif $product.upc}"gtin13": "0{$product.upc}",{/if}
-      {if $product.condition == 'new'}"itemCondition": "https://schema.org/NewCondition",{/if}
-      {if $product.show_condition > 0}
-        {if $product.condition == 'used'}"itemCondition": "https://schema.org/UsedCondition",{/if}
-        {if $product.condition == 'refurbished'}"itemCondition": "https://schema.org/RefurbishedCondition",{/if}
-      {/if}
+      {if !empty($product.show_condition) && !empty($product.condition)}"itemCondition": "{$product.condition.schema_url}",{/if}
       "availability": "{$product.seo_availability}",
       "seller": {
         "@type": "Organization",

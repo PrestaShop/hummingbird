@@ -17,30 +17,38 @@
     {include file='_partials/notifications.tpl'}
   {/block}
 
-  <div class="container">
-    <div class="row">
-
-      <div class="cart-grid-body tab-content col-lg-7">
-        {block name='checkout_process'}
-          {render file='checkout/checkout-process.tpl' ui=$checkout_process}
-        {/block}
-      </div>
-      <div class="cart-grid-right col-lg-5">
-        <div class="accordion">
-          <div class="accordion-item bg-transparent">
-            <button class="accordion-button collapsed px-0 mb-3 d-flex d-lg-none bg-transparent" type="button" data-bs-target="#js-checkout-summary" data-bs-toggle="collapse" aria-expanded="false">
-              {l s='Order summary' d='Shop.Theme.Checkout'}
-            </button>
-
-            {block name='cart_summary'}
-              {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
+  <div class="columns-container container">
+    <div id="center-column" class="center-column page page--full-width">
+      <div class="checkout-grid row">
+        <div class="checkout-grid__content col-lg-8">
+          <div class="tab-content">
+            {block name='checkout_process'}
+              {render file='checkout/checkout-process.tpl' ui=$checkout_process}
             {/block}
           </div>
         </div>
 
-        <hr />
+        <div class="checkout-grid__aside col-lg-4">
+          <div class="checkout-grid__aside-wrapper">
+            <div class="checkout__summary-accordion accordion">
+              <div class="checkout__summary-accordion-item accordion-item">
+                <div class="checkout__summary-accordion-header accordion-header">
+                  <button class="accordion-button" type="button" data-bs-target="#js-checkout-summary" data-bs-toggle="collapse" aria-expanded="true">
+                    {l s='Order summary' d='Shop.Theme.Checkout'}
+                  </button>
+                </div>
 
-        {hook h='displayReassurance'}
+                {block name='cart_summary'}
+                  <div class="checkout__summary-accordion-wrapper cart-summary js-checkout-summary">
+                    {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
+                  </div>
+                {/block}
+              </div>
+            </div>
+
+            {hook h='displayReassurance'}
+          </div>
+        </div>
       </div>
     </div>
   </div>

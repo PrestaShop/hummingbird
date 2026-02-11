@@ -1,0 +1,5 @@
+// Add Custom Bootstrap CSS Variables
+:root {
+  --#{$prefix}transition-default: #{$transition-base};
+  --#{$prefix}box-shadow-md: #{$box-shadow-md};
+}

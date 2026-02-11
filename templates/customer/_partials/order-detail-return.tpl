@@ -3,280 +3,211 @@
  * file that was distributed with this source code.
  *}
 {block name='order_products_table'}
-  <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post">
+  <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post" data-ps-action="form-validation">
+    <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Catalog'}" aria-describedby="order_products_heading">
+      <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
+        <div class="grid-table__header" role="row">
+          <span class="grid-table__cell" role="columnheader" aria-label="{l s='Select product to return' d='Shop.Theme.Catalog'}">
+            <input class="form-check-input" type="checkbox" data-ps-ref="select-all-products" aria-label="{l s='Select all products' d='Shop.Theme.Catalog'}">
+          </span>
+          <span class="grid-table__cell" role="columnheader">{l s='Product' d='Shop.Theme.Catalog'}</span>
+          <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
+          <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Returned' d='Shop.Theme.Catalog'}</span>
+          <span class="grid-table__cell grid-table__cell--center" role="columnheader">{l s='Unit price' d='Shop.Theme.Catalog'}</span>
+          <span class="grid-table__cell grid-table__cell--right" role="columnheader">{l s='Total price' d='Shop.Theme.Catalog'}</span>
+        </div>
 
-    <div class="table-wrapper d-none d-sm-block d-md-block">
-      <table id="order-products" class="table order-return">
-        <thead class="thead-default">
-          <tr>
-            <th class="head-checkbox"><input type="checkbox" /></th>
-            <th>{l s='Product' d='Shop.Theme.Catalog'}</th>
-            <th>{l s='Quantity' d='Shop.Theme.Catalog'}</th>
-            <th>{l s='Returned' d='Shop.Theme.Customeraccount'}</th>
-            <th>{l s='Unit price' d='Shop.Theme.Catalog'}</th>
-            <th>{l s='Total price' d='Shop.Theme.Catalog'}</th>
-          </tr>
-        </thead>
         {foreach from=$order.products item=product name=products}
-          <tr>
-            <td>
-              {if !$product.customizations}
-                <span id="_desktop_product_line_{$product.id_order_detail}">
-                  <input type="checkbox" id="cb_{$product.id_order_detail}"
-                    name="ids_order_detail[{$product.id_order_detail}]" value="{$product.id_order_detail}">
+          <div class="grid-table__row {if $smarty.foreach.products.last}rounded-bottom-0{/if}" role="row">
+            <span class="grid-table__cell" role="cell" data-ps-label="{l s='Select' d='Shop.Theme.Catalog'}">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="cb_{$product.id_order_detail}"
+                data-ps-ref="select-product"
+                name="ids_order_detail[{$product.id_order_detail}]"
+                value="{$product.id_order_detail}"
+                {if $product.qty_returned >= $product.quantity}disabled{/if}
+                aria-label="{$product.name}"
+              >
+            </span>
+
+            <span class="grid-table__cell order-product" role="cell" data-ps-label="{l s='Product' d='Shop.Theme.Catalog'}">
+              <span class="order-product__infos">
+                <span class="order-product__image">
+                  <a href="{$link->getProductLink($product.id_product)}">
+                    {if $product.cover}
+                      <picture>
+                        {if isset($product.cover.bySize.default_xs.sources.avif)}
+                          <source
+                            srcset="
+                              {$product.cover.bySize.default_xs.sources.avif},
+                              {$product.cover.bySize.default_md.sources.avif} 2x",
+                            type="image/avif"
+                          >
+                        {/if}
+
+                        {if isset($product.cover.bySize.default_xs.sources.webp)}
+                          <source
+                            srcset="
+                              {$product.cover.bySize.default_xs.sources.webp},
+                              {$product.cover.bySize.default_md.sources.webp} 2x"
+                            type="image/webp"
+                          >
+                        {/if}
+
+                        <img
+                          class="order-product__img img-fluid"
+                          srcset="
+                            {$product.cover.bySize.default_xs.url},
+                            {$product.cover.bySize.default_md.url} 2x"
+                          width="{$product.cover.bySize.default_xs.width}"
+                          height="{$product.cover.bySize.default_xs.height}"
+                          loading="lazy"
+                          alt="{$product.cover.legend}"
+                          title="{$product.cover.legend}"
+                        >
+                      </picture>
+                    {else}
+                      <picture>
+                        {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+                          <source
+                            srcset="
+                              {$urls.no_picture_image.bySize.default_xs.sources.avif},
+                              {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
+                            type="image/avif"
+                          >
+                        {/if}
+
+                        {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+                          <source
+                            srcset="
+                              {$urls.no_picture_image.bySize.default_xs.sources.webp},
+                              {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
+                            type="image/webp"
+                          >
+                        {/if}
+
+                        <img
+                          class="order-product__img img-fluid"
+                          srcset="
+                            {$urls.no_picture_image.bySize.default_xs.url},
+                            {$urls.no_picture_image.bySize.default_md.url} 2x"
+                          width="{$urls.no_picture_image.bySize.default_xs.width}"
+                          height="{$urls.no_picture_image.bySize.default_xs.height}"
+                          loading="lazy"
+                        >
+                      </picture>
+                    {/if}
+                  </a>
                 </span>
-              {else}
-                {foreach $product.customizations  as $customization}
-                  <span id="_desktop_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}">
-                    <input type="checkbox" id="cb_{$product.id_order_detail}"
-                      name="customization_ids[{$product.id_order_detail}][]" value="{$customization.id_customization}">
-                  </span>
-                {/foreach}
-              {/if}
-            </td>
-            <td>
-              <strong>{$product.name}</strong><br />
-              {if $product.product_reference}
-                {l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}<br />
-              {/if}
-              {if $product.customizations}
-                {foreach from=$product.customizations item="customization"}
-                  <div class="customization">
-                    <a href="#" data-bs-toggle="modal"
-                      data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
-                  </div>
-                  <div id="_desktop_product_customization_modal_wrapper_{$customization.id_customization}">
-                    {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
-                  </div>
-                {/foreach}
-              {/if}
-            </td>
-            <td class="qty">
-              {if !$product.customizations}
-                <div class="current">
+
+                <span class="order-product__content">
+                  <a class="order-product__name" href="{$link->getProductLink($product.id_product)}">
+                    {$product.name}
+                  </a>
+
+                  {if $product.product_reference}
+                    <small class="text-secondary">
+                      {l s='Reference: %reference%' sprintf=['%reference%' => $product.product_reference] d='Shop.Theme.Catalog'}
+                    </small>
+                  {/if}
+
+                  {if $product.customizations}
+                    {foreach from=$product.customizations item="customization"}
+                      <div id="product_customization_modal_wrapper_{$customization.id_customization}">
+                        {include file='catalog/_partials/customization-modal.tpl' customization=$customization}
+                      </div>
+
+                      <div class="customization">
+                        <a class="btn btn-sm btn-link p-0" href="#" data-bs-toggle="modal"
+                          data-bs-target="#product-customizations-modal-{$customization.id_customization}">
+                          <i class="material-icons">&#xE8F4;</i>
+                          {l s='Product customization' d='Shop.Theme.Catalog'}
+                        </a>
+                      </div>
+                    {/foreach}
+                  {/if}
+                </span>
+              </span>
+            </span>
+
+            <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Quantity' d='Shop.Theme.Catalog'}">
+              <span class="grid-table__cell-group grid-table__cell-group--sm grid-table__cell-group--inline">
+                <span class="current">
+                  <span class="visually-hidden">{l s='Available quantity to return:' d='Shop.Theme.Catalog'}</span>
                   {$product.quantity}
-                </div>
-                {if $product.quantity> $product.qty_returned}
-                  <div class="select" id="_desktop_return_qty_{$product.id_order_detail}">
-                    <select name="order_qte_input[{$product.id_order_detail}]" class="form-select">
+                </span>
+                {if $product.quantity > $product.qty_returned}
+                  <span class="select" id="_desktop_return_qty_{$product.id_order_detail}">
+                    <select name="order_qte_input[{$product.id_order_detail}]" class="form-select" aria-label="{l s='Select quantity to return' d='Shop.Theme.Catalog'}">
                       {section name=quantity start=1 loop=$product.quantity+1-$product.qty_returned}
                         <option value="{$smarty.section.quantity.index}">{$smarty.section.quantity.index}</option>
                       {/section}
                     </select>
-                  </div>
-                {/if}
-              {else}
-                {foreach $product.customizations as $customization}
-                  <div class="current">
-                    {$customization.quantity}
-                  </div>
-                  <div class="select" id="_desktop_return_qty_{$product.id_order_detail}_{$customization.id_customization}">
-                    <select name="customization_qty_input[{$customization.id_customization}]" class="form-select">
-                      {section name=quantity start=1 loop=$customization.quantity+1}
-                        <option value="{$smarty.section.quantity.index}">{$smarty.section.quantity.index}</option>
-                      {/section}
-                    </select>
-                  </div>
-                {/foreach}
-                <div></div>
-              {/if}
-            </td>
-            <td class="text-xs-end">{$product.qty_returned}</td>
-            <td class="text-xs-end">{$product.price}</td>
-            <td class="text-xs-end">{$product.total}</td>
-          </tr>
-        {/foreach}
-        <tfoot>
-          {foreach $order.subtotals as $line}
-            {if $line.value}
-              <tr class="text-xs-end line-{$line.type}">
-                <td colspan="5">{$line.label}</td>
-                <td colspan="2">{$line.value}</td>
-              </tr>
-            {/if}
-          {/foreach}
-          <tr class="text-xs-riendght line-{$order.totals.total.type}">
-            <td colspan="5">{$order.totals.total.label}</td>
-            <td colspan="2">{$order.totals.total.value}</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-
-    <div class="order__items table-wrapper d-block d-sm-block d-md-none box">
-      {foreach from=$order.products item=product}
-        <div class="order__item">
-          <div class="row">
-            <div class="order__item__header col-12 row">
-              <div class="col-2 order__item__checkbox checkbox">
-                {if !$product.customizations}
-                  <span id="_mobile_product_line_{$product.id_order_detail}"></span>
-                {else}
-                  {foreach $product.customizations  as $customization}
-                    <span
-                      id="_mobile_product_customization_line_{$product.id_order_detail}_{$customization.id_customization}"></span>
-                  {/foreach}
-                {/if}
-              </div>
-              <div class="col-4">
-                {if $product.cover}
-                  <picture>
-                    {if isset($product.cover.bySize.default_xs.sources.avif)}
-                      <source 
-                        srcset="
-                          {$product.cover.bySize.default_xs.sources.avif},
-                          {$product.cover.bySize.default_m.sources.avif} 2x",
-                        type="image/avif"
-                      >
-                    {/if}
-
-                    {if isset($product.cover.bySize.default_xs.sources.webp)}
-                      <source 
-                        srcset="
-                          {$product.cover.bySize.default_xs.sources.webp},
-                          {$product.cover.bySize.default_m.sources.webp} 2x"
-                        type="image/webp"
-                      >
-                    {/if}
-
-                    <img
-                      class="order-products__image card-img-top w-auto"
-                      srcset="
-                        {$product.cover.bySize.default_xs.url},
-                        {$product.cover.bySize.default_m.url} 2x"
-                      width="{$product.cover.bySize.default_xs.width}"
-                      height="{$product.cover.bySize.default_xs.height}"
-                      loading="lazy"
-                      alt="{$product.cover.legend}"
-                      title="{$product.cover.legend}"
-                    >
-                  </picture>
-                {else}
-                  <picture>
-                    {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
-                      <source 
-                        srcset="
-                          {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                          {$urls.no_picture_image.bySize.default_m.sources.avif} 2x"
-                        type="image/avif"
-                      >
-                    {/if}
-
-                    {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
-                      <source 
-                        srcset="
-                          {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                          {$urls.no_picture_image.bySize.default_m.sources.webp} 2x"
-                        type="image/webp"
-                      >
-                    {/if}
-
-                    <img
-                      class="order-products__image card-img-top w-auto"
-                      srcset="
-                        {$urls.no_picture_image.bySize.default_xs.url},
-                        {$urls.no_picture_image.bySize.default_m.url} 2x"
-                      width="{$urls.no_picture_image.bySize.default_xs.width}"
-                      height="{$urls.no_picture_image.bySize.default_xs.height}"
-                      loading="lazy"
-                    >
-                  </picture>
-                {/if}
-              </div>
-
-              <div class="col-6">
-                <p class="order__item__name fw-bold">{$product.name}</p>
-                {if $product.product_reference}
-                  <div class="order__item__ref">{l s='Reference' d='Shop.Theme.Catalog'}: {$product.product_reference}</div>
-                {/if}
-                {if $product.customizations}
-                  {foreach $product.customizations as $customization}
-                    <div class="customization">
-                      <a href="#" data-bs-toggle="modal"
-                        data-bs-target="#product-customizations-modal-{$customization.id_customization}">{l s='Product customization' d='Shop.Theme.Catalog'}</a>
-                    </div>
-                    <div id="_mobile_product_customization_modal_wrapper_{$customization.id_customization}">
-                    </div>
-                  {/foreach}
-                {/if}
-              </div>
-            </div>
-            <div class="col-12 order__item__qty">
-              <div class="order__item__line row">
-                <span class="order__item__label col">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
-                <span class="order__item__value col text-end">
-                  {if $product.customizations}
-                    {foreach $product.customizations as $customization}
-                      {$customization.quantity}
-                      <div class="mt-2" id="_mobile_return_qty_{$product.id_order_detail}_{$customization.id_customization}"></div>
-                    {/foreach}
-                  {else}
-                    {$product.quantity}
-                    {if $product.quantity> $product.qty_returned}
-                      <div class="mt-2" id="_mobile_return_qty_{$product.id_order_detail}"></div>
-                    {/if}
-                  {/if}
-                </span>
-              </div>
-              {if $product.qty_returned > 0}
-                <div class="order__item__line row">
-                  <span class="order__item__label col">{l s='Returned' d='Shop.Theme.Customeraccount'}</span>
-                  <span class="order__item__value col text-end">
-                    {$product.qty_returned}
                   </span>
-                </div>
-              {/if}
-              <div class="order__item__line row">
-                <span class="order__item__label col">{l s='Unit price' d='Shop.Theme.Catalog'}</span>
-                <span class="order__item__value col text-end">
-                  {$product.price}
-                </span>
-              </div>
-              <div class="order__item__line row">
-                <span class="order__item__label col">{l s='Total price' d='Shop.Theme.Catalog'}</span>
-                <span class="order__item__value col text-end">
-                  {$product.total}
-                </span>
-              </div>
-            </div>
+                {/if}
+              </span>
+            </span>
+
+            <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Returned' d='Shop.Theme.Catalog'}">{$product.qty_returned}</span>
+
+            <span class="grid-table__cell grid-table__cell--center" role="cell" data-ps-label="{l s='Unit price' d='Shop.Theme.Catalog'}">{$product.price}</span>
+
+            <span class="grid-table__cell grid-table__cell--right" role="cell" data-ps-label="{l s='Total price' d='Shop.Theme.Catalog'}">{$product.total}</span>
           </div>
-        </div>
-      {/foreach}
-    </div>
-    <div class="order-totals d-none d-sm-block d-md-none box">
-      {foreach $order.subtotals as $line}
-        {if $line.value}
-          <div class="order-total row">
-            <div class="col-xs-8"><strong>{$line.label}</strong></div>
-            <div class="col-xs-4 text-xs-end">{$line.value}</div>
-          </div>
-        {/if}
-      {/foreach}
-      <div class="order-total row">
-        <div class="col-xs-8"><strong>{$order.totals.total.label}</strong></div>
-        <div class="col-xs-4 text-xs-end">{$order.totals.total.value}</div>
+        {/foreach}
       </div>
     </div>
-    <hr>
-    <div class="box">
-      <header>
-        <h3 class="h3">{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h3>
-        <p>
-          {l s='If you wish to return one or more products, please mark the corresponding boxes and provide an explanation for the return. When complete, click the button below.' d='Shop.Theme.Customeraccount'}
-        </p>
-      </header>
-      <section class="form-fields">
-        <div class="mb-3">
-          <textarea cols="67" rows="3" name="returnText" class="form-control"></textarea>
+
+    <div class="grid-table grid-table--collapse" role="table" aria-label="{l s='Order totals' d='Shop.Theme.Catalog'}">
+      <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
+        {foreach $order.subtotals as $line}
+          {if $line.value}
+            <div class="grid-table__row" role="row">
+              <span class="grid-table__cell grid-table__cell--label-value" role="cell" data-ps-label="{$line.label}">
+                <span class="visually-hidden">{l s='%label%' d='Shop.Theme.Catalog' sprintf=['%label%' => $line.label]}</span>
+                {$line.value}
+              </span>
+            </div>
+          {/if}
+        {/foreach}
+
+        <div class="grid-table__row" role="row">
+          <span class="grid-table__cell grid-table__cell--label-value" role="cell" data-ps-label="{$order.totals.total.label}">
+            <span class="visually-hidden">{l s='Total price' d='Shop.Theme.Catalog'}</span>
+            {$order.totals.total.value}
+          </span>
         </div>
-      </section>
-      <footer class="form-footer">
+      </div>
+    </div>
+
+    <hr class="order-separator">
+
+    <section class="order-merchandise-return">
+      <h3 class="h3">{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h3>
+
+      <label class="form-label required" for="return_notes">{l s='Return notes' d='Shop.Forms.Labels'}</label>
+
+      <textarea
+        rows="3"
+        name="returnText"
+        id="return_notes"
+        class="form-control required"
+        aria-describedby="order_merchandise_return"
+        required
+      ></textarea>
+
+      <p class="form-text" id="order_merchandise_return">
+        {l s='If you wish to return one or more products, please mark the corresponding boxes and provide an explanation for the return. When complete, click the button below.' d='Shop.Theme.Customeraccount'}
+      </p>
+
+      <div class="buttons-wrapper buttons-wrapper--end mt-3">
         <input type="hidden" name="id_order" value="{$order.details.id}">
-        <button class="form-control-submit btn btn-primary" type="submit" name="submitReturnMerchandise">
+        <button class="btn btn-primary" type="submit" name="submitReturnMerchandise" data-ps-action="form-validation-submit">
           {l s='Request a return' d='Shop.Theme.Customeraccount'}
         </button>
       </footer>
     </div>
-
   </form>
 {/block}

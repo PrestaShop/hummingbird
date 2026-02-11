@@ -15,4 +15,12 @@ declare type EVENTS = {
   updatedProduct: string,
   updateFacets: string,
   updatedDeliveryForm: string,
+  combinationFocusRestored: string,
+}
+
+declare type UpdateCartEvent = {
+  resp: {
+    quantity: number;
+    [key: string]: unknown;
+  };
 }

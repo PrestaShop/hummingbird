@@ -1,0 +1,356 @@
+/* PrestaShop license placeholder */
+
+// Icons
+.product-comment-list-item .material-icons[data-icon]::before {
+  content: attr(data-icon);
+}
+
+// Comment modal
+.product-comment-modal {
+  .modal-header {
+    .material-icons {
+      &.check {
+        color: var(--bs-success);
+      }
+    }
+  }
+
+  input[name="comment_title"].error,
+  input[name="customer_name"].error,
+  textarea.error {
+    @extend .is-invalid;
+  }
+
+  input[name="comment_title"].valid,
+  input[name="customer_name"].valid,
+  textarea.valid {
+    @extend .is-valid;
+  }
+
+  #ratingNotChosen {
+    @extend .text-danger;
+    @extend .form-text;
+  }
+}
+
+// Average grade
+.comments-note {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.average-grade {
+  padding-block-start: 0.125rem;
+  color: var(--bs-secondary-color);
+}
+
+// Specific product miniature styles
+.product-miniature {
+  .product-list-review {
+    display: none;
+    align-items: center;
+    justify-content: start;
+    padding: 0;
+
+    .product-list-comments-number {
+      padding-block-start: 0.125rem;
+      font-size: 0.75rem;
+      line-height: 1;
+      color: var(--bs-secondary-color);
+    }
+  }
+}
+
+// Criterions list
+#criterions_list {
+  .criterion-rating {
+    display: block;
+
+    label {
+      display: block;
+    }
+
+    .star-content {
+      cursor: pointer;
+    }
+  }
+}
+
+// Stars selector
+.stars-selector {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  align-items: center;
+  padding: 0;
+
+  &:has(.stars-selector__input:focus-visible) {
+    border-radius: var(--bs-border-radius-sm);
+    box-shadow: $form-check-input-focus-box-shadow;
+  }
+
+  &:not(:has(.stars-selector__input:checked)) {
+    .stars-selector__input-label {
+      background-position: 0 0;
+    }
+  }
+
+  .stars-selector__input {
+    &:focus-visible + .stars-selector__input-label {
+      border-radius: var(--bs-border-radius-sm);
+      outline: 0.125rem solid var(--bs-primary);
+    }
+
+    &:checked {
+      + .stars-selector__input-label ~ .stars-selector__input-label {
+        background-position: 0 0;
+      }
+    }
+  }
+
+  .stars-selector__input-label {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    background: url("../img/stars.png") no-repeat 100% 0 transparent;
+  }
+}
+
+// Specific product page styles
+.page-product {
+  .product-comments-additional-info {
+    display: flex;
+    flex: 0 0 0;
+    margin: 0;
+
+    .link-comment {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .comments-note {
+      margin: 0;
+    }
+  }
+
+  // Comments list header
+  #product-comments-list-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    padding: 0;
+    margin-block-end: 1rem;
+
+    .section-title {
+      margin-block-end: 0;
+    }
+  }
+
+  // Comments list button group
+  #product-comments-list-btn-group {
+    margin-block-end: 1rem;
+  }
+
+  // Empty comments
+  #empty-product-comment {
+    text-align: left;
+  }
+
+  // Product comment list item
+  .product-comment-list-item {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+  }
+
+  // Footer comments
+  #product-comments-list-footer {
+    min-height: initial;
+  }
+
+  // Pagination
+  #product-comments-list-pagination {
+    .pagination {
+      flex-wrap: wrap;
+    }
+  }
+
+  // Add comment modal
+  #post-product-comment-modal {
+    .h3 {
+      font-size: inherit;
+    }
+
+    .product-cover {
+      width: auto;
+      height: auto;
+
+      img {
+        width: auto;
+        height: auto;
+      }
+    }
+  }
+
+  // Comments list
+  #product-comments-list {
+    margin-block-end: 1rem;
+
+    &.has-comments:empty {
+      &::before {
+        @extend .spinner-border;
+        @extend .text-primary-emphasis;
+        display: block;
+        margin: 1rem auto;
+        content: "";
+      }
+    }
+
+    .comment {
+      padding: 1rem 0;
+      margin: 0;
+      background-color: transparent;
+      border-bottom: 1px solid var(--bs-border-color);
+
+      &__top {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.25rem;
+        font-size: 0.875rem;
+      }
+
+      &__author {
+        color: var(--bs-body-color);
+      }
+
+      &__date {
+        color: var(--bs-secondary-color);
+      }
+
+      &__title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--bs-body-color);
+      }
+
+      &__text {
+        margin: 0 0 1rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        letter-spacing: initial;
+      }
+
+      &__infos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        height: auto;
+        min-height: inherit;
+        margin-bottom: 1rem;
+
+        .grade-stars {
+          margin: 0 0 0 calc(-1 * 0.25rem);
+
+          .star-content {
+            top: 0;
+            margin: 0;
+          }
+        }
+      }
+
+      &__buttons {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        .material-icons {
+          font-size: 1.25rem;
+        }
+
+        a {
+          display: inline-flex;
+          gap: 0.25rem;
+          align-items: center;
+          color: var(--bs-secondary-color);
+          transition: var(--bs-transition-default);
+
+          &:hover {
+            color: var(--bs-link-hover-color);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Star rating
+.star-content {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0;
+
+  .star,
+  .star-on,
+  .star-hover {
+    display: block;
+    flex: auto;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 0.125rem;
+    background: url("../img/stars.png") no-repeat 0 0 transparent;
+  }
+
+  .star-on,
+  .star-hover {
+    background-position: -1.5rem 0;
+  }
+}
+
+.small-stars {
+  .star,
+  .star-on,
+  .star-hover {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.125rem;
+    background: url("../img/small_stars.png") no-repeat 0 0 transparent;
+  }
+
+  .star-on,
+  .star-hover {
+    background-position: -19px 0;
+  }
+}
+
+// Grade stars
+.grade-stars {
+  position: relative;
+  display: inline-block;
+  min-width: 7.5rem;
+  height: 1.25rem;
+
+  &.small-stars {
+    min-width: 6.25rem;
+    height: 1rem;
+  }
+}
+
+// Comments list on product page
+.product-comments-wrapper {
+  margin-block-end: 2rem;
+
+  @include media-breakpoint-up(xl) {
+    margin-block-end: 3rem;
+  }
+}

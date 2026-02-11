@@ -5,7 +5,7 @@
 {extends file='catalog/listing/product-list.tpl'}
 
 {block name='product_list'}
-  {include file='catalog/_partials/products.tpl' listing=$listing productClass='col-12 col-xs-6 col-md-4 col-xl-3'}
+  {include file='catalog/_partials/products.tpl' listing=$listing}
 {/block}
 
 {block name='error_content'}
@@ -13,15 +13,17 @@
 {/block}
 
 {block name='product_list_header'}
-  <h1 id="js-product-list-header" class="h4">
-    {if empty($search_string)}
-      {l s='Nothing to search for' d='Shop.Theme.Catalog'}
+  {if empty($search_string)}
+    {assign var='title' value={l s='Nothing to search for' d='Shop.Theme.Catalog'}}
+  {else}
+    {if $listing.products|count}
+      {assign var='title' value={l s='Search results for "%search_term%"' sprintf=['%search_term%' => $search_string] d='Shop.Theme.Catalog'}}
     {else}
-      {if $listing.products|count}
-        {l s='Search results for "%search_term%"' sprintf=['%search_term%' => $search_string] d='Shop.Theme.Catalog'}
-      {else}
-        {l s='No search results for "%search_term%"' sprintf=['%search_term%' => $search_string] d='Shop.Theme.Catalog'}
-      {/if}
+      {assign var='title' value={l s='No search results for "%search_term%"' sprintf=['%search_term%' => $search_string] d='Shop.Theme.Catalog'}}
     {/if}
-  </h1>
+  {/if}
+
+  <div id="js-product-list-header">
+    {include file='components/page-title-section.tpl' title=$title}
+  </div>
 {/block}

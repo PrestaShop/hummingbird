@@ -1,0 +1,113 @@
+$component-name: subcategory;
+
+.#{$component-name} {
+  margin-inline: calc(var(--bs-gutter-x) * -0.5);
+
+  &__link {
+    display: inline-block;
+    flex-shrink: 0;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
+    color: var(--bs-body-color);
+    word-break: break-word;
+    white-space: nowrap;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-pill);
+
+    &:hover {
+      color: var(--bs-link-hover-color);
+      background-color: var(--bs-tertiary-bg);
+    }
+
+    &--with-image {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.5rem;
+      font-size: 0.875rem;
+      white-space: normal;
+      border-radius: var(--bs-border-radius);
+    }
+  }
+
+  &__thumbnail {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: cover;
+    border-radius: var(--bs-border-radius);
+  }
+
+  &__list {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-block: 0.25rem 0.75rem;
+    padding-inline: 0.75rem;
+    margin-block-end: 1rem;
+    overflow-x: auto;
+
+    &--with-images {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      align-items: stretch;
+      overflow-x: visible;
+    }
+  }
+
+  @include media-breakpoint-up(xs) {
+    &__list {
+      &--with-images {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    margin-inline: 0;
+
+    &__link {
+      flex-shrink: initial;
+      white-space: normal;
+    }
+
+    &__thumbnail {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    &__list {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block: 0;
+      padding-inline: 0;
+      margin-block: 0 1.5rem;
+      margin-inline: 0;
+      overflow-x: visible;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    &__link {
+      &--with-image {
+        gap: 1rem;
+        padding: 0.75rem;
+        font-size: 1rem;
+      }
+    }
+
+    &__list {
+      &--with-images {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    &__list {
+      &--with-images {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  }
+}

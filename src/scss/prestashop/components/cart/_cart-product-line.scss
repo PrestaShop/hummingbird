@@ -1,0 +1,169 @@
+$component-name: product-line;
+
+.#{$component-name} {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+
+  &__image {
+    flex-shrink: 0;
+  }
+
+  &__img {
+    width: 6rem;
+    border-radius: var(--bs-border-radius);
+  }
+
+  &__content {
+    flex-grow: 1;
+
+    &-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-block-end: 0.5rem;
+    }
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-block-end: 1rem;
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+    color: var(--bs-body-color);
+
+    &:hover {
+      color: var(--bs-link-hover-color);
+    }
+  }
+
+  &__item {
+    &-availability-icon {
+      flex-shrink: 0;
+      font-size: 0.875rem;
+    }
+
+    &-availability-message {
+      display: inline-flex;
+      gap: 0.25rem;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+
+    &-price {
+      width: 100%;
+      font-weight: 600;
+    }
+
+    &-unit-price {
+      font-size: 0.875rem;
+      color: var(--bs-secondary-color);
+    }
+
+    &-regular-price {
+      font-size: 0.875rem;
+      color: var(--bs-tertiary-color);
+      text-decoration: line-through;
+    }
+
+    &-discount {
+      font-size: 0.875rem;
+    }
+
+    &-price-block {
+      width: 100%;
+    }
+
+    &--info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      align-items: center;
+    }
+
+    &--small-info {
+      font-size: 0.75rem;
+      color: var(--bs-tertiary-color);
+    }
+
+    &--availability {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+
+    &--prices {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 0.25rem;
+      column-gap: 0.5rem;
+      align-items: center;
+    }
+  }
+
+  &__quantity-button {
+    max-width: 9rem;
+
+    .spinner-border {
+      margin: 0.25rem;
+    }
+  }
+
+  &__quantity-input {
+    max-width: initial;
+  }
+
+  &__price {
+    font-weight: 600;
+  }
+
+  &__gift {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+    font-weight: 600;
+
+    &-icon {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    grid-column: 1 / -1;
+  }
+
+  @include media-breakpoint-up(sm) {
+    &__content {
+      display: grid;
+      flex-grow: 1;
+      grid-template-columns: minmax(0, 1fr) 9rem;
+      gap: 1.5rem;
+
+      &-right,
+      &-left {
+        margin-block-end: 0;
+      }
+    }
+
+    &__quantity-button {
+      max-width: 100%;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &__img {
+      width: 7rem;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    &__img {
+      width: 8rem;
+    }
+  }
+}

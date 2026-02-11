@@ -1,5 +1,4 @@
-import {addons} from '@storybook/addons';
-import {themes} from '@storybook/theming';
+import { addons } from '@storybook/preview-api';
 import psTheme from './ps-theme';
 
 addons.setConfig({

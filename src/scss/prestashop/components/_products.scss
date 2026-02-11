@@ -1,0 +1,137 @@
+$component-name: products;
+
+.layout-full-width {
+  .#{$component-name} {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @include media-breakpoint-up(xs) {
+    .#{$component-name} {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .#{$component-name} {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+
+.layout-left-column,
+.layout-right-column {
+  .#{$component-name} {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @include media-breakpoint-up(xs) {
+    .#{$component-name} {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .#{$component-name} {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}
+
+.layout-both-columns {
+  .#{$component-name} {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @include media-breakpoint-up(xs) {
+    .#{$component-name} {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    .#{$component-name} {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .#{$component-name} {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+.#{$component-name} {
+  &__selection {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1rem;
+    column-gap: 1.5rem;
+    align-items: center;
+    margin-block-end: 1.5rem;
+  }
+
+  &__count {
+    color: var(--bs-secondary-color);
+  }
+
+  &__sort {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    order: -1;
+
+    &-label {
+      display: none;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    &-dropdown {
+      flex-grow: 1;
+    }
+
+    &-dropdown-button {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  &__filter-button {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  &__pagination {
+    margin-block: 1.5rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__filter-button {
+      display: none;
+    }
+
+    &__sort {
+      &-label {
+        display: flex;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    &__selection {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__sort {
+      order: initial;
+    }
+  }
+}

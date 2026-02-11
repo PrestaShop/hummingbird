@@ -3,7 +3,8 @@
  * file that was distributed with this source code.
  */
 
-import SelectorsMap from './constants/selectors-map';
+import SelectorsMap from '@constants/selectors-map';
+import debounce from '@helpers/debounce';
 
 type ProductSlideEvent = Event & {to: number};
 
@@ -11,12 +12,19 @@ export default () => {
   const {prestashop, Theme: {events}} = window;
 
   const initProductSlide = () => {
-    document.querySelector(SelectorsMap.product.carousel)?.addEventListener('slide.bs.carousel', onProductSlide);
+    document.querySelectorAll(SelectorsMap.product.carousel)?.forEach((carousel) => {
+      carousel.addEventListener('slide.bs.carousel', onProductSlide);
+    });
   };
 
   function onProductSlide(event: ProductSlideEvent): void {
-    document.querySelectorAll(SelectorsMap.product.thumbnail).forEach((e) => e.classList.remove('active'));
-    document.querySelector(SelectorsMap.product.activeThumbail(event.to))?.classList.add('active');
+    const carousel = event.target as HTMLElement;
+    const parent = carousel.closest(SelectorsMap.product.images);
+
+    if (parent) {
+      parent.querySelectorAll(SelectorsMap.product.thumbnail).forEach((e) => e.classList.remove('active'));
+      parent.querySelector(SelectorsMap.product.activeThumbail(event.to))?.classList.add('active');
+    }
   }
 
   initProductSlide();
@@ -36,15 +44,15 @@ export default () => {
 
     if (quantityInput && incrementButton && decrementButton) {
       // Function to trigger emit
-      const triggerEmit = () => {
+      const triggerEmit = async () => {
         const inputValue = parseInt(quantityInput.value, 10);
-        const minValue = parseInt(quantityInput.min, 10);
+        const minQuantity = getMinValue(quantityInput);
 
         // Check if the input value is a valid and greater or equal than the minimum value
-        if (!isNaN(inputValue) && inputValue >= minValue) {
+        if (inputValue >= minQuantity) {
           quantityInput.value = inputValue.toString();
         } else {
-          quantityInput.value = minValue.toString();
+          quantityInput.value = minQuantity.toString();
         }
 
         prestashop.emit('updateProduct', {
@@ -52,14 +60,23 @@ export default () => {
         });
       };
 
-      // Attach event listener for input changes
-      quantityInput.addEventListener('change', triggerEmit);
+      const debouncedTriggerEmit = debounce(triggerEmit, 500);
 
-      // Attach event listener for increment / decrement button click
+      quantityInput.addEventListener('input', () => {
+        debouncedTriggerEmit();
+      });
+
+      quantityInput.addEventListener('blur', () => {
+        triggerEmit();
+      });
+
+      quantityInput.addEventListener('change', triggerEmit);
       incrementButton.addEventListener('click', triggerEmit);
       decrementButton.addEventListener('click', triggerEmit);
     }
   }
+
+  const getMinValue = (input: HTMLInputElement): number => Number(input.getAttribute('min')) || 1;
 
   // Call the function to start listening for quantity changes
   detectQuantityChange();

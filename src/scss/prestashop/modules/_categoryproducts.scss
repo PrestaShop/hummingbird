@@ -1,0 +1,9 @@
+$module-name: ps-categoryproducts;
+
+.#{$module-name} {
+  margin-block-end: 2rem;
+
+  @include media-breakpoint-up(xl) {
+    margin-block-end: 3rem;
+  }
+}

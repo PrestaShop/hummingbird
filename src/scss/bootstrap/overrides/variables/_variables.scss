@@ -1,0 +1,54 @@
+// Bootstrap main variables
+
+// Breakpoints
+$grid-breakpoints: (
+  "xxs": 0,
+  "xs": 360px,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1400px,
+);
+
+// Colors
+$blue: #0b69f6;
+$green: #188251;
+$red: #ff4657;
+$primary: $blue;
+$primary-text-emphasis: $primary;
+$danger: $red;
+$body-tertiary-color: rgba(#212529, 0.65);
+
+// Caret
+$caret-width: 1.375em;
+$caret-vertical-align: initial;
+
+// Border radius
+$border-radius: 0.5rem;
+
+// Links
+$link-decoration: none;
+
+// Typography
+$font-family-base: "Inter", sans-serif;
+
+$h1-font-size: calc(var(--bs-body-font-size) * 2);
+$h2-font-size: calc(var(--bs-body-font-size) * 1.5);
+$h3-font-size: calc(var(--bs-body-font-size) * 1.25);
+$h4-font-size: calc(var(--bs-body-font-size) * 1.125);
+$h5-font-size: var(--bs-body-font-size);
+$h6-font-size: calc(var(--bs-body-font-size) * 0.875);
+
+$headings-font-weight: 600;
+$headings-margin-bottom: 1rem;
+
+// Box shadow
+$box-shadow-md: 0 0.625rem 1.25rem rgba(var(--bs-black-rgb), 0.1);
+
+// Options
+$enable-cssgrid: true;
+
+// Color mode
+// Uncomment the line below to enable dark mode based on media query
+// $color-mode-type: media-query;

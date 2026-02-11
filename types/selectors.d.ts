@@ -26,15 +26,14 @@ declare type listing = {
   listHeader: string,
   searchFiltersClearAll: string,
   searchLink: string,
-  pagerLink: string,
+  paginationLink: string,
 };
 
 declare type cart = {
   overview: string,
-  discountCode: string,
-  discountName: string,
-  displayPromo: string,
-  promoCode: string,
+  voucherCode: string,
+  voucherInput: string,
+  voucherAccordion: string,
   deleteLinkAction: string,
   container: string,
 };
@@ -74,8 +73,8 @@ declare type checkout = {
   termsLink: string,
   checkoutModal: string,
   carrierExtraContentWrapper: string,
+  carrierExtraContentWrapperActive: string,
   carrierExtraContent: string,
-  carrierExtraContentActive: string,
 };
 
 declare type progressRing = {
@@ -102,8 +101,16 @@ declare type visiblePassword = {
 };
 
 declare type desktopMenu = {
-  dropdownToggles: string,
-  dropdownItemAnchor: (depth: number) => string,
+  container: string,
+  menuTree: string,
+  menuItem: string,
+  menuLink: string,
+  dropdownToggle: string,
+  subMenu: string,
+  subMenuLeft: string,
+  subMenuLeftItem: string,
+  subMenuRight: string,
+  subMenuRightItems: string,
 };
 
 declare type quantityInput = {

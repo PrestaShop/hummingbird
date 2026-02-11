@@ -10,7 +10,7 @@
   {/block}
 
   {block name='brand_miniature'}
-    <ul class="row">
+    <ul class="brand__list">
       {foreach from=$brands item=brand}
         {include file='catalog/_partials/miniatures/brand.tpl' brand=$brand}
       {/foreach}

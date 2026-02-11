@@ -1,0 +1,50 @@
+$component-name: buttons-wrapper;
+
+.#{$component-name} {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+
+  .btn {
+    width: 100%;
+  }
+
+  &--invert-mobile {
+    flex-direction: column-reverse;
+  }
+
+  &--no-fw-mobile {
+    flex-direction: row;
+
+    &.#{$component-name}--split {
+      justify-content: space-between;
+    }
+
+    .btn {
+      width: auto;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    flex-direction: row;
+
+    &--end {
+      justify-content: flex-end;
+    }
+
+    &--split {
+      justify-content: space-between;
+    }
+
+    &--invert-mobile {
+      flex-direction: inherit;
+    }
+
+    .btn {
+      width: auto;
+    }
+  }
+}

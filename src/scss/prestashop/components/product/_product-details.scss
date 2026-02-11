@@ -1,0 +1,28 @@
+$component-name: details;
+
+.#{$component-name} {
+  &__list {
+    background-color: var(--bs-tertiary-bg);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--bs-border-color);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__left {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 50%;
+  }
+
+  &__title {
+    font-weight: 700;
+  }
+}

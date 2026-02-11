@@ -1,0 +1,39 @@
+$module-name: ps-imageslider;
+
+.#{$module-name} {
+  &__figure {
+    margin-block-end: 0;
+
+    img {
+      height: auto;
+    }
+  }
+
+  &__figcaption {
+    color: var(--bs-light);
+    background-color: rgba(var(--bs-dark-rgb), 0.5);
+    border-radius: var(--bs-border-radius);
+    backdrop-filter: blur(10px);
+
+    p {
+      margin-block-end: 0;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    &__figure {
+      height: 320px;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &__figure {
+      height: 240px;
+    }
+  }
+}

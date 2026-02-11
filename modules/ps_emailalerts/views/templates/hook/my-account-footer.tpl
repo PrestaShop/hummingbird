@@ -4,7 +4,7 @@
  *}
 
 <li>
-  <a href="{url entity='module' name='ps_emailalerts' controller='account'}" title="{l s='My alerts' d='Shop.Theme.Catalog'}">
+  <a href="{url entity='module' name='ps_emailalerts' controller='account'}" rel="nofollow">
     {l s='My alerts' d='Shop.Theme.Catalog'}
   </a>
 </li>

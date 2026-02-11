@@ -6,8 +6,12 @@
 import Quantity from '@constants/useQuantityInput-data';
 import {qtyInput as quantityInputMap, cart as cartSelectorMap} from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
-import useAlert from './useAlert';
-import useToast from './useToast';
+import useAlert from '@js/components/useAlert';
+import useToast from '@js/components/useToast';
+import A11yHelpers from '@helpers/a11y';
+import {state, availableLastUpdateAction} from '@js/state';
+
+const a11y = new A11yHelpers();
 
 const ENTER_KEY = 'Enter';
 const ESCAPE_KEY = 'Escape';
@@ -43,6 +47,24 @@ const useQuantityInput: Theme.QuantityInput.Function = (
           }
         });
 
+        qtyInput.addEventListener('input', (event: Event) => {
+          const input = event.target as HTMLInputElement;
+          const minQuantity = getMinValue(input);
+          const sanitizedValue = sanitizeInputToNumber(input.value);
+          const clampedValue = clampToMin(sanitizedValue, minQuantity);
+
+          if (input.value !== clampedValue.toString()) {
+            input.value = clampedValue.toString();
+          }
+        });
+
+        qtyInput.addEventListener('blur', (event: Event) => {
+          const input = event.target as HTMLInputElement;
+          const minQuantity = getMinValue(input);
+          const sanitizedValue = sanitizeInputToNumber(input.value);
+          input.value = clampToMin(sanitizedValue, minQuantity).toString();
+        });
+
         // The updateQuantity() will be called after timeout and send the update request with current input value
         if (qtyInput.hasAttribute('data-update-url')) {
           incrementButton.addEventListener('click', debounce(async () => {
@@ -66,8 +88,8 @@ const useQuantityInput: Theme.QuantityInput.Function = (
             if (event.key === ENTER_KEY) {
               if (qtyInput.value === '0') {
                 const targetItem = qtyInput.closest(cartSelectorMap.productItem);
-                const removeButton = targetItem?.querySelector(cartSelectorMap.removeFromCartLink) as HTMLElement
-                    | null;
+                const removeButton = targetItem?.querySelector(cartSelectorMap.removeFromCart) as HTMLElement
+                | null;
 
                 if (removeButton) {
                   removeButton.click();
@@ -90,6 +112,12 @@ const useQuantityInput: Theme.QuantityInput.Function = (
 };
 
 const isValidInputNum = (inputNum: number) => !Number.isNaN(inputNum) && Number.isInteger(inputNum);
+
+const getMinValue = (input: HTMLInputElement): number => Number(input.getAttribute('min')) || 1;
+
+const sanitizeInputToNumber = (value: string): number => Number(value.replace(/[^\d]/g, '')) || 0;
+
+const clampToMin = (value: number, min: number): number => Math.max(value, min);
 
 const changeQuantity = (qtyInput: HTMLInputElement, change: number, keyboard = false) => {
   const {mode} = qtyInput.dataset;
@@ -117,6 +145,11 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
     const baseValue = Number(qtyInput.getAttribute('value'));
     const quantity = targetValue - baseValue;
 
+    // Skip update if value is 0 and min is 1 (item is being removed)
+    if (targetValue === 0 && qtyInput.getAttribute('min') === '1') {
+      return;
+    }
+
     if (isValidInputNum(targetValue) && quantity !== 0) {
       const requestUrl = qtyInput.dataset.updateUrl;
 
@@ -135,18 +168,17 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
 
             if (data.hasError) {
               const errors = data.errors as Array<string>;
-              const productAlertSelector = resetAlertContainer(qtyInput);
 
-              if (errors && productAlertSelector) {
+              if (errors) {
                 errors.forEach((error: string) => {
-                  useAlert(error, {type: 'danger', selector: productAlertSelector}).show();
+                  useToast(error, {type: 'danger'}).show();
                 });
               }
             } else {
               const errors = data.errors as string;
 
               if (errors) {
-                useToast(errors, {type: 'danger', autohide: false}).show();
+                useToast(errors, {type: 'danger'}).show();
               }
             }
 
@@ -290,54 +322,45 @@ const sendUpdateCartRequest = async (updateUrl: string, quantity: number) => {
   return response;
 };
 
-export const populateMinQuantityInput = (selector = quantityInputMap.default) => {
-  const qtyInputNodeList = document.querySelectorAll<HTMLElement>(selector);
+document.addEventListener('DOMContentLoaded', () => {
+  const {prestashop, Theme: {events}} = window;
 
-  // For each product in list
-  qtyInputNodeList.forEach((qtyInputWrapper: HTMLElement) => {
-    const idProduct = qtyInputWrapper.closest('form')
-      ?.querySelector<HTMLInputElement>(quantityInputMap.idProductInput)?.value;
-    const qtyInput = qtyInputWrapper.querySelector<HTMLInputElement>('input');
-    const qtyInputMin = qtyInput?.getAttribute('min');
+  // Delegated keydown: store focus only on Enter key press
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    const target = e.target as HTMLElement | null;
 
-    // if the idproduct is set, and the input has a min attribute
-    if (idProduct && qtyInput && qtyInputMin) {
-      // we check if the product is already in the cart
-      const productInCart = window.prestashop.cart.products.filter(
-        (product: {id: number}) => product.id === parseInt(idProduct, 10),
-      ).shift();
-      // if the product is in the cart (and if the qty wanted is >= than the min qty, we set the minimal quantity to 1
-      const minimalQuantity = productInCart && productInCart.quantity_wanted >= qtyInputMin
-        ? 1 : qtyInputMin;
-      // we set the min attribute to the input
-      qtyInput.setAttribute('min', minimalQuantity.toString());
-      qtyInput.setAttribute('value', minimalQuantity.toString());
+    if (!target) return;
+
+    // If Enter key pressed and element is inside productQuantity wrapper, store focus
+    if ((e.key === ENTER_KEY || e.key === ' ' || e.code === 'Space') && target.closest(cartSelectorMap.productQuantity)) {
+      // Set state.lastUpdateAction to track the last update action
+      state.set('lastUpdateAction', availableLastUpdateAction.UPDATE_PRODUCT_QUANTITY);
+      a11y.storeFocus();
     }
   });
-};
 
-document.addEventListener('DOMContentLoaded', () => {
-  const {prestashop, Theme: {events, selectors}} = window;
+  // Delegated click: store the clicked button inside productQuantity wrapper
+  document.addEventListener('click', (e: KeyboardEvent) => {
+    const target = e.target as HTMLElement | null;
 
-  populateMinQuantityInput();
+    if (!target) return;
+
+    // nearest button inside the product quantity wrapper
+    const btn = target.closest(`${cartSelectorMap.productQuantity} button`) as HTMLElement | null;
+
+    if (btn && (e.key === ENTER_KEY || e.key === ' ' || e.code === 'Space')) {
+      // Set state.lastUpdateAction to track the last update action
+      state.set('lastUpdateAction', availableLastUpdateAction.UPDATE_PRODUCT_QUANTITY);
+      a11y.storeFocus();
+    }
+  });
 
   prestashop.on(events.updatedCart, () => {
     useQuantityInput(cartSelectorMap.productQuantity);
-
-    const {cart: cartMap} = selectors;
-    const cartOverview = document.querySelector<HTMLElement>(cartMap.overview);
-    cartOverview?.focus();
-
-    populateMinQuantityInput();
-  });
-
-  prestashop.on(events.updateProduct, () => {
-    populateMinQuantityInput();
   });
 
   prestashop.on(events.quickviewOpened, () => {
     useQuantityInput(quantityInputMap.modal);
-    populateMinQuantityInput(quantityInputMap.modal);
   });
 });
 

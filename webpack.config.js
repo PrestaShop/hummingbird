@@ -10,11 +10,14 @@ const { developmentConfig } = require('./webpack/webpack.development.js');
 const { merge } = require('webpack-merge');
 
 const getConfig = ({mode, ...vars}) => {
+  // Detect if we're using webpack serve (dev server) vs webpack watch
+  const isDevServer = process.argv.includes('serve');
+  
   switch (mode) {
     case 'production':
       return merge(commonConfig({mode, ...vars}), productionConfig({mode, ...vars}));
     case 'development':
-      return merge(commonConfig({mode, ...vars}), developmentConfig({mode, ...vars}));
+      return merge(commonConfig({mode, ...vars}), developmentConfig({mode, ...vars, isDevServer}));
     default:
       throw new Error(`Trying to use an unknown mode, ${mode}`);
   }

@@ -1,0 +1,29 @@
+$component-name: accordion;
+
+.#{$component-name} {
+  &-item {
+    border-block-end: 1px solid var(--bs-border-color);
+  }
+
+  &-button {
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:focus-visible {
+      z-index: 3;
+      outline: 0;
+      box-shadow: var(--bs-accordion-btn-focus-box-shadow);
+    }
+  }
+
+  &--small {
+    .#{$component-name}-button {
+      padding-block: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+}

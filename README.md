@@ -1,44 +1,156 @@
-# Hummingbird theme
+# Hummingbird Theme for PrestaShop
 
-This is a PrestaShop's theme we are working on. Please, if you work on this theme, use the `8.1.x` branch of PrestaShop to make sure this theme is compatible with the latest `8.1.x` version.
+![CI](https://github.com/PrestaShop/hummingbird/actions/workflows/lint.yml/badge.svg)
+![PrestaShop 9.1+](https://img.shields.io/badge/prestashop-9.1%2B-brightgreen.svg)
+![Docker Ready](https://img.shields.io/badge/docker-ready-blue.svg)
+![Node.js v20](https://img.shields.io/badge/node.js-20.x-blue.svg)
+![License](https://img.shields.io/badge/license-AFL%203.0-lightgray.svg)
 
-[Read more](https://build.prestashop.com/news/new-theme-announce/) about this theme on the blog.
+Hummingbird is a modern, in-development theme for PrestaShop built to be compatible with versions `9.1.x` and above.
 
-![image](https://user-images.githubusercontent.com/16455155/199937084-3d2eab3f-dc3e-488f-8b87-e8d4565219b3.png)
+## 🔍 Theme Previews
 
+| [<img src="docs/thumb-homepage.png">](docs/homepage.png) | [<img src="docs/thumb-category.png">](docs/category.png) | [<img src="docs/thumb-product.png">](docs/product.png) |
+| --- | --- | --- |
+| Homepage | Category | Product |
 
-## How to build assets
+## ⚠️ Requirements
 
-Same as the PrestaShop project, you need at least **NodeJS 20.x** and **NPM 8** in order to build the project.
+To work on Hummingbird, you'll need:
 
-First you need to install every node module:
+- Node.js **v20.x**.
+- npm **v8**.
 
-`npm ci`
+## 📑 Table of Contents
+- Want to help develop the theme? Start with [🔨 Develop on Hummingbird](#-develop-on-hummingbird).
+- Want to preview or test it? Jump to [🐳 Run Hummingbird with Docker](#-run-hummingbird-with-docker).
+- Having issues with caching during development? Jump to [🥵 Troubleshooting](#-troubleshooting).
 
-then create a `.env` file inside the *webpack* folder by copying `webpack/.env-example` and complete it with your environment's informations. Please use a free tcp port.
+## 🔨 Develop on Hummingbird
 
-then build assets:
+### 🧰 Installation / Setup
 
-`npm run build`
+#### 👀 Watch Mode Setup
 
-## Documentation
+From the **project root** run the following commands if you want to:
 
-We use Storybook as a [documentation](https://build.prestashop.com/hummingbird/). As the theme is currently in development, there is a lot of work on documentation. Don't hesitate to add whatever you feel usefull to it.
+1. Install dependencies: `npm ci`.
+2. Run watch mode to build assets: `npm run watch`.
+3. You can now go to [🐳 Run Hummingbird with Docker](#-run-hummingbird-with-docker) section to run PrestaShop embedding Hummingbird.
 
-## Contributing
+#### 🔥 Hot Module Reload (HMR) Setup
 
-Please refer to the [contributing guide](https://github.com/PrestaShop/hummingbird/blob/develop/CONTRIBUTING.md)
+1. From the **project root** run: `npm ci`.
+2. Navigate to the `webpack/` directory.
+3. Run `cp .env-docker-example .env` or `cp .env-vhost-example .env` (depending on how you want to run your PrestaShop environment).
+4. Edit `.env` with your local environment settings and ensure you use a free TCP port.
+5. From the **project root** run `npm run dev`.
+6. You can now go to [🐳 Run Hummingbird with Docker](#-run-hummingbird-with-docker) section to run PrestaShop embedding Hummingbird.
 
-## Continuous Integration
+### 🖌️ Code Quality
 
-The CI runs contain stylelint, eslint, TypeScript type checks.
+To ensure code quality and consistency, run the following commands from the **project root**:
 
-## Continuous Deployment
+- Lint & auto-fix SCSS files: `npm run stylelint` or `npm run stylelint:fix`.
+- Format & auto-format SCSS with Prettier: `npm run prettier` or `npm run prettier:fix`.
+- Lint & auto-fix JS/TS files: `npm run lint` or `npm run lint:fix`.
 
-When develop is merged into master, the Storybook is delivered almost instantly to his public link using a Github Pages.
+## 🐳 Run Hummingbird with Docker
 
-## License
+This theme includes Docker configurations for both **PrestaShop** and **PrestaShop Flashlight** development environments.
 
-This theme is released under the [Academic Free License 3.0][AFL-3.0]
+### 🛠️ Getting Started
+
+**Note:** If you've already set up your development environment using `Watch Mode` or `Hot Module Reload (HMR)`, you can skip ahead to **step 3**.
+
+1. From the **project root** run: `npm ci`.
+2. Then run: `npm run build`.
+3. Navigate to the `docker/` directory: `cd docker`.
+4. Copy the example environment file: `cp .env-example .env`.
+5. Edit `.env` to configure the following variables:
+   - `PS_TAG`: PrestaShop or Flashlight version tag.
+      - [PrestaShop tags](https://hub.docker.com/r/prestashop/prestashop/tags).
+      - [Flashlight tags](https://hub.docker.com/r/prestashop/prestashop-flashlight/tags).
+   - `PLATFORM`: Platform architecture (e.g., linux/amd64, linux/arm64).
+   - `ADMIN_EMAIL`: Back office admin email.
+   - `ADMIN_PASSWORD`: Back office admin password.
+
+### 📦 Available Configurations
+
+- `docker-compose-prestashop.yml`: for standard PrestaShop development environment.
+- `docker-compose-flashlight.yml`: for PrestaShop Flashlight development environment.
+
+### ▶️ Starting the Environment
+
+From the **project root**, run one of the following commands:
+
+```bash
+# For PrestaShop environment
+docker compose -f docker/docker-compose-prestashop.yml up -d
+
+# For Flashlight environment
+docker compose -f docker/docker-compose-flashlight.yml up -d
+```
+
+### 👀 After Starting the Environment
+- PrestaShop/Flashlight will be available at http://localhost:8887 and BO at http://localhost:8887/admin-dev.
+- phpMyAdmin will be available at http://localhost:8889.
+
+### ⏹️ Stopping the Environment
+
+From the **project root**, run one of the following commands:
+
+```bash
+# For PrestaShop environment
+docker compose -f docker/docker-compose-prestashop.yml down -v
+
+# For Flashlight environment
+docker compose -f docker/docker-compose-flashlight.yml down
+```
+
+## 🥵 Troubleshooting
+
+> [!WARNING]  
+> If you're experiencing issues with styles or assets not updating while using HMR mode, follow these steps to avoid browser and PrestaShop caching problems:
+
+1. Disable browser cache during development:
+    - Open your browser's DevTools.
+    - Go to the `Network` tab.
+    - Enable `Disable cache` (⚠️ this only works while DevTools stays open).
+2. Disable PrestaShop caching:
+    - In the back office, go to: `Advanced Parameters` → `Performance`.
+    - Under the Smarty section:
+        - Set Force compilation to `Yes`.
+        - Set Cache to `No`.
+    - Under the CCC (Combine, Compress and Cache) section:
+        - Disable all options.
+
+## 📚 Storybook
+
+Storybook is used to document and preview the theme's UI components during development. You can view the [live documentation here](https://build.prestashop.com/hummingbird/). Since the theme is still in progress, contributions to improve or expand the documentation are welcome and encouraged.
+
+### ▶️ Run Storybook Locally
+
+To run Storybook on your machine:
+
+1. Make sure project dependencies are installed, if not, from the **project root** run: `npm ci`.
+2. Then run: `npm run storybook`.
+3. Storybook will be available at http://localhost:6006.
+
+## 🤝 Contributing
+
+Please refer to the [contributing guide](CONTRIBUTING.md).
+
+## ✅ Continuous Integration
+
+The CI runs include Stylelint, Prettier, ESLint, and TypeScript type checks.
+
+## 🚀 Continuous Deployment
+
+Whenever the `develop` branch is merged into `master`, the Storybook documentation is automatically deployed to GitHub Pages and becomes publicly accessible within minutes.
+
+## 📄 License
+
+This theme is released under the [Academic Free License 3.0][AFL-3.0].
 
 [AFL-3.0]: https://opensource.org/licenses/AFL-3.0

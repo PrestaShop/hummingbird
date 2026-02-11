@@ -1,0 +1,28 @@
+$page-name: page-addresses;
+$component-name: addresses;
+
+.#{$page-name} {
+  .#{$component-name} {
+    &__list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    .#{$component-name} {
+      &__list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .#{$component-name} {
+      &__list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  }
+}

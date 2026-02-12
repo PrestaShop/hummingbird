@@ -29,7 +29,7 @@
             </label>
             <select id="contact-us-subject-select" name="id_contact" class="form-select">
               {foreach from=$contact.contacts item=contact_elt}
-                <option value="{$contact_elt.id_contact}">{$contact_elt.name}</option>
+                <option value="{$contact_elt.id_contact|escape:'htmlall':'UTF-8'}">{$contact_elt.name|escape:'htmlall':'UTF-8'}</option>
               {/foreach}
             </select>
           </div>

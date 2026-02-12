@@ -2,13 +2,12 @@ name: 🐛 Bug Report
 description: Report an issue in Hummingbird theme. DO NOT disclose security issues here, contact security@prestashop.com instead!
 type: 'Bug'
 projects: [ 'PrestaShop/46', 'PrestaShop/7' ]
-title: '[BUG] '
 body:
   - type: markdown
     attributes:
       value: |
         ### ❗️ Read this before submitting your bug report:
-        - **Make sure that the problem is indeed related to Hummingbird theme.** To ensure your issue is dealt with as quickly as possible by QA and the community, it is important to make sure that the issue you create is in the right place!
+        - **Check whether the problem might come from Hummingbird theme.** If you're unsure, go ahead and describe the issue as clearly as possible. If you know it comes from a module, please report it in that module’s repository. The community and QA team will help identify the right place if needed.
         - **Write in English.** Reports in all other languages will be closed.
         - **Provide as much detail as possible** - error logs, screenshots, your exact configuration. If the issue cannot be reproduced, it cannot be fixed.
         - **Follow the [bug report guidelines](https://devdocs.prestashop-project.org/9/contribute/contribute-reporting-issues/#best-practices-for-writing-an-issue).** This will help issue managers qualify your report faster.
@@ -20,13 +19,25 @@ body:
       options:
         - label: I understand and accept the project's [code of conduct](https://github.com/PrestaShop/PrestaShop/blob/develop/CODE_OF_CONDUCT.md).
           required: true
-        - label: I have already [searched in existing issues](https://github.com/PrestaShop/hummingbird/issues?q=is%3Aissue+type%3ABug) and found no previous report of this bug.
+        - label: I have already [searched in existing issues](https://github.com/PrestaShop/hummingbird/issues?q=is%3Aissue+label%3ABug) and found no previous report of this bug.
           required: true
   - type: textarea
-    id: what-happened
+    id: bug-description
     attributes:
       label: Describe the bug and add attachments
-      description: What went wrong? If possible, add screenshots, error logs or screen recordings to help explain your problem.
+      description: What went wrong? If possible, add screenshots, error logs, zip used or screen recordings to help explain your problem. More information you add, The more information you give us, the better we will be able to understand and fix your problem.
+    validations:
+      required: true
+  - type: textarea
+    id: step-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: List the exact steps to reproduce the issue.
+      placeholder: |
+        1. Go to ‘…’
+        2. Click on ‘…’
+        3. Scroll down to ‘…’
+        4. See error
     validations:
       required: true
   - type: textarea
@@ -34,38 +45,33 @@ body:
     attributes:
       label: Expected behavior
       description: Explain what you expected to happen instead.
-    validations:
-      required: false
   - type: textarea
-    id: steps-reproduce
+    id: actual-result
     attributes:
-      label: Steps to reproduce
-      description: List the exact steps to reproduce the issue.
-      placeholder: |
-        1. Go to '...'
-        2. Click on '....'
-        3. Scroll down to '....'
-        4. See error
-    validations:
-      required: true
+      label: Actual Result
+      description: Explains what happens and the difference between this and the expected behavior.
   - type: input
     id: prestashop-version
     attributes:
-      label: PrestaShop version(s) where the bug happened
-      description: If the issue concerns upgrade, specify which versions you upgrading FROM and upgrading TO
-      placeholder: "e.g., from 1.0.1 to 2.0.0"
+      label: PrestaShop version where the bug happens
+      description: Specify which PrestaShop versions your issue come from
+      placeholder: "e.g., 8.2.3, 9.0.2 or dev"
+    validations:
+      required: true
+  - type: input
+    id: theme-version
+    attributes:
+      label: Theme version where the bug happens
+      description: Specify which theme versions your issue come from
+      placeholder: "e.g., 1.0.0 or 2.0.0"
     validations:
       required: true
   - type: input
     id: php-version
     attributes:
       label: PHP version(s) where the bug happened
-      placeholder: "e.g., 8.0 or 8.2"
-    validations:
-      required: false
+      placeholder: "e.g., 7.1 or 8.0"
   - type: input
     id: sponsor-company
     attributes:
       label: Your company or customer's name goes here (if applicable).
-    validations:
-      required: false

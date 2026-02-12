@@ -55,7 +55,7 @@ body:
     attributes:
       label: PrestaShop version where the bug happens
       description: Specify which PrestaShop versions your issue come from
-      placeholder: "e.g., from 1.7.5.2 or 1.7.8.0"
+      placeholder: "e.g., 8.2.3, 9.0.2 or dev"
     validations:
       required: true
   - type: input
@@ -63,7 +63,7 @@ body:
     attributes:
       label: Theme version where the bug happens
       description: Specify which theme versions your issue come from
-      placeholder: "e.g., 1.0.0 or 1.0.1"
+      placeholder: "e.g., 1.0.0 or 2.0.0"
     validations:
       required: true
   - type: input

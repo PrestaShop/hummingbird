@@ -98,6 +98,16 @@ const initSearchbar = () => {
     }
   });
 
+  // Focus on searchField on mobile canvas open
+  searchCanvas?.addEventListener('shown.bs.offcanvas', () => {
+    if (searchInput) {
+      // Use a small timeout to ensure the canvas animation is done
+      setTimeout(() => {
+        searchInput.focus();
+      }, 100);
+    }
+  });
+
   // Reset search on mobile canvas close
   searchCanvas?.addEventListener('hidden.bs.offcanvas', () => {
     if (searchDropdown && searchResults && searchInput) {
@@ -105,6 +115,7 @@ const initSearchbar = () => {
       searchDropdown.classList.add('d-none');
       searchInput.setAttribute('aria-expanded', 'false');
     }
+    clearSearch();
   });
 
   // Handle search results display

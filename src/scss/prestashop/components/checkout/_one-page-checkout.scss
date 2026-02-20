@@ -1,0 +1,42 @@
+$component-name: one-page-checkout;
+
+.#{$component-name} {
+  @include media-breakpoint-up(lg) {
+    padding-right: 2em;
+  }
+
+  &__section {
+    margin-bottom: 2em;
+
+    & + & {
+      border-top: 1px solid var(--bs-border-color);
+      padding-top: 2em;
+      margin-block: 2em;
+    }
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  &__field {
+    margin-bottom: 1rem;
+  }
+
+  &__row {
+    display: grid;
+    gap: 1rem;
+
+    @include media-breakpoint-up(md) {
+      &--2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      &--3 {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  }
+}

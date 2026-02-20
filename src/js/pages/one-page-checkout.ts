@@ -72,7 +72,7 @@ const validateForm = () => {
 
   requiredFields.forEach((field) => {
     // Skip fields inside hidden billing section
-    const billingSection = field.closest('#opc-billing-section') as HTMLElement | null;
+    const billingSection = field.closest(OpcMap.billingSection) as HTMLElement | null;
 
     if (billingSection?.style.display === 'none') {
       return;

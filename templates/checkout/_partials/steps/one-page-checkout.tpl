@@ -14,9 +14,31 @@
     {render ui=$opc_form}
   </div>
 
-  {* ===== Terms & conditions ===== *}
-  {if $conditions_to_approve|count}
-    <section class="one-page-checkout__section">
+  {* ===== Delivery method ===== *}
+  <section class="one-page-checkout__section">
+    <h2 class="one-page-checkout__title">{l s='Delivery method' d='Shop.Theme.Checkout'}</h2>
+
+    <div class="one-page-checkout__placeholder" id="opc-delivery-methods">
+      <div class="card card-body bg-light">
+        {l s='You will see the available delivery methods once you\'ve entered your delivery address.' d='Shop.Theme.Checkout'}
+      </div>
+    </div>
+  </section>
+
+  {* ===== Payment method ===== *}
+  <section class="one-page-checkout__section">
+    <h2 class="one-page-checkout__title">{l s='Payment method' d='Shop.Theme.Checkout'}</h2>
+
+    <div class="one-page-checkout__placeholder" id="opc-payment-methods">
+      <div class="card card-body bg-light">
+        {l s='You will see the available payment methods once you\'ve entered your delivery address.' d='Shop.Theme.Checkout'}
+      </div>
+    </div>
+  </section>
+
+  <div class="one-page-checkout__footer">
+    {* ===== Terms & conditions ===== *}
+    {if $conditions_to_approve|count}
       {foreach from=$conditions_to_approve item="condition" key="condition_name"}
         <div class="form-check">
           <input id="conditions_to_approve[{$condition_name}]"
@@ -31,11 +53,9 @@
           </label>
         </div>
       {/foreach}
-    </section>
-  {/if}
+    {/if}
 
-  {* ===== Pay button ===== *}
-  <div class="one-page-checkout__footer">
+    {* ===== Pay button ===== *}
     <button class="one-page-checkout__submit btn btn-primary btn-lg w-100" type="submit" id="opc-pay-button" disabled>
       {l s='Pay' d='Shop.Theme.Checkout'} {$cart.totals.total.value}
     </button>

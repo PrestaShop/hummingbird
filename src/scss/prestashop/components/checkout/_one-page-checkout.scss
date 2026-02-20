@@ -6,12 +6,12 @@ $component-name: one-page-checkout;
   }
 
   &__section {
-    margin-bottom: 2em;
+    padding-bottom: 2em;
 
-    & + & {
+    & + &,
+    .js-opc-address-form + & {
       border-top: 1px solid var(--bs-border-color);
       padding-top: 2em;
-      margin-block: 2em;
     }
   }
 
@@ -37,6 +37,14 @@ $component-name: one-page-checkout;
       &--3 {
         grid-template-columns: 1fr 1fr 1fr;
       }
+    }
+  }
+
+  &__footer {
+    padding-top: 2em;
+
+    .form-check {
+      margin-bottom: 1rem;
     }
   }
 }

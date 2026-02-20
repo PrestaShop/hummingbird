@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductBehavior();
   initQuickview();
   initCheckout();
+  initOnePageCheckout();
   initCustomer();
   initResponsiveToggler();
   initCart();
@@ -77,10 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// OPC has its own listener to avoid being blocked by classic checkout errors
-document.addEventListener('DOMContentLoaded', () => {
-  initOnePageCheckout();
-});
 
 export const components = {
   useToast,

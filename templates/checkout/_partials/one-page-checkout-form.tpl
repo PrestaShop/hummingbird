@@ -1,7 +1,7 @@
 {**
  * One Page Checkout Form - All sections
  * Rendered via {render ui=$opc_form}, provides $formFields from OnePageCheckoutForm.
- * Contains: contact info, delivery address, billing address, delivery/payment placeholders.
+ * Contains: contact info, delivery address, billing address.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -67,26 +67,4 @@
       prefix='invoice_'
     }
   </section>
-</section>
-
-{* ===== Delivery method ===== *}
-<section class="one-page-checkout__section">
-  <h2 class="one-page-checkout__title">{l s='Delivery method' d='Shop.Theme.Checkout'}</h2>
-
-  <div class="one-page-checkout__placeholder" id="opc-delivery-methods">
-    <div class="card card-body bg-light">
-      {l s='You will see the available delivery methods once you\'ve entered your delivery address.' d='Shop.Theme.Checkout'}
-    </div>
-  </div>
-</section>
-
-{* ===== Payment method ===== *}
-<section class="one-page-checkout__section">
-  <h2 class="one-page-checkout__title">{l s='Payment method' d='Shop.Theme.Checkout'}</h2>
-
-  <div class="one-page-checkout__placeholder" id="opc-payment-methods">
-    <div class="card card-body bg-light">
-      {l s='You will see the available payment methods once you\'ve entered your delivery address.' d='Shop.Theme.Checkout'}
-    </div>
-  </div>
 </section>

@@ -2,9 +2,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *}
-<label for="sort_dropdown_button" class="products__sort-label">
-  {l s='Sort by:' d='Shop.Theme.Global'}
-</label>
+<div class="products__sort-label">
+  <span class="align-middle">{l s='Sort by:' d='Shop.Theme.Global'}</span>
+</div>
 
 <div class="products__sort-dropdown">
   <button

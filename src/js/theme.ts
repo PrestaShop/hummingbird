@@ -9,6 +9,7 @@ import initResponsiveToggler from '@js/responsive-toggler';
 import initQuickview from '@js/quickview';
 import initCart from '@js/pages/cart';
 import initCheckout from '@js/pages/checkout';
+import initOnePageCheckout from '@js/pages/one-page-checkout';
 import initCustomer from '@js/pages/customer';
 import initProductBehavior from '@js/product';
 import initMobileMenu from '@js/mobile-menu';
@@ -74,6 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initCurrencySelector();
     initDesktopMenu();
   });
+});
+
+// OPC has its own listener to avoid being blocked by classic checkout errors
+document.addEventListener('DOMContentLoaded', () => {
+  initOnePageCheckout();
 });
 
 export const components = {

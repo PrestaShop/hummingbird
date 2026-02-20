@@ -30,7 +30,7 @@
 
           {** And render the availability message with icon *}
           <div class="product__availability-status {$availability_class}" aria-live="off" data-ps-ref="product-availability">
-            <i class="product__availability-icon material-icons rtl-no-flip">&#x{$availability_icon};</i>
+            <i class="product__availability-icon material-icons rtl-no-flip" aria-hidden="true">&#x{$availability_icon};</i>
 
             <div class="product__availability-messages">
               <span class="visually-hidden">{l s='Product availability:' d='Shop.Theme.Global'}</span>

@@ -78,11 +78,10 @@ const validateForm = () => {
       return;
     }
 
-    if (field instanceof HTMLInputElement && field.type === 'checkbox') {
-      if (!field.checked) {
-        isValid = false;
-      }
-    } else if (!field.value.trim()) {
+    const isCheckbox = field instanceof HTMLInputElement && field.type === 'checkbox';
+    const fieldIsValid = isCheckbox ? field.checked : Boolean(field.value?.trim());
+
+    if (!fieldIsValid) {
       isValid = false;
     }
   });

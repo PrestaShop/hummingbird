@@ -6,12 +6,11 @@ import initEmitter from '@js/prestashop';
 import resetHTMLBodyContent from '@helpers/resetBody';
 import {FormWithRequiredFields, FormWithoutRequiredFields, FormEmpty} from '@constants/mocks/onePageCheckout-data';
 import initOnePageCheckout from '@js/pages/one-page-checkout';
+import {onePageCheckout} from '@constants/selectors-map';
 
-const getPayButton = (): HTMLButtonElement =>
-  document.querySelector<HTMLButtonElement>('#opc-pay-button')!;
+const getPayButton = (): HTMLButtonElement => document.querySelector<HTMLButtonElement>(onePageCheckout.payButton)!;
 
-const getBillingSection = (): HTMLElement =>
-  document.querySelector<HTMLElement>('#opc-billing-section')!;
+const getBillingSection = (): HTMLElement => document.querySelector<HTMLElement>(onePageCheckout.billingSection)!;
 
 const fillField = (selector: string, value: string) => {
   const field = document.querySelector<HTMLInputElement | HTMLSelectElement>(selector)!;
@@ -24,6 +23,12 @@ const toggleCheckbox = (selector: string, checked: boolean) => {
   cb.checked = checked;
   cb.dispatchEvent(new Event('change', {bubbles: true}));
 };
+
+const TEST_EMAIL = 'test@example.com';
+const TEST_FIRSTNAME = 'John';
+const TEST_LASTNAME = 'Doe';
+const TEST_COUNTRY_ID = '8';
+const TEST_INVOICE_FIRSTNAME = 'Jane';
 
 describe('One Page Checkout', () => {
   beforeAll(() => {
@@ -47,30 +52,30 @@ describe('One Page Checkout', () => {
       });
 
       it('should enable pay button when all visible required fields are filled', () => {
-        fillField('#field-email', 'test@example.com');
-        fillField('#field-firstname', 'John');
-        fillField('#field-lastname', 'Doe');
-        fillField('#field-id_country', '8');
+        fillField('#field-email', TEST_EMAIL);
+        fillField('#field-firstname', TEST_FIRSTNAME);
+        fillField('#field-lastname', TEST_LASTNAME);
+        fillField('#field-id_country', TEST_COUNTRY_ID);
         toggleCheckbox('#conditions', true);
 
         expect(getPayButton().disabled).toBe(false);
       });
 
       it('should disable pay button when one required field is empty', () => {
-        fillField('#field-email', 'test@example.com');
-        fillField('#field-firstname', 'John');
+        fillField('#field-email', TEST_EMAIL);
+        fillField('#field-firstname', TEST_FIRSTNAME);
         // lastname left empty
-        fillField('#field-id_country', '8');
+        fillField('#field-id_country', TEST_COUNTRY_ID);
         toggleCheckbox('#conditions', true);
 
         expect(getPayButton().disabled).toBe(true);
       });
 
       it('should disable pay button when terms checkbox is unchecked', () => {
-        fillField('#field-email', 'test@example.com');
-        fillField('#field-firstname', 'John');
-        fillField('#field-lastname', 'Doe');
-        fillField('#field-id_country', '8');
+        fillField('#field-email', TEST_EMAIL);
+        fillField('#field-firstname', TEST_FIRSTNAME);
+        fillField('#field-lastname', TEST_LASTNAME);
+        fillField('#field-id_country', TEST_COUNTRY_ID);
         // conditions left unchecked
 
         expect(getPayButton().disabled).toBe(true);
@@ -78,10 +83,10 @@ describe('One Page Checkout', () => {
 
       it('should ignore required fields inside hidden billing section', () => {
         // billing section is hidden by default, so invoice_firstname/invoice_lastname are skipped
-        fillField('#field-email', 'test@example.com');
-        fillField('#field-firstname', 'John');
-        fillField('#field-lastname', 'Doe');
-        fillField('#field-id_country', '8');
+        fillField('#field-email', TEST_EMAIL);
+        fillField('#field-firstname', TEST_FIRSTNAME);
+        fillField('#field-lastname', TEST_LASTNAME);
+        fillField('#field-id_country', TEST_COUNTRY_ID);
         toggleCheckbox('#conditions', true);
 
         expect(getPayButton().disabled).toBe(false);
@@ -91,10 +96,10 @@ describe('One Page Checkout', () => {
         // Uncheck "use same address" to show billing section
         toggleCheckbox('.js-opc-use-same-address', false);
 
-        fillField('#field-email', 'test@example.com');
-        fillField('#field-firstname', 'John');
-        fillField('#field-lastname', 'Doe');
-        fillField('#field-id_country', '8');
+        fillField('#field-email', TEST_EMAIL);
+        fillField('#field-firstname', TEST_FIRSTNAME);
+        fillField('#field-lastname', TEST_LASTNAME);
+        fillField('#field-id_country', TEST_COUNTRY_ID);
         toggleCheckbox('#conditions', true);
         // invoice fields left empty
 
@@ -104,12 +109,12 @@ describe('One Page Checkout', () => {
       it('should enable pay button when billing fields are also filled', () => {
         toggleCheckbox('.js-opc-use-same-address', false);
 
-        fillField('#field-email', 'test@example.com');
-        fillField('#field-firstname', 'John');
-        fillField('#field-lastname', 'Doe');
-        fillField('#field-id_country', '8');
-        fillField('#field-invoice_firstname', 'Jane');
-        fillField('#field-invoice_lastname', 'Doe');
+        fillField('#field-email', TEST_EMAIL);
+        fillField('#field-firstname', TEST_FIRSTNAME);
+        fillField('#field-lastname', TEST_LASTNAME);
+        fillField('#field-id_country', TEST_COUNTRY_ID);
+        fillField('#field-invoice_firstname', TEST_INVOICE_FIRSTNAME);
+        fillField('#field-invoice_lastname', TEST_LASTNAME);
         toggleCheckbox('#conditions', true);
 
         expect(getPayButton().disabled).toBe(false);
@@ -162,10 +167,10 @@ describe('One Page Checkout', () => {
 
     it('should re-validate form after toggling billing section', () => {
       // Fill all delivery fields + terms
-      fillField('#field-email', 'test@example.com');
-      fillField('#field-firstname', 'John');
-      fillField('#field-lastname', 'Doe');
-      fillField('#field-id_country', '8');
+      fillField('#field-email', TEST_EMAIL);
+      fillField('#field-firstname', TEST_FIRSTNAME);
+      fillField('#field-lastname', TEST_LASTNAME);
+      fillField('#field-id_country', TEST_COUNTRY_ID);
       toggleCheckbox('#conditions', true);
 
       expect(getPayButton().disabled).toBe(false);

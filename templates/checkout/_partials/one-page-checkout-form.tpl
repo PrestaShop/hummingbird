@@ -57,7 +57,7 @@
   </section>
 </section>
 
-{* ===== Billing address fields (hidden by default) ===== *}
+{* ===== Billing address fields (hidden by default, JS manages visibility) ===== *}
 <section class="one-page-checkout__section" id="opc-billing-section" style="display: none;">
   <h2 class="one-page-checkout__title">{l s='Billing address' d='Shop.Theme.Checkout'}</h2>
 

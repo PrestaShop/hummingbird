@@ -22,7 +22,7 @@ const initOnePageCheckout = () => {
 
   const {prestashop} = window;
 
-  // Re-init after core.js refreshes the address form (country change)
+  // Re-init after any address form refresh (country change or other)
   prestashop.on('updatedOpcAddressForm', () => {
     initBillingToggle();
     validateForm();

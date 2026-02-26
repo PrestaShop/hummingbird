@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  *}
 
+{hook h='displayPersonalInformationTop' customer=$customer}
+
 {include file='_partials/form-errors.tpl' errors=$errors['']}
 
 {* ===== Contact information ===== *}
@@ -68,3 +70,12 @@
     }
   </section>
 </section>
+
+{capture name="address_selector_bottom"}{hook h='displayAddressSelectorBottom'}{/capture}
+{if $smarty.capture.address_selector_bottom}
+  {block name='address_selector_bottom'}
+    <div class="address-selector-bottom mt-3">
+      {$smarty.capture.address_selector_bottom nofilter}
+    </div>
+  {/block}
+{/if}

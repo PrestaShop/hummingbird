@@ -18,16 +18,36 @@
   <section class="one-page-checkout__section">
     <h2 class="one-page-checkout__title">{l s='Delivery method' d='Shop.Theme.Checkout'}</h2>
 
+    <div id="delivery-options__hook">
+      {if isset($hookDisplayBeforeCarrier)}
+        {$hookDisplayBeforeCarrier nofilter}
+      {else}
+        {hook h='displayBeforeCarrier'}
+      {/if}
+    </div>
+
     <div class="one-page-checkout__placeholder" id="opc-delivery-methods">
       <div class="card card-body bg-light">
         {l s='You will see the available delivery methods once you\'ve entered your delivery address.' d='Shop.Theme.Checkout'}
       </div>
     </div>
+
+    <div class="delivery-options__display-after-carrier" id="hook-display-after-carrier">
+      {if isset($hookDisplayAfterCarrier)}
+        {$hookDisplayAfterCarrier nofilter}
+      {else}
+        {hook h='displayAfterCarrier'}
+      {/if}
+    </div>
+
+    <div class="delivery-options__extra-carrier" id="extra_carrier"></div>
   </section>
 
   {* ===== Payment method ===== *}
   <section class="one-page-checkout__section">
     <h2 class="one-page-checkout__title">{l s='Payment method' d='Shop.Theme.Checkout'}</h2>
+
+    {hook h='displayPaymentTop'}
 
     <div class="one-page-checkout__placeholder" id="opc-payment-methods">
       <div class="card card-body bg-light">
@@ -55,10 +75,14 @@
       {/foreach}
     {/if}
 
+    {hook h='displayCheckoutBeforeConfirmation'}
+
     {* ===== Pay button ===== *}
     <button class="one-page-checkout__submit btn btn-primary btn-lg w-100" type="submit" id="opc-pay-button" disabled>
       {l s='Pay' d='Shop.Theme.Checkout'} {$cart.totals.total.value}
     </button>
+
+    {hook h='displayPaymentByBinaries'}
   </div>
 
 </form>

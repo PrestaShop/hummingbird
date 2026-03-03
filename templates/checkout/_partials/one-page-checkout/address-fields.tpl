@@ -65,7 +65,12 @@
     <input type="hidden" name="{$field.name}" value="My address">
 
   {* ----- Fields handled outside this partial (contact section, billing toggle) ----- *}
-  {elseif $_base === 'email' || $_base === 'optin' || $_base === 'use_same_address' || $_base === 'id_address_invoice'}
+  {elseif $_base === 'email'
+    || $_base === 'optin'
+    || $_base === 'use_same_address'
+    || $_base === 'id_address_invoice'
+    || (!$prefix && $customer.is_guest && $field.type === 'checkbox')
+  }
     {* noop — rendered by the parent template *}
 
   {* ----- Name row: firstname + lastname rendered together in 2 columns ----- *}

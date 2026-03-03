@@ -36,6 +36,18 @@
       {form_field field=$formFields['optin']}
     </div>
   {/if}
+
+  {if $customer.is_guest}
+    {foreach from=$formFields item="field"}
+      {if strpos($field.name, 'invoice_') === 0}{continue}{/if}
+      {if $field.type !== 'checkbox'}{continue}{/if}
+      {if $field.name === 'optin' || $field.name === 'use_same_address'}{continue}{/if}
+
+      <div class="one-page-checkout__field">
+        {form_field field=$field}
+      </div>
+    {/foreach}
+  {/if}
 </section>
 
 {* ===== Delivery address fields ===== *}

@@ -127,6 +127,13 @@ export const visiblePassword = {
   visiblePassword: '[data-ps-action="toggle-password"]',
 };
 
+export const onePageCheckout = {
+  form: '.one-page-checkout',
+  useSameAddress: '.js-opc-use-same-address',
+  billingSection: '#opc-billing-section',
+  payButton: '#opc-pay-button',
+};
+
 export const gdpr = {
   consent: '[data-ps-ref="gdpr-consent"]',
   consentWrapper: '[data-ps-component="gdpr"]',
@@ -260,6 +267,7 @@ const selectorsMap = {
   formValidation,
   passwordPolicy,
   emailAlerts,
+  onePageCheckout,
   gdpr,
 };
 

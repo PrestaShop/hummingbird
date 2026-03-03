@@ -1,0 +1,14 @@
+.form-fields-row {
+  display: grid;
+  gap: 1rem;
+
+  @include media-breakpoint-up(md) {
+    &--2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &--3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}

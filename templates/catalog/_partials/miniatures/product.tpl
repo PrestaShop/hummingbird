@@ -83,7 +83,7 @@
                       <input type="hidden" value="{$product.id_product_attribute}" name="id_product_attribute">
                   {/if}
                   <input type="hidden" name="token" value="{$static_token}">
-  
+
                   <div class="quantity-button js-quantity-button">
                     {include file='components/qty-input.tpl'
                       attributes=[
@@ -93,9 +93,9 @@
                       ]
                     }
                   </div>
-  
-                  <button 
-                    data-button-action="add-to-cart" 
+
+                  <button
+                    data-button-action="add-to-cart"
                     class="product-miniature__add btn btn-primary btn-square-icon"
                     aria-label="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
                     title="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"

@@ -28,5 +28,5 @@
     {/block}
   </div>
 
-  <hr class="mt-2">
+  <hr class="mt-2 mb-2">
 </div>

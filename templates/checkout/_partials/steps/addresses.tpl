@@ -107,10 +107,17 @@
         </button>
 
         {if !$form_has_continue_button}
-          <button type="submit" class="btn btn-primary" name="confirm-addresses" value="1">
-            {l s='Continue to Shipping' d='Shop.Theme.Actions'}
-            <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
-          </button>
+          {if !$cart.is_virtual}
+            <button type="submit" class="btn btn-primary" name="confirm-addresses" value="1">
+              {l s='Continue to Shipping' d='Shop.Theme.Actions'}
+              <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
+            </button>
+          {else}
+            <button type="submit" class="btn btn-primary" name="confirm-addresses" value="1">
+              {l s='Continue to Payment' d='Shop.Theme.Actions'}
+              <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
+            </button>
+          {/if}
 
           <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}

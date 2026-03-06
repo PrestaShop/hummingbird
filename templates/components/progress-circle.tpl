@@ -4,7 +4,7 @@
  *}
 
 {$radius = $size / 2 - $stroke * 2}
-{$circumference = $radius * 2 * constant('M_PI')}
+{$circumference = $radius * 2 * $smarty.const.M_PI}
 
 {$circumference = $circumference|string_format:"%.4f"}
 

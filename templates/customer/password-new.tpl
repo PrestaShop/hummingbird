@@ -44,7 +44,7 @@
             aria-controls="field-password"
             aria-live="polite"
           >
-            <i class="material-icons">&#xE8F4;</i>
+            <i class="material-icons" aria-hidden="true">&#xE8F4;</i>
           </button>
         </div>
       </div>
@@ -62,7 +62,7 @@
           aria-controls="field-confirmation-passwd"
           aria-pressed="false"
         >
-          <i class="material-icons">&#xE8F4;</i>
+          <i class="material-icons" aria-hidden="true">&#xE8F4;</i>
         </button>
         </div>
       </div>

@@ -95,10 +95,10 @@ const buildValidationMessage = (
   // Get base message
   if (!lengthValid) {
     const invalidElement = feedbackContainer.querySelector(PasswordPolicyMap.lengthMessage) as HTMLElement;
-    message = `${invalidElement?.dataset?.psData}\n` || 'Your password length is invalid \n';
+    message = `${invalidElement?.dataset?.psData || 'Your password length is invalid'}\n`;
   } else if (!strengthValid) {
     const invalidElement = feedbackContainer.querySelector(PasswordPolicyMap.invalidMessage) as HTMLElement;
-    message = `${invalidElement?.dataset?.psData}\n` || 'Your password is too weak \n';
+    message = `${invalidElement?.dataset?.psData || 'Your password is too weak'}\n`;
   }
 
   // Get hints suggestions

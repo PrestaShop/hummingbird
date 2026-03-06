@@ -28,13 +28,14 @@
     <form class="ps-searchbar__form" method="get" action="{$search_controller_url}" role="search">
       <input type="hidden" name="controller" value="search">
       <i class="material-icons ps-searchbar__magnifier js-search-icon" aria-hidden="true">&#xE8B6;</i>
+      <label for="ps_searchbar_input" class="visually-hidden">{l s='Search' d='Shop.Theme.Catalog'}</label>
       <input
         class="js-search-input form-control ps-searchbar__input"
         type="text"
         name="s"
         value="{$search_string}"
         placeholder="{l s='Search products...' d='Shop.Theme.Catalog'}"
-        aria-label="{l s='Search' d='Shop.Theme.Catalog'}"
+        id="ps_searchbar_input"
         autocomplete="off"
         role="combobox"
         aria-haspopup="listbox"
@@ -43,7 +44,7 @@
         aria-expanded="false"
       >
       <button type="button" class="ps-searchbar__clear js-search-clear btn outline outline--rounded d-none" aria-label="{l s='Clear search' d='Shop.Theme.Catalog'}">
-        <i class="material-icons">&#xE14C;</i>
+        <i class="material-icons" aria-hidden="true">&#xE14C;</i>
       </button>
     </form>
 
@@ -69,7 +70,7 @@
 <div class="ps-searchbar--mobile d-md-none d-flex col-auto">
   <div class="header-block d-flex align-items-center">
     <a class="header-block__action-btn" href="#" role="button" data-bs-toggle="offcanvas" data-bs-target="#searchCanvas" aria-controls="searchCanvas" aria-label="{l s='Show search bar' d='Shop.Theme.Global'}">
-      <span class="material-icons header-block__icon">&#xE8B6;</span>
+      <span class="material-icons header-block__icon" aria-hidden="true">&#xE8B6;</span>
     </a>
   </div>
 

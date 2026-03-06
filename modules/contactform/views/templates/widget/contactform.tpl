@@ -19,16 +19,21 @@
       <section class="form-fields">
         {include file='components/page-title-section.tpl' title={l s='Contact us' d='Shop.Theme.Global'}}
 
-        <div class="mb-3">
-          <label class="form-label" for="contact-us-subject-select">
-            {l s='Subject' d='Shop.Forms.Labels'}
-          </label>
-          <select id="contact-us-subject-select" name="id_contact" class="form-select">
-            {foreach from=$contact.contacts item=contact_elt}
-              <option value="{$contact_elt.id_contact}">{$contact_elt.name}</option>
-            {/foreach}
-          </select>
-        </div>
+        {if $contact.contacts|count === 1}
+          {assign var=firstContact value=current($contact.contacts)}
+          <input type="hidden" name="id_contact" value="{$firstContact.id_contact|escape:'htmlall':'UTF-8'}"/>
+        {else}
+          <div class="mb-3">
+            <label class="form-label" for="contact-us-subject-select">
+              {l s='Subject' d='Shop.Forms.Labels'}
+            </label>
+            <select id="contact-us-subject-select" name="id_contact" class="form-select">
+              {foreach from=$contact.contacts item=contact_elt}
+                <option value="{$contact_elt.id_contact|escape:'htmlall':'UTF-8'}">{$contact_elt.name|escape:'htmlall':'UTF-8'}</option>
+              {/foreach}
+            </select>
+          </div>
+        {/if}
 
         <div class="mb-3">
           <label class="form-label required" for="contact-us-email-input">

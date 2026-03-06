@@ -6,7 +6,6 @@
   {foreach $linkBlocks as $linkBlock}
     <nav
       class="ps-linklist footer-block col-md-6 col-lg-3"
-      role="navigation"
       aria-labelledby="footer_title_{$linkBlock.id}"
     >
       <p

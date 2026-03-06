@@ -108,7 +108,7 @@
 
         <div class="product-line__item product-line__item--availability">
           <div class="product-line__item-availability-message {$availability_class}">
-            <i class="product-line__item-availability-icon material-icons rtl-no-flip">&#x{$availability_icon};</i>
+            <i class="product-line__item-availability-icon material-icons rtl-no-flip" aria-hidden="true">&#x{$availability_icon};</i>
             {$product.availability_message}
           </div>
         </div>

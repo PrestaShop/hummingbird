@@ -39,8 +39,8 @@
 
           <span>
             <span class="navbar-toggler collapse-icons">
-              <i class="material-icons add">&#xE313;</i>
-              <i class="material-icons remove">&#xE316;</i>
+              <i class="material-icons add" aria-hidden="true">&#xE313;</i>
+              <i class="material-icons remove" aria-hidden="true">&#xE316;</i>
             </span>
           </span>
         </div>
@@ -68,7 +68,7 @@
                         {elseif isset($filter.properties.color)}
                           <span class="color" style="background-color:{$filter.properties.color}"></span>
                         {else}
-                          <span {if !$js_enabled} class="ps-shown-by-js" {/if}><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
+                          <span {if !$js_enabled} class="ps-shown-by-js" {/if}><i class="material-icons rtl-no-flip checkbox-checked" aria-hidden="true">&#xE5CA;</i></span>
                         {/if}
                       </span>
                     {else}

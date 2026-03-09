@@ -132,6 +132,7 @@ export const onePageCheckout = {
   useSameAddress: '.js-opc-use-same-address',
   billingSection: '#opc-billing-section',
   payButton: '#opc-pay-button',
+  deliveryMethods: '#opc-delivery-methods',
 };
 
 export const gdpr = {

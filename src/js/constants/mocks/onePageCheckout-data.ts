@@ -42,3 +42,35 @@ export const FormEmpty = `
     <button type="submit" id="opc-pay-button" disabled>Pay</button>
   </form>
 `;
+
+export const FormWithCarriersContainer = `
+  <form class="one-page-checkout" method="POST" action="/order">
+    <select name="id_country" id="field-id_country">
+      <option value="" disabled selected>-- choose --</option>
+      <option value="8">France</option>
+    </select>
+    <input type="text" name="postcode" id="field-postcode">
+    <input type="text" name="city" id="field-city">
+    <div id="opc-delivery-methods">
+      <div class="card card-body bg-light">Enter your address to see carriers.</div>
+    </div>
+    <button type="submit" id="opc-pay-button" disabled>Pay</button>
+  </form>
+`;
+
+export const mockCarriersResponse = {
+  delivery_options: {
+    '1,': {id: 1, name: 'Colissimo', delay: '2-3 days', price: '€5.00', logo: null},
+    '2,': {id: 2, name: 'Chronopost', delay: '1 day', price: '€10.00', logo: null},
+  },
+  selected_delivery_option: '1,',
+  carrier_was_reset: false,
+  cart_summary: '<div>cart summary</div>',
+};
+
+export const mockEmptyCarriersResponse = {
+  delivery_options: {},
+  selected_delivery_option: null,
+  carrier_was_reset: false,
+  cart_summary: '<div>cart summary</div>',
+};

@@ -3,6 +3,7 @@
  * file that was distributed with this source code.
  */
 import {onePageCheckout as OpcMap} from '@constants/selectors-map';
+import initCarriers from '@js/pages/one-page-checkout-carriers';
 
 let billingToggleHandler: ((e: Event) => void) | null = null;
 
@@ -19,6 +20,7 @@ const initOnePageCheckout = () => {
 
   initBillingToggle();
   validateForm();
+  initCarriers();
 
   const {prestashop} = window;
 
@@ -54,9 +56,9 @@ const initBillingToggle = () => {
 };
 
 /**
- * Check all visible required fields and toggle pay button
+ * Check all visible required fields and a selected carrier, then toggle pay button
  */
-const validateForm = () => {
+export const validateForm = () => {
   const form = document.querySelector<HTMLFormElement>(OpcMap.form);
   const payButton = document.querySelector<HTMLButtonElement>(OpcMap.payButton);
 
@@ -86,7 +88,12 @@ const validateForm = () => {
     }
   });
 
-  payButton.disabled = !isValid;
+  const deliveryContainer = document.querySelector(OpcMap.deliveryMethods);
+  const carrierSelected = deliveryContainer
+    ? Boolean(deliveryContainer.querySelector('input[name="delivery_option"]:checked'))
+    : true; // No delivery section = not an OPC with carriers, don't block
+
+  payButton.disabled = !isValid || !carrierSelected;
 };
 
 export default initOnePageCheckout;

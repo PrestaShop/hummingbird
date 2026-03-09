@@ -26,8 +26,11 @@
       </div>
     {else}
       <div class="d-grid">
-        <a href="{$urls.pages.order}" class="btn btn-primary btn-lg">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
-
+        {if $customer.is_logged || $configuration.is_guest_checkout_enabled}
+          <a href="{$urls.pages.order}" class="btn btn-primary btn-lg">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
+        {else}
+          <a href="{$urls.pages.authentication}?back={$urls.pages.order|urlencode}" class="btn btn-primary btn-lg">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
+        {/if}
         {hook h='displayExpressCheckout'}
       </div>
     {/if}

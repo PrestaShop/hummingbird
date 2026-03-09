@@ -16,5 +16,7 @@ export default {
   updateFacets: 'updateFacets',
   updatedDeliveryForm: 'updatedDeliveryForm',
   updatedOpcCarriers: 'updatedOpcCarriers',
+  updatedOpcDeliveryAddressForm: 'updatedOpcDeliveryAddressForm',
+  updatedOpcBillingAddressForm: 'updatedOpcBillingAddressForm',
   combinationFocusRestored: 'combinationFocusRestored',
 };

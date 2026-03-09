@@ -3,3 +3,5 @@ assets
 .env
 coverage
 storybook-static
+
+.vscode/

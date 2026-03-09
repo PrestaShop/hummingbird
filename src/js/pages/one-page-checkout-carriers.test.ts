@@ -29,7 +29,8 @@ describe('One Page Checkout — Carriers', () => {
 
   afterEach(() => {
     jest.restoreAllMocks();
-    window.prestashop.removeAllListeners('updatedOpcAddressForm');
+    window.prestashop.removeAllListeners('updatedOpcDeliveryAddressForm');
+    window.prestashop.removeAllListeners('updatedOpcBillingAddressForm');
     window.prestashop.removeAllListeners('updatedOpcCarriers');
   });
 

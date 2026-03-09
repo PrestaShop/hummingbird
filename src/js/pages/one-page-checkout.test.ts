@@ -37,7 +37,8 @@ describe('One Page Checkout', () => {
   });
 
   afterEach(() => {
-    window.prestashop.removeAllListeners('updatedOpcAddressForm');
+    window.prestashop.removeAllListeners('updatedOpcDeliveryAddressForm');
+    window.prestashop.removeAllListeners('updatedOpcBillingAddressForm');
   });
 
   describe('validateForm', () => {

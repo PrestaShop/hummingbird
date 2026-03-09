@@ -24,11 +24,13 @@ const initOnePageCheckout = () => {
 
   const {prestashop} = window;
 
-  // Re-init after any address form refresh (country change or other)
-  prestashop.on('updatedOpcAddressForm', () => {
+  // Re-init after any address form refresh (delivery or billing country change)
+  const onAddressFormUpdated = () => {
     initBillingToggle();
     validateForm();
-  });
+  };
+  prestashop.on('updatedOpcDeliveryAddressForm', onAddressFormUpdated);
+  prestashop.on('updatedOpcBillingAddressForm', onAddressFormUpdated);
 };
 
 /**

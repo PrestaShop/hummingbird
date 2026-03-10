@@ -4,6 +4,7 @@
  */
 import initEmitter from '@js/prestashop';
 import resetHTMLBodyContent from '@helpers/resetBody';
+import EVENTS from '@constants/events-map';
 import {FormWithRequiredFields, FormWithoutRequiredFields, FormEmpty} from '@constants/mocks/onePageCheckout-data';
 import initOnePageCheckout from '@js/pages/one-page-checkout';
 import {onePageCheckout} from '@constants/selectors-map';
@@ -37,8 +38,8 @@ describe('One Page Checkout', () => {
   });
 
   afterEach(() => {
-    window.prestashop.removeAllListeners('updatedOpcDeliveryAddressForm');
-    window.prestashop.removeAllListeners('updatedOpcBillingAddressForm');
+    window.prestashop.removeAllListeners(EVENTS.updatedOpcDeliveryAddressForm);
+    window.prestashop.removeAllListeners(EVENTS.updatedOpcBillingAddressForm);
   });
 
   describe('validateForm', () => {

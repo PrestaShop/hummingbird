@@ -13,6 +13,7 @@ import initCarriers, {
   renderCarrierList,
 } from '@js/pages/one-page-checkout-carriers';
 import {onePageCheckout} from '@constants/selectors-map';
+import EVENTS from '@constants/events-map';
 
 const getDeliveryMethods = (): HTMLElement =>
   document.querySelector<HTMLElement>(onePageCheckout.deliveryMethods)!;
@@ -29,9 +30,9 @@ describe('One Page Checkout — Carriers', () => {
 
   afterEach(() => {
     jest.restoreAllMocks();
-    window.prestashop.removeAllListeners('updatedOpcDeliveryAddressForm');
-    window.prestashop.removeAllListeners('updatedOpcBillingAddressForm');
-    window.prestashop.removeAllListeners('updatedOpcCarriers');
+    window.prestashop.removeAllListeners(EVENTS.updatedOpcDeliveryAddressForm);
+    window.prestashop.removeAllListeners(EVENTS.updatedOpcBillingAddressForm);
+    window.prestashop.removeAllListeners(EVENTS.updatedOpcCarriers);
   });
 
   // ---------------------------------------------------------------------------
@@ -87,7 +88,7 @@ describe('One Page Checkout — Carriers', () => {
   describe('initCarriers', () => {
     it('renders carriers into #opc-delivery-methods on updatedOpcCarriers', () => {
       initCarriers();
-      window.prestashop.emit('updatedOpcCarriers', mockCarriersResponse);
+      window.prestashop.emit(EVENTS.updatedOpcCarriers, mockCarriersResponse);
 
       expect(getDeliveryMethods().innerHTML).toContain('Colissimo');
       expect(getDeliveryMethods().innerHTML).toContain('Chronopost');
@@ -95,14 +96,14 @@ describe('One Page Checkout — Carriers', () => {
 
     it('renders warning when delivery_options is empty', () => {
       initCarriers();
-      window.prestashop.emit('updatedOpcCarriers', mockEmptyCarriersResponse);
+      window.prestashop.emit(EVENTS.updatedOpcCarriers, mockEmptyCarriersResponse);
 
       expect(getDeliveryMethods().innerHTML).toContain('alert');
     });
 
     it('updates data-id-address when id_address_delivery is provided', () => {
       initCarriers();
-      window.prestashop.emit('updatedOpcCarriers', {
+      window.prestashop.emit(EVENTS.updatedOpcCarriers, {
         ...mockCarriersResponse,
         id_address_delivery: 42,
       });
@@ -112,7 +113,7 @@ describe('One Page Checkout — Carriers', () => {
 
     it('does not update data-id-address when id_address_delivery is absent', () => {
       initCarriers();
-      window.prestashop.emit('updatedOpcCarriers', mockCarriersResponse);
+      window.prestashop.emit(EVENTS.updatedOpcCarriers, mockCarriersResponse);
 
       expect(getDeliveryMethods().dataset.idAddress).toBeUndefined();
     });

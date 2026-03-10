@@ -3,6 +3,7 @@
  * file that was distributed with this source code.
  */
 import {onePageCheckout as OpcMap} from '@constants/selectors-map';
+import EVENTS from '@constants/events-map';
 import {validateForm} from '@js/pages/one-page-checkout';
 
 export interface DeliveryOption {
@@ -95,11 +96,11 @@ const initCarriers = (): void => {
 
   document.querySelector(OpcMap.deliveryMethods)?.addEventListener('click', (e) => {
     if ((e.target as HTMLElement).closest('[data-opc-action="retry-carriers"]')) {
-      window.prestashop.emit('opcRetryCarriers');
+      window.prestashop.emit(EVENTS.opcRetryCarriers);
     }
   });
 
-  window.prestashop.on('opcCarriersLoading', () => {
+  window.prestashop.on(EVENTS.opcCarriersLoading, () => {
     const container = document.querySelector<HTMLElement>(OpcMap.deliveryMethods);
     if (container) {
       const height = `${container.offsetHeight}px`;
@@ -112,7 +113,7 @@ const initCarriers = (): void => {
     if (btn) btn.disabled = true;
   });
 
-  window.prestashop.on('updatedOpcCarriers', (data: OpcCarriersResponse) => {
+  window.prestashop.on(EVENTS.updatedOpcCarriers, (data: OpcCarriersResponse) => {
     const container = document.querySelector<HTMLElement>(OpcMap.deliveryMethods);
     if (!container) return;
 
@@ -138,7 +139,7 @@ const initCarriers = (): void => {
     validateForm();
   });
 
-  window.prestashop.on('opcCarriersFailed', () => {
+  window.prestashop.on(EVENTS.opcCarriersFailed, () => {
     const container = document.querySelector<HTMLElement>(OpcMap.deliveryMethods);
     if (container) {
       container.style.minHeight = '';

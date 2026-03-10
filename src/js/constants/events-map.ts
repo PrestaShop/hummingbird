@@ -18,5 +18,8 @@ export default {
   updatedOpcCarriers: 'updatedOpcCarriers',
   updatedOpcDeliveryAddressForm: 'updatedOpcDeliveryAddressForm',
   updatedOpcBillingAddressForm: 'updatedOpcBillingAddressForm',
+  opcCarriersLoading: 'opcCarriersLoading',
+  opcCarriersFailed: 'opcCarriersFailed',
+  opcRetryCarriers: 'opcRetryCarriers',
   combinationFocusRestored: 'combinationFocusRestored',
 };

@@ -3,6 +3,7 @@
  * file that was distributed with this source code.
  */
 import {onePageCheckout as OpcMap} from '@constants/selectors-map';
+import EVENTS from '@constants/events-map';
 import initCarriers from '@js/pages/one-page-checkout-carriers';
 
 let billingToggleHandler: ((e: Event) => void) | null = null;
@@ -29,8 +30,8 @@ const initOnePageCheckout = () => {
     initBillingToggle();
     validateForm();
   };
-  prestashop.on('updatedOpcDeliveryAddressForm', onAddressFormUpdated);
-  prestashop.on('updatedOpcBillingAddressForm', onAddressFormUpdated);
+  prestashop.on(EVENTS.updatedOpcDeliveryAddressForm, onAddressFormUpdated);
+  prestashop.on(EVENTS.updatedOpcBillingAddressForm, onAddressFormUpdated);
 };
 
 /**

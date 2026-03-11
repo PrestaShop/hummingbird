@@ -74,42 +74,44 @@
             {/block}
           </div>
 
-          <div class="{$componentName}__actions">
-            {if $product.add_to_cart_url}
-              <form class="{$componentName}__form" action="{$urls.pages.cart}" method="post">
-                <input type="hidden" value="{$product.id_product}" name="id_product">
-                {if $product.id_product_attribute}
-                    <input type="hidden" value="{$product.id_product_attribute}" name="id_product_attribute">
-                {/if}
-                <input type="hidden" name="token" value="{$static_token}">
-
-                <div class="quantity-button js-quantity-button">
-                  {include file='components/qty-input.tpl'
-                    attributes=[
-                      "id" => "quantity_wanted_{$product.id_product}",
-                      "value" => "{$product.quantity_wanted}",
-                      "min" => "{$product.quantity_required}"
-                    ]
-                  }
-                </div>
-
-                <button 
-                  data-button-action="add-to-cart" 
-                  class="product-miniature__add btn btn-primary btn-square-icon"
-                  aria-label="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
-                  title="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
-                  data-ps-ref="add-to-cart"
-                >
-                  <i class="material-icons" aria-hidden="true">&#xe854;</i>
-                  <span class="product-miniature__add-text">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
-                </button>
-              </form>
-            {else}
-              <a href="{$product.url}" class="product-miniature__details btn btn-outline-primary" aria-label="{l s='View product %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Catalog'}">
-                {l s='See details' d='Shop.Theme.Actions'}
-              </a>
-            {/if}
-          </div>
+          {block name='product_actions'}
+            <div class="{$componentName}__actions">
+              {if $product.add_to_cart_url}
+                <form class="{$componentName}__form" action="{$urls.pages.cart}" method="post">
+                  <input type="hidden" value="{$product.id_product}" name="id_product">
+                  {if $product.id_product_attribute}
+                      <input type="hidden" value="{$product.id_product_attribute}" name="id_product_attribute">
+                  {/if}
+                  <input type="hidden" name="token" value="{$static_token}">
+  
+                  <div class="quantity-button js-quantity-button">
+                    {include file='components/qty-input.tpl'
+                      attributes=[
+                        "id" => "quantity_wanted_{$product.id_product}",
+                        "value" => "{$product.quantity_wanted}",
+                        "min" => "{$product.quantity_required}"
+                      ]
+                    }
+                  </div>
+  
+                  <button 
+                    data-button-action="add-to-cart" 
+                    class="product-miniature__add btn btn-primary btn-square-icon"
+                    aria-label="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
+                    title="{l s='Add to cart %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}"
+                    data-ps-ref="add-to-cart"
+                  >
+                    <i class="material-icons" aria-hidden="true">&#xe854;</i>
+                    <span class="product-miniature__add-text">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
+                  </button>
+                </form>
+              {else}
+                <a href="{$product.url}" class="product-miniature__details btn btn-outline-primary" aria-label="{l s='View product %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Catalog'}">
+                  {l s='See details' d='Shop.Theme.Actions'}
+                </a>
+              {/if}
+            </div>
+          {/block}
         </div>
       {/block}
     </div>

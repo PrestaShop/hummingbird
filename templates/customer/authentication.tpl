@@ -29,7 +29,16 @@
         <h2 class="h4">{l s='No account?' d='Shop.Theme.Customeraccount'}</h2>
 
         <div class="d-grid">
-          <a href="{$urls.pages.register}" class="btn btn-outline-primary" data-link-action="display-register-form">
+          {assign var="register_url" value=$urls.pages.register}
+
+          {if isset($smarty.get.back)}
+            {if $register_url|strpos:'?' !== false}
+              {assign var="register_url" value="`$register_url`&back=`$smarty.get.back|escape:'url'`"}
+            {else}
+              {assign var="register_url" value="`$register_url`?back=`$smarty.get.back|escape:'url'`"}
+            {/if}
+          {/if}
+          <a href="{$register_url}" class="btn btn-outline-primary" data-link-action="display-register-form">
             {l s='Create your account' d='Shop.Theme.Actions'}
           </a>
         </div>

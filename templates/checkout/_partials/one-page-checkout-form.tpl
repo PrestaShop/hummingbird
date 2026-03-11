@@ -32,6 +32,12 @@
       </div>
     {/if}
 
+    {if isset($formFields['optin'])}
+      <div class="one-page-checkout__field">
+        {form_field field=$formFields['optin']}
+      </div>
+    {/if}
+
     {if $customer.is_guest}
       {foreach from=$formFields item="field"}
         {if strpos($field.name, 'invoice_') === 0}{continue}{/if}
@@ -42,12 +48,6 @@
           {form_field field=$field}
         </div>
       {/foreach}
-    {/if}
-
-    {if isset($formFields['optin'])}
-      <div class="one-page-checkout__field">
-        {form_field field=$formFields['optin']}
-      </div>
     {/if}
   </section>
 {else}

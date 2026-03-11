@@ -128,8 +128,8 @@ export const visiblePassword = {
 };
 
 export const onePageCheckout = {
-  form: '.one-page-checkout',
-  useSameAddress: '.js-opc-use-same-address',
+  form: '#opc-form',
+  useSameAddress: '#opc-use-same-address',
   billingSection: '#opc-billing-section',
   payButton: '#opc-pay-button',
   deliveryMethods: '#opc-delivery-methods',

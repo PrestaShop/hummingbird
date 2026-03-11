@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *}
 
-<form class="one-page-checkout" method="POST" action="{$urls.pages.order}" data-ps-action="form-validation">
+<form id="opc-form" class="one-page-checkout" method="POST" action="{$urls.pages.order}" data-ps-action="form-validation">
   <input type="hidden" name="submitOnePageCheckout" value="1">
 
   <div class="js-opc-address-form">
@@ -64,7 +64,7 @@
 
     {* ===== Pay button ===== *}
     <button class="one-page-checkout__submit btn btn-primary btn-lg w-100" type="submit" id="opc-pay-button" disabled>
-      {l s='Pay' d='Shop.Theme.Checkout'} <span class="js-opc-pay-amount">{$cart.totals.total.value}</span>
+      {l s='Pay' d='Shop.Theme.Checkout'} <span id="opc-pay-amount">{$cart.totals.total.value}</span>
     </button>
 
     {hook h='displayPaymentByBinaries'}

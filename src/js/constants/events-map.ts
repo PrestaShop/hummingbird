@@ -15,11 +15,5 @@ export default {
   updatedProduct: 'updatedProduct',
   updateFacets: 'updateFacets',
   updatedDeliveryForm: 'updatedDeliveryForm',
-  updatedOpcCarriers: 'updatedOpcCarriers',
-  updatedOpcDeliveryAddressForm: 'updatedOpcDeliveryAddressForm',
-  updatedOpcBillingAddressForm: 'updatedOpcBillingAddressForm',
-  opcCarriersLoading: 'opcCarriersLoading',
-  opcCarriersFailed: 'opcCarriersFailed',
-  opcRetryCarriers: 'opcRetryCarriers',
   combinationFocusRestored: 'combinationFocusRestored',
 };

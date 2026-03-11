@@ -64,7 +64,7 @@
     <input type="hidden" name="saveAddress" value="delivery">
 
     <div class="form-check">
-      <input class="form-check-input js-opc-use-same-address" type="checkbox" id="opc-use-same-address" name="use_same_address" value="1" checked>
+      <input class="form-check-input" type="checkbox" id="opc-use-same-address" name="use_same_address" value="1" checked>
       <label class="form-check-label" for="opc-use-same-address">
         {l s='Use this address for invoice too' d='Shop.Theme.Checkout'}
       </label>

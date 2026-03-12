@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
 export const components = {
   useToast,
   useAlert,

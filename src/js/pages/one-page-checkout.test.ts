@@ -32,7 +32,7 @@ const TEST_INVOICE_FIRSTNAME = 'Jane';
 
 describe('One Page Checkout', () => {
   beforeAll(() => {
-    window.prestashop = {} as any;
+    window.prestashop = {} as unknown;
     initEmitter();
   });
 

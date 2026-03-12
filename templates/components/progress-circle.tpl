@@ -4,7 +4,7 @@
  *}
 
 {$radius = $size / 2 - $stroke * 2}
-{$circumference = $radius * 2 * constant('M_PI')}
+{$circumference = $radius * 2 * 3.14159265358979}
 
 {$circumference = $circumference|string_format:"%.4f"}
 

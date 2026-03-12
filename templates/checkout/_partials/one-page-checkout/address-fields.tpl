@@ -30,7 +30,6 @@
 
 {* ===== Prefix length for stripping ===== *}
 {assign var="_prefix_len" value=$prefix|strlen}
-
 {* ===== Build prefixed key names ===== *}
 {assign var="_key_firstname" value="{$prefix}firstname"}
 {assign var="_key_lastname" value="{$prefix}lastname"}
@@ -69,9 +68,8 @@
     || $_base === 'optin'
     || $_base === 'use_same_address'
     || $_base === 'id_address_invoice'
-    || (!$prefix && $customer.is_guest && $field.type === 'checkbox')
   }
-    {* noop — rendered by the parent template *}
+  {* noop — rendered by the parent template *}
 
   {* ----- Name row: firstname + lastname rendered together in 2 columns ----- *}
   {* When firstname is encountered first, the whole row (both fields) is output.  *}

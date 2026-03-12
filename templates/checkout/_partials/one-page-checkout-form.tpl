@@ -25,30 +25,25 @@
       </a>
     </div>
 
-    {if isset($formFields['email'])}
+    {if isset($contactFields['email'])}
       <div class="one-page-checkout__field">
         <label class="form-label" for="field-email">{l s='Continue as guest' d='Shop.Theme.Checkout'}</label>
-        <input class="form-control" type="email" name="email" id="field-email" value="{$formFields['email']['value']}" required>
+        <input class="form-control" type="email" name="email" id="field-email" value="{$contactFields['email']['value']}" required>
       </div>
     {/if}
 
-    {if isset($formFields['optin'])}
+    {if isset($contactFields['optin'])}
       <div class="one-page-checkout__field">
-        {form_field field=$formFields['optin']}
+        {form_field field=$contactFields['optin']}
       </div>
     {/if}
 
-    {if $customer.is_guest}
-      {foreach from=$formFields item="field"}
-        {if strpos($field.name, 'invoice_') === 0}{continue}{/if}
-        {if $field.type !== 'checkbox'}{continue}{/if}
-        {if $field.name === 'optin' || $field.name === 'use_same_address'}{continue}{/if}
+    {foreach from=$additionalCustomerFields item="field"}
+      <div class="one-page-checkout__field">
+        {form_field field=$field}
+      </div>
+    {/foreach}
 
-        <div class="one-page-checkout__field">
-          {form_field field=$field}
-        </div>
-      {/foreach}
-    {/if}
   </section>
 {else}
   <section class="one-page-checkout__section">
@@ -62,7 +57,7 @@
 
   <section class="form-fields">
     {include file='checkout/_partials/one-page-checkout/address-fields.tpl'
-      formFields=$formFields
+      formFields=$deliveryFields
       prefix=''
     }
 
@@ -83,7 +78,7 @@
 
   <section class="form-fields">
     {include file='checkout/_partials/one-page-checkout/address-fields.tpl'
-      formFields=$formFields
+      formFields=$invoiceFields
       prefix='invoice_'
     }
   </section>

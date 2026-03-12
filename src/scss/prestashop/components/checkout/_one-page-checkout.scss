@@ -6,7 +6,8 @@ $component-name: one-page-checkout;
   }
 
   &__section {
-    padding-bottom: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 
     & + &,
     .js-opc-address-form + & {
@@ -17,6 +18,8 @@ $component-name: one-page-checkout;
 
   &__links {
     display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 0.5rem;
     justify-content: space-between;
     margin-bottom: 1.5rem;
   }

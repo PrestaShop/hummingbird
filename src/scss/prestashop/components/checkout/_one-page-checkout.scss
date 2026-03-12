@@ -20,6 +20,8 @@ $component-name: one-page-checkout;
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap-reverse;
+    gap: 0.5rem;
   }
 
   &__field {

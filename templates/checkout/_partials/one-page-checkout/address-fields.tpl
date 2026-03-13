@@ -63,14 +63,6 @@
   {if $_base === 'alias'}
     <input type="hidden" name="{$field.name}" value="My address">
 
-  {* ----- Fields handled outside this partial (contact section, billing toggle) ----- *}
-  {elseif $_base === 'email'
-    || $_base === 'optin'
-    || $_base === 'use_same_address'
-    || $_base === 'id_address_invoice'
-  }
-  {* noop — rendered by the parent template *}
-
   {* ----- Name row: firstname + lastname rendered together in 2 columns ----- *}
   {* When firstname is encountered first, the whole row (both fields) is output.  *}
   {* lastname is then skipped below to avoid a duplicate render.                  *}

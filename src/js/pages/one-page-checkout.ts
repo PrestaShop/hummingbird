@@ -15,8 +15,36 @@
  *
  * Add theme-specific behaviour here only — the core handles everything else.
  */
+
 const initOnePageCheckout = (): void => {
-  // Theme-specific OPC behaviour goes here.
+  const {prestashop} = window;
+
+  // Preserve Bootstrap accordion open state across cart summary DOM replacements.
+  let openCollapseIds: string[] = [];
+
+  prestashop.on('opcCartSummaryBeforeUpdate', ({selector}: {selector: string}) => {
+    openCollapseIds = Array.from(document.querySelectorAll(`${selector} .accordion-collapse.show`))
+      .map((el) => el.id)
+      .filter(Boolean);
+  });
+
+  prestashop.on('opcCartSummaryUpdated', () => {
+    openCollapseIds.forEach((id) => {
+      const el = document.getElementById(id);
+
+      if (!el) return;
+
+      el.classList.add('show');
+
+      const btn = document.querySelector(`[data-bs-target="#${id}"]`);
+
+      if (btn) {
+        btn.classList.remove('collapsed');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+    openCollapseIds = [];
+  });
 };
 
 export default initOnePageCheckout;

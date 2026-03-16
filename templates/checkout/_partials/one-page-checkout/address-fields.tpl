@@ -30,7 +30,6 @@
 
 {* ===== Prefix length for stripping ===== *}
 {assign var="_prefix_len" value=$prefix|strlen}
-
 {* ===== Build prefixed key names ===== *}
 {assign var="_key_firstname" value="{$prefix}firstname"}
 {assign var="_key_lastname" value="{$prefix}lastname"}
@@ -63,10 +62,6 @@
   {* ----- alias: always present but never displayed — emit as hidden input ----- *}
   {if $_base === 'alias'}
     <input type="hidden" name="{$field.name}" value="My address">
-
-  {* ----- Fields handled outside this partial (contact section, billing toggle) ----- *}
-  {elseif $_base === 'email' || $_base === 'optin' || $_base === 'use_same_address' || $_base === 'id_address_invoice'}
-    {* noop — rendered by the parent template *}
 
   {* ----- Name row: firstname + lastname rendered together in 2 columns ----- *}
   {* When firstname is encountered first, the whole row (both fields) is output.  *}

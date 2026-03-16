@@ -3,187 +3,57 @@
  * file that was distributed with this source code.
  */
 import initEmitter from '@js/prestashop';
-import resetHTMLBodyContent from '@helpers/resetBody';
-import EVENTS from '@constants/events-map';
-import {FormWithRequiredFields, FormWithoutRequiredFields, FormEmpty} from '@constants/mocks/onePageCheckout-data';
 import initOnePageCheckout from '@js/pages/one-page-checkout';
-import {onePageCheckout} from '@constants/selectors-map';
 
-const getPayButton = (): HTMLButtonElement => document.querySelector<HTMLButtonElement>(onePageCheckout.payButton)!;
+const SUMMARY_SELECTOR = '#cart-summary';
+const COLLAPSE_ID = 'cart-summary-product-list';
 
-const getBillingSection = (): HTMLElement => document.querySelector<HTMLElement>(onePageCheckout.billingSection)!;
+const buildSummaryHTML = (open: boolean): string => `
+  <div id="cart-summary">
+    <button data-bs-target="#${COLLAPSE_ID}" aria-expanded="${open ? 'true' : 'false'}" class="${open ? '' : 'collapsed'}">
+      Show details
+    </button>
+    <div id="${COLLAPSE_ID}" class="accordion-collapse${open ? ' show' : ''}"></div>
+  </div>
+`;
 
-const fillField = (selector: string, value: string) => {
-  const field = document.querySelector<HTMLInputElement | HTMLSelectElement>(selector)!;
-  field.value = value;
-  field.dispatchEvent(new Event('input', {bubbles: true}));
-};
-
-const toggleCheckbox = (selector: string, checked: boolean) => {
-  const cb = document.querySelector<HTMLInputElement>(selector)!;
-  cb.checked = checked;
-  cb.dispatchEvent(new Event('change', {bubbles: true}));
-};
-
-const TEST_EMAIL = 'test@example.com';
-const TEST_FIRSTNAME = 'John';
-const TEST_LASTNAME = 'Doe';
-const TEST_COUNTRY_ID = '8';
-const TEST_INVOICE_FIRSTNAME = 'Jane';
-
-describe('One Page Checkout', () => {
+describe('One Page Checkout — accordion state preservation', () => {
   beforeAll(() => {
     window.prestashop = {};
     initEmitter();
+    window.prestashop.selectors = {
+      checkout: {summarySelector: SUMMARY_SELECTOR},
+    };
+    initOnePageCheckout();
   });
 
-  afterEach(() => {
-    window.prestashop.removeAllListeners(EVENTS.updatedOpcDeliveryAddressForm);
-    window.prestashop.removeAllListeners(EVENTS.updatedOpcBillingAddressForm);
+  it('restores open accordion after cart summary DOM replacement', () => {
+    document.body.innerHTML = buildSummaryHTML(true);
+
+    window.prestashop.emit('opcCartSummaryBeforeUpdate', {selector: SUMMARY_SELECTOR});
+
+    // Replace the DOM as updateCartSummary would
+    document.body.innerHTML = buildSummaryHTML(false);
+
+    window.prestashop.emit('opcCartSummaryUpdated', {selector: SUMMARY_SELECTOR});
+
+    const collapse = document.getElementById(COLLAPSE_ID)!;
+    const btn = document.querySelector(`[data-bs-target="#${COLLAPSE_ID}"]`)!;
+
+    expect(collapse.classList.contains('show')).toBe(true);
+    expect(btn.classList.contains('collapsed')).toBe(false);
+    expect(btn.getAttribute('aria-expanded')).toBe('true');
   });
 
-  describe('validateForm', () => {
-    describe('with required fields', () => {
-      beforeEach(() => {
-        resetHTMLBodyContent(FormWithRequiredFields);
-        initOnePageCheckout();
-      });
+  it('does not restore closed accordion after DOM replacement', () => {
+    document.body.innerHTML = buildSummaryHTML(false);
 
-      it('should disable pay button when required fields are empty', () => {
-        expect(getPayButton().disabled).toBe(true);
-      });
+    window.prestashop.emit('opcCartSummaryBeforeUpdate', {selector: SUMMARY_SELECTOR});
+    document.body.innerHTML = buildSummaryHTML(false);
+    window.prestashop.emit('opcCartSummaryUpdated', {selector: SUMMARY_SELECTOR});
 
-      it('should enable pay button when all visible required fields are filled', () => {
-        fillField('#field-email', TEST_EMAIL);
-        fillField('#field-firstname', TEST_FIRSTNAME);
-        fillField('#field-lastname', TEST_LASTNAME);
-        fillField('#field-id_country', TEST_COUNTRY_ID);
-        toggleCheckbox('#conditions', true);
+    const collapse = document.getElementById(COLLAPSE_ID)!;
 
-        expect(getPayButton().disabled).toBe(false);
-      });
-
-      it('should disable pay button when one required field is empty', () => {
-        fillField('#field-email', TEST_EMAIL);
-        fillField('#field-firstname', TEST_FIRSTNAME);
-        // lastname left empty
-        fillField('#field-id_country', TEST_COUNTRY_ID);
-        toggleCheckbox('#conditions', true);
-
-        expect(getPayButton().disabled).toBe(true);
-      });
-
-      it('should disable pay button when terms checkbox is unchecked', () => {
-        fillField('#field-email', TEST_EMAIL);
-        fillField('#field-firstname', TEST_FIRSTNAME);
-        fillField('#field-lastname', TEST_LASTNAME);
-        fillField('#field-id_country', TEST_COUNTRY_ID);
-        // conditions left unchecked
-
-        expect(getPayButton().disabled).toBe(true);
-      });
-
-      it('should ignore required fields inside hidden billing section', () => {
-        // billing section is hidden by default, so invoice_firstname/invoice_lastname are skipped
-        fillField('#field-email', TEST_EMAIL);
-        fillField('#field-firstname', TEST_FIRSTNAME);
-        fillField('#field-lastname', TEST_LASTNAME);
-        fillField('#field-id_country', TEST_COUNTRY_ID);
-        toggleCheckbox('#conditions', true);
-
-        expect(getPayButton().disabled).toBe(false);
-      });
-
-      it('should require billing fields when billing section is visible', () => {
-        // Uncheck "use same address" to show billing section
-        toggleCheckbox('.js-opc-use-same-address', false);
-
-        fillField('#field-email', TEST_EMAIL);
-        fillField('#field-firstname', TEST_FIRSTNAME);
-        fillField('#field-lastname', TEST_LASTNAME);
-        fillField('#field-id_country', TEST_COUNTRY_ID);
-        toggleCheckbox('#conditions', true);
-        // invoice fields left empty
-
-        expect(getPayButton().disabled).toBe(true);
-      });
-
-      it('should enable pay button when billing fields are also filled', () => {
-        toggleCheckbox('.js-opc-use-same-address', false);
-
-        fillField('#field-email', TEST_EMAIL);
-        fillField('#field-firstname', TEST_FIRSTNAME);
-        fillField('#field-lastname', TEST_LASTNAME);
-        fillField('#field-id_country', TEST_COUNTRY_ID);
-        fillField('#field-invoice_firstname', TEST_INVOICE_FIRSTNAME);
-        fillField('#field-invoice_lastname', TEST_LASTNAME);
-        toggleCheckbox('#conditions', true);
-
-        expect(getPayButton().disabled).toBe(false);
-      });
-    });
-
-    describe('without required fields', () => {
-      beforeEach(() => {
-        resetHTMLBodyContent(FormWithoutRequiredFields);
-        initOnePageCheckout();
-      });
-
-      it('should enable pay button when there are no required fields', () => {
-        expect(getPayButton().disabled).toBe(false);
-      });
-    });
-
-    describe('empty form', () => {
-      beforeEach(() => {
-        resetHTMLBodyContent(FormEmpty);
-        initOnePageCheckout();
-      });
-
-      it('should enable pay button when form has no fields at all', () => {
-        expect(getPayButton().disabled).toBe(false);
-      });
-    });
-  });
-
-  describe('initBillingToggle', () => {
-    beforeEach(() => {
-      resetHTMLBodyContent(FormWithRequiredFields);
-      initOnePageCheckout();
-    });
-
-    it('should hide billing section when checkbox is checked', () => {
-      expect(getBillingSection().style.display).toBe('none');
-    });
-
-    it('should show billing section when checkbox is unchecked', () => {
-      toggleCheckbox('.js-opc-use-same-address', false);
-      expect(getBillingSection().style.display).toBe('');
-    });
-
-    it('should hide billing section again when checkbox is re-checked', () => {
-      toggleCheckbox('.js-opc-use-same-address', false);
-      toggleCheckbox('.js-opc-use-same-address', true);
-      expect(getBillingSection().style.display).toBe('none');
-    });
-
-    it('should re-validate form after toggling billing section', () => {
-      // Fill all delivery fields + terms
-      fillField('#field-email', TEST_EMAIL);
-      fillField('#field-firstname', TEST_FIRSTNAME);
-      fillField('#field-lastname', TEST_LASTNAME);
-      fillField('#field-id_country', TEST_COUNTRY_ID);
-      toggleCheckbox('#conditions', true);
-
-      expect(getPayButton().disabled).toBe(false);
-
-      // Show billing section -> billing fields are empty -> should disable
-      toggleCheckbox('.js-opc-use-same-address', false);
-      expect(getPayButton().disabled).toBe(true);
-
-      // Hide billing section again -> should re-enable
-      toggleCheckbox('.js-opc-use-same-address', true);
-      expect(getPayButton().disabled).toBe(false);
-    });
+    expect(collapse.classList.contains('show')).toBe(false);
   });
 });

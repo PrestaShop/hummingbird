@@ -59,10 +59,23 @@ export const FormWithCarriersContainer = `
 `;
 
 export const mockCarriersResponse = {
+  // eslint-disable-next-line max-len
   carriers_html: '<div class="delivery-options__list"><input type="radio" name="delivery_option" value="1,">Colissimo<input type="radio" name="delivery_option" value="2,">Chronopost</div>',
   delivery_options: {
-    '1,': {id: 1, name: 'Colissimo', delay: '2-3 days', price: '€5.00', logo: null},
-    '2,': {id: 2, name: 'Chronopost', delay: '1 day', price: '€10.00', logo: null},
+    '1,': {
+      id: 1,
+      name: 'Colissimo',
+      delay: '2-3 days',
+      price: '€5.00',
+      logo: null,
+    },
+    '2,': {
+      id: 2,
+      name: 'Chronopost',
+      delay: '1 day',
+      price: '€10.00',
+      logo: null,
+    },
   },
   selected_delivery_option: '1,',
   carrier_was_reset: false,

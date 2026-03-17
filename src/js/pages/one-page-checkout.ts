@@ -2,91 +2,49 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import {onePageCheckout as OpcMap} from '@constants/selectors-map';
 
-let billingToggleHandler: ((e: Event) => void) | null = null;
+/**
+ * One Page Checkout — theme entry point
+ *
+ * The core (opc-form.js, opc-carrier-list.js, opc-carrier-select.js) owns
+ * the full OPC lifecycle:
+ *   - Form validation and pay button gating
+ *   - Billing section toggle
+ *   - Carrier list fetch, loader and error states
+ *   - Cart summary and pay button amount update
+ *
+ * Add theme-specific behaviour here only — the core handles everything else.
+ */
 
-const initOnePageCheckout = () => {
-  const form = document.querySelector<HTMLFormElement>(OpcMap.form);
-
-  if (!form) {
-    return;
-  }
-
-  // Delegated listeners on the form (added once, survives DOM refreshes)
-  form.addEventListener('input', () => validateForm());
-  form.addEventListener('change', () => validateForm());
-
-  initBillingToggle();
-  validateForm();
-
+const initOnePageCheckout = (): void => {
   const {prestashop} = window;
 
-  // Re-init after any address form refresh (country change or other)
-  prestashop.on('updatedOpcAddressForm', () => {
-    initBillingToggle();
-    validateForm();
-  });
-};
+  // Preserve Bootstrap accordion open state across cart summary DOM replacements.
+  let openCollapseIds: string[] = [];
 
-/**
- * Toggle billing address section visibility
- */
-const initBillingToggle = () => {
-  const checkbox = document.querySelector<HTMLInputElement>(OpcMap.useSameAddress);
-  const billingSection = document.querySelector<HTMLElement>(OpcMap.billingSection);
-
-  if (!checkbox || !billingSection) {
-    return;
-  }
-
-  // Remove previous handler to avoid duplicates after DOM refresh
-  if (billingToggleHandler) {
-    checkbox.removeEventListener('change', billingToggleHandler);
-  }
-
-  billingToggleHandler = () => {
-    billingSection.style.display = checkbox.checked ? 'none' : '';
-    validateForm();
-  };
-
-  checkbox.addEventListener('change', billingToggleHandler);
-};
-
-/**
- * Check all visible required fields and toggle pay button
- */
-const validateForm = () => {
-  const form = document.querySelector<HTMLFormElement>(OpcMap.form);
-  const payButton = document.querySelector<HTMLButtonElement>(OpcMap.payButton);
-
-  if (!form || !payButton) {
-    return;
-  }
-
-  const requiredFields = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
-    '[required]',
-  );
-
-  let isValid = true;
-
-  requiredFields.forEach((field) => {
-    // Skip fields inside hidden billing section
-    const billingSection = field.closest(OpcMap.billingSection) as HTMLElement | null;
-
-    if (billingSection?.style.display === 'none') {
-      return;
-    }
-
-    const isCheckbox = field instanceof HTMLInputElement && field.type === 'checkbox';
-    const fieldIsValid = isCheckbox ? field.checked : Boolean(field.value?.trim());
-
-    if (!fieldIsValid) {
-      isValid = false;
-    }
+  prestashop.on('opcCartSummaryBeforeUpdate', ({selector}: {selector: string}) => {
+    openCollapseIds = Array.from(document.querySelectorAll(`${selector} .accordion-collapse.show`))
+      .map((el) => el.id)
+      .filter(Boolean);
   });
 
-  payButton.disabled = !isValid;
+  prestashop.on('opcCartSummaryUpdated', () => {
+    openCollapseIds.forEach((id) => {
+      const el = document.getElementById(id);
+
+      if (!el) return;
+
+      el.classList.add('show');
+
+      const btn = document.querySelector(`[data-bs-target="#${id}"]`);
+
+      if (btn) {
+        btn.classList.remove('collapsed');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+    openCollapseIds = [];
+  });
 };
 
 export default initOnePageCheckout;

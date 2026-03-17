@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *}
 
-<form class="one-page-checkout" method="POST" action="{$urls.pages.order}" data-ps-action="form-validation">
+<form id="opc-form" class="one-page-checkout" method="POST" action="{$urls.pages.order}" data-ps-action="form-validation">
   <input type="hidden" name="submitOnePageCheckout" value="1">
 
   <div class="js-opc-address-form">
@@ -15,33 +15,18 @@
   </div>
 
   {* ===== Delivery method ===== *}
-  <section class="one-page-checkout__section">
-    <h2 class="one-page-checkout__title">{l s='Delivery method' d='Shop.Theme.Checkout'}</h2>
+  {include file='checkout/_partials/one-page-checkout/delivery-section.tpl'
+    delivery_options=$delivery_options
+    delivery_option=$delivery_option
+    id_address_delivery=$cart.id_address_delivery|intval
+    hookDisplayBeforeCarrier=$hookDisplayBeforeCarrier|default:null
+    hookDisplayAfterCarrier=$hookDisplayAfterCarrier|default:null
+    delivery_message=$delivery_message|default:''
+    recyclablePackAllowed=$recyclablePackAllowed|default:false
+    recyclable=$recyclable|default:false
+    gift=$gift|default:[]
+  }
 
-    <div id="delivery-options__hook">
-      {if isset($hookDisplayBeforeCarrier)}
-        {$hookDisplayBeforeCarrier nofilter}
-      {else}
-        {hook h='displayBeforeCarrier'}
-      {/if}
-    </div>
-
-    <div class="one-page-checkout__placeholder" id="opc-delivery-methods">
-      <div class="card card-body bg-light">
-        {l s='You will see the available delivery methods once you\'ve entered your delivery address.' d='Shop.Theme.Checkout'}
-      </div>
-    </div>
-
-    <div class="delivery-options__display-after-carrier" id="hook-display-after-carrier">
-      {if isset($hookDisplayAfterCarrier)}
-        {$hookDisplayAfterCarrier nofilter}
-      {else}
-        {hook h='displayAfterCarrier'}
-      {/if}
-    </div>
-
-    <div class="delivery-options__extra-carrier" id="extra_carrier"></div>
-  </section>
 
   {* ===== Payment method ===== *}
   <section class="one-page-checkout__section">
@@ -79,7 +64,7 @@
 
     {* ===== Pay button ===== *}
     <button class="one-page-checkout__submit btn btn-primary btn-lg w-100" type="submit" id="opc-pay-button" disabled>
-      {l s='Pay' d='Shop.Theme.Checkout'} {$cart.totals.total.value}
+      {l s='Pay' d='Shop.Theme.Checkout'} <span id="opc-pay-amount">{$cart.totals.total.value}</span>
     </button>
 
     {hook h='displayPaymentByBinaries'}

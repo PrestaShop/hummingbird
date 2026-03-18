@@ -14,9 +14,13 @@
     }
   ],
   "require-dev": {
-    "prestashop/header-stamp": "^3.1"
+    "prestashop/header-stamp": "^3.1",
+    "prestashop/autoindex": "^2.1"
   },
   "scripts": {
+    "autoindex": [
+      "@php ./vendor/bin/autoindex --exclude=.github,.idea,.storybook,docker,node_modules,src,stories,vendor,webpack"
+    ],
     "header-stamp": [
       "@php ./vendor/bin/header-stamp --config=.header-stamp-config.yml --dry-run"
     ],

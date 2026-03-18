@@ -19,7 +19,7 @@
   },
   "scripts": {
     "autoindex": [
-      "@php ./vendor/bin/autoindex --exclude=.github,.idea,.storybook,docker,node_modules,src,stories,vendor,webpack"
+      "@php ./vendor/bin/autoindex --exclude=.github,.storybook,docker,docs,node_modules,src,stories,types,vendor,webpack"
     ],
     "header-stamp": [
       "@php ./vendor/bin/header-stamp --config=.header-stamp-config.yml --dry-run"

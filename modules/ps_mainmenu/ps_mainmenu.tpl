@@ -2,7 +2,6 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
-{* PrestaShop license placeholder *}
 {function name="generateLinks" links=[] class="menu-item" parent=null}
 {* GENERATE LINKS *}
   {if $parent.depth === 1}
@@ -20,7 +19,7 @@
           {$link.label}
         </a>
       </li>
-      
+
       {call name=generateLinks links=$link.children parent=$parent}
 
       {if $link.depth === 3}
@@ -67,8 +66,8 @@
     {if $depth === 1 }
       <div class="submenu__right col-sm-9" data-ps-ref="desktop-submenu-right">
         {foreach from=$nodes item=node}
-          <div 
-            class="submenu__right-items" 
+          <div
+            class="submenu__right-items"
             role="tabpanel"
             data-ps-ref="desktop-submenu-right-items"
             {if $node.children|count}

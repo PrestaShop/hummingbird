@@ -1,0 +1,26 @@
+name: Header Stamps
+on: [push, pull_request]
+concurrency:
+  group: ${{ github.event_name }}-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  header-stamp:
+    name: Check license headers
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - run: composer install
+
+      - name: Run Header Stamp in Dry Run mode
+        run: |
+          composer header-stamp || {
+            echo "::error::Some headers are missing or incorrect. Run 'composer header-stamp-fix' to autofix them."
+            exit 1
+          }

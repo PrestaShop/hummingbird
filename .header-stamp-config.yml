@@ -1,0 +1,30 @@
+license: .header-stamp-afl3-license.txt
+discriminationString:
+  # New discriminator since 9.1
+  - For the full copyright and license information
+  # Old discriminator, important to handle migration/update correctly
+  - NOTICE OF LICENSE
+extensions:
+  - 'php'
+  - 'js'
+  - 'ts'
+  - 'css'
+  - 'scss'
+  - 'tpl'
+  - 'twig'
+  - 'json'
+excludedFiles:
+  # versioning folders
+  - '.git'
+  - '.github'
+  - '.composer'
+  - 'composer.json'
+  - 'package.json'
+  - 'package-lock.json'
+  # tests
+  - 'tests/fixtures'
+  # dependencies
+  - 'vendor'
+  - 'node_modules'
+  # No need to check the cache
+  - 'var'

@@ -1,6 +1,6 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
 {block name='order_products_table_line_return'}
   <div class="grid-table__row {if isset($is_last_product) && $is_last_product}rounded-bottom-0{/if}" role="row">

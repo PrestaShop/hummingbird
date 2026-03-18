@@ -1,3 +1,7 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
 import EVENTS from '@js/constants/events-map';
 import selectorsMap from '@constants/selectors-map';
 import initResponsiveToggler from './responsive-toggler';

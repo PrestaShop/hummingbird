@@ -3,3 +3,7 @@ assets
 .env
 coverage
 storybook-static
+vendor
+.idea
+.vscode
+.DS_Store

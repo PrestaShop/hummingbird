@@ -18,10 +18,10 @@
   },
   "scripts": {
     "header-stamp": [
-        "@php ./vendor/bin/header-stamp --config=.header-stamp-config.yml --dry-run"
-      ],
+      "@php ./vendor/bin/header-stamp --config=.header-stamp-config.yml --dry-run"
+    ],
     "header-stamp-fix": [
-        "@php ./vendor/bin/header-stamp --config=.header-stamp-config.yml"
-      ]
+      "@php ./vendor/bin/header-stamp --config=.header-stamp-config.yml"
+    ]
   }
 }

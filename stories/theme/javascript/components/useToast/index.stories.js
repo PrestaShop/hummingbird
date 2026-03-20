@@ -1,3 +1,7 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import useToastContent from './usetoast.html'
 import useMultipleContent from './multiple.html'

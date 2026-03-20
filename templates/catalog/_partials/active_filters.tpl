@@ -1,6 +1,6 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
 <section id="js-active-search-filters" class="{if $activeFilters|count}active_filters{else}hide{/if}">
   {block name='active_filters_title'}

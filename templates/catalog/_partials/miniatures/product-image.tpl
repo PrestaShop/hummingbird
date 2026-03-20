@@ -1,3 +1,7 @@
+{**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ *}
 {block name='product_miniature_image'}
   <div class="{$componentName}__image-container thumbnail-container">
     <a href="{$product.url}" class="{$componentName}__image-link outline outline--rounded">

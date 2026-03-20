@@ -1,3 +1,7 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
 import dropdownsContent from './dropdowns.html'
 import dropupContent from './dropup.html'
 import variationsContent from './variations.html'

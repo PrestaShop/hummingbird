@@ -1,3 +1,7 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
 import basicContent from './basic.html'
 import borderedContent from './bordered.html'
 import hoverableContent from './hoverable.html'

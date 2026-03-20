@@ -1,6 +1,6 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
 {capture name="footer_before"}{hook h='displayFooterBefore'}{/capture}
 {if $smarty.capture.footer_before}

@@ -1,6 +1,6 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
 
 <div class="product-comment-list-item comment" data-ps-ref="product-comment-item" data-product-comment-id="@COMMENT_ID@" data-product-id="@PRODUCT_ID@">

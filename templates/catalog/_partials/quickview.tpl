@@ -1,6 +1,6 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
 <div id="quickview-modal-{$product.id}-{$product.id_product_attribute}" class="modal fade quickview in" tabindex="-1" role="dialog" aria-hidden="true" data-id-product="{$product.id}" data-ps-ref="quickview-modal" aria-labelledby="quickview-modal-{$product.id}-title">
   <div class="quickview__dialog modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">

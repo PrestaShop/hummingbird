@@ -35,6 +35,7 @@ jobs:
           rm src/ -rf
           rm stories/ -rf
           rm types/ -rf
+          rm vendor/ -rf
           rm webpack/ -rf
           rm .editorconfig
           rm .eslintignore

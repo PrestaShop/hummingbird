@@ -1,6 +1,6 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
@@ -89,12 +89,12 @@
         </div>
 
         <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
-          <button class="btn btn-outline-primary w-100 w-md-auto mb-3 mb-md-0 js-back" type="button" data-step="checkout-addresses-step">
+          <button class="btn btn-outline-primary js-back" type="button" data-step="checkout-addresses-step">
             <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
             {l s='Back to Addresses' d='Shop.Theme.Actions'}
           </button>
 
-          <button type="submit" class="btn btn-primary w-100 w-md-auto" name="confirmDeliveryOption" value="1">
+          <button type="submit" class="btn btn-primary" name="confirmDeliveryOption" value="1">
             {l s='Continue to Payment' d='Shop.Theme.Actions'}
             <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
           </button>

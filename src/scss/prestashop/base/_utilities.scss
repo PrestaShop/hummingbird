@@ -1,3 +1,7 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
 // Responsive sizing for containers based on Bootstrap breakpoints
 @each $breakpoint, $container-max-width in $container-max-widths {
   @include media-breakpoint-up($breakpoint, $grid-breakpoints) {

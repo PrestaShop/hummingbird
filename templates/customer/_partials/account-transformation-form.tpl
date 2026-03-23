@@ -1,6 +1,6 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
  {block name='account_transformation_form'}
   <h3>{l s='Save time on your next order, sign up now' d='Shop.Theme.Checkout'}</h3>

@@ -1,6 +1,6 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
 {$componentName = 'checkout-steps'}
 
@@ -42,7 +42,7 @@
 
         {* Addresses *}
         {include file='checkout/_partials/checkout-navigation-step-mobile.tpl' step="checkout-addresses-step" title="{l s='Addresses' d='Shop.Theme.Checkout'}"
-        subtitle="{l s='Next: Shipping Method' d='Shop.Theme.Checkout'}"}
+        subtitle="{if !$cart.is_virtual}{l s='Next: Shipping Method' d='Shop.Theme.Checkout'}{else}{l s='Next: Payment' d='Shop.Theme.Checkout'}{/if}"}
 
         {* Shipping Method *}
         {include file='checkout/_partials/checkout-navigation-step-mobile.tpl' step="checkout-delivery-step" title="{l s='Shipping Method' d='Shop.Theme.Checkout'}"

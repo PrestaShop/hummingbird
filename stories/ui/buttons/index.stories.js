@@ -1,3 +1,7 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
 import basicsContent from './basics.html'
 import outlineContent from './outline.html'
 import disabledContent from './disabled.html'

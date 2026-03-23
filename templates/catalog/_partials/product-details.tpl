@@ -1,3 +1,7 @@
+{**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ *}
 <div
   class="js-product-details"
   data-product="{$product.embedded_attributes|json_encode}"

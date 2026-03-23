@@ -1,3 +1,7 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
 export const availableLastUpdateAction = {
   DELETE_FROM_CART: 'delete-from-cart',
   UPDATE_PRODUCT_QUANTITY: 'update-product-quantity',

@@ -1,3 +1,7 @@
+{**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ *}
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
 {block name='step_content'}
@@ -152,10 +156,17 @@
   {/if}
 
   <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
-    <button class="btn btn-outline-primary js-back" type="button" data-step="checkout-delivery-step">
-      <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
-      {l s='Back to Shipping' d='Shop.Theme.Actions'}
-    </button>
+    {if !$cart.is_virtual}
+      <button class="btn btn-outline-primary js-back" type="button" data-step="checkout-delivery-step">
+        <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
+        {l s='Back to Shipping' d='Shop.Theme.Actions'}
+      </button>
+    {else}
+      <button class="btn btn-outline-primary js-back" type="button" data-step="checkout-addresses-step">
+        <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
+        {l s='Back to Addresses' d='Shop.Theme.Actions'}
+      </button>
+    {/if}
 
     <div id="payment-confirmation" class="js-payment-confirmation">
       <div class="ps-shown-by-js">

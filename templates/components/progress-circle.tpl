@@ -1,10 +1,10 @@
 {**
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
  *}
 
 {$radius = $size / 2 - $stroke * 2}
-{$circumference = $radius * 2 * constant('M_PI')}
+{$circumference = $radius * 2 * $smarty.const.M_PI}
 
 {$circumference = $circumference|string_format:"%.4f"}
 

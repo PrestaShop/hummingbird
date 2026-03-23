@@ -1,3 +1,7 @@
+{**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ *}
 {block name='quick_view'}
   <button class="{$componentName}__quickview-button btn btn-tertiary btn-square-icon outline js-quickview"
     data-ps-action="open-quickview"

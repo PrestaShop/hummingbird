@@ -8,7 +8,22 @@ modern, developer-first, and performance-driven default theme for PrestaShop
 maintainable code following strict separation of concerns. Do not hallucinate
 legacy PrestaShop 1.7/8.x "Classic" theme behaviors.
 
-## 2. Tech Stack & Standards
+## 2. Core Dependency & Versioning
+
+Hummingbird is tightly coupled with the PrestaShop Core. When you need to check
+core behaviors, injected Smarty variables, or Symfony controllers/forms, you
+MUST refer to the main repository: `https://github.com/PrestaShop/PrestaShop`.
+**Version Resolution Rules:**
+
+- **Default:** Always base your knowledge on the **highest latest stable
+  release** (e.g., 9.x.x). Ignore patch releases of older major versions (like
+  8.1.x).
+- **WIP / New Features:** If the user mentions working on a new, unreleased, or
+  upcoming feature, inspect the `develop` branch.
+- **Explicit Override:** If the user explicitly specifies a PrestaShop version
+  or branch in their prompt, strictly adhere to that specified version.
+
+## 3. Tech Stack & Standards
 
 - **Templating:** Smarty (Strictly follow PrestaShop Smarty conventions).
 - **CSS Preprocessor:** SCSS.
@@ -21,7 +36,7 @@ legacy PrestaShop 1.7/8.x "Classic" theme behaviors.
 - **UI Workshop:** Storybook.
 - **Accessibility (A11y):** W3C WAI-ARIA strictly enforced.
 
-## 3. SCSS Architecture
+## 4. SCSS Architecture
 
 Hummingbird uses a highly structured SCSS architecture based on CSS `@layer` to
 manage the cascade. Bootstrap and PrestaShop styles are explicitly separated.
@@ -39,7 +54,7 @@ _Rule:_ Unlayered CSS intentionally retains higher cascade priority. Do not use
 high-specificity shortcuts or `!important` unless absolutely necessary. Place
 overrides in the appropriate layer.
 
-## 4. JavaScript & TypeScript Framework (The "data-ps-*" Architecture)
+## 5. JavaScript & TypeScript Framework (The "data-ps-*" Architecture)
 
 Hummingbird uses a strict, declarative architecture for JavaScript interactions.
 **Never bind JavaScript logic to CSS classes (e.g., `.btn`, `.row`,
@@ -73,7 +88,7 @@ attributes.
    `MutationObserver` tied to `data-ps-observe` to automatically rebind
    components.
 
-## 5. Accessibility (A11y) Baseline
+## 6. Accessibility (A11y) Baseline
 
 When generating HTML/Smarty templates:
 
@@ -82,7 +97,7 @@ When generating HTML/Smarty templates:
 - Include appropriate `aria-*` attributes and `role` definitions.
 - Ensure all interactive elements are keyboard navigable.
 
-## 6. AI Assistant Directives (Strict Vibe Coding Rules)
+## 7. AI Assistant Directives (Strict Vibe Coding Rules)
 
 When asked to write or modify code, you MUST follow these rules:
 

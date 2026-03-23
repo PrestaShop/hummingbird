@@ -8,11 +8,22 @@ modern, developer-first, and performance-driven default theme for PrestaShop
 maintainable code following strict separation of concerns. Do not hallucinate
 legacy PrestaShop 1.7/8.x "Classic" theme behaviors.
 
-## 2. Core Dependency & Versioning
+## 2. Core Dependency & Theme Boundaries
 
-Hummingbird is tightly coupled with the PrestaShop Core. When you need to check
-core behaviors, injected Smarty variables, or Symfony controllers/forms, you
-MUST refer to the main repository: `https://github.com/PrestaShop/PrestaShop`.
+Hummingbird is strictly a **presentation layer** tightly coupled with the
+PrestaShop Core. When you need to check core behaviors, injected Smarty
+variables, or Symfony controllers/forms, you MUST refer to the main repository:
+`https://github.com/PrestaShop/PrestaShop`.
+
+**Theme vs. Core Boundary:**
+
+- If a user requests a feature or a fix that requires modifying business logic,
+  database queries, or controller behaviors, you MUST warn the user that this
+  belongs in the PrestaShop Core or a custom Module, NOT in the theme.
+- DO NOT attempt to bypass core limitations by hacking logic into the theme
+  (e.g., misusing Smarty plugins to fetch database entities). Smarty plugins
+  must remain strictly for simple templating formatting.
+
 **Version Resolution Rules:**
 
 - **Default:** Always base your knowledge on the **highest latest stable
@@ -102,15 +113,18 @@ When generating HTML/Smarty templates:
 When asked to write or modify code, you MUST follow these rules:
 
 1. **NO jQuery:** Never generate jQuery code. Use modern DOM APIs.
-2. **JS Selectors Strict Rule:** ONLY use `[data-ps-*]` attributes for
+2. **Strict Boundary:** NEVER write business logic, database queries, or
+   controller overrides within the theme. If requested, refuse and explain that
+   this requires a Core modification or a Module.
+3. **JS Selectors Strict Rule:** ONLY use `[data-ps-*]` attributes for
    JavaScript targeting. CSS classes are strictly for styling.
-3. **Test-Driven Development (TDD):** Write tests before implementing the logic
+4. **Test-Driven Development (TDD):** Write tests before implementing the logic
    whenever possible. Ask the user if they want the test specs generated first.
-4. **Storybook Updates:** Whenever you create or modify a UI component, you MUST
+5. **Storybook Updates:** Whenever you create or modify a UI component, you MUST
    remind the user to update the corresponding Storybook file, or generate the
    `.stories` code if requested.
-5. **BEM Naming:** Any new CSS class must strictly follow the BEM naming
+6. **BEM Naming:** Any new CSS class must strictly follow the BEM naming
    convention (e.g., `block__element--modifier`).
-6. **Keep it modular (SRP):** Separate logic into cohesive components.
-7. **Smarty variables:** Ensure proper escaping for Smarty variables (e.g.,
+7. **Keep it modular (SRP):** Separate logic into cohesive components.
+8. **Smarty variables:** Ensure proper escaping for Smarty variables (e.g.,
    `{$variable|escape:'html':'UTF-8'}`).

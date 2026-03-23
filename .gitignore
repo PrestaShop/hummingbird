@@ -72,6 +72,11 @@ Thumbs.db
 .aider.input.history
 .aider.tags.cache.*
 
+# Keeps: Shared configurations if added later
+# Ignores: Local workspace state, cache, and history
+.opencode/
+
+# OpenCode CLI / TUI
 # GitHub Copilot / Codeium / Tabnine
 # Ignores local chat history and indexing caches
 .copilot/chat-history/

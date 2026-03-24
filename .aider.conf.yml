@@ -1,0 +1,4 @@
+# Automatically read the Hummingbird architecture guidelines
+read:
+  - CONTEXT.md
+  - CONTRIBUTING.md

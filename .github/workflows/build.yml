@@ -43,6 +43,13 @@ jobs:
           rm .gitignore
           rm .stylelintignore
           rm .stylelintrc
+          rm .aider.conf.yml
+          rm .antigravityrules
+          rm .cursorrules
+          rm .opencoderules
+          rm .windsurfrules
+          rm CLAUDE.md
+          rm CONTEXT.md
           rm babel.config.js
           rm jest.config.js
           rm package-lock.json

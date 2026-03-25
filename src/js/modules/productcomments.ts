@@ -580,52 +580,53 @@ class ProductCommentsListing {
 
 // Rating system utility class
 class ProductCommentsRating {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static getJQueryRating(element: Element): any {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (window as any).jQuery(element);
+  static renderStars(container: Element, grade: number): void {
+    const starContent = document.createElement('div');
+    starContent.className = 'star-content';
+    starContent.setAttribute('role', 'img');
+    starContent.setAttribute('aria-label', `${grade} out of 5 stars`);
+
+    for (let i = 1; i <= 5; i++) {
+      const star = document.createElement('div');
+      star.className = i <= Math.round(grade) ? 'star-on' : 'star';
+      starContent.appendChild(star);
+    }
+
+    container.innerHTML = '';
+    container.appendChild(starContent);
   }
 
   static initProductRatingSystem(): void {
     const {gradeStars} = ProductCommentsElements;
-
     gradeStars.forEach((star) => {
-      if (this.isRatingPluginAvailable()) {
-        this.getJQueryRating(star).rating();
-      }
+      const grade = parseFloat(star.getAttribute('data-grade') || '0');
+      this.renderStars(star, grade);
     });
   }
 
   static initProductListRatingSystem(): void {
     const {productListGradeStars} = ProductCommentsElements;
-
     productListGradeStars.forEach((star) => {
-      if (this.isRatingPluginAvailable()) {
-        this.getJQueryRating(star).rating();
-      }
+      const grade = parseFloat(star.getAttribute('data-grade') || '0');
+      this.renderStars(star, grade);
     });
   }
 
   static initCommentListRatingSystem(): void {
     const {commentListGradeStars} = ProductCommentsElements;
-
     commentListGradeStars.forEach((star) => {
-      if (this.isRatingPluginAvailable()) {
-        this.getJQueryRating(star).rating();
-      }
+      const grade = parseFloat(star.getAttribute('data-grade') || '0');
+      this.renderStars(star, grade);
     });
   }
 
   static resetModalStars(): void {
     const modal = ProductCommentsElements.modalReview;
-
     if (modal) {
       const starsInModal = modal.querySelectorAll(SELECTORS.GRADE_STARS);
       starsInModal.forEach((star) => {
-        if (this.isRatingPluginAvailable()) {
-          this.getJQueryRating(star).rating('destroy');
-          this.getJQueryRating(star).rating();
-        }
+        const grade = parseFloat(star.getAttribute('data-grade') || '0');
+        this.renderStars(star, grade);
       });
     }
   }
@@ -633,15 +634,8 @@ class ProductCommentsRating {
   static initCommentRating(commentElement: HTMLElement, grade: number): void {
     const gradeStars = commentElement.querySelectorAll(SELECTORS.GRADE_STARS);
     gradeStars.forEach((star) => {
-      if (this.isRatingPluginAvailable()) {
-        this.getJQueryRating(star).rating({grade});
-      }
+      this.renderStars(star, grade);
     });
-  }
-
-  static isRatingPluginAvailable(): boolean {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return !!(window as any).jQuery && typeof (window as any).jQuery.fn.rating === 'function';
   }
 }
 
@@ -881,18 +875,7 @@ class ProductListReviews {
   }
 
   private static updateStarsWithRating(container: Element, grade: number): void {
-    if (this.isRatingPluginAvailable()) {
-      ProductCommentsRating.getJQueryRating(container).rating('destroy');
-      ProductCommentsRating.getJQueryRating(container).rating({
-        grade,
-        readOnly: true,
-      });
-    }
-  }
-
-  private static isRatingPluginAvailable(): boolean {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return !!(window as any).jQuery && typeof (window as any).jQuery.fn.rating === 'function';
+    ProductCommentsRating.renderStars(container, grade);
   }
 }
 

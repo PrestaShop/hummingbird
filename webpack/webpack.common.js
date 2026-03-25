@@ -5,14 +5,13 @@
 const { merge } = require('webpack-merge');
 const path = require('path');
 const {
-  extractScss, extractJs, extractImages, extractFonts, externals, expose, preloadFonts
+  extractScss, extractJs, extractImages, extractFonts, externals, preloadFonts
 } = require('./webpack.parts');
 
 exports.commonConfig = ({
   mode, port, publicPath, siteURL, getOutput, getEntry, entriesArray, serverAddress,
 }) => (
   merge(
-    expose(),
     {
       mode,
       entry: getEntry(entriesArray),
@@ -33,7 +32,6 @@ exports.commonConfig = ({
       },
     },
     externals(),
-    expose(),
     extractScss({ mode }),
     extractJs(),
     extractImages(),

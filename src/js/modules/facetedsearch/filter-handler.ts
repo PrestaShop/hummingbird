@@ -57,7 +57,8 @@ export default function (values: Array<string | number>, slider: API) {
   const newUrl = [
     urlsSplitted[0],
     '?',
-    $.param(queryParams),
+    // eslint-disable-next-line
+    queryParams.map((query: any) => `${encodeURIComponent(query.name)}=${encodeURIComponent(query.value).replace(/%20/g, '+')}`).join('&'),
   ].join('');
 
   prestashop.emit(events.updateFacets, newUrl);

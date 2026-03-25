@@ -586,7 +586,7 @@ class ProductCommentsRating {
     starContent.setAttribute('role', 'img');
     starContent.setAttribute('aria-label', `${grade} out of 5 stars`);
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 5; i += 1) {
       const star = document.createElement('div');
       star.className = i <= Math.round(grade) ? 'star-on' : 'star';
       starContent.appendChild(star);
@@ -622,6 +622,7 @@ class ProductCommentsRating {
 
   static resetModalStars(): void {
     const modal = ProductCommentsElements.modalReview;
+
     if (modal) {
       const starsInModal = modal.querySelectorAll(SELECTORS.GRADE_STARS);
       starsInModal.forEach((star) => {

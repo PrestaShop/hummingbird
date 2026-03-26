@@ -3,6 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  */
 import {API} from 'nouislider';
+
 export default function (values: Array<string | number>, slider: API) {
   const {prestashop, Theme: {events}} = window;
 

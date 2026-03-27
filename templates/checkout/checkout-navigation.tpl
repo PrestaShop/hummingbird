@@ -13,7 +13,7 @@
     <div class="{$componentName}__desktop">
       <ul class="{$componentName}__list" role="tablist">
         {foreach from=$checkout_steps item="step" key="index"}
-          {include file='checkout/_partials/checkout-navigation-step.tpl' number=($index + 1) step=$step.identifier title=$step.title virtual="{if $step.identifier == 'checkout-delivery-step'}{$cart.is_virtual}{else}0{/if}"}
+          {include file='checkout/_partials/checkout-navigation-step.tpl' number=($index + 1) step=$step.identifier title=$step.title}
         {/foreach}
       </ul>
     </div>

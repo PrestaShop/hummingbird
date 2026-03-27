@@ -1,9 +1,93 @@
-node_modules
-assets
+# ==========================================
+# Dependencies
+# ==========================================
+node_modules/
+vendor/
+
+# ==========================================
+# Build Outputs & Compiled Assets
+# ==========================================
+assets/
+storybook-static/
+
+# ==========================================
+# Environment Variables & Secrets
+# ==========================================
+# Prevent committing local credentials and configs
 .env
-coverage
-storybook-static
-vendor
-.idea
-.vscode
+*.local
+
+# ==========================================
+# Testing & Code Quality
+# ==========================================
+coverage/
+
+# ==========================================
+# OS & System Files
+# ==========================================
 .DS_Store
+Thumbs.db
+
+# ==========================================
+# Standard IDEs & Editors
+# ==========================================
+.idea/
+.vscode/
+
+# ==========================================
+# AI Assistants & IDEs (Surgical exclusions)
+# ==========================================
+
+# Cursor IDE
+# Keeps: .cursor/rules/ (if you ever use directory-based rules)
+# Ignores: Local workspace state and chat sessions
+.cursor/workspace.json
+.cursor/state.json
+.cursor/sessions/
+
+# Windsurf IDE
+# Keeps: Potential shared configurations
+# Ignores: Local state and history
+.windsurf/workspace.json
+.windsurf/state.json
+.windsurf/sessions/
+
+# Claude Code CLI
+# Keeps: .claude/settings.json or shared agents
+# Ignores: Local config, state, and chat history
+.claude/*.local.json
+.claude/history/
+.claude/state/
+
+# Antigravity
+# Keeps: Shared project rules if placed in .antigravity/
+# Ignores: Local agent planning history, cache, and local state
+.antigravity/history/
+.antigravity/cache/
+.antigravity/*.local.json
+
+# Aider CLI
+# Aider generates specific files at the root, none should be committed
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.*
+
+# Keeps: Shared configurations if added later
+# Ignores: Local workspace state, cache, and history
+.opencode/
+
+# OpenCode CLI / TUI
+# GitHub Copilot / Codeium / Tabnine
+# Ignores local chat history and indexing caches
+.copilot/chat-history/
+.copilot/cache/
+.codeium/
+.tabnine/
+
+# Generic Developer Scratchpads
+# Commonly used by devs to draft prompts before pasting them to web UIs
+ai-prompt.txt
+ai-prompt.md
+chat-history.md
+scratchpad.md
+.ai-history/

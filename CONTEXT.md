@@ -72,6 +72,15 @@ Hummingbird uses a strict, declarative architecture for JavaScript interactions.
 `.js-cart`).** All JavaScript-to-DOM bindings MUST use the semantic `data-ps-*`
 attributes.
 
+**TypeScript Strictness:**
+
+- **No `any`:** The `any` type is strictly forbidden. Always define explicit
+  `interface` or `type` aliases.
+- **DOM Elements:** Always strictly type DOM queries (e.g.,
+  `document.querySelector<HTMLButtonElement>`).
+- **Data Attributes:** When parsing JSON from `data-ps-data`, cast it to a
+  strict interface immediately.
+
 **Core Attributes Map:**
 
 - `data-ps-component="name"`: Initialize a JS component on this element.
@@ -118,13 +127,15 @@ When asked to write or modify code, you MUST follow these rules:
    this requires a Core modification or a Module.
 3. **JS Selectors Strict Rule:** ONLY use `[data-ps-*]` attributes for
    JavaScript targeting. CSS classes are strictly for styling.
-4. **Test-Driven Development (TDD):** Write tests before implementing the logic
+4. **TypeScript Strict Rule:** NEVER use the `any` type. Ensure strict typing
+   for all variables, function returns, DOM elements, and parsed JSON payloads.
+5. **Test-Driven Development (TDD):** Write tests before implementing the logic
    whenever possible. Ask the user if they want the test specs generated first.
-5. **Storybook Updates:** Whenever you create or modify a UI component, you MUST
+6. **Storybook Updates:** Whenever you create or modify a UI component, you MUST
    remind the user to update the corresponding Storybook file, or generate the
    `.stories` code if requested.
-6. **BEM Naming:** Any new CSS class must strictly follow the BEM naming
+7. **BEM Naming:** Any new CSS class must strictly follow the BEM naming
    convention (e.g., `block__element--modifier`).
-7. **Keep it modular (SRP):** Separate logic into cohesive components.
-8. **Smarty variables:** Ensure proper escaping for Smarty variables (e.g.,
+8. **Keep it modular (SRP):** Separate logic into cohesive components.
+9. **Smarty variables:** Ensure proper escaping for Smarty variables (e.g.,
    `{$variable|escape:'html':'UTF-8'}`).

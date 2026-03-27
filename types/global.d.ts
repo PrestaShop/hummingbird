@@ -22,11 +22,4 @@ declare namespace Theme {
 
 interface Window extends Theme.Window {
   prestashop: any;
-  $: JQueryStatic;
-  jQuery: JQueryStatic;
-}
-
-interface JQuery {
-  inputSpinner: any;
-  modal: any;
 }

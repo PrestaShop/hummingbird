@@ -25,15 +25,8 @@
 
       <div class="{$componentName}__right">
         {foreach from=$checkout_steps item="step" key="index"}
-          {$next_step_title = ''}
           {if isset($checkout_steps[$index + 1])}
-            {if $cart.is_virtual && $checkout_steps[$index + 1].identifier == 'checkout-delivery-step' && isset($checkout_steps[$index + 2])}
-              {$next_step = $checkout_steps[$index + 2]}
-            {else}
-              {$next_step = $checkout_steps[$index + 1]}
-            {/if}
-            {$next_step_title = $next_step.title}
-            {$subtitle = {l s='Next: %step_name%' d='Shop.Theme.Checkout' sprintf=['%step_name%' => $next_step_title]}}
+            {$subtitle = {l s='Next: %step_name%' d='Shop.Theme.Checkout' sprintf=['%step_name%' => $checkout_steps[$index + 1].title]}}
           {else}
             {$subtitle = ''}
           {/if}

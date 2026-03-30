@@ -89,15 +89,7 @@
         </div>
 
         <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
-          <button class="btn btn-outline-primary js-back" type="button" data-step="checkout-addresses-step">
-            <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</div>
-            {l s='Back to Addresses' d='Shop.Theme.Actions'}
-          </button>
-
-          <button type="submit" class="btn btn-primary" name="confirmDeliveryOption" value="1">
-            {l s='Continue to Payment' d='Shop.Theme.Actions'}
-            <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
-          </button>
+          {include file='checkout/_partials/checkout-step-navigation.tpl' submit_name='confirmDeliveryOption' submit_value='1'}
         </div>
       </form>
     {else}

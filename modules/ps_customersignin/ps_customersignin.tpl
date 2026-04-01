@@ -119,7 +119,7 @@
 
           <div class="dropdown-divider"></div>
 
-          <a 
+          <a
             href="{$logout_url}"
             class="dropdown-item"
             rel="nofollow"
@@ -132,7 +132,11 @@
     {else}
       <div class="header-block">
         <a
-          href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
+          {if $page.page_name == 'authentication'}
+            href="{$urls.current_url}"
+          {else}
+            href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
+          {/if}
           class="header-block__action-btn"
           rel="nofollow"
           aria-label="{l s='Sign in' d='Shop.Theme.Actions'}"

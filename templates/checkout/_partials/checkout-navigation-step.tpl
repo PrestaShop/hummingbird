@@ -18,9 +18,6 @@
     data-bs-target="#{$step}"
     role="tab"
     data-ps-ref="step-button"
-    {if isset($virtual) && $virtual}
-      disabled
-    {/if}
   >
     {$title}
   </button>

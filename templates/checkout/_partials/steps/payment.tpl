@@ -156,7 +156,7 @@
   {/if}
 
   <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
-    {include file='checkout/_partials/checkout-step-navigation.tpl' show_next_button=false}
+    {include file='checkout/_partials/checkout-step-buttons.tpl' show_next_button=false}
 
     <div id="payment-confirmation" class="js-payment-confirmation">
       <div class="ps-shown-by-js">

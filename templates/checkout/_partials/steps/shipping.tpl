@@ -89,7 +89,7 @@
         </div>
 
         <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
-          {include file='checkout/_partials/checkout-step-navigation.tpl' submit_name='confirmDeliveryOption' submit_value='1'}
+          {include file='checkout/_partials/checkout-step-buttons.tpl' submit_name='confirmDeliveryOption' submit_value='1'}
         </div>
       </form>
     {else}

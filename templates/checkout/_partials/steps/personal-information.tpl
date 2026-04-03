@@ -45,7 +45,7 @@
 
     <form id="checkout-continue-form" method="GET" action="{$urls.pages.order}">
       <div class="buttons-wrapper buttons-wrapper--end mt-3">
-        {include file='checkout/_partials/checkout-step-navigation.tpl' submit_name='controller' submit_value='order'}
+        {include file='checkout/_partials/checkout-step-buttons.tpl' submit_name='controller' submit_value='order'}
       </div>
     </form>
   {else}

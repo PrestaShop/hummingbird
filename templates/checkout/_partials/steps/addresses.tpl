@@ -101,10 +101,10 @@
       {/if}
 
       <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
-        {include file='checkout/_partials/checkout-step-navigation.tpl' show_next_button=false}
+        {include file='checkout/_partials/checkout-step-buttons.tpl' show_next_button=false}
 
         {if !$form_has_continue_button}
-          {include file='checkout/_partials/checkout-step-navigation.tpl' show_back_button=false submit_name='confirm-addresses' submit_value='1'}
+          {include file='checkout/_partials/checkout-step-buttons.tpl' show_back_button=false submit_name='confirm-addresses' submit_value='1'}
           <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}
       </div>

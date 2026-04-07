@@ -3,6 +3,21 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {block name='step'}
+  {$previous_step = null}
+  {$next_step = null}
+  {if isset($checkout_steps)}
+    {foreach from=$checkout_steps item="step" key="index"}
+      {if $step.identifier == $identifier}
+        {if isset($checkout_steps[$index - 1])}
+          {$previous_step = $checkout_steps[$index - 1]}
+        {/if}
+        {if isset($checkout_steps[$index + 1])}
+          {$next_step = $checkout_steps[$index + 1]}
+        {/if}
+        {break}
+      {/if}
+    {/foreach}
+  {/if}
   <section 
     id="{$identifier}" 
     class="{[

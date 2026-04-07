@@ -101,24 +101,10 @@
       {/if}
 
       <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile mt-3">
-        <button class="btn btn-outline-primary js-back" type="button" data-step="checkout-personal-information-step">
-          <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
-          {l s='Back to Personal Information' d='Shop.Theme.Actions'}
-        </button>
+        {include file='checkout/_partials/checkout-step-buttons.tpl' show_next_button=false}
 
         {if !$form_has_continue_button}
-          {if !$cart.is_virtual}
-            <button type="submit" class="btn btn-primary" name="confirm-addresses" value="1">
-              {l s='Continue to Shipping' d='Shop.Theme.Actions'}
-              <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
-            </button>
-          {else}
-            <button type="submit" class="btn btn-primary" name="confirm-addresses" value="1">
-              {l s='Continue to Payment' d='Shop.Theme.Actions'}
-              <div class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</div>
-            </button>
-          {/if}
-
+          {include file='checkout/_partials/checkout-step-buttons.tpl' show_back_button=false submit_name='confirm-addresses' submit_value='1'}
           <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         {/if}
       </div>

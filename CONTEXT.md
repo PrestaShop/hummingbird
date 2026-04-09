@@ -49,17 +49,40 @@ variables, or Symfony controllers/forms, you MUST refer to the main repository:
 
 ## 4. SCSS Architecture
 
+**Before writing any SCSS, assess what your design actually requires.** Follow
+this order of preference — stop at the first option that covers your need:
+
+1. **Bootstrap variable override** — get the result everywhere. No new code.
+   - Global BS variables → `bootstrap/overrides/variables/_variables.scss`
+   - Component-scoped BS variables → `bootstrap/overrides/variables/components/`
+   - BS mixin overrides → `bootstrap/overrides/mixins/`
+2. **Restyle a Bootstrap component** (`bootstrap/components/`) — add rules scoped to an existing BS block. No new component.
+3. **New PrestaShop / theme component** (`prestashop/`) — only when the existing Bootstrap system genuinely cannot cover your need.
+
+`abstract/variables/` holds custom theme variables (e.g. colors) that are **not** Bootstrap overrides. `abstract/mixins/` holds custom theme mixins.
+
 Hummingbird uses a highly structured SCSS architecture based on CSS `@layer` to
 manage the cascade. Bootstrap and PrestaShop styles are explicitly separated.
 Always place your SCSS files in the correct directory according to this tree:
 
     src/
       scss/
-        abstract/     # Mixins, variables (bootstrap, overrides, prestashop)
-        core/         # Core theme styles (components, layout, modules, pages)
-        custom/       # Custom overrides (components, layout, modules, pages)
-        partials/     # Commons, fonts, helpers
-        vendors/      # Third-party styles (bootstrap)
+        abstract/           # Custom theme mixins & variables (non-Bootstrap)
+          mixins/
+          variables/
+        bootstrap/          # Bootstrap layer
+          components/       # Component-level style additions/overrides
+          overrides/
+            mixins/         # Bootstrap mixin overrides
+            variables/      # Bootstrap variable overrides (_variables.scss, _variables-dark.scss)
+              components/   # Per-component Bootstrap variable overrides
+        prestashop/         # PrestaShop-specific styles
+          base/
+          components/
+          layout/
+          modules/
+          pages/
+        vendors/            # Third-party sources (Bootstrap itself, others)
 
 _Rule:_ Unlayered CSS intentionally retains higher cascade priority. Do not use
 high-specificity shortcuts or `!important` unless absolutely necessary. Place
@@ -125,17 +148,20 @@ When asked to write or modify code, you MUST follow these rules:
 2. **Strict Boundary:** NEVER write business logic, database queries, or
    controller overrides within the theme. If requested, refuse and explain that
    this requires a Core modification or a Module.
-3. **JS Selectors Strict Rule:** ONLY use `[data-ps-*]` attributes for
+3. **Module fixes are dual:** When fixing a module-related issue via a theme
+   override, always flag that the fix must also be opened upstream in the
+   module's own repository. The theme override is a temporary shim.
+4. **JS Selectors Strict Rule:** ONLY use `[data-ps-*]` attributes for
    JavaScript targeting. CSS classes are strictly for styling.
-4. **TypeScript Strict Rule:** NEVER use the `any` type. Ensure strict typing
+5. **TypeScript Strict Rule:** NEVER use the `any` type. Ensure strict typing
    for all variables, function returns, DOM elements, and parsed JSON payloads.
-5. **Test-Driven Development (TDD):** Write tests before implementing the logic
+6. **Test-Driven Development (TDD):** Write tests before implementing the logic
    whenever possible. Ask the user if they want the test specs generated first.
-6. **Storybook Updates:** Whenever you create or modify a UI component, you MUST
+7. **Storybook Updates:** Whenever you create or modify a UI component, you MUST
    remind the user to update the corresponding Storybook file, or generate the
    `.stories` code if requested.
-7. **BEM Naming:** Any new CSS class must strictly follow the BEM naming
+8. **BEM Naming:** Any new CSS class must strictly follow the BEM naming
    convention (e.g., `block__element--modifier`).
-8. **Keep it modular (SRP):** Separate logic into cohesive components.
-9. **Smarty variables:** Ensure proper escaping for Smarty variables (e.g.,
-   `{$variable|escape:'html':'UTF-8'}`).
+9. **Keep it modular (SRP):** Separate logic into cohesive components.
+10. **Smarty variables:** Ensure proper escaping for Smarty variables
+    (e.g., `{$variable|escape:'html':'UTF-8'}`).

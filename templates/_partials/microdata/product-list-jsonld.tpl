@@ -27,7 +27,7 @@
             {if !empty($item.description_short)},
             "description": "{$item.description_short|strip_tags|escape:'json'}"
             {/if}
-            {if isset($item.manufacturer_name) && !empty($item.manufacturer_name)},
+            {if !empty($item.manufacturer_name)},
             "brand": {
               "@type": "Brand",
               "name": "{$item.manufacturer_name|escape:'json'}"

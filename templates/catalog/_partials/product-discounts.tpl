@@ -9,7 +9,7 @@
 >
   {if $product.quantity_discounts}
     {block name='product_discount_table'}
-      <table class="discounts-table">
+      <table class="discounts-table table">
         <thead>
           <tr>
             <th>{l s='Quantity' d='Shop.Theme.Catalog'}</th>

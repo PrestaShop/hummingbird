@@ -3,7 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 <section class="ps-emailsubscription ps-emailsubscription--column left-block" id="emailsubscription_anchor_{$hookName}">
-  <p class="left-block__title">
+  <p class="left-block__title h3">
     {l s='Get our latest news and special sales' d='Shop.Theme.Global'}
   </p>
 

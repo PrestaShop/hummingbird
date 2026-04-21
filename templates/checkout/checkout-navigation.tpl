@@ -18,7 +18,7 @@
       </ul>
     </div>
 
-    <div class="{$componentName}__mobile">
+    <div class="{$componentName}__mobile container">
       <div class="{$componentName}__left">
         {include file='components/progress-circle.tpl' classes="text-success" size=74 stroke=4}
       </div>

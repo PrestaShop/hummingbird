@@ -18,21 +18,24 @@
     }
   }
 
+  // Module JS applies .error/.valid instead of Bootstrap's .is-invalid/.is-valid
   input[name="comment_title"].error,
   input[name="customer_name"].error,
   textarea.error {
-    @extend .is-invalid;
+    @include form-control-invalid;
   }
 
   input[name="comment_title"].valid,
   input[name="customer_name"].valid,
   textarea.valid {
-    @extend .is-valid;
+    @include form-control-valid;
   }
 
+  // #ratingNotChosen is JS-injected — replicate .form-text + .text-danger
   #ratingNotChosen {
-    @extend .text-danger;
-    @extend .form-text;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: var(--bs-danger);
   }
 }
 
@@ -205,9 +208,9 @@
 
     &.has-comments:empty {
       &::before {
-        @extend .spinner-border;
-        @extend .text-primary-emphasis;
+        @include spinner-border;
         display: block;
+        color: var(--#{$prefix}primary-text-emphasis);
         margin: 1rem auto;
         content: "";
       }

@@ -138,7 +138,6 @@ $component-name: checkout-steps;
   }
 
   &__mobile {
-    @extend .container;
     display: flex;
     gap: 0.75rem;
     align-items: center;

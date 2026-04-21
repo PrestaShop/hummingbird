@@ -1,0 +1,26 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+@mixin spinner-border(
+  $width: $spinner-width,
+  $height: $spinner-height,
+  $border-width: $spinner-border-width,
+  $animation-speed: $spinner-animation-speed
+) {
+  --#{$prefix}spinner-width: #{$width};
+  --#{$prefix}spinner-height: #{$height};
+  --#{$prefix}spinner-vertical-align: #{$spinner-vertical-align};
+  --#{$prefix}spinner-border-width: #{$border-width};
+  --#{$prefix}spinner-animation-speed: #{$animation-speed};
+  --#{$prefix}spinner-animation-name: spinner-border;
+  display: inline-block;
+  width: var(--#{$prefix}spinner-width);
+  height: var(--#{$prefix}spinner-height);
+  vertical-align: var(--#{$prefix}spinner-vertical-align);
+  border: var(--#{$prefix}spinner-border-width) solid currentcolor;
+  border-right-color: transparent;
+  // stylelint-disable-next-line property-disallowed-list
+  border-radius: 50%;
+  animation: var(--#{$prefix}spinner-animation-speed) linear infinite var(--#{$prefix}spinner-animation-name);
+}

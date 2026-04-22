@@ -9,6 +9,19 @@
 Hummingbird is a modern, in-development theme for PrestaShop built to be
 compatible with versions `9.1.x` and above.
 
+## ✅ Compatibility
+
+| Hummingbird | PrestaShop | Status |
+| ----------- | ---------- | ------ |
+| `develop`   | `~10.0.0`  | Next major |
+| `2.x`       | `~9.1.1`   | Maintained |
+| `2.0.0`     | `~9.1.0`   | Released |
+
+> [!NOTE]
+> Version ranges follow [semver](https://semver.org) notation: `~X.Y.Z` = any patch
+> within `X.Y`, `^X.Y.Z` = any minor/patch within `X`. This mirrors the `to` field
+> in [`config/theme.yml`](config/theme.yml).
+
 ## 🔍 Theme Previews
 
 | [<img src="docs/thumb-homepage.png">](docs/homepage.png) | [<img src="docs/thumb-category.png">](docs/category.png) | [<img src="docs/thumb-product.png">](docs/product.png) |

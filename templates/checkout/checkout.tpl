@@ -11,16 +11,24 @@
 {/block}
 
 {block name='content_columns'}
-  {include file='checkout/checkout-navigation.tpl'}
+  {if isset($is_one_page_checkout_enabled) && !$is_one_page_checkout_enabled}
+    {include file='checkout/checkout-navigation.tpl'}
+  {/if}
 
   {block name='checkout_notifications'}
     {include file='_partials/notifications.tpl'}
   {/block}
+  <div
+    id="js-account-created-toast"
+    class="d-none"
+    data-show="{if !empty($show_account_created_toast)}1{else}0{/if}"
+    data-message="{l s='Account successfully created' d='Shop.Theme.Customeraccount'}"
+  ></div>
 
   <div class="columns-container container">
     <div id="center-column" class="center-column page page--full-width">
       <div class="checkout-grid row">
-        <div class="checkout-grid__content col-lg-8">
+        <div class="checkout-grid__content col-lg-8{if isset($is_one_page_checkout_enabled) && $is_one_page_checkout_enabled} order-2 order-lg-1{/if}">
           <div class="tab-content">
             {block name='checkout_process'}
               {render file='checkout/checkout-process.tpl' ui=$checkout_process}
@@ -28,7 +36,7 @@
           </div>
         </div>
 
-        <div class="checkout-grid__aside col-lg-4">
+        <div class="checkout-grid__aside col-lg-4{if isset($is_one_page_checkout_enabled) && $is_one_page_checkout_enabled} order-1 order-lg-2{/if}">
           <div class="checkout-grid__aside-wrapper">
             <div class="checkout__summary-accordion accordion">
               <div class="checkout__summary-accordion-item accordion-item">

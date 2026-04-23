@@ -26,7 +26,15 @@
   <hr>
 
   <div class="buttons-wrapper">
-    <a id="back-to-login" href="{$urls.pages.authentication}" class="btn btn-basic">
+    {assign var="back_to_login_url" value=$urls.pages.authentication}
+    {if isset($smarty.get.back) && $smarty.get.back !== ''}
+      {if $back_to_login_url|strpos:'?' !== false}
+        {assign var="back_to_login_url" value="`$back_to_login_url`&back=`$smarty.get.back|escape:'url'`"}
+      {else}
+        {assign var="back_to_login_url" value="`$back_to_login_url`?back=`$smarty.get.back|escape:'url'`"}
+      {/if}
+    {/if}
+    <a id="back-to-login" href="{$back_to_login_url}" class="btn btn-basic">
       <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
       <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
     </a>

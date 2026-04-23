@@ -27,7 +27,6 @@
     {else}
       <div class="d-grid">
         <a href="{$urls.pages.order}" class="btn btn-primary btn-lg">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
-
         {hook h='displayExpressCheckout'}
       </div>
     {/if}

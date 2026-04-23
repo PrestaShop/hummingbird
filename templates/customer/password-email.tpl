@@ -27,6 +27,9 @@
     </header>
 
     <section class="form-fields">
+      {if isset($smarty.get.back) && $smarty.get.back !== ''}
+        <input type="hidden" name="back" value="{$smarty.get.back|escape:'htmlall':'UTF-8'}">
+      {/if}
       <div class="mb-3">
         <label for="email" class="form-label required">{l s='Email address' d='Shop.Forms.Labels'}</label>
         <input type="email" name="email" id="email" value="{if isset($smarty.post.email)}{stripslashes($smarty.post.email)}{/if}" class="form-control" autocomplete="username" required>
@@ -45,7 +48,15 @@
   <hr>
 
   <div class="buttons-wrapper">
-    <a id="back-to-login" href="{$urls.pages.my_account}" class="btn btn-basic">
+    {assign var="back_to_login_url" value=$urls.pages.authentication}
+    {if isset($smarty.get.back) && $smarty.get.back !== ''}
+      {if $back_to_login_url|strpos:'?' !== false}
+        {assign var="back_to_login_url" value="`$back_to_login_url`&back=`$smarty.get.back|escape:'url'`"}
+      {else}
+        {assign var="back_to_login_url" value="`$back_to_login_url`?back=`$smarty.get.back|escape:'url'`"}
+      {/if}
+    {/if}
+    <a id="back-to-login" href="{$back_to_login_url}" class="btn btn-basic">
       <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
       <span>{l s='Back to login' d='Shop.Theme.Actions'}</span>
     </a>

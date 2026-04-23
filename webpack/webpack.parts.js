@@ -193,6 +193,7 @@ exports.preloadFonts = () => ({
       extensions: ['woff2'],
       filter: /(materialicons)/i,
       replaceCallback: ({ indexSource, linksAsString }) => {
+        linksAsString = linksAsString.replace(/null:nullnull/g, '../');
         return indexSource.replace('{{{preloadLinks}}}', linksAsString);
       },
     }),

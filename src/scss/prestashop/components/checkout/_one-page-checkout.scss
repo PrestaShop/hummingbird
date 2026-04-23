@@ -1,0 +1,47 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+$component-name: one-page-checkout;
+
+.#{$component-name} {
+  @include media-breakpoint-up(lg) {
+    padding-right: 2em;
+  }
+
+  &__section {
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    & + &,
+    .js-opc-addresses-section + & {
+      padding-top: 2em;
+      border-top: 1px solid var(--bs-border-color);
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 0.5rem;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  &__field {
+    margin-bottom: 1rem;
+  }
+
+  &__footer {
+    padding-top: 2em;
+
+    .form-check {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .opc-address-item .form-check-input,
+  .opc-address-item .form-check-label {
+    cursor: pointer;
+  }
+}

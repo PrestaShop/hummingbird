@@ -103,9 +103,7 @@
         <button type="button" class="btn btn-outline-primary btn-with-icon" data-bs-dismiss="modal">
           {l s='Continue shopping' d='Shop.Theme.Actions'}
         </button>
-
         <a href="{$cart_url|escape:'htmlall':'UTF-8'}" class="btn btn-primary">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
-
         {capture name='cart_modal_footer'}{hook h='displayCartModalFooter' product=$product}{/capture}
         {if $smarty.capture.cart_modal_footer}
           <div class="blockcart-modal__cart-footer-extra">

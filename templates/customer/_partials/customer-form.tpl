@@ -38,6 +38,9 @@
 
   {block name='customer_form_footer'}
     <input type="hidden" name="submitCreate" value="1">
+    {if isset($smarty.get.back) && $smarty.get.back !== ''}
+      <input type="hidden" name="back" value="{$smarty.get.back|escape:'htmlall':'UTF-8'}">
+    {/if}
 
     <footer class="buttons-wrapper buttons-wrapper--end">
       {block "form_buttons"}

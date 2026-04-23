@@ -18,9 +18,20 @@
 
     {block name='login_form_footer'}
       <input type="hidden" name="submitLogin" value="1" tabindex="-1">
+      {if isset($smarty.get.back) && $smarty.get.back !== ''}
+        <input type="hidden" name="back" value="{$smarty.get.back|escape:'htmlall':'UTF-8'}">
+      {/if}
 
       <div class="buttons-wrapper buttons-wrapper--split buttons-wrapper--invert-mobile">
-        <a class="btn btn-basic" href="{$urls.pages.password}" rel="nofollow">
+        {assign var="password_url" value=$urls.pages.password}
+        {if isset($smarty.get.back) && $smarty.get.back !== ''}
+          {if $password_url|strpos:'?' !== false}
+            {assign var="password_url" value="`$password_url`&back=`$smarty.get.back|escape:'url'`"}
+          {else}
+            {assign var="password_url" value="`$password_url`?back=`$smarty.get.back|escape:'url'`"}
+          {/if}
+        {/if}
+        <a class="btn btn-basic" href="{$password_url}" rel="nofollow">
           {l s='Forgot your password?' d='Shop.Theme.Customeraccount'}
         </a>
 

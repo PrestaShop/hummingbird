@@ -6,7 +6,7 @@
   {block name='product_flags'}
     <ul class="product-flags js-product-flags">
       {foreach from=$product.flags item=flag}
-        <li class="badge {$flag.type}">{$flag.label}</li>
+        <li class="badge {$flag.type}">{$flag.label nofilter}</li>
       {/foreach}
     </ul>
   {/block}

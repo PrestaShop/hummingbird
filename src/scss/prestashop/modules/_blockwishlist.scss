@@ -40,4 +40,8 @@ $component-name: wishlist;
       color: inherit !important;
     }
   }
+
+  &-pagination {
+    display: inline-block;
+  }
 }

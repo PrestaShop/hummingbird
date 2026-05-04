@@ -29,6 +29,11 @@ $component-name: (
   &:hover {
     outline: 0.125rem solid var(--bs-link-hover-color);
   }
+
+  &:focus-visible {
+    box-shadow: var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur, 0)
+      var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+  }
 }
 
 .#{map-get($component-name, input-color)} {

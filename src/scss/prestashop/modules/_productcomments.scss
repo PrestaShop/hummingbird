@@ -210,8 +210,8 @@
       &::before {
         @include spinner-border;
         display: block;
-        color: var(--bs-primary-text-emphasis);
         margin: 1rem auto;
+        color: var(--bs-primary-text-emphasis);
         content: "";
       }
     }

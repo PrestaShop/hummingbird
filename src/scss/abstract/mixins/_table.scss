@@ -3,6 +3,8 @@
  * LICENSE.md file that was distributed with this source code.
  */
 
+/* stylelint-disable selector-max-universal */
+
 // Mirrors Bootstrap's table mixin
 @mixin table {
   --#{$prefix}table-color-type: initial;
@@ -58,3 +60,5 @@
     }
   }
 }
+
+/* stylelint-enable selector-max-universal */

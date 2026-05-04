@@ -210,7 +210,7 @@
       &::before {
         @include spinner-border;
         display: block;
-        color: var(--#{$prefix}primary-text-emphasis);
+        color: var(--bs-primary-text-emphasis);
         margin: 1rem auto;
         content: "";
       }

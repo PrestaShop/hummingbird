@@ -22,5 +22,6 @@
   border-right-color: transparent;
   // stylelint-disable-next-line property-disallowed-list
   border-radius: 50%;
-  animation: var(--#{$prefix}spinner-animation-speed) linear infinite var(--#{$prefix}spinner-animation-name);
+  animation: var(--#{$prefix}spinner-animation-speed) linear infinite
+    var(--#{$prefix}spinner-animation-name);
 }

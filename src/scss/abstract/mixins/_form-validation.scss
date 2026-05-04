@@ -10,7 +10,8 @@
 
   &:focus {
     border-color: var(--#{$prefix}form-valid-border-color);
-    box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba($form-feedback-valid-color, $input-btn-focus-color-opacity);
+    box-shadow: 0 0 $input-btn-focus-blur $input-focus-width
+      rgba($form-feedback-valid-color, $input-btn-focus-color-opacity);
   }
 }
 
@@ -19,6 +20,7 @@
 
   &:focus {
     border-color: var(--#{$prefix}form-invalid-border-color);
-    box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba($form-feedback-invalid-color, $input-btn-focus-color-opacity);
+    box-shadow: 0 0 $input-btn-focus-blur $input-focus-width
+      rgba($form-feedback-invalid-color, $input-btn-focus-color-opacity);
   }
 }

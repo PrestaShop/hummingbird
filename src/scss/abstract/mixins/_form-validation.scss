@@ -3,8 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  */
 
-// Mirrors Bootstrap's form-validation-state mixin for .form-control
-
+// Mirrors Bootstrap's form-validation-state mixin
 @mixin form-control-valid {
   border-color: var(--#{$prefix}form-valid-border-color);
 

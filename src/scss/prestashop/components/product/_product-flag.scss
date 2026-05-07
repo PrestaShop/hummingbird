@@ -19,7 +19,8 @@ $component-name: product-flags;
 
   .badge {
     &:not(.discount) {
-      @extend .text-bg-primary;
+      color: var(--bs-white);
+      background-color: var(--bs-primary);
       border: 1px solid var(--bs-primary);
     }
 

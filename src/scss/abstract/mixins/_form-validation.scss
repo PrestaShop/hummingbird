@@ -1,0 +1,25 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+
+// Mirrors Bootstrap's form-validation-state mixin
+@mixin form-control-valid {
+  border-color: var(--#{$prefix}form-valid-border-color);
+
+  &:focus {
+    border-color: var(--#{$prefix}form-valid-border-color);
+    box-shadow: 0 0 $input-btn-focus-blur $input-focus-width
+      rgba($form-feedback-valid-color, $input-btn-focus-color-opacity);
+  }
+}
+
+@mixin form-control-invalid {
+  border-color: var(--#{$prefix}form-invalid-border-color);
+
+  &:focus {
+    border-color: var(--#{$prefix}form-invalid-border-color);
+    box-shadow: 0 0 $input-btn-focus-blur $input-focus-width
+      rgba($form-feedback-invalid-color, $input-btn-focus-color-opacity);
+  }
+}

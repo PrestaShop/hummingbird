@@ -88,6 +88,18 @@ _Rule:_ Unlayered CSS intentionally retains higher cascade priority. Do not use
 high-specificity shortcuts or `!important` unless absolutely necessary. Place
 overrides in the appropriate layer.
 
+**`@extend` is forbidden.** Sass `@extend` and `%placeholders` can break CSS
+`@layer` ordering because Sass must hoist the generated selector to where the
+placeholder is defined, which may be in a different layer than the caller. Use
+these alternatives instead:
+
+| Need | Do this |
+|---|---|
+| Reuse a set of declarations | `@mixin` / `@include` in `abstract/mixins/` |
+| Style a reusable UI element (color swatch, icon…) | Direct BEM class in the right component file |
+| Apply Bootstrap utility styles to a JS-generated element | Copy the relevant CSS custom properties directly |
+| Apply Bootstrap component styles to an unclassed element | Add the Bootstrap class in the Smarty template |
+
 ## 5. JavaScript & TypeScript Framework (The "data-ps-*" Architecture)
 
 Hummingbird uses a strict, declarative architecture for JavaScript interactions.

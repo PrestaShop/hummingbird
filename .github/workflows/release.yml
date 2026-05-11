@@ -17,11 +17,10 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: ${{ github.event.repository.name }}
-          path: ${{ github.event.repository.name }}
 
       - name: Zip artifact
         run: |
-          zip -r ${{ github.event.repository.name }}.zip ${{ github.event.repository.name }}
+          zip -r ${{ github.event.repository.name }}.zip . -x ${{ github.event.repository.name }}.zip
 
       - name: Publish to GitHub Release
         env:

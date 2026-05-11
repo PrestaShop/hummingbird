@@ -2,7 +2,7 @@ name: Tests
 on: [ push, pull_request ]
 jobs:
   unit-tests:
-    name: Install dependencies and run unit tests
+    name: Unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -11,12 +11,28 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 20
-      
-      # Install project dependencies
+
       - name: Install dependencies
         run: npm ci
 
-      # Run Tests
       - name: Run Tests
         run: |
           npm run test
+
+  typecheck:
+    name: Type Checking
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run type check
+        run: |
+          npm run build

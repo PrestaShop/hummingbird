@@ -11,6 +11,9 @@ jobs:
     name: Build dependencies & create artifact
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Setup Environment
         uses: ./.github/actions/setup
 

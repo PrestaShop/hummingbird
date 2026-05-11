@@ -1,28 +1,22 @@
 name: Tests
 on: [ push, pull_request ]
 jobs:
-  js-unit-tests:
+  unit-tests:
+    name: Install dependencies and run unit tests
     runs-on: ubuntu-latest
-    name: Run unit tests
-    strategy:
-      matrix:
-        js: [ '20' ]
     steps:
+      - uses: actions/checkout@v6
+
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.js }}
+          node-version: 20
+      
+      # Install project dependencies
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cache Node Directory
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
-
-      - name: Run tests
-        run: npm ci && npm run test
-        working-directory: ./
+      # Run Tests
+      - name: Run Tests
+        run: |
+          npm run tests

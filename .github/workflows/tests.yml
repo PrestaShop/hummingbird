@@ -19,4 +19,4 @@ jobs:
       # Run Tests
       - name: Run Tests
         run: |
-          npm run tests
+          npm run test

@@ -1,0 +1,13 @@
+name: 'Setup Environment'
+description: 'Checkout code, setup Node.js, and install dependencies'
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v6
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: npm ci
+      shell: bash

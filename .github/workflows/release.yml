@@ -1,0 +1,29 @@
+name: Upload Release Asset
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
+  upload:
+    name: Upload Release Asset
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: ${{ github.event.repository.name }}
+
+      - name: Zip artifact
+        run: |
+          zip -r ${{ github.event.repository.name }}.zip . -x ${{ github.event.repository.name }}.zip
+
+      - name: Publish to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} ${{ github.event.repository.name }}.zip --repo ${{ github.repository }}

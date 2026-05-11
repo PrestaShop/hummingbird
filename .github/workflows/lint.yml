@@ -5,18 +5,12 @@ jobs:
     name: Stylelint & Prettier
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v6
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      
-      # Install project dependencies
-      - name: Install dependencies
-        run: npm ci
+      - name: Setup Environment
+        uses: ./.github/actions/setup
 
-      # Run Prettier check command
       - name: Run Prettier check
         run: |
           npm run prettier || {
@@ -24,23 +18,26 @@ jobs:
             exit 1
           }
 
-      # Run Stylelint check command
       - name: Run Stylelint check
         run: |
           npm run stylelint || {
             echo "::error::Stylelint check failed. Run 'npm run stylelint:fix' to autofix issues."
             exit 1
           }
+
   eslint:
     name: ESLint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v6
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Environment
+        uses: ./.github/actions/setup
 
-      - name: Lint js
-        run: npm ci && npm run lint
+      - name: Run ESLint check
+        run: |
+          npm run lint || {
+            echo "::error::ESLint check failed. Run 'npm run lint:fix' to format your code."
+            exit 1
+          }

@@ -1,28 +1,30 @@
 name: Tests
 on: [ push, pull_request ]
 jobs:
-  js-unit-tests:
+  unit-tests:
+    name: Unit tests
     runs-on: ubuntu-latest
-    name: Run unit tests
-    strategy:
-      matrix:
-        js: [ '20' ]
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.js }}
-
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Cache Node Directory
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+      - name: Setup Environment
+        uses: ./.github/actions/setup
 
-      - name: Run tests
-        run: npm ci && npm run test
-        working-directory: ./
+      - name: Run Tests
+        run: |
+          npm run test
+
+  typecheck:
+    name: Type Checking
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Environment
+        uses: ./.github/actions/setup
+
+      - name: Run type check
+        run: |
+          npm run build

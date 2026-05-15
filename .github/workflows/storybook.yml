@@ -3,7 +3,7 @@ name: Build & Deploy Storybook
 on:
   push:
     branches:
-      - dev
+      - develop
 
 jobs:
   build-and-deploy:

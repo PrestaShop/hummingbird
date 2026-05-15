@@ -175,7 +175,7 @@ $component-name: ps-mainmenu;
 
           &[data-ps-has-child="true"] {
             &::after {
-              @extend .material-icons;
+              @include material-icon;
               margin: 0 0 0 auto;
               content: "\e315" / " ";
             }

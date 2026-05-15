@@ -7,7 +7,7 @@
 {if $displayedFacets|count}
   <div id="search-filters" class="{$componentName}" role="region" aria-label="{l s='Product filters' d='Shop.Theme.Global'}">
     {block name='facets_title'}
-      <p class="left-block__title d-none d-md-block">
+      <p class="left-block__title d-none d-md-block h3">
         {l s='Filter By' d='Shop.Theme.Actions'}
       </p>
     {/block}

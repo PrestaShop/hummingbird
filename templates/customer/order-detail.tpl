@@ -139,7 +139,7 @@
 
   <hr class="order-separator">
 
-  {capture name='displayOrderDetail'}{hook h='displayOrderDetail'}{/capture}
+  {capture name='displayOrderDetail'}{$HOOK_DISPLAYORDERDETAIL nofilter}{/capture}
   {if $smarty.capture.displayOrderDetail}
     {$smarty.capture.displayOrderDetail nofilter}
 

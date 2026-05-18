@@ -3,6 +3,13 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 
+{hook h='displayDynamicFragmentBefore'
+  name='notifications'
+  template='_partials/notifications.tpl'
+  notifications=$notifications|default:false
+  page=$page|default:false
+  product=$product|default:false
+}
 {if isset($notifications)}
 <div id="notifications">
   <div class="container">
@@ -76,3 +83,10 @@
   </div>
 </div>
 {/if}
+{hook h='displayDynamicFragmentAfter'
+  name='notifications'
+  template='_partials/notifications.tpl'
+  notifications=$notifications|default:false
+  page=$page|default:false
+  product=$product|default:false
+}

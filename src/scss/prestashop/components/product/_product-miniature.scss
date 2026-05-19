@@ -92,6 +92,10 @@ $product-miniature-container-query-width: 13.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+
+    .color {
+      @include color-swatch;
+    }
   }
 
   &__prices {

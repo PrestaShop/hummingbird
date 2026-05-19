@@ -1,0 +1,32 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+@mixin color-swatch {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  background-size: contain;
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius-sm);
+  outline: 0.125rem solid transparent;
+  outline-offset: -0.125rem;
+  transition: var(--bs-transition-default);
+
+  &-sm {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &.active,
+  &:focus-visible,
+  &:hover {
+    outline: 0.125rem solid var(--bs-link-hover-color);
+  }
+
+  &:focus-visible {
+    box-shadow: var(--bs-focus-ring-x, 0) var(--bs-focus-ring-y, 0) var(--bs-focus-ring-blur, 0)
+      var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+  }
+}

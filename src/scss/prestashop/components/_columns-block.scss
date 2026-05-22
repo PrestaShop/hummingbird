@@ -13,10 +13,6 @@ $component-name: (
   margin-bottom: 2rem;
   border-bottom: 1px solid var(--bs-border-color);
 
-  &__title {
-    @extend .h3;
-  }
-
   &__title-link {
     color: var(--bs-body-color);
 

@@ -57,7 +57,7 @@ exports.webpackVars = {
     filename: 'js/[name].js',
     chunkFilename: mode === 'production' ? 'js/[chunkhash].js' : 'js/[id].js',
     path: path.resolve(themeDev, '../assets'),
-    publicPath: mode === 'production' ? '../' : `${serverAddress === 'localhost' ? siteURL : `${siteURL}:${port}`}${publicPath}`,
+    publicPath: mode === 'production' || !siteURL ? '../' : `${serverAddress === 'localhost' ? siteURL : `${siteURL}:${port}`}${publicPath}`,
     pathinfo: false,
     library: {
       name: 'Theme',

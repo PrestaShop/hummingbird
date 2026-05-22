@@ -1,0 +1,29 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+@mixin outline-focus-visible {
+  &:focus-visible {
+    outline: 0.125rem solid var(--bs-primary);
+  }
+}
+
+@mixin outline-outer-focus-visible {
+  &:focus-visible {
+    outline: 0.125rem solid var(--bs-primary);
+    outline-offset: 0.125rem;
+  }
+}
+
+@mixin outline-inner-focus-visible {
+  &:focus-visible {
+    outline: 0.125rem solid var(--bs-primary);
+    outline-offset: -0.125rem;
+  }
+}
+
+@mixin outline-shadow-focus-visible {
+  &:focus-visible {
+    box-shadow: $form-check-input-focus-box-shadow;
+  }
+}

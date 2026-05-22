@@ -17,6 +17,8 @@
     "selector-no-qualifying-type": null,
     "value-list-comma-newline-after": null,
     "value-list-comma-space-after": null,
+    "scss/at-mixin-argumentless-call-parentheses": "never",
+    "scss/at-mixin-parentheses-space-before": "never",
     "scss/dollar-variable-default": null,
     "scss/operator-no-newline-after": null,
     "scss/percent-placeholder-pattern": null

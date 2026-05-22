@@ -1,6 +1,6 @@
 name: hummingbird
 display_name: Hummingbird
-version: 2.0.0
+version: 2.1.0
 author:
   name: "PrestaShop Team and Contributors"
   email: "pub@prestashop.com"
@@ -8,8 +8,8 @@ author:
 
 meta:
   compatibility:
-    from: 9.1.0
-    to: ~9.1.0
+    from: 9.1.2
+    to: ~9.1.2
     framework: bootstrap-v5.3.3
 
   available_layouts:

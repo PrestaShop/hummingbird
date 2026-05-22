@@ -6,8 +6,8 @@
   line-height: 1.5;
 
   table {
-    @extend .table;
-    @extend .table-bordered;
+    @include table;
+    @include table-bordered;
   }
 
   ul {

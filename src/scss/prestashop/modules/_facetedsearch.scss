@@ -41,11 +41,11 @@ $component-name: (
         gap: 0.5rem;
         align-items: center;
         cursor: pointer;
-        @extend %color-variant;
       }
 
       .color {
-        @extend %outline--shadow-focus-visible;
+        @include color-swatch;
+        @include outline-shadow-focus-visible;
       }
     }
   }
@@ -96,8 +96,8 @@ $component-name: (
     }
   }
 
-  .noUi-handle:focus-visible {
-    @extend %outline--focus-visible;
+  .noUi-handle {
+    @include outline-focus-visible;
   }
 
   @include media-breakpoint-up(md) {

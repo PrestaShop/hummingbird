@@ -2,15 +2,22 @@
 
 ## Product Role
 
-Hummingbird is the official default theme for PrestaShop 9.1+. Its primary purpose
-is to serve as the production-ready reference implementation that ships with the
-platform — not a blank starter, not a showcase, but the theme a merchant gets
-out of the box and a developer forks as their baseline.
+Hummingbird is the official default theme for PrestaShop 9.1+. It ships with
+the platform as the production-ready reference implementation — the theme a
+merchant gets out of the box and a developer forks as their baseline.
 
-It defines what "correct" looks like for PrestaShop frontend development:
-accessibility, performance, separation of concerns, and compatibility with the
-Core's Smarty variable contracts. All other themes, modules, and integrations
-are implicitly measured against it.
+It defines what "correct" looks like for PrestaShop frontend development. All
+other themes, modules, and integrations are implicitly measured against it.
+
+As a developer-first product, most of its value is architectural: a structured
+SCSS system, a declarative JS/TS component model, and a clear boundary with the
+Core. New features are predominantly technical — better patterns, stronger
+conventions, improved tooling — rather than new user-facing UI. Accessibility
+and performance are first-class quality requirements: regressions in either are
+treated as product bugs.
+
+Hummingbird is a rendering layer. It consumes what the PrestaShop Core provides
+and renders it — it does not own business logic, and it never will.
 
 ## Users
 
@@ -46,40 +53,16 @@ These are the storefront flows Hummingbird owns end-to-end:
 - **CMS pages** — static content, contact form
 - **Error pages** — 404, maintenance
 
-## Business Rules
-
-- **Strict presentation boundary.** Hummingbird is a rendering layer only. It
-  consumes Smarty variables injected by the Core and renders HTML. It never
-  queries the database, overrides controllers, or duplicates business logic.
-
-- **Core contract compliance.** The theme must remain compatible with every
-  Smarty variable and hook provided by the supported PrestaShop version (9.1+).
-  If a variable or hook is missing, the fix belongs in the Core — not in a
-  Smarty plugin workaround inside the theme.
-
-- **Module template isolation.** Modules may override theme templates via the
-  standard PrestaShop override mechanism. The theme must not break this contract
-  by hardcoding assumptions about module output.
-
-- **Accessibility is non-negotiable.** All rendered markup must meet W3C
-  WAI-ARIA standards. Accessibility regressions are treated as bugs, not
-  cosmetic issues.
-
-- **No jQuery.** The theme targets modern browsers and must not introduce jQuery
-  as a dependency, even transitively through third-party scripts.
-
 ## Out of Scope
-
-The following are explicitly not the theme's responsibility:
 
 - **Business logic** — pricing rules, promotions, tax calculations, inventory.
   These belong in the PrestaShop Core or dedicated modules.
 - **Module-owned features** — payment, B2B workflows, loyalty, marketplace, and
-  any other feature delivered by a module. These render via the standard
-  PrestaShop override mechanism; the theme provides no dedicated templates for
-  them.
+  any other feature delivered by a module. Modules bring their own templates;
+  the theme provides no dedicated UI for them.
 - **Multi-shop configuration** — shop group logic, domain routing.
 - **Back-office UI** — admin panels, product editing, order management.
-- **Data persistence** — the theme holds no state beyond the current page render.
-- **SEO meta strategy** — meta tags are injected by the Core; the theme renders
-  what it receives.
+- **Session state and data persistence** — the theme has no ownership over user
+  state or stored data.
+- **SEO meta strategy** — meta content and structured data are the Core's
+  responsibility; the theme renders what it receives.

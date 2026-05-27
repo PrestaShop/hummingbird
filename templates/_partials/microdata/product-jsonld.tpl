@@ -28,59 +28,59 @@
   {
     "@context": "https://schema.org/",
     "@type": "Product",
-    "name": "{$product.name}",
-    "description": "{$page.meta.description|regex_replace:"/[\r\n]/" : " "}",
-    "category": "{$product.category_name}",
-    {if !empty($product.cover)}"image" :"{$product.cover.bySize.home_default.url}",{/if}
-    "sku": "{if $product.reference}{$product.reference}{else}{$product.id}{/if}",
-    "mpn": "{if $product.mpn}{$product.mpn}{elseif $product.reference}{$product.reference}{else}{$product.id}{/if}"
-    {if $product.ean13},"gtin": "{$product.ean13}"{/if}
-    {if $product.upc},"gtin12": "{$product.upc}"{/if}
+    "name": {$product.name|json_encode nofilter},
+    "description": {$page.meta.description|json_encode nofilter},
+    "category": {$product.category_name|json_encode nofilter},
+    {if !empty($product.cover)}"image": {$product.cover.bySize.home_default.url|json_encode nofilter},{/if}
+    "sku": {if $product.reference}{$product.reference|json_encode nofilter}{else}{$product.id|json_encode nofilter}{/if},
+    "mpn": {if $product.mpn}{$product.mpn|json_encode nofilter}{elseif $product.reference}{$product.reference|json_encode nofilter}{else}{$product.id|json_encode nofilter}{/if}
+    {if $product.ean13},"gtin": {$product.ean13|json_encode nofilter}{/if}
+    {if $product.upc},"gtin12": {$product.upc|json_encode nofilter}{/if}
     {if isset($product_manufacturer) && $product_manufacturer->name},
     "brand": {
       "@type": "Brand",
-      "name": "{$product_manufacturer->name|escape:'html':'UTF-8'}"
+      "name": {$product_manufacturer->name|json_encode nofilter}
     }
     {elseif $shop.name},
     "brand": {
       "@type": "Organization",
-      "name": "{$shop.name}"
+      "name": {$shop.name|json_encode nofilter}
     }
     {/if}
     {if $hasAggregateRating},
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "{$ratingValue|round:1|escape:'html':'UTF-8'}",
-      "reviewCount": "{$ratingReviewCount|escape:'html':'UTF-8'}"
+      "ratingValue": "{$ratingValue|round:1}",
+      "reviewCount": "{$ratingReviewCount}"
     }
     {/if}
     {if $hasWeight},
     "weight": {
-        "@context": "https://schema.org",
-        "@type": "QuantitativeValue",
-        "value": "{$product.weight}",
-        "unitCode": "{$product.weight_unit}"
+      "@context": "https://schema.org",
+      "@type": "QuantitativeValue",
+      "value": "{$product.weight}",
+      "unitCode": {$product.weight_unit|json_encode nofilter}
     }
     {/if}
     {if $hasOffers},
     "offers": {
       "@type": "Offer",
-      "priceCurrency": "{$currency.iso_code}",
+      "priceCurrency": {$currency.iso_code|json_encode nofilter},
       "price": "{$product.price_amount}",
-      "url": "{$product.url}",
+      "url": {$product.url|json_encode nofilter},
       "priceValidUntil": "{($smarty.now + (int) (60*60*24*15))|date_format:"%Y-%m-%d"}",
       {if $product.images|count > 0}
         "image": {strip}[
           {foreach from=$product.images item=p_img name="p_img_list"}
-            "{$p_img.large.url}"{if not $smarty.foreach.p_img_list.last},{/if}
+            {$p_img.large.url|json_encode nofilter}{if not $smarty.foreach.p_img_list.last},{/if}
           {/foreach}
         ]{/strip},
       {/if}
-      {if !empty($product.show_condition) && !empty($product.condition)}"itemCondition": "{$product.condition.schema_url}",{/if}
-      "availability": "{$product.seo_availability}",
+      {if !empty($product.show_condition) && !empty($product.condition)}"itemCondition": {$product.condition.schema_url|json_encode nofilter},{/if}
+      "availability": {$product.seo_availability|json_encode nofilter},
       "seller": {
         "@type": "Organization",
-        "name": "{$shop.name}"
+        "name": {$shop.name|json_encode nofilter}
       }
     }
     {/if}

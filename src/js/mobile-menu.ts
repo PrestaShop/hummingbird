@@ -3,6 +3,7 @@
  * file that was distributed with this source code.
  */
 
+import {Offcanvas} from 'bootstrap';
 import {isHTMLElement} from '@helpers/typeguards';
 
 const initMobileMenu = () => {
@@ -14,6 +15,7 @@ const initMobileMenu = () => {
   const backButton = document.querySelector(MobileMenuMap.backButton);
   const menuCanvas = document.querySelector(MobileMenuMap.menuCanvas);
   const defaultBackTitle = backTitle?.innerHTML;
+  const desktopMenu = document.querySelector('.js-menu-desktop');
 
   const backToParent = () => {
     if (
@@ -47,6 +49,34 @@ const initMobileMenu = () => {
       }
     }
   };
+
+  const closeMobileMenu = (): void => {
+    if (!isHTMLElement(menuCanvas)) {
+      return;
+    }
+
+    Offcanvas.getInstance(menuCanvas)?.hide();
+  };
+
+  const isDesktopMenuVisible = (): boolean => {
+    if (!isHTMLElement(desktopMenu)) {
+      return false;
+    }
+
+    return window.getComputedStyle(desktopMenu).display !== 'none';
+  };
+
+  let wasDesktopMenuVisible = isDesktopMenuVisible();
+
+  window.addEventListener('resize', () => {
+    const isNowDesktopMenuVisible = isDesktopMenuVisible();
+
+    if (!wasDesktopMenuVisible && isNowDesktopMenuVisible) {
+      closeMobileMenu();
+    }
+
+    wasDesktopMenuVisible = isNowDesktopMenuVisible;
+  });
 
   menuCanvas?.addEventListener('hidden.bs.offcanvas', () => {
     const currentMenu = document.querySelector(MobileMenuMap.menuCurrent);

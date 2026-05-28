@@ -4,7 +4,7 @@
  *}
 
 {if $homeslider.slides}
-  <section class="ps-imageslider">
+  <section class="ratio ratio-homeSlider container">
     <div
       id="ps_imageslider"
       class="carousel slide"

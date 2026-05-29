@@ -92,7 +92,18 @@
     {elseif $field.type === 'date'}
 
       {block name='form_field_item_date'}
-        <input name="{$field.name}" class="form-control" type="date" id="field-{$field.name}" value="{$field.value}"{if isset($field.availableValues.placeholder)} placeholder="{$field.availableValues.placeholder}" aria-label="{$field.availableValues.placeholder}"{/if}>
+        <input
+          name="{$field.name}"
+          class="form-control"
+          type="date"
+          id="field-{$field.name}"
+          value="{$field.value}"
+          {if isset($field.availableValues.placeholder)}
+            placeholder="{$field.availableValues.placeholder}"
+            aria-label="{$field.availableValues.placeholder}"
+          {/if}
+          {if $field.required}required{/if}
+        >
         {if isset($field.availableValues.comment)}
           <span class="form-text">
             {$field.availableValues.comment}

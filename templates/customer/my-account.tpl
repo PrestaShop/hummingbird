@@ -62,7 +62,7 @@
     {/if}
 
     {block name='display_customer_account'}
-      {hook h='displayCustomerAccount'}
+      {hook h='displayCustomerAccount' isMainAccount=true}
     {/block}
 
     <a class="{$componentName}__link {$componentName}__link--signout" href="{$urls.actions.logout}">

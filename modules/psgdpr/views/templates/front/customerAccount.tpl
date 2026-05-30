@@ -19,7 +19,6 @@
 
 <a
   class="account-menu__link {if $urls.current_url === $front_controller} account-menu__link--active{/if}"
-  id="psgdpr_link"
   href="{$front_controller}"
   {if $urls.current_url === $front_controller}aria-current="page"{/if}
 >

@@ -19,7 +19,6 @@
 
 <a
   class="account-menu__link {if $urls.current_url === $url} account-menu__link--active{/if}"
-  id="wishlist_link"
   href="{$url}"
   {if $urls.current_url === $url}aria-current="page"{/if}
 >

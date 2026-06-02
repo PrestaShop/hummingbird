@@ -4,7 +4,7 @@
  *}
 
 <a
-  class="account-menu__link {if $urls.current_url === $link->getModuleLink(ps_emailalerts, 'account')} account-menu__link--active{/if}"
+  class="account-menu__link account-menu__link--emailalerts{if $urls.current_url === $link->getModuleLink(ps_emailalerts, 'account')} account-menu__link--active{/if}"
   href="{$link->getModuleLink(ps_emailalerts, 'account')}"
   {if $urls.current_url === $link->getModuleLink(ps_emailalerts, 'account')}aria-current="page"{/if}
 >

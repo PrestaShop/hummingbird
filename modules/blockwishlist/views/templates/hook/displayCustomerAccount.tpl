@@ -18,7 +18,7 @@
  *}
 
 <a
-  class="account-menu__link {if $urls.current_url === $url} account-menu__link--active{/if}"
+  class="account-menu__link account-menu__link--wishlist{if $urls.current_url === $url} account-menu__link--active{/if}"
   href="{$url}"
   {if $urls.current_url === $url}aria-current="page"{/if}
 >

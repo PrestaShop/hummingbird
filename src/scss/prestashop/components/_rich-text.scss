@@ -5,6 +5,15 @@
 .rich-text {
   line-height: 1.5;
 
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.125em;
+
+    &:hover {
+      text-underline-offset: 0.25em;
+    }
+  }
+
   table {
     @include table;
     @include table-bordered;

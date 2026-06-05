@@ -4,7 +4,7 @@
  *}
 {block name='order_products_table'}
   <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post" data-ps-action="form-validation">
-    <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Catalog'}" aria-describedby="order_products_heading">
+    <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Catalog'}">
       <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
         <div class="grid-table__header" role="row">
           <span class="grid-table__cell" role="columnheader" aria-label="{l s='Select product to return' d='Shop.Theme.Catalog'}">
@@ -61,7 +61,7 @@
     <hr class="order-separator">
 
     <section class="order-merchandise-return">
-      <h3 class="h3">{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h3>
+      <h2>{l s='Merchandise return' d='Shop.Theme.Customeraccount'}</h2>
 
       <label class="form-label required" for="return_notes">{l s='Return notes' d='Shop.Forms.Labels'}</label>
 

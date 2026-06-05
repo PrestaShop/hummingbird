@@ -3,7 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {block name='order_products_table'}
-  <div class="grid-table grid-table--collapse mb-0" role="table" aria-label="{l s='Products details' d='Shop.Theme.Customeraccount'}" aria-describedby="order_products_heading">
+  <div class="grid-table grid-table--collapse mb-0" role="table" aria-label="{l s='Products details' d='Shop.Theme.Customeraccount'}">
     <div class="grid-table__inner grid-table__inner--4" role="rowgroup">
       <div class="grid-table__header" role="row">
         <span class="grid-table__cell" role="columnheader">{l s='Product' d='Shop.Theme.Catalog'}</span>

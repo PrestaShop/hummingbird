@@ -3,9 +3,9 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 <section class="order-carriers">
-  <h3 class="h3" id="order_carriers_heading">{l s='Shipment tracking details' d='Shop.Theme.Customeraccount'}</h3>
+  <h2 id="order_carriers_heading">{l s='Shipment tracking details' d='Shop.Theme.Customeraccount'}</h2>
 
-  <div class="grid-table" role="table" aria-label="{l s='Order tracking' d='Shop.Theme.Customeraccount'}" aria-describedby="order_carriers_heading">
+  <div class="grid-table" role="table" aria-label="{l s='Order tracking' d='Shop.Theme.Customeraccount'}">
     <div class="grid-table__inner grid-table__inner--5" role="rowgroup">
       <div class="grid-table__header" role="row">
         <span class="grid-table__cell" role="columnheader">{l s='Date' d='Shop.Theme.Global'}</span>

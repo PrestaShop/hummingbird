@@ -5,7 +5,7 @@
 
 <div id="ps_cashondelivery-displayOrderConfirmation" class="card border-1 mb-3">
   <div class="card-body">
-    <p class="h2">{l s='Payment information' d='Shop.Theme.Checkout'}</p>
+    <h2>{l s='Payment information' d='Shop.Theme.Checkout'}</h2>
 
     <p class="h3 card-subtitle text-secondary mb-3">{l s='Pay by Cash on Delivery' d='Modules.Cashondelivery.Shop'}</p>
 
@@ -21,4 +21,3 @@
     <a href="{$contact_url}" rel="nofollow">{l s='customer support' d='Modules.Cashondelivery.Shop'}</a>.
   </div>
 </div>
-

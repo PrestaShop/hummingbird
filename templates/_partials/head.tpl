@@ -37,14 +37,14 @@
     {/foreach}
   {/block}
 
-  {** Render structured data from the server **}
+  {** Render structured data from the core. Available since PrestaShop 9.2 **}
   {if !empty($structured_data)}
     {foreach from=$structured_data item="element"}
       {** 320 in the method parameter means JSON_UNESCAPED_SLASHES (64) + JSON_UNESCAPED_UNICODE (256) **}
     <script type="application/ld+json">{$element|@json_encode:320 nofilter}</script>
     {/foreach}
 
-  {** Render them in a legacy, manual way. This will be removed in future versions of this theme. **}
+  {** Or render them in a legacy, manual way. This will be removed in future versions of this theme. **}
   {else}
     {block name='head_microdata'}
       {include file='_partials/microdata/head-jsonld.tpl'}

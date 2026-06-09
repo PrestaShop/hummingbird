@@ -67,9 +67,9 @@
 
   {block name='order_status'}
     <section class="order-status">
-      <h2 class="h3" id="order_status_heading">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
+      <h2 id="order_status_heading">{l s='Follow your order\'s status step-by-step' d='Shop.Theme.Customeraccount'}</h2>
 
-      <div class="order-status__table grid-table grid-table--collapse" role="table" aria-label="{l s='Order status' d='Shop.Theme.Customeraccount'}" aria-describedby="order_status_heading">
+      <div class="order-status__table grid-table grid-table--collapse" role="table" aria-label="{l s='Order status' d='Shop.Theme.Customeraccount'}">
         <div class="grid-table__inner grid-table__inner--2" role="rowgroup">
           <div class="grid-table__header" role="row">
             <span class="grid-table__cell" role="columnheader">{l s='Date' d='Shop.Theme.Global'}</span>
@@ -109,15 +109,15 @@
 
   {block name='order_addresses'}
     <section class="order-addresses">
-      <h3 class="h3">{l s='Addresses' d='Shop.Theme.Customeraccount'}</h3>
+      <h2>{l s='Addresses' d='Shop.Theme.Customeraccount'}</h2>
 
       <div class="order-addresses__list">
         {if $order.addresses.delivery}
           <article id="delivery-address" class="address-card">
             <div class="address-card__container">
-              <h4 class="address-card__alias">
+              <h3 class="address-card__alias">
                 {l s='Delivery address: %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.delivery.alias]}
-              </h4>
+              </h3>
 
               <address class="address-card__content mb-0">{$order.addresses.delivery.formatted nofilter}</address>
             </div>
@@ -126,9 +126,9 @@
 
         <article id="invoice-address" class="address-card">
           <div class="address-card__container">
-            <h4 class="address-card__alias">
+            <h3 class="address-card__alias">
               {l s='Invoice address: %alias%' d='Shop.Theme.Checkout' sprintf=['%alias%' => $order.addresses.invoice.alias]}
-            </h4>
+            </h3>
 
             <address class="address-card__content mb-0">{$order.addresses.invoice.formatted nofilter}</address>
           </div>
@@ -148,7 +148,7 @@
 
   {block name='order_products'}
     <section class="order-products">
-      <h3 class="h3" id="order_products_heading">{l s='Products details' d='Shop.Theme.Customeraccount'}</h3>
+      <h2 id="order_products_heading">{l s='Products details' d='Shop.Theme.Customeraccount'}</h2>
 
       {block name='order_detail'}
         {if $order.details.is_returnable}

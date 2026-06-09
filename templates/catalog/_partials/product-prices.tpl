@@ -81,12 +81,6 @@
             {/if}
           {/block}
         </div>
-
-        {block name='product_without_taxes'}
-          {if $priceDisplay == 2}
-            <span class="product__taxless-price">{l s='%price% tax excl.' d='Shop.Theme.Catalog' sprintf=['%price%' => $product.price_tax_exc]}</span>
-          {/if}
-        {/block}
       </div>
     {/block}
 

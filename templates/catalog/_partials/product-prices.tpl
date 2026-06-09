@@ -81,6 +81,12 @@
             {/if}
           {/block}
         </div>
+
+        {block name='product_without_taxes'}
+          {if $priceDisplay == 0 && $configuration.is_b2b}
+            <span class="product__taxless-price">{l s='%price% tax excluded' d='Shop.Theme.Catalog' sprintf=['%price%' => $product.price_tax_exc]}</span>
+          {/if}
+        {/block}
       </div>
     {/block}
 

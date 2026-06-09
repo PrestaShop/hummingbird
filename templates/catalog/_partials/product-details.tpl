@@ -18,7 +18,7 @@
       <div class="accordion-body">
         <ul class="details__list">
           {block name='product_manufacturer'}
-            {if isset($product_manufacturer->id)}
+            {if isset($product_manufacturer->id) && $product_manufacturer->active}
               <li class="details__item details__item--manufacturer">
                 <div class="details__left">
                   <span class="details__title">{l s='Brand' d='Shop.Theme.Catalog'}</span>

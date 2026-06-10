@@ -43,15 +43,31 @@ accessibility, and browser compatibility decisions are made with them in mind.
 
 ## Key Flows
 
-These are the storefront flows Hummingbird owns end-to-end:
+**Product page** — highest user and developer impact.
+The most visited page and the most extended by developers. Any regression here
+affects both merchant conversion and the developer experience of forking the
+theme. Accessibility is non-negotiable: variant changes, availability updates,
+and gallery interactions must work without a mouse.
 
-- **Product catalog** — category listing, search results, filters
-- **Product page** — detail, gallery, variants, add-to-cart
-- **Cart** — line items, quantity update, coupon, summary
-- **Checkout** — address, shipping, payment selection, order confirmation
-- **Customer account** — login, registration, order history, returns
-- **CMS pages** — static content, contact form
-- **Error pages** — 404, maintenance
+**Category, listing, and search results** — performance-sensitive, display-heavy.
+Critical for large catalogs. The theme owns product grid rendering, sorting,
+pagination, and subcategory display.
+
+**Cart** — conversion-sensitive, feedback-critical.
+Every interaction (quantity change, item removal, voucher) should give immediate,
+accessible feedback to keep the experience smooth and trustworthy.
+
+**Checkout** — most conversion-critical flow; zero regression tolerance.
+A broken or degraded checkout directly loses orders. This flow must be treated
+with the highest stability priority.
+
+**Customer account** — retention-focused, low complexity.
+Covers login, registration, order history, and returns. Lower risk than
+transactional flows but directly affects customer trust. Form interactions
+(password policy, validation) must be clear and accessible.
+
+**CMS and error pages** — low priority, lightweight by design.
+Static content and error states. Should remain minimal and simple.
 
 ## Out of Scope
 

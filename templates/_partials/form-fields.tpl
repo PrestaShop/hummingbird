@@ -136,7 +136,7 @@
     {elseif $field.type === 'password'}
 
       {block name='form_field_item_password'}
-        {assign var='apply_password_policy' value=$field.autocomplete === 'new-password'}
+        {assign var='apply_password_policy' value=($field.autocomplete|default:'') === 'new-password'}
 
         <div class="input-group password-field">
           <input

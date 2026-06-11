@@ -68,6 +68,12 @@ $component-name: product;
       color: var(--bs-tertiary-color);
     }
 
+    &__taxless-price {
+      font-size: 0.875rem;
+      line-height: 1.2;
+      color: var(--bs-tertiary-color);
+    }
+
     &__prices {
       font-size: 1.25rem;
       line-height: 1;

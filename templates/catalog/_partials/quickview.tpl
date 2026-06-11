@@ -21,12 +21,12 @@
         </div>
 
         <div class="product__right">
-          <p class="product__name h2 {if !empty($product_manufacturer->name) && !empty($product_brand_url)}mb-1{/if}">
+          <p class="product__name h2 {if isset($product_manufacturer->id) && $product_manufacturer->active}mb-1{/if}">
             {$product.name}
           </p>
 
           {block name='product_manufacturer'}
-            {if !empty($product_manufacturer->name) && !empty($product_brand_url)}
+            {if isset($product_manufacturer->id) && $product_manufacturer->active}
               <div class="product__manufacturer">
                 <a href="{$product_brand_url}" aria-label="{l s='Product brand: %brand_name%' sprintf=['%brand_name%' => $product_manufacturer->name] d='Shop.Theme.Catalog'}">
                   {$product_manufacturer->name}

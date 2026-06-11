@@ -215,7 +215,7 @@
   class="ps-mainmenu ps-mainmenu--mobile offcanvas offcanvas-start js-menu-canvas"
   tabindex="-1"
   id="mobileMenu"
-  aria-labelledby="mobileMenuLabel"
+  aria-label="{l s='Main menu' d='Shop.Theme.Global'}"
 >
   <div class="offcanvas-header">
     <div class="ps-mainmenu__back-button">

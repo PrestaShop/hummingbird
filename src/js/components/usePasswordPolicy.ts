@@ -26,15 +26,13 @@ const safeParseJSON = (jsonString: string): Record<string, string> => {
 // Utility function to update requirement icons
 const updateRequirementIcons = (
   feedbackContainer: HTMLElement,
-  elementInput: HTMLInputElement,
+  lengthValid: boolean,
   strengthValid: boolean,
 ): void => {
   const lengthIcon = feedbackContainer.querySelector(PasswordPolicyMap.requirementLengthIcon);
   const scoreIcon = feedbackContainer.querySelector(PasswordPolicyMap.requirementScoreIcon);
 
   // Password length validation
-  const lengthValid = !elementInput.validity.tooShort && !elementInput.validity.tooLong;
-
   if (lengthIcon) {
     lengthIcon.classList.toggle('text-success', lengthValid);
     lengthIcon.classList.toggle('text-danger', !lengthValid);
@@ -51,8 +49,9 @@ const updateRequirementIcons = (
 const updateProgressBar = (
   feedbackContainer: HTMLElement,
   strength: number,
+  requirementsMet: boolean,
 ): void => {
-  const strengthFeedback = getProgressBarInfo(strength);
+  const strengthFeedback = getProgressBarInfo(strength, requirementsMet);
   const progressBar = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.progressBar);
 
   if (progressBar) {
@@ -98,19 +97,25 @@ const buildValidationMessage = (
 };
 
 // Utility function to get password strength feedback
-const getProgressBarInfo = (strength: number) => {
-  const strengthLevels = {
-    0: {color: 'bg-danger', percentage: 20},
-    1: {color: 'bg-danger', percentage: 40},
-    2: {color: 'bg-danger', percentage: 60},
-    3: {color: 'bg-success', percentage: 80},
-    4: {color: 'bg-success', percentage: 100},
+// The color must stay consistent with the requirement icons: the bar is green
+// only when the password meets the whole policy (length AND score) configured
+// in the back office.
+export const getProgressBarInfo = (strength: number, requirementsMet: boolean): {color: string, percentage: number} => {
+  const strengthPercentages = {
+    0: 20,
+    1: 40,
+    2: 60,
+    3: 80,
+    4: 100,
   };
 
-  const validKeys = Object.keys(strengthLevels).map(Number);
+  const validKeys = Object.keys(strengthPercentages).map(Number);
   const safeStrength = validKeys.includes(strength) ? strength : 0;
 
-  return strengthLevels[safeStrength as keyof typeof strengthLevels];
+  return {
+    color: requirementsMet ? 'bg-success' : 'bg-danger',
+    percentage: strengthPercentages[safeStrength as keyof typeof strengthPercentages],
+  };
 };
 
 const passwordValidation = async (
@@ -138,8 +143,8 @@ const passwordValidation = async (
     const scoreValid = minScore <= result.score;
 
     // Update UI components
-    updateRequirementIcons(feedbackContainer, elementInput, scoreValid);
-    updateProgressBar(feedbackContainer, result.score);
+    updateRequirementIcons(feedbackContainer, lengthValid, scoreValid);
+    updateProgressBar(feedbackContainer, result.score, lengthValid && scoreValid);
 
     // Set custom validity
     const announceValidity = feedbackContainer.querySelector<HTMLElement>(PasswordPolicyMap.announceValidity);

@@ -136,6 +136,8 @@
     {elseif $field.type === 'password'}
 
       {block name='form_field_item_password'}
+        {* Enforce policy check only for new passwords (autocomplete="new-password") existing ones may predate the current policy and must stay usable. *}
+        {assign var='apply_password_policy' value=($field.autocomplete|default:'') === 'new-password'}
 
         <div class="input-group password-field">
           <input
@@ -145,12 +147,14 @@
             type="password"
             {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
             value=""
-            minlength="{$configuration.password_policy.minimum_length|default:8}"
-            maxlength="{$configuration.password_policy.maximum_length|default:72}"
-            data-minscore="{$configuration.password_policy.minimum_score|default:3}"
-            data-bs-placement="top"
-            data-bs-trigger="manual"
-            data-ps-ref="password-policy-input"
+            {if $apply_password_policy}
+              minlength="{$configuration.password_policy.minimum_length|default:8}"
+              maxlength="{$configuration.password_policy.maximum_length|default:72}"
+              data-minscore="{$configuration.password_policy.minimum_score|default:3}"
+              data-bs-placement="top"
+              data-bs-trigger="manual"
+              data-ps-ref="password-policy-input"
+            {/if}
             spellcheck="false"
             {if $field.required}required{/if}
           >
@@ -169,7 +173,9 @@
           </button>
         </div>
 
-        <div data-ps-target="password-feedback-target"></div>
+        {if $apply_password_policy}
+          <div data-ps-target="password-feedback-target"></div>
+        {/if}
       {/block}
 
     {elseif $field.type === 'textarea'}

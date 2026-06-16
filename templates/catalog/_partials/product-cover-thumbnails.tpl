@@ -83,47 +83,50 @@
       <div class="product__thumbnails">
         <ul class="product__thumbnails-list">
           {foreach from=$product.images item=image key=key name=productThumbnails}
-            <button
-              class="product__thumbnail focus-ring js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
-              data-bs-target="#product-images-{$product.id}"
-              data-bs-slide-to="{$key}"
-              {if $image.id_image == $product.default_image.id_image}
-                aria-current="true"
-              {/if}
-              aria-label="{l s='Slide to product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key + 1]}"
-            >
-              <picture>
-                {if isset($image.bySize.default_xs.sources.avif)}
-                  <source 
-                    srcset="
-                      {$image.bySize.default_xs.sources.avif},
-                      {$image.bySize.default_xl.sources.avif} 2x"
-                    type="image/avif"
-                  >
+            <li class="product__thumbnails-item">
+              <button
+                type="button"
+                class="product__thumbnail focus-ring js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
+                data-bs-target="#product-images-{$product.id}"
+                data-bs-slide-to="{$key}"
+                {if $image.id_image == $product.default_image.id_image}
+                  aria-current="true"
                 {/if}
+                aria-label="{l s='Slide to product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key + 1]}"
+              >
+                <picture>
+                  {if isset($image.bySize.default_xs.sources.avif)}
+                    <source 
+                      srcset="
+                        {$image.bySize.default_xs.sources.avif},
+                        {$image.bySize.default_xl.sources.avif} 2x"
+                      type="image/avif"
+                    >
+                  {/if}
 
-                {if isset($image.bySize.default_xs.sources.webp)}
-                  <source 
+                  {if isset($image.bySize.default_xs.sources.webp)}
+                    <source 
+                      srcset="
+                        {$image.bySize.default_xs.sources.webp},
+                        {$image.bySize.default_xl.sources.webp} 2x"
+                      type="image/webp"
+                    >
+                  {/if}
+
+                  <img
+                    class="product__thumbnail-image outline outline--rounded img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
                     srcset="
-                      {$image.bySize.default_xs.sources.webp},
-                      {$image.bySize.default_xl.sources.webp} 2x"
-                    type="image/webp"
+                      {$image.bySize.default_xs.url},
+                      {$image.bySize.default_xl.url} 2x"
+                    width="{$image.bySize.default_xs.width}"
+                    height="{$image.bySize.default_xs.height}"
+                    loading="lazy"
+                    alt="{$image.legend}"
+                    title="{$image.legend}"
                   >
-                {/if}
-
-                <img
-                  class="product__thumbnail-image outline outline--rounded img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
-                  srcset="
-                    {$image.bySize.default_xs.url},
-                    {$image.bySize.default_xl.url} 2x"
-                  width="{$image.bySize.default_xs.width}"
-                  height="{$image.bySize.default_xs.height}"
-                  loading="lazy"
-                  alt="{$image.legend}"
-                  title="{$image.legend}"
-                >
-              </picture>
-            </button>
+                </picture>
+              </button>
+            </li>
           {/foreach}
         </ul>
       </div>

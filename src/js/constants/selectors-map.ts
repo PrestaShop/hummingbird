@@ -4,7 +4,7 @@
  */
 
 export const layout = {
-  stickyHeader: '.js-sticky-header',
+  header: '[data-ps-ref="header"]',
 };
 
 export const facetedsearch = {

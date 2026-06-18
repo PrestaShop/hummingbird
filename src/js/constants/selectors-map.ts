@@ -223,7 +223,7 @@ const selectorsMap = {
     thumbnail: '.js-thumb-container',
     productImagesModal: '[data-ps-ref="product-images-modal"]',
     productImagesModalCarousel: '[data-ps-ref="product-images-modal-carousel"]',
-    activeThumbail: (id: number): string => `.product__thumbnails-item:nth-child(${id + 1}) .js-thumb-container`,
+    activeThumbail: (id: number): string => `[data-ps-ref="product-thumbnail-item"]:nth-child(${id + 1}) [data-ps-ref="product-thumbnail"]`,
     productAvailability: '[data-ps-ref="product-availability"]',
     rightSection: '[data-ps-ref="product-right"]',
   },

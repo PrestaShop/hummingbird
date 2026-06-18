@@ -8,6 +8,6 @@
 
 {foreach $stylesheets.inline as $stylesheet}
   <style>
-    {$stylesheet.content}
+    {$stylesheet.content nofilter}
   </style>
 {/foreach}

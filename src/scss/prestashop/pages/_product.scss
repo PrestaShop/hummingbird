@@ -20,7 +20,6 @@ $component-name: product;
     }
 
     &__thumbnail {
-      width: 100%;
       padding: 0;
       background-color: transparent;
       border: none;
@@ -32,6 +31,7 @@ $component-name: product;
       }
 
       &-image {
+        width: 100%;
         border-radius: var(--bs-border-radius);
         outline: 0.125rem solid transparent;
         outline-offset: -0.125rem;

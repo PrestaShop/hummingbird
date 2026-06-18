@@ -83,10 +83,11 @@
       <div class="product__thumbnails">
         <ul class="product__thumbnails-list">
           {foreach from=$product.images item=image key=key name=productThumbnails}
-            <li class="product__thumbnails-item">
+            <li class="product__thumbnails-item" data-ps-ref="product-thumbnail-item">
               <button
                 type="button"
                 class="product__thumbnail focus-ring js-thumb-container{if $image.id_image == $product.default_image.id_image} active{/if}"
+                data-ps-ref="product-thumbnail"
                 data-bs-target="#product-images-{$product.id}"
                 data-bs-slide-to="{$key}"
                 {if $image.id_image == $product.default_image.id_image}

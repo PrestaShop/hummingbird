@@ -14,7 +14,8 @@ compatible with versions `9.1.x` and above.
 | Hummingbird | PrestaShop | Status |
 | ----------- | ---------- | ------ |
 | `develop`   | `~10.0.0`  | Next major |
-| `2.x`       | `~9.1.1`   | Maintained |
+| `2.x`       | `~9.1.2`   | Maintained |
+| `2.1.0`     | `~9.1.2`   | Released |
 | `2.0.0`     | `~9.1.0`   | Released |
 
 > [!NOTE]

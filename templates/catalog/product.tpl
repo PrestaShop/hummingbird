@@ -44,7 +44,7 @@
         </h1>
       {/block}
 
-      {block name='product_manufacturer'}
+      {block name='product_header_manufacturer'}
         {if isset($product_manufacturer->id) && $product_manufacturer->active}
           <div class="product__manufacturer">
             <a href="{$product_manufacturer->url}" aria-label="{l s='Product brand: %brand_name%' sprintf=['%brand_name%' => $product_manufacturer->name] d='Shop.Theme.Catalog'}">

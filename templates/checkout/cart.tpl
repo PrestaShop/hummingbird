@@ -53,6 +53,8 @@
 
         <hr>
 
+        {hook h='displayCartBelowSummary'}
+
         {block name='hook_reassurance'}
           {hook h='displayReassurance'}
         {/block}

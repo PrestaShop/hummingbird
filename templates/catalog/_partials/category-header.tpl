@@ -34,9 +34,7 @@
         </div>
       {/if}
 
-      {if isset($subcategories) && $subcategories|@count > 0}
-        {include file='catalog/_partials/subcategories.tpl' subcategories=$subcategories}
-      {/if}
+      {include file='catalog/_partials/subcategories.tpl' subcategories=$subcategories|default:[]}
     </div>
   {/if}
 </div>

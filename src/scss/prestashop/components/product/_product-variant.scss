@@ -5,9 +5,12 @@ $component-name: product-variant;
   &__selected {
     display: inline-block;
     width: auto;
-    margin-block-end: 0.5rem;
     font-size: var(--bs-body-font-size);
     line-height: var(--bs-body-line-height);
+  }
+
+  &__attributes {
+    margin-block-start: 0.5rem;
   }
 
   // Radios

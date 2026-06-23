@@ -11,15 +11,13 @@
         {assign var=legendId value="legend_{$id_attribute_group}_{$product.id}"}
 
         <fieldset class="product-variant">
-          <div class="product-variant__label">
-            <legend class="form-label product-variant__legend" id="{$legendId}">{$group.name}</legend>
-            <span class="selected-value product-variant__selected" aria-hidden="true">
-              {l s=': ' d='Shop.Theme.Catalog'}
-              {foreach from=$group.attributes key=id_attribute item=group_attribute}
-                {if $group_attribute.selected}{$group_attribute.name}{/if}
-              {/foreach}
-            </span>
-          </div>
+          <legend class="form-label product-variant__legend" id="{$legendId}">{$group.name}</legend>
+          <span class="selected-value product-variant__selected" aria-hidden="true">
+            {l s=': ' d='Shop.Theme.Catalog'}
+            {foreach from=$group.attributes key=id_attribute item=group_attribute}
+              {if $group_attribute.selected}{$group_attribute.name}{/if}
+            {/foreach}
+          </span>
 
           {if $group.group_type == 'select'}
             <select

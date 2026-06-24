@@ -254,6 +254,19 @@ const initSearchbar = () => {
 
     searchClear?.addEventListener('blur', handleBlur);
 
+    // Close dropdown when clicking outside (registered once, not on every search)
+    window.addEventListener('click', (event: Event) => {
+      const target = <Node>event.target;
+
+      // Check if click is outside both the search widget and the dropdown
+      if (!searchWidget.contains(target) && !searchDropdown.contains(target)) {
+        searchDropdown.classList.add('d-none');
+        searchInput.setAttribute('aria-expanded', 'false');
+        currentResultIndex = -1;
+        searchWidgetHasFocus = false;
+      }
+    });
+
     const triggerSearch = async () => {
       if (!searchUrl || searchInput.value.trim() === '') return;
 
@@ -291,19 +304,6 @@ const initSearchbar = () => {
           });
 
           link.addEventListener('blur', handleBlur);
-        });
-
-        // Close dropdown when clicking outside
-        window.addEventListener('click', (event: Event) => {
-          const target = <Node>event.target;
-
-          // Check if click is outside both the search widget and the dropdown
-          if (!searchWidget.contains(target) && !searchDropdown.contains(target)) {
-            searchDropdown.classList.add('d-none');
-            searchInput.setAttribute('aria-expanded', 'false');
-            currentResultIndex = -1;
-            searchWidgetHasFocus = false;
-          }
         });
       } else {
         searchResults.innerHTML = '';

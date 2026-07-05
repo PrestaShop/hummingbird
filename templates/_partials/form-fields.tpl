@@ -211,6 +211,7 @@
           {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
           {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
           {if !empty($field.minLength)}minlength="{$field.minLength}"{/if}
+          {foreach from=$field.attr|default:[] key="attrName" item="attrValue"}{$attrName|escape:'html'}="{$attrValue|escape:'html'}" {/foreach}
           aria-label="{$field.label}"
           {if $field.required}required{/if}
         >

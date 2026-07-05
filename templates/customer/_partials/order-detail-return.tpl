@@ -207,7 +207,7 @@
         <button class="btn btn-primary" type="submit" name="submitReturnMerchandise" data-ps-action="form-validation-submit">
           {l s='Request a return' d='Shop.Theme.Customeraccount'}
         </button>
-      </footer>
-    </div>
+      </div>
+    </section>
   </form>
 {/block}

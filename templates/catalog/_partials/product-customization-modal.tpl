@@ -40,7 +40,7 @@
                   {assign var=image_modal_id value="{$componentName}_image--{mt_rand()}"}
 
                   <a href="#{$image_modal_id}" data-bs-toggle="modal" data-bs-dismiss="modal" >
-                    <img class="{$componentName}__img" src="{$field.image.small.url}">
+                    <img class="{$componentName}__img" src="{$field.image.small.url}" alt="{$field.label}">
                   </a>
 
                   {append var='image_modals'
@@ -72,7 +72,7 @@
               </div>
   
               <div class="modal-body">
-                <img class="{$componentName}__img-popup img-fluid" src="{$image_modal['image_url']}">
+                <img class="{$componentName}__img-popup img-fluid" src="{$image_modal['image_url']}" alt="{$image_modal['title']}">
               </div>
   
               <div class="modal-footer">

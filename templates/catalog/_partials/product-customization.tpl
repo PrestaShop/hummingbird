@@ -26,7 +26,7 @@
 
                 {if $field.is_customized}
                   <div class="product-customization__image-wrapper">
-                    <img src="{$field.image.small.url}" class="product-customization__image img-fluid" loading="lazy">
+                    <img src="{$field.image.small.url}" class="product-customization__image img-fluid" loading="lazy" alt="{$field.label}">
 
                     <a class="product-customization__image-remove link-danger" href="{$field.remove_image_url}" rel="nofollow" role="button">
                       {l s='Remove image' d='Shop.Theme.Actions'}

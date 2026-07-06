@@ -20,6 +20,7 @@
           </div>
         </div>
       {/foreach}
+      </div>
     </section>
 
     <hr class="order-separator">
@@ -63,7 +64,7 @@
         <button type="submit" name="submitMessage" class="btn btn-primary" data-ps-action="form-validation-submit">
           {l s='Send your message' d='Shop.Theme.Actions'}
         </button>
-      </footer>
+      </div>
     </form>
   </section>
 {/block}

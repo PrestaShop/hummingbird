@@ -4,7 +4,7 @@
  *}
 {$componentName = 'pagination'}
 
-<nav class="{$componentName}__container">
+<div class="{$componentName}__container">
   <div class="{$componentName}__number">
     {block name='pagination_summary'}
       {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=['%from%' => $pagination.items_shown_from ,'%to%' => $pagination.items_shown_to, '%total%' => $pagination.total_items]}
@@ -69,4 +69,4 @@
       </nav>
     {/block}
   </div>
-</nav>
+</div>

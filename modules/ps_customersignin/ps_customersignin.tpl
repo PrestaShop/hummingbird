@@ -132,8 +132,8 @@
     {else}
       <div class="header-block">
         <a
-          {if $page.page_name == 'authentication'}
-            href="{$urls.pages.authentication}?back={$urls.pages.my_account|urlencode}"
+          {if $urls.pages.authentication|strpos:'back=' !== false}
+            href="{$urls.pages.authentication}"
           {else}
             href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
           {/if}

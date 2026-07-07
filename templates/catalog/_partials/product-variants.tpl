@@ -71,19 +71,20 @@
                   {assign var=inputId value="input_{$id_attribute_group}_{$id_attribute}_{$product.id}"}
                   {assign var=labelId value="label_{$id_attribute_group}_{$id_attribute}_{$product.id}"}
 
-                  <div class="product-variant__radio form-check">
+                  <div class="product-variant__radio">
                     <input
-                      class="form-check-input"
+                      class="btn-check"
                       type="radio"
                       id="{$inputId}"
                       data-product-attribute="{$id_attribute_group}"
                       name="group[{$id_attribute_group}]"
                       value="{$id_attribute}"
                       aria-labelledby="{$labelId}"
+                      autocomplete="off"
                       {if $group_attribute.selected} checked="checked" aria-checked="true"{/if}
                     >
-                    <label for="{$inputId}">
-                      <span class="form-check-label" id="{$labelId}"><span class="visually-hidden">{$group.group_name} - </span>{$group_attribute.name}</span>
+                    <label class="btn btn-outline-primary" for="{$inputId}">
+                      <span id="{$labelId}"><span class="visually-hidden">{$group.group_name} - </span>{$group_attribute.name}</span>
                     </label>
                   </div>
                 {/foreach}

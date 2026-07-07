@@ -7,6 +7,10 @@ export const layout = {
   header: '[data-ps-ref="header"]',
 };
 
+export const imageslider = {
+  autoRotating: '#ps_imageslider[data-bs-ride="carousel"]',
+};
+
 export const facetedsearch = {
   range: '.js-faceted-slider',
   rangeContainer: '.js-faceted-slider-container',
@@ -199,6 +203,7 @@ export const passwordPolicy = {
 
 const selectorsMap = {
   layout,
+  imageslider,
   qtyInput,
   alert: {
     selector: '#notifications .container',

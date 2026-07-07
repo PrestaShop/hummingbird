@@ -34,6 +34,7 @@ import initScrollPaddingTop from '@helpers/scrollPadding';
 import initProductAccessibility from '@js/accessibility/product';
 import initCartAccessibility from '@js/accessibility/cart';
 import initProductComments from '@js/modules/productcomments';
+import initImageslider from '@js/modules/ps_imageslider';
 import parseData from '@helpers/parseData';
 
 initEmitter();
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   usePasswordPolicy();
   initCategoryTree();
   initScrollPaddingTop();
+  initImageslider();
   initBlockCart();
   initProductComments();
   // Accessibility

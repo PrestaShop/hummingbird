@@ -2,10 +2,15 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{capture assign='field_attr'}
+  {foreach from=$field.attr|default:[] key="attrName" item="attrValue"}
+    {$attrName|escape:'html'}="{$attrValue|escape:'html'}"
+  {/foreach}
+{/capture}
 {if $field.type == 'hidden'}
 
   {block name='form_field_item_hidden'}
-    <input type="hidden" name="{$field.name}" value="{$field.value}">
+    <input type="hidden" name="{$field.name}" value="{$field.value}" {$field_attr nofilter}>
   {/block}
 
 {else}
@@ -22,7 +27,7 @@
     {if $field.type === 'select'}
 
       {block name='form_field_item_select'}
-        <select class="form-select" name="{$field.name}" id="field-{$field.name}" {if $field.required}required{/if}>
+        <select class="form-select" name="{$field.name}" id="field-{$field.name}" {if $field.required}required{/if} {$field_attr nofilter}>
           <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
           {foreach from=$field.availableValues item="label" key="value"}
             <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
@@ -38,6 +43,7 @@
         name="{$field.name}"
         id="field-{$field.name}"
         {if $field.required}required{/if}
+        {$field_attr nofilter}
         >
           <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
           {foreach from=$field.availableValues item="label" key="value"}
@@ -102,6 +108,7 @@
             aria-label="{$field.availableValues.placeholder}"
           {/if}
           {if $field.required}required{/if}
+          {$field_attr nofilter}
         >
         {if isset($field.availableValues.comment)}
           <span class="form-text">
@@ -156,6 +163,7 @@
             {/if}
             spellcheck="false"
             {if $field.required}required{/if}
+            {$field_attr nofilter}
           >
 
           <button
@@ -189,6 +197,7 @@
           {if $field.required}required{/if}
           {if isset($field.availableValues.rows)}rows="{$field.availableValues.rows}"{/if}
           {if isset($field.availableValues.cols)}cols="{$field.availableValues.cols}"{/if}
+          {$field_attr nofilter}
         >{$field.value|default}</textarea>
         {if isset($field.availableValues.comment)}
           <span class="form-text">
@@ -210,9 +219,9 @@
           {if isset($field.availableValues.placeholder)}placeholder="{$field.availableValues.placeholder}"{/if}
           {if $field.maxLength}maxlength="{$field.maxLength}"{/if}
           {if !empty($field.minLength)}minlength="{$field.minLength}"{/if}
-          {foreach from=$field.attr|default:[] key="attrName" item="attrValue"}{$attrName|escape:'html'}="{$attrValue|escape:'html'}" {/foreach}
           aria-label="{$field.label}"
           {if $field.required}required{/if}
+          {$field_attr nofilter}
         >
         {if isset($field.availableValues.comment)}
           <span class="form-text">

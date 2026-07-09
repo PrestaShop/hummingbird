@@ -4,20 +4,33 @@
  *}
 {block name='brand_miniature_item'}
   <li class="brand">
-    <div class="brand__image">
-      <picture>
-        {if !empty($brand.image.bySize.small_default.sources.avif)}<source srcset="{$brand.image.bySize.small_default.sources.avif}" type="image/avif">{/if}
-        {if !empty($brand.image.bySize.small_default.sources.webp)}<source srcset="{$brand.image.bySize.small_default.sources.webp}" type="image/webp">{/if}
-        <img
-          class="brand__img img-fluid"
-          src="{$brand.image.bySize.small_default.url}"
-          alt="{if !empty($brand.image.legend)}{$brand.image.legend}{else}{$brand.name}{/if}"
-          width="{$brand.image.bySize.small_default.width}"
-          height="{$brand.image.bySize.small_default.height}"
-          loading="lazy"
-        >
-      </picture>
-    </div>
+    {if $displayImages|default:false}
+      <div class="brand__image">
+        {if !empty($brand.image.bySize.small_default.url)}
+          <picture>
+            {if !empty($brand.image.bySize.small_default.sources.avif)}<source srcset="{$brand.image.bySize.small_default.sources.avif}" type="image/avif">{/if}
+            {if !empty($brand.image.bySize.small_default.sources.webp)}<source srcset="{$brand.image.bySize.small_default.sources.webp}" type="image/webp">{/if}
+            <img
+              class="brand__img img-fluid"
+              src="{$brand.image.bySize.small_default.url}"
+              alt="{if !empty($brand.image.legend)}{$brand.image.legend}{else}{$brand.name}{/if}"
+              width="{$brand.image.bySize.small_default.width}"
+              height="{$brand.image.bySize.small_default.height}"
+              loading="lazy"
+            >
+          </picture>
+        {else}
+          <img
+            class="brand__img img-fluid"
+            src="{$urls.no_picture_image.bySize.small_default.url}"
+            alt="{$brand.name}"
+            width="{$urls.no_picture_image.bySize.small_default.width}"
+            height="{$urls.no_picture_image.bySize.small_default.height}"
+            loading="lazy"
+          >
+        {/if}
+      </div>
+    {/if}
 
     <div class="brand__infos">
       <a class="brand__title stretched-link" href="{$brand.url}">

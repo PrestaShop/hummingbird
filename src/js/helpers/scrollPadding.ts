@@ -4,8 +4,9 @@
  */
 
 import SelectorsMap from '@constants/selectors-map';
+import debounce from '@helpers/debounce';
 
-const setScrollPaddingTop = () => {
+const setScrollPaddingTop = async () => {
   const header = document.querySelector(SelectorsMap.layout.header) as HTMLElement;
 
   if (header) {
@@ -45,7 +46,10 @@ const initScrollPaddingTop = () => {
     setScrollPaddingTop();
     bindHeaderFocus();
   });
-  window.addEventListener('resize', setScrollPaddingTop);
+  // Debounce the resize handler: setScrollPaddingTop() reads header.offsetHeight (a forced layout
+  // reflow) and writes CSS custom properties, and 'resize' fires many times per second while the
+  // window is dragged. The scroll padding only needs to be correct once the resize settles.
+  window.addEventListener('resize', debounce(setScrollPaddingTop, 100));
 };
 
 export default initScrollPaddingTop;

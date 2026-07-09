@@ -12,7 +12,7 @@
 
   <div class="mb-3{if !empty($field.errors)} has-error{/if}">
     {if ($field.type !== 'checkbox')}
-      <label class="form-label{if $field.required} required{/if}" for="field-{$field.name}">
+      <label class="form-label{if $field.required} required{/if}" id="field-{$field.name}-label" for="field-{$field.name}">
         {if $field.type !== 'checkbox'}
           {$field.label}
         {/if}
@@ -50,7 +50,6 @@
 
       {block name='form_field_item_radio'}
         <div aria-labelledby="field-{$field.name}-label">
-          <p class="visually-hidden" id="field-{$field.name}-label">{$field.label}</p>
           {foreach from=$field.availableValues item="label" key="value"}
             <div class="form-check form-check-inline">
               <input
@@ -114,7 +113,7 @@
     {elseif $field.type === 'birthday'}
 
       {block name='form_field_item_birthday'}
-        <div class="js-parent-focus">
+        <div class="js-parent-focus" role="group" aria-labelledby="field-{$field.name}-label">
           {html_select_date
           field_order=DMY
           time={$field.value}

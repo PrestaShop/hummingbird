@@ -18,8 +18,7 @@ $component-name: product-variant;
   &__radios {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 0.5rem;
-    column-gap: 0.875rem;
+    gap: 0.5rem;
     margin-bottom: 0;
   }
 

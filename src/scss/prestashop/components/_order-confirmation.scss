@@ -67,7 +67,7 @@ $component-name: order-confirmation;
 
     &-img {
       width: 5rem;
-      height: 5rem;
+      height: auto;
       border-radius: var(--bs-border-radius);
     }
 
@@ -164,7 +164,6 @@ $component-name: order-confirmation;
     &__product {
       &-img {
         width: 8rem;
-        height: 8rem;
       }
 
       &-content {

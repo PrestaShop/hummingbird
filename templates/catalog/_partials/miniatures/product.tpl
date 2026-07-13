@@ -106,7 +106,7 @@
                   </button>
                 </form>
               {else}
-                <a href="{$product.url}" class="product-miniature__details btn btn-outline-primary" aria-label="{l s='View product %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Catalog'}">
+                <a href="{$product.url}" class="product-miniature__details btn btn-outline-primary" aria-label="{l s='See details for %product_name%' sprintf=['%product_name%' => $product.name] d='Shop.Theme.Actions'}">
                   {l s='See details' d='Shop.Theme.Actions'}
                 </a>
               {/if}

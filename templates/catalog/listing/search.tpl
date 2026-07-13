@@ -13,12 +13,12 @@
 {/block}
 
 {block name='error_content'}
-  <p>{l s='Search again what you are looking for.' d='Shop.Theme.Catalog'}</p>
-  <ul class="search-no-results-tips">
+  <p>{l s='We couldn\'t find any matching products.' d='Shop.Theme.Catalog'}</p>
+  <ul>
     <li>{l s='Check the spelling of your search term.' d='Shop.Theme.Catalog'}</li>
     <li>{l s='Try a more general or different keyword.' d='Shop.Theme.Catalog'}</li>
   </ul>
-  <a class="btn btn-primary" href="{$urls.pages.index}">{l s='Browse our catalog' d='Shop.Theme.Catalog'}</a>
+  <a class="btn btn-primary" href="{$urls.pages.index}">{l s='Back to home' d='Shop.Theme.Catalog'}</a>
 {/block}
 
 {block name='product_list_header'}

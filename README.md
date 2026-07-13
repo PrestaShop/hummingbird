@@ -1,13 +1,13 @@
 # Hummingbird Theme for PrestaShop
 
 ![CI](https://github.com/PrestaShop/hummingbird/actions/workflows/lint.yml/badge.svg)
-![PrestaShop 9.1+](https://img.shields.io/badge/prestashop-9.1%2B-brightgreen.svg)
 ![Docker Ready](https://img.shields.io/badge/docker-ready-blue.svg)
 ![Node.js v20](https://img.shields.io/badge/node.js-20.x-blue.svg)
 ![License](https://img.shields.io/badge/license-AFL%203.0-lightgray.svg)
 
-Hummingbird is a modern, in-development theme for PrestaShop built to be
-compatible with versions `9.1.x` and above.
+Hummingbird is a modern theme for PrestaShop. See the
+[compatibility table](#-compatibility) below for the PrestaShop version
+supported by each branch.
 
 ## ✅ Compatibility
 

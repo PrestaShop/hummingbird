@@ -37,7 +37,7 @@
 
             <label class="payment-option__label form-check-label" for="{$option.id}">
               {if $option.logo}
-                <img class="img-fluid" src="{$option.logo}" loading="lazy">
+                <img class="img-fluid" src="{$option.logo}" loading="lazy" alt="">
               {/if}
               {$option.call_to_action_text}
             </label>

@@ -93,10 +93,10 @@ $component-name: account-menu;
       position: sticky;
       top: var(--scroll-padding-top);
       z-index: $zindex-sticky;
-      max-height: calc(100vh - var(--scroll-padding-top));
-      overflow-y: auto;
       display: flex;
       flex-direction: column;
+      max-height: calc(100vh - var(--scroll-padding-top));
+      overflow-y: auto;
     }
   }
 }

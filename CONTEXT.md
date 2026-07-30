@@ -40,7 +40,7 @@ variables, or Symfony controllers/forms, you MUST refer to the main repository:
 - **CSS Preprocessor:** SCSS.
 - **CSS Methodology:** BEM (Block Element Modifier).
 - **Styling Framework:** Bootstrap (Heavily customized, separated from
-  PrestaShop core styles).
+  PrestaShop core styles). See `design.md` for design system and official Figma file.
 - **JavaScript:** Vanilla JavaScript & TypeScript (NO jQuery. jQuery is strictly
   forbidden).
 - **Build Tool:** Vite (Transitioning from Webpack).

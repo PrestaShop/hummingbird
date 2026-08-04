@@ -88,7 +88,17 @@
             {/block}
 
             {block name='product_add_to_cart'}
+              {hook h='displayDynamicFragmentBefore'
+                name='product_add_to_cart'
+                template='catalog/_partials/product-add-to-cart.tpl'
+                product=$product
+              }
               {include file='catalog/_partials/product-add-to-cart.tpl'}
+              {hook h='displayDynamicFragmentAfter'
+                name='product_add_to_cart'
+                template='catalog/_partials/product-add-to-cart.tpl'
+                product=$product
+              }
             {/block}
 
             {block name='product_additional_info'}

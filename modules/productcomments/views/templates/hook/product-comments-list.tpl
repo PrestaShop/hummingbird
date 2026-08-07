@@ -10,20 +10,69 @@
   </script>
 
   <div id="product-comments-list-header">
-    <h2 class="section-title">
-      {l s='Comments' d='Modules.Productcomments.Shop'} ({$nb_comments})
-    </h2>
-    {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade showGradeAverage=true showNbComments=false}
+    <h2>{l s='Comments' d='Modules.Productcomments.Shop'}</h2>
+    {if $nb_comments > 0 && $post_allowed}
+      <div id="product-comments-list-btn-group">
+        <button class="w-100 w-sm-auto btn btn-outline-primary post-product-comment" id="product-comments-list-review-button" type="button" data-bs-toggle="modal" data-bs-target="#post-product-comment-modal" data-ps-ref="product-post-review-button">
+          {l s='Write your review' d='Modules.Productcomments.Shop'}
+        </button>
+      </div>
+    {/if}
   </div>
+ 
+  {if $nb_comments > 0}
+    <div class="product-comments-summary">
+      <div class="product-comments-summary__left">
+        <div class="product-comments-summary__score-container">
+          <span class="product-comments-summary__average-score">{$average_grade|number_format:1}</span>
+          <span class="product-comments-summary__max-score">/5.0</span>
+        </div>
+        <div class="product-comments-summary__stars">
+          {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade showGradeAverage=false showNbComments=false}
+        </div>
+        <div class="product-comments-summary__count-info text-muted small">
+          {if $nb_comments > 1}
+            {l s='Based on %s opinions' sprintf=[$nb_comments] d='Modules.Productcomments.Shop'}
+          {else}
+            {l s='Based on %s opinion' sprintf=[$nb_comments] d='Modules.Productcomments.Shop'}
+          {/if}
+        </div>
+      </div>
 
-  {if $nb_comments > 0 && $post_allowed}
-    <div id="product-comments-list-btn-group">
-      <button class="w-100 w-sm-auto btn btn-outline-primary post-product-comment" id="product-comments-list-review-button" type="button" data-bs-toggle="modal" data-bs-target="#post-product-comment-modal" data-ps-ref="product-post-review-button">
-        {l s='Write your review' d='Modules.Productcomments.Shop'}
-      </button>
+      <div class="product-comments-summary__right">
+        <div class="product-comments-summary__grade-list">
+          {foreach $summary as $grade => $details}
+            <div class="product-comments-summary__grade-item">
+              <div class="product-comments-summary__grade-label">
+                <span class="product-comments-summary__grade-value">{$grade}</span>
+                <div class="product-comments-summary__star-icon">
+                  <div class="star-content" role="img">
+                    <div class="star-on"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div
+                class="product-comments-summary__progress progress"
+                role="progressbar"
+                aria-label="{if $grade > 1}{l s='%s stars' sprintf=[$grade] d='Modules.Productcomments.Shop'}{else}{l s='%s star' sprintf=[$grade] d='Modules.Productcomments.Shop'}{/if}"
+                aria-valuenow="{$details.percent|number_format:2}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div class="product-comments-summary__progress-bar progress-bar rounded" style="width: {$details.percent|number_format:2}%;"></div>
+              </div>
+              
+              <div class="product-comments-summary__stats small">
+                <span class="product-comments-summary__count">{$details.count}</span>
+              </div>
+            </div>
+          {/foreach}
+        </div>
+      </div>
     </div>
-  {elseif $nb_comments == 0}
-    {include file='module:productcomments/views/templates/hook/empty-product-comment.tpl'}
+  {else}
+      {include file='module:productcomments/views/templates/hook/empty-product-comment.tpl'}
   {/if}
 
   {include file='module:productcomments/views/templates/hook/product-comment-item-prototype.tpl' assign="comment_prototype"}

@@ -148,12 +148,9 @@
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
+    justify-content: space-between;
     padding: 0;
     margin-block-end: 1rem;
-
-    .section-title {
-      margin-block-end: 0;
-    }
   }
 
   // Comments list button group
@@ -358,5 +355,76 @@
 
   @include media-breakpoint-up(xl) {
     margin-block-end: 3rem;
+  }
+}
+
+/**
+ *  Product comments summary
+ */
+.product-comments-summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1.5rem;
+  margin-block-end: 1rem;
+  background: var(--bs-tertiary-bg);
+  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+
+  &__left {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__average-score {
+    font-size: 50px;
+    font-weight: 700;
+  }
+
+  &__stars {
+    margin-bottom: 0.5rem;
+  }
+
+  &__star-icon {
+    position: relative;
+    display: inline-block;
+    min-width: 1.5rem;
+    height: 1.25rem;
+  }
+
+  &__grade-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  &__grade-label {
+    display: flex;
+    justify-content: center;
+    width: 35px;
+    margin-right: 0.5rem;
+  }
+
+  &__grade-value {
+    font-weight: 600;
+  }
+
+  &__progress {
+    flex-grow: 1;
+    height: 10px;
+  }
+
+  &__stats {
+    width: 50px;
+    margin-left: 1rem;
+    text-align: right;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .product-comments-summary {
+    grid-template-columns: 4fr 8fr;
   }
 }

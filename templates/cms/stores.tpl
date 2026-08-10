@@ -74,7 +74,7 @@
                             <li class="store__contact">
                               <i class="material-icons" aria-hidden="true">&#xE0B0;</i>
                               <a href="tel:{$store.phone|replace:' ':''}"
-                                aria-label="{l s='Call our store %store_name% on the number: %phone%' sprintf=['%store_name%' => $store.name, '%phone%' => $store.phone] d='Shop.Theme.Global'}">
+                                aria-label="{l s='Call %store_name% at: %phone%' sprintf=['%store_name%' => $store.name, '%phone%' => $store.phone] d='Shop.Theme.Global'}">
                                 {$store.phone}
                               </a>
                             </li>
@@ -84,7 +84,7 @@
                             <li class="store__contact">
                               <i class="material-icons" aria-hidden="true">&#xE8AD;</i>
                               <a href="tel:{$store.fax|replace:' ':''}"
-                                aria-label="{l s='Send a fax to our store %store_name% at: %fax%' sprintf=['%store_name%' => $store.name, '%fax%' => $store.fax] d='Shop.Theme.Global'}">
+                                aria-label="{l s='Send a fax to %store_name% at: %fax%' sprintf=['%store_name%' => $store.name, '%fax%' => $store.fax] d='Shop.Theme.Global'}">
                                 {$store.fax}
                               </a>
                             </li>
@@ -94,7 +94,7 @@
                             <li class="store__contact store__contact--email">
                               <i class="material-icons" aria-hidden="true">&#xE0BE;</i>
                               <a href="mailto:{$store.email}"
-                                aria-label="{l s='Send an email to our store %store_name% at: %email%' sprintf=['%store_name%' => $store.name, '%email%' => $store.email] d='Shop.Theme.Global'}">
+                                aria-label="{l s='Send an email to %store_name% at: %email%' sprintf=['%store_name%' => $store.name, '%email%' => $store.email] d='Shop.Theme.Global'}">
                                 {$store.email}
                               </a>
                             </li>

@@ -10,7 +10,7 @@
   </script>
 
   <div id="product-comments-list-header">
-    <h2>{l s='Comments' d='Modules.Productcomments.Shop'}</h2>
+    {include file='components/section-title.tpl' title={l s='Comments' d='Modules.Productcomments.Shop'}}
     {if $nb_comments > 0 && $post_allowed}
       <div id="product-comments-list-btn-group">
         <button class="w-100 w-sm-auto btn btn-outline-primary post-product-comment" id="product-comments-list-review-button" type="button" data-bs-toggle="modal" data-bs-target="#post-product-comment-modal" data-ps-ref="product-post-review-button">
@@ -20,7 +20,7 @@
     {/if}
   </div>
  
-  {if $nb_comments > 0}
+  {if $nb_comments > 0 && isset($summary)}
     <div class="product-comments-summary">
       <div class="product-comments-summary__left">
         <div class="product-comments-summary__score-container">
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-  {else}
+  {elseif $nb_comments == 0}
       {include file='module:productcomments/views/templates/hook/empty-product-comment.tpl'}
   {/if}
 

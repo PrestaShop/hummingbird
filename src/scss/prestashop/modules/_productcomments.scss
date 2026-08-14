@@ -148,18 +148,30 @@
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
-    justify-content: space-between;
     padding: 0;
     margin-block-end: 1rem;
 
+    &:has(#product-comments-list-btn-group) {
+      justify-content: space-between;
+    }
+
     .section-title {
+      margin-block-end: 0;
+    }
+
+    #product-comments-list-btn-group {
       margin-block-end: 0;
     }
   }
 
   // Comments list button group
   #product-comments-list-btn-group {
+    width: 100%;
     margin-block-end: 1rem;
+
+    @include media-breakpoint-up(sm) {
+      width: auto;
+    }
   }
 
   // Empty comments
@@ -344,7 +356,7 @@
 .grade-stars {
   position: relative;
   display: inline-block;
-  min-width: 7.5rem;
+  min-width: 7rem;
   height: 1.25rem;
 
   &.small-stars {
@@ -398,37 +410,43 @@
     height: 1.25rem;
   }
 
+  &__grade-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   &__grade-item {
     display: flex;
+    gap: 0.5rem;
     align-items: center;
-    margin-block-end: 0.5rem;
   }
 
   &__grade-label {
     display: flex;
-    justify-content: center;
-    width: 2rem;
-    margin-inline-end: 0.5rem;
+    gap: 0.25rem;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   &__grade-value {
+    width: 1ch;
     font-weight: 600;
+    text-align: center;
   }
 
   &__progress {
+    --bs-progress-height: 0.625rem;
+
     flex-grow: 1;
-    height: 0.625rem;
   }
 
   &__stats {
-    width: 3rem;
-    margin-inline-start: 1rem;
-    text-align: end;
+    width: 4ch;
+    text-align: center;
   }
-}
 
-@include media-breakpoint-up(md) {
-  .product-comments-summary {
+  @include media-breakpoint-up(md) {
     grid-template-columns: 4fr 8fr;
   }
 }

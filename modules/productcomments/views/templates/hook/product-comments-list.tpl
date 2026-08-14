@@ -9,8 +9,9 @@
     var productCommentAbuseReportErrorMessage = '{l|escape:'javascript' s='Sorry, your abuse report cannot be sent.' d='Modules.Productcomments.Shop'}';
   </script>
 
-  <div id="product-comments-list-header">
-    {include file='components/section-title.tpl' title={l s='Comments' d='Modules.Productcomments.Shop'}}
+  {assign var='hasSummary' value=($nb_comments > 0 && isset($summary))}
+
+  {capture name='post_review_button'}
     {if $nb_comments > 0 && $post_allowed}
       <div id="product-comments-list-btn-group">
         <button class="w-100 w-sm-auto btn btn-outline-primary post-product-comment" id="product-comments-list-review-button" type="button" data-bs-toggle="modal" data-bs-target="#post-product-comment-modal" data-ps-ref="product-post-review-button">
@@ -18,23 +19,39 @@
         </button>
       </div>
     {/if}
+  {/capture}
+
+  {capture name='comments_title'}{l s='Comments' d='Modules.Productcomments.Shop'}{if !$hasSummary} ({$nb_comments}){/if}{/capture}
+
+  <div id="product-comments-list-header">
+    {include file='components/section-title.tpl' title=$smarty.capture.comments_title}
+
+    {if $hasSummary}
+      {$smarty.capture.post_review_button nofilter}
+    {else}
+      {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade showGradeAverage=true showNbComments=false}
+    {/if}
   </div>
- 
-  {if $nb_comments > 0 && isset($summary)}
+
+  {if !$hasSummary}
+    {$smarty.capture.post_review_button nofilter}
+  {/if}
+
+  {if $hasSummary}
     <div class="product-comments-summary">
       <div class="product-comments-summary__left">
         <div class="product-comments-summary__score-container">
           <span class="product-comments-summary__average-score">{$average_grade|number_format:1}</span>
-          <span class="product-comments-summary__max-score">/5.0</span>
+          <span class="product-comments-summary__max-score">{l s='/5.0' d='Modules.Productcomments.Shop'}</span>
         </div>
         <div class="product-comments-summary__stars">
           {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade showGradeAverage=false showNbComments=false}
         </div>
         <div class="product-comments-summary__count-info text-muted small">
           {if $nb_comments > 1}
-            {l s='Based on %s opinions' sprintf=[$nb_comments] d='Modules.Productcomments.Shop'}
+            {l s='Based on %s reviews' sprintf=[$nb_comments] d='Modules.Productcomments.Shop'}
           {else}
-            {l s='Based on %s opinion' sprintf=[$nb_comments] d='Modules.Productcomments.Shop'}
+            {l s='Based on %s review' sprintf=[$nb_comments] d='Modules.Productcomments.Shop'}
           {/if}
         </div>
       </div>
@@ -46,12 +63,12 @@
               <div class="product-comments-summary__grade-label">
                 <span class="product-comments-summary__grade-value">{$grade}</span>
                 <div class="product-comments-summary__star-icon">
-                  <div class="star-content" role="img">
+                  <div class="star-content" aria-hidden="true">
                     <div class="star-on"></div>
                   </div>
                 </div>
               </div>
-              
+
               <div
                 class="product-comments-summary__progress progress"
                 role="progressbar"
@@ -62,8 +79,8 @@
               >
                 <div class="product-comments-summary__progress-bar progress-bar rounded" style="width: {$details.percent|number_format:2}%;"></div>
               </div>
-              
-              <div class="product-comments-summary__stats small">
+
+              <div class="product-comments-summary__stats small" aria-hidden="true">
                 <span class="product-comments-summary__count">{$details.count}</span>
               </div>
             </div>
@@ -72,7 +89,7 @@
       </div>
     </div>
   {elseif $nb_comments == 0}
-      {include file='module:productcomments/views/templates/hook/empty-product-comment.tpl'}
+    {include file='module:productcomments/views/templates/hook/empty-product-comment.tpl'}
   {/if}
 
   {include file='module:productcomments/views/templates/hook/product-comment-item-prototype.tpl' assign="comment_prototype"}

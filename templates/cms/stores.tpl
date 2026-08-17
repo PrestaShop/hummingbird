@@ -58,9 +58,9 @@
                 {if $store.note || $store.phone || $store.fax || $store.email}
                   <div class="accordion-item">
                     <div class="accordion-header">
-                      <a class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}">
-                        {l s='About and Contact' d='Shop.Theme.Global'}
-                      </a>
+                      <button type="button" class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}" aria-label="{l s='About and contact for %store_name%' sprintf=['%store_name%' => $store.name] d='Shop.Theme.Global'}">
+                        {l s='About and contact' d='Shop.Theme.Global'}
+                      </button>
                     </div>
 
                     <div class="store__additional-infos accordion-collapse collapse" id="about-{$store.id}">
@@ -107,7 +107,7 @@
 
                 <div class="accordion-item border-0">
                   <div class="accordion-header">
-                    <button class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}" aria-label="{l s='View schedules for %store_name%' sprintf=['%store_name%' => $store.name] d='Shop.Theme.Global'}">
+                    <button type="button" class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}" aria-expanded="false" aria-controls="table-{$store.id}" aria-label="{l s='View schedules for %store_name%' sprintf=['%store_name%' => $store.name] d='Shop.Theme.Global'}">
                       {l s='View schedules' d='Shop.Theme.Global'}
                     </button>
                   </div>

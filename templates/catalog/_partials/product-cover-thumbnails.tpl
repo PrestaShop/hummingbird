@@ -8,6 +8,7 @@
     <div
       id="product-images-{$product.id}"
       class="product__carousel carousel slide js-product-carousel"
+      data-ps-ref="product-carousel"
     >
       {include file='catalog/_partials/product-flags.tpl'}
 

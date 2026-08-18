@@ -27,11 +27,11 @@ export const TestTemplateOption: Theme.Toast.Options = {type: 'info', template: 
 
 export const WithoutContainer = '';
 export const WithContainerWithoutTemplate = `
-  <div class="toast-container" id="js-toast-container"></div>
+  <div class="toast-container" id="js-toast-container" data-ps-ref="toast-container"></div>
 `;
 export const WithContainerWithTemplate = `
-  <div class="toast-container" id="js-toast-container">
-    <template class="js-toast-template">
+  <div class="toast-container" id="js-toast-container" data-ps-ref="toast-container">
+    <template class="js-toast-template" data-ps-ref="toast-template">
       <div class="toast">
         <div class="toast-body"></div>
         <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>

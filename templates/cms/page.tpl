@@ -10,7 +10,7 @@
 {/block}
 
 {block name='page_content_container'}
-  <section id="content" class="page-content page-content--cms rich-text js-page-content-cms">
+  <section id="content" class="page-content page-content--cms rich-text js-page-content-cms" data-ps-ref="cms-content">
     {block name='cms_content'}
       {$cms.content nofilter}
     {/block}

@@ -16,7 +16,7 @@ export const facetedsearch = {
   colorLabel: '[data-ps-ref="color-label"]',
 };
 
-export const pageLoader = '.js-page-loader';
+export const pageLoader = '[data-ps-ref="page-loader"]';
 
 export const listing = {
   searchFilterToggler: '#search_filter_toggler, .js-search-toggler',
@@ -61,11 +61,11 @@ export const blockcart = {
 };
 
 export const currencySelector = {
-  currencySelector: '.js-currency-selector',
+  currencySelector: '[data-ps-ref="currency-selector"]',
 };
 
 export const languageSelector = {
-  languageSelector: '.js-language-selector',
+  languageSelector: '[data-ps-ref="language-selector"]',
 };
 
 export const searchBar = {
@@ -119,8 +119,8 @@ export const mobileMenu = {
 };
 
 export const guestPasswordToggle = {
-  checkbox: '.js-password-form__check',
-  passwordWrapper: '.js-password-form__input-wrapper',
+  checkbox: '[data-ps-ref="guest-password-checkbox"]',
+  passwordWrapper: '[data-ps-ref="guest-password-container"]',
 };
 
 export const visiblePassword = {
@@ -209,8 +209,8 @@ const selectorsMap = {
     close: '.btn-close',
   },
   toast: {
-    container: '#js-toast-container',
-    template: '.js-toast-template',
+    container: '[data-ps-ref="toast-container"]',
+    template: '[data-ps-ref="toast-template"]',
     toast: '.toast',
     body: '.toast-body',
     close: '.btn-close',
@@ -218,9 +218,9 @@ const selectorsMap = {
   product: {
     container: '[data-ps-ref="product-container"]',
     images: '.js-images-container',
-    carousel: '.js-product-carousel',
+    carousel: '[data-ps-ref="product-carousel"]',
     miniature: '.js-product-miniature',
-    thumbnail: '.js-thumb-container',
+    thumbnail: '[data-ps-ref="product-thumbnail"]',
     productImagesModal: '[data-ps-ref="product-images-modal"]',
     productImagesModalCarousel: '[data-ps-ref="product-images-modal-carousel"]',
     activeThumbail: (id: number): string => `[data-ps-ref="product-thumbnail-item"]:nth-child(${id + 1}) [data-ps-ref="product-thumbnail"]`,
@@ -228,13 +228,13 @@ const selectorsMap = {
     rightSection: '[data-ps-ref="product-right"]',
   },
   order: {
-    returnForm: '.js-order-return-form',
+    returnForm: '[data-ps-ref="order-return-form"]',
     returnFormSelectAll: '[data-ps-ref="select-all-products"]',
     returnFormProductsTable: '[data-ps-ref="order-return-products-table"]',
     returnFormProductCheckbox: '[data-ps-ref="select-product"]',
   },
   modalBody: '.modal-body',
-  pageCms: '.js-page-content-cms',
+  pageCms: '[data-ps-ref="cms-content"]',
   quickview: '[data-ps-action="open-quickview"]',
   quickviewModal: '[data-ps-ref="quickview-modal"]',
   quickviewModalStatus: '[data-ps-target="quickview-modal-status"]',

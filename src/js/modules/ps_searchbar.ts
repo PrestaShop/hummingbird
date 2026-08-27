@@ -115,9 +115,9 @@ const initSearchbar = () => {
         const productEl = <HTMLElement>searchTemplate?.content.cloneNode(true);
 
         if (productEl) {
-          const productLink = productEl.querySelector<HTMLAnchorElement>('a');
-          const productTitle = productEl.querySelector<HTMLElement>('p');
-          const productImage = productEl.querySelector<HTMLImageElement>('img');
+          const productLink = productEl.querySelector<HTMLAnchorElement>(SearchBarMap.searchResultLink);
+          const productTitle = productEl.querySelector<HTMLElement>(SearchBarMap.searchResultName);
+          const productImage = productEl.querySelector<HTMLImageElement>(SearchBarMap.searchResultImage);
 
           if (productLink && productTitle && productImage) {
             productLink.href = product.canonical_url;
@@ -129,7 +129,9 @@ const initSearchbar = () => {
               productImage.src = product.cover.small.url;
               productImage.alt = product.cover.legend;
             } else {
-              productImage.innerHTML = '';
+              // An <img> has no children, so clearing innerHTML did nothing and left
+              // src="" behind, which browsers resolve against the current page.
+              productImage.remove();
             }
 
             searchResults.append(productEl);
@@ -322,7 +324,12 @@ const initSearchbar = () => {
       // Handle Tab key specifically for navigation to clear button
       if (e.key === 'Tab' && !e.shiftKey) {
         // If clear button is visible and there are search results, focus the clear button
-        if (!searchClear?.classList.contains('d-none') && !searchDropdown?.classList.contains('d-none')) {
+        // Read state the module already maintains: tabindex on the clear button,
+        // aria-expanded on the combobox input. Never the d-none styling class.
+        const clearIsFocusable = (searchClear?.getAttribute('tabindex') ?? '-1') !== '-1';
+        const dropdownIsOpen = searchInput.getAttribute('aria-expanded') === 'true';
+
+        if (clearIsFocusable && dropdownIsOpen) {
           e.preventDefault();
           searchClear?.focus();
           return;

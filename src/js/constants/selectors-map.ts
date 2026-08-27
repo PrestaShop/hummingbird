@@ -69,15 +69,17 @@ export const languageSelector = {
 };
 
 export const searchBar = {
-  searchCanvas: '.js-search-offcanvas',
-  searchWidget: '.js-search-widget',
-  searchDropdown: '.js-search-dropdown',
-  searchResults: '.js-search-results',
-  searchTemplate: '.js-search-template',
-  searchInput: '.js-search-input',
-  searchIcon: '.js-search-icon',
-  searchClear: '.js-search-clear',
+  searchCanvas: '[data-ps-ref="searchbar-offcanvas"]',
+  searchWidget: '[data-ps-ref="searchbar-widget"]',
+  searchDropdown: '[data-ps-ref="searchbar-dropdown"]',
+  searchResults: '[data-ps-target="searchbar-results"]',
+  searchTemplate: '[data-ps-template="searchbar-result"]',
+  searchInput: '[data-ps-ref="searchbar-input"]',
+  searchIcon: '[data-ps-action="searchbar-submit"]',
+  searchClear: '[data-ps-action="searchbar-clear"]',
   searchResultLink: '[data-ps-ref="searchbar-result-link"]',
+  searchResultImage: '[data-ps-ref="searchbar-result-image"]',
+  searchResultName: '[data-ps-ref="searchbar-result-name"]',
 };
 
 export const checkout = {
@@ -210,7 +212,7 @@ const selectorsMap = {
   },
   toast: {
     container: '[data-ps-ref="toast-container"]',
-    template: '[data-ps-ref="toast-template"]',
+    template: '[data-ps-template="toast"]',
     toast: '.toast',
     body: '.toast-body',
     close: '.btn-close',

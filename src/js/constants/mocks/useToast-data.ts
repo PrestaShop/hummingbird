@@ -31,7 +31,7 @@ export const WithContainerWithoutTemplate = `
 `;
 export const WithContainerWithTemplate = `
   <div class="toast-container" id="js-toast-container" data-ps-ref="toast-container">
-    <template class="js-toast-template" data-ps-ref="toast-template">
+    <template class="js-toast-template" data-ps-template="toast">
       <div class="toast">
         <div class="toast-body"></div>
         <button type="button" class="btn-close me-2 m-auto d-none" data-bs-dismiss="toast"></button>

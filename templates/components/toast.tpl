@@ -4,7 +4,7 @@
  *}
 {$componentName = 'toast'}
 
-<template class="js-{$componentName}-template" data-ps-ref="toast-template">
+<template class="js-{$componentName}-template" data-ps-template="toast">
   <div class="{$componentName}" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="{$componentName}-body"></div>

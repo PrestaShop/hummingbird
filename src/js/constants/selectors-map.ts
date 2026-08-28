@@ -8,31 +8,26 @@ export const layout = {
 };
 
 export const facetedsearch = {
-  range: '.js-faceted-slider',
-  rangeContainer: '.js-faceted-slider-container',
-  rangeValues: '.js-faceted-values',
-  filterSlider: '.js-faceted-filter-slider',
-  offCanvasFaceted: '#offcanvas-faceted',
+  rangeContainer: '[data-ps-ref="faceted-range-container"]',
+  rangeValues: '[data-ps-ref="faceted-range-values"]',
+  filterSlider: '[data-ps-ref="faceted-filter-slider"]',
+  offCanvasFaceted: '[data-ps-ref="faceted-offcanvas"]',
   colorLabel: '[data-ps-ref="color-label"]',
 };
 
 export const pageLoader = '[data-ps-ref="page-loader"]';
 
 export const listing = {
-  searchFilterToggler: '#search_filter_toggler, .js-search-toggler',
-  searchFiltersWrapper: '#search_filters_wrapper',
-  searchFilterControls: '#search_filter_controls',
-  searchFilters: '#search-filters',
-  activeSearchFilters: '#js-active-search-filters',
-  listTop: '#js-product-list-top',
-  product: '.js-product',
-  list: '#js-product-list',
-  listBottom: '#js-product-list-bottom',
-  listHeader: '#js-product-list-header',
-  listFooter: '#js-product-list-footer',
-  searchFiltersClearAll: '.js-search-filters-clear-all',
-  searchLink: '.js-search-link',
-  paginationLink: '.js-pager-link',
+  searchFilters: '[data-ps-target="search-filters"]',
+  activeSearchFilters: '[data-ps-target="active-search-filters"]',
+  listTop: '[data-ps-target="product-list-top"]',
+  list: '[data-ps-target="product-list"]',
+  listBottom: '[data-ps-target="product-list-bottom"]',
+  listHeader: '[data-ps-target="product-list-header"]',
+  listFooter: '[data-ps-target="product-list-footer"]',
+  searchFiltersClearAll: '[data-ps-action="clear-search-filters"]',
+  searchLink: '[data-ps-action="apply-search-filter"]',
+  paginationLink: '[data-ps-action="paginate"]',
 };
 
 export const cart = {

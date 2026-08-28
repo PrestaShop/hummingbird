@@ -2,26 +2,21 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
-{$componentName = 'search-filters-modules'}
 
-<div id="search_filters_suppliers">
-  <section class="{$componentName} facet">
+<section class="ps-supplierlist left-block">
+  <p class="left-block__title h3">
     {if $display_link_supplier}
-      <a href="{$page_link}" class="{$componentName}-title d-block mb-3" title="{l s='Suppliers' d='Shop.Theme.Catalog'}">
+      <a href="{$page_link}">
         {l s='Suppliers' d='Shop.Theme.Catalog'}
       </a>
     {else}
-      <p class="{$componentName}-title">
-        {l s='Suppliers' d='Shop.Theme.Catalog'}
-      </p>
+      {l s='Suppliers' d='Shop.Theme.Catalog'}
     {/if}
+  </p>
 
-    <div>
-      {if $suppliers}
-        {include file="module:ps_supplierlist/views/templates/_partials/$supplier_display_type.tpl" suppliers=$suppliers}
-      {else}
-        <p>{l s='No supplier' d='Shop.Theme.Catalog'}</p>
-      {/if}
-    </div>
-  </section>
-</div>
+  {if $suppliers}
+    {include file="module:ps_supplierlist/views/templates/_partials/$supplier_display_type.tpl" suppliers=$suppliers}
+  {else}
+    <p class="mb-0">{l s='No supplier' d='Shop.Theme.Catalog'}</p>
+  {/if}
+</section>

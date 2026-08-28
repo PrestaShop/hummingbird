@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
-{$componentName = 'search-filters-modules'}
+{$componentName = 'brandlist'}
 
 <ul class="{$componentName}__list">
   {foreach from=$brands item=brand name=brand_list}

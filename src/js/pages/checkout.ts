@@ -24,6 +24,7 @@ const initCheckout = () => {
     const currentButton = step?.querySelector<HTMLButtonElement>(CheckoutMap.steps.button);
     currentButton?.focus();
     currentContent?.classList.remove('step--current', 'js-current-step');
+    currentContent?.removeAttribute('data-ps-state');
 
     if (step) {
       const responsiveStep = document.querySelector<HTMLElement>(CheckoutMap.steps.specificStep(step.dataset.step));
@@ -34,6 +35,7 @@ const initCheckout = () => {
     }
 
     content.classList.add('js-current-step', 'step--current');
+    content.setAttribute('data-ps-state', 'current');
   };
 
   actionButtons.forEach((button) => {
@@ -165,10 +167,12 @@ const initCheckout = () => {
     // Reset all wrappers
     allWrappers.forEach((wrapper: HTMLElement) => {
       wrapper.removeAttribute('data-active');
+      wrapper.removeAttribute('data-ps-state');
     });
 
     // Activate the selected wrapper
     selectedWrapper.setAttribute('data-active', '');
+    selectedWrapper.setAttribute('data-ps-state', 'active');
   });
 };
 

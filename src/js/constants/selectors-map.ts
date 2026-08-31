@@ -79,21 +79,21 @@ export const searchBar = {
 
 export const checkout = {
   steps: {
-    item: '.js-step-item',
-    current: '.js-current-step',
+    item: '[data-ps-ref="checkout-step-item"]',
+    current: '[data-ps-ref="checkout-step-content"][data-ps-state="current"]',
     button: '[data-ps-ref="step-button"]',
-    shownResponsiveStep: '.checkout-steps__step-mobile:not(.d-none)',
-    specificStep: (param: string | undefined) => `.checkout-steps__step-mobile[data-step="${param}"]`,
+    shownResponsiveStep: '[data-ps-ref="checkout-step-mobile"]:not(.d-none)',
+    specificStep: (param: string | undefined) => `[data-ps-ref="checkout-step-mobile"][data-step="${param}"]`,
     specificStepContent: (param: string | undefined) => `#${param}`,
-    backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
+    backButton: (param: string | undefined) => `[data-ps-ref="checkout-step-item"] button[data-bs-target="#${param}"]`,
   },
-  actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
-  termsLink: '.js-terms a',
+  actionsButtons: '[data-ps-action="checkout-back"], [data-ps-action="edit-addresses"], [data-ps-action="edit-shipping"]',
+  termsLink: '[data-ps-ref="terms-label"] a',
   checkoutModal: '#checkout-modal',
-  carrierExtraContentWrapper: '.js-carrier-extra',
-  carrierExtraContentWrapperActive: '.js-carrier-extra[data-active]',
-  carrierExtraContent: '.js-carrier-extra-content',
-  summaryContainer: '.js-checkout-summary',
+  carrierExtraContentWrapper: '[data-ps-ref="carrier-extra"]',
+  carrierExtraContentWrapperActive: '[data-ps-ref="carrier-extra"][data-ps-state="active"]',
+  carrierExtraContent: '[data-ps-ref="carrier-extra-content"]',
+  summaryContainer: '[data-ps-observe="checkout-summary"]',
 };
 
 export const progressRing = {
@@ -110,8 +110,8 @@ export const mobileMenu = {
   backTitle: '[data-ps-ref="menu-back-title"]',
   backButton: '[data-ps-action="menu-back"]',
   menuCanvas: '[data-ps-ref="menu-canvas"]',
-  menuCurrent: '[data-ps-state="current"]',
-  specificParent: (param: string | undefined) => `[data-ps-state="parent"][data-depth="${param}"]`,
+  menuCurrent: '[data-ps-ref="menu-panel"][data-ps-state="current"]',
+  specificParent: (param: string | undefined) => `[data-ps-ref="menu-panel"][data-ps-state="parent"][data-depth="${param}"]`,
   specificChild: (param: string | undefined) => `[data-ps-ref="menu-panel"][data-id="${param}"]`,
 };
 

@@ -33,6 +33,7 @@ const initMobileMenu = () => {
 
       if (currentMenu) {
         currentMenu.classList.remove('js-menu-current', 'menu--current');
+        currentMenu.removeAttribute('data-ps-state');
       }
 
       if (currentParent) {
@@ -44,6 +45,7 @@ const initMobileMenu = () => {
 
         currentParent.classList.add('js-menu-current', 'menu--fromLeft', 'menu--current');
         currentParent.classList.remove('menu--parent');
+        currentParent.setAttribute('data-ps-state', 'current');
       }
     }
   };
@@ -75,6 +77,7 @@ const initMobileMenu = () => {
         if (currentMenu) {
           currentMenu.classList.remove('js-menu-current', 'menu--current', 'menu--fromLeft', 'menu--fromRight');
           currentMenu.classList.add('menu--parent');
+          currentMenu.setAttribute('data-ps-state', 'parent');
         }
 
         const child = document.querySelector<HTMLElement>(MobileMenuMap.specificChild(currentButton.dataset.target));
@@ -88,6 +91,7 @@ const initMobileMenu = () => {
         if (isHTMLElement(child)) {
           child.classList.add('js-menu-current', 'menu--fromRight', 'menu--current');
           child.classList.remove('js-menu-child', 'menu--child');
+          child.setAttribute('data-ps-state', 'current');
         }
       }
     });

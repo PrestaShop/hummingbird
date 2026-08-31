@@ -29,7 +29,6 @@ import initBlockCart from '@js/modules/blockcart';
 import '@js/modules/facetedsearch';
 import initDesktopMenu from '@js/modules/ps_mainmenu';
 import initFormValidation from '@js/form-validation';
-import initCategoryTree from '@js/modules/ps_categorytree';
 import initScrollPaddingTop from '@helpers/scrollPadding';
 import initProductAccessibility from '@js/accessibility/product';
 import initCartAccessibility from '@js/accessibility/cart';
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormValidation();
   initErrorHandler();
   usePasswordPolicy();
-  initCategoryTree();
   initScrollPaddingTop();
   initBlockCart();
   initProductComments();

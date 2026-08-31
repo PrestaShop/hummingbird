@@ -106,13 +106,13 @@ export const progressRing = {
 };
 
 export const mobileMenu = {
-  openChildsButton: '.js-menu-open-child',
-  backTitle: '.js-menu-back-title',
-  backButton: '.js-back-button',
-  menuCanvas: '.js-menu-canvas',
-  menuCurrent: '.menu--current',
-  specificParent: (param: string | undefined) => `.menu--parent[data-depth="${param}"]`,
-  specificChild: (param: string | undefined) => `.menu[data-id="${param}"]`,
+  openChildsButton: '[data-ps-action="open-menu-child"]',
+  backTitle: '[data-ps-ref="menu-back-title"]',
+  backButton: '[data-ps-action="menu-back"]',
+  menuCanvas: '[data-ps-ref="menu-canvas"]',
+  menuCurrent: '[data-ps-state="current"]',
+  specificParent: (param: string | undefined) => `[data-ps-state="parent"][data-depth="${param}"]`,
+  specificChild: (param: string | undefined) => `[data-ps-ref="menu-panel"][data-id="${param}"]`,
 };
 
 export const guestPasswordToggle = {
@@ -166,7 +166,6 @@ export const qtyInput = {
   confirm: '.confirmation',
   icon: '.material-icons',
   spinner: '.spinner-border',
-  alert: (param: string): string => `#js-product-line-alert--${param}`,
 };
 
 export const formValidation = {

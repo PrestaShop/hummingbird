@@ -307,7 +307,9 @@ $component-name: ps-mainmenu;
         }
       }
 
-      &--current {
+      // State is written by mobile-menu.ts; the menu--current class is kept in the
+      // markup for retro-compat but is no longer what drives the style.
+      &[data-ps-state="current"] {
         left: 0;
         display: block;
       }
@@ -320,7 +322,7 @@ $component-name: ps-mainmenu;
         animation: from-right 0.25s;
       }
 
-      &--parent {
+      &[data-ps-state="parent"] {
         left: -100%;
         display: none;
         opacity: 0;

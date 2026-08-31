@@ -24,7 +24,14 @@ const initCheckout = () => {
     const currentButton = step?.querySelector<HTMLButtonElement>(CheckoutMap.steps.button);
     currentButton?.focus();
     currentContent?.classList.remove('step--current', 'js-current-step');
-    currentContent?.removeAttribute('data-ps-state');
+
+    // Leaving a step must not silently drop its completed state: step--complete is
+    // still the source of truth for that flag, so mirror it instead of clearing.
+    if (currentContent?.classList.contains('step--complete')) {
+      currentContent.setAttribute('data-ps-state', 'complete');
+    } else {
+      currentContent?.removeAttribute('data-ps-state');
+    }
 
     if (step) {
       const responsiveStep = document.querySelector<HTMLElement>(CheckoutMap.steps.specificStep(step.dataset.step));

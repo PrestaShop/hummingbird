@@ -6,7 +6,7 @@
 <section class="ps-supplierlist left-block">
   <p class="left-block__title h3">
     {if $display_link_supplier}
-      <a href="{$page_link}">
+      <a class="left-block__title-link" href="{$page_link}">
         {l s='Suppliers' d='Shop.Theme.Catalog'}
       </a>
     {else}

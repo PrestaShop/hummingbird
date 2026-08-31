@@ -217,10 +217,16 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
           const errorData = error as Response;
 
           if (errorData.status !== undefined) {
-            // The endpoint is useful when debugging, not to the shopper, so it stays in the console.
+            // The endpoint and the HTTP reason phrase are useful when debugging, not to the
+            // shopper: they stay in the console. The customer-facing text is translated and
+            // carried by the cart alert placeholder, like the removal message.
             console.error('Cart quantity update failed', errorData.status, errorData.statusText, errorData.url);
 
-            const errorMsg = errorData.statusText || `HTTP ${errorData.status}`;
+            const alertPlaceholder = document.querySelector(cartSelectorMap.alertPlaceholder);
+            const errorMsg = alertPlaceholder?.getAttribute('data-ps-data-error')
+              || errorData.statusText
+              || `HTTP ${errorData.status}`;
+
             useToast(errorMsg, {type: 'danger'}).show();
 
             prestashop.emit(events.handleError, {

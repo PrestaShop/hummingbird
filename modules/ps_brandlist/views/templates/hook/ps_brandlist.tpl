@@ -6,7 +6,7 @@
 <section class="ps-brandlist left-block">
   <p class="left-block__title h3">
     {if $display_link_brand}
-      <a href="{$page_link}">
+      <a class="left-block__title-link" href="{$page_link}">
         {l s='Brands' d='Shop.Theme.Catalog'}
       </a>
     {else}

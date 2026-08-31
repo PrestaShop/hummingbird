@@ -33,7 +33,8 @@ const initMobileMenu = () => {
 
       if (currentMenu) {
         currentMenu.classList.remove('js-menu-current', 'menu--current');
-        currentMenu.removeAttribute('data-ps-state');
+        // The template renders non-root panels as "child"; keep the attribute canonical.
+        currentMenu.setAttribute('data-ps-state', 'child');
       }
 
       if (currentParent) {

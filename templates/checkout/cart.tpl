@@ -11,7 +11,9 @@
       {include file='components/page-title-section.tpl' title={l s='Shopping Cart' d='Shop.Theme.Checkout'}}
 
       {block name="cart_update_alert"}
-        <div class="js-cart-update-alert" data-ps-target="cart-update-alert" data-ps-data="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}" data-ps-data-close="{l s='Close' d='Shop.Theme.Actions' js=1}" aria-atomic="true"></div>
+        <div class="js-cart-update-alert" data-ps-target="cart-update-alert" data-ps-data="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}" data-ps-data-close="{l s='Close' d='Shop.Theme.Actions' js=1}"
+            data-ps-data-error="{l s='Your cart could not be updated. Please try again.' d='Shop.Theme.Checkout' js=1}"
+            aria-atomic="true"></div>
       {/block}
 
       <!-- cart products detailed -->

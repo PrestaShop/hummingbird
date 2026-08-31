@@ -8,6 +8,7 @@
     class="btn btn-outline-tertiary dropdown-toggle"
     rel="nofollow"
     data-bs-toggle="dropdown"
+    aria-expanded="false"
   >
     {l s='All brands' d='Shop.Theme.Catalog'}
   </button>

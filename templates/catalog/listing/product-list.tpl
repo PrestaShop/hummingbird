@@ -44,7 +44,7 @@
         {/capture}
 
         {include file='errors/not-found.tpl' errorContent=$errorContent}
-      <div>
+      </div>
 
       <div id="js-product-list-bottom" data-ps-target="product-list-bottom"></div>
     {/if}

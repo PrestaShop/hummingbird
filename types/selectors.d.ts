@@ -116,7 +116,6 @@ declare type quantityInput = {
   confirm: string,
   icon: string,
   spinner: string,
-  alert: (param: string) => string,
 };
 
 declare type formValidation = {

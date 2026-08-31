@@ -11,11 +11,11 @@
       {include file='components/page-title-section.tpl' title={l s='Shopping Cart' d='Shop.Theme.Checkout'}}
 
       {block name="cart_update_alert"}
-        <div class="js-cart-update-alert" data-ps-data="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}" data-ps-data-close="{l s='Close' d='Shop.Theme.Actions' js=1}" aria-atomic="true"></div>
+        <div class="js-cart-update-alert" data-ps-target="cart-update-alert" data-ps-data="{l s='has been removed from the cart.' d='Shop.Theme.Actions' js=1}" data-ps-data-close="{l s='Close' d='Shop.Theme.Actions' js=1}" aria-atomic="true"></div>
       {/block}
 
       <!-- cart products detailed -->
-      <div class="cart-grid__products-details js-cart-container">
+      <div class="cart-grid__products-details js-cart-container" data-ps-ref="cart-container">
         {block name='cart_overview'}
           {include file='checkout/_partials/cart-detailed.tpl' cart=$cart}
         {/block}
@@ -40,7 +40,7 @@
         <h2>{l s='Order summary' d='Shop.Theme.Checkout'}</h2>
 
         {block name='cart_summary'}
-          <div class="cart-summary js-cart-summary">
+          <div class="cart-summary js-cart-summary" data-ps-ref="cart-summary" data-ps-observe="cart-summary">
             {block name='hook_shopping_cart'}
               {hook h='displayShoppingCart'}
             {/block}

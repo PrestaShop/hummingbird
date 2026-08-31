@@ -21,8 +21,8 @@ export default () => {
         Array.from(alertPlaceholder.children).forEach((child) => {
           const childElement = child as HTMLElement;
 
-          if (childElement.getAttribute('data-ps-action') === 'to-be-announced') {
-            childElement.removeAttribute('data-ps-action');
+          if (childElement.getAttribute('data-ps-state') === 'to-be-announced') {
+            childElement.removeAttribute('data-ps-state');
             childElement.setAttribute('tabindex', '-1');
             childElement.focus();
           }

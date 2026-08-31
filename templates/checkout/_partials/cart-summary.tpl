@@ -4,7 +4,7 @@
  *}
 
 {* .js-cart needed for JS *}
-<section id="js-checkout-summary" class="accordion-collapse collapse show js-cart" data-refresh-url="{$urls.pages.cart}?ajax=1&action=refresh">
+<section id="js-checkout-summary" class="accordion-collapse collapse show js-cart" data-ps-ref="cart-overview" data-refresh-url="{$urls.pages.cart}?ajax=1&action=refresh">
   {block name='hook_checkout_summary_top'}
     {include file='checkout/_partials/cart-summary-top.tpl' cart=$cart}
   {/block}

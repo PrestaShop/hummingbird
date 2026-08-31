@@ -161,6 +161,7 @@
           {include file='components/qty-input.tpl'
             attributes=[
               "class"=>"js-cart-line-product-quantity form-control mw-100",
+              "data-ps-ref"=>"cart-line-quantity",
               "name"=>"product-quantity-spin",
               "data-update-url"=>"{$product.update_quantity_url}",
               "data-product-id"=>"{$product.id_product}",
@@ -178,7 +179,7 @@
 
     <div class="product-line__actions">
       {if empty($product.is_gift)}
-        <a class="js-remove-from-cart"
+        <a class="js-remove-from-cart" data-ps-action="remove-from-cart"
           rel="nofollow"
           href="{$product.remove_from_cart_url}"
           data-link-action="delete-from-cart" data-id-product="{$product.id_product|escape:'javascript'}"

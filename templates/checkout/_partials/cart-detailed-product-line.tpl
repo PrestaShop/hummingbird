@@ -152,7 +152,7 @@
     </div>
 
     <div class="product-line__content-right">
-      <div class="product-line__quantity-button quantity-button js-quantity-button">
+      <div class="product-line__quantity-button quantity-button js-quantity-button" data-ps-ref="quantity-input">
         {if !empty($product.is_gift)}
           <span class="product-line__gift">
             <i class="product-line__gift-icon material-icons" aria-hidden="true">&#xE8B1;</i>{$product.quantity} {l s='Gift(s)' d='Shop.Theme.Checkout'}

@@ -84,7 +84,7 @@
                   {/if}
                   <input type="hidden" name="token" value="{$static_token}">
   
-                  <div class="quantity-button js-quantity-button">
+                  <div class="quantity-button js-quantity-button" data-ps-ref="quantity-input">
                     {include file='components/qty-input.tpl'
                       attributes=[
                         "id" => "quantity_wanted_{$product.id_product}",

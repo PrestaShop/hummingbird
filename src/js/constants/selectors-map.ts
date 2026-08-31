@@ -157,14 +157,12 @@ export const desktopMenu = {
 };
 
 export const qtyInput = {
-  default: '.js-quantity-button',
-  idProductInput: 'input[name="id_product"]',
-  modal: '.modal-dialog .js-quantity-button',
-  increment: '.js-increment-button',
-  decrement: '.js-decrement-button',
-  quantityWanted: '.js-quantity-wanted',
-  confirm: '.confirmation',
-  icon: '.material-icons',
+  default: '[data-ps-ref="quantity-input"]',
+  modal: '.modal-dialog [data-ps-ref="quantity-input"]',
+  increment: '[data-ps-action="increment-quantity"]',
+  decrement: '[data-ps-action="decrement-quantity"]',
+  quantityWanted: '[data-ps-ref="quantity-wanted"]',
+  confirm: '[data-ps-ref="quantity-confirm-icon"]',
   spinner: '.spinner-border',
 };
 

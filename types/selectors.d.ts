@@ -113,8 +113,8 @@ declare type quantityInput = {
   modal: string,
   increment: string,
   decrement: string,
+  quantityWanted: string,
   confirm: string,
-  icon: string,
   spinner: string,
 };
 

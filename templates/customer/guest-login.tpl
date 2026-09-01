@@ -11,7 +11,11 @@
 {/block}
 
 {block name='page_content'}
-  <form id="guestOrderTrackingForm" action="{$urls.pages.guest_tracking}" method="get">
+  {* Submitted with POST so the shopper's email address does not end up in the URL, where it reaches
+     analytics as a page path, the browser history, the access log and any referrer. The controller reads
+     the fields with Tools::getValue(), which takes POST as well, and links that already carry the
+     parameters in a query string keep working. *}
+  <form id="guestOrderTrackingForm" action="{$urls.pages.guest_tracking}" method="post">
     <input type="hidden" name="controller" value="guest-tracking">
 
     <p>{l s='To track your order, please enter the following information:' d='Shop.Theme.Customeraccount'}</p>

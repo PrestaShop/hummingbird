@@ -37,7 +37,8 @@ export const ProductLineTemplate = `
 `;
 
 export const ProductTemplate = `
-  <div class="modal-dialog">
+  <div class="modal quickview" data-ps-ref="quickview-modal">
+  <div class="quickview__dialog modal-dialog">
     <div class="product__add-to-cart js-product-add-to-cart">
       <div class="row">
         <div class="product-actions__quantity quantity-button js-quantity-button" data-ps-ref="quantity-input">
@@ -62,5 +63,6 @@ export const ProductTemplate = `
         </div>
       </div>
     </div>
+  </div>
   </div>
 `;

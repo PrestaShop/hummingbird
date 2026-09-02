@@ -158,7 +158,7 @@ export const desktopMenu = {
 
 export const qtyInput = {
   default: '[data-ps-ref="quantity-input"]',
-  modal: '.modal-dialog [data-ps-ref="quantity-input"]',
+  modal: '[data-ps-ref="quickview-modal"] [data-ps-ref="quantity-input"]',
   increment: '[data-ps-action="increment-quantity"]',
   decrement: '[data-ps-action="decrement-quantity"]',
   quantityWanted: '[data-ps-ref="quantity-wanted"]',

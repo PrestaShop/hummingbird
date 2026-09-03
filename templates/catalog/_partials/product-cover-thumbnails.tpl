@@ -3,7 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 
-<div class="product__images js-images-container">
+<div class="product__images js-images-container" data-ps-ref="product-images">
   {if $product.images|@count > 0}
     <div
       id="product-images-{$product.id}"

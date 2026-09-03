@@ -17,6 +17,26 @@ const initCheckout = () => {
   const termsLink = document.querySelector<HTMLLinkElement>(CheckoutMap.termsLink);
   const termsModalElement = document.querySelector<HTMLLinkElement>(CheckoutMap.checkoutModal);
 
+  // data-ps-state holds several coexisting tokens on a checkout step, so edit one
+  // without clobbering the others — the same semantics as classList.toggle.
+  const toggleState = (el: Element | null | undefined, token: string, on: boolean) => {
+    if (!el) return;
+
+    const tokens = new Set((el.getAttribute('data-ps-state') ?? '').split(' ').filter(Boolean));
+
+    if (on) {
+      tokens.add(token);
+    } else {
+      tokens.delete(token);
+    }
+
+    if (tokens.size) {
+      el.setAttribute('data-ps-state', Array.from(tokens).join(' '));
+    } else {
+      el.removeAttribute('data-ps-state');
+    }
+  };
+
   // Only UI things, the real toggle is handled by Bootstrap Tabs
   // A thing we handle manually is the .active class on the toggling buttons
   const toggleStep = (content: HTMLElement, step?: HTMLElement) => {
@@ -24,14 +44,8 @@ const initCheckout = () => {
     const currentButton = step?.querySelector<HTMLButtonElement>(CheckoutMap.steps.button);
     currentButton?.focus();
     currentContent?.classList.remove('step--current', 'js-current-step');
-
-    // Leaving a step must not silently drop its completed state: step--complete is
-    // still the source of truth for that flag, so mirror it instead of clearing.
-    if (currentContent?.classList.contains('step--complete')) {
-      currentContent.setAttribute('data-ps-state', 'complete');
-    } else {
-      currentContent?.removeAttribute('data-ps-state');
-    }
+    // Dropping only the "current" token leaves "complete" and "reachable" untouched.
+    toggleState(currentContent, 'current', false);
 
     if (step) {
       const responsiveStep = document.querySelector<HTMLElement>(CheckoutMap.steps.specificStep(step.dataset.step));
@@ -42,7 +56,7 @@ const initCheckout = () => {
     }
 
     content.classList.add('js-current-step', 'step--current');
-    content.setAttribute('data-ps-state', 'current');
+    toggleState(content, 'current', true);
   };
 
   actionButtons.forEach((button) => {
@@ -76,12 +90,12 @@ const initCheckout = () => {
 
     if (stepContent) {
       // If step is finished, we mark it green
-      if (stepContent.classList.contains('step--complete')) {
+      if (stepContent.matches(CheckoutMap.steps.complete)) {
         step.classList.add('checkout-steps__step--success');
       }
 
       // Current step will get an active property
-      if (stepContent.classList.contains('step--current')) {
+      if (stepContent.matches(CheckoutMap.steps.current)) {
         step.classList.add('checkout-steps__step--current');
         stepButton?.classList.add('active');
         const responsiveStep = document.querySelector<HTMLElement>(
@@ -100,7 +114,7 @@ const initCheckout = () => {
       }
 
       // If the step can be navigated
-      if (stepContent.classList.contains('step--reachable')) {
+      if (stepContent.matches(CheckoutMap.steps.reachable)) {
         stepButton?.addEventListener('click', () => {
           if (setProgress) {
             setProgress(index + 1);

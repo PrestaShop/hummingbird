@@ -42,6 +42,11 @@ export const cart = {
   productItemQuantityInput: '[data-ps-ref="cart-line-quantity"]',
   removeFromCart: '[data-ps-action="remove-from-cart"]',
   alertPlaceholder: '[data-ps-target="cart-update-alert"]',
+  // These two are not selectors but values: our cart templates write them into
+  // data-link-action, and pages/cart.ts compares against them. data-link-action is the
+  // PrestaShop-wide naming convention for what a link does, so the names stay as they
+  // are for third-party compatibility — same reason the js-* classes stay in the markup.
+  // The same two names also live in state.ts (availableLastUpdateAction): rename both.
   deleteLinkAction: 'delete-from-cart',
   removeVoucherLinkAction: 'remove-voucher',
   voucherContainer: '[data-ps-ref="voucher-container"]',
@@ -52,7 +57,10 @@ export const cart = {
 };
 
 export const blockcart = {
-  modal: '#blockcart-modal',
+  // Deprecated duplicate of the top-level blockcartModal entry, which is what
+  // modules/blockcart.ts actually reads. Kept because Theme.selectors is public API;
+  // drop the whole export in the next major.
+  modal: '[data-ps-ref="blockcart-modal"]',
 };
 
 export const currencySelector = {
@@ -80,16 +88,25 @@ export const searchBar = {
 export const checkout = {
   steps: {
     item: '[data-ps-ref="checkout-step-item"]',
-    current: '[data-ps-ref="checkout-step-content"][data-ps-state="current"]',
+    // data-ps-state carries coexisting tokens here (current, complete, reachable),
+    // so these match a single token with ~= rather than the whole value.
+    current: '[data-ps-ref="checkout-step-content"][data-ps-state~="current"]',
+    complete: '[data-ps-ref="checkout-step-content"][data-ps-state~="complete"]',
+    reachable: '[data-ps-ref="checkout-step-content"][data-ps-state~="reachable"]',
     button: '[data-ps-ref="step-button"]',
     shownResponsiveStep: '[data-ps-ref="checkout-step-mobile"]:not(.d-none)',
     specificStep: (param: string | undefined) => `[data-ps-ref="checkout-step-mobile"][data-step="${param}"]`,
-    specificStepContent: (param: string | undefined) => `#${param}`,
+    // These two keep an id on purpose. The step id comes from core
+    // (AbstractCheckoutStep::getIdentifier) and core's own JS clicks it:
+    // checkout-delivery.js and checkout-address.js target #checkout-delivery-step and
+    // #checkout-addresses-step, so the id is a contract, not a missed migration.
+    // backButton reaches the same id through Bootstrap's data-bs-target wiring.
+    specificStepContent: (param: string | undefined) => `[data-ps-ref="checkout-step-content"][data-step="${param}"]`,
     backButton: (param: string | undefined) => `[data-ps-ref="checkout-step-item"] button[data-bs-target="#${param}"]`,
   },
   actionsButtons: '[data-ps-action="checkout-back"], [data-ps-action="edit-addresses"], [data-ps-action="edit-shipping"]',
   termsLink: '[data-ps-ref="terms-label"] a',
-  checkoutModal: '#checkout-modal',
+  checkoutModal: '[data-ps-ref="terms-modal"]',
   carrierExtraContentWrapper: '[data-ps-ref="carrier-extra"]',
   carrierExtraContentWrapperActive: '[data-ps-ref="carrier-extra"][data-ps-state="active"]',
   carrierExtraContent: '[data-ps-ref="carrier-extra-content"]',
@@ -98,11 +115,10 @@ export const checkout = {
 
 export const progressRing = {
   checkout: {
-    element: '.progress-ring',
-    circle: '.progress-ring__circle',
-    backgroundCircle: '.progress-ring__background-circle',
+    element: '[data-ps-ref="progress-ring"]',
+    circle: '[data-ps-ref="progress-ring-circle"]',
   },
-  text: '.progress-ring text',
+  text: '[data-ps-ref="progress-ring-text"]',
 };
 
 export const mobileMenu = {
@@ -163,7 +179,7 @@ export const qtyInput = {
   decrement: '[data-ps-action="decrement-quantity"]',
   quantityWanted: '[data-ps-ref="quantity-wanted"]',
   confirm: '[data-ps-ref="quantity-confirm-icon"]',
-  spinner: '.spinner-border',
+  spinner: '[data-ps-ref="quantity-spinner"]',
 };
 
 export const formValidation = {
@@ -195,25 +211,31 @@ const selectorsMap = {
   layout,
   qtyInput,
   alert: {
-    selector: '#notifications .container',
+    selector: '[data-ps-ref="notifications-container"]',
+    // Bootstrap reads this class itself: enableDismissTrigger resolves a
+    // data-bs-dismiss="alert" click with this.closest('.alert'). Not migratable.
     alert: '.alert',
-    heading: '.alert-heading',
-    body: '.alert-body',
-    icon: '.material-icons',
-    close: '.btn-close',
+    heading: '[data-ps-ref="alert-heading"]',
+    body: '[data-ps-ref="alert-body"]',
+    icon: '[data-ps-ref="alert-icon"]',
+    close: '[data-ps-ref="alert-close"]',
   },
   toast: {
     container: '[data-ps-ref="toast-container"]',
     template: '[data-ps-template="toast"]',
+    // Same Bootstrap contract as alert above, via this.closest('.toast').
     toast: '.toast',
-    body: '.toast-body',
-    close: '.btn-close',
+    body: '[data-ps-ref="toast-body"]',
+    close: '[data-ps-ref="toast-close"]',
   },
   product: {
     container: '[data-ps-ref="product-container"]',
-    images: '.js-images-container',
+    images: '[data-ps-ref="product-images"]',
     carousel: '[data-ps-ref="product-carousel"]',
-    miniature: '.js-product-miniature',
+    // Bootstrap's Carousel reads this class itself; centralised here rather than
+    // inlined in accessibility/product.ts, but not migratable.
+    carouselItem: '.carousel-item',
+    miniature: '[data-ps-ref="product-miniature"]',
     thumbnail: '[data-ps-ref="product-thumbnail"]',
     productImagesModal: '[data-ps-ref="product-images-modal"]',
     productImagesModalCarousel: '[data-ps-ref="product-images-modal-carousel"]',
@@ -227,6 +249,7 @@ const selectorsMap = {
     returnFormProductsTable: '[data-ps-ref="order-return-products-table"]',
     returnFormProductCheckbox: '[data-ps-ref="select-product"]',
   },
+  // Bootstrap's own SELECTOR_MODAL_BODY; its Modal reads this class directly.
   modalBody: '.modal-body',
   pageCms: '[data-ps-ref="cms-content"]',
   quickview: '[data-ps-action="open-quickview"]',

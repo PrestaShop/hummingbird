@@ -7,6 +7,7 @@
 {block name='product_miniature_item'}
   <article
     class="{$componentName} js-{$componentName}"
+    data-ps-ref="product-miniature"
     data-id-product="{$product.id_product}"
     data-id-product-attribute="{$product.id_product_attribute}"
   >

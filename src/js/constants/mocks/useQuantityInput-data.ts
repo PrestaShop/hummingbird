@@ -15,7 +15,7 @@ export const ProductLineTemplate = `
             <button class="btn js-decrement-button" data-ps-action="decrement-quantity" type="button">
               <i class="material-icons"></i>
               <i class="material-icons confirmation d-none" data-ps-ref="quantity-confirm-icon"></i>
-              <div class="spinner-border d-none"></div>
+              <div class="spinner-border d-none" data-ps-ref="quantity-spinner"></div>
             </button>
             <input
               data-update-url="#"
@@ -27,7 +27,7 @@ export const ProductLineTemplate = `
             <button class="btn js-increment-button" data-ps-action="increment-quantity" type="button">
               <i class="material-icons"></i>
               <i class="material-icons confirmation d-none" data-ps-ref="quantity-confirm-icon"></i>
-              <div class="spinner-border d-none"></div>
+              <div class="spinner-border d-none" data-ps-ref="quantity-spinner"></div>
             </button>
           </div>
         </div>
@@ -46,7 +46,7 @@ export const ProductTemplate = `
             <button class="btn js-decrement-button" data-ps-action="decrement-quantity" type="button">
               <i class="material-icons"></i>
               <i class="material-icons confirmation d-none" data-ps-ref="quantity-confirm-icon"></i>
-              <div class="spinner-border d-none"></div>
+              <div class="spinner-border d-none" data-ps-ref="quantity-spinner"></div>
             </button>
             <input
               id="quantity_wanted"
@@ -57,7 +57,7 @@ export const ProductTemplate = `
             <button class="btn js-increment-button" data-ps-action="increment-quantity" type="button">
               <i class="material-icons"></i>
               <i class="material-icons confirmation d-none" data-ps-ref="quantity-confirm-icon"></i>
-              <div class="spinner-border d-none"></div>
+              <div class="spinner-border d-none" data-ps-ref="quantity-spinner"></div>
             </button>
           </div>
         </div>

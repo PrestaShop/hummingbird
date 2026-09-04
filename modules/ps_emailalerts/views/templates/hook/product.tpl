@@ -5,7 +5,6 @@
 
 <div class="ps-emailalerts ps-emailalerts--product"
   data-ps-ref="emailalerts"
-  data-ps-ref="gdpr-wrapper"
   data-url="{url entity='module' name='ps_emailalerts' controller='actions' params=['process' => 'add']}">
   {if empty($has_notification)}
     <div class="ps-emailalerts__content" data-ps-ref="emailalerts-content">

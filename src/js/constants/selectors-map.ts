@@ -142,7 +142,6 @@ export const visiblePassword = {
 
 export const gdpr = {
   consent: '[data-ps-ref="gdpr-consent"]',
-  consentWrapper: '[data-ps-ref="gdpr-wrapper"]',
   checkbox: '[data-ps-ref="gdpr-checkbox"]',
   submitButton: '[data-ps-ref="gdpr-submit"]',
 };

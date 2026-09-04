@@ -27,7 +27,7 @@
                       <input type="radio" class="form-check-input" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
                     </span>
 
-                    <div class="delivery-option__carrier {if $carrier.logo} delivery-option__carrier--hasLogo{/if}">
+                    <div class="delivery-option__carrier {if $carrier.logo} delivery-option__carrier--has-logo{/if}">
                       {if $carrier.logo}
                         <img class="delivery-option__carrier-logo" src="{$carrier.logo}" class="img-fluid" alt="{$carrier.name}" loading="lazy" aria-hidden="true">
                       {/if}

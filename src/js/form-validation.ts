@@ -9,7 +9,12 @@ const initFormValidation = (selector?: string) => {
   const formValidationList = document.querySelectorAll<HTMLFormElement>(selector ?? formValidationMap.default);
 
   formValidationList.forEach((formElement: HTMLFormElement) => {
-    const submitButton = formElement.querySelector<HTMLButtonElement>(formValidationMap.submitButton);
+    // WHY: a control can belong to a form through the `form` attribute rather than DOM
+    // containment, and querySelector only ever sees descendants. form.elements covers both,
+    // which the checkout address step relies on to keep its submit button out of the
+    // address <form> elements rendered inside the same step.
+    const submitButton = Array.from(formElement.elements)
+      .find((element): element is HTMLButtonElement => element.matches(formValidationMap.submitButton)) ?? null;
 
     if (submitButton) {
       submitButton.addEventListener('click', (event) => {

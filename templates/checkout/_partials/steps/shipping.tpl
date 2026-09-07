@@ -27,7 +27,7 @@
                       <input type="radio" class="form-check-input" name="delivery_option[{$id_address}]" id="delivery_option_{$carrier.id}" value="{$carrier_id}"{if $delivery_option == $carrier_id} checked{/if}>
                     </span>
 
-                    <div class="delivery-option__carrier {if $carrier.logo} delivery-option__carrier--hasLogo{/if}">
+                    <div class="delivery-option__carrier {if $carrier.logo} delivery-option__carrier--has-logo{/if}">
                       {if $carrier.logo}
                         <img class="delivery-option__carrier-logo" src="{$carrier.logo}" class="img-fluid" alt="{$carrier.name}" loading="lazy" aria-hidden="true">
                       {/if}
@@ -45,10 +45,11 @@
                   </div>
                 </label>
 
-                <div class="delivery-option__extra js-carrier-extra" {if $delivery_option == $carrier_id}data-active{/if}>
+                <div class="delivery-option__extra js-carrier-extra" data-ps-ref="carrier-extra"
+                  {if $delivery_option == $carrier_id}data-active data-ps-state="active"{/if}>
                   {capture name='delivery_option_extra_content'}{$carrier.extraContent nofilter}{/capture}
                   {if !empty($smarty.capture.delivery_option_extra_content)}
-                    <div class="delivery-option__extra-content js-carrier-extra-content">
+                    <div class="delivery-option__extra-content js-carrier-extra-content" data-ps-ref="carrier-extra-content">
                       {$smarty.capture.delivery_option_extra_content nofilter}
                     </div>
                   {/if}

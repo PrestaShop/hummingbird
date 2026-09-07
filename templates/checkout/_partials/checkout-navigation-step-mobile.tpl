@@ -4,7 +4,7 @@
  *}
 {$componentName = 'checkout-steps'}
 
-<div class="{$componentName}__step-mobile d-none" data-step="{$step}">
+<div class="{$componentName}__step-mobile d-none" data-ps-ref="checkout-step-mobile" data-step="{$step}">
   <p class="{$componentName}__title">
     {$title}
   </p>

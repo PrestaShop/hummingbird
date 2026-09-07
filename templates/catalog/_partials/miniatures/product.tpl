@@ -7,6 +7,7 @@
 {block name='product_miniature_item'}
   <article
     class="{$componentName} js-{$componentName}"
+    data-ps-ref="product-miniature"
     data-id-product="{$product.id_product}"
     data-id-product-attribute="{$product.id_product_attribute}"
   >
@@ -84,7 +85,7 @@
                   {/if}
                   <input type="hidden" name="token" value="{$static_token}">
   
-                  <div class="quantity-button js-quantity-button">
+                  <div class="quantity-button js-quantity-button" data-ps-ref="quantity-input">
                     {include file='components/qty-input.tpl'
                       attributes=[
                         "id" => "quantity_wanted_{$product.id_product}",

@@ -60,6 +60,7 @@ const SELECTORS = {
   MODAL_REVIEW_ERROR: "[data-ps-ref='product-post-review-error-modal']",
   MODAL_REVIEW_POSTED: "[data-ps-ref='product-post-review-posted-modal']",
   FORM_VALIDATION_BUTTON: "[data-ps-action='form-validation-submit']",
+  MODAL_MESSAGE: "[data-ps-ref='alert-modal-message']",
   FORM_FIELD: "[data-ps-ref='product-post-review-form'] [name]",
   // Comments listing selectors
   COMMENTS_LIST: "[data-ps-ref='product-comments-list']",
@@ -767,7 +768,7 @@ class ProductCommentsInteractions {
 
     if (!modal) return;
 
-    const messageElement = modal.querySelector('#report-comment-post-error-message');
+    const messageElement = modal.querySelector(SELECTORS.MODAL_MESSAGE);
 
     if (messageElement) {
       messageElement.innerHTML = errorMessage;

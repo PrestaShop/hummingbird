@@ -11,7 +11,7 @@
   <p class="final-summary__header">
     {l s='Addresses' d='Shop.Theme.Checkout'}
 
-    <button class="btn btn-outline-primary btn-sm js-edit-addresses" data-step="checkout-addresses-step" aria-label="{l s='Edit addresses' d='Shop.Theme.Actions'}">
+    <button class="btn btn-outline-primary btn-sm js-edit-addresses" data-ps-action="edit-addresses" data-step="checkout-addresses-step" aria-label="{l s='Edit addresses' d='Shop.Theme.Actions'}">
       <i class="material-icons" aria-hidden="true">&#xE254;</i> {l s='Edit' d='Shop.Theme.Actions'}
     </button>
   </p>
@@ -90,7 +90,7 @@
     <p class="final-summary__header">
       {l s='Shipping Method' d='Shop.Theme.Checkout'}
 
-      <button class="btn btn-outline-primary btn-sm js-edit-shipping" data-step="checkout-delivery-step" aria-label="{l s='Edit your shipping method' d='Shop.Theme.Actions'}">
+      <button class="btn btn-outline-primary btn-sm js-edit-shipping" data-ps-action="edit-shipping" data-step="checkout-delivery-step" aria-label="{l s='Edit your shipping method' d='Shop.Theme.Actions'}">
         <i class="material-icons" aria-hidden="true">&#xE254;</i> {l s='Edit' d='Shop.Theme.Actions'}
       </button>
     </p>

@@ -10,6 +10,7 @@
 
 <svg
   class="progress-ring{if $classes} {$classes}{/if}"
+  data-ps-ref="progress-ring"
   width="{$size}"
   height="{$size}"
   style="width: {$size}px; height: {$size}px;"
@@ -24,6 +25,7 @@
   />
   <circle
     class="progress-ring__circle"
+    data-ps-ref="progress-ring-circle"
     stroke="currentColor"
     stroke-width="{$stroke}"
     data-percent="0"
@@ -33,5 +35,5 @@
     cy="{$size / 2}"
     style="stroke-dasharray: {$circumference}, {$circumference}; stroke-dashoffset: {$circumference};"
   />
-  <text class="progress-ring__text" x="50%" y="52%" dominant-baseline="middle" text-anchor="middle"></text>
+  <text class="progress-ring__text" data-ps-ref="progress-ring-text" x="50%" y="52%" dominant-baseline="middle" text-anchor="middle"></text>
 </svg>

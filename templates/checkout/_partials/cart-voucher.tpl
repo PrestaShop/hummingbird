@@ -36,13 +36,13 @@
             {l s='Promo code' d='Shop.Theme.Checkout'}
           </button>
 
-          <div id="promo-code" class="cart-voucher__accordion-collapse accordion-collapse collapse js-voucher-accordion">
+          <div id="promo-code" class="cart-voucher__accordion-collapse accordion-collapse collapse js-voucher-accordion" data-ps-ref="voucher-accordion">
             <div class="accordion-body">
               {block name='cart_voucher_form'}
                 <form class="cart-voucher__form" action="{$urls.pages.cart}" data-link-action="add-voucher" data-ps-ref="voucher-form" method="post">
                   <input type="hidden" name="token" value="{$static_token}">
                   <input type="hidden" name="addDiscount" value="1">
-                  <input class="form-control js-voucher-input" type="text" name="discount_name" placeholder="{l s='Paste your voucher here' d='Shop.Theme.Checkout'}" required>
+                  <input class="form-control js-voucher-input" data-ps-ref="voucher-input" type="text" name="discount_name" placeholder="{l s='Paste your voucher here' d='Shop.Theme.Checkout'}" required>
                   <button type="submit" class="btn btn-primary" aria-label="{l s='Apply voucher' d='Shop.Theme.Actions'}">{l s='Apply' d='Shop.Theme.Actions'}</button>
                 </form>
               {/block}
@@ -67,7 +67,7 @@
           <ul class="cart-voucher__offers js-discount">
             {foreach from=$cart.discounts item=discount}
               <li class="cart-voucher__code">
-                <button class="cart-voucher__code-value js-voucher-code" aria-label="{l s='Fill %voucherCode% code into the voucher field' sprintf=['%voucherCode%' => $discount.code] d='Shop.Theme.Checkout'}">{$discount.code}</button> - {$discount.name}
+                <button class="cart-voucher__code-value js-voucher-code" data-ps-action="fill-voucher-code" aria-label="{l s='Fill %voucherCode% code into the voucher field' sprintf=['%voucherCode%' => $discount.code] d='Shop.Theme.Checkout'}">{$discount.code}</button> - {$discount.name}
               </li>
             {/foreach}
           </ul>

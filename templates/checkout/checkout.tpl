@@ -39,7 +39,7 @@
                 </div>
 
                 {block name='cart_summary'}
-                  <div class="checkout__summary-accordion-wrapper cart-summary js-checkout-summary" data-ps-observe="checkout-summary">
+                  <div class="checkout__summary-accordion-wrapper cart-summary js-checkout-summary" data-ps-ref="checkout-summary" data-ps-observe>
                     {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
                   </div>
                 {/block}

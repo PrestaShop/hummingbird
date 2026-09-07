@@ -32,7 +32,7 @@ export const listing = {
 
 export const cart = {
   container: '[data-ps-ref="cart-container"]',
-  summaryContainer: '[data-ps-observe="cart-summary"]',
+  summaryContainer: '[data-ps-ref="cart-summary"]',
   overview: '[data-ps-ref="cart-overview"]',
   voucherCode: '[data-ps-action="fill-voucher-code"]',
   voucherInput: '[data-ps-ref="voucher-input"]',
@@ -110,7 +110,7 @@ export const checkout = {
   carrierExtraContentWrapper: '[data-ps-ref="carrier-extra"]',
   carrierExtraContentWrapperActive: '[data-ps-ref="carrier-extra"][data-ps-state="active"]',
   carrierExtraContent: '[data-ps-ref="carrier-extra-content"]',
-  summaryContainer: '[data-ps-observe="checkout-summary"]',
+  summaryContainer: '[data-ps-ref="checkout-summary"]',
 };
 
 export const progressRing = {

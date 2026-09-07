@@ -5,7 +5,7 @@
 <ul class="left-block__content left-block__content--list">
   {foreach from=$suppliers item=supplier name=supplier_list}
     {if $smarty.foreach.supplier_list.iteration <= $text_list_nb}
-      <li class="facet-label">
+      <li>
         <a class="left-block__link" href="{$supplier['link']}" title="{$supplier['name']}">
           {$supplier['name']}
         </a>

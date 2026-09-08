@@ -2,6 +2,9 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{assign var='imageSizes' value=['default_xs' => '', 'default_md' => '2x']}
+{assign var='emptyImageSizes' value=['default_xs' => '', 'default_md' => '2x']}
+{assign var='imageSizes' value=['default_xs' => '', 'default_md' => '2x']}
 {block name='order_products_table'}
   <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post" data-ps-action="form-validation">
     <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Catalog'}">
@@ -38,29 +41,28 @@
                   <a href="{$link->getProductLink($product.id_product)}">
                     {if $product.cover}
                       <picture>
-                        {if isset($product.cover.bySize.default_xs.sources.avif)}
+                        {capture name='imageSrcsetAvif'}{include file='catalog/_partials/srcset.tpl' image=$product.cover sizes=$imageSizes srcsetVariant='avif'}{/capture}
+                        {if $smarty.capture.imageSrcsetAvif|trim}
                           <source
-                            srcset="
-                              {$product.cover.bySize.default_xs.sources.avif},
-                              {$product.cover.bySize.default_md.sources.avif} 2x",
+                            srcset="{$smarty.capture.imageSrcsetAvif|trim nofilter}"
                             type="image/avif"
                           >
                         {/if}
 
-                        {if isset($product.cover.bySize.default_xs.sources.webp)}
+                        {capture name='imageSrcsetWebp'}{include file='catalog/_partials/srcset.tpl' image=$product.cover sizes=$imageSizes srcsetVariant='webp'}{/capture}
+                        {if $smarty.capture.imageSrcsetWebp|trim}
                           <source
-                            srcset="
-                              {$product.cover.bySize.default_xs.sources.webp},
-                              {$product.cover.bySize.default_md.sources.webp} 2x"
+                            srcset="{$smarty.capture.imageSrcsetWebp|trim nofilter}"
                             type="image/webp"
                           >
                         {/if}
 
                         <img
                           class="order-product__img img-fluid"
-                          srcset="
-                            {$product.cover.bySize.default_xs.url},
-                            {$product.cover.bySize.default_md.url} 2x"
+                          {capture name='imageSrcset'}{include file='catalog/_partials/srcset.tpl' image=$product.cover sizes=$imageSizes}{/capture}
+                          {if $smarty.capture.imageSrcset|trim}
+                            srcset="{$smarty.capture.imageSrcset|trim nofilter}"
+                          {/if}
                           width="{$product.cover.bySize.default_xs.width}"
                           height="{$product.cover.bySize.default_xs.height}"
                           loading="lazy"
@@ -70,29 +72,28 @@
                       </picture>
                     {else}
                       <picture>
-                        {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+                        {capture name='emptyImageSrcsetAvif'}{include file='catalog/_partials/srcset.tpl' image=$urls.no_picture_image sizes=$emptyImageSizes srcsetVariant='avif'}{/capture}
+                        {if $smarty.capture.emptyImageSrcsetAvif|trim}
                           <source
-                            srcset="
-                              {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                              {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
+                            srcset="{$smarty.capture.emptyImageSrcsetAvif|trim nofilter}"
                             type="image/avif"
                           >
                         {/if}
 
-                        {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+                        {capture name='emptyImageSrcsetWebp'}{include file='catalog/_partials/srcset.tpl' image=$urls.no_picture_image sizes=$emptyImageSizes srcsetVariant='webp'}{/capture}
+                        {if $smarty.capture.emptyImageSrcsetWebp|trim}
                           <source
-                            srcset="
-                              {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                              {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
+                            srcset="{$smarty.capture.emptyImageSrcsetWebp|trim nofilter}"
                             type="image/webp"
                           >
                         {/if}
 
                         <img
                           class="order-product__img img-fluid"
-                          srcset="
-                            {$urls.no_picture_image.bySize.default_xs.url},
-                            {$urls.no_picture_image.bySize.default_md.url} 2x"
+                          {capture name='emptyImageSrcset'}{include file='catalog/_partials/srcset.tpl' image=$urls.no_picture_image sizes=$emptyImageSizes}{/capture}
+                          {if $smarty.capture.emptyImageSrcset|trim}
+                            srcset="{$smarty.capture.emptyImageSrcset|trim nofilter}"
+                          {/if}
                           width="{$urls.no_picture_image.bySize.default_xs.width}"
                           height="{$urls.no_picture_image.bySize.default_xs.height}"
                           loading="lazy"

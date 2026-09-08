@@ -4,7 +4,7 @@
  *}
 
 {if isset($notifications)}
-<div id="notifications">
+<div id="notifications" data-ps-fragment="notifications">
   <div class="container">
     {if $notifications.error}
       {block name='notifications_error'}

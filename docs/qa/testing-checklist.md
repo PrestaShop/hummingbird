@@ -106,7 +106,7 @@ Do these once per profile on any page, then spot-check elsewhere.
 ### 2.3 Shared partials
 
 - [ ] Breadcrumb: correct trail, current page not a link
-- [ ] Notifications and toasts: success, warning, error
+- [ ] Notifications, and toasts, which come from errors and from the quantity input rather than from add to cart
 - [ ] Pagination: first, last, middle page, and the SEO `rel` links
 - [ ] Page title section, section titles
 - [ ] Quantity input (`useQuantityInput`): min, max, step, manual typing
@@ -143,7 +143,7 @@ Applies to `category`, `search`, `best-sales`, `new-products`, `prices-drop`, `m
 - [ ] Category with a cover image but no thumbnail, and the reverse, since the two images are separate fields
 - [ ] `displaySubcategories` hook: the list still renders when a module provides content and there is no native subcategory
 - [ ] Product miniatures: image, name, price, flags (new, on sale, pack, out of stock), review stars
-- [ ] Add to cart from a miniature: toast, cart preview and totals updated, quantity input respected
+- [ ] Add to cart from a miniature: the Added to your cart modal opens, cart preview and totals updated, quantity input respected
 - [ ] Miniature quantity input honours the product's minimum quantity, and a lower value is refused
 - [ ] Product with combinations added from a miniature lands in the cart with its default combination
 - [ ] Miniature falls back to a See details link when the product has no `add_to_cart_url`, so not available for order, or out of stock with orders denied
@@ -181,7 +181,7 @@ BO tab and its front-office footprint:
 
 | BO tab | Check in FO |
 | --- | --- |
-| Description | Summary in the buy block, Description under the gallery, rich text and inline images, Categories and Default category (breadcrumb, URL, structured data), Brand, Related products in the You might also like block |
+| Description | Images: the back-office order is the gallery order, the cover is the listing miniature, the caption fills `alt` and `title`, and a product with no image falls back to No image available. Summary in the buy block, Description under the gallery, rich text and images inside the description, Categories and Default category (breadcrumb, URL, structured data), Brand, Related products in the You might also like block |
 | Details | Reference, MPN, UPC barcode, GTIN and ISBN in Product details, Display condition on product page, Features in Data sheet, Attached files in Download, and the Customization fields |
 | Stocks (standard product) | Quantity, Minimum quantity for sale, When out of stock (deny, allow, or the shop default), Label when in stock, Label when out of stock, Availability date, `ps_emailalerts` back-in-stock form |
 | Combinations (combination product) | Selector rendering per attribute type (select, radio, colour swatch), price and quantity update on selection, image swap, combination reference, impossible combination, default combination on load. When out of stock and the two labels are set here, there is no Stocks tab |
@@ -195,14 +195,14 @@ BO tab and its front-office footprint:
 Also on the product page:
 
 - [ ] Image gallery: thumbnails, zoom, fullscreen modal, keyboard arrows
-- [ ] Add to cart: toast, cart preview updated, quantity respected
+- [ ] Add to cart: the Added to your cart modal opens with the product and the cart summary, cart preview updated, quantity respected
 - [ ] Quantity below the minimum is refused
 - [ ] Customisation, from the Customization fields on the Details tab: text and file fields, required ones block add to cart while optional ones do not, errors shown on the field, saved value visible in the cart and on the order
 - [ ] Accessories block, titled You might also like: rendered when Related products are set on the Description tab, absent when none are
 - [ ] Accessory miniatures behave like listing ones: flags, review stars, add to cart, quickview, and the See details fallback
 - [ ] A disabled or non-visible product set as an accessory does not appear
 - [ ] The block is rendered without the `container` wrapper, so check its width against the rest of the page
-- [ ] `ps_sharebuttons`, `productcomments`, `ps_productinfo`, `ps_categoryproducts`, `ps_crossselling`, `ps_viewedproduct`
+- [ ] `ps_sharebuttons`, `productcomments`, `ps_categoryproducts`, `ps_crossselling`, `ps_viewedproduct`
 - [ ] Product JSON-LD present and valid
 
 ### 3.5 Cart
@@ -332,13 +332,13 @@ Not a separate pass. These are the settings that change what section 3 renders, 
 
 Every native module Hummingbird overrides or hooks. Hooks come from `config/theme.yml`, templates from `modules/<name>/`. JS means the module has theme-side TypeScript in `src/js/modules/`.
 
+`ps_advertising`, `ps_productinfo` and `ps_rssfeed` are left out: PrestaShop does not install them and their repositories are archived, so the theme's overrides for them never render.
+
 Module versions are pinned by the core, not by the theme. Record the ones you tested against, from the PrestaShop checkout:
 
 ```
 composer show 'prestashop/*' --direct | grep -E 'blockreassurance|contactform|productcomments|psgdpr|ps_'
 ```
-
-Three overrides target modules the core does not require, so a stock install will not exercise them. They are still published on Packagist and can be installed by hand: `ps_advertising`, `ps_productinfo`, `ps_rssfeed`. Check them against the core's `composer.json` before reporting them as dead overrides.
 
 ### 5.1 Header and navigation
 
@@ -373,8 +373,6 @@ Three overrides target modules the core does not require, so a stock install wil
 | `ps_specials` | Column or home block, `/prices-drop` | Needs an active specific price |
 | `ps_brandlist` | Column block, `/brands` | Disabled by default. Block, form variant, text variant |
 | `ps_supplierlist` | Column block, `/suppliers` | Disabled by default. Same three variants |
-| `ps_advertising` | Column block | Not required by the core, install it first. Image, link, empty state |
-| `ps_rssfeed` | Column block | Not required by the core, install it first. Valid feed, unreachable feed, malformed feed |
 
 ### 5.4 Product page
 
@@ -386,7 +384,6 @@ Three overrides target modules the core does not require, so a stock install wil
 | `ps_viewedproduct` | `displayProductAdditionalInfo`, `displayFooterProduct` | Fills after browsing, respects `PRODUCTS_VIEWED_NBR` |
 | `ps_categoryproducts` | `displayFooterProduct` | Same-category products, `CATEGORYPRODUCTS_DISPLAY_PRODUCTS`, product alone in its category |
 | `ps_crossselling` | Product page and cart | Needs order history, empty state |
-| `ps_productinfo` | Product page | Not required by the core, install it first. Additional information block |
 
 ### 5.5 Checkout and payment
 
@@ -414,7 +411,6 @@ Three overrides target modules the core does not require, so a stock install wil
 - [ ] Each column module checked in the left and the right column
 - [ ] Each product block checked with 0, 1 and several products
 - [ ] Module versions under test recorded alongside the results
-- [ ] `ps_advertising`, `ps_productinfo` and `ps_rssfeed` either installed and tested, or reported as out of scope for this pass
 
 ## 6. Accessibility
 
@@ -459,7 +455,17 @@ For each defect, record:
 - Steps to reproduce from a clean cart and session
 - Expected result, actual result, screenshot or recording
 - Whether it reproduces on the previous theme version
+- Kind, from the table below
 - Layer (theme, module or core) and the repository it belongs to
+
+| Kind | Means |
+| --- | --- |
+| Regression | Worked on the previous theme version. Highest priority, and the version it broke in is part of the report |
+| Bug | Broken on the previous version too, so it is not new |
+| Visual | Renders wrongly but still works: spacing, alignment, an image at the wrong size |
+| Accessibility | Fails a section 6 check |
+| Gap | Never implemented, so a feature request rather than a defect |
+| Checklist | The item itself was wrong. Fix this file in the same pull request, do not open an issue |
 
 The pass is signed off when every section is checked or has an issue linked against it.
 

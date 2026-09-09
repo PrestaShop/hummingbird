@@ -13,7 +13,10 @@
     <div class="{$componentName}__inner">
       {block name='product_miniature_top'}
         <div class="{$componentName}__top">
-          {include file='catalog/_partials/product-flags.tpl'}
+          {** The stock label below says the same thing, in the same words, so only one of them shows *}
+          {include file='catalog/_partials/product-flags.tpl'
+            hideOutOfStockFlag=!empty($product.availability_message)
+          }
 
           {include file='catalog/_partials/miniatures/product-image.tpl'}
 
@@ -68,6 +71,13 @@
                 {/block}
               </div>
             {/if}
+
+            {block name='product_availability'}
+              {include file='catalog/_partials/product-availability-status.tpl'
+                product=$product
+                componentName=$componentName
+              }
+            {/block}
 
             {block name='product_reviews'}
               {hook h='displayProductListReviews' product=$product}

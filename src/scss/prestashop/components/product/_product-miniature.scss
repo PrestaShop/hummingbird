@@ -98,6 +98,18 @@ $product-miniature-container-query-width: 13.5rem;
     }
   }
 
+  &__availability-status {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.2;
+  }
+
+  &__availability-icon {
+    font-size: 1rem;
+  }
+
   &__prices {
     display: flex;
     flex-wrap: wrap;

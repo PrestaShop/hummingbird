@@ -219,6 +219,11 @@ global_settings:
       width: 2000
       height: 400
       scope: [categories]
+    manufacturer_product_page:
+      width: 98
+      height: 98
+      scope: [manufacturers]
+      image_fitment: bound
 
 theme_settings:
   rtl_generation: false

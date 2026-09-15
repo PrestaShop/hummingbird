@@ -76,7 +76,7 @@ Cover at least once:
 In Advanced Parameters > Performance:
 
 - [ ] CCC (Combine, Compress and Cache): all options disabled, so the pass exercises the theme's own assets rather than a merged bundle
-- [ ] Smarty: Force compilation set to Yes, Cache set to No (`PS_DEV_MODE: 1` in the compose files already forces compilation)
+- [ ] Smarty: Force compilation set to Yes, Cache set to No (`PS_DEV_MODE: 1` in `docker-compose-prestashop.yml` already forces compilation; the Flashlight compose file does not set it)
 - [ ] Cache cleared, and cleared again after each configuration change
 - [ ] Browser cache disabled in DevTools, or a hard reload after `npm run build`
 
@@ -98,7 +98,7 @@ Do these once per profile on any page, then spot-check elsewhere.
 
 ### 2.2 Footer
 
-- [ ] `ps_socialfollow`, `ps_emailsubscription`, `blockreassurance` in `displayFooterBefore`
+- [ ] `ps_socialfollow`, `ps_emailsubscription`, `blockreassurance` in `displayFooterBefore`, and the second `blockreassurance` in `displayFooterAfter`: two instances render in the footer area, check both
 - [ ] `ps_linklist`, `ps_customeraccountlinks`, `ps_contactinfo` in `displayFooter`
 - [ ] Copyright block
 - [ ] All links resolve, no 404 and no `#`
@@ -119,7 +119,7 @@ Do these once per profile on any page, then spot-check elsewhere.
 - [ ] No 404 on CSS, JS, fonts or images
 - [ ] No unstyled flash
 - [ ] Images use the image types declared in `config/theme.yml` and are not upscaled
-- [ ] If the change touches `templates/layouts/`, each layout declared in `config/theme.yml` still renders, with no empty column
+- [ ] If the change touches `templates/layouts/`, every layout in that directory still renders, with no empty column. `config/theme.yml` declares only the selectable ones, so it is not the source here: `layout-content-only.tpl` is reached through `content_only` and `layout-error.tpl` through the error pages in 3.10
 
 ## 3. Page by page
 
@@ -152,7 +152,7 @@ Applies to `category`, `search`, `best-sales`, `new-products`, `prices-drop`, `m
 - [ ] `ps_categorytree` in the left column
 - [ ] Pagination and items per page (Shop Parameters > Product Settings > Pagination)
 - [ ] Empty listing, and listing with a single product
-- [ ] `/brands` and `/suppliers` (enable `ps_brandlist` and `ps_supplierlist` first, both disabled by default)
+- [ ] `/brands` and `/suppliers`: the pages are gated by Display brands and Display suppliers in Shop Parameters > General, not by the modules, so enable the settings first or the page 404s **(config)**. `ps_brandlist` and `ps_supplierlist` only add the column blocks, and both are disabled by default
 
 ### 3.3 Quickview
 
@@ -235,7 +235,7 @@ Also on the product page:
 
 ### 3.7 Multishipment
 
-Enable the `improved_shipment` feature flag in Advanced Parameters > Feature flags **(config)**, then walk the funnel again. It swaps in four templates the default pass never renders, so a change to the single-carrier ones has to be mirrored here.
+Enable the `improved_shipment` feature flag in Advanced Parameters > Feature flags **(config)**, then walk the funnel again. It swaps in the `*-multishipment.tpl` templates, which the default pass never renders, so a change to the single-carrier ones has to be mirrored here.
 
 - [ ] Shipping step: a cart whose products cannot ship together splits into several shipments, each with its own carrier and price
 - [ ] Final summary: products grouped by carrier, one Delivery option label and delay per group, and the Edit button returns to the delivery step
@@ -265,7 +265,7 @@ Enable the `improved_shipment` feature flag in Advanced Parameters > Feature fla
 - [ ] CMS page and CMS category
 - [ ] Sitemap, including the nested list
 - [ ] Stores page: map, store list, opening hours (Shop Parameters > Contact > Stores)
-- [ ] Contact page: `contactform` widget, file attachment, order selector, `ps_contactinfo` in both side columns
+- [ ] Contact page: `contactform` widget, file attachment, order selector, `ps_contactinfo` in the left column, then switch the contact page to `layout-right-column` and check the right one **(config)**
 
 ### 3.10 Error and edge pages
 
@@ -333,6 +333,8 @@ Not a separate pass. These are the settings that change what section 3 renders, 
 Every native module Hummingbird overrides or hooks. Hooks come from `config/theme.yml`, templates from `modules/<name>/`. JS means the module has theme-side TypeScript in `src/js/modules/`.
 
 `ps_advertising`, `ps_productinfo` and `ps_rssfeed` are left out: PrestaShop does not install them and their repositories are archived, so the theme's overrides for them never render.
+
+`blockwishlist` is left out for a different reason. The module is not stable, so the theme disables it at install (`global_settings.modules.to_disable` in `config/theme.yml`) and a default pass never renders it. It is the one deliberate exception to the one entry per overridden module rule in section 9: the theme still carries `modules/blockwishlist/` and `src/scss/prestashop/modules/_blockwishlist.scss`, and those are due to be removed rather than tested. If the module stabilises and the theme picks it up again, it needs a row in 5.6 and this paragraph goes.
 
 Module versions are pinned by the core, not by the theme. Record the ones you tested against, from the PrestaShop checkout:
 
@@ -408,7 +410,7 @@ composer show 'prestashop/*' --direct | grep -E 'blockreassurance|contactform|pr
 
 - [ ] Each module above visited once per profile
 - [ ] Modules whose absence changes the layout checked disabled, so at least one per hook position: header nav, home block, column block, footer block, product block. No empty wrapper, no collapsed grid **(config)**
-- [ ] Each column module checked in the left and the right column
+- [ ] Each column module checked in the left and the right column. `config/theme.yml` hooks them on `displayLeftColumn` only, and no page defaults to `layout-right-column`, so the right column means changing a page's layout first **(config)**
 - [ ] Each product block checked with 0, 1 and several products
 - [ ] Module versions under test recorded alongside the results
 
@@ -475,9 +477,10 @@ Every list here is derived from something in the repository, so a change to one 
 
 | Source | What it drives |
 | --- | --- |
-| `config/theme.yml` | Hook assignments and the modules disabled by default in section 5, the layouts in the regression sweep, image types, the per-block product counts in 3.1 |
-| `modules/` | The module list in section 5, one entry per overridden module |
+| `config/theme.yml` | Hook assignments and the modules disabled by default in section 5, the selectable layouts, image types, the per-block product counts in 3.1 |
+| `modules/` | The module list in section 5, one entry per overridden module, except the modules section 5 names as out of scope |
 | `templates/` | The pages in section 3 and the partials in 2.3. A new page or partial needs a line |
+| `templates/layouts/` | The layouts in the regression sweep, every file in the directory, not only the ones `config/theme.yml` declares as selectable |
 | `src/js/modules/` | Which modules are marked JS in section 5 |
 | `src/scss/bootstrap/overrides/variables/_variables.scss` | The breakpoint table in section 7 |
 | `README.md` | Sections 1.1 and 1.2, which link to it rather than restate it |

@@ -57,10 +57,12 @@
 
         <div class="product__tax-infos">
           <span class="product__tax-label">
-            {if !$configuration.taxes_enabled}
-              {l s='No tax' d='Shop.Theme.Catalog'}
-            {elseif $configuration.display_taxes_label}
-              {$product.labels.tax_long}
+            {if $configuration.display_taxes_label}
+              {if $configuration.taxes_enabled}
+                {$product.labels.tax_long}
+              {else}
+                {l s='No tax' d='Shop.Theme.Catalog'}
+              {/if}
             {/if}
             
             {hook h='displayProductPriceBlock' product=$product type="price"}

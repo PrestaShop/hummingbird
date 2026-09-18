@@ -15,6 +15,7 @@
               class="form-check-input"
               name="{$name}"
               value="{$address.id}"
+              {if isset($form_id)}form="{$form_id}"{/if}
               {if $address.id == $selected}checked{/if}
               aria-label="{l s='Select address: %addressAlias%' sprintf=['%addressAlias%' => $address.alias|lower] d='Shop.Theme.Actions'}"
               aria-describedby="address-{$address.id}"
@@ -60,7 +61,7 @@
 
   {if $interactive}
     <div class="d-none">
-      <button class="ps-hidden-by-js form-control-submit center-block" type="submit">{l s='Save' d='Shop.Theme.Actions'}</button>
+      <button class="ps-hidden-by-js form-control-submit center-block" type="submit"{if isset($form_id)} form="{$form_id}"{/if}>{l s='Save' d='Shop.Theme.Actions'}</button>
     </div>
   {/if}
 {/block}

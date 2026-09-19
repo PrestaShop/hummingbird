@@ -5,7 +5,7 @@
 {$componentName = 'page-loader'}
 
 {block name='page_loader'}
-  <div class="page-loader js-page-loader d-none">
+  <div class="page-loader js-page-loader d-none" data-ps-ref="page-loader">
     <div class="spinner-border text-primary-emphasis" role="status">
       <span class="visually-hidden">{l s='Loading...' d='Shop.Theme.Global'}</span>
     </div>

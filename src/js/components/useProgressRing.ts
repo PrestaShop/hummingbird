@@ -13,7 +13,7 @@ export const useProgressRing = (selector: string, options: Theme.ProgressRing.Op
   const progressElement = document.querySelector<HTMLElement>(selector);
 
   if (progressElement) {
-    const progressText = progressElement.querySelector('text');
+    const progressText = progressElement.querySelector<SVGTextElement>(ProgressRingMap.text);
     const circle = progressElement.querySelector<SVGCircleElement>(ProgressRingMap.checkout.circle);
 
     if (circle) {

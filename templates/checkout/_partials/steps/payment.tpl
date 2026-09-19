@@ -107,7 +107,7 @@
                   class = "ps-shown-by-js form-check-input"
           >
 
-          <label class="js-terms form-check-label" for="conditions_to_approve[{$condition_name}]">
+          <label class="js-terms form-check-label" data-ps-ref="terms-label" for="conditions_to_approve[{$condition_name}]">
             {$condition nofilter}
           </label>
         </div>

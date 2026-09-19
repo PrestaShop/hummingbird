@@ -29,6 +29,6 @@ export const TestSelectorOption: Theme.Alert.Options = {type: 'info', selector: 
 
 export const NotificationsContainer = `
   <div id="notifications">
-    <div class="container"></div>
+    <div class="container" data-ps-ref="notifications-container"></div>
   </div>
 `;

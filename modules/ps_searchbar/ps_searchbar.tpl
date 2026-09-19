@@ -4,13 +4,14 @@
  *}
 
 <div id="_desktop_ps_searchbar" class="order-2 ms-auto col-auto d-none d-md-flex align-items-center">
-  <div id="ps_searchbar" class="ps-searchbar js-search-widget" data-search-controller-url="{$search_controller_url}">
+  <div id="ps_searchbar" class="ps-searchbar js-search-widget" data-ps-ref="searchbar-widget" data-search-controller-url="{$search_controller_url}">
     <form class="ps-searchbar__form" method="get" action="{$search_controller_url}" role="search">
       <input type="hidden" name="controller" value="search">
-      <i class="material-icons ps-searchbar__magnifier js-search-icon" aria-hidden="true">&#xE8B6;</i>
+      <i class="material-icons ps-searchbar__magnifier js-search-icon" data-ps-action="searchbar-submit" aria-hidden="true">&#xE8B6;</i>
       <label for="ps_searchbar_input" class="visually-hidden">{l s='Search' d='Shop.Theme.Catalog'}</label>
       <input
         class="js-search-input form-control ps-searchbar__input"
+        data-ps-ref="searchbar-input"
         type="text"
         name="s"
         value="{$search_string}"
@@ -23,26 +24,27 @@
         aria-controls="ps_searchbar_results"
         aria-expanded="false"
       >
-      <button type="button" class="ps-searchbar__clear js-search-clear btn outline outline--rounded d-none" aria-label="{l s='Clear search' d='Shop.Theme.Catalog'}">
+      <button type="button" class="ps-searchbar__clear js-search-clear btn outline outline--rounded d-none" data-ps-action="searchbar-clear" aria-label="{l s='Clear search' d='Shop.Theme.Catalog'}">
         <i class="material-icons" aria-hidden="true">&#xE14C;</i>
       </button>
     </form>
 
     <div
       class="ps-searchbar__dropdown js-search-dropdown d-none"
+      data-ps-ref="searchbar-dropdown"
       id="ps_searchbar_dropdown"
       aria-label="{l s='Search results' d='Shop.Theme.Catalog'}"
       tabindex="-1"
     >
-      <div class="ps-searchbar__results js-search-results" id="ps_searchbar_results" role="listbox" tabindex="-1"></div>
+      <div class="ps-searchbar__results js-search-results" data-ps-target="searchbar-results" id="ps_searchbar_results" role="listbox" tabindex="-1"></div>
     </div>
   </div>
 </div>
 
-<template id="ps_searchbar_result" class="js-search-template">
+<template id="ps_searchbar_result" class="js-search-template" data-ps-template="searchbar-result">
   <a data-ps-ref="searchbar-result-link" class="ps-searchbar__result-link" id="" href="">
-    <img src="" alt="" class="ps-searchbar__result-image">
-    <p class="ps-searchbar__result-name"></p>
+    <img src="" alt="" class="ps-searchbar__result-image" data-ps-ref="searchbar-result-image">
+    <p class="ps-searchbar__result-name" data-ps-ref="searchbar-result-name"></p>
   </a>
 </template>
 
@@ -54,7 +56,7 @@
     </a>
   </div>
 
-  <div class="ps-searchbar__offcanvas js-search-offcanvas offcanvas offcanvas-top h-auto" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
+  <div class="ps-searchbar__offcanvas js-search-offcanvas offcanvas offcanvas-top h-auto" data-ps-ref="searchbar-offcanvas" tabindex="-1" id="searchCanvas" aria-labelledby="offcanvasTopLabel">
     <div class="offcanvas-header">
       <div id="_mobile_ps_searchbar" class="ps-searchbar__container"></div>
       <button type="button" class="btn btn-link" data-bs-dismiss="offcanvas" aria-label="{l s='Close search' d='Shop.Theme.Global'}">{l s='Cancel' d='Shop.Theme.Global'}</button>

@@ -4,7 +4,7 @@
  *}
 {$componentName = 'active-filters'}
 
-<div id="js-active-search-filters" class="{$componentName}">
+<div id="js-active-search-filters" class="{$componentName}" data-ps-target="active-search-filters">
   {if $activeFilters|count}
     <ul class="{$componentName}__list">
       {block name='active_filters_title'}
@@ -16,7 +16,7 @@
         {block name='active_filters_item'}
           <li class="{$componentName}__item">
             <a
-              class="{$componentName}__link btn btn-outline-tertiary rounded-pill btn-sm js-search-link"
+              class="{$componentName}__link btn btn-outline-tertiary rounded-pill btn-sm js-search-link" data-ps-action="apply-search-filter"
               href="{$filter.nextEncodedFacetsURL}"
               rel="nofollow"
               aria-label="{l s='Remove %1$s filter: %2$s' d='Shop.Theme.Catalog' sprintf=[$filter.facetLabel|lower, $filter.label]}"

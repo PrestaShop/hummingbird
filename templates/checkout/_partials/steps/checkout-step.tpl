@@ -30,7 +30,11 @@
       'js-current-step' => $step_is_current,
       'active' => $step_is_current,
       'show' => $step_is_current
-    ]|classnames}" role="tabpanel">
+    ]|classnames}"
+    data-ps-ref="checkout-step-content"
+    data-step="{$identifier}"
+    data-ps-state="{if $step_is_current}current {elseif $step_is_complete}complete {/if}{if $step_is_reachable}reachable{/if}"
+    role="tabpanel">
     <div class="step__title js-step-title">
       {if $step_is_current eq true}
         <h1 class="page-title-section">

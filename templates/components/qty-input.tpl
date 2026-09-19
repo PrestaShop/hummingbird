@@ -22,10 +22,10 @@
 {/if}
 
 <div class="quantity-button__group input-group">
-  <button aria-label="{$decrement_label}" class="btn {$prepend.button} btn-square-icon js-{$prepend.button}-button" type="button" id="decrement_button_{$product.id_product}">
+  <button aria-label="{$decrement_label}" class="btn {$prepend.button} btn-square-icon js-{$prepend.button}-button" data-ps-action="{$prepend.button}-quantity" type="button" id="decrement_button_{$product.id_product}">
     <i class="material-icons" aria-hidden="true">&#x{$prepend.icon};</i>
-    <i class="material-icons confirmation d-none" aria-hidden="true">&#x{$prepend.confirm_icon};</i>
-    <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
+    <i class="material-icons confirmation d-none" data-ps-ref="quantity-confirm-icon" aria-hidden="true">&#x{$prepend.confirm_icon};</i>
+    <div class="spinner-border spinner-border-sm align-middle d-none" role="status" data-ps-ref="quantity-spinner"></div>
   </button>
 
   <input
@@ -43,9 +43,9 @@
     {if !isset($attributes.min)}min="1"{/if}
   >
 
-  <button aria-label="{$increment_label}" class="btn {$append.button} btn-square-icon js-{$append.button}-button" type="button" id="increment_button_{$product.id_product}">
+  <button aria-label="{$increment_label}" class="btn {$append.button} btn-square-icon js-{$append.button}-button" data-ps-action="{$append.button}-quantity" type="button" id="increment_button_{$product.id_product}">
     <i class="material-icons" aria-hidden="true">&#x{$append.icon};</i>
-    <i class="material-icons confirmation d-none" aria-hidden="true">&#x{$append.confirm_icon};</i>
-    <div class="spinner-border spinner-border-sm align-middle d-none" role="status"></div>
+    <i class="material-icons confirmation d-none" data-ps-ref="quantity-confirm-icon" aria-hidden="true">&#x{$append.confirm_icon};</i>
+    <div class="spinner-border spinner-border-sm align-middle d-none" role="status" data-ps-ref="quantity-spinner"></div>
   </button>
 </div>

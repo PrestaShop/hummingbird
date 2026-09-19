@@ -5,7 +5,6 @@
 import {qtyInput} from "@constants/selectors-map";
 
 declare type facetedsearch = {
-  range: string,
   rangeContainer: string,
   filterSlider: string,
   offCanvasFaceted: string,
@@ -14,13 +13,9 @@ declare type facetedsearch = {
 declare type pageLoader = string;
 
 declare type listing = {
-  searchFilterToggler: string,
-  searchFiltersWrapper: string,
-  searchFilterControls: string,
   searchFilters: string,
   activeSearchFilters: string,
   listTop: string,
-  product: string,
   list: string,
   listBottom: string,
   listHeader: string,
@@ -118,10 +113,9 @@ declare type quantityInput = {
   modal: string,
   increment: string,
   decrement: string,
+  quantityWanted: string,
   confirm: string,
-  icon: string,
   spinner: string,
-  alert: (param: string) => string,
 };
 
 declare type formValidation = {

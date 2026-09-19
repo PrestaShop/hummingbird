@@ -46,16 +46,37 @@ const getGdprData = (element: HTMLElement): GdprData | null => {
 };
 
 /**
- * Find the submit button associated with a consent element
- * Looks in custom wrapper first, then falls back to parent form
+ * Find the nearest ancestor of element that also contains selector.
+ *
+ * A consent and the button it gates are siblings-of-cousins, not ancestors of
+ * one another, so neither can reach the other with closest(). This walks up to
+ * the smallest common container instead of relying on a wrapper attribute,
+ * bounded by the enclosing form so one module's consent can never reach
+ * another module's button.
  */
-const findSubmitButton = (consentElement: HTMLElement): HTMLButtonElement | null => {
-  // Try custom wrapper (data-ps-component="gdpr")
-  const wrapper = consentElement.closest<HTMLElement>(gdpr.consentWrapper);
+const findInNearestScope = <T extends HTMLElement>(element: HTMLElement, selector: string): T | null => {
+  const boundary = element.closest<HTMLElement>('form') ?? document.body;
+  let scope = element.parentElement;
 
-  if (wrapper) {
-    return wrapper.querySelector<HTMLButtonElement>(gdpr.submitButton)
-      ?? wrapper.querySelector<HTMLButtonElement>('[type="submit"]');
+  while (scope && boundary.contains(scope)) {
+    const found = scope.querySelector<T>(selector);
+
+    if (found) {
+      return found;
+    }
+
+    scope = scope.parentElement;
+  }
+
+  return null;
+};
+
+const findSubmitButton = (consentElement: HTMLElement): HTMLButtonElement | null => {
+  // A declared GDPR submit button wins over whatever the form happens to submit
+  const declared = findInNearestScope<HTMLButtonElement>(consentElement, gdpr.submitButton);
+
+  if (declared) {
+    return declared;
   }
 
   // Fall back to form
@@ -147,8 +168,7 @@ const handleClick = (event: Event): void => {
 
   if (!button) return;
 
-  const wrapper = button.closest<HTMLElement>(gdpr.consentWrapper);
-  const consentElement = wrapper?.querySelector<HTMLElement>(gdpr.consent);
+  const consentElement = findInNearestScope<HTMLElement>(button, gdpr.consent);
 
   if (consentElement) {
     handleSubmit(consentElement);

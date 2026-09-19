@@ -28,10 +28,11 @@ describe('useQuantityInput', () => {
       const incrementButton = getHTMLElement<HTMLButtonElement>(selectorsMap.qtyInput.increment);
       incrementButton.click();
       await debounceTimeout();
-      const productLineAlert = getHTMLElement<HTMLDivElement>(selectorsMap.qtyInput.alert(Quantify.AlertId));
+      // A failed request is reported as a toast, like every other cart error since 830b9579.
+      const toastBody = getHTMLElement<HTMLDivElement>(`${selectorsMap.toast.toast} ${selectorsMap.toast.body}`);
       mockedIncrementFetch.mockReset();
 
-      expect(productLineAlert.innerHTML).not.toBe('');
+      expect(toastBody.innerHTML).toContain('Not found');
     });
 
     it('should update value with OK response without error on increment/decrement', async () => {

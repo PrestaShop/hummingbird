@@ -1,5 +1,10 @@
 <?php
 /**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+
+/**
  * Bring a demo PrestaShop install up to the state docs/qa/testing-checklist.md
  * assumes, so a QA pass can answer the whole list instead of stopping at
  * "this shop has no data for that".

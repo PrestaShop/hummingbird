@@ -1,5 +1,10 @@
 <?php
 /**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+
+/**
  * Read and write one shop setting through PrestaShop's own Configuration API,
  * which is what the back office calls, so multistore scoping and the
  * configuration cache behave the same way they do for a merchant.

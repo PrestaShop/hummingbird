@@ -10,6 +10,8 @@ This file describes the theme as it is today and goes stale on its own. Update i
 
 Items marked **(config)** change a shop-wide setting. Note the current value first, and restore it before moving on, or every item after it is testing a different shop.
 
+Items marked **(human)** cannot be settled by a machine. A tool can measure them and show the number and the picture, and several here say what it can measure, but the verdict is a person's: judging a colour over a photograph, whether a focus ring is visible enough, whether anything was lost at 300% zoom, or what a screen reader actually announces. A pass that reports them green without a person having looked is not a pass, it is a gap with a tick in it.
+
 ## 1. Environment
 
 ### 1.1 Build the theme
@@ -28,7 +30,7 @@ Two options. Pick the first one to test the working copy, the second one to test
 
 Follow [Run Hummingbird with Docker](../../README.md#-run-hummingbird-with-docker) in the README. The compose files mount the repository root on `themes/hummingbird`, so the install runs the working copy.
 
-- [ ] Front office and back office both respond (the compose files serve them on port 8887, back office on `/admin-dev`)
+- [ ] Front office and back office both respond. The addresses depend on how the shop is run: the compose files in this repository happen to serve port 8887 with the back office on `/admin-dev`, but any other installation will differ, so use the addresses of the shop under test
 
 #### Option B: a PrestaShop/PrestaShop checkout
 
@@ -36,8 +38,9 @@ Follow [Run Hummingbird with Docker](../../README.md#-run-hummingbird-with-docke
 
 Hummingbird is the default theme of a fresh core install: the core ships `PS_FF_DEFAULT_THEME=hummingbird` in `.env`, and `Theme::DEFAULT_THEME` falls back to the same value. Nothing to switch on in the back office.
 
+To test local changes rather than the released theme, replace `themes/hummingbird` with a symlink to this working copy, or declare a composer path repository pointing at it. That is setup, not a test, so it carries no tick box.
+
 - [ ] Confirm which tag composer resolved: `composer show prestashop/hummingbird`
-- [ ] To test local changes instead, replace `themes/hummingbird` with a symlink to this working copy, or declare a composer path repository pointing at it
 
 #### Both options
 
@@ -66,10 +69,10 @@ Run the pass twice on Chrome, once per profile. Use two Chrome profiles, or a se
 
 Cover at least once:
 
-- [ ] Safari, desktop and iOS
+- [ ] Safari, desktop and iOS **(human)**: WebKit can be driven for the desktop half; iOS needs the real device
 - [ ] A second language (`ps_languageselector`, translations, date and price formats)
 - [ ] A second currency (`ps_currencyselector`)
-- [ ] Multistore, if the change touches header, footer or URLs **(config)**
+- [ ] Multistore, if the change touches header, footer or URLs **(config)** **(human)**
 
 ### 1.4 Cache
 
@@ -93,12 +96,12 @@ Do these once per profile on any page, then spot-check elsewhere.
 - [ ] `ps_searchbar`: autocomplete, no-result state, submit
 - [ ] `ps_customersignin`, `ps_shoppingcart`, `ps_languageselector`, `ps_currencyselector` in the top nav
 - [ ] `ps_contactinfo` in `displayNav1`
-- [ ] `blockreassurance` band in `displayNavFullWidth`
-- [ ] Sticky behaviour, no layout shift on scroll
+- [ ] `blockreassurance` band in `displayNavFullWidth` **(config)**: the module returns nothing from this hook unless its Reassurance block position is set to below the header (`PSR_HOOK_HEADER`), which is off by default, so set it before reading this point
+- [ ] Sticky behaviour, no layout shift on scroll **(human)**: the position, the offsets and the document height can be measured, but whether it reads as intended is a look
 
 ### 2.2 Footer
 
-- [ ] `ps_socialfollow`, `ps_emailsubscription`, `blockreassurance` in `displayFooterBefore`, and the second `blockreassurance` in `displayFooterAfter`: two instances render in the footer area, check both
+- [ ] `ps_socialfollow`, `ps_emailsubscription`, `blockreassurance` in `displayFooterBefore`, and the second `blockreassurance` in `displayFooterAfter`: two instances render in the footer area, check both **(config)**: the second band depends on `PSR_HOOK_FOOTER` and `ps_socialfollow` renders nothing until at least one `BLOCKSOCIAL_*` URL is filled in, both off by default
 - [ ] `ps_linklist`, `ps_customeraccountlinks`, `ps_contactinfo` in `displayFooter`
 - [ ] Copyright block
 - [ ] All links resolve, no 404 and no `#`
@@ -117,7 +120,7 @@ Do these once per profile on any page, then spot-check elsewhere.
 
 - [ ] No JS error in the console on any page visited
 - [ ] No 404 on CSS, JS, fonts or images
-- [ ] No unstyled flash
+- [ ] No unstyled flash **(human)**: it is over before a settled page can be photographed, so watch the first frames of a cold load
 - [ ] Images use the image types declared in `config/theme.yml` and are not upscaled
 - [ ] If the change touches `templates/layouts/`, every layout in that directory still renders, with no empty column. `config/theme.yml` declares only the selectable ones, so it is not the source here: `layout-content-only.tpl` is reached through `content_only` and `layout-error.tpl` through the error pages in 3.10
 
@@ -272,10 +275,10 @@ Enable the `improved_shipment` feature flag in Advanced Parameters > Feature fla
 - [ ] 404 and not-found
 - [ ] 410
 - [ ] Forbidden
-- [ ] Maintenance **(config)**
-- [ ] Restricted country **(config)**
+- [ ] Shop closed to visitors, which is the maintenance page: turning off Enable Shop (`PS_SHOP_ENABLE`) serves it with a 503 to everyone **(config)**
+- [ ] The maintenance IP allowance: a named address still sees the shop while everyone else gets the maintenance page **(config)**
+- [ ] Restricted country **(config)** **(human)**: it needs a request from an address that resolves to a blocked country
 - [ ] Catalogue mode: no price, no add to cart **(config)**
-- [ ] Shop closed for visitors **(config)**
 
 ## 4. Back-office settings and their front-office impact
 
@@ -307,7 +310,7 @@ Not a separate pass. These are the settings that change what section 3 renders, 
 | Contact details and stores (Contact > Stores) | Header, footer, Stores page, Contact page |
 | Display suppliers | Enables `/suppliers` |
 | Display brands | Enables `/brands` |
-| Display best sellers | Enables `/best-sales` |
+| Display best sellers | Enables `/best-sellers` (the controller is named `best-sales`, the page is not) |
 | Display merchandise returns | Returns section in the customer account |
 | Cart rules (Catalog > Discounts) | Voucher block in the customer account and in the cart |
 
@@ -364,7 +367,7 @@ composer show 'prestashop/*' --direct | grep -E 'blockreassurance|contactform|pr
 | `ps_featuredproducts` | `displayHome`, `displayCrossSellingShoppingCart`, `displayOrderConfirmation2` | Product count from its configuration, category selection, empty state |
 | `ps_banner` | `displayHome` | Image, link, empty state |
 | `ps_newproducts` | `displayHome`, `/new-products` | Block and page, no-new-product state |
-| `ps_bestsellers` | `displayHome`, `/best-sales` | Block and page, needs order history |
+| `ps_bestsellers` | `displayHome`, `/best-sellers` | Block and page, needs order history |
 
 ### 5.3 Listings and catalogue
 
@@ -419,11 +422,11 @@ composer show 'prestashop/*' --direct | grep -E 'blockreassurance|contactform|pr
 Run on home, a category, a product, the cart, the checkout and the account.
 
 - [ ] Keyboard only: every page usable and every form completable, in a sensible order
-- [ ] Focus always visible, and never lost or stranded after a modal or a panel closes
+- [ ] Focus always visible, and never lost or stranded after a modal or a panel closes **(human)**: a ring drawn with a shadow, a border or a pseudo-element can be shown to change, but not to be visible enough
 - [ ] Forms: every field labelled, errors reaching the user and pointing at the field
-- [ ] Colour contrast at WCAG AA
-- [ ] Zoomed in, without loss of content or function
-- [ ] VoiceOver on macOS and iOS through the full purchase funnel, including cart and filter updates
+- [ ] Colour contrast at WCAG AA **(human)**: a checker only judges plain text on a plain background, and returns "cannot tell" over a photo, a gradient or a see-through layer, which is where this theme puts its hero and its tiles
+- [ ] Zoomed in, without loss of content or function **(human)**
+- [ ] VoiceOver on macOS and iOS through the full purchase funnel, including cart and filter updates **(human)**: reading the accessibility tree instead is not the same test
 - [ ] axe or Lighthouse accessibility audit clean
 
 ## 7. Responsive and performance
@@ -442,11 +445,11 @@ Minimum tested width is 375px. Widths come from `$grid-breakpoints` in `src/scss
 
 - [ ] 375px, the narrowest supported width
 - [ ] Every boundary from `sm` up, entered from below and from above, checking the boundary itself and one pixel under it
-- [ ] No horizontal scroll at any width
-- [ ] Touch targets large enough on mobile
+- [ ] No horizontal scroll at any width **(human)**: a fixed panel parked off-screen measures the same as a real overflow, so the number is evidence rather than a verdict
+- [ ] Touch targets large enough on mobile **(human)**: a control under 44 by 44 can still be comfortable with padding around it
 - [ ] Tables and wide blocks scroll inside their own container
-- [ ] Lighthouse on home, category and product, compared with the previous release
-- [ ] No layout shift from images or late-loading modules
+- [ ] Lighthouse on home, category and product, compared with the previous release **(human)**: the scores can be recorded automatically, but the comparison needs the previous release stood up alongside
+- [ ] No layout shift from images or late-loading modules **(human)**: a cumulative shift score is a measurement, not a verdict on what moved
 - [ ] Fonts and above-the-fold assets preloaded (`_partials/preload.tpl`)
 
 ## 8. Sign-off

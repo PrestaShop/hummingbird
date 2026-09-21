@@ -114,7 +114,7 @@
 
       {if !$form_has_continue_button}
         {include file='checkout/_partials/checkout-step-buttons.tpl' show_back_button=false submit_name='confirm-addresses' submit_value='1' form_id=$addresses_form_id}
-        <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" form="{$addresses_form_id}" value="{$not_valid_addresses}">
+        <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
       {/if}
     </div>
 

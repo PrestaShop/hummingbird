@@ -42,7 +42,7 @@
       <div class="product-comments-summary__left">
         <div class="product-comments-summary__score-container">
           <span class="product-comments-summary__average-score">{$average_grade|number_format:1}</span>
-          <span class="product-comments-summary__max-score">{l s='/5.0' d='Modules.Productcomments.Shop'}</span>
+          <span class="product-comments-summary__max-score">5.0</span>
         </div>
         <div class="product-comments-summary__stars">
           {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade showGradeAverage=false showNbComments=false}

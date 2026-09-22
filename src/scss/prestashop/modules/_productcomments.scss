@@ -399,6 +399,13 @@
     font-weight: 700;
   }
 
+  &__max-score {
+    &::before  {
+      margin-inline-end: 0.25rem;
+      content: "/";
+    }
+  }
+
   &__stars {
     margin-block-end: 0.5rem;
   }

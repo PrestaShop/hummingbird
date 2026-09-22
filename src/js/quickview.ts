@@ -14,7 +14,7 @@ export default function initQuickview() {
   let lastQuickviewOpener: HTMLElement | null = null;
 
   async function fetchQuickview(data: Record<string, unknown>): Promise<QuickviewResponse> {
-    const url = prestashop.urls.pages.product as string;
+    const url = prestashop.urls.pages.product;
     const params = new URLSearchParams();
 
     Object.entries(data).forEach(([key, value]) => {

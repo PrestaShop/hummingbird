@@ -18,7 +18,7 @@ beforeAll(() => {
 
   window.prestashop = {
     responsive: {},
-  };
+  } as PrestaShop.Global;
 
   window.Theme = {
     ...window.Theme,

@@ -10,6 +10,8 @@ This file describes the theme as it is today and goes stale on its own. Update i
 
 Items marked **(config)** change a shop-wide setting. Note the current value first, and restore it before moving on, or every item after it is testing a different shop.
 
+This folder is not just this file. `seed.php` brings a demo shop up to the state the list below assumes, `config.php` reads and writes one setting through the API the back office itself calls, and `bem-inventory.mjs` prints the theme's real class names. Section 1.5 says how to use them. Start there: most of what looks unanswerable on a fresh demo install is a shop that has not been prepared.
+
 Items marked **(human)** cannot be settled by a machine. A tool can measure them and show the number and the picture, and several here say what it can measure, but the verdict is a person's: judging a colour over a photograph, whether a focus ring is visible enough, whether anything was lost at 300% zoom, or what a screen reader actually announces. A pass that reports them green without a person having looked is not a pass, it is a gap with a tick in it.
 
 ## 1. Environment
@@ -84,6 +86,32 @@ In Advanced Parameters > Performance:
 - [ ] Browser cache disabled in DevTools, or a hard reload after `npm run build`
 
 See [Troubleshooting](../../README.md#-troubleshooting) in the README if assets still do not update.
+
+### 1.5 Prepare the shop
+
+A fresh demo install cannot answer this list. It has no linked accessory, so the You might also like block never renders; no paid order, so best sellers and cross-selling have nothing to rank; one currency, no cart rule, nothing out of stock, no product whose minimum quantity is above one, and every product on the same carriers, so no cart can be made to split. None of that is a defect of the theme, and a pass that reports it as one has spent its time describing the shop.
+
+`seed.php` makes the narrowest thing each of those points needs, through PrestaShop's own model classes so search indexes, image types and friendly URLs stay consistent. It is idempotent, it names everything `QA` so a human can tell it apart a month later, and it reports what it did.
+
+```bash
+# the shop root is the working directory, not where the file lives
+php docs/qa/seed.php --status     # what is missing, changes nothing
+php docs/qa/seed.php --apply      # create it
+php docs/qa/seed.php --undo       # put back everything that can be put back
+```
+
+Run `--status` before starting. What it lists missing is the difference between answering the checklist and explaining why you could not.
+
+It creates, each for a named point: a linked accessory; a cart rule; a second currency; an additional description on a category; a **B2B customer group showing prices excluding tax, with category and module access copied from the default group**; a validated order; an out-of-stock product; a product whose minimum quantity is above one; a product that answers 410; a carrier restricted so a cart splits into several shipments; an image customisation field and a second customisable product; and a category whose subcategories have mixed thumbnails.
+
+The B2B group is worth its own sentence. A group created by hand gets no category or module access, and PrestaShop grants both per group: every category then answers 403 and the header comes out empty, which reads exactly like the theme collapsing. The script copies the access from the default customer group. Section 1.3's B2B profile does not work without this.
+
+`--undo` restores the settings it changed and deletes the records it created. One thing it cannot undo is the order it moved to Payment accepted, and it says so at the end of the run rather than leaving it implicit.
+
+Two more things live here:
+
+* `config.php --get NAME` / `--set NAME=value` / `--unset NAME` reads and writes one setting through the Configuration API the back office calls, printing the value read back rather than the one asked for. Section 4 is twenty-four settings to flip and restore; use this for the flip and the browser for the front office half. A pass that cannot put a setting back is worse than one that never changed it.
+* `bem-inventory.mjs` prints the class names that actually reach the browser, read out of the templates and the stylesheets. Read it before writing a selector: the pager is a `<button data-ps-data>` rather than an `<a href>`, a cart line is `.cart__item`, a miniature title is `a.product-miniature__title`. A guessed selector reports a working theme as broken, which costs more than the check was worth.
 
 ## 2. Cross-page checks
 
@@ -299,7 +327,7 @@ Not a separate pass. These are the settings that change what section 3 renders, 
 | Setting | FO impact |
 | --- | --- |
 | Enable B2B mode (Customer settings > General) | Adds the Identification number field |
-| Customer group price display, tax incl. or excl. | Every price on the site |
+| Customer group price display, tax incl. or excl. (Sell > Customers > Groups, not Customer settings; on PrestaShop 9.2 that page needs the `customer_group` feature flag, and `seed.php` makes the B2B group for you) | Every price on the site |
 | Ask for birth date, opt-in, partner offers | Registration and identity forms |
 | Enable guest checkout | Checkout personal information step |
 
@@ -311,7 +339,7 @@ Not a separate pass. These are the settings that change what section 3 renders, 
 | Display suppliers | Enables `/suppliers` |
 | Display brands | Enables `/brands` |
 | Display best sellers | Enables `/best-sellers` (the controller is named `best-sales`, the page is not) |
-| Display merchandise returns | Returns section in the customer account |
+| Display merchandise returns (Customer Service > Merchandise Returns, not Shop Parameters > General) | Returns section in the customer account, and the returns controller answers 404 while it is off |
 | Cart rules (Catalog > Discounts) | Voucher block in the customer account and in the cart |
 
 ### 4.4 Order settings

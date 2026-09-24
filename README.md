@@ -15,6 +15,7 @@ supported by each branch.
 | ----------- | ---------- | ------ |
 | `develop`   | `~10.0.0`  | Next major |
 | `2.x`       | `~9.2.0`   | Maintained |
+| `2.1.1`     | `~9.2.0`   | Released |
 | `2.1.0`     | `~9.2.0`   | Released |
 | `2.0.0`     | `~9.1.0`   | Released |
 

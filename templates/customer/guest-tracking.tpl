@@ -19,7 +19,7 @@
 {if !$registered_customer_exists}
   {block name='page_content' append}
     {block name='account_transformation_form'}
-      {include file='customer/_partials/account-transformation-form.tpl'}
+      {include file='customer/_partials/account-transformation-form.tpl' order_reference=$order.details.reference guest_email=$guest_email}
     {/block}
   {/block}
 {/if}

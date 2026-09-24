@@ -15,6 +15,13 @@
 
   <form method="post">
     <input type="hidden" name="submitTransformGuestToCustomer" value="1">
+    {* WHY: the guest tracking form is posted, so the order lookup is no longer in the URL this form posts back
+       to, and the controller finds nothing to transform without it. Order confirmation includes this partial
+       without these parameters and resolves the order from the cart instead. *}
+    {if isset($order_reference) && isset($guest_email)}
+      <input type="hidden" name="order_reference" value="{$order_reference}">
+      <input type="hidden" name="email" value="{$guest_email}">
+    {/if}
 
     <div class="mb-3">
       <label class="form-label" for="field-email">

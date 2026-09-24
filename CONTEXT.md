@@ -177,3 +177,9 @@ When asked to write or modify code, you MUST follow these rules:
 9. **Keep it modular (SRP):** Separate logic into cohesive components.
 10. **Smarty variables:** Ensure proper escaping for Smarty variables
     (e.g., `{$variable|escape:'html':'UTF-8'}`).
+11. **QA checklist sync:** `docs/qa/testing-checklist.md` lists what to test in
+    the theme, and every list in it is derived from a file in the repository.
+    When you change hook assignments in `config/theme.yml`, add or remove a
+    module override under `modules/`, add a page or partial under `templates/`,
+    or change the breakpoints, you MUST update that file in the same change. Its
+    section 9 maps each list back to its source.

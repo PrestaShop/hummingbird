@@ -91,3 +91,6 @@ ai-prompt.md
 chat-history.md
 scratchpad.md
 .ai-history/
+
+# Hummingbird QA seed: per-shop record of what --undo must restore
+docs/qa/.seed-state.json

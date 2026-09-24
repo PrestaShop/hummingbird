@@ -125,6 +125,7 @@
               </div>
             {/foreach}
           {/if}
+          {hook h='displayOrderDetailProductLine' id_order=$product.id_order id_order_detail=$product.id_order_detail id_product=$product.id_product}
         </span>
       </span>
     </span>

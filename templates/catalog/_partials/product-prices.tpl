@@ -55,36 +55,40 @@
           {/if}
         {/block}
 
-        <div class="product__tax-infos">
-          <span class="product__tax-label">
-            {if !$configuration.taxes_enabled}
-              {l s='No tax' d='Shop.Theme.Catalog'}
-            {elseif $configuration.display_taxes_label}
-              {$product.labels.tax_long}
-            {/if}
-            
-            {hook h='displayProductPriceBlock' product=$product type="price"}
-            {hook h='displayProductPriceBlock' product=$product type="after_price"}
-          </span>
-
-          {* Separator *}
-          {if $configuration.display_taxes_label && $product.ecotax.amount > 0}<span class="product__price-separator"> - </span>{/if}
-
-          {block name='product_ecotax'}
-            {if $product.ecotax.amount> 0}
-              <span class="product__ecotax-price">
-                {l s='Including %amount% for ecotax' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.ecotax.value]}
-                {if $product.has_discount}
-                  {l s='(not impacted by the discount)' d='Shop.Theme.Catalog'}
+        {capture name='product_price_hooks'}{hook h='displayProductPriceBlock' product=$product type="price"}{hook h='displayProductPriceBlock' product=$product type="after_price"}{/capture}
+        {if $configuration.display_taxes_label || $product.ecotax.amount > 0 || $smarty.capture.product_price_hooks|trim}
+          <div class="product__tax-infos">
+            <span class="product__tax-label">
+              {if $configuration.display_taxes_label}
+                {if $configuration.taxes_enabled}
+                  {$product.labels.tax_long}
+                {else}
+                  {l s='No tax' d='Shop.Theme.Catalog'}
                 {/if}
-              </span>
-            {/if}
-          {/block}
-        </div>
+              {/if}
+
+              {$smarty.capture.product_price_hooks nofilter}
+            </span>
+
+            {* Separator *}
+            {if $configuration.display_taxes_label && $product.ecotax.amount > 0}<span class="product__price-separator"> - </span>{/if}
+
+            {block name='product_ecotax'}
+              {if $product.ecotax.amount> 0}
+                <span class="product__ecotax-price">
+                  {l s='Including %amount% for ecotax' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.ecotax.value]}
+                  {if $product.has_discount}
+                    {l s='(not impacted by the discount)' d='Shop.Theme.Catalog'}
+                  {/if}
+                </span>
+              {/if}
+            {/block}
+          </div>
+        {/if}
 
         {block name='product_without_taxes'}
           {if $priceDisplay == 0 && $configuration.is_b2b}
-            <span class="product__taxless-price">{l s='%price% tax excluded' d='Shop.Theme.Catalog' sprintf=['%price%' => $product.price_tax_exc]}</span>
+            <span class="product__taxless-price">{l s='%price% tax excluded' d='Shop.Theme.Catalog' sprintf=['%price%' => $product.price_tax_excluded]}</span>
           {/if}
         {/block}
       </div>

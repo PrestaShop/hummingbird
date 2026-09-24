@@ -47,6 +47,16 @@ interface UsefulnessResponse {
   error?: string;
 }
 
+interface ProductListReviewData {
+  id_product: number;
+  comments_nb: string;
+  average_grade: number | null;
+}
+
+interface ProductListReviewsResponse {
+  products: ProductListReviewData[];
+}
+
 interface ReportResponse {
   success: boolean;
   error?: string;
@@ -808,13 +818,15 @@ class ProductListReviews {
   private static async loadProductListReviews(): Promise<void> {
     const {productListReviews} = ProductCommentsElements;
 
-    if (!productListReviews) return;
+    if (productListReviews.length === 0) return;
 
+    // The same product can appear in several widgets, and the ratings endpoint
+    // fails on a duplicated id list.
     const productIds: Array<number> = [];
     productListReviews.forEach((review) => {
       const productId = parseInt(review.getAttribute('data-id') || '0', 10);
 
-      if (productId > 0) {
+      if (productId > 0 && productIds.indexOf(productId) === -1) {
         productIds.push(productId);
       }
     });
@@ -822,39 +834,87 @@ class ProductListReviews {
     if (productIds.length === 0) return;
 
     try {
-      const productListReview = document.querySelector(SELECTORS.PRODUCT_LIST_REVIEW);
-      const url = productListReview?.getAttribute('data-url');
+      const url = productListReviews[0].getAttribute('data-url');
 
       if (!url) return;
 
-      const response = await fetch(`${url}?id_products[]=${productIds.join('&id_products[]=')}`);
+      // The endpoint url can already carry a query string, so the ids cannot be
+      // appended with a literal `?`.
+      const endpoint = new URL(url, window.location.href);
+      productIds.forEach((productId) => {
+        endpoint.searchParams.append('id_products[]', productId.toString());
+      });
 
-      if (response.status === 200) {
-        const data = await response.json();
-        this.updateProductListReviews(data);
+      const response = await fetch(endpoint.toString());
+
+      if (!response.ok) {
+        console.warn(`Product list reviews request failed with status ${response.status}`);
+
+        return;
       }
+
+      // The endpoint answers 200 with an empty body when it has nothing to return.
+      const payload = await response.text();
+
+      if (payload.trim() === '') return;
+
+      const data = JSON.parse(payload) as ProductListReviewsResponse;
+
+      if (!Array.isArray(data?.products)) {
+        console.warn('Unexpected product list reviews payload:', payload.slice(0, 200));
+
+        return;
+      }
+
+      this.updateProductListReviews(data);
     } catch (error) {
       console.error('Error loading product list reviews:', error);
     }
   }
 
-  private static updateProductListReviews(
-    data: { products: Array<{ id_product: number; comments_nb: string; average_grade: number | null }> },
-  ): void {
+  private static updateProductListReviews(data: ProductListReviewsResponse): void {
     const {productListReviews} = ProductCommentsElements;
+    const reviewsByProductId: Record<number, ProductListReviewData> = {};
+
+    data.products.forEach((product) => {
+      reviewsByProductId[product.id_product] = product;
+    });
 
     productListReviews.forEach((review) => {
       const productId = parseInt(review.getAttribute('data-id') || '0', 10);
-      const productData = data.products.find((p) => p.id_product === productId);
+      const productData = reviewsByProductId[productId];
+      const commentsNb = productData ? parseInt(String(productData.comments_nb), 10) : 0;
+      const averageGrade = productData ? productData.average_grade : null;
 
-      if (productData && productData.comments_nb !== '0' && productData.average_grade !== null) {
-        this.updateSingleProductReview(review as HTMLElement, {
-          grade: Math.round(productData.average_grade),
-          comments_nb: parseInt(productData.comments_nb, 10),
-        });
-        review.classList.add('d-flex');
+      // Reset, otherwise a product whose reviews were deleted keeps its old grade.
+      if (!commentsNb || averageGrade === null) {
+        this.clearProductListReview(review as HTMLElement);
+
+        return;
       }
+
+      this.updateSingleProductReview(review as HTMLElement, {
+        grade: Math.round(averageGrade),
+        comments_nb: commentsNb,
+      });
+      review.classList.add('d-flex');
     });
+  }
+
+  private static clearProductListReview(reviewElement: HTMLElement): void {
+    reviewElement.classList.remove('d-flex');
+
+    const starsContainer = reviewElement.querySelector(SELECTORS.GRADE_STARS);
+
+    if (starsContainer) {
+      ProductCommentsRating.renderStars(starsContainer, 0);
+    }
+
+    const productListCommentsNumber = ProductCommentsElements.getProductListCommentsNumber(reviewElement);
+    const productListGradeNumber = ProductCommentsElements.getProductListGradeNumber(reviewElement);
+
+    if (productListCommentsNumber) productListCommentsNumber.textContent = '0';
+    if (productListGradeNumber) productListGradeNumber.textContent = '0';
   }
 
   private static updateSingleProductReview(
@@ -863,20 +923,19 @@ class ProductListReviews {
     const starsContainer = reviewElement.querySelector(SELECTORS.GRADE_STARS);
 
     if (starsContainer) {
-      this.updateStarsWithRating(starsContainer, data.grade);
+      ProductCommentsRating.renderStars(starsContainer, data.grade);
     }
 
     const productListCommentsNumber = ProductCommentsElements.getProductListCommentsNumber(reviewElement);
-    const productListGradeNUmber = ProductCommentsElements.getProductListGradeNumber(reviewElement);
+    const productListGradeNumber = ProductCommentsElements.getProductListGradeNumber(reviewElement);
 
-    if (productListCommentsNumber && productListGradeNUmber) {
+    if (productListCommentsNumber) {
       productListCommentsNumber.textContent = data.comments_nb.toString();
-      productListGradeNUmber.textContent = data.grade.toString();
     }
-  }
 
-  private static updateStarsWithRating(container: Element, grade: number): void {
-    ProductCommentsRating.renderStars(container, grade);
+    if (productListGradeNumber) {
+      productListGradeNumber.textContent = data.grade.toString();
+    }
   }
 }
 

@@ -11,7 +11,7 @@
 {/if}
 
 {if isset($next_step) && (!isset($show_next_button) || $show_next_button)}
-  <button type="{if isset($submit_type)}{$submit_type}{else}submit{/if}" class="btn btn-primary" {if isset($submit_name)}name="{$submit_name}"{/if} {if isset($submit_value)}value="{$submit_value}"{/if}>
+  <button type="{if isset($submit_type)}{$submit_type}{else}submit{/if}" class="btn btn-primary" {if isset($submit_name)}name="{$submit_name}"{/if} {if isset($submit_value)}value="{$submit_value}"{/if}{if isset($form_id)} form="{$form_id}"{/if}>
     {l s='Continue to %step_title%' d='Shop.Theme.Actions' sprintf=['%step_title%' => $next_step.title]}
     <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C8;</i>
   </button>

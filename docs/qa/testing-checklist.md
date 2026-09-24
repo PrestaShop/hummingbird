@@ -121,7 +121,7 @@ Do these once per profile on any page, then spot-check elsewhere.
 
 - [ ] Logo, and its link to the home page
 - [ ] `ps_mainmenu`: desktop dropdowns, mobile burger, keyboard traversal
-- [ ] `ps_searchbar`: autocomplete, no-result state, submit
+- [ ] `ps_searchbar`: autocomplete, no-result state, submit. Fuzzy search (`PS_SEARCH_FUZZY`) is on by default and finds products for any short nonsense word, so reach the no-result state with a term of ten or more letters, or with fuzzy search off
 - [ ] `ps_customersignin`, `ps_shoppingcart`, `ps_languageselector`, `ps_currencyselector` in the top nav
 - [ ] `ps_contactinfo` in `displayNav1`
 - [ ] `blockreassurance` band in `displayNavFullWidth` **(config)**: the module returns nothing from this hook unless its Reassurance block position is set to below the header (`PSR_HOOK_HEADER`), which is off by default, so set it before reading this point
@@ -129,7 +129,7 @@ Do these once per profile on any page, then spot-check elsewhere.
 
 ### 2.2 Footer
 
-- [ ] `ps_socialfollow`, `ps_emailsubscription`, `blockreassurance` in `displayFooterBefore`, and the second `blockreassurance` in `displayFooterAfter`: two instances render in the footer area, check both **(config)**: the second band depends on `PSR_HOOK_FOOTER` and `ps_socialfollow` renders nothing until at least one `BLOCKSOCIAL_*` URL is filled in, both off by default
+- [ ] `ps_socialfollow`, `ps_emailsubscription`, and `blockreassurance` in `displayFooterBefore` (`PSR_HOOK_FOOTER` = 2) or `displayFooterAfter` (`PSR_HOOK_FOOTER` = 1): the band renders in one position at a time, check each **(config)**: the band depends on `PSR_HOOK_FOOTER` and `ps_socialfollow` renders nothing until at least one `BLOCKSOCIAL_*` URL is filled in, both off by default
 - [ ] `ps_linklist`, `ps_customeraccountlinks`, `ps_contactinfo` in `displayFooter`
 - [ ] Copyright block
 - [ ] All links resolve, no 404 and no `#`
@@ -402,7 +402,7 @@ composer show 'prestashop/*' --direct | grep -E 'blockreassurance|contactform|pr
 | Module | Hook or location | Check |
 | --- | --- | --- |
 | `ps_facetedsearch` (JS) | `displayLeftColumn` | Each facet widget type, active filters, clear all, URL sync, browser back and forward, mobile filter panel, slider bounds |
-| `ps_categorytree` (JS) | `displayLeftColumn` | Expand and collapse, current category highlighted, deep nesting |
+| `ps_categorytree` (JS) | `displayLeftColumn` | Expand and collapse, deep nesting. The current category only shows with Category root set to Current category (`BLOCK_CATEG_ROOT_CATEGORY` = 1, or 3 for "current unless it has no subcategories"): the tree is then rooted at the category being browsed. The default, Home category (0), draws the whole tree and marks nothing |
 | `ps_specials` | Column or home block, `/prices-drop` | Needs an active specific price |
 | `ps_brandlist` | Column block, `/brands` | Disabled by default. Block, form variant, text variant |
 | `ps_supplierlist` | Column block, `/suppliers` | Disabled by default. Same three variants |

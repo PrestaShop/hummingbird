@@ -266,7 +266,8 @@ function accessories(): void
 /**
  * 3.5/09 and 3.8/09. A voucher that applies to the customer, so the cart can
  * exercise apply, invalid code and remove, and the account has something on
- * its Vouchers page.
+ * its Vouchers page. The Vouchers page lists only rules restricted to the
+ * customer, so the rule is given to the demo customer rather than to everyone.
  */
 function cartRule(): void
 {
@@ -312,11 +313,12 @@ function cartRule(): void
     $rule->active = true;
     $rule->highlight = true;
     $rule->partial_use = true;
+    $rule->id_customer = (int) Customer::customerExists('pub@prestashop.com', true);
     $rule->add();
 
     $state['cartRule'] = (int) $rule->id;
     saveState($state);
-    record('3.5/09', 'a voucher (' . $code . ')', 'made', '10% off, no minimum');
+    record('3.5/09', 'a voucher (' . $code . ')', 'made', '10% off, no minimum, for ' . ($rule->id_customer ? 'customer ' . $rule->id_customer : 'every customer: the demo customer was not found, so 3.8/09 has nothing to list'));
 }
 
 /**
@@ -369,7 +371,15 @@ function validateAnOrder(): void
     $paid = (int) Configuration::get('PS_OS_PAYMENT');
     $order = new Order($idOrder);
     $was = (int) $order->current_state;
-    $order->setCurrentState($paid);
+    // Order::setCurrentState() without its last call: addWithemail() sends the
+    // status email, which needs the Symfony container a CLI script does not have
+    // (ContainerNotFoundException), and the script would die with nothing after
+    // this made and no state saved. add() records the same history row, silently.
+    $history = new OrderHistory();
+    $history->id_order = $idOrder;
+    $history->id_employee = 0;
+    $history->changeIdOrderState($paid, $order, !$order->hasInvoice());
+    $history->add();
     ProductSale::fillProductSales();
 
     $state['validatedOrder'] = ['id' => $idOrder, 'was' => $was];
@@ -834,8 +844,9 @@ function settings(): void
     // 2.1/06: blockreassurance returns nothing from displayNavFullWidth unless
     // this reads 1, so the band the checklist asks for cannot appear.
     needConfig('2.1/06', 'PSR_HOOK_HEADER', '1', 'the reassurance band below the header');
-    // 2.2/01: the same module decides the second footer band.
-    needConfig('2.2/01', 'PSR_HOOK_FOOTER', '1', 'the second reassurance band in the footer');
+    // 2.2/01: the same module decides the footer band, one position at a time:
+    // 1 is displayFooterAfter, 2 is displayFooterBefore. Check the other by hand.
+    needConfig('2.2/01', 'PSR_HOOK_FOOTER', '1', 'the reassurance band in the footer (displayFooterAfter)');
     // 2.2/01: ps_socialfollow renders nothing until at least one URL is filled.
     needConfig('2.2/01', 'BLOCKSOCIAL_FACEBOOK', 'https://www.facebook.com/prestashop', 'so the social block has something to render');
     // 3.8/07: the merchandise returns pages 404 while this is off.
@@ -846,8 +857,17 @@ function settings(): void
     // than a merged bundle, and Smarty must not serve a cached page.
     needConfig('1.4/01', 'PS_CSS_THEME_CACHE', '0', 'CCC off');
     needConfig('1.4/01', 'PS_JS_THEME_CACHE', '0', 'CCC off');
+    // The Apache optimisation is the third CCC option. It lives in .htaccess, so
+    // the file is written again whenever the value moves, on --apply and --undo.
+    $htaccessWas = Configuration::get('PS_HTACCESS_CACHE_CONTROL');
+    needConfig('1.4/01', 'PS_HTACCESS_CACHE_CONTROL', '0', 'CCC off: the Apache optimisation');
+    if (Configuration::get('PS_HTACCESS_CACHE_CONTROL') !== $htaccessWas) {
+        record('1.4/01', '.htaccess', Tools::generateHtaccess() ? 'made' : 'missing', 'written again for PS_HTACCESS_CACHE_CONTROL');
+    }
     needConfig('1.4/02', 'PS_SMARTY_CACHE', '0', 'Smarty cache off');
-    needConfig('1.4/02', 'PS_SMARTY_FORCE_COMPILE', '1', 'Smarty force compile on');
+    // 2 is Force compilation (_PS_SMARTY_FORCE_COMPILE_); 1 only recompiles the
+    // templates that changed (_PS_SMARTY_CHECK_COMPILE_).
+    needConfig('1.4/02', 'PS_SMARTY_FORCE_COMPILE', '2', 'Smarty force compile on');
 }
 
 // ------------------------------------------------------------------- run it

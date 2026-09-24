@@ -72,6 +72,12 @@
             {block name='product_reviews'}
               {hook h='displayProductListReviews' product=$product}
             {/block}
+
+            {block name='product_availability_submessage'}
+              {if !empty($product.availability_submessage)}
+                <p class="{$componentName}__availability-submessage">{$product.availability_submessage}</p>
+              {/if}
+            {/block}
           </div>
 
           {block name='product_actions'}

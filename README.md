@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/PrestaShop/hummingbird/actions/workflows/lint.yml/badge.svg)
 ![Docker Ready](https://img.shields.io/badge/docker-ready-blue.svg)
-![Node.js v20](https://img.shields.io/badge/node.js-20.x-blue.svg)
+![Node.js v24](https://img.shields.io/badge/node.js-24.x-blue.svg)
 ![License](https://img.shields.io/badge/license-AFL%203.0-lightgray.svg)
 
 Hummingbird is a modern theme for PrestaShop. See the
@@ -33,8 +33,8 @@ supported by each branch.
 
 To work on Hummingbird, you'll need:
 
-- Node.js **v20.x**.
-- npm **v8**.
+- Node.js **v24.x**.
+- npm **v11**.
 
 ## 📑 Table of Contents
 

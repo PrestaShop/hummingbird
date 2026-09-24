@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "description": "Hummingbird development theme for PrestaShop",
   "engines": {
-    "node": ">= 20"
+    "node": ">= 24"
   },
   "main": "index.js",
   "scripts": {
@@ -35,9 +35,9 @@
     "@storybook/theming": "8.6.14",
     "@types/bootstrap": "^5.2.10",
     "@types/jest": "^29.5.13",
+    "@types/jquery": "^3.5.31",
     "@types/sprintf-js": "^1.1.4",
     "@types/wnumb": "^1.2.3",
-    "@types/jquery": "^3.5.31",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "autoprefixer": "^10.4.20",

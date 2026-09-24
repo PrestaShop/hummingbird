@@ -21,7 +21,7 @@ Follow the [README.md](README.md) for detailed setup and build instructions.
    [Set up your Git for contributing](https://build.prestashop-project.org/howtos/misc/set-up-your-git-for-contributing/)
 2. Use an editor that supports .editorconfig.<br>
    [Download an EditorConfig plugin](http://editorconfig.org/#download).
-3. Make sure you have [Node.js v20](https://nodejs.org/en/download/) installed.
+3. Make sure you have [Node.js v24](https://nodejs.org/en/download/) installed.
 4. If using AI tools to write code, make sure your agent has read the
    [`CONTEXT.md`](README.md#🤖-ai-assisted-development) file.
 

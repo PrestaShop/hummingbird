@@ -16,38 +16,35 @@
           data-ps-ref="product-images-modal-carousel"
         >
           <div class="carousel-inner">
+            {assign var='modalSizes' value=['default_md' => '320w', 'product_main' => '720w', 'product_main_2x' => '1440w']}
             {foreach from=$product.images item=image key=key name=productImages}
               <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
                 <picture>
-                  {if isset($image.bySize.default_md.sources.avif)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_md.sources.avif} 320w,
-                        {$image.bySize.product_main.sources.avif} 720w,
-                        {$image.bySize.product_main_2x.sources.avif} 1440w"
-                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
+                  {capture name='modalSrcsetAvif'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$modalSizes srcsetVariant='avif'}{/capture}
+                  {capture name='modalSrcsetWebp'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$modalSizes srcsetVariant='webp'}{/capture}
+                  {capture name='modalSrcset'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$modalSizes}{/capture}
+                  {if $smarty.capture.modalSrcsetAvif|trim}
+                    <source
+                      srcset="{$smarty.capture.modalSrcsetAvif|trim nofilter}"
+                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw"
                       type="image/avif"
                     >
                   {/if}
 
-                  {if isset($image.bySize.default_md.sources.webp)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_md.sources.webp} 320w,
-                        {$image.bySize.product_main.sources.webp} 720w,
-                        {$image.bySize.product_main_2x.sources.webp} 1440w"
-                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
+                  {if $smarty.capture.modalSrcsetWebp|trim}
+                    <source
+                      srcset="{$smarty.capture.modalSrcsetWebp|trim nofilter}"
+                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw"
                       type="image/webp"
                     >
                   {/if}
 
                   <img
                     class="img-fluid"
-                    srcset="
-                      {$image.bySize.default_md.url} 320w,
-                      {$image.bySize.product_main.url} 720w,
-                      {$image.bySize.product_main_2x.url} 1440w"
-                    sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
+                    {if $smarty.capture.modalSrcset|trim}
+                      srcset="{$smarty.capture.modalSrcset|trim nofilter}"
+                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw"
+                    {/if}
                     src="{$image.bySize.product_main.url}" 
                     width="{$image.bySize.product_main_2x.width}"
                     height="{$image.bySize.product_main_2x.height}"

@@ -8,45 +8,45 @@ export const layout = {
 };
 
 export const facetedsearch = {
-  range: '.js-faceted-slider',
-  rangeContainer: '.js-faceted-slider-container',
-  rangeValues: '.js-faceted-values',
-  filterSlider: '.js-faceted-filter-slider',
-  offCanvasFaceted: '#offcanvas-faceted',
+  rangeContainer: '[data-ps-ref="faceted-range-container"]',
+  rangeValues: '[data-ps-ref="faceted-range-values"]',
+  filterSlider: '[data-ps-ref="faceted-filter-slider"]',
+  offCanvasFaceted: '[data-ps-ref="faceted-offcanvas"]',
   colorLabel: '[data-ps-ref="color-label"]',
 };
 
-export const pageLoader = '.js-page-loader';
+export const pageLoader = '[data-ps-ref="page-loader"]';
 
 export const listing = {
-  searchFilterToggler: '#search_filter_toggler, .js-search-toggler',
-  searchFiltersWrapper: '#search_filters_wrapper',
-  searchFilterControls: '#search_filter_controls',
-  searchFilters: '#search-filters',
-  activeSearchFilters: '#js-active-search-filters',
-  listTop: '#js-product-list-top',
-  product: '.js-product',
-  list: '#js-product-list',
-  listBottom: '#js-product-list-bottom',
-  listHeader: '#js-product-list-header',
-  listFooter: '#js-product-list-footer',
-  searchFiltersClearAll: '.js-search-filters-clear-all',
-  searchLink: '.js-search-link',
-  paginationLink: '.js-pager-link',
+  searchFilters: '[data-ps-target="search-filters"]',
+  activeSearchFilters: '[data-ps-target="active-search-filters"]',
+  listTop: '[data-ps-target="product-list-top"]',
+  list: '[data-ps-target="product-list"]',
+  listBottom: '[data-ps-target="product-list-bottom"]',
+  listHeader: '[data-ps-target="product-list-header"]',
+  listFooter: '[data-ps-target="product-list-footer"]',
+  searchFiltersClearAll: '[data-ps-action="clear-search-filters"]',
+  searchLink: '[data-ps-action="apply-search-filter"]',
+  paginationLink: '[data-ps-action="paginate"]',
 };
 
 export const cart = {
-  container: '.js-cart-container',
-  summaryContainer: '.js-cart-summary',
-  overview: '.js-cart',
-  voucherCode: '.js-voucher-code',
-  voucherInput: '.js-voucher-input',
-  voucherAccordion: '.js-voucher-accordion',
-  productQuantity: '.js-cart-list .js-quantity-button',
-  productItem: '.js-cart-item',
-  productItemQuantityInput: '.js-cart-line-product-quantity',
-  removeFromCart: '.js-remove-from-cart',
-  alertPlaceholder: '.js-cart-update-alert',
+  container: '[data-ps-ref="cart-container"]',
+  summaryContainer: '[data-ps-ref="cart-summary"]',
+  overview: '[data-ps-ref="cart-overview"]',
+  voucherCode: '[data-ps-action="fill-voucher-code"]',
+  voucherInput: '[data-ps-ref="voucher-input"]',
+  voucherAccordion: '[data-ps-ref="voucher-accordion"]',
+  productQuantity: '[data-ps-ref="cart-list"] [data-ps-ref="quantity-input"]',
+  productItem: '[data-ps-ref="cart-item"]',
+  productItemQuantityInput: '[data-ps-ref="cart-line-quantity"]',
+  removeFromCart: '[data-ps-action="remove-from-cart"]',
+  alertPlaceholder: '[data-ps-target="cart-update-alert"]',
+  // These two are not selectors but values: our cart templates write them into
+  // data-link-action, and pages/cart.ts compares against them. data-link-action is the
+  // PrestaShop-wide naming convention for what a link does, so the names stay as they
+  // are for third-party compatibility — same reason the js-* classes stay in the markup.
+  // The same two names also live in state.ts (availableLastUpdateAction): rename both.
   deleteLinkAction: 'delete-from-cart',
   removeVoucherLinkAction: 'remove-voucher',
   voucherContainer: '[data-ps-ref="voucher-container"]',
@@ -57,70 +57,83 @@ export const cart = {
 };
 
 export const blockcart = {
-  modal: '#blockcart-modal',
+  // Deprecated duplicate of the top-level blockcartModal entry, which is what
+  // modules/blockcart.ts actually reads. Kept because Theme.selectors is public API;
+  // drop the whole export in the next major.
+  modal: '[data-ps-ref="blockcart-modal"]',
 };
 
 export const currencySelector = {
-  currencySelector: '.js-currency-selector',
+  currencySelector: '[data-ps-ref="currency-selector"]',
 };
 
 export const languageSelector = {
-  languageSelector: '.js-language-selector',
+  languageSelector: '[data-ps-ref="language-selector"]',
 };
 
 export const searchBar = {
-  searchCanvas: '.js-search-offcanvas',
-  searchWidget: '.js-search-widget',
-  searchDropdown: '.js-search-dropdown',
-  searchResults: '.js-search-results',
-  searchTemplate: '.js-search-template',
-  searchInput: '.js-search-input',
-  searchIcon: '.js-search-icon',
-  searchClear: '.js-search-clear',
+  searchCanvas: '[data-ps-ref="searchbar-offcanvas"]',
+  searchWidget: '[data-ps-ref="searchbar-widget"]',
+  searchDropdown: '[data-ps-ref="searchbar-dropdown"]',
+  searchResults: '[data-ps-target="searchbar-results"]',
+  searchTemplate: '[data-ps-template="searchbar-result"]',
+  searchInput: '[data-ps-ref="searchbar-input"]',
+  searchIcon: '[data-ps-action="searchbar-submit"]',
+  searchClear: '[data-ps-action="searchbar-clear"]',
   searchResultLink: '[data-ps-ref="searchbar-result-link"]',
+  searchResultImage: '[data-ps-ref="searchbar-result-image"]',
+  searchResultName: '[data-ps-ref="searchbar-result-name"]',
 };
 
 export const checkout = {
   steps: {
-    item: '.js-step-item',
-    current: '.js-current-step',
+    item: '[data-ps-ref="checkout-step-item"]',
+    // data-ps-state carries coexisting tokens here (current, complete, reachable),
+    // so these match a single token with ~= rather than the whole value.
+    current: '[data-ps-ref="checkout-step-content"][data-ps-state~="current"]',
+    complete: '[data-ps-ref="checkout-step-content"][data-ps-state~="complete"]',
+    reachable: '[data-ps-ref="checkout-step-content"][data-ps-state~="reachable"]',
     button: '[data-ps-ref="step-button"]',
-    shownResponsiveStep: '.checkout-steps__step-mobile:not(.d-none)',
-    specificStep: (param: string | undefined) => `.checkout-steps__step-mobile[data-step="${param}"]`,
-    specificStepContent: (param: string | undefined) => `#${param}`,
-    backButton: (param: string | undefined) => `.js-step-item button[data-bs-target="#${param}"]`,
+    shownResponsiveStep: '[data-ps-ref="checkout-step-mobile"]:not(.d-none)',
+    specificStep: (param: string | undefined) => `[data-ps-ref="checkout-step-mobile"][data-step="${param}"]`,
+    // These two keep an id on purpose. The step id comes from core
+    // (AbstractCheckoutStep::getIdentifier) and core's own JS clicks it:
+    // checkout-delivery.js and checkout-address.js target #checkout-delivery-step and
+    // #checkout-addresses-step, so the id is a contract, not a missed migration.
+    // backButton reaches the same id through Bootstrap's data-bs-target wiring.
+    specificStepContent: (param: string | undefined) => `[data-ps-ref="checkout-step-content"][data-step="${param}"]`,
+    backButton: (param: string | undefined) => `[data-ps-ref="checkout-step-item"] button[data-bs-target="#${param}"]`,
   },
-  actionsButtons: '.js-back, .js-edit-addresses, .js-edit-shipping',
-  termsLink: '.js-terms a',
-  checkoutModal: '#checkout-modal',
-  carrierExtraContentWrapper: '.js-carrier-extra',
-  carrierExtraContentWrapperActive: '.js-carrier-extra[data-active]',
-  carrierExtraContent: '.js-carrier-extra-content',
-  summaryContainer: '.js-checkout-summary',
+  actionsButtons: '[data-ps-action="checkout-back"], [data-ps-action="edit-addresses"], [data-ps-action="edit-shipping"]',
+  termsLink: '[data-ps-ref="terms-label"] a',
+  checkoutModal: '[data-ps-ref="terms-modal"]',
+  carrierExtraContentWrapper: '[data-ps-ref="carrier-extra"]',
+  carrierExtraContentWrapperActive: '[data-ps-ref="carrier-extra"][data-ps-state="active"]',
+  carrierExtraContent: '[data-ps-ref="carrier-extra-content"]',
+  summaryContainer: '[data-ps-ref="checkout-summary"]',
 };
 
 export const progressRing = {
   checkout: {
-    element: '.progress-ring',
-    circle: '.progress-ring__circle',
-    backgroundCircle: '.progress-ring__background-circle',
+    element: '[data-ps-ref="progress-ring"]',
+    circle: '[data-ps-ref="progress-ring-circle"]',
   },
-  text: '.progress-ring text',
+  text: '[data-ps-ref="progress-ring-text"]',
 };
 
 export const mobileMenu = {
-  openChildsButton: '.js-menu-open-child',
-  backTitle: '.js-menu-back-title',
-  backButton: '.js-back-button',
-  menuCanvas: '.js-menu-canvas',
-  menuCurrent: '.menu--current',
-  specificParent: (param: string | undefined) => `.menu--parent[data-depth="${param}"]`,
-  specificChild: (param: string | undefined) => `.menu[data-id="${param}"]`,
+  openChildsButton: '[data-ps-action="open-menu-child"]',
+  backTitle: '[data-ps-ref="menu-back-title"]',
+  backButton: '[data-ps-action="menu-back"]',
+  menuCanvas: '[data-ps-ref="menu-canvas"]',
+  menuCurrent: '[data-ps-ref="menu-panel"][data-ps-state="current"]',
+  specificParent: (param: string | undefined) => `[data-ps-ref="menu-panel"][data-ps-state="parent"][data-depth="${param}"]`,
+  specificChild: (param: string | undefined) => `[data-ps-ref="menu-panel"][data-id="${param}"]`,
 };
 
 export const guestPasswordToggle = {
-  checkbox: '.js-password-form__check',
-  passwordWrapper: '.js-password-form__input-wrapper',
+  checkbox: '[data-ps-ref="guest-password-checkbox"]',
+  passwordWrapper: '[data-ps-ref="guest-password-container"]',
 };
 
 export const visiblePassword = {
@@ -129,7 +142,6 @@ export const visiblePassword = {
 
 export const gdpr = {
   consent: '[data-ps-ref="gdpr-consent"]',
-  consentWrapper: '[data-ps-component="gdpr"]',
   checkbox: '[data-ps-ref="gdpr-checkbox"]',
   submitButton: '[data-ps-ref="gdpr-submit"]',
 };
@@ -160,16 +172,13 @@ export const desktopMenu = {
 };
 
 export const qtyInput = {
-  default: '.js-quantity-button',
-  idProductInput: 'input[name="id_product"]',
-  modal: '.modal-dialog .js-quantity-button',
-  increment: '.js-increment-button',
-  decrement: '.js-decrement-button',
-  quantityWanted: '.js-quantity-wanted',
-  confirm: '.confirmation',
-  icon: '.material-icons',
-  spinner: '.spinner-border',
-  alert: (param: string): string => `#js-product-line-alert--${param}`,
+  default: '[data-ps-ref="quantity-input"]',
+  modal: '[data-ps-ref="quickview-modal"] [data-ps-ref="quantity-input"]',
+  increment: '[data-ps-action="increment-quantity"]',
+  decrement: '[data-ps-action="decrement-quantity"]',
+  quantityWanted: '[data-ps-ref="quantity-wanted"]',
+  confirm: '[data-ps-ref="quantity-confirm-icon"]',
+  spinner: '[data-ps-ref="quantity-spinner"]',
 };
 
 export const formValidation = {
@@ -201,26 +210,32 @@ const selectorsMap = {
   layout,
   qtyInput,
   alert: {
-    selector: '#notifications .container',
+    selector: '[data-ps-ref="notifications-container"]',
+    // Bootstrap reads this class itself: enableDismissTrigger resolves a
+    // data-bs-dismiss="alert" click with this.closest('.alert'). Not migratable.
     alert: '.alert',
-    heading: '.alert-heading',
-    body: '.alert-body',
-    icon: '.material-icons',
-    close: '.btn-close',
+    heading: '[data-ps-ref="alert-heading"]',
+    body: '[data-ps-ref="alert-body"]',
+    icon: '[data-ps-ref="alert-icon"]',
+    close: '[data-ps-ref="alert-close"]',
   },
   toast: {
-    container: '#js-toast-container',
-    template: '.js-toast-template',
+    container: '[data-ps-ref="toast-container"]',
+    template: '[data-ps-template="toast"]',
+    // Same Bootstrap contract as alert above, via this.closest('.toast').
     toast: '.toast',
-    body: '.toast-body',
-    close: '.btn-close',
+    body: '[data-ps-ref="toast-body"]',
+    close: '[data-ps-ref="toast-close"]',
   },
   product: {
     container: '[data-ps-ref="product-container"]',
-    images: '.js-images-container',
-    carousel: '.js-product-carousel',
-    miniature: '.js-product-miniature',
-    thumbnail: '.js-thumb-container',
+    images: '[data-ps-ref="product-images"]',
+    carousel: '[data-ps-ref="product-carousel"]',
+    // Bootstrap's Carousel reads this class itself; centralised here rather than
+    // inlined in accessibility/product.ts, but not migratable.
+    carouselItem: '.carousel-item',
+    miniature: '[data-ps-ref="product-miniature"]',
+    thumbnail: '[data-ps-ref="product-thumbnail"]',
     productImagesModal: '[data-ps-ref="product-images-modal"]',
     productImagesModalCarousel: '[data-ps-ref="product-images-modal-carousel"]',
     activeThumbail: (id: number): string => `[data-ps-ref="product-thumbnail-item"]:nth-child(${id + 1}) [data-ps-ref="product-thumbnail"]`,
@@ -228,13 +243,14 @@ const selectorsMap = {
     rightSection: '[data-ps-ref="product-right"]',
   },
   order: {
-    returnForm: '.js-order-return-form',
+    returnForm: '[data-ps-ref="order-return-form"]',
     returnFormSelectAll: '[data-ps-ref="select-all-products"]',
     returnFormProductsTable: '[data-ps-ref="order-return-products-table"]',
     returnFormProductCheckbox: '[data-ps-ref="select-product"]',
   },
+  // Bootstrap's own SELECTOR_MODAL_BODY; its Modal reads this class directly.
   modalBody: '.modal-body',
-  pageCms: '.js-page-content-cms',
+  pageCms: '[data-ps-ref="cms-content"]',
   quickview: '[data-ps-action="open-quickview"]',
   quickviewModal: '[data-ps-ref="quickview-modal"]',
   quickviewModalStatus: '[data-ps-target="quickview-modal-status"]',

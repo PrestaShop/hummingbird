@@ -3,11 +3,12 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 
-<div class="product__images js-images-container">
+<div class="product__images js-images-container" data-ps-ref="product-images">
   {if $product.images|@count > 0}
     <div
       id="product-images-{$product.id}"
       class="product__carousel carousel slide js-product-carousel"
+      data-ps-ref="product-carousel"
     >
       {include file='catalog/_partials/product-flags.tpl'}
 

@@ -143,6 +143,8 @@
   {if $nodes|count}
     <nav
       class="menu menu--mobile{if $depth === 0} menu--current js-menu-current{else} menu--child js-menu-child{/if}"
+      data-ps-ref="menu-panel"
+      data-ps-state="{if $depth === 0}current{else}child{/if}"
       {if $depth === 0}id="menu-mobile"{else}data-parent-title="{$parent.label}"{/if}
       {if $depth > 1}data-back-title="{$backTitle}" data-id="{$expandId}"{/if}
       data-depth="{$depth}"
@@ -167,7 +169,7 @@
             {if $node.children|count}
               {* Cannot use page identifier as we can have the same page several times *}
               {assign var=_expand_id value=10|mt_rand:100000}
-              <button class="menu__toggle-child btn btn-link js-menu-open-child" data-target="{$_expand_id}">
+              <button class="menu__toggle-child btn btn-link js-menu-open-child" data-ps-action="open-menu-child" data-target="{$_expand_id}">
                 <i class="material-icons rtl-flip" aria-hidden="true">&#xE5CC;</i>
               </button>
             {/if}
@@ -213,15 +215,16 @@
 
 <div
   class="ps-mainmenu ps-mainmenu--mobile offcanvas offcanvas-start js-menu-canvas"
+  data-ps-ref="menu-canvas"
   tabindex="-1"
   id="mobileMenu"
   aria-label="{l s='Main menu' d='Shop.Theme.Global'}"
 >
   <div class="offcanvas-header">
     <div class="ps-mainmenu__back-button">
-      <button class="btn btn-link btn-sm d-none js-back-button" type="button" aria-label="{l s='Go back to main menu' d='Shop.Theme.Menu'}">
+      <button class="btn btn-link btn-sm d-none js-back-button" data-ps-action="menu-back" type="button" aria-label="{l s='Go back to main menu' d='Shop.Theme.Menu'}">
         <span class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</span>
-        <span class="js-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
+        <span class="js-menu-back-title" data-ps-ref="menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
       </button>
     </div>
     <button type="button" class="btn-close btn text-reset" data-bs-dismiss="offcanvas" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>

@@ -60,7 +60,7 @@ export default () => {
     ) as HTMLElement | null;
 
     if (targetValue) {
-      const isDecrement = eventTarget.classList.contains('js-decrement-button');
+      const isDecrement = eventTarget.closest(SelectorsMap.qtyInput.decrement) !== null;
 
       // Debounce remove action to prevent multiple rapid clicks
       if (isDecrement && targetValue.value === '0' && targetValue.getAttribute('min') === '1') {

@@ -6,7 +6,6 @@
 import Quantity from '@constants/useQuantityInput-data';
 import {qtyInput as quantityInputMap, cart as cartSelectorMap} from '@constants/selectors-map';
 import debounce from '@helpers/debounce';
-import useAlert from '@js/components/useAlert';
 import useToast from '@js/components/useToast';
 import A11yHelpers from '@helpers/a11y';
 import {state, availableLastUpdateAction} from '@js/state';
@@ -218,9 +217,17 @@ const updateQuantity = async (qtyInputGroup: Theme.QuantityInput.InputGroup, cha
           const errorData = error as Response;
 
           if (errorData.status !== undefined) {
-            const errorMsg = `${errorData.statusText}: ${errorData.url}`;
-            const productAlertSelector = resetAlertContainer(qtyInput);
-            useAlert(errorMsg, {type: 'danger', selector: productAlertSelector}).show();
+            // The endpoint and the HTTP reason phrase are useful when debugging, not to the
+            // shopper: they stay in the console. The customer-facing text is translated and
+            // carried by the cart alert placeholder, like the removal message.
+            console.error('Cart quantity update failed', errorData.status, errorData.statusText, errorData.url);
+
+            const alertPlaceholder = document.querySelector(cartSelectorMap.alertPlaceholder);
+            const errorMsg = alertPlaceholder?.getAttribute('data-ps-data-error')
+              || errorData.statusText
+              || `HTTP ${errorData.status}`;
+
+            useToast(errorMsg, {type: 'danger'}).show();
 
             prestashop.emit(events.handleError, {
               eventType: 'updateProductInCart',
@@ -243,21 +250,6 @@ const getTargetButton = (qtyInputGroup: Theme.QuantityInput.InputGroup, change: 
   const {incrementButton, decrementButton} = qtyInputGroup;
 
   return (change > 0) ? incrementButton : decrementButton;
-};
-
-const resetAlertContainer = (qtyInput: HTMLInputElement) => {
-  const {alertId} = qtyInput.dataset;
-
-  if (alertId) {
-    const productAlertSelector = quantityInputMap.alert(alertId);
-    const productAlertContainer = document.querySelector<HTMLDivElement>(productAlertSelector);
-
-    if (productAlertContainer) {
-      productAlertContainer.innerHTML = '';
-    }
-    return productAlertSelector;
-  }
-  return undefined;
 };
 
 const toggleButtonSpinner = (button: HTMLButtonElement, icon: HTMLElement | null, spinner: HTMLElement | null) => {

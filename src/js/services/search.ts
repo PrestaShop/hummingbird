@@ -13,7 +13,7 @@ export interface Result {
       url: string;
     };
     legend: string;
-  };
+  } | false;
 }
 
 export const searchProduct = async (url: string, value: string, resultsPerPage = 10): Promise<Array<Result>> => {

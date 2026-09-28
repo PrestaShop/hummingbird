@@ -47,7 +47,7 @@ export default () => {
   });
 
   const getActiveSlideIndex = (carouselEl: HTMLElement): number => {
-    const items = carouselEl.querySelectorAll('.carousel-item');
+    const items = carouselEl.querySelectorAll(SelectorsMap.product.carouselItem);
 
     return Array.from(items).findIndex((item) => item.classList.contains('active'));
   };

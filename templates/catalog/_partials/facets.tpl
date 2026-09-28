@@ -3,7 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {if $facets|count}
-  <div id="search-filters" class="js-search-filters">
+  <div id="search-filters" class="js-search-filters" data-ps-target="search-filters">
     {block name='facets_title'}
       <p class="text-uppercase h6 d-none d-sm-block d-md-block">{l s='Filter By' d='Shop.Theme.Actions'}</p>
     {/block}
@@ -11,7 +11,7 @@
     {block name='facets_clearall_button'}
       {if $activeFilters|count}
         <div id="_desktop_search_filters_clear_all" class="d-none d-sm-block d-md-block clear-all-wrapper">
-          <button data-search-url="{$clear_all_link}" class="btn btn-tertiary js-search-filters-clear-all">
+          <button data-search-url="{$clear_all_link}" class="btn btn-tertiary js-search-filters-clear-all" data-ps-action="clear-search-filters">
             <i class="material-icons" aria-hidden="true">&#xE14C;</i>
             {l s='Clear all' d='Shop.Theme.Actions'}
           </button>
@@ -86,7 +86,7 @@
 
                     <a
                       href="{$filter.nextEncodedFacetsURL}"
-                      class="_gray-darker search-link js-search-link"
+                      class="_gray-darker search-link js-search-link" data-ps-action="apply-search-filter"
                       rel="nofollow"
                    >
                       {$filter.label}

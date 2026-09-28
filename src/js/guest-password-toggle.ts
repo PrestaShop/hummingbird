@@ -5,13 +5,13 @@
 
 const initGuestPasswordToggle = () => {
   const {Theme} = window;
-  const {guestPasswordToggle: GuestPasswordToggleMap} = Theme.selectors;
+  const {guestPasswordToggle: GuestPasswordToggleMap, passwordPolicy: PasswordPolicyMap} = Theme.selectors;
   const guestCheckbox = document.querySelector(GuestPasswordToggleMap.checkbox);
   const guestPasswordWrapper = document.querySelector(GuestPasswordToggleMap.passwordWrapper);
 
   if (guestCheckbox && guestPasswordWrapper) {
     guestCheckbox.addEventListener('change', () => {
-      const passwordInput = guestPasswordWrapper.querySelector('input[type="password"]');
+      const passwordInput = guestPasswordWrapper.querySelector<HTMLInputElement>(PasswordPolicyMap.input);
 
       if (guestCheckbox.checked) {
         guestPasswordWrapper.classList.remove('d-none');
@@ -19,7 +19,7 @@ const initGuestPasswordToggle = () => {
         guestPasswordWrapper.classList.add('d-none');
 
         if (passwordInput) {
-          const feedbackContainer = document.querySelector(Theme.selectors.passwordPolicy.container);
+          const feedbackContainer = guestPasswordWrapper.querySelector(PasswordPolicyMap.feedbackContainer);
 
           passwordInput.value = '';
           passwordInput.classList.remove('border-success', 'border-danger', 'border');

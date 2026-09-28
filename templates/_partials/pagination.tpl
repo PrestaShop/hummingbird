@@ -21,6 +21,7 @@
                 <li class="page-item">
                   <button data-ps-data="{$page.url}"
                     class="page-link previous {['disabled' => !$page.clickable, 'js-pager-link' => $page.clickable]|classnames}"
+                    {if $page.clickable}data-ps-action="paginate"{/if}
                     {if !$page.clickable}aria-disabled="true" disabled{/if}
                     aria-label="{l s='Go to previous page' d='Shop.Theme.Actions'}"
                   >
@@ -42,6 +43,7 @@
                 <li class="page-item{if $page.current} active{/if}">
                   <button data-ps-data="{$page.url}"
                     class="page-link {['js-pager-link' => $page.clickable]|classnames}"
+                    {if $page.clickable}data-ps-action="paginate"{/if}
                     {if !$page.clickable}aria-disabled="true"{/if}
                     {if $page.current}aria-current="page"{/if}
                     aria-label="{l s='Go to page %page%' sprintf=['%page%' => $page.page] d='Shop.Theme.Actions'}"
@@ -55,6 +57,7 @@
                 <li class="page-item">
                   <button data-ps-data="{$page.url}"
                     class="page-link next {['disabled' => !$page.clickable, 'js-pager-link' => $page.clickable]|classnames}"
+                    {if $page.clickable}data-ps-action="paginate"{/if}
                     {if !$page.clickable}aria-disabled="true" disabled{/if}
                     aria-label="{l s='Go to next page' d='Shop.Theme.Actions'}"
                   >

@@ -32,7 +32,7 @@
     {/if}
   {/if}
 
-  <div id="js-product-list-header">
+  <div id="js-product-list-header" data-ps-target="product-list-header">
     {include file='components/page-title-section.tpl' title=$title}
   </div>
 {/block}

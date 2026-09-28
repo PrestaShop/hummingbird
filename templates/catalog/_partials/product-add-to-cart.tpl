@@ -3,7 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {if !$configuration.is_catalog}
-  <div class="product__add-to-cart-container product-add-to-cart js-product-add-to-cart">
+  <div class="product__add-to-cart-container product-add-to-cart js-product-add-to-cart" data-ps-fragment="product-add-to-cart">
     {block name='product_availability'}
       <div
         id="product-availability"

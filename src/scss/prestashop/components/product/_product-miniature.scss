@@ -114,6 +114,12 @@ $product-miniature-container-query-width: 13.5rem;
     text-decoration: line-through;
   }
 
+  &__availability-submessage {
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    color: var(--bs-secondary-color);
+  }
+
   &__form {
     display: flex;
     row-gap: 0.5rem;

@@ -62,7 +62,7 @@
                 <option value="{$order.id_order}">{$order.reference}</option>
               {/foreach}
             </select>
-            <span class="form-text">{l s='optional' d='Shop.Forms.Help'}</span>
+            <span class="form-text">{l s='Optional' d='Shop.Forms.Help'}</span>
           </div>
         {/if}
 
@@ -77,7 +77,7 @@
               name="fileUpload"
               class="form-control"
             >
-            <span class="form-text">{l s='optional' d='Shop.Forms.Help'}</span>
+            <span class="form-text">{l s='Optional' d='Shop.Forms.Help'}</span>
           </div>
         {/if}
 

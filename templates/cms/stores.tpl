@@ -58,9 +58,9 @@
                 {if $store.note || $store.phone || $store.fax || $store.email}
                   <div class="accordion-item">
                     <div class="accordion-header">
-                      <a class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" href="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}">
-                        {l s='About and Contact' d='Shop.Theme.Global'}
-                      </a>
+                      <button type="button" class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#about-{$store.id}" aria-expanded="false" aria-controls="about-{$store.id}" aria-label="{l s='About and contact for %store_name%' sprintf=['%store_name%' => $store.name] d='Shop.Theme.Global'}">
+                        {l s='About and contact' d='Shop.Theme.Global'}
+                      </button>
                     </div>
 
                     <div class="store__additional-infos accordion-collapse collapse" id="about-{$store.id}">
@@ -72,19 +72,31 @@
                         <ul class="store__contacts">
                           {if $store.phone}
                             <li class="store__contact">
-                              <i class="material-icons" aria-hidden="true">&#xE0B0;</i>{$store.phone}
+                              <i class="material-icons" aria-hidden="true">&#xE0B0;</i>
+                              <a href="tel:{$store.phone|replace:' ':''}"
+                                aria-label="{l s='Call %store_name% at: %phone%' sprintf=['%store_name%' => $store.name, '%phone%' => $store.phone] d='Shop.Theme.Global'}">
+                                {$store.phone}
+                              </a>
                             </li>
                           {/if}
           
                           {if $store.fax}
                             <li class="store__contact">
-                              <i class="material-icons" aria-hidden="true">&#xE8AD;</i>{$store.fax}
+                              <i class="material-icons" aria-hidden="true">&#xE8AD;</i>
+                              <a href="tel:{$store.fax|replace:' ':''}"
+                                aria-label="{l s='Send a fax to %store_name% at: %fax%' sprintf=['%store_name%' => $store.name, '%fax%' => $store.fax] d='Shop.Theme.Global'}">
+                                {$store.fax}
+                              </a>
                             </li>
                           {/if}
           
                           {if $store.email}
                             <li class="store__contact store__contact--email">
-                              <i class="material-icons" aria-hidden="true">&#xE0BE;</i>{$store.email}
+                              <i class="material-icons" aria-hidden="true">&#xE0BE;</i>
+                              <a href="mailto:{$store.email}"
+                                aria-label="{l s='Send an email to %store_name% at: %email%' sprintf=['%store_name%' => $store.name, '%email%' => $store.email] d='Shop.Theme.Global'}">
+                                {$store.email}
+                              </a>
                             </li>
                           {/if}
                         </ul>
@@ -95,7 +107,7 @@
 
                 <div class="accordion-item border-0">
                   <div class="accordion-header">
-                    <button class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}" aria-label="{l s='View schedules for %store_name%' sprintf=['%store_name%' => $store.name] d='Shop.Theme.Global'}">
+                    <button type="button" class="store__toggle accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#table-{$store.id}" aria-expanded="false" aria-controls="table-{$store.id}" aria-label="{l s='View schedules for %store_name%' sprintf=['%store_name%' => $store.name] d='Shop.Theme.Global'}">
                       {l s='View schedules' d='Shop.Theme.Global'}
                     </button>
                   </div>

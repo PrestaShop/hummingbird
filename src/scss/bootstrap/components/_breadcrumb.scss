@@ -11,10 +11,6 @@ $component-name: breadcrumb;
   overflow-x: scroll;
   scrollbar-width: none;
 
-  &[data-depth="1"] {
-    display: none;
-  }
-
   &-item {
     padding: 0;
     white-space: nowrap;

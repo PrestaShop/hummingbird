@@ -31,7 +31,7 @@
     "name": {$product.name|json_encode nofilter},
     "description": {$page.meta.description|json_encode nofilter},
     "category": {$product.category_name|json_encode nofilter},
-    {if !empty($product.cover)}"image": {$product.cover.bySize.home_default.url|json_encode nofilter},{/if}
+    {if !empty($product.cover)}"image": {$product.cover.large.url|json_encode nofilter},{/if}
     "sku": {if $product.reference}{$product.reference|json_encode nofilter}{else}{$product.id|json_encode nofilter}{/if},
     "mpn": {if $product.mpn}{$product.mpn|json_encode nofilter}{elseif $product.reference}{$product.reference|json_encode nofilter}{else}{$product.id|json_encode nofilter}{/if}
     {if $product.ean13},"gtin": {$product.ean13|json_encode nofilter}{/if}
@@ -68,7 +68,6 @@
       "priceCurrency": {$currency.iso_code|json_encode nofilter},
       "price": "{$product.price_amount}",
       "url": {$product.url|json_encode nofilter},
-      "priceValidUntil": "{($smarty.now + (int) (60*60*24*15))|date_format:"%Y-%m-%d"}",
       {if $product.images|count > 0}
         "image": {strip}[
           {foreach from=$product.images item=p_img name="p_img_list"}

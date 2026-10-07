@@ -59,7 +59,7 @@
       {/block}
 
       {block name='product_description_short'}
-        <div class="product__description-short rich-text">{$product.description_short nofilter}</div>
+        <div class="product__description-short rich-text js-product-description-short">{$product.description_short nofilter}</div>
       {/block}
 
       {block name='product_customization'}
@@ -124,7 +124,7 @@
 
                 <div id="product_description_collapse" class="accordion-collapse collapse show" aria-labelledby="product_description_heading">
                   <div class="accordion-body">
-                    <div class="product__description rich-text">
+                    <div class="product__description rich-text js-product-description">
                       {$product.description nofilter}
                     </div>
                   </div>

@@ -41,7 +41,7 @@
 
           {block name='product_description_short'}
             {if $product.description_short}
-              <div class="product__description-short">{$product.description_short nofilter}</div>
+              <div class="product__description-short js-product-description-short">{$product.description_short nofilter}</div>
             {/if}
           {/block}
 

@@ -180,8 +180,45 @@ describe('useQuantityInput', () => {
       expect(increasedValue).toEqual(incrementExpectedValue);
       expect(decreasedValue).toEqual(decrementExpectedValue);
     });
+
+    it('should not clamp to the minimum while typing', () => {
+      const qtyInput = getHTMLElement<HTMLInputElement>('input');
+      resetQtyInputValueInDOM(qtyInput, '4', '4');
+
+      typeValue(qtyInput, '2');
+      const firstKeystrokeValue = qtyInput.value;
+
+      typeValue(qtyInput, '20');
+
+      expect(firstKeystrokeValue).toEqual('2');
+      expect(qtyInput.value).toEqual('20');
+    });
+
+    it('should strip non-digit characters while typing', () => {
+      const qtyInput = getHTMLElement<HTMLInputElement>('input');
+      resetQtyInputValueInDOM(qtyInput, '4', '4');
+
+      typeValue(qtyInput, '2a-0');
+
+      expect(qtyInput.value).toEqual('20');
+    });
+
+    it('should clamp to the minimum on blur', () => {
+      const qtyInput = getHTMLElement<HTMLInputElement>('input');
+      resetQtyInputValueInDOM(qtyInput, '4', '4');
+
+      typeValue(qtyInput, '2');
+      qtyInput.dispatchEvent(new Event('blur'));
+
+      expect(qtyInput.value).toEqual('4');
+    });
   });
 });
+
+const typeValue = (input: HTMLInputElement, value: string) => {
+  input.value = value;
+  input.dispatchEvent(new Event('input'));
+};
 
 const mockedResponse = (ok: boolean, hasError?: boolean, qty?: string): jest.Mock => {
   const mockedFetch = jest.fn();

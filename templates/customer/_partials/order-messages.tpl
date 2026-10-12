@@ -16,7 +16,7 @@
           </div>
 
           <div class="order-message__content">
-            {$message.message nofilter}
+            {$message.message|strip_tags:false|nl2br nofilter}
           </div>
         </div>
       {/foreach}

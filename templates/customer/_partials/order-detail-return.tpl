@@ -3,6 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {block name='order_products_table'}
+  {$imageTypes = ['default_xs' => '1x', 'default_md' => '2x']}
   <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post" data-ps-action="form-validation">
     <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Catalog'}">
       <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
@@ -37,30 +38,29 @@
                 <span class="order-product__image">
                   <a href="{$link->getProductLink($product.id_product)}">
                     {if $product.cover}
+                      {$avifSrcset = $product.cover|srcset:$imageTypes:'avif'}
+                      {$webpSrcset = $product.cover|srcset:$imageTypes:'webp'}
+                      {$imgSrcset = $product.cover|srcset:$imageTypes}
                       <picture>
-                        {if isset($product.cover.bySize.default_xs.sources.avif)}
+                        {if $avifSrcset}
                           <source
-                            srcset="
-                              {$product.cover.bySize.default_xs.sources.avif},
-                              {$product.cover.bySize.default_md.sources.avif} 2x",
+                            srcset="{$avifSrcset}"
                             type="image/avif"
                           >
                         {/if}
 
-                        {if isset($product.cover.bySize.default_xs.sources.webp)}
+                        {if $webpSrcset}
                           <source
-                            srcset="
-                              {$product.cover.bySize.default_xs.sources.webp},
-                              {$product.cover.bySize.default_md.sources.webp} 2x"
+                            srcset="{$webpSrcset}"
                             type="image/webp"
                           >
                         {/if}
 
                         <img
                           class="order-product__img img-fluid"
-                          srcset="
-                            {$product.cover.bySize.default_xs.url},
-                            {$product.cover.bySize.default_md.url} 2x"
+                          {if $imgSrcset}
+                            srcset="{$imgSrcset}"
+                          {/if}
                           width="{$product.cover.bySize.default_xs.width}"
                           height="{$product.cover.bySize.default_xs.height}"
                           loading="lazy"
@@ -69,30 +69,29 @@
                         >
                       </picture>
                     {else}
+                      {$avifSrcset = $urls.no_picture_image|srcset:$imageTypes:'avif'}
+                      {$webpSrcset = $urls.no_picture_image|srcset:$imageTypes:'webp'}
+                      {$imgSrcset = $urls.no_picture_image|srcset:$imageTypes}
                       <picture>
-                        {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
+                        {if $avifSrcset}
                           <source
-                            srcset="
-                              {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                              {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
+                            srcset="{$avifSrcset}"
                             type="image/avif"
                           >
                         {/if}
 
-                        {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
+                        {if $webpSrcset}
                           <source
-                            srcset="
-                              {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                              {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
+                            srcset="{$webpSrcset}"
                             type="image/webp"
                           >
                         {/if}
 
                         <img
                           class="order-product__img img-fluid"
-                          srcset="
-                            {$urls.no_picture_image.bySize.default_xs.url},
-                            {$urls.no_picture_image.bySize.default_md.url} 2x"
+                          {if $imgSrcset}
+                            srcset="{$imgSrcset}"
+                          {/if}
                           width="{$urls.no_picture_image.bySize.default_xs.width}"
                           height="{$urls.no_picture_image.bySize.default_xs.height}"
                           loading="lazy"

@@ -2,6 +2,8 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{$imageTypes = ['default_xs' => '1x', 'default_sm' => '2x']}
+
 {$componentName = 'cart-summary-product'}
 
 {block name='cart_summary_product_line'}
@@ -9,30 +11,29 @@
     <div class="{$componentName}__image">
       <a href="{$product.url}" title="{$product.name}">
         {if $product.default_image}
+          {$avifSrcset = $product.default_image|srcset:$imageTypes:'avif'}
+          {$webpSrcset = $product.default_image|srcset:$imageTypes:'webp'}
+          {$imgSrcset = $product.default_image|srcset:$imageTypes}
           <picture>
-            {if isset($product.default_image.bySize.default_xs.sources.avif)}
-              <source 
-                srcset="
-                  {$product.default_image.bySize.default_xs.sources.avif},
-                  {$product.default_image.bySize.default_sm.sources.avif} 2x"
+            {if $avifSrcset}
+              <source
+                srcset="{$avifSrcset}"
                 type="image/avif"
               >
             {/if}
 
-            {if isset($product.default_image.bySize.default_xs.sources.webp)}
-              <source 
-                srcset="
-                  {$product.default_image.bySize.default_xs.sources.webp},
-                  {$product.default_image.bySize.default_sm.sources.webp} 2x"
+            {if $webpSrcset}
+              <source
+                srcset="{$webpSrcset}"
                 type="image/webp"
               >
             {/if}
 
             <img
               class="{$componentName}__img img-fluid"
-              srcset="
-                {$product.default_image.bySize.default_xs.url},
-                {$product.default_image.bySize.default_sm.url} 2x"
+              {if $imgSrcset}
+                srcset="{$imgSrcset}"
+              {/if}
               width="{$product.default_image.bySize.default_xs.width}"
               height="{$product.default_image.bySize.default_xs.height}"
               loading="lazy"
@@ -41,30 +42,29 @@
             >
           </picture>
         {else}
+          {$avifSrcset = $urls.no_picture_image|srcset:$imageTypes:'avif'}
+          {$webpSrcset = $urls.no_picture_image|srcset:$imageTypes:'webp'}
+          {$imgSrcset = $urls.no_picture_image|srcset:$imageTypes}
           <picture>
-            {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
-              <source 
-                srcset="
-                  {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                  {$urls.no_picture_image.bySize.default_sm.sources.avif} 2x"
+            {if $avifSrcset}
+              <source
+                srcset="{$avifSrcset}"
                 type="image/avif"
               >
             {/if}
 
-            {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
-              <source 
-                srcset="
-                  {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                  {$urls.no_picture_image.bySize.default_sm.sources.webp} 2x"
+            {if $webpSrcset}
+              <source
+                srcset="{$webpSrcset}"
                 type="image/webp"
               >
             {/if}
 
             <img
               class="{$componentName}__img img-fluid"
-              srcset="
-                {$urls.no_picture_image.bySize.default_xs.url},
-                {$urls.no_picture_image.bySize.default_sm.url} 2x"
+              {if $imgSrcset}
+                srcset="{$imgSrcset}"
+              {/if}
               width="{$urls.no_picture_image.bySize.default_xs.width}"
               height="{$urls.no_picture_image.bySize.default_xs.height}"
               loading="lazy"

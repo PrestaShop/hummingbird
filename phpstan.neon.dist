@@ -1,0 +1,9 @@
+# Same analysis the PrestaShop core runs on `themes/` (see phpstan.neon.dist in PrestaShop/PrestaShop):
+# level 5, PHP 8.1. The core's disallowed-calls rules only target its own src/, classes/ and
+# controllers/ directories, so they have no effect on a theme and are not reproduced here.
+parameters:
+  phpVersion: 80100
+  level: 5
+  paths:
+    - plugins
+    - tests

@@ -13,19 +13,43 @@
       "homepage": "https://contributors.prestashop-project.org/"
     }
   ],
+  "require": {
+    "php": ">=8.1"
+  },
   "require-dev": {
     "prestashop/header-stamp": "^3.1",
-    "prestashop/autoindex": "^2.1"
+    "prestashop/autoindex": "^2.1",
+    "phpunit/phpunit": "^10.5",
+    "phpstan/phpstan": "^1.9.3",
+    "friendsofphp/php-cs-fixer": "^3"
   },
   "scripts": {
     "autoindex": [
-      "@php ./vendor/bin/autoindex --exclude=.github,.storybook,docker,docs,node_modules,src,stories,types,vendor,webpack"
+      "@php ./vendor/bin/autoindex --exclude=.github,.storybook,docker,docs,node_modules,src,stories,tests,types,vendor,webpack"
     ],
     "header-stamp": [
       "@php ./vendor/bin/header-stamp --config=.header-stamp-config.yml --dry-run"
     ],
     "header-stamp-fix": [
       "@php ./vendor/bin/header-stamp --config=.header-stamp-config.yml"
+    ],
+    "test": [
+      "@php ./vendor/bin/phpunit"
+    ],
+    "phpstan": [
+      "@php ./vendor/bin/phpstan analyse --no-progress --memory-limit=512M"
+    ],
+    "cs-fixer": [
+      "@php ./vendor/bin/php-cs-fixer fix --dry-run --diff"
+    ],
+    "cs-fixer:fix": [
+      "@php ./vendor/bin/php-cs-fixer fix"
     ]
+  },
+  "config": {
+    "platform": {
+      "php": "8.1.0"
+    },
+    "sort-packages": true
   }
 }

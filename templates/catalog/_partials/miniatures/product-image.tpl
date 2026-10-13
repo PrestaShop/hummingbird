@@ -3,27 +3,25 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {block name='product_miniature_image'}
+  {$imageTypes = ['default_sm', 'default_md', 'default_lg']}
   <div class="{$componentName}__image-container thumbnail-container">
     <a href="{$product.url}" class="{$componentName}__image-link outline outline--rounded">
       {if $product.cover}
+        {$avifSrcset = $product.cover|srcset:$imageTypes:'avif'}
+        {$webpSrcset = $product.cover|srcset:$imageTypes:'webp'}
+        {$imgSrcset = $product.cover|srcset:$imageTypes}
         <picture>
-          {if isset($product.cover.bySize.default_md.sources.avif)}
+          {if $avifSrcset}
             <source
-              srcset="
-                {$product.cover.bySize.default_sm.sources.avif} 216w,
-                {$product.cover.bySize.default_md.sources.avif} 261w,
-                {$product.cover.bySize.default_lg.sources.avif} 336w"
+              srcset="{$avifSrcset}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
               type="image/avif"
             >
           {/if}
 
-          {if isset($product.cover.bySize.default_md.sources.webp)}
+          {if $webpSrcset}
             <source
-              srcset="
-                {$product.cover.bySize.default_sm.sources.webp} 216w,
-                {$product.cover.bySize.default_md.sources.webp} 261w,
-                {$product.cover.bySize.default_lg.sources.webp} 336w"
+              srcset="{$webpSrcset}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
               type="image/webp"
             >
@@ -31,11 +29,10 @@
 
           <img
             class="{$componentName}__image"
-            srcset="
-              {$product.cover.bySize.default_sm.url} 216w,
-              {$product.cover.bySize.default_md.url} 261w,
-              {$product.cover.bySize.default_lg.url} 336w"
-            sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
+            {if $imgSrcset}
+              srcset="{$imgSrcset}"
+              sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
+            {/if}
             src="{$product.cover.bySize.default_md.url}"
             width="{$product.cover.bySize.default_md.width}"
             height="{$product.cover.bySize.default_md.height}"
@@ -46,24 +43,21 @@
           >
         </picture>
       {else}
+        {$avifSrcset = $urls.no_picture_image|srcset:$imageTypes:'avif'}
+        {$webpSrcset = $urls.no_picture_image|srcset:$imageTypes:'webp'}
+        {$imgSrcset = $urls.no_picture_image|srcset:$imageTypes}
         <picture>
-          {if isset($urls.no_picture_image.bySize.default_md.sources.avif)}
+          {if $avifSrcset}
             <source
-              srcset="
-                {$urls.no_picture_image.bySize.default_sm.sources.avif} 216w,
-                {$urls.no_picture_image.bySize.default_md.sources.avif} 261w,
-                {$urls.no_picture_image.bySize.default_lg.sources.avif} 336w"
+              srcset="{$avifSrcset}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
               type="image/avif"
             >
           {/if}
 
-          {if isset($urls.no_picture_image.bySize.default_md.sources.webp)}
+          {if $webpSrcset}
             <source
-              srcset="
-                {$urls.no_picture_image.bySize.default_sm.sources.webp} 216w,
-                {$urls.no_picture_image.bySize.default_md.sources.webp} 261w,
-                {$urls.no_picture_image.bySize.default_lg.sources.webp} 336w"
+              srcset="{$webpSrcset}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
               type="image/webp"
             >
@@ -71,11 +65,10 @@
 
           <img
             class="{$componentName}__image"
-            srcset="
-              {$urls.no_picture_image.bySize.default_sm.url} 216w,
-              {$urls.no_picture_image.bySize.default_md.url} 261w,
-              {$urls.no_picture_image.bySize.default_lg.url} 336w"
-            sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
+            {if $imgSrcset}
+              srcset="{$imgSrcset}"
+              sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
+            {/if}
             width="{$urls.no_picture_image.bySize.default_md.width}"
             height="{$urls.no_picture_image.bySize.default_md.height}"
             src="{$urls.no_picture_image.bySize.default_md.url}"

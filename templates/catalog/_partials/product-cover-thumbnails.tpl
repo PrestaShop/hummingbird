@@ -2,6 +2,8 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{$coverTypes = ['default_xl', 'product_main']}
+{$thumbnailTypes = ['default_xs' => '1x', 'default_xl' => '2x']}
 
 <div class="product__images js-images-container">
   {if $product.images|@count > 0}
@@ -15,22 +17,21 @@
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
+              {$avifSrcset = $image|srcset:$coverTypes:'avif'}
+              {$webpSrcset = $image|srcset:$coverTypes:'webp'}
+              {$imgSrcset = $image|srcset:$coverTypes}
               <picture>
-                {if isset($image.bySize.default_xl.sources.avif)}
-                  <source 
-                    srcset="
-                      {$image.bySize.default_xl.sources.avif} 400w,
-                      {$image.bySize.product_main.sources.avif} 720w"
+                {if $avifSrcset}
+                  <source
+                    srcset="{$avifSrcset}"
                     sizes="(min-width: 992px) 50vw, 100vw"
                     type="image/avif"
                   >
                 {/if}
 
-                {if isset($image.bySize.default_xl.sources.webp)}
-                  <source 
-                    srcset="
-                      {$image.bySize.default_xl.sources.webp} 400w,
-                      {$image.bySize.product_main.sources.webp} 720w"
+                {if $webpSrcset}
+                  <source
+                    srcset="{$webpSrcset}"
                     sizes="(min-width: 992px) 50vw, 100vw"
                     type="image/webp"
                   >
@@ -38,10 +39,10 @@
 
                 <img
                   class="img-fluid w-100"
-                  srcset="
-                    {$image.bySize.default_xl.url} 400w,
-                    {$image.bySize.product_main.url} 720w"
-                  sizes="(min-width: 992px) 50vw, 100vw"
+                  {if $imgSrcset}
+                    srcset="{$imgSrcset}"
+                    sizes="(min-width: 992px) 50vw, 100vw"
+                  {/if}
                   src="{$image.bySize.product_main.url}" 
                   width="{$image.bySize.product_main.width}"
                   height="{$image.bySize.product_main.height}"
@@ -95,30 +96,29 @@
                 {/if}
                 aria-label="{l s='Slide to product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key + 1]}"
               >
+                {$avifSrcset = $image|srcset:$thumbnailTypes:'avif'}
+                {$webpSrcset = $image|srcset:$thumbnailTypes:'webp'}
+                {$imgSrcset = $image|srcset:$thumbnailTypes}
                 <picture>
-                  {if isset($image.bySize.default_xs.sources.avif)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_xs.sources.avif},
-                        {$image.bySize.default_xl.sources.avif} 2x"
+                  {if $avifSrcset}
+                    <source
+                      srcset="{$avifSrcset}"
                       type="image/avif"
                     >
                   {/if}
 
-                  {if isset($image.bySize.default_xs.sources.webp)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_xs.sources.webp},
-                        {$image.bySize.default_xl.sources.webp} 2x"
+                  {if $webpSrcset}
+                    <source
+                      srcset="{$webpSrcset}"
                       type="image/webp"
                     >
                   {/if}
 
                   <img
                     class="product__thumbnail-image outline outline--rounded img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
-                    srcset="
-                      {$image.bySize.default_xs.url},
-                      {$image.bySize.default_xl.url} 2x"
+                    {if $imgSrcset}
+                      srcset="{$imgSrcset}"
+                    {/if}
                     width="{$image.bySize.default_xs.width}"
                     height="{$image.bySize.default_xs.height}"
                     loading="lazy"
@@ -138,22 +138,21 @@
     <div class="product__no-image">
       {include file='catalog/_partials/product-flags.tpl'}
 
+      {$avifSrcset = $urls.no_picture_image|srcset:$coverTypes:'avif'}
+      {$webpSrcset = $urls.no_picture_image|srcset:$coverTypes:'webp'}
+      {$imgSrcset = $urls.no_picture_image|srcset:$coverTypes}
       <picture>
-        {if isset($urls.no_picture_image.bySize.default_xl.sources.avif)}
-          <source 
-            srcset="
-              {$urls.no_picture_image.bySize.default_xl.sources.avif} 400w,
-              {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
+        {if $avifSrcset}
+          <source
+            srcset="{$avifSrcset}"
             sizes="(min-width: 992px) 50vw, 100vw"
             type="image/avif"
           >
         {/if}
 
-        {if isset($urls.no_picture_image.bySize.default_xl.sources.webp)}
-          <source 
-            srcset="
-              {$urls.no_picture_image.bySize.default_xl.sources.webp} 400w,
-              {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
+        {if $webpSrcset}
+          <source
+            srcset="{$webpSrcset}"
             sizes="(min-width: 992px) 50vw, 100vw"
             type="image/webp"
           >
@@ -161,10 +160,10 @@
 
         <img
           class="img-fluid"
-          srcset="
-            {$urls.no_picture_image.bySize.default_xl.url} 400w,
-            {$urls.no_picture_image.bySize.product_main.url} 720w"
-          sizes="(min-width: 992px) 50vw, 100vw"
+          {if $imgSrcset}
+            srcset="{$imgSrcset}"
+            sizes="(min-width: 992px) 50vw, 100vw"
+          {/if}
           width="{$urls.no_picture_image.bySize.product_main.width}"
           height="{$urls.no_picture_image.bySize.product_main.height}"
           src="{$urls.no_picture_image.bySize.default_xl.url}" 

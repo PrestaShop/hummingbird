@@ -25,28 +25,26 @@
               {block name='product_cover'}
                 <div class="product-cover">
                   {if !empty($product.cover)}
-                    {$avifSrcset = $product.cover|srcset:$imageTypes:'avif'}
-                    {$webpSrcset = $product.cover|srcset:$imageTypes:'webp'}
-                    {$imgSrcset = $product.cover|srcset:$imageTypes}
+                    {$srcset = $product.cover|srcset:$imageTypes}
                     <picture>
-                      {if $avifSrcset}
+                      {if $srcset.avif}
                         <source
-                          srcset="{$avifSrcset}"
+                          srcset="{$srcset.avif}"
                           type="image/avif"
                         >
                       {/if}
 
-                      {if $webpSrcset}
+                      {if $srcset.webp}
                         <source
-                          srcset="{$webpSrcset}"
+                          srcset="{$srcset.webp}"
                           type="image/webp"
                         >
                       {/if}
 
                       <img
                         class="js-qv-product-cover rounded img-fluid"
-                        {if $imgSrcset}
-                          srcset="{$imgSrcset}"
+                        {if $srcset.url}
+                          srcset="{$srcset.url}"
                         {/if}
                         width="{$product.cover.bySize.default_xs.width}"
                         height="{$product.cover.bySize.default_xs.height}"
@@ -56,28 +54,26 @@
                       >
                     </picture>
                   {else}
-                    {$avifSrcset = $urls.no_picture_image|srcset:$imageTypes:'avif'}
-                    {$webpSrcset = $urls.no_picture_image|srcset:$imageTypes:'webp'}
-                    {$imgSrcset = $urls.no_picture_image|srcset:$imageTypes}
+                    {$srcset = $urls.no_picture_image|srcset:$imageTypes}
                     <picture>
-                      {if $avifSrcset}
+                      {if $srcset.avif}
                         <source
-                          srcset="{$avifSrcset}"
+                          srcset="{$srcset.avif}"
                           type="image/avif"
                         >
                       {/if}
 
-                      {if $webpSrcset}
+                      {if $srcset.webp}
                         <source
-                          srcset="{$webpSrcset}"
+                          srcset="{$srcset.webp}"
                           type="image/webp"
                         >
                       {/if}
 
                       <img
                         class="rounded img-fluid"
-                        {if $imgSrcset}
-                          srcset="{$imgSrcset}"
+                        {if $srcset.url}
+                          srcset="{$srcset.url}"
                         {/if}
                         width="{$urls.no_picture_image.bySize.default_xs.width}"
                         height="{$urls.no_picture_image.bySize.default_xs.height}"

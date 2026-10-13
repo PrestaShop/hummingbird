@@ -12,28 +12,26 @@
       <div class="{$componentName}__product">
         <div class="{$componentName}__product-image">
           {if !empty($product.default_image)}
-            {$avifSrcset = $product.default_image|srcset:$imageTypes:'avif'}
-            {$webpSrcset = $product.default_image|srcset:$imageTypes:'webp'}
-            {$imgSrcset = $product.default_image|srcset:$imageTypes}
+            {$srcset = $product.default_image|srcset:$imageTypes}
             <picture>
-              {if $avifSrcset}
+              {if $srcset.avif}
                 <source
-                  srcset="{$avifSrcset}"
+                  srcset="{$srcset.avif}"
                   type="image/avif"
                 >
               {/if}
 
-              {if $webpSrcset}
+              {if $srcset.webp}
                 <source
-                  srcset="{$webpSrcset}"
+                  srcset="{$srcset.webp}"
                   type="image/webp"
                 >
               {/if}
 
               <img
                 class="{$componentName}__product-img img-fluid"
-                {if $imgSrcset}
-                  srcset="{$imgSrcset}"
+                {if $srcset.url}
+                  srcset="{$srcset.url}"
                 {/if}
                 src="{$product.default_image.bySize.default_xs.url}"
                 loading="lazy"
@@ -44,28 +42,26 @@
               >
             </picture>
           {else}
-            {$avifSrcset = $urls.no_picture_image|srcset:$imageTypes:'avif'}
-            {$webpSrcset = $urls.no_picture_image|srcset:$imageTypes:'webp'}
-            {$imgSrcset = $urls.no_picture_image|srcset:$imageTypes}
+            {$srcset = $urls.no_picture_image|srcset:$imageTypes}
             <picture>
-              {if $avifSrcset}
+              {if $srcset.avif}
                 <source
-                  srcset="{$avifSrcset}"
+                  srcset="{$srcset.avif}"
                   type="image/avif"
                 >
               {/if}
 
-              {if $webpSrcset}
+              {if $srcset.webp}
                 <source
-                  srcset="{$webpSrcset}"
+                  srcset="{$srcset.webp}"
                   type="image/webp"
                 >
               {/if}
 
               <img
                 class="{$componentName}__product-img img-fluid"
-                {if $imgSrcset}
-                  srcset="{$imgSrcset}"
+                {if $srcset.url}
+                  srcset="{$srcset.url}"
                 {/if}
                 src="{$urls.no_picture_image.bySize.default_xs.url}"
                 loading="lazy"

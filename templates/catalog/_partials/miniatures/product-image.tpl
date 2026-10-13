@@ -7,21 +7,19 @@
   <div class="{$componentName}__image-container thumbnail-container">
     <a href="{$product.url}" class="{$componentName}__image-link outline outline--rounded">
       {if $product.cover}
-        {$avifSrcset = $product.cover|srcset:$imageTypes:'avif'}
-        {$webpSrcset = $product.cover|srcset:$imageTypes:'webp'}
-        {$imgSrcset = $product.cover|srcset:$imageTypes}
+        {$srcset = $product.cover|srcset:$imageTypes}
         <picture>
-          {if $avifSrcset}
+          {if $srcset.avif}
             <source
-              srcset="{$avifSrcset}"
+              srcset="{$srcset.avif}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
               type="image/avif"
             >
           {/if}
 
-          {if $webpSrcset}
+          {if $srcset.webp}
             <source
-              srcset="{$webpSrcset}"
+              srcset="{$srcset.webp}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
               type="image/webp"
             >
@@ -29,8 +27,8 @@
 
           <img
             class="{$componentName}__image"
-            {if $imgSrcset}
-              srcset="{$imgSrcset}"
+            {if $srcset.url}
+              srcset="{$srcset.url}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
             {/if}
             src="{$product.cover.bySize.default_md.url}"
@@ -43,21 +41,19 @@
           >
         </picture>
       {else}
-        {$avifSrcset = $urls.no_picture_image|srcset:$imageTypes:'avif'}
-        {$webpSrcset = $urls.no_picture_image|srcset:$imageTypes:'webp'}
-        {$imgSrcset = $urls.no_picture_image|srcset:$imageTypes}
+        {$srcset = $urls.no_picture_image|srcset:$imageTypes}
         <picture>
-          {if $avifSrcset}
+          {if $srcset.avif}
             <source
-              srcset="{$avifSrcset}"
+              srcset="{$srcset.avif}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
               type="image/avif"
             >
           {/if}
 
-          {if $webpSrcset}
+          {if $srcset.webp}
             <source
-              srcset="{$webpSrcset}"
+              srcset="{$srcset.webp}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
               type="image/webp"
             >
@@ -65,8 +61,8 @@
 
           <img
             class="{$componentName}__image"
-            {if $imgSrcset}
-              srcset="{$imgSrcset}"
+            {if $srcset.url}
+              srcset="{$srcset.url}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
             {/if}
             width="{$urls.no_picture_image.bySize.default_md.width}"

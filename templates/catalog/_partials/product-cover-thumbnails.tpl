@@ -17,21 +17,19 @@
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
-              {$avifSrcset = $image|srcset:$coverTypes:'avif'}
-              {$webpSrcset = $image|srcset:$coverTypes:'webp'}
-              {$imgSrcset = $image|srcset:$coverTypes}
+              {$srcset = $image|srcset:$coverTypes}
               <picture>
-                {if $avifSrcset}
+                {if $srcset.avif}
                   <source
-                    srcset="{$avifSrcset}"
+                    srcset="{$srcset.avif}"
                     sizes="(min-width: 992px) 50vw, 100vw"
                     type="image/avif"
                   >
                 {/if}
 
-                {if $webpSrcset}
+                {if $srcset.webp}
                   <source
-                    srcset="{$webpSrcset}"
+                    srcset="{$srcset.webp}"
                     sizes="(min-width: 992px) 50vw, 100vw"
                     type="image/webp"
                   >
@@ -39,8 +37,8 @@
 
                 <img
                   class="img-fluid w-100"
-                  {if $imgSrcset}
-                    srcset="{$imgSrcset}"
+                  {if $srcset.url}
+                    srcset="{$srcset.url}"
                     sizes="(min-width: 992px) 50vw, 100vw"
                   {/if}
                   src="{$image.bySize.product_main.url}" 
@@ -96,28 +94,26 @@
                 {/if}
                 aria-label="{l s='Slide to product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key + 1]}"
               >
-                {$avifSrcset = $image|srcset:$thumbnailTypes:'avif'}
-                {$webpSrcset = $image|srcset:$thumbnailTypes:'webp'}
-                {$imgSrcset = $image|srcset:$thumbnailTypes}
+                {$srcset = $image|srcset:$thumbnailTypes}
                 <picture>
-                  {if $avifSrcset}
+                  {if $srcset.avif}
                     <source
-                      srcset="{$avifSrcset}"
+                      srcset="{$srcset.avif}"
                       type="image/avif"
                     >
                   {/if}
 
-                  {if $webpSrcset}
+                  {if $srcset.webp}
                     <source
-                      srcset="{$webpSrcset}"
+                      srcset="{$srcset.webp}"
                       type="image/webp"
                     >
                   {/if}
 
                   <img
                     class="product__thumbnail-image outline outline--rounded img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
-                    {if $imgSrcset}
-                      srcset="{$imgSrcset}"
+                    {if $srcset.url}
+                      srcset="{$srcset.url}"
                     {/if}
                     width="{$image.bySize.default_xs.width}"
                     height="{$image.bySize.default_xs.height}"
@@ -138,21 +134,19 @@
     <div class="product__no-image">
       {include file='catalog/_partials/product-flags.tpl'}
 
-      {$avifSrcset = $urls.no_picture_image|srcset:$coverTypes:'avif'}
-      {$webpSrcset = $urls.no_picture_image|srcset:$coverTypes:'webp'}
-      {$imgSrcset = $urls.no_picture_image|srcset:$coverTypes}
+      {$srcset = $urls.no_picture_image|srcset:$coverTypes}
       <picture>
-        {if $avifSrcset}
+        {if $srcset.avif}
           <source
-            srcset="{$avifSrcset}"
+            srcset="{$srcset.avif}"
             sizes="(min-width: 992px) 50vw, 100vw"
             type="image/avif"
           >
         {/if}
 
-        {if $webpSrcset}
+        {if $srcset.webp}
           <source
-            srcset="{$webpSrcset}"
+            srcset="{$srcset.webp}"
             sizes="(min-width: 992px) 50vw, 100vw"
             type="image/webp"
           >
@@ -160,8 +154,8 @@
 
         <img
           class="img-fluid"
-          {if $imgSrcset}
-            srcset="{$imgSrcset}"
+          {if $srcset.url}
+            srcset="{$srcset.url}"
             sizes="(min-width: 992px) 50vw, 100vw"
           {/if}
           width="{$urls.no_picture_image.bySize.product_main.width}"

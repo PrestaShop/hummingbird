@@ -183,3 +183,22 @@ When asked to write or modify code, you MUST follow these rules:
     module override under `modules/`, add a page or partial under `templates/`,
     or change the breakpoints, you MUST update that file in the same change. Its
     section 9 maps each list back to its source.
+
+## 8. Theme Smarty Plugins (`plugins/`)
+
+The core loads the theme's `plugins/` directory (and the parent theme's, for a
+child theme) into the front office Smarty instance, so both `templates/` and
+the module overrides under `modules/` can use them. Back office templates
+cannot.
+
+- **Formatting only.** A plugin shapes data the presenter already built, e.g.
+  `{$image|srcset:$imageTypes}`. It never queries the database, fetches
+  entities or reads configuration: that belongs to the core or a module.
+- **Small, single-purpose, documented.** One job per plugin, a docblock
+  showing the template usage, and a raw return value so the front office
+  `escape_html` does the escaping once (no `nofilter` in callers).
+- **Tested and analysed.** Every plugin ships with PHPUnit tests in
+  `tests/plugins/`. `composer test`, `composer phpstan` and
+  `composer cs-fixer` must pass: they mirror the core's configuration, and the
+  core runs PHPStan (level 5, PHP 8.1) on `themes/`.
+- **Prefer a partial when the need is markup**, not formatting.

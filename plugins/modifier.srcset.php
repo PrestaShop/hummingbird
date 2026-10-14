@@ -8,38 +8,30 @@
 /**
  * Smarty modifier `srcset`: builds the srcset attribute values of an image from the sizes the shop has.
  *
- * An image type declared in config/theme.yml only reaches `bySize` once the shop holds a row for it
- * in ps_image_type, which happens when the theme is enabled, not on every upgrade. A template that
- * names a type unconditionally therefore emits a candidate with a descriptor and no URL on a shop
- * missing that type (` 216w`), which browsers resolve as a relative URL. This modifier only emits
- * the candidates whose size exists, and returns an empty string for a format with none, so the
- * template can drop the attribute or the <source> altogether.
+ * For each requested image type found in the image's `bySize`, it adds one candidate (URL + descriptor)
+ * per format: the default URL, `sources.webp` and `sources.avif`. Types or formats the shop does not
+ * have are skipped. A format with no candidate returns an empty string, so the template can drop the
+ * attribute or the <source> altogether.
  *
  * Usage:
  *
- *   {$srcset = $image|srcset:['default_sm', 'default_md', 'default_lg']}
- *     -> width descriptors taken from each size:
- *        $srcset.url  = ".../default_sm/1.jpg 216w, .../default_md/1.jpg 261w, .../default_lg/1.jpg 336w"
- *        $srcset.webp = the same list read from each size's `sources.webp`, '' when the shop has no webp
- *        $srcset.avif = idem for avif
+ *   {$srcset = $image|srcset:['default_sm', 'default_md']}
+ *     -> ".../default_sm/1.jpg 216w, .../default_md/1.jpg 261w" (widths read from each size)
  *
  *   {$srcset = $image|srcset:['default_xs' => '1x', 'default_md' => '2x']}
- *     -> explicit descriptors
+ *     -> ".../default_xs/1.jpg 1x, .../default_md/1.jpg 2x" (descriptors given explicitly)
  *
- * The returned strings are raw: print them with `{$srcset.webp}` so the front office's automatic
- * HTML escaping applies, as for any other template variable.
+ *   Then print {$srcset.url}, {$srcset.webp} or {$srcset.avif}. The values are not escaped,
+ *   so the front office's automatic escaping applies as usual.
  *
- * @param mixed $image image array exposing a `bySize` map, as built by ImageRetriever
- *                     (e.g. `$product.cover`, `$urls.no_picture_image`). Anything else yields empty values.
- * @param array<int|string, string>|string $imageTypes list of image type names (width descriptors are
- *                                                     derived from each size's `width`), map of image type
- *                                                     name => descriptor ('2x', '320w', '' for none), or a
- *                                                     single type name
+ * @param mixed $image the value before the `|`: an image array with a `bySize` map (e.g. `$product.cover`);
+ *                     anything else gives empty values
+ * @param array<int|string, string>|string $imageTypes the argument after the `:`: type names, type => descriptor
+ *                                                     map, or a single type name
  *
- * @return array{url: string, webp: string, avif: string} comma-separated srcset candidates per format,
- *                                                        '' when no listed size exists for that format
+ * @return array{url: string, webp: string, avif: string} srcset per format, '' when empty
  */
-function smarty_modifier_srcset($image, array|string $imageTypes): array
+function smarty_modifier_srcset(mixed $image, array|string $imageTypes): array
 {
     $bySize = is_array($image) && isset($image['bySize']) && is_array($image['bySize'])
         ? $image['bySize']
@@ -60,10 +52,11 @@ function smarty_modifier_srcset($image, array|string $imageTypes): array
         }
 
         if ($descriptor === null) {
-            if (empty($size['width'])) {
+            $width = (int) ($size['width'] ?? 0);
+            if ($width <= 0) {
                 continue;
             }
-            $descriptor = (int) $size['width'] . 'w';
+            $descriptor = $width . 'w';
         }
 
         foreach (array_keys($candidates) as $format) {

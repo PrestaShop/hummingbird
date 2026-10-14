@@ -197,6 +197,10 @@ cannot.
 - **Small, single-purpose, documented.** One job per plugin, a docblock
   showing the template usage, and a raw return value so the front office
   `escape_html` does the escaping once (no `nofilter` in callers).
+- **Never throws on shop data.** Input comes from presenters whose shape
+  varies between shops (missing image types, no `sources`, non-numeric
+  values). A plugin skips what it cannot use and returns an empty value
+  rather than a warning or an exception.
 - **Tested and analysed.** Every plugin ships with PHPUnit tests in
   `tests/plugins/`. `composer test`, `composer phpstan` and
   `composer cs-fixer` must pass: they mirror the core's configuration, and the

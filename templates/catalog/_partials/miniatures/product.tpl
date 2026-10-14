@@ -69,6 +69,13 @@
               </div>
             {/if}
 
+            {block name='product_availability'}
+              {include file='catalog/_partials/product-availability-status.tpl'
+                product=$product
+                componentName=$componentName
+              }
+            {/block}
+
             {block name='product_reviews'}
               {hook h='displayProductListReviews' product=$product}
             {/block}

@@ -25,19 +25,7 @@
             {if $product.cover}
               {$srcset = $product.cover|srcset:$imageTypes}
               <picture>
-                {if $srcset.avif}
-                  <source
-                    srcset="{$srcset.avif}"
-                    type="image/avif"
-                  >
-                {/if}
-
-                {if $srcset.webp}
-                  <source
-                    srcset="{$srcset.webp}"
-                    type="image/webp"
-                  >
-                {/if}
+                {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
                 <img
                   class="order-product__img img-fluid"
@@ -54,19 +42,7 @@
             {else}
               {$srcset = $urls.no_picture_image|srcset:$imageTypes}
               <picture>
-                {if $srcset.avif}
-                  <source
-                    srcset="{$srcset.avif}"
-                    type="image/avif"
-                  >
-                {/if}
-
-                {if $srcset.webp}
-                  <source
-                    srcset="{$srcset.webp}"
-                    type="image/webp"
-                  >
-                {/if}
+                {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
                 <img
                   class="order-product__img img-fluid"

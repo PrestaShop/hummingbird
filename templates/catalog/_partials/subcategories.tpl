@@ -34,15 +34,10 @@
           <a class="{$componentName}__link{if $displaySubcategoryImages} {$componentName}__link--with-image{/if}" href="{$subcategory.url}" title="{$subcategory.name|escape:'html':'UTF-8'}">
             {if $displaySubcategoryImages}
               {if isset($subcategory.thumbnail.bySize.category_default.url) && !empty($subcategory.thumbnail.bySize.category_default.url)}
+                {$srcset = $subcategory.thumbnail|srcset:['category_default' => '']}
                 <picture>
-                  {if isset($subcategory.thumbnail.bySize.category_default.sources.avif)}
-                    <source srcset="{$subcategory.thumbnail.bySize.category_default.sources.avif}" type="image/avif">
-                  {/if}
-  
-                  {if isset($subcategory.thumbnail.bySize.category_default.sources.webp)}
-                    <source srcset="{$subcategory.thumbnail.bySize.category_default.sources.webp}" type="image/webp">
-                  {/if}
-  
+                  {include file='_partials/picture-sources.tpl' srcset=$srcset}
+
                   <img
                     class="{$componentName}__thumbnail img-fluid"
                     src="{$subcategory.thumbnail.bySize.category_default.url}"

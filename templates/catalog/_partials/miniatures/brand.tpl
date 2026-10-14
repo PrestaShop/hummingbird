@@ -7,9 +7,10 @@
     {if $displayImages|default:false}
       <div class="brand__image">
         {if !empty($brand.image.bySize.small_default.url)}
+          {$srcset = $brand.image|srcset:['small_default' => '']}
           <picture>
-            {if !empty($brand.image.bySize.small_default.sources.avif)}<source srcset="{$brand.image.bySize.small_default.sources.avif}" type="image/avif">{/if}
-            {if !empty($brand.image.bySize.small_default.sources.webp)}<source srcset="{$brand.image.bySize.small_default.sources.webp}" type="image/webp">{/if}
+            {include file='_partials/picture-sources.tpl' srcset=$srcset}
+
             <img
               class="brand__img img-fluid"
               src="{$brand.image.bySize.small_default.url}"

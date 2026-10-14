@@ -22,21 +22,7 @@
               <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
                 {$srcset = $image|srcset:$imageTypes}
                 <picture>
-                  {if $srcset.avif}
-                    <source
-                      srcset="{$srcset.avif}"
-                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw"
-                      type="image/avif"
-                    >
-                  {/if}
-
-                  {if $srcset.webp}
-                    <source
-                      srcset="{$srcset.webp}"
-                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw"
-                      type="image/webp"
-                    >
-                  {/if}
+                  {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw'}
 
                   <img
                     class="img-fluid"

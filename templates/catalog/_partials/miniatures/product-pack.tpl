@@ -13,19 +13,7 @@
         {if !empty($product.default_image)}
           {$srcset = $product.default_image|srcset:$imageTypes}
           <picture>
-            {if $srcset.avif}
-              <source
-                srcset="{$srcset.avif}"
-                type="image/avif"
-              >
-            {/if}
-
-            {if $srcset.webp}
-              <source
-                srcset="{$srcset.webp}"
-                type="image/webp"
-              >
-            {/if}
+            {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
             <img
               class="product-pack__image img-fluid"
@@ -43,19 +31,7 @@
         {else}
           {$srcset = $urls.no_picture_image|srcset:$imageTypes}
           <picture>
-            {if $srcset.avif}
-              <source
-                srcset="{$srcset.avif}"
-                type="image/avif"
-              >
-            {/if}
-
-            {if $srcset.webp}
-              <source
-                srcset="{$srcset.webp}"
-                type="image/webp"
-              >
-            {/if}
+            {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
             <img
               class="product-pack__image img-fluid"

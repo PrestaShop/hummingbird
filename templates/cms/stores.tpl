@@ -16,20 +16,9 @@
         {foreach $stores as $store}
           <article id="store-{$store.id}" class="store">
             <div class="store__image">
+              {$srcset = $store.image|srcset:['stores_default' => '']}
               <picture>
-                {if isset($store.image.bySize.stores_default.sources.avif)}
-                  <source 
-                    srcset="{$store.image.bySize.stores_default.sources.avif}"
-                    type="image/avif"
-                  >
-                {/if}
-
-                {if isset($store.image.bySize.stores_default.sources.webp)}
-                  <source 
-                    srcset="{$store.image.bySize.stores_default.sources.webp}"
-                    type="image/webp"
-                  >
-                {/if}
+                {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
                 <img
                   class="store__img img-fluid"

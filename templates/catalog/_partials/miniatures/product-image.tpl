@@ -9,21 +9,7 @@
       {if $product.cover}
         {$srcset = $product.cover|srcset:$imageTypes}
         <picture>
-          {if $srcset.avif}
-            <source
-              srcset="{$srcset.avif}"
-              sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
-              type="image/avif"
-            >
-          {/if}
-
-          {if $srcset.webp}
-            <source
-              srcset="{$srcset.webp}"
-              sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
-              type="image/webp"
-            >
-          {/if}
+          {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw'}
 
           <img
             class="{$componentName}__image"
@@ -43,21 +29,7 @@
       {else}
         {$srcset = $urls.no_picture_image|srcset:$imageTypes}
         <picture>
-          {if $srcset.avif}
-            <source
-              srcset="{$srcset.avif}"
-              sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
-              type="image/avif"
-            >
-          {/if}
-
-          {if $srcset.webp}
-            <source
-              srcset="{$srcset.webp}"
-              sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
-              type="image/webp"
-            >
-          {/if}
+          {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw'}
 
           <img
             class="{$componentName}__image"

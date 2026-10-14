@@ -19,21 +19,7 @@
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
               {$srcset = $image|srcset:$coverTypes}
               <picture>
-                {if $srcset.avif}
-                  <source
-                    srcset="{$srcset.avif}"
-                    sizes="(min-width: 992px) 50vw, 100vw"
-                    type="image/avif"
-                  >
-                {/if}
-
-                {if $srcset.webp}
-                  <source
-                    srcset="{$srcset.webp}"
-                    sizes="(min-width: 992px) 50vw, 100vw"
-                    type="image/webp"
-                  >
-                {/if}
+                {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 50vw, 100vw'}
 
                 <img
                   class="img-fluid w-100"
@@ -96,19 +82,7 @@
               >
                 {$srcset = $image|srcset:$thumbnailTypes}
                 <picture>
-                  {if $srcset.avif}
-                    <source
-                      srcset="{$srcset.avif}"
-                      type="image/avif"
-                    >
-                  {/if}
-
-                  {if $srcset.webp}
-                    <source
-                      srcset="{$srcset.webp}"
-                      type="image/webp"
-                    >
-                  {/if}
+                  {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
                   <img
                     class="product__thumbnail-image outline outline--rounded img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
@@ -136,21 +110,7 @@
 
       {$srcset = $urls.no_picture_image|srcset:$coverTypes}
       <picture>
-        {if $srcset.avif}
-          <source
-            srcset="{$srcset.avif}"
-            sizes="(min-width: 992px) 50vw, 100vw"
-            type="image/avif"
-          >
-        {/if}
-
-        {if $srcset.webp}
-          <source
-            srcset="{$srcset.webp}"
-            sizes="(min-width: 992px) 50vw, 100vw"
-            type="image/webp"
-          >
-        {/if}
+        {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 50vw, 100vw'}
 
         <img
           class="img-fluid"

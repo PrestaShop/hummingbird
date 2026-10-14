@@ -21,8 +21,9 @@
  *   {$srcset = $image|srcset:['default_xs' => '1x', 'default_md' => '2x']}
  *     -> ".../default_xs/1.jpg 1x, .../default_md/1.jpg 2x" (descriptors given explicitly)
  *
- *   Then print {$srcset.url}, {$srcset.webp} or {$srcset.avif}. The values are not escaped,
- *   so the front office's automatic escaping applies as usual.
+ *   Then print {$srcset.url} on the <img>, and include `_partials/picture-sources.tpl` for the
+ *   avif/webp <source> elements. The values are not escaped, so the front office's automatic
+ *   escaping applies as usual.
  *
  * @param mixed $image the value before the `|`: an image array with a `bySize` map (e.g. `$product.cover`);
  *                     anything else gives empty values

@@ -13,14 +13,9 @@
 
       {if !empty($category.cover.bySize.category_cover.url)}
         <div class="category__cover">
+          {$srcset = $category.cover|srcset:['category_cover' => '']}
           <picture>
-            {if isset($category.cover.bySize.category_cover.sources.avif)}
-              <source srcset="{$category.cover.bySize.category_cover.sources.avif}" type="image/avif">
-            {/if}
-
-            {if isset($category.cover.bySize.category_cover.sources.webp)}
-              <source srcset="{$category.cover.bySize.category_cover.sources.webp}" type="image/webp">
-            {/if}
+            {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
             <img
               class="category__cover-image img-fluid"

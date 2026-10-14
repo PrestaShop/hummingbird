@@ -205,4 +205,7 @@ cannot.
   `tests/plugins/`. `composer test`, `composer phpstan` and
   `composer cs-fixer` must pass: they mirror the core's configuration, and the
   core runs PHPStan (level 5, PHP 8.1) on `themes/`.
-- **Prefer a partial when the need is markup**, not formatting.
+- **Prefer a partial when the need is markup**, not formatting. The two go
+  together: `{$srcset = $image|srcset:$imageTypes}` shapes the data, then
+  `{include file='_partials/picture-sources.tpl' srcset=$srcset}` renders the
+  `<source>` elements of the `<picture>`. Never write those `<source>` by hand.

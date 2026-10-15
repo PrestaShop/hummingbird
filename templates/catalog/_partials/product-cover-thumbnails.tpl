@@ -2,6 +2,8 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{$coverTypes = ['default_xl', 'product_main']}
+{$thumbnailTypes = ['default_xs' => '1x', 'default_xl' => '2x']}
 
 <div class="product__images js-images-container">
   {if $product.images|@count > 0}
@@ -15,36 +17,21 @@
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
+              {$srcset = $image|srcset:$coverTypes:'product_main'}
               <picture>
-                {if isset($image.bySize.default_xl.sources.avif)}
-                  <source 
-                    srcset="
-                      {$image.bySize.default_xl.sources.avif} 400w,
-                      {$image.bySize.product_main.sources.avif} 720w"
-                    sizes="(min-width: 992px) 50vw, 100vw"
-                    type="image/avif"
-                  >
-                {/if}
-
-                {if isset($image.bySize.default_xl.sources.webp)}
-                  <source 
-                    srcset="
-                      {$image.bySize.default_xl.sources.webp} 400w,
-                      {$image.bySize.product_main.sources.webp} 720w"
-                    sizes="(min-width: 992px) 50vw, 100vw"
-                    type="image/webp"
-                  >
-                {/if}
+                {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 50vw, 100vw'}
 
                 <img
                   class="img-fluid w-100"
-                  srcset="
-                    {$image.bySize.default_xl.url} 400w,
-                    {$image.bySize.product_main.url} 720w"
-                  sizes="(min-width: 992px) 50vw, 100vw"
-                  src="{$image.bySize.product_main.url}" 
-                  width="{$image.bySize.product_main.width}"
-                  height="{$image.bySize.product_main.height}"
+                  {if $srcset.url}
+                    srcset="{$srcset.url}"
+                    sizes="(min-width: 992px) 50vw, 100vw"
+                  {/if}
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   {if $smarty.foreach.productImages.first}
                     fetchpriority="high"
                   {else}
@@ -95,32 +82,20 @@
                 {/if}
                 aria-label="{l s='Slide to product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key + 1]}"
               >
+                {$srcset = $image|srcset:$thumbnailTypes}
                 <picture>
-                  {if isset($image.bySize.default_xs.sources.avif)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_xs.sources.avif},
-                        {$image.bySize.default_xl.sources.avif} 2x"
-                      type="image/avif"
-                    >
-                  {/if}
-
-                  {if isset($image.bySize.default_xs.sources.webp)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_xs.sources.webp},
-                        {$image.bySize.default_xl.sources.webp} 2x"
-                      type="image/webp"
-                    >
-                  {/if}
+                  {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
                   <img
                     class="product__thumbnail-image outline outline--rounded img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
-                    srcset="
-                      {$image.bySize.default_xs.url},
-                      {$image.bySize.default_xl.url} 2x"
-                    width="{$image.bySize.default_xs.width}"
-                    height="{$image.bySize.default_xs.height}"
+                    {if $srcset.url}
+                      srcset="{$srcset.url}"
+                    {/if}
+                    {if $srcset.src}
+                      src="{$srcset.src}"
+                      width="{$srcset.width}"
+                      height="{$srcset.height}"
+                    {/if}
                     loading="lazy"
                     alt="{$image.legend}"
                     title="{$image.legend}"
@@ -138,36 +113,21 @@
     <div class="product__no-image">
       {include file='catalog/_partials/product-flags.tpl'}
 
+      {$srcset = $urls.no_picture_image|srcset:$coverTypes:'product_main'}
       <picture>
-        {if isset($urls.no_picture_image.bySize.default_xl.sources.avif)}
-          <source 
-            srcset="
-              {$urls.no_picture_image.bySize.default_xl.sources.avif} 400w,
-              {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
-            sizes="(min-width: 992px) 50vw, 100vw"
-            type="image/avif"
-          >
-        {/if}
-
-        {if isset($urls.no_picture_image.bySize.default_xl.sources.webp)}
-          <source 
-            srcset="
-              {$urls.no_picture_image.bySize.default_xl.sources.webp} 400w,
-              {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
-            sizes="(min-width: 992px) 50vw, 100vw"
-            type="image/webp"
-          >
-        {/if}
+        {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 50vw, 100vw'}
 
         <img
           class="img-fluid"
-          srcset="
-            {$urls.no_picture_image.bySize.default_xl.url} 400w,
-            {$urls.no_picture_image.bySize.product_main.url} 720w"
-          sizes="(min-width: 992px) 50vw, 100vw"
-          width="{$urls.no_picture_image.bySize.product_main.width}"
-          height="{$urls.no_picture_image.bySize.product_main.height}"
-          src="{$urls.no_picture_image.bySize.default_xl.url}" 
+          {if $srcset.url}
+            srcset="{$srcset.url}"
+            sizes="(min-width: 992px) 50vw, 100vw"
+          {/if}
+          {if $srcset.src}
+            src="{$srcset.src}"
+            width="{$srcset.width}"
+            height="{$srcset.height}"
+          {/if}
           loading="lazy"
           alt="{l s='No image available' d='Shop.Theme.Catalog'}"
           title="{l s='No image available' d='Shop.Theme.Catalog'}"

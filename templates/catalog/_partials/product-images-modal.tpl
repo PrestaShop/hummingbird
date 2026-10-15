@@ -2,6 +2,8 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{$imageTypes = ['default_md', 'product_main', 'product_main_2x']}
+
 <div class="product-images-modal modal fade js-product-images-modal" id="product-modal" tabindex="-1" aria-labelledby="product-modal-images-title" data-ps-ref="product-images-modal">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -18,39 +20,21 @@
           <div class="carousel-inner">
             {foreach from=$product.images item=image key=key name=productImages}
               <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
+                {$srcset = $image|srcset:$imageTypes:'product_main_2x'}
                 <picture>
-                  {if isset($image.bySize.default_md.sources.avif)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_md.sources.avif} 320w,
-                        {$image.bySize.product_main.sources.avif} 720w,
-                        {$image.bySize.product_main_2x.sources.avif} 1440w"
-                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
-                      type="image/avif"
-                    >
-                  {/if}
-
-                  {if isset($image.bySize.default_md.sources.webp)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_md.sources.webp} 320w,
-                        {$image.bySize.product_main.sources.webp} 720w,
-                        {$image.bySize.product_main_2x.sources.webp} 1440w"
-                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
-                      type="image/webp"
-                    >
-                  {/if}
+                  {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw'}
 
                   <img
                     class="img-fluid"
-                    srcset="
-                      {$image.bySize.default_md.url} 320w,
-                      {$image.bySize.product_main.url} 720w,
-                      {$image.bySize.product_main_2x.url} 1440w"
-                    sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
-                    src="{$image.bySize.product_main.url}" 
-                    width="{$image.bySize.product_main_2x.width}"
-                    height="{$image.bySize.product_main_2x.height}"
+                    {if $srcset.url}
+                      srcset="{$srcset.url}"
+                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw"
+                    {/if}
+                    {if $srcset.src}
+                      src="{$srcset.src}"
+                      width="{$srcset.width}"
+                      height="{$srcset.height}"
+                    {/if}
                     loading="{if $smarty.foreach.productImages.first}eager{else}lazy{/if}"
                     alt="{$image.legend}"
                     title="{$image.legend}"

@@ -28,3 +28,22 @@ jobs:
       - name: Run type check
         run: |
           npm run build
+
+  php-unit-tests:
+    name: PHP unit tests (Smarty plugins)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Run PHPUnit
+        run: composer test

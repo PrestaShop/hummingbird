@@ -21,6 +21,8 @@ storybook-static/
 # Testing & Code Quality
 # ==========================================
 coverage/
+.phpunit.result.cache
+.php-cs-fixer.cache
 
 # ==========================================
 # OS & System Files

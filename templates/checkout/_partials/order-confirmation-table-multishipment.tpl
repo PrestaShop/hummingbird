@@ -2,6 +2,8 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{$imageTypes = ['default_xs' => '1x', 'default_md' => '2x']}
+
 {$componentName = 'order-confirmation'}
 
 <div class="{$componentName}__table {block name='order-confirmation-classes'}{/block}">
@@ -24,65 +26,40 @@
         <div class="{$componentName}__product">
           <div class="{$componentName}__product-image">
             {if !empty($product.default_image)}
+              {$srcset = $product.default_image|srcset:$imageTypes}
               <picture>
-                {if isset($product.default_image.bySize.default_xs.sources.avif)}
-                  <source 
-                    srcset="
-                      {$product.default_image.bySize.default_xs.sources.avif},
-                      {$product.default_image.bySize.default_md.sources.avif} 2x"
-                    type="image/avif"
-                  >
-                {/if}
-  
-                {if isset($product.default_image.bySize.default_xs.sources.webp)}
-                  <source 
-                    srcset="
-                      {$product.default_image.bySize.default_xs.sources.webp},
-                      {$product.default_image.bySize.default_md.sources.webp} 2x"
-                    type="image/webp"
-                  >
-                {/if}
-  
+                {include file='_partials/picture-sources.tpl' srcset=$srcset}
+
                 <img
                   class="{$componentName}__product-img img-fluid"
-                  srcset="
-                    {$product.default_image.bySize.default_xs.url},
-                    {$product.default_image.bySize.default_md.url} 2x"
-                  src="{$product.default_image.bySize.default_xs.url}"
+                  {if $srcset.url}
+                    srcset="{$srcset.url}"
+                  {/if}
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
-                  width="{$product.default_image.bySize.default_xs.width}"
-                  height="{$product.default_image.bySize.default_xs.height}"
                   alt="{$product.default_image.legend}"
                   title="{$product.default_image.legend}"
                 >
               </picture>
             {else}
+              {$srcset = $urls.no_picture_image|srcset:$imageTypes}
               <picture>
-                {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
-                  <source 
-                    srcset="
-                      {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                      {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
-                    type="image/avif"
-                  >
-                {/if}
-  
-                {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
-                  <source 
-                    srcset="
-                      {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                      {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
-                    type="image/webp"
-                  >
-                {/if}
-  
+                {include file='_partials/picture-sources.tpl' srcset=$srcset}
+
                 <img
                   class="{$componentName}__product-img img-fluid"
-                  srcset="
-                    {$urls.no_picture_image.bySize.default_xs.url},
-                    {$urls.no_picture_image.bySize.default_md.url} 2x"
-                  width="{$urls.no_picture_image.bySize.default_xs.width}"
-                  height="{$urls.no_picture_image.bySize.default_xs.height}"
+                  {if $srcset.url}
+                    srcset="{$srcset.url}"
+                  {/if}
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
                 >
               </picture>
@@ -159,65 +136,40 @@
         <div class="{$componentName}__product">
           <div class="{$componentName}__product-image">
             {if !empty($product.default_image)}
+              {$srcset = $product.default_image|srcset:$imageTypes}
               <picture>
-                {if isset($product.default_image.bySize.default_xs.sources.avif)}
-                  <source 
-                    srcset="
-                      {$product.default_image.bySize.default_xs.sources.avif},
-                      {$product.default_image.bySize.default_md.sources.avif} 2x"
-                    type="image/avif"
-                  >
-                {/if}
-
-                {if isset($product.default_image.bySize.default_xs.sources.webp)}
-                  <source 
-                    srcset="
-                      {$product.default_image.bySize.default_xs.sources.webp},
-                      {$product.default_image.bySize.default_md.sources.webp} 2x"
-                    type="image/webp"
-                  >
-                {/if}
+                {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
                 <img
                   class="{$componentName}__product-img img-fluid"
-                  srcset="
-                    {$product.default_image.bySize.default_xs.url},
-                    {$product.default_image.bySize.default_md.url} 2x"
-                  src="{$product.default_image.bySize.default_xs.url}"
+                  {if $srcset.url}
+                    srcset="{$srcset.url}"
+                  {/if}
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
-                  width="{$product.default_image.bySize.default_xs.width}"
-                  height="{$product.default_image.bySize.default_xs.height}"
                   alt="{$product.default_image.legend}"
                   title="{$product.default_image.legend}"
                 >
               </picture>
             {else}
+              {$srcset = $urls.no_picture_image|srcset:$imageTypes}
               <picture>
-                {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
-                  <source 
-                    srcset="
-                      {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                      {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
-                    type="image/avif"
-                  >
-                {/if}
-
-                {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
-                  <source 
-                    srcset="
-                      {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                      {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
-                    type="image/webp"
-                  >
-                {/if}
+                {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
                 <img
                   class="{$componentName}__product-img img-fluid"
-                  srcset="
-                    {$urls.no_picture_image.bySize.default_xs.url},
-                    {$urls.no_picture_image.bySize.default_md.url} 2x"
-                  width="{$urls.no_picture_image.bySize.default_xs.width}"
-                  height="{$urls.no_picture_image.bySize.default_xs.height}"
+                  {if $srcset.url}
+                    srcset="{$srcset.url}"
+                  {/if}
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
                 >
               </picture>

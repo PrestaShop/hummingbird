@@ -17,7 +17,7 @@
         {block name='product_cover'}
           {foreach from=$product.images item=image key=key name=productImages}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
-              {$srcset = $image|srcset:$coverTypes}
+              {$srcset = $image|srcset:$coverTypes:'product_main'}
               <picture>
                 {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 50vw, 100vw'}
 
@@ -27,9 +27,11 @@
                     srcset="{$srcset.url}"
                     sizes="(min-width: 992px) 50vw, 100vw"
                   {/if}
-                  src="{$image.bySize.product_main.url}" 
-                  width="{$image.bySize.product_main.width}"
-                  height="{$image.bySize.product_main.height}"
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   {if $smarty.foreach.productImages.first}
                     fetchpriority="high"
                   {else}
@@ -89,8 +91,11 @@
                     {if $srcset.url}
                       srcset="{$srcset.url}"
                     {/if}
-                    width="{$image.bySize.default_xs.width}"
-                    height="{$image.bySize.default_xs.height}"
+                    {if $srcset.src}
+                      src="{$srcset.src}"
+                      width="{$srcset.width}"
+                      height="{$srcset.height}"
+                    {/if}
                     loading="lazy"
                     alt="{$image.legend}"
                     title="{$image.legend}"
@@ -108,7 +113,7 @@
     <div class="product__no-image">
       {include file='catalog/_partials/product-flags.tpl'}
 
-      {$srcset = $urls.no_picture_image|srcset:$coverTypes}
+      {$srcset = $urls.no_picture_image|srcset:$coverTypes:'product_main'}
       <picture>
         {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 50vw, 100vw'}
 
@@ -118,9 +123,11 @@
             srcset="{$srcset.url}"
             sizes="(min-width: 992px) 50vw, 100vw"
           {/if}
-          width="{$urls.no_picture_image.bySize.product_main.width}"
-          height="{$urls.no_picture_image.bySize.product_main.height}"
-          src="{$urls.no_picture_image.bySize.default_xl.url}" 
+          {if $srcset.src}
+            src="{$srcset.src}"
+            width="{$srcset.width}"
+            height="{$srcset.height}"
+          {/if}
           loading="lazy"
           alt="{l s='No image available' d='Shop.Theme.Catalog'}"
           title="{l s='No image available' d='Shop.Theme.Catalog'}"

@@ -35,10 +35,12 @@
                   {if $srcset.url}
                     srcset="{$srcset.url}"
                   {/if}
-                  src="{$product.default_image.bySize.default_xs.url}"
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
-                  width="{$product.default_image.bySize.default_xs.width}"
-                  height="{$product.default_image.bySize.default_xs.height}"
                   alt="{$product.default_image.legend}"
                   title="{$product.default_image.legend}"
                 >
@@ -53,8 +55,11 @@
                   {if $srcset.url}
                     srcset="{$srcset.url}"
                   {/if}
-                  width="{$urls.no_picture_image.bySize.default_xs.width}"
-                  height="{$urls.no_picture_image.bySize.default_xs.height}"
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
                 >
               </picture>
@@ -140,10 +145,12 @@
                   {if $srcset.url}
                     srcset="{$srcset.url}"
                   {/if}
-                  src="{$product.default_image.bySize.default_xs.url}"
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
-                  width="{$product.default_image.bySize.default_xs.width}"
-                  height="{$product.default_image.bySize.default_xs.height}"
                   alt="{$product.default_image.legend}"
                   title="{$product.default_image.legend}"
                 >
@@ -158,8 +165,11 @@
                   {if $srcset.url}
                     srcset="{$srcset.url}"
                   {/if}
-                  width="{$urls.no_picture_image.bySize.default_xs.width}"
-                  height="{$urls.no_picture_image.bySize.default_xs.height}"
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
                 >
               </picture>

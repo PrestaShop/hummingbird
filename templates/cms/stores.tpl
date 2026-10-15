@@ -23,10 +23,12 @@
 
                 <img
                   class="store__img img-fluid"
-                  srcset="{$store.image.bySize.stores_default.url}"
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
-                  width="{$store.image.bySize.stores_default.width}"
-                  height="{$store.image.bySize.stores_default.height}"
                   {if !empty($store.image.legend)}
                     alt="{$store.image.legend}"
                     title="{$store.image.legend}"

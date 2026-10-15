@@ -20,7 +20,7 @@
           <div class="carousel-inner">
             {foreach from=$product.images item=image key=key name=productImages}
               <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
-                {$srcset = $image|srcset:$imageTypes}
+                {$srcset = $image|srcset:$imageTypes:'product_main_2x'}
                 <picture>
                   {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw'}
 
@@ -30,9 +30,11 @@
                       srcset="{$srcset.url}"
                       sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw"
                     {/if}
-                    src="{$image.bySize.product_main.url}" 
-                    width="{$image.bySize.product_main_2x.width}"
-                    height="{$image.bySize.product_main_2x.height}"
+                    {if $srcset.src}
+                      src="{$srcset.src}"
+                      width="{$srcset.width}"
+                      height="{$srcset.height}"
+                    {/if}
                     loading="{if $smarty.foreach.productImages.first}eager{else}lazy{/if}"
                     alt="{$image.legend}"
                     title="{$image.legend}"

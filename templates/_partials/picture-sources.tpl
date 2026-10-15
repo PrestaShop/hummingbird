@@ -12,7 +12,7 @@
   {$srcset = $product.cover|srcset:$imageTypes}
   <picture>
     {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 50vw, 100vw'}
-    <img srcset="{$srcset.url}" ...>
+    <img srcset="{$srcset.url}" src="{$srcset.src}" width="{$srcset.width}" height="{$srcset.height}" ...>
   </picture>
 *}
 {foreach ['avif', 'webp'] as $format}

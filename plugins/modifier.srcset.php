@@ -21,18 +21,23 @@
  *   {$srcset = $image|srcset:['default_xs' => '1x', 'default_md' => '2x']}
  *     -> ".../default_xs/1.jpg 1x, .../default_md/1.jpg 2x" (descriptors given explicitly)
  *
- *   Then print {$srcset.url} on the <img>, and include `_partials/picture-sources.tpl` for the
- *   avif/webp <source> elements. The values are not escaped, so the front office's automatic
- *   escaping applies as usual.
+ *   {$srcset = $image|srcset:['default_sm', 'default_md', 'default_lg']:'default_md'}
+ *     -> same, and $srcset.src/width/height come from default_md instead of the first listed size
+ *
+ *   Then print {$srcset.url} on the <img> with {$srcset.src}, {$srcset.width} and {$srcset.height},
+ *   and include `_partials/picture-sources.tpl` for the avif/webp <source> elements. The values are
+ *   not escaped, so the front office's automatic escaping applies as usual.
  *
  * @param mixed $image the value before the `|`: an image array with a `bySize` map (e.g. `$product.cover`);
  *                     anything else gives empty values
  * @param array<int|string, string>|string $imageTypes the argument after the `:`: type names, type => descriptor
  *                                                     map, or a single type name
+ * @param string|null $fallbackType the size to use for src/width/height; defaults to the first listed size
+ *                                  the shop has, which also applies when the named one is missing
  *
- * @return array{url: string, webp: string, avif: string} srcset per format, '' when empty
+ * @return array{url: string, webp: string, avif: string, src: string, width: int, height: int} srcset per format ('' when empty) and the fallback size ('' and 0 when none)
  */
-function smarty_modifier_srcset(mixed $image, array|string $imageTypes): array
+function smarty_modifier_srcset(mixed $image, array|string $imageTypes, ?string $fallbackType = null): array
 {
     $bySize = is_array($image) && isset($image['bySize']) && is_array($image['bySize'])
         ? $image['bySize']
@@ -43,6 +48,7 @@ function smarty_modifier_srcset(mixed $image, array|string $imageTypes): array
     }
 
     $candidates = ['url' => [], 'webp' => [], 'avif' => []];
+    $fallback = is_array($bySize[$fallbackType] ?? null) ? $bySize[$fallbackType] : null;
 
     foreach ($imageTypes as $key => $value) {
         [$type, $descriptor] = is_int($key) ? [$value, null] : [$key, $value];
@@ -51,6 +57,7 @@ function smarty_modifier_srcset(mixed $image, array|string $imageTypes): array
         if (!is_array($size)) {
             continue;
         }
+        $fallback ??= $size;
 
         if ($descriptor === null) {
             $width = (int) ($size['width'] ?? 0);
@@ -69,5 +76,11 @@ function smarty_modifier_srcset(mixed $image, array|string $imageTypes): array
         }
     }
 
-    return array_map(static fn (array $list): string => implode(', ', $list), $candidates);
+    $src = $fallback['url'] ?? null;
+
+    return array_map(static fn (array $list): string => implode(', ', $list), $candidates) + [
+        'src' => is_string($src) ? $src : '',
+        'width' => (int) ($fallback['width'] ?? 0),
+        'height' => (int) ($fallback['height'] ?? 0),
+    ];
 }

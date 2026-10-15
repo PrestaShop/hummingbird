@@ -41,19 +41,25 @@
 
                   <img
                     class="{$componentName}__thumbnail img-fluid"
-                    src="{$subcategory.thumbnail.bySize.category_default.url}"
-                    width="{$subcategory.thumbnail.bySize.category_default.width}"
-                    height="{$subcategory.thumbnail.bySize.category_default.height}"
+                    {if $srcset.src}
+                      src="{$srcset.src}"
+                      width="{$srcset.width}"
+                      height="{$srcset.height}"
+                    {/if}
                     alt="{$subcategory.name|escape:'html':'UTF-8'}"
                     loading="lazy"
                   >
                 </picture>
               {else}
+                {* The no-picture image only exists in product sizes. *}
+                {$srcset = $urls.no_picture_image|srcset:['small_default' => '']}
                 <img
                   class="{$componentName}__thumbnail img-fluid"
-                  src="{$urls.no_picture_image.bySize.small_default.url}"
-                  width="{$urls.no_picture_image.bySize.small_default.width}"
-                  height="{$urls.no_picture_image.bySize.small_default.height}"
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   alt="{$subcategory.name|escape:'html':'UTF-8'}"
                   loading="lazy"
                 >

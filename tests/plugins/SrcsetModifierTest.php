@@ -16,7 +16,7 @@ require_once __DIR__ . '/../../plugins/modifier.srcset.php';
 
 final class SrcsetModifierTest extends TestCase
 {
-    private const EMPTY = ['url' => '', 'webp' => '', 'avif' => ''];
+    private const EMPTY = ['url' => '', 'webp' => '', 'avif' => '', 'src' => '', 'width' => 0, 'height' => 0];
 
     /**
      * A `bySize` entry as ImageRetriever::getImage() builds it. The no-picture image has no `sources`.
@@ -58,6 +58,9 @@ final class SrcsetModifierTest extends TestCase
                 'url' => 'https://shop.test/img/p/1-default_sm.jpg 216w, https://shop.test/img/p/1-default_md.jpg 261w, https://shop.test/img/p/1-default_lg.jpg 336w',
                 'webp' => 'https://shop.test/img/p/1-default_sm.webp 216w, https://shop.test/img/p/1-default_md.webp 261w, https://shop.test/img/p/1-default_lg.webp 336w',
                 'avif' => 'https://shop.test/img/p/1-default_sm.avif 216w, https://shop.test/img/p/1-default_md.avif 261w, https://shop.test/img/p/1-default_lg.avif 336w',
+                'src' => 'https://shop.test/img/p/1-default_sm.jpg',
+                'width' => 216,
+                'height' => 216,
             ],
             smarty_modifier_srcset($image, ['default_sm', 'default_md', 'default_lg'])
         );
@@ -93,6 +96,9 @@ final class SrcsetModifierTest extends TestCase
                 'url' => 'https://shop.test/img/p/1-default_md.jpg 261w',
                 'webp' => 'https://shop.test/img/p/1-default_md.webp 261w',
                 'avif' => 'https://shop.test/img/p/1-default_md.avif 261w',
+                'src' => 'https://shop.test/img/p/1-default_md.jpg',
+                'width' => 261,
+                'height' => 261,
             ],
             smarty_modifier_srcset($image, ['default_sm', 'default_md', 'default_lg'])
         );
@@ -102,7 +108,7 @@ final class SrcsetModifierTest extends TestCase
         );
     }
 
-    public function testEveryFormatIsEmptyWhenNoListedSizeExists(): void
+    public function testEveryValueIsEmptyWhenNoListedSizeExists(): void
     {
         self::assertSame(self::EMPTY, smarty_modifier_srcset(self::image('default_xs'), ['default_sm', 'default_lg']));
         self::assertSame(self::EMPTY, smarty_modifier_srcset(['bySize' => []], ['default_sm']));
@@ -114,7 +120,14 @@ final class SrcsetModifierTest extends TestCase
         $image = ['bySize' => ['default_md' => self::imageSize('default_md', 261, false)]];
 
         self::assertSame(
-            ['url' => 'https://shop.test/img/p/1-default_md.jpg 261w', 'webp' => '', 'avif' => ''],
+            [
+                'url' => 'https://shop.test/img/p/1-default_md.jpg 261w',
+                'webp' => '',
+                'avif' => '',
+                'src' => 'https://shop.test/img/p/1-default_md.jpg',
+                'width' => 261,
+                'height' => 261,
+            ],
             smarty_modifier_srcset($image, ['default_md'])
         );
     }
@@ -138,7 +151,7 @@ final class SrcsetModifierTest extends TestCase
         }
         $image = ['bySize' => ['default_md' => $size]];
 
-        self::assertSame(self::EMPTY, smarty_modifier_srcset($image, ['default_md']));
+        self::assertSame('', smarty_modifier_srcset($image, ['default_md'])['url']);
         // An explicit descriptor does not need the width.
         self::assertSame('https://shop.test/x.jpg 2x', smarty_modifier_srcset($image, ['default_md' => '2x'])['url']);
     }
@@ -191,7 +204,14 @@ final class SrcsetModifierTest extends TestCase
         $image = ['bySize' => ['default_md' => $size]];
 
         self::assertSame(
-            ['url' => '', 'webp' => 'https://shop.test/x.webp 261w', 'avif' => 'https://shop.test/x.avif 261w'],
+            [
+                'url' => '',
+                'webp' => 'https://shop.test/x.webp 261w',
+                'avif' => 'https://shop.test/x.avif 261w',
+                'src' => '',
+                'width' => 261,
+                'height' => 0,
+            ],
             smarty_modifier_srcset($image, ['default_md'])
         );
     }
@@ -225,5 +245,57 @@ final class SrcsetModifierTest extends TestCase
         $image = ['bySize' => ['default_md' => ['url' => 'https://shop.test/x.jpg?a=1&b=2', 'width' => 261]]];
 
         self::assertSame('https://shop.test/x.jpg?a=1&b=2 261w', smarty_modifier_srcset($image, ['default_md'])['url']);
+    }
+
+    public function testFallbackSizeIsTheFirstListedSizeTheShopHas(): void
+    {
+        // default_sm is listed first but missing: default_md takes over.
+        $srcset = smarty_modifier_srcset(self::image('default_md', 'default_lg'), ['default_sm', 'default_md', 'default_lg']);
+
+        self::assertSame('https://shop.test/img/p/1-default_md.jpg', $srcset['src']);
+        self::assertSame(261, $srcset['width']);
+        self::assertSame(261, $srcset['height']);
+    }
+
+    public function testFallbackSizeCanBeChosenExplicitly(): void
+    {
+        $image = self::image('default_sm', 'default_md', 'default_lg');
+
+        $srcset = smarty_modifier_srcset($image, ['default_sm', 'default_md', 'default_lg'], 'default_md');
+
+        self::assertSame('https://shop.test/img/p/1-default_md.jpg', $srcset['src']);
+        self::assertSame(261, $srcset['width']);
+        self::assertSame(261, $srcset['height']);
+    }
+
+    public function testExplicitFallbackNeedNotBeListed(): void
+    {
+        $image = self::image('default_xs', 'default_md', 'default_lg');
+
+        self::assertSame(
+            'https://shop.test/img/p/1-default_lg.jpg',
+            smarty_modifier_srcset($image, ['default_xs' => '1x', 'default_md' => '2x'], 'default_lg')['src']
+        );
+    }
+
+    public function testMissingExplicitFallbackFallsBackToTheFirstListedSize(): void
+    {
+        $image = self::image('default_sm', 'default_md');
+
+        $srcset = smarty_modifier_srcset($image, ['default_sm', 'default_md'], 'default_lg');
+
+        self::assertSame('https://shop.test/img/p/1-default_sm.jpg', $srcset['src']);
+        self::assertSame(216, $srcset['width']);
+    }
+
+    public function testFallbackSizeDoesNotNeedAWidth(): void
+    {
+        // Explicit descriptor, no width: the size is still a usable src.
+        $image = ['bySize' => ['default_xs' => ['url' => 'https://shop.test/x.jpg']]];
+
+        self::assertSame(
+            ['url' => 'https://shop.test/x.jpg 1x', 'webp' => '', 'avif' => '', 'src' => 'https://shop.test/x.jpg', 'width' => 0, 'height' => 0],
+            smarty_modifier_srcset($image, ['default_xs' => '1x'])
+        );
     }
 }

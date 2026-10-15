@@ -14,20 +14,25 @@
 
             <img
               class="supplier__img img-fluid"
-              src="{$supplier.image.bySize.small_default.url}"
+              {if $srcset.src}
+                src="{$srcset.src}"
+                width="{$srcset.width}"
+                height="{$srcset.height}"
+              {/if}
               alt="{if !empty($supplier.image.legend)}{$supplier.image.legend}{else}{$supplier.name}{/if}"
-              width="{$supplier.image.bySize.small_default.width}"
-              height="{$supplier.image.bySize.small_default.height}"
               loading="lazy"
             >
           </picture>
         {else}
+          {$srcset = $urls.no_picture_image|srcset:$imageTypes}
           <img
             class="supplier__img img-fluid"
-            src="{$urls.no_picture_image.bySize.small_default.url}"
+            {if $srcset.src}
+              src="{$srcset.src}"
+              width="{$srcset.width}"
+              height="{$srcset.height}"
+            {/if}
             alt="{$supplier.name}"
-            width="{$urls.no_picture_image.bySize.small_default.width}"
-            height="{$urls.no_picture_image.bySize.small_default.height}"
             loading="lazy"
           >
         {/if}

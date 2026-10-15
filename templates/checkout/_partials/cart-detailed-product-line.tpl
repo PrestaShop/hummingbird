@@ -18,8 +18,11 @@
             {if $srcset.url}
               srcset="{$srcset.url}"
             {/if}
-            width="{$product.default_image.bySize.default_xs.width}"
-            height="{$product.default_image.bySize.default_xs.height}"
+            {if $srcset.src}
+              src="{$srcset.src}"
+              width="{$srcset.width}"
+              height="{$srcset.height}"
+            {/if}
             loading="lazy"
             alt="{$product.name|escape:'quotes'}"
             title="{$product.name|escape:'quotes'}"
@@ -35,8 +38,11 @@
             {if $srcset.url}
               srcset="{$srcset.url}"
             {/if}
-            width="{$urls.no_picture_image.bySize.default_xs.width}"
-            height="{$urls.no_picture_image.bySize.default_xs.height}"
+            {if $srcset.src}
+              src="{$srcset.src}"
+              width="{$srcset.width}"
+              height="{$srcset.height}"
+            {/if}
             loading="lazy"
           >
         </picture>

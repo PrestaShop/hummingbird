@@ -7,7 +7,7 @@
   <div class="{$componentName}__image-container thumbnail-container">
     <a href="{$product.url}" class="{$componentName}__image-link outline outline--rounded">
       {if $product.cover}
-        {$srcset = $product.cover|srcset:$imageTypes}
+        {$srcset = $product.cover|srcset:$imageTypes:'default_md'}
         <picture>
           {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw'}
 
@@ -17,9 +17,11 @@
               srcset="{$srcset.url}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
             {/if}
-            src="{$product.cover.bySize.default_md.url}"
-            width="{$product.cover.bySize.default_md.width}"
-            height="{$product.cover.bySize.default_md.height}"
+            {if $srcset.src}
+              src="{$srcset.src}"
+              width="{$srcset.width}"
+              height="{$srcset.height}"
+            {/if}
             loading="lazy"
             alt="{$product.cover.legend}"
             title="{$product.cover.legend}"
@@ -27,7 +29,7 @@
           >
         </picture>
       {else}
-        {$srcset = $urls.no_picture_image|srcset:$imageTypes}
+        {$srcset = $urls.no_picture_image|srcset:$imageTypes:'default_md'}
         <picture>
           {include file='_partials/picture-sources.tpl' srcset=$srcset sizes='(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw'}
 
@@ -37,9 +39,11 @@
               srcset="{$srcset.url}"
               sizes="(min-width: 992px) 25vw, (min-width: 360px) 50vw, 100vw"
             {/if}
-            width="{$urls.no_picture_image.bySize.default_md.width}"
-            height="{$urls.no_picture_image.bySize.default_md.height}"
-            src="{$urls.no_picture_image.bySize.default_md.url}"
+            {if $srcset.src}
+              src="{$srcset.src}"
+              width="{$srcset.width}"
+              height="{$srcset.height}"
+            {/if}
             loading="lazy"
             alt="{l s='No image available' d='Shop.Theme.Catalog'}"
             title="{l s='No image available' d='Shop.Theme.Catalog'}"

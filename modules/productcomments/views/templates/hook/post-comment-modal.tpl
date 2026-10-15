@@ -34,8 +34,11 @@
                         {if $srcset.url}
                           srcset="{$srcset.url}"
                         {/if}
-                        width="{$product.cover.bySize.default_xs.width}"
-                        height="{$product.cover.bySize.default_xs.height}"
+                        {if $srcset.src}
+                          src="{$srcset.src}"
+                          width="{$srcset.width}"
+                          height="{$srcset.height}"
+                        {/if}
                         loading="lazy"
                         alt="{$product.cover.legend}"
                         title="{$product.cover.legend}"
@@ -51,8 +54,11 @@
                         {if $srcset.url}
                           srcset="{$srcset.url}"
                         {/if}
-                        width="{$urls.no_picture_image.bySize.default_xs.width}"
-                        height="{$urls.no_picture_image.bySize.default_xs.height}"
+                        {if $srcset.src}
+                          src="{$srcset.src}"
+                          width="{$srcset.width}"
+                          height="{$srcset.height}"
+                        {/if}
                         loading="lazy"
                       >
                     </picture>

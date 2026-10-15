@@ -208,4 +208,6 @@ cannot.
 - **Prefer a partial when the need is markup**, not formatting. The two go
   together: `{$srcset = $image|srcset:$imageTypes}` shapes the data, then
   `{include file='_partials/picture-sources.tpl' srcset=$srcset}` renders the
-  `<source>` elements of the `<picture>`. Never write those `<source>` by hand.
+  `<source>` elements of the `<picture>`, and the `<img>` takes `srcset`,
+  `src`, `width` and `height` from `$srcset` too. Never read `bySize` directly
+  in an `<img>`: the modifier skips the sizes the shop does not have.

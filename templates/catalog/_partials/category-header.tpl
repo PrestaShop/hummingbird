@@ -20,9 +20,11 @@
 
             <img
               class="category__cover-image img-fluid"
-              src="{$category.cover.bySize.category_cover.url}"
-              width="{$category.cover.bySize.category_cover.width}"
-              height="{$category.cover.bySize.category_cover.height}"
+              {if $srcset.src}
+                src="{$srcset.src}"
+                width="{$srcset.width}"
+                height="{$srcset.height}"
+              {/if}
               alt="{if !empty($category.cover.legend)}{$category.cover.legend}{else}{$category.name}{/if}"
               fetchpriority="high"
             >

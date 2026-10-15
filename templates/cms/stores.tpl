@@ -4,6 +4,7 @@
  *}
 
 {extends file='page.tpl'}
+{$imageTypes = ['stores_default' => '']}
 
 {block name='page_title'}
   {l s='Our stores' d='Shop.Theme.Global'}
@@ -16,7 +17,7 @@
         {foreach $stores as $store}
           <article id="store-{$store.id}" class="store">
             <div class="store__image">
-              {$srcset = $store.image|srcset:['stores_default' => '']}
+              {$srcset = $store.image|srcset:$imageTypes}
               <picture>
                 {include file='_partials/picture-sources.tpl' srcset=$srcset}
 

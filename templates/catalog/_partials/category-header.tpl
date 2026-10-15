@@ -2,6 +2,7 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{$imageTypes = ['category_cover' => '']}
 <div id="js-product-list-header">
   {if $listing.pagination.items_shown_from == 1}
     <div class="category__header">
@@ -13,7 +14,7 @@
 
       {if !empty($category.cover.bySize.category_cover.url)}
         <div class="category__cover">
-          {$srcset = $category.cover|srcset:['category_cover' => '']}
+          {$srcset = $category.cover|srcset:$imageTypes}
           <picture>
             {include file='_partials/picture-sources.tpl' srcset=$srcset}
 

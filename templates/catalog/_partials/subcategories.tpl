@@ -3,6 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {$componentName = 'subcategory'}
+{$imageTypes = ['category_default' => '']}
 
 {**
  * Determine if at least one subcategory has a thumbnail image.
@@ -34,7 +35,7 @@
           <a class="{$componentName}__link{if $displaySubcategoryImages} {$componentName}__link--with-image{/if}" href="{$subcategory.url}" title="{$subcategory.name|escape:'html':'UTF-8'}">
             {if $displaySubcategoryImages}
               {if isset($subcategory.thumbnail.bySize.category_default.url) && !empty($subcategory.thumbnail.bySize.category_default.url)}
-                {$srcset = $subcategory.thumbnail|srcset:['category_default' => '']}
+                {$srcset = $subcategory.thumbnail|srcset:$imageTypes}
                 <picture>
                   {include file='_partials/picture-sources.tpl' srcset=$srcset}
 

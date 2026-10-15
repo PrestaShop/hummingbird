@@ -3,11 +3,12 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {block name='brand_miniature_item'}
+  {$imageTypes = ['small_default' => '']}
   <li class="brand">
     {if $displayImages|default:false}
       <div class="brand__image">
         {if !empty($brand.image.bySize.small_default.url)}
-          {$srcset = $brand.image|srcset:['small_default' => '']}
+          {$srcset = $brand.image|srcset:$imageTypes}
           <picture>
             {include file='_partials/picture-sources.tpl' srcset=$srcset}
 

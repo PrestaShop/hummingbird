@@ -150,6 +150,25 @@ describe('useQuantityInput', () => {
       expect(window.fetch).toHaveBeenCalledTimes(0);
       expect(qtyInput.value).toEqual(qtyInput.getAttribute('value'));
     });
+
+    it('should click the remove button when "0" is confirmed with Enter', async () => {
+      const qtyInput = getHTMLElement<HTMLInputElement>('input');
+      resetQtyInputValueInDOM(qtyInput, '4', '4');
+
+      const mockedFetch = jest.fn();
+      window.fetch = mockedFetch;
+      const removeButton = getHTMLElement<HTMLButtonElement>(selectorsMap.cart.removeFromCart);
+      const removeClickListener = jest.fn();
+      removeButton.addEventListener('click', removeClickListener);
+
+      typeValue(qtyInput, '0');
+      qtyInput.dispatchEvent(new KeyboardEvent('keyup', {key: 'Enter'}));
+      await debounceTimeout();
+
+      expect(qtyInput.value).toEqual('0');
+      expect(removeClickListener).toHaveBeenCalledTimes(1);
+      expect(mockedFetch).toHaveBeenCalledTimes(0);
+    });
   });
 
   describe('without update URL', () => {
@@ -180,8 +199,45 @@ describe('useQuantityInput', () => {
       expect(increasedValue).toEqual(incrementExpectedValue);
       expect(decreasedValue).toEqual(decrementExpectedValue);
     });
+
+    it('should not clamp to the minimum while typing', () => {
+      const qtyInput = getHTMLElement<HTMLInputElement>('input');
+      resetQtyInputValueInDOM(qtyInput, '4', '4');
+
+      typeValue(qtyInput, '2');
+      const firstKeystrokeValue = qtyInput.value;
+
+      typeValue(qtyInput, '20');
+
+      expect(firstKeystrokeValue).toEqual('2');
+      expect(qtyInput.value).toEqual('20');
+    });
+
+    it('should strip non-digit characters while typing', () => {
+      const qtyInput = getHTMLElement<HTMLInputElement>('input');
+      resetQtyInputValueInDOM(qtyInput, '4', '4');
+
+      typeValue(qtyInput, '2a-0');
+
+      expect(qtyInput.value).toEqual('20');
+    });
+
+    it('should clamp to the minimum on blur', () => {
+      const qtyInput = getHTMLElement<HTMLInputElement>('input');
+      resetQtyInputValueInDOM(qtyInput, '4', '4');
+
+      typeValue(qtyInput, '2');
+      qtyInput.dispatchEvent(new Event('blur'));
+
+      expect(qtyInput.value).toEqual('4');
+    });
   });
 });
+
+const typeValue = (input: HTMLInputElement, value: string) => {
+  input.value = value;
+  input.dispatchEvent(new Event('input'));
+};
 
 const mockedResponse = (ok: boolean, hasError?: boolean, qty?: string): jest.Mock => {
   const mockedFetch = jest.fn();

@@ -3,8 +3,6 @@
  * LICENSE.md file that was distributed with this source code.
  */
 
-import useQuantityInput from '@js/components/useQuantityInput';
-
 export const parseSearchUrl = (event: Event): string => {
   const target = (event.target as HTMLElement).closest<HTMLElement>('[data-search-url]');
   const url = target?.dataset.searchUrl;
@@ -122,7 +120,6 @@ export default function initFacetedSearch(): void {
   // Listen for Prestashop’s AJAX product-list update
   prestashop.on(events.updateProductList, (data: Record<string, unknown>) => {
     updateProductListDOM(data);
-    useQuantityInput();
   });
 
   // Listen for color label space key press

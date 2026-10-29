@@ -78,16 +78,16 @@
             <div class="{$componentName}__actions">
               {if $product.add_to_cart_url}
                 <form class="{$componentName}__form" action="{$urls.pages.cart}" method="post">
-                  <input type="hidden" value="{$product.id_product}" name="id_product">
+                  <input type="hidden" value="{$product.id_product}" name="id_product" data-ps-ref="product-id">
                   {if $product.id_product_attribute}
-                      <input type="hidden" value="{$product.id_product_attribute}" name="id_product_attribute">
+                      <input type="hidden" value="{$product.id_product_attribute}" name="id_product_attribute" data-ps-ref="product-attribute-id">
                   {/if}
                   <input type="hidden" name="token" value="{$static_token}">
   
-                  <div class="quantity-button js-quantity-button">
+                  <div class="quantity-button">
                     {include file='components/qty-input.tpl'
+                      quantity_context='listing'
                       attributes=[
-                        "id" => "quantity_wanted_{$product.id_product}",
                         "value" => "{$product.quantity_wanted}",
                         "min" => "{$product.quantity_required}"
                       ]

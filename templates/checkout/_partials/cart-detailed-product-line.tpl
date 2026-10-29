@@ -152,18 +152,24 @@
     </div>
 
     <div class="product-line__content-right">
-      <div class="product-line__quantity-button quantity-button js-quantity-button">
+      <div class="product-line__quantity-button quantity-button">
         {if !empty($product.is_gift)}
           <span class="product-line__gift">
             <i class="product-line__gift-icon material-icons" aria-hidden="true">&#xE8B1;</i>{$product.quantity} {l s='Gift(s)' d='Shop.Theme.Checkout'}
           </span>
         {else}
+          {* js-cart-line-product-quantity is read by the core (themes/_core/js/cart.js) *}
+          {if empty($product.allow_oosp) && isset($product.stock_quantity) && $product.stock_quantity > 0}
+            {assign var="cart_line_max" value=$product.stock_quantity|intval}
+          {else}
+            {assign var="cart_line_max" value=0}
+          {/if}
           {include file='components/qty-input.tpl'
+            quantity_context='cart'
+            quantity_max=$cart_line_max
             attributes=[
-              "class"=>"js-cart-line-product-quantity form-control mw-100",
+              "class"=>"js-cart-line-product-quantity mw-100",
               "name"=>"product-quantity-spin",
-              "data-update-url"=>"{$product.update_quantity_url}",
-              "data-product-id"=>"{$product.id_product}",
               "value"=>"{$product.quantity}",
               "min"=>"{$product.minimal_quantity}"
             ]

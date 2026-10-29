@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  */
-import {qtyInput} from "@constants/selectors-map";
+import {quantitySelector} from "@constants/selectors-map";
 
 declare type facetedsearch = {
   range: string,
@@ -113,15 +113,12 @@ declare type desktopMenu = {
   subMenuRightItems: string,
 };
 
-declare type quantityInput = {
-  default: string,
-  modal: string,
+declare type quantitySelector = {
+  root: string,
+  input: string,
   increment: string,
   decrement: string,
-  confirm: string,
-  icon: string,
-  spinner: string,
-  alert: (param: string) => string,
+  status: string,
 };
 
 declare type formValidation = {
@@ -166,6 +163,6 @@ type SelectorsMap = {
   mobileMenu: mobileMenu,
   visiblePassword: visiblePassword,
   desktopMenu: desktopMenu,
-  qtyInput: quantityInput,
+  quantitySelector: quantitySelector,
   formValidation: formValidation,
 };

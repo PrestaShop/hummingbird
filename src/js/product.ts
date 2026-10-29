@@ -4,7 +4,6 @@
  */
 
 import SelectorsMap from '@constants/selectors-map';
-import debounce from '@helpers/debounce';
 
 type ProductSlideEvent = Event & {to: number};
 
@@ -30,54 +29,4 @@ export default () => {
   initProductSlide();
   prestashop.on(events.updatedProduct, initProductSlide);
   prestashop.on(events.quickviewOpened, initProductSlide);
-
-  function detectQuantityChange() {
-    const quantityInput = document.querySelector(
-      SelectorsMap.qtyInput.quantityWanted,
-    ) as HTMLInputElement;
-    const incrementButton = document.querySelector(
-      SelectorsMap.qtyInput.increment,
-    ) as HTMLButtonElement;
-    const decrementButton = document.querySelector(
-      SelectorsMap.qtyInput.decrement,
-    ) as HTMLButtonElement;
-
-    if (quantityInput && incrementButton && decrementButton) {
-      // Function to trigger emit
-      const triggerEmit = async () => {
-        const inputValue = parseInt(quantityInput.value, 10);
-        const minQuantity = getMinValue(quantityInput);
-
-        // Check if the input value is a valid and greater or equal than the minimum value
-        if (inputValue >= minQuantity) {
-          quantityInput.value = inputValue.toString();
-        } else {
-          quantityInput.value = minQuantity.toString();
-        }
-
-        prestashop.emit('updateProduct', {
-          eventType: 'updatedProductQuantity',
-        });
-      };
-
-      const debouncedTriggerEmit = debounce(triggerEmit, 500);
-
-      quantityInput.addEventListener('input', () => {
-        debouncedTriggerEmit();
-      });
-
-      quantityInput.addEventListener('blur', () => {
-        triggerEmit();
-      });
-
-      quantityInput.addEventListener('change', triggerEmit);
-      incrementButton.addEventListener('click', triggerEmit);
-      decrementButton.addEventListener('click', triggerEmit);
-    }
-  }
-
-  const getMinValue = (input: HTMLInputElement): number => Number(input.getAttribute('min')) || 1;
-
-  // Call the function to start listening for quantity changes
-  detectQuantityChange();
 };

@@ -1,0 +1,87 @@
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+$component-name: quantity-selector;
+
+.#{$component-name} {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+
+  // dir="ltr" keeps − on the left in RTL too. theme_rtl.css flips the input group radii and overlap
+  // to the wrong sides, so they are set again with logical properties: they follow the group
+  // direction and cssjanus leaves them untouched.
+  &__group {
+    flex-wrap: nowrap;
+
+    > * {
+      margin-inline: 0;
+      border-radius: 0;
+    }
+
+    > :not(:first-child) {
+      margin-inline-start: calc(-1 * var(--bs-border-width));
+    }
+
+    > :first-child {
+      border-start-start-radius: var(--bs-btn-border-radius);
+      border-end-start-radius: var(--bs-btn-border-radius);
+    }
+
+    > :last-child {
+      border-start-end-radius: var(--bs-btn-border-radius);
+      border-end-end-radius: var(--bs-btn-border-radius);
+    }
+  }
+
+  &__input {
+    max-width: 4rem;
+    text-align: center;
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+  }
+
+  &__button {
+    --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb);
+    border: 1px solid var(--bs-border-color);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--bs-tertiary-bg);
+    }
+
+    &[aria-disabled="true"] {
+      cursor: not-allowed;
+      opacity: var(--bs-btn-disabled-opacity);
+    }
+
+    .material-icons {
+      font-size: 1.25rem;
+      pointer-events: none;
+    }
+  }
+
+  &__spinner {
+    position: absolute;
+    inset: 0;
+    display: none;
+    margin: auto;
+    border-width: 0.125rem;
+  }
+
+  &[data-ps-state="loading"] {
+    .#{$component-name}__input {
+      color: transparent;
+    }
+
+    .#{$component-name}__spinner {
+      display: block;
+    }
+  }
+}

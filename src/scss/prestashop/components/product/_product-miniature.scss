@@ -198,8 +198,12 @@ $product-miniature-container-query-width: 13.5rem;
     &__form {
       flex-direction: column;
 
-      .quantity-button input {
-        max-width: unset;
+      .quantity-selector {
+        width: 100%;
+
+        &__input {
+          max-width: unset;
+        }
       }
     }
   }

@@ -28,7 +28,7 @@
     {if $field.type === 'select'}
 
       {block name='form_field_item_select'}
-        <select class="form-select" name="{$field.name}" id="{$id_prefix}field-{$field.name}" {if $field.required}required{/if} {$field_attr nofilter}>
+        <select class="form-select" name="{$field.name}" id="{$id_prefix}field-{$field.name}" {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if} {if $field.required}required{/if} {$field_attr nofilter}>
           <option value disabled selected>{l s='-- please choose --' d='Shop.Forms.Labels'}</option>
           {foreach from=$field.availableValues item="label" key="value"}
             <option value="{$value}" {if $value eq $field.value} selected {/if}>{$label}</option>
@@ -43,6 +43,7 @@
         class="form-select js-country"
         name="{$field.name}"
         id="{$id_prefix}field-{$field.name}"
+        {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
         {if $field.required}required{/if}
         {$field_attr nofilter}
         >

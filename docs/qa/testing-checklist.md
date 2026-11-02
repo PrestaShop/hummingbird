@@ -378,7 +378,7 @@ composer show 'prestashop/*' --direct | grep -E 'blockreassurance|contactform|pr
 | Module | Hook or location | Check |
 | --- | --- | --- |
 | `ps_mainmenu` (JS) | `displayTop` | Desktop dropdowns, mega menu, mobile burger, deep category trees, keyboard and screen reader traversal |
-| `ps_searchbar` (JS) | `displayTop`, unhooked from `displaySearch` | Autocomplete list, debounce, no-result state, submit, mobile layout |
+| `ps_searchbar` (JS) | `displayTop`, unhooked from `displaySearch` | Autocomplete list, debounce, no-result state, submit, mobile layout. `config/theme.yml` sets `PS_USE_JQUERY_UI_AUTOCOMPLETE` to 0 at theme install; with a ps_searchbar version that reads this key, the page loads neither `jquery.ui.autocomplete` nor `modules/ps_searchbar/ps_searchbar.js` |
 | `ps_customersignin` | `displayNav2` | Signed-out and signed-in states, dropdown, links |
 | `ps_shoppingcart` (JS) | `displayNav2` | Item count badge, preview modal, product lines, empty cart, update after add to cart |
 | `ps_languageselector` (JS) | `displayNav2` | Switch stays on the current page, single-language shop |
@@ -401,7 +401,7 @@ composer show 'prestashop/*' --direct | grep -E 'blockreassurance|contactform|pr
 
 | Module | Hook or location | Check |
 | --- | --- | --- |
-| `ps_facetedsearch` (JS) | `displayLeftColumn` | Each facet widget type, active filters, clear all, URL sync, browser back and forward, mobile filter panel, slider bounds |
+| `ps_facetedsearch` (JS) | `displayLeftColumn` | Each facet widget type, active filters, clear all, URL sync, browser back and forward, mobile filter panel, slider bounds. `config/theme.yml` sets `PS_USE_JQUERY_UI_SLIDER` to 0 at theme install, so the page loads no `jquery.ui.slider` |
 | `ps_categorytree` (JS) | `displayLeftColumn` | Expand and collapse, deep nesting. The current category only shows with Category root set to Current category (`BLOCK_CATEG_ROOT_CATEGORY` = 1, or 3 for "current unless it has no subcategories"): the tree is then rooted at the category being browsed. The default, Home category (0), draws the whole tree and marks nothing |
 | `ps_specials` | Column or home block, `/prices-drop` | Needs an active specific price |
 | `ps_brandlist` | Column block, `/brands` | Disabled by default. Block, form variant, text variant |
@@ -508,7 +508,7 @@ Every list here is derived from something in the repository, so a change to one 
 
 | Source | What it drives |
 | --- | --- |
-| `config/theme.yml` | Hook assignments and the modules disabled by default in section 5, the selectable layouts, image types, the per-block product counts in 3.1 |
+| `config/theme.yml` | Hook assignments, the modules disabled by default and the jQuery UI keys in section 5, the selectable layouts, image types, the per-block product counts in 3.1 |
 | `modules/` | The module list in section 5, one entry per overridden module, except the modules section 5 names as out of scope |
 | `templates/` | The pages in section 3 and the partials in 2.3. A new page or partial needs a line |
 | `templates/layouts/` | The layouts in the regression sweep, every file in the directory, not only the ones `config/theme.yml` declares as selectable |

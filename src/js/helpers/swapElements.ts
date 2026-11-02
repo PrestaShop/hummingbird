@@ -4,7 +4,7 @@
  */
 
 export default function swapElements(obj1: Element, obj2: Element): void {
-  const temp = obj1.innerHTML;
-  obj1.innerHTML = '';
-  obj2.innerHTML = temp;
+  // Moves the nodes, so they keep their listeners and component instances.
+  obj2.textContent = '';
+  obj2.append(...Array.from(obj1.childNodes));
 }

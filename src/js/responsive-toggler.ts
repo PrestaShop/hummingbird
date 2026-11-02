@@ -4,7 +4,6 @@
  */
 import swapElements from '@helpers/swapElements';
 import {facetedsearch} from '@constants/selectors-map';
-import {initSliders} from '@js/modules/facetedsearch';
 import {Offcanvas} from 'bootstrap';
 
 const {prestashop} = window;
@@ -31,9 +30,6 @@ export function toggleMobileStyles() {
         swapElements(source, target);
       }
     });
-
-    // we have to init again sliders because we reconstruct the dom
-    initSliders();
   } else {
     Array.prototype.forEach.call(document.querySelectorAll("*[id^='_mobile_']"), async (el) => {
       const source = document.querySelector(`#${el.id}`);
@@ -50,9 +46,6 @@ export function toggleMobileStyles() {
     if (offCanvasFacetedElement != null) {
       Offcanvas.getInstance(offCanvasFacetedElement)?.hide();
     }
-
-    // we have to init again sliders because we reconstruct the dom
-    initSliders();
   }
 
   prestashop.emit(events.responsiveUpdate, {

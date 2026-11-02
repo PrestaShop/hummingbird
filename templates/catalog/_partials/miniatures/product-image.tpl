@@ -39,7 +39,7 @@
             src="{$product.cover.bySize.default_md.url}"
             width="{$product.cover.bySize.default_md.width}"
             height="{$product.cover.bySize.default_md.height}"
-            loading="lazy"
+            loading="{if isset($eager_images, $position) && $position < $eager_images}eager{else}lazy{/if}"
             alt="{$product.cover.legend}"
             title="{$product.cover.legend}"
             data-full-size-image-url="{$product.cover.bySize.home_default.url}"

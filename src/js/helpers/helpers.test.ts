@@ -21,4 +21,24 @@ describe('Helpers', () => {
 
     expect(mobileDomElement.innerHTML).toEqual(contentValue);
   });
+
+  it('should move the children with their listeners', () => {
+    document.body.innerHTML = `
+      <div id="${desktopElementId}"><button type="button">${contentValue}</button></div>
+      ${mobileElement}
+    `;
+
+    const desktopDomElement = document.querySelector(`#${desktopElementId}`) as HTMLElement;
+    const mobileDomElement = document.querySelector(`#${mobileElementId}`) as HTMLElement;
+    const button = desktopDomElement.querySelector('button') as HTMLButtonElement;
+    const onClick = jest.fn();
+    button.addEventListener('click', onClick);
+
+    swapElements(desktopDomElement, mobileDomElement);
+    mobileDomElement.querySelector('button')?.click();
+
+    expect(mobileDomElement.firstElementChild).toBe(button);
+    expect(desktopDomElement.childNodes).toHaveLength(0);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
 });

@@ -6,7 +6,7 @@
 {extends file='page.tpl'}
 
 {block name='page_title'}
-  {$cms.meta_title}
+  {$cms.meta_title nofilter}
 {/block}
 
 {block name='page_content_container'}

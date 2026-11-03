@@ -9,7 +9,7 @@
 {block name='page_header_container'}
   {block name='page_title'}
     <div class="page-header mb-2">
-      <h1 class="display-1">{$page.title}</h1>
+      <h1 class="display-1">{$page.title nofilter}</h1>
     </div>
   {/block}
 {/block}

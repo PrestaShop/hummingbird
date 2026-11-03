@@ -7,7 +7,7 @@
 {$componentName = 'account-menu'}
 
 {block name='page_title'}
-  {l s='Welcome' d='Shop.Theme.Customeraccount'} {$customer.firstname} {$customer.lastname}
+  {l s='Welcome' d='Shop.Theme.Customeraccount'} {$customer.firstname nofilter} {$customer.lastname nofilter}
 {/block}
 
 {block name='page_content'}

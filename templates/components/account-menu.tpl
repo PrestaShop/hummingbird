@@ -89,6 +89,18 @@
         </a>
       {/if}
 
+      {if $configuration.withdrawal_enabled && !$configuration.is_catalog}
+        <a
+          class="{$componentName}__link{if $urls.current_url === $urls.pages.withdrawal} {$componentName}__link--active{/if}"
+          id="withdrawal_link"
+          href="{$urls.pages.withdrawal}"
+          {if $urls.current_url === $urls.pages.withdrawal}aria-current="page"{/if}
+        >
+          <i class="{$componentName}__icon material-icons" aria-hidden="true">&#xE14C;</i>
+          {l s='Withdraw from a contract' d='Shop.Theme.Customeraccount'}
+        </a>
+      {/if}
+
       {block name='display_customer_account'}
         {hook h='displayCustomerAccount'}
       {/block}

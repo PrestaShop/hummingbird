@@ -5,5 +5,5 @@
 {$componentName = 'page-title-section'}
 
 {block name='page_title_section'}
-  <h1 class="{$componentName}">{$title}</h1>
+  <h1 class="{$componentName}">{if $title_is_escaped|default:false}{$title nofilter}{else}{$title}{/if}</h1>
 {/block}

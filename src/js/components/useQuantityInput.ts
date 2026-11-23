@@ -47,17 +47,17 @@ const useQuantityInput: Theme.QuantityInput.Function = (
           }
         });
 
+        // Don't apply the minimum while typing
         qtyInput.addEventListener('input', (event: Event) => {
           const input = event.target as HTMLInputElement;
-          const minQuantity = getMinValue(input);
-          const sanitizedValue = sanitizeInputToNumber(input.value);
-          const clampedValue = clampToMin(sanitizedValue, minQuantity);
+          const digitsOnly = stripNonDigits(input.value);
 
-          if (input.value !== clampedValue.toString()) {
-            input.value = clampedValue.toString();
+          if (input.value !== digitsOnly) {
+            input.value = digitsOnly;
           }
         });
 
+        // Apply the minimum on blur
         qtyInput.addEventListener('blur', (event: Event) => {
           const input = event.target as HTMLInputElement;
           const minQuantity = getMinValue(input);
@@ -115,7 +115,9 @@ const isValidInputNum = (inputNum: number) => !Number.isNaN(inputNum) && Number.
 
 const getMinValue = (input: HTMLInputElement): number => Number(input.getAttribute('min')) || 1;
 
-const sanitizeInputToNumber = (value: string): number => Number(value.replace(/[^\d]/g, '')) || 0;
+const stripNonDigits = (value: string): string => value.replace(/[^\d]/g, '');
+
+const sanitizeInputToNumber = (value: string): number => Number(stripNonDigits(value)) || 0;
 
 const clampToMin = (value: number, min: number): number => Math.max(value, min);
 

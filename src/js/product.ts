@@ -60,7 +60,11 @@ export default () => {
         });
       };
 
-      const debouncedTriggerEmit = debounce(triggerEmit, 500);
+      const debouncedTriggerEmit = debounce(async () => {
+        if (parseInt(quantityInput.value, 10) >= getMinValue(quantityInput)) {
+          triggerEmit();
+        }
+      }, 500);
 
       quantityInput.addEventListener('input', () => {
         debouncedTriggerEmit();

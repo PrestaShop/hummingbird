@@ -8,8 +8,9 @@ export const ProductId = '1';
 export const AlertId = '99999';
 
 export const ProductLineTemplate = `
-  <div class="product-line">
+  <div class="product-line js-cart-item">
     <div id="js-product-line-alert--${AlertId}"></div>
+    <button class="js-remove-from-cart" type="button"></button>
     <div class="product-line__informations">
       <div class="row">
         <div class="quantity-button js-quantity-button">

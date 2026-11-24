@@ -29,7 +29,7 @@
     <section class="form-fields">
       <div class="mb-3">
         <label for="email" class="form-label required">{l s='Email address' d='Shop.Forms.Labels'}</label>
-        <input type="email" name="email" id="email" value="{if isset($smarty.post.email)}{stripslashes($smarty.post.email)}{/if}" class="form-control" autocomplete="username" required>
+        <input type="email" name="email" id="email" value="{if isset($smarty.post.email) && !$smarty.post.email|is_array}{stripslashes($smarty.post.email)}{/if}" class="form-control" autocomplete="username" required>
       </div>
 
       <div class="buttons-wrapper">

@@ -20,7 +20,7 @@
       {block name='page_header_container'}
         {block name='page_title'}
           <div class="page-header">
-            {include file='components/page-title-section.tpl' title={$smarty.block.child}}
+            {include file='components/page-title-section.tpl' title={$smarty.block.child} title_is_escaped=true}
           </div>
         {/block}
 

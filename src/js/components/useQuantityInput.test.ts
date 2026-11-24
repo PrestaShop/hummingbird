@@ -14,7 +14,7 @@ describe('useQuantityInput', () => {
   describe('with update URL', () => {
     beforeAll(() => {
       resetHTMLBodyContent(Quantify.ProductLineTemplate);
-      window.prestashop = {};
+      window.prestashop = {} as PrestaShop.Global;
       window.Theme = {
         ...window.Theme,
         events: EVENTS,
@@ -155,7 +155,7 @@ describe('useQuantityInput', () => {
   describe('without update URL', () => {
     beforeAll(() => {
       resetHTMLBodyContent(Quantify.ProductTemplate);
-      window.prestashop = {};
+      window.prestashop = {} as PrestaShop.Global;
       initEmitter();
       useQuantityInput(selectorsMap.qtyInput.modal, Quantify.delay);
     });

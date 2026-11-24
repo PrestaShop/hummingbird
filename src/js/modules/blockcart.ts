@@ -124,8 +124,10 @@ export default function initBlockCart() {
   });
 
   // Legacy support for function call
-  prestashop.blockcart = prestashop.blockcart || {};
-  prestashop.blockcart.showModal = function showAddToCartModal(addToCartModal: string) {
-    openModalFromHtml(addToCartModal);
+  prestashop.blockcart = {
+    ...prestashop.blockcart,
+    showModal: function showAddToCartModal(addToCartModal: string) {
+      openModalFromHtml(addToCartModal);
+    },
   };
 }

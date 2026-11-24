@@ -21,7 +21,7 @@ declare namespace Theme {
 }
 
 interface Window extends Theme.Window {
-  prestashop: any;
+  prestashop: PrestaShop.Global;
   $: JQueryStatic;
   jQuery: JQueryStatic;
 }

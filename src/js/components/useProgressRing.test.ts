@@ -14,7 +14,7 @@ describe('useProgressRing', () => {
   describe('with valid template', () => {
     beforeAll(() => {
       resetHTMLBodyContent(ProgressRingMockData.Template);
-      window.prestashop = {};
+      window.prestashop = {} as PrestaShop.Global;
       initEmitter();
     });
 
@@ -61,7 +61,7 @@ describe('useProgressRing', () => {
 
   describe('without valid template', () => {
     beforeAll(() => {
-      window.prestashop = {};
+      window.prestashop = {} as PrestaShop.Global;
       initEmitter();
     });
 

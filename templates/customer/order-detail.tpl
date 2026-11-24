@@ -139,6 +139,10 @@
 
   <hr class="order-separator">
 
+  {block name='order_withdrawal'}
+    {include file='customer/_partials/order-withdrawal.tpl'}
+  {/block}
+
   {capture name='displayOrderDetail'}{$HOOK_DISPLAYORDERDETAIL nofilter}{/capture}
   {if $smarty.capture.displayOrderDetail}
     {$smarty.capture.displayOrderDetail nofilter}

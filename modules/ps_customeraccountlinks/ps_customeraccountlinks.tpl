@@ -83,6 +83,14 @@
           </li>
         {/if}
 
+        {if $configuration.withdrawal_enabled && !$configuration.is_catalog}
+          <li>
+            <a href="{$urls.pages.withdrawal}" rel="nofollow">
+              {l s='Withdraw from a contract' d='Shop.Theme.Customeraccount'}
+            </a>
+          </li>
+        {/if}
+
         {hook h='displayMyAccountBlock'}
 
         <li>
@@ -97,6 +105,13 @@
             {l s='Order tracking' d='Shop.Theme.Customeraccount'}
           </a>
         </li>
+        {if $configuration.withdrawal_enabled && !$configuration.is_catalog}
+          <li>
+            <a href="{$urls.pages.withdrawal}" rel="nofollow">
+              {l s='Withdraw from a contract' d='Shop.Theme.Customeraccount'}
+            </a>
+          </li>
+        {/if}
         <li>
           <a href="{$urls.pages.my_account}" rel="nofollow">
             {l s='Sign in' d='Shop.Theme.Actions'}

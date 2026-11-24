@@ -3,7 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 <div id="js-product-list">
-  {include file='catalog/_partials/productlist.tpl' products=$listing.products}
+  {include file='catalog/_partials/productlist.tpl' products=$listing.products eager_images=4}
 
   {block name='pagination'}
     <div class="products__pagination">

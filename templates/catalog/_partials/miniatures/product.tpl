@@ -56,15 +56,13 @@
                 {/block}
 
                 {block name='product_discount_price'}
-                  {if $product.show_price}
-                    <div class="{$componentName}__discount-price">
-                      {if $product.has_discount}
-                        {hook h='displayProductPriceBlock' product=$product type="old_price"}
+                  <div class="{$componentName}__discount-price">
+                    {if $product.has_discount}
+                      {hook h='displayProductPriceBlock' product=$product type="old_price"}
 
-                        <span class="{$componentName}__regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
-                      {/if}
-                    </div>
-                  {/if}
+                      <span class="{$componentName}__regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
+                    {/if}
+                  </div>
                 {/block}
               </div>
             {/if}

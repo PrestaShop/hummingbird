@@ -191,7 +191,7 @@ exports.preloadFonts = () => ({
     new FontPreloadPlugin({
       index: 'preload.html',
       extensions: ['woff2'],
-      filter: /(materialicons)/i,
+      filter: /(materialicons|inter-latin-(400|600)-normal)/i,
       replaceCallback: ({ indexSource, linksAsString }) => {
         return indexSource.replace('{{{preloadLinks}}}', linksAsString);
       },

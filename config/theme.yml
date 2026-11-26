@@ -37,6 +37,8 @@ global_settings:
     CATEGORYPRODUCTS_DISPLAY_PRODUCTS: 4
     PSR_ICON_COLOR: "#0b69f6"
     PSR_TEXT_COLOR: "#212529"
+    PS_USE_JQUERY_UI_AUTOCOMPLETE: 0
+    PS_USE_JQUERY_UI_SLIDER: 0
   modules:
     to_disable:
       - blockwishlist

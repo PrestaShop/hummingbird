@@ -7,6 +7,7 @@ import EVENTS from '@constants/events-map';
 import initEmitter from '@js/prestashop';
 import initResponsiveToggler from '@js/responsive-toggler';
 import initQuickview from '@js/quickview';
+import initProductImagesModal from '@js/product-images-modal';
 import initCart from '@js/pages/cart';
 import initCheckout from '@js/pages/checkout';
 import initCustomer from '@js/pages/customer';
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initProductBehavior();
   initQuickview();
+  initProductImagesModal();
   initCheckout();
   initCustomer();
   initResponsiveToggler();

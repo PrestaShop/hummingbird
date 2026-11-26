@@ -21,33 +21,33 @@
                 <picture>
                   {if isset($image.bySize.default_md.sources.avif)}
                     <source 
-                      srcset="
+                      data-srcset="
                         {$image.bySize.default_md.sources.avif} 320w,
                         {$image.bySize.product_main.sources.avif} 720w,
                         {$image.bySize.product_main_2x.sources.avif} 1440w"
-                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
+                      data-sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
                       type="image/avif"
                     >
                   {/if}
 
                   {if isset($image.bySize.default_md.sources.webp)}
                     <source 
-                      srcset="
+                      data-srcset="
                         {$image.bySize.default_md.sources.webp} 320w,
                         {$image.bySize.product_main.sources.webp} 720w,
                         {$image.bySize.product_main_2x.sources.webp} 1440w"
-                      sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
+                      data-sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
                       type="image/webp"
                     >
                   {/if}
 
                   <img
                     class="img-fluid"
-                    srcset="
+                    data-srcset="
                       {$image.bySize.default_md.url} 320w,
                       {$image.bySize.product_main.url} 720w,
                       {$image.bySize.product_main_2x.url} 1440w"
-                    sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
+                    data-sizes="(min-width: 1200px) 1440px, (min-width: 768px) 720px, 100vw" 
                     src="{$image.bySize.product_main.url}" 
                     width="{$image.bySize.product_main_2x.width}"
                     height="{$image.bySize.product_main_2x.height}"

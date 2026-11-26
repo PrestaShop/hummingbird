@@ -2,6 +2,7 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{assign var='imageSizes' value=['default_xs' => '', 'default_xl' => '2x']}
 
 <div class="product__images js-images-container">
   {if $product.images|@count > 0}
@@ -13,24 +14,24 @@
 
       <div class="carousel-inner">
         {block name='product_cover'}
+          {assign var='coverSizes' value=['default_xl' => '400w', 'product_main' => '720w']}
           {foreach from=$product.images item=image key=key name=productImages}
             <div class="carousel-item{if $image.id_image == $product.default_image.id_image} active{/if}">
               <picture>
-                {if isset($image.bySize.default_xl.sources.avif)}
-                  <source 
-                    srcset="
-                      {$image.bySize.default_xl.sources.avif} 400w,
-                      {$image.bySize.product_main.sources.avif} 720w"
+                {capture name='coverSrcsetAvif'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$coverSizes srcsetVariant='avif'}{/capture}
+                {capture name='coverSrcsetWebp'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$coverSizes srcsetVariant='webp'}{/capture}
+                {capture name='coverSrcset'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$coverSizes}{/capture}
+                {if $smarty.capture.coverSrcsetAvif|trim}
+                  <source
+                    srcset="{$smarty.capture.coverSrcsetAvif|trim nofilter}"
                     sizes="(min-width: 992px) 50vw, 100vw"
                     type="image/avif"
                   >
                 {/if}
 
-                {if isset($image.bySize.default_xl.sources.webp)}
-                  <source 
-                    srcset="
-                      {$image.bySize.default_xl.sources.webp} 400w,
-                      {$image.bySize.product_main.sources.webp} 720w"
+                {if $smarty.capture.coverSrcsetWebp|trim}
+                  <source
+                    srcset="{$smarty.capture.coverSrcsetWebp|trim nofilter}"
                     sizes="(min-width: 992px) 50vw, 100vw"
                     type="image/webp"
                   >
@@ -38,10 +39,10 @@
 
                 <img
                   class="img-fluid w-100"
-                  srcset="
-                    {$image.bySize.default_xl.url} 400w,
-                    {$image.bySize.product_main.url} 720w"
-                  sizes="(min-width: 992px) 50vw, 100vw"
+                  {if $smarty.capture.coverSrcset|trim}
+                    srcset="{$smarty.capture.coverSrcset|trim nofilter}"
+                    sizes="(min-width: 992px) 50vw, 100vw"
+                  {/if}
                   src="{$image.bySize.product_main.url}" 
                   width="{$image.bySize.product_main.width}"
                   height="{$image.bySize.product_main.height}"
@@ -96,29 +97,28 @@
                 aria-label="{l s='Slide to product image %number%' d='Shop.Theme.Catalog' sprintf=['%number%' => $key + 1]}"
               >
                 <picture>
-                  {if isset($image.bySize.default_xs.sources.avif)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_xs.sources.avif},
-                        {$image.bySize.default_xl.sources.avif} 2x"
+                  {capture name='imageSrcsetAvif'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$imageSizes srcsetVariant='avif'}{/capture}
+                  {if $smarty.capture.imageSrcsetAvif|trim}
+                    <source
+                      srcset="{$smarty.capture.imageSrcsetAvif|trim nofilter}"
                       type="image/avif"
                     >
                   {/if}
 
-                  {if isset($image.bySize.default_xs.sources.webp)}
-                    <source 
-                      srcset="
-                        {$image.bySize.default_xs.sources.webp},
-                        {$image.bySize.default_xl.sources.webp} 2x"
+                  {capture name='imageSrcsetWebp'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$imageSizes srcsetVariant='webp'}{/capture}
+                  {if $smarty.capture.imageSrcsetWebp|trim}
+                    <source
+                      srcset="{$smarty.capture.imageSrcsetWebp|trim nofilter}"
                       type="image/webp"
                     >
                   {/if}
 
                   <img
                     class="product__thumbnail-image outline outline--rounded img-fluid js-thumb{if $image.id_image == $product.default_image.id_image} js-thumb-selected{/if}"
-                    srcset="
-                      {$image.bySize.default_xs.url},
-                      {$image.bySize.default_xl.url} 2x"
+                    {capture name='imageSrcset'}{include file='catalog/_partials/srcset.tpl' image=$image sizes=$imageSizes}{/capture}
+                    {if $smarty.capture.imageSrcset|trim}
+                      srcset="{$smarty.capture.imageSrcset|trim nofilter}"
+                    {/if}
                     width="{$image.bySize.default_xs.width}"
                     height="{$image.bySize.default_xs.height}"
                     loading="lazy"
@@ -139,21 +139,21 @@
       {include file='catalog/_partials/product-flags.tpl'}
 
       <picture>
-        {if isset($urls.no_picture_image.bySize.default_xl.sources.avif)}
-          <source 
-            srcset="
-              {$urls.no_picture_image.bySize.default_xl.sources.avif} 400w,
-              {$urls.no_picture_image.bySize.product_main.sources.avif} 720w"
+        {assign var='coverEmptySizes' value=['default_xl' => '400w', 'product_main' => '720w']}
+        {capture name='coverEmptySrcsetAvif'}{include file='catalog/_partials/srcset.tpl' image=$urls.no_picture_image sizes=$coverEmptySizes srcsetVariant='avif'}{/capture}
+        {capture name='coverEmptySrcsetWebp'}{include file='catalog/_partials/srcset.tpl' image=$urls.no_picture_image sizes=$coverEmptySizes srcsetVariant='webp'}{/capture}
+        {capture name='coverEmptySrcset'}{include file='catalog/_partials/srcset.tpl' image=$urls.no_picture_image sizes=$coverEmptySizes}{/capture}
+        {if $smarty.capture.coverEmptySrcsetAvif|trim}
+          <source
+            srcset="{$smarty.capture.coverEmptySrcsetAvif|trim nofilter}"
             sizes="(min-width: 992px) 50vw, 100vw"
             type="image/avif"
           >
         {/if}
 
-        {if isset($urls.no_picture_image.bySize.default_xl.sources.webp)}
-          <source 
-            srcset="
-              {$urls.no_picture_image.bySize.default_xl.sources.webp} 400w,
-              {$urls.no_picture_image.bySize.product_main.sources.webp} 720w"
+        {if $smarty.capture.coverEmptySrcsetWebp|trim}
+          <source
+            srcset="{$smarty.capture.coverEmptySrcsetWebp|trim nofilter}"
             sizes="(min-width: 992px) 50vw, 100vw"
             type="image/webp"
           >
@@ -161,10 +161,10 @@
 
         <img
           class="img-fluid"
-          srcset="
-            {$urls.no_picture_image.bySize.default_xl.url} 400w,
-            {$urls.no_picture_image.bySize.product_main.url} 720w"
-          sizes="(min-width: 992px) 50vw, 100vw"
+          {if $smarty.capture.coverEmptySrcset|trim}
+            srcset="{$smarty.capture.coverEmptySrcset|trim nofilter}"
+            sizes="(min-width: 992px) 50vw, 100vw"
+          {/if}
           width="{$urls.no_picture_image.bySize.product_main.width}"
           height="{$urls.no_picture_image.bySize.product_main.height}"
           src="{$urls.no_picture_image.bySize.default_xl.url}" 

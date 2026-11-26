@@ -112,13 +112,13 @@ $component-name: product-line;
   &__quantity-button {
     max-width: 9rem;
 
-    .spinner-border {
-      margin: 0.25rem;
-    }
-  }
+    .quantity-selector {
+      width: 100%;
 
-  &__quantity-input {
-    max-width: initial;
+      &__input {
+        max-width: initial;
+      }
+    }
   }
 
   &__price {

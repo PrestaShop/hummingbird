@@ -55,7 +55,7 @@
             <div class="product__actions js-product-actions">
               <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
                 <input type="hidden" name="token" value="{$static_token}">
-                <input type="hidden" name="id_product" value="{$product.id}" id="product_page_product_id">
+                <input type="hidden" name="id_product" value="{$product.id}" id="product_page_product_id" data-ps-ref="product-id">
                 <input type="hidden" name="id_customization" value="{$product.id_customization}"
                   id="product_customization_id" class="js-product-customization-id">
 
@@ -64,7 +64,7 @@
                 {/block}
 
                 {block name='product_add_to_cart'}
-                  {include file='catalog/_partials/product-add-to-cart.tpl'}
+                  {include file='catalog/_partials/product-add-to-cart.tpl' quantity_context='quickview'}
                 {/block}
 
                 {* Input to refresh product HTML removed, block kept for compatibility with themes *}

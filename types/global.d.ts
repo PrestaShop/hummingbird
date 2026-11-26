@@ -12,7 +12,7 @@ declare namespace Theme {
     useToast: Theme.Toast.Function
     useAlert: Theme.Alert.Function
     useProgressRing: Theme.ProgressRing.Function,
-    useQuantityInput: Theme.QuantityInput.Function,
+    useQuantityInput: Theme.QuantitySelector.LegacyFunction,
   }
 
   interface Window {

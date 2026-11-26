@@ -52,13 +52,19 @@
     {/block}
 
     {block name='product_quantity'}
+      {* The quickview includes this file with quantity_context='quickview' *}
+      {if isset($quantity_context)}
+        {assign var="product_quantity_context" value=$quantity_context}
+      {else}
+        {assign var="product_quantity_context" value="product"}
+      {/if}
       {* .product-quantity needed for JS *}
       <div class="product__actions-qty-add product-quantity">
-        <div class="product-actions__quantity product__quantity quantity-button js-quantity-button">
+        <div class="product-actions__quantity product__quantity quantity-button">
           {include file='components/qty-input.tpl'
+            quantity_context=$product_quantity_context
             attributes=[
               "id" => "quantity_wanted",
-              "class" => "form-control js-quantity-wanted",
               "value" => "{$product.quantity_wanted}",
               "min" => "{$product.quantity_required}"
             ]

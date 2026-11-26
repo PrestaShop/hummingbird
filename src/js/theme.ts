@@ -24,7 +24,7 @@ import useToast from '@js/components/useToast';
 import useAlert from '@js/components/useAlert';
 import usePasswordPolicy from '@js/components/usePasswordPolicy';
 import useProgressRing from '@js/components/useProgressRing';
-import useQuantityInput from '@js/components/useQuantityInput';
+import initQuantitySelectors from '@js/components/quantity-selector';
 import initBlockCart from '@js/modules/blockcart';
 import '@js/modules/facetedsearch';
 import initDesktopMenu from '@js/modules/ps_mainmenu';
@@ -38,6 +38,9 @@ import parseData from '@helpers/parseData';
 
 initEmitter();
 
+/** @deprecated The quantity selector binds through event delegation, no init call is needed */
+const useQuantityInput: Theme.QuantitySelector.LegacyFunction = () => {};
+
 document.addEventListener('DOMContentLoaded', () => {
   const {prestashop, Theme: {events}} = window;
 
@@ -47,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomer();
   initResponsiveToggler();
   initCart();
-  useQuantityInput();
+  initQuantitySelectors();
   initSearchbar();
   initEmailalerts();
   initGdpr();

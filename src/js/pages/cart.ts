@@ -8,18 +8,8 @@ import {isHTMLElement} from '@helpers/typeguards';
 import handleCartAction from '@js/components/UseHandleCartAction';
 import SelectorsMap from '@constants/selectors-map';
 import {state, availableLastUpdateAction} from '@js/state';
-import debounce from '@helpers/debounce';
 
 export default () => {
-  // Debounced function to trigger remove action, preventing multiple rapid clicks
-  const debouncedRemoveAction = debounce(async (...args) => {
-    const removeButton = args[0] as HTMLElement;
-
-    if (removeButton) {
-      removeButton.click();
-    }
-  }, 500);
-
   // Event delegation for voucher code clicks
   const handleVoucherClick = (event: Event) => {
     event.stopPropagation();
@@ -47,28 +37,9 @@ export default () => {
     state.set('lastUpdateAction', availableLastUpdateAction.SUBMIT_VOUCHER);
   };
 
-  // Event delegation for cart container (handles item removal, quantity change, etc.)
+  // Event delegation for cart container (handles item removal)
   const handleCartContainerClick = (event: Event) => {
     const eventTarget = event.target as HTMLElement;
-
-    const targetItem = eventTarget.closest(SelectorsMap.cart.productItem);
-    const targetValue = targetItem?.querySelector(
-      SelectorsMap.cart.productItemQuantityInput,
-    ) as HTMLInputElement | null;
-    const removeButton = targetItem?.querySelector(
-      SelectorsMap.cart.removeFromCart,
-    ) as HTMLElement | null;
-
-    if (targetValue) {
-      const isDecrement = eventTarget.classList.contains('js-decrement-button');
-
-      // Debounce remove action to prevent multiple rapid clicks
-      if (isDecrement && targetValue.value === '0' && targetValue.getAttribute('min') === '1') {
-        if (removeButton) {
-          debouncedRemoveAction(removeButton);
-        }
-      }
-    }
 
     // If it's a delete action, trigger the cart action
     if (eventTarget.dataset.linkAction === SelectorsMap.cart.deleteLinkAction) {

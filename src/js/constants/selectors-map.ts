@@ -42,7 +42,7 @@ export const cart = {
   voucherCode: '.js-voucher-code',
   voucherInput: '.js-voucher-input',
   voucherAccordion: '.js-voucher-accordion',
-  productQuantity: '.js-cart-list .js-quantity-button',
+  productQuantity: '[data-ps-component="quantity-selector"][data-ps-context="cart"]',
   productItem: '.js-cart-item',
   productItemQuantityInput: '.js-cart-line-product-quantity',
   removeFromCart: '.js-remove-from-cart',
@@ -159,17 +159,12 @@ export const desktopMenu = {
   subMenuRightItems: '[data-ps-ref="desktop-submenu-right-items"]',
 };
 
-export const qtyInput = {
-  default: '.js-quantity-button',
-  idProductInput: 'input[name="id_product"]',
-  modal: '.modal-dialog .js-quantity-button',
-  increment: '.js-increment-button',
-  decrement: '.js-decrement-button',
-  quantityWanted: '.js-quantity-wanted',
-  confirm: '.confirmation',
-  icon: '.material-icons',
-  spinner: '.spinner-border',
-  alert: (param: string): string => `#js-product-line-alert--${param}`,
+export const quantitySelector = {
+  root: '[data-ps-component="quantity-selector"]',
+  input: '[data-ps-ref="quantity-input"]',
+  increment: '[data-ps-action="quantity-increment"]',
+  decrement: '[data-ps-action="quantity-decrement"]',
+  status: '[data-ps-ref="quantity-status"]',
 };
 
 export const formValidation = {
@@ -199,7 +194,7 @@ export const passwordPolicy = {
 
 const selectorsMap = {
   layout,
-  qtyInput,
+  quantitySelector,
   alert: {
     selector: '#notifications .container',
     alert: '.alert',
@@ -243,6 +238,8 @@ const selectorsMap = {
   blockcartModal: '[data-ps-ref="blockcart-modal"]',
   blockcartModalStatus: '[data-ps-target="blockcart-modal-status"]',
   addToCartButton: '[data-ps-ref="add-to-cart"]',
+  addToCartProductId: '[data-ps-ref="product-id"]',
+  addToCartProductAttributeId: '[data-ps-ref="product-attribute-id"]',
   facetedsearch,
   pageLoader,
   listing,

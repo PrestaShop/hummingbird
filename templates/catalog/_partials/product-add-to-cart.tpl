@@ -12,36 +12,11 @@
           hidden
         {/if}
       >
-        {if !empty($product.availability_message)}
-          {** First, we prepare the icons and colors we want to use *}
-          {if $product.availability == 'in_stock'}
-            {assign 'availability_icon' 'E5CA'}
-            {assign 'availability_class' 'text-success'}
-          {elseif $product.availability == 'available'}
-            {assign 'availability_icon' 'E002'}
-            {assign 'availability_class' 'text-warning'}
-          {elseif $product.availability == 'last_remaining_items'}
-            {assign 'availability_icon' 'E002'}
-            {assign 'availability_class' 'text-warning'}
-          {else}
-            {assign 'availability_icon' 'E14B'}
-            {assign 'availability_class' 'text-danger'}
-          {/if}
-
-          {** And render the availability message with icon *}
-          <div class="product__availability-status {$availability_class}" aria-live="off" data-ps-ref="product-availability">
-            <i class="product__availability-icon material-icons rtl-no-flip" aria-hidden="true">&#x{$availability_icon};</i>
-
-            <div class="product__availability-messages">
-              <span class="visually-hidden">{l s='Product availability:' d='Shop.Theme.Global'}</span>
-              <span>{$product.availability_message}</span>
-
-              {if !empty($product.availability_submessage)}
-                <small class="d-block">{$product.availability_submessage}</small>
-              {/if}
-            </div>
-          </div>
-        {/if}
+        {include file='catalog/_partials/product-availability-status.tpl'
+          product=$product
+          componentName='product'
+          dataPsRef='product-availability'
+        }
 
         {block name='product_delivery_times'}
           {if !empty($product.delivery_information)}

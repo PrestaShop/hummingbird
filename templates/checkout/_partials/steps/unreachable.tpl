@@ -3,7 +3,8 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {block name='step'}
-  <section class="step step--unreachable d-none" id="{$identifier}">
+  <section class="step step--unreachable d-none" id="{$identifier}"
+    data-ps-ref="checkout-step-content" data-step="{$identifier}">
     <div class="step__title js-step-title">
       <p class="step__title-left h3">
         {$title}

@@ -10,7 +10,7 @@
 
 {block name='content'}
   {block name='product_list_header'}
-    <div id="js-product-list-header">
+    <div id="js-product-list-header" data-ps-target="product-list-header">
       {include file='components/page-title-section.tpl' title=$listing.label}
     </div>
   {/block}
@@ -35,18 +35,18 @@
         {include file='catalog/_partials/products-bottom.tpl' listing=$listing}
       {/block}
     {else}
-      <div id="js-product-list-top"></div>
+      <div id="js-product-list-top" data-ps-target="product-list-top"></div>
 
-      <div id="js-product-list">
+      <div id="js-product-list" data-ps-target="product-list">
         {capture assign="errorContent"}
           <p class="h3">{l s='No products available at the moment' d='Shop.Theme.Catalog'}</p>
           <p>{l s='Stay tuned! More products will be shown here as they are added.' d='Shop.Theme.Catalog'}</p>
         {/capture}
 
         {include file='errors/not-found.tpl' errorContent=$errorContent}
-      <div>
+      </div>
 
-      <div id="js-product-list-bottom"></div>
+      <div id="js-product-list-bottom" data-ps-target="product-list-bottom"></div>
     {/if}
   </section>
 

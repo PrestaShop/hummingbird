@@ -33,6 +33,8 @@ const initMobileMenu = () => {
 
       if (currentMenu) {
         currentMenu.classList.remove('js-menu-current', 'menu--current');
+        // The template renders non-root panels as "child"; keep the attribute canonical.
+        currentMenu.setAttribute('data-ps-state', 'child');
       }
 
       if (currentParent) {
@@ -42,8 +44,9 @@ const initMobileMenu = () => {
           backTitle.innerHTML = defaultBackTitle;
         }
 
-        currentParent.classList.add('js-menu-current', 'menu--fromLeft', 'menu--current');
+        currentParent.classList.add('js-menu-current', 'menu--from-left', 'menu--current');
         currentParent.classList.remove('menu--parent');
+        currentParent.setAttribute('data-ps-state', 'current');
       }
     }
   };
@@ -73,8 +76,9 @@ const initMobileMenu = () => {
         const currentButton = <HTMLElement>button;
 
         if (currentMenu) {
-          currentMenu.classList.remove('js-menu-current', 'menu--current', 'menu--fromLeft', 'menu--fromRight');
+          currentMenu.classList.remove('js-menu-current', 'menu--current', 'menu--from-left', 'menu--from-right');
           currentMenu.classList.add('menu--parent');
+          currentMenu.setAttribute('data-ps-state', 'parent');
         }
 
         const child = document.querySelector<HTMLElement>(MobileMenuMap.specificChild(currentButton.dataset.target));
@@ -86,8 +90,9 @@ const initMobileMenu = () => {
         }
 
         if (isHTMLElement(child)) {
-          child.classList.add('js-menu-current', 'menu--fromRight', 'menu--current');
+          child.classList.add('js-menu-current', 'menu--from-right', 'menu--current');
           child.classList.remove('js-menu-child', 'menu--child');
+          child.setAttribute('data-ps-state', 'current');
         }
       }
     });

@@ -5,7 +5,7 @@
 {$componentName = 'search-filters'}
 
 {if $displayedFacets|count}
-  <div id="search-filters" class="{$componentName}" role="region" aria-label="{l s='Product filters' d='Shop.Theme.Global'}">
+  <div id="search-filters" class="{$componentName}" data-ps-target="search-filters" role="region" aria-label="{l s='Product filters' d='Shop.Theme.Global'}">
     {block name='facets_title'}
       <p class="left-block__title d-none d-md-block h3">
         {l s='Filter By' d='Shop.Theme.Actions'}
@@ -18,6 +18,7 @@
           <button
             data-search-url="{$clear_all_link}"
             class="btn btn-outline-tertiary js-search-filters-clear-all"
+            data-ps-action="clear-search-filters"
           >
             <i class="material-icons" aria-hidden="true">&#xE5CD;</i>
             {l s='Clear all' d='Shop.Theme.Actions'}
@@ -113,7 +114,7 @@
                               {else}
                                 <a
                                   href="{$filter.nextEncodedFacetsURL}"
-                                  class="{$componentName}__link search-link js-search-link"
+                                  class="{$componentName}__link search-link js-search-link" data-ps-action="apply-search-filter"
                                   rel="nofollow"
                                   tabindex="-1"
                                 >
@@ -141,7 +142,7 @@
                             <label class="{$componentName}__form-label form-check-label" for="facet_input_{$_expand_id}_{$filter_key}">
                               <a
                                 href="{$filter.nextEncodedFacetsURL}"
-                                class="{$componentName}__link search-link js-search-link"
+                                class="{$componentName}__link search-link js-search-link" data-ps-action="apply-search-filter"
                                 rel="nofollow"
                                 tabindex="-1"
                               >
@@ -191,7 +192,7 @@
                             <a
                               rel="nofollow"
                               href="{$filter.nextEncodedFacetsURL}"
-                              class="dropdown-item select-list js-search-link"
+                              class="dropdown-item select-list js-search-link" data-ps-action="apply-search-filter"
                             >
                               {$filter.label}
                               {if $filter.magnitude and $show_quantities}
@@ -210,9 +211,9 @@
             {elseif $facet.widgetType == 'slider'}
               {block name='facet_item_slider'}
                 {foreach from=$facet.filters item="filter"}
-                  <div class="{$componentName}__slider-container accordion-body js-faceted-filter-slider">
+                  <div class="{$componentName}__slider-container accordion-body js-faceted-filter-slider" data-ps-ref="faceted-filter-slider">
                     <div
-                      class="{$componentName}__slider js-faceted-slider-container"
+                      class="{$componentName}__slider js-faceted-slider-container" data-ps-ref="faceted-range-container"
                       data-slider-min="{$facet.properties.min}"
                       data-slider-max="{$facet.properties.max}"
                       data-slider-id="{$_expand_id}"
@@ -227,7 +228,7 @@
                       data-slider-direction="{$language.is_rtl}"
                     ></div>
 
-                    <div class="{$componentName}__slider-values js-faceted-values"></div>
+                    <div class="{$componentName}__slider-values js-faceted-values" data-ps-ref="faceted-range-values"></div>
 
                     <input
                       type="hidden"

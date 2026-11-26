@@ -76,8 +76,8 @@ const sendCartRefreshRequest = (target: HTMLElement): void => {
           });
 
           if (alert.element) {
-            alert.element.setAttribute('data-ps-action', 'to-be-announced');
-            alert.element.querySelector('.btn-close')?.setAttribute('aria-label', `${alertCloseText}`);
+            alert.element.setAttribute('data-ps-state', 'to-be-announced');
+            alert.element.querySelector(SelectorsMap.alert.close)?.setAttribute('aria-label', `${alertCloseText}`);
           }
 
           alert.show();

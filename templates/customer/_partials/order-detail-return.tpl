@@ -3,7 +3,7 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {block name='order_products_table'}
-  <form id="order-return-form" class="js-order-return-form" action="{$urls.pages.order_follow}" method="post" data-ps-action="form-validation">
+  <form id="order-return-form" class="js-order-return-form" data-ps-ref="order-return-form" action="{$urls.pages.order_follow}" method="post" data-ps-action="form-validation">
     <div class="grid-table grid-table--collapse mb-0" role="table" data-ps-ref="order-return-products-table" aria-label="{l s='Products details' d='Shop.Theme.Catalog'}">
       <div class="grid-table__inner grid-table__inner--6" role="rowgroup">
         <div class="grid-table__header" role="row">

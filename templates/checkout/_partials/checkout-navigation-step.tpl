@@ -6,6 +6,8 @@
 
 <li 
   class="{$componentName}__step js-step-item" 
+  data-ps-ref="checkout-step-item"
+  
   data-step="{$step}" 
   role="presentation" 
 >

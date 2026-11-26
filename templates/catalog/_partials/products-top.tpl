@@ -2,7 +2,7 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
-<div id="js-product-list-top">
+<div id="js-product-list-top" data-ps-target="product-list-top">
   <div class="products__selection">
     <div class="products__count">
       {if $listing.pagination.total_items> 1}

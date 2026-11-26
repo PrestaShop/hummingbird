@@ -8,7 +8,7 @@
   {if $field.name === 'password' and $guest_allowed}
     <div class="mb-3">
       <div class="form-check">
-        <input class="js-password-form__check form-check-input" id="password-form__check" type="checkbox" name="password-form__check">
+        <input class="js-password-form__check form-check-input" data-ps-ref="guest-password-checkbox" id="password-form__check" type="checkbox" name="password-form__check">
 
         <label class="form-check-label" for="password-form__check">
           <span class="fw-bold">{l s='Create an account' d='Shop.Theme.Checkout'}</span> <small class="fw-normal">{l s='(optional)' d='Shop.Theme.Checkout'}</small>
@@ -17,7 +17,7 @@
         </label>
       </div>
 
-      <div class="js-password-form__input-wrapper d-none mt-3">
+      <div class="js-password-form__input-wrapper d-none mt-3" data-ps-ref="guest-password-container">
         {$smarty.block.parent}
       </div>
     </div>

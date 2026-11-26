@@ -4,7 +4,7 @@
  */
 
 export const Template = `
-  <svg class="progress-ring text-success col-4" width="74" height="74" style="width: 74px; height: 74px;">
+  <svg class="progress-ring text-success col-4" data-ps-ref="progress-ring" width="74" height="74" style="width: 74px; height: 74px;">
     <circle
       class="progress-ring__background-circle" 
       stroke-width="4" 
@@ -14,7 +14,7 @@ export const Template = `
       cy="37"
     ></circle>
     <circle 
-      class="progress-ring__circle" 
+      class="progress-ring__circle" data-ps-ref="progress-ring-circle" 
       stroke="currentColor" 
       stroke-width="4" 
       data-percent="0" 
@@ -24,12 +24,12 @@ export const Template = `
       cy="37"
       style="stroke-dasharray: 182.212, 182.212; stroke-dashoffset: 0;"
     ></circle>
-    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" data-ps-ref="progress-ring-text"></text>
   </svg>
  `;
 
 export const TemplateWithoutText = `
-  <svg class="progress-ring text-success col-4" width="74" height="74" style="width: 74px; height: 74px;">
+  <svg class="progress-ring text-success col-4" data-ps-ref="progress-ring" width="74" height="74" style="width: 74px; height: 74px;">
     <circle
       class="progress-ring__background-circle" 
       stroke-width="4" 
@@ -39,7 +39,7 @@ export const TemplateWithoutText = `
       cy="37"
     ></circle>
     <circle 
-      class="progress-ring__circle" 
+      class="progress-ring__circle" data-ps-ref="progress-ring-circle" 
       stroke="currentColor" 
       stroke-width="4" 
       data-percent="0" 
@@ -53,8 +53,8 @@ export const TemplateWithoutText = `
  `;
 
 export const TemplateWithoutCircle = `
- <svg class="progress-ring text-success col-4" width="74" height="74" style="width: 74px; height: 74px;">
-   <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
+ <svg class="progress-ring text-success col-4" data-ps-ref="progress-ring" width="74" height="74" style="width: 74px; height: 74px;">
+   <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" data-ps-ref="progress-ring-text"></text>
  </svg>
 `;
 

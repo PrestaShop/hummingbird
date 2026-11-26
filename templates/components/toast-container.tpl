@@ -4,6 +4,6 @@
  *}
 {$componentName = 'toast-container'}
 
-<div class="{$componentName} position-fixed top-0 end-0 p-3" id="js-{$componentName}">
+<div class="{$componentName} position-fixed top-0 end-0 p-3" id="js-{$componentName}" data-ps-ref="toast-container">
     {include file='components/toast.tpl'}
 </div>

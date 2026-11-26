@@ -4,7 +4,7 @@
  *}
 
 {if isset($previous_step) && (!isset($show_back_button) || $show_back_button)}
-  <button class="btn btn-outline-primary js-back" type="button" data-step="{$previous_step.identifier}">
+  <button class="btn btn-outline-primary js-back" data-ps-action="checkout-back" type="button" data-step="{$previous_step.identifier}">
     <i class="material-icons rtl-flip" aria-hidden="true">&#xE5C4;</i>
     {l s='Back to %step_title%' d='Shop.Theme.Actions' sprintf=['%step_title%' => $previous_step.title]}
   </button>

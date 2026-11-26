@@ -20,7 +20,7 @@
 
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12  col-sm-12" id="{$modal_id}-message">
+          <div class="col-md-12  col-sm-12" id="{$modal_id}-message" data-ps-ref="alert-modal-message">
             {$modal_message}
           </div>
         </div>

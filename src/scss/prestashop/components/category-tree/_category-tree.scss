@@ -51,13 +51,12 @@ $component-name: category-tree;
   &__item {
     transition: var(--bs-transition-default);
 
-    &.active {
-      > .#{$component-name}__item-header {
-        &.parent {
-          .#{$component-name}__item-link {
-            color: var(--bs-link-hover-color);
-          }
-        }
+    // Bootstrap already maintains aria-expanded on the toggle, so the open state
+    // needs no JS mirror. The child combinator keeps a parent item from lighting up
+    // when one of its descendants is the one expanded.
+    > .#{$component-name}__item-header.parent:has(> [aria-expanded="true"]) {
+      .#{$component-name}__item-link {
+        color: var(--bs-link-hover-color);
       }
     }
 

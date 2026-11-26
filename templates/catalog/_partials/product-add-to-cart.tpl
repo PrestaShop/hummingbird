@@ -54,11 +54,12 @@
     {block name='product_quantity'}
       {* .product-quantity needed for JS *}
       <div class="product__actions-qty-add product-quantity">
-        <div class="product-actions__quantity product__quantity quantity-button js-quantity-button">
+        <div class="product-actions__quantity product__quantity quantity-button js-quantity-button" data-ps-ref="quantity-input">
           {include file='components/qty-input.tpl'
             attributes=[
               "id" => "quantity_wanted",
               "class" => "form-control js-quantity-wanted",
+              "data-ps-ref" => "quantity-wanted",
               "value" => "{$product.quantity_wanted}",
               "min" => "{$product.quantity_required}"
             ]

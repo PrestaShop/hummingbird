@@ -50,6 +50,9 @@
                     {/if}
                   </div>
 
+                  {hook h='displayProductPriceBlock' product=$product type="price"}
+                  {hook h='displayProductPriceBlock' product=$product type="after_price"}
+
                   {hook h='displayProductPriceBlock' product=$product type='unit_price'}
 
                   {hook h='displayProductPriceBlock' product=$product type='weight'}

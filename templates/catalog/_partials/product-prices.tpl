@@ -26,7 +26,9 @@
             {/if}
           </div>
         {/if}
-        
+
+        {hook h='displayProductPriceBlock' product=$product type="before_price"}
+
         <div class="product__prices-inline product__prices-inline--small-gap">
           <div class="product__price">
             {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='product_sheet'}{/capture}

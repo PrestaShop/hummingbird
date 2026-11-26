@@ -76,7 +76,16 @@
               type="file"
               name="fileUpload"
               class="form-control"
+              {if isset($contact.allowed_file_extensions)}
+                accept="{$contact.allowed_file_extensions|escape:'html':'UTF-8'}"
+                aria-describedby="contact-us-attachment-formats"
+              {/if}
             >
+            {if isset($contact.allowed_file_extensions)}
+              <span id="contact-us-attachment-formats" class="form-text d-block">
+                {l s='Allowed formats: %formats%' sprintf=['%formats%' => $contact.allowed_file_extensions|escape:'html':'UTF-8'] d='Modules.Contactform.Shop'}
+              </span>
+            {/if}
             <span class="form-text">{l s='Optional' d='Shop.Forms.Help'}</span>
           </div>
         {/if}

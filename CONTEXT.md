@@ -131,6 +131,8 @@ attributes.
   component.
 - `data-ps-context="name"`: Identify the current page/scope.
 - `data-ps-template="name"`: Reference a template name to use it in JS.
+- `data-ps-fragment="name"`: Identify a self-contained dynamic content fragment
+  for external integrations.
 
 **JavaScript Design Patterns:**
 

@@ -1,0 +1,301 @@
+<?php
+
+/**
+ * For the full copyright and license information, please view the
+ * LICENSE.md file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Tests\Plugins;
+
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+
+require_once __DIR__ . '/../../plugins/modifier.srcset.php';
+
+final class SrcsetModifierTest extends TestCase
+{
+    private const EMPTY = ['url' => '', 'webp' => '', 'avif' => '', 'src' => '', 'width' => 0, 'height' => 0];
+
+    /**
+     * A `bySize` entry as ImageRetriever::getImage() builds it. The no-picture image has no `sources`.
+     *
+     * @return array{url: string, width: int, height: int, sources?: array<string, string>}
+     */
+    private static function imageSize(string $type, int $width, bool $withSources = true): array
+    {
+        $size = ['url' => "https://shop.test/img/p/1-$type.jpg", 'width' => $width, 'height' => $width];
+        if ($withSources) {
+            $size['sources'] = [
+                'jpg' => "https://shop.test/img/p/1-$type.jpg",
+                'avif' => "https://shop.test/img/p/1-$type.avif",
+                'webp' => "https://shop.test/img/p/1-$type.webp",
+            ];
+        }
+
+        return $size;
+    }
+
+    /** @return array<string, mixed> */
+    private static function image(string ...$types): array
+    {
+        $widths = ['default_xs' => 160, 'default_sm' => 216, 'default_md' => 261, 'default_lg' => 336];
+        $bySize = [];
+        foreach ($types as $type) {
+            $bySize[$type] = self::imageSize($type, $widths[$type]);
+        }
+
+        return ['bySize' => $bySize, 'legend' => 'Mug'];
+    }
+
+    public function testListDerivesWidthDescriptorsFromEachSizeForEveryFormat(): void
+    {
+        $image = self::image('default_sm', 'default_md', 'default_lg');
+
+        self::assertSame(
+            [
+                'url' => 'https://shop.test/img/p/1-default_sm.jpg 216w, https://shop.test/img/p/1-default_md.jpg 261w, https://shop.test/img/p/1-default_lg.jpg 336w',
+                'webp' => 'https://shop.test/img/p/1-default_sm.webp 216w, https://shop.test/img/p/1-default_md.webp 261w, https://shop.test/img/p/1-default_lg.webp 336w',
+                'avif' => 'https://shop.test/img/p/1-default_sm.avif 216w, https://shop.test/img/p/1-default_md.avif 261w, https://shop.test/img/p/1-default_lg.avif 336w',
+                'src' => 'https://shop.test/img/p/1-default_sm.jpg',
+                'width' => 216,
+                'height' => 216,
+            ],
+            smarty_modifier_srcset($image, ['default_sm', 'default_md', 'default_lg'])
+        );
+    }
+
+    public function testMapUsesExplicitDescriptors(): void
+    {
+        $image = self::image('default_xs', 'default_md');
+
+        self::assertSame(
+            'https://shop.test/img/p/1-default_xs.jpg 1x, https://shop.test/img/p/1-default_md.jpg 2x',
+            smarty_modifier_srcset($image, ['default_xs' => '1x', 'default_md' => '2x'])['url']
+        );
+    }
+
+    public function testEmptyDescriptorEmitsTheBareUrl(): void
+    {
+        $image = self::image('default_xs', 'default_md');
+
+        self::assertSame(
+            'https://shop.test/img/p/1-default_xs.jpg, https://shop.test/img/p/1-default_md.jpg 2x',
+            smarty_modifier_srcset($image, ['default_xs' => '', 'default_md' => '2x'])['url']
+        );
+    }
+
+    public function testMissingSizesAreSkippedAndOrderIsKept(): void
+    {
+        // The reported shop: upgraded from 9.0.x, it carries default_md but neither default_sm nor default_lg.
+        $image = self::image('default_md');
+
+        self::assertSame(
+            [
+                'url' => 'https://shop.test/img/p/1-default_md.jpg 261w',
+                'webp' => 'https://shop.test/img/p/1-default_md.webp 261w',
+                'avif' => 'https://shop.test/img/p/1-default_md.avif 261w',
+                'src' => 'https://shop.test/img/p/1-default_md.jpg',
+                'width' => 261,
+                'height' => 261,
+            ],
+            smarty_modifier_srcset($image, ['default_sm', 'default_md', 'default_lg'])
+        );
+        self::assertSame(
+            'https://shop.test/img/p/1-default_md.jpg 2x',
+            smarty_modifier_srcset($image, ['default_xs' => '1x', 'default_md' => '2x'])['url']
+        );
+    }
+
+    public function testEveryValueIsEmptyWhenNoListedSizeExists(): void
+    {
+        self::assertSame(self::EMPTY, smarty_modifier_srcset(self::image('default_xs'), ['default_sm', 'default_lg']));
+        self::assertSame(self::EMPTY, smarty_modifier_srcset(['bySize' => []], ['default_sm']));
+    }
+
+    public function testFormatsMissingFromSourcesStayEmpty(): void
+    {
+        // The no-picture image exposes `url` only: the <source> elements must not be emitted.
+        $image = ['bySize' => ['default_md' => self::imageSize('default_md', 261, false)]];
+
+        self::assertSame(
+            [
+                'url' => 'https://shop.test/img/p/1-default_md.jpg 261w',
+                'webp' => '',
+                'avif' => '',
+                'src' => 'https://shop.test/img/p/1-default_md.jpg',
+                'width' => 261,
+                'height' => 261,
+            ],
+            smarty_modifier_srcset($image, ['default_md'])
+        );
+    }
+
+    /** @return iterable<string, array{mixed}> */
+    public static function unusableWidths(): iterable
+    {
+        yield 'missing' => [null];
+        yield 'zero' => [0];
+        yield 'negative' => [-1];
+        yield 'empty string' => [''];
+        yield 'non-numeric string' => ['abc'];
+    }
+
+    #[DataProvider('unusableWidths')]
+    public function testSizeWithoutUsableWidthIsSkippedInListMode(mixed $width): void
+    {
+        $size = ['url' => 'https://shop.test/x.jpg'];
+        if ($width !== null) {
+            $size['width'] = $width;
+        }
+        $image = ['bySize' => ['default_md' => $size]];
+
+        self::assertSame('', smarty_modifier_srcset($image, ['default_md'])['url']);
+        // An explicit descriptor does not need the width.
+        self::assertSame('https://shop.test/x.jpg 2x', smarty_modifier_srcset($image, ['default_md' => '2x'])['url']);
+    }
+
+    public function testNumericStringWidthIsAccepted(): void
+    {
+        $image = ['bySize' => ['default_md' => ['url' => 'https://shop.test/x.jpg', 'width' => '261']]];
+
+        self::assertSame('https://shop.test/x.jpg 261w', smarty_modifier_srcset($image, ['default_md'])['url']);
+    }
+
+    public function testListAndMapEntriesCanBeMixed(): void
+    {
+        $image = self::image('default_sm', 'default_md');
+
+        self::assertSame(
+            'https://shop.test/img/p/1-default_sm.jpg 216w, https://shop.test/img/p/1-default_md.jpg 2x',
+            smarty_modifier_srcset($image, ['default_sm', 'default_md' => '2x'])['url']
+        );
+    }
+
+    public function testEmptyTypeListYieldsEmptyValues(): void
+    {
+        self::assertSame(self::EMPTY, smarty_modifier_srcset(self::image('default_md'), []));
+    }
+
+    public function testSizeThatIsNotAnArrayIsSkipped(): void
+    {
+        $image = ['bySize' => ['default_sm' => 'oops', 'default_md' => self::imageSize('default_md', 261)]];
+
+        self::assertSame(
+            'https://shop.test/img/p/1-default_md.jpg 261w',
+            smarty_modifier_srcset($image, ['default_sm', 'default_md'])['url']
+        );
+    }
+
+    /** @return iterable<string, array{array<string, mixed>}> */
+    public static function sizesWithoutUsableUrl(): iterable
+    {
+        $sources = ['webp' => 'https://shop.test/x.webp', 'avif' => 'https://shop.test/x.avif'];
+
+        yield 'missing' => [['width' => 261, 'sources' => $sources]];
+        yield 'empty string' => [['url' => '', 'width' => 261, 'sources' => $sources]];
+        yield 'not a string' => [['url' => ['nested'], 'width' => 261, 'sources' => $sources]];
+    }
+
+    #[DataProvider('sizesWithoutUsableUrl')]
+    public function testOnlyTheFormatWithoutUsableUrlStaysEmpty(array $size): void
+    {
+        $image = ['bySize' => ['default_md' => $size]];
+
+        self::assertSame(
+            [
+                'url' => '',
+                'webp' => 'https://shop.test/x.webp 261w',
+                'avif' => 'https://shop.test/x.avif 261w',
+                'src' => '',
+                'width' => 261,
+                'height' => 0,
+            ],
+            smarty_modifier_srcset($image, ['default_md'])
+        );
+    }
+
+    public function testSingleTypeNameIsAcceptedAsAString(): void
+    {
+        $image = self::image('default_md');
+
+        self::assertSame('https://shop.test/img/p/1-default_md.jpg 261w', smarty_modifier_srcset($image, 'default_md')['url']);
+        self::assertSame(self::EMPTY, smarty_modifier_srcset($image, 'default_sm'));
+    }
+
+    /** @return iterable<string, array{mixed}> */
+    public static function nonImages(): iterable
+    {
+        yield 'null' => [null];
+        yield 'false' => [false];
+        yield 'empty array' => [[]];
+        yield 'string' => ['https://shop.test/x.jpg'];
+        yield 'bySize not an array' => [['bySize' => 'oops']];
+    }
+
+    #[DataProvider('nonImages')]
+    public function testAnythingButAnImageArrayYieldsEmptyValues(mixed $image): void
+    {
+        self::assertSame(self::EMPTY, smarty_modifier_srcset($image, ['default_sm', 'default_md']));
+    }
+
+    public function testReturnsRawUrlsForTheTemplateToEscape(): void
+    {
+        $image = ['bySize' => ['default_md' => ['url' => 'https://shop.test/x.jpg?a=1&b=2', 'width' => 261]]];
+
+        self::assertSame('https://shop.test/x.jpg?a=1&b=2 261w', smarty_modifier_srcset($image, ['default_md'])['url']);
+    }
+
+    public function testFallbackSizeIsTheFirstListedSizeTheShopHas(): void
+    {
+        // default_sm is listed first but missing: default_md takes over.
+        $srcset = smarty_modifier_srcset(self::image('default_md', 'default_lg'), ['default_sm', 'default_md', 'default_lg']);
+
+        self::assertSame('https://shop.test/img/p/1-default_md.jpg', $srcset['src']);
+        self::assertSame(261, $srcset['width']);
+        self::assertSame(261, $srcset['height']);
+    }
+
+    public function testFallbackSizeCanBeChosenExplicitly(): void
+    {
+        $image = self::image('default_sm', 'default_md', 'default_lg');
+
+        $srcset = smarty_modifier_srcset($image, ['default_sm', 'default_md', 'default_lg'], 'default_md');
+
+        self::assertSame('https://shop.test/img/p/1-default_md.jpg', $srcset['src']);
+        self::assertSame(261, $srcset['width']);
+        self::assertSame(261, $srcset['height']);
+    }
+
+    public function testExplicitFallbackNeedNotBeListed(): void
+    {
+        $image = self::image('default_xs', 'default_md', 'default_lg');
+
+        self::assertSame(
+            'https://shop.test/img/p/1-default_lg.jpg',
+            smarty_modifier_srcset($image, ['default_xs' => '1x', 'default_md' => '2x'], 'default_lg')['src']
+        );
+    }
+
+    public function testMissingExplicitFallbackFallsBackToTheFirstListedSize(): void
+    {
+        $image = self::image('default_sm', 'default_md');
+
+        $srcset = smarty_modifier_srcset($image, ['default_sm', 'default_md'], 'default_lg');
+
+        self::assertSame('https://shop.test/img/p/1-default_sm.jpg', $srcset['src']);
+        self::assertSame(216, $srcset['width']);
+    }
+
+    public function testFallbackSizeDoesNotNeedAWidth(): void
+    {
+        // Explicit descriptor, no width: the size is still a usable src.
+        $image = ['bySize' => ['default_xs' => ['url' => 'https://shop.test/x.jpg']]];
+
+        self::assertSame(
+            ['url' => 'https://shop.test/x.jpg 1x', 'webp' => '', 'avif' => '', 'src' => 'https://shop.test/x.jpg', 'width' => 0, 'height' => 0],
+            smarty_modifier_srcset($image, ['default_xs' => '1x'])
+        );
+    }
+}

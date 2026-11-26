@@ -3,29 +3,36 @@
  * LICENSE.md file that was distributed with this source code.
  *}
 {block name='brand_miniature_item'}
+  {$imageTypes = ['small_default' => '']}
   <li class="brand">
     {if $displayImages|default:false}
       <div class="brand__image">
         {if !empty($brand.image.bySize.small_default.url)}
+          {$srcset = $brand.image|srcset:$imageTypes}
           <picture>
-            {if !empty($brand.image.bySize.small_default.sources.avif)}<source srcset="{$brand.image.bySize.small_default.sources.avif}" type="image/avif">{/if}
-            {if !empty($brand.image.bySize.small_default.sources.webp)}<source srcset="{$brand.image.bySize.small_default.sources.webp}" type="image/webp">{/if}
+            {include file='_partials/picture-sources.tpl' srcset=$srcset}
+
             <img
               class="brand__img img-fluid"
-              src="{$brand.image.bySize.small_default.url}"
+              {if $srcset.src}
+                src="{$srcset.src}"
+                width="{$srcset.width}"
+                height="{$srcset.height}"
+              {/if}
               alt="{if !empty($brand.image.legend)}{$brand.image.legend}{else}{$brand.name}{/if}"
-              width="{$brand.image.bySize.small_default.width}"
-              height="{$brand.image.bySize.small_default.height}"
               loading="lazy"
             >
           </picture>
         {else}
+          {$srcset = $urls.no_picture_image|srcset:$imageTypes}
           <img
             class="brand__img img-fluid"
-            src="{$urls.no_picture_image.bySize.small_default.url}"
+            {if $srcset.src}
+              src="{$srcset.src}"
+              width="{$srcset.width}"
+              height="{$srcset.height}"
+            {/if}
             alt="{$brand.name}"
-            width="{$urls.no_picture_image.bySize.small_default.width}"
-            height="{$urls.no_picture_image.bySize.small_default.height}"
             loading="lazy"
           >
         {/if}

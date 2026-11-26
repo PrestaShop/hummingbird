@@ -2,6 +2,7 @@
  * For the full copyright and license information, please view the
  * LICENSE.md file that was distributed with this source code.
  *}
+{$imageTypes = ['default_xs' => '1x', 'default_md' => '2x']}
 
 <script type="text/javascript">
   var productCommentPostErrorMessage = '{l s='Sorry, your review cannot be posted.' d='Modules.Productcomments.Shop' js=1}';
@@ -24,50 +25,42 @@
               {block name='product_cover'}
                 <div class="product-cover">
                   {if !empty($product.cover)}
+                    {$srcset = $product.cover|srcset:$imageTypes}
                     <picture>
-                      {if isset($product.cover.bySize.default_xs.sources.avif)}
-                        <source srcset="
-                           {$product.cover.bySize.default_xs.sources.avif},
-                           {$product.cover.bySize.default_md.sources.avif} 2x"
-                          type="image/avif">
-                      {/if}
+                      {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
-                      {if isset($product.cover.bySize.default_xs.sources.webp)}
-                        <source srcset="
-                           {$product.cover.bySize.default_xs.sources.webp},
-                           {$product.cover.bySize.default_md.sources.webp} 2x"
-                          type="image/webp">
-                      {/if}
-
-                      <img class="js-qv-product-cover rounded img-fluid" srcset="
-                         {$product.cover.bySize.default_xs.url},
-                         {$product.cover.bySize.default_md.url} 2x" loading="lazy"
-                        width="{$product.cover.bySize.default_xs.width}"
-                        height="{$product.cover.bySize.default_xs.height}"
+                      <img
+                        class="js-qv-product-cover rounded img-fluid"
+                        {if $srcset.url}
+                          srcset="{$srcset.url}"
+                        {/if}
+                        {if $srcset.src}
+                          src="{$srcset.src}"
+                          width="{$srcset.width}"
+                          height="{$srcset.height}"
+                        {/if}
+                        loading="lazy"
                         alt="{$product.cover.legend}"
-                        title="{$product.cover.legend}">
+                        title="{$product.cover.legend}"
+                      >
                     </picture>
                   {else}
+                    {$srcset = $urls.no_picture_image|srcset:$imageTypes}
                     <picture>
-                      {if isset($urls.no_picture_image.bySize.default_xs.sources.avif)}
-                        <source srcset="
-                           {$urls.no_picture_image.bySize.default_xs.sources.avif},
-                           {$urls.no_picture_image.bySize.default_md.sources.avif} 2x"
-                          type="image/avif">
-                      {/if}
+                      {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
-                      {if isset($urls.no_picture_image.bySize.default_xs.sources.webp)}
-                        <source srcset="
-                           {$urls.no_picture_image.bySize.default_xs.sources.webp},
-                           {$urls.no_picture_image.bySize.default_md.sources.webp} 2x"
-                          type="image/webp">
-                      {/if}
-
-                      <img class="rounded img-fluid" srcset="
-                         {$urls.no_picture_image.bySize.default_xs.url},
-                         {$urls.no_picture_image.bySize.default_md.url} 2x"
-                        width="{$urls.no_picture_image.bySize.default_xs.width}"
-                        height="{$urls.no_picture_image.bySize.default_xs.height}" loading="lazy">
+                      <img
+                        class="rounded img-fluid"
+                        {if $srcset.url}
+                          srcset="{$srcset.url}"
+                        {/if}
+                        {if $srcset.src}
+                          src="{$srcset.src}"
+                          width="{$srcset.width}"
+                          height="{$srcset.height}"
+                        {/if}
+                        loading="lazy"
+                      >
                     </picture>
                   {/if}
                 </div>

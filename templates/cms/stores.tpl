@@ -4,6 +4,7 @@
  *}
 
 {extends file='page.tpl'}
+{$imageTypes = ['stores_default' => '']}
 
 {block name='page_title'}
   {l s='Our stores' d='Shop.Theme.Global'}
@@ -16,27 +17,18 @@
         {foreach $stores as $store}
           <article id="store-{$store.id}" class="store">
             <div class="store__image">
+              {$srcset = $store.image|srcset:$imageTypes}
               <picture>
-                {if isset($store.image.bySize.stores_default.sources.avif)}
-                  <source 
-                    srcset="{$store.image.bySize.stores_default.sources.avif}"
-                    type="image/avif"
-                  >
-                {/if}
-
-                {if isset($store.image.bySize.stores_default.sources.webp)}
-                  <source 
-                    srcset="{$store.image.bySize.stores_default.sources.webp}"
-                    type="image/webp"
-                  >
-                {/if}
+                {include file='_partials/picture-sources.tpl' srcset=$srcset}
 
                 <img
                   class="store__img img-fluid"
-                  srcset="{$store.image.bySize.stores_default.url}"
+                  {if $srcset.src}
+                    src="{$srcset.src}"
+                    width="{$srcset.width}"
+                    height="{$srcset.height}"
+                  {/if}
                   loading="lazy"
-                  width="{$store.image.bySize.stores_default.width}"
-                  height="{$store.image.bySize.stores_default.height}"
                   {if !empty($store.image.legend)}
                     alt="{$store.image.legend}"
                     title="{$store.image.legend}"

@@ -39,8 +39,6 @@ import parseData from '@helpers/parseData';
 initEmitter();
 
 document.addEventListener('DOMContentLoaded', () => {
-  const {prestashop, Theme: {events}} = window;
-
   initProductBehavior();
   initQuickview();
   initCheckout();
@@ -67,13 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Accessibility
   initProductAccessibility();
   initCartAccessibility();
-
-  prestashop.on(events.responsiveUpdate, () => {
-    initSearchbar();
-    initLanguageSelector();
-    initCurrencySelector();
-    initDesktopMenu();
-  });
 });
 
 export const components = {
